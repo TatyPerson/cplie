@@ -6,14 +6,13 @@ package org.xtext.example.mydsl.parseTreeConstruction;
 import org.eclipse.emf.ecore.*;
 import org.eclipse.xtext.*;
 import org.eclipse.xtext.parsetree.reconstr.IEObjectConsumer;
-import org.eclipse.xtext.parsetree.reconstr.impl.AbstractParseTreeConstructor;
 
 import org.xtext.example.mydsl.services.MyDslGrammarAccess;
 
 import com.google.inject.Inject;
 
 @SuppressWarnings("all")
-public class MyDslParsetreeConstructor extends AbstractParseTreeConstructor {
+public class MyDslParsetreeConstructor extends org.eclipse.xtext.parsetree.reconstr.impl.AbstractParseTreeConstructor {
 		
 	@Inject
 	private MyDslGrammarAccess grammarAccess;
@@ -70,7 +69,6 @@ protected class ThisRootNode extends RootToken {
 /************ begin Rule Codigo ****************
  *
  * Codigo:
- * 
  * 	(funcion+=Subproceso funcion+=Subproceso*)? tiene=Inicio;
  *
  **/
@@ -273,7 +271,6 @@ protected class Codigo_TieneAssignment_1 extends AssignmentToken  {
 /************ begin Rule Subproceso ****************
  *
  * Subproceso:
- * 
  * 	Funcion | Procedimiento;
  *
  **/
@@ -388,7 +385,6 @@ protected class Subproceso_ProcedimientoParserRuleCall_1 extends RuleCallToken {
 /************ begin Rule Sentencias ****************
  *
  * Sentencias:
- * 
  * 	DeclaracionVariable | LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento;
  *
  **/
@@ -807,7 +803,6 @@ protected class Sentencias_IncrementoParserRuleCall_9 extends RuleCallToken {
 /************ begin Rule Operador ****************
  *
  * Operador:
- * 
  * 	VariableID | ConstCadena | Caracter | NumeroEntero | NumeroDecimal | ValorBooleano;
  *
  **/
@@ -1074,7 +1069,6 @@ protected class Operador_ValorBooleanoParserRuleCall_5 extends RuleCallToken {
 /************ begin Rule Caracter ****************
  *
  * Caracter:
- * 
  * 	contenido=CAR;
  *
  **/
@@ -1120,7 +1114,6 @@ protected class Caracter_ContenidoAssignment extends AssignmentToken  {
 /************ begin Rule valor ****************
  *
  * valor:
- * 
  * 	LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter;
  *
  **/
@@ -1463,7 +1456,6 @@ protected class Valor_CaracterParserRuleCall_7 extends RuleCallToken {
 /************ begin Rule Inicio ****************
  *
  * Inicio:
- * 
  * 	{Inicio} "inicio" (tiene+=Sentencias tiene+=Sentencias*)? "fin inicio";
  *
  **/
@@ -1693,7 +1685,6 @@ protected class Inicio_FinInicioKeyword_3 extends KeywordToken  {
 /************ begin Rule DeclaracionVariable ****************
  *
  * DeclaracionVariable:
- * 
  * 	tipo=TipoVariable tieneIDs+=Variable ("," tieneIDs+=Variable)*;
  *
  **/
@@ -1906,7 +1897,6 @@ protected class DeclaracionVariable_TieneIDsAssignment_2_1 extends AssignmentTok
 /************ begin Rule LlamadaFuncion ****************
  *
  * LlamadaFuncion:
- * 
  * 	nombre=EString "(" (operador+=Operador ("," operador+=Operador)*)? ")";
  *
  **/
@@ -2187,7 +2177,6 @@ protected class LlamadaFuncion_RightParenthesisKeyword_3 extends KeywordToken  {
 /************ begin Rule Asignacion ****************
  *
  * Asignacion:
- * 
  * 	lvalue=EString Mat+=MATRIZ* "=" operador=valor;
  *
  **/
@@ -2365,7 +2354,6 @@ protected class Asignacion_OperadorAssignment_3 extends AssignmentToken  {
 /************ begin Rule Escribir ****************
  *
  * Escribir:
- * 
  * 	"escribir" "(" operador+=Operador ("," operador+=Operador)* ")";
  *
  **/
@@ -2610,7 +2598,6 @@ protected class Escribir_RightParenthesisKeyword_4 extends KeywordToken  {
 /************ begin Rule Leer ****************
  *
  * Leer:
- * 
  * 	"leer" "(" variable=VariableID ")";
  *
  **/
@@ -2762,7 +2749,6 @@ protected class Leer_RightParenthesisKeyword_3 extends KeywordToken  {
 /************ begin Rule Si ****************
  *
  * Si:
- * 
  * 	"si" valor=valor "entonces" (sentencias+=Sentencias sentencias+=Sentencias*)? sino=Sino? "fin si";
  *
  **/
@@ -3080,7 +3066,6 @@ protected class Si_FinSiKeyword_5 extends KeywordToken  {
 /************ begin Rule mientras ****************
  *
  * mientras:
- * 
  * 	"mientras" valor=valor "repetir" (sentencias+=Sentencias sentencias+=Sentencias*)? "fin mientras";
  *
  **/
@@ -3350,7 +3335,6 @@ protected class Mientras_FinMientrasKeyword_4 extends KeywordToken  {
 /************ begin Rule repetir ****************
  *
  * repetir:
- * 
  * 	"repetir" (sentencias+=Sentencias sentencias+=Sentencias*)? "cuando" valor=valor "fin repetir";
  *
  **/
@@ -3620,9 +3604,7 @@ protected class Repetir_FinRepetirKeyword_4 extends KeywordToken  {
 /************ begin Rule desde ****************
  *
  * desde:
- * 
  * 	"desde" asignacion=Asignacion "hasta" valor=valor "hacer" (sentencias+=Sentencias sentencias+=Sentencias*)?
- * 
  * 	"fin desde";
  *
  **/
@@ -3960,7 +3942,6 @@ protected class Desde_FinDesdeKeyword_6 extends KeywordToken  {
 /************ begin Rule incremento ****************
  *
  * incremento:
- * 
  * 	nombre=EString ssigno=inc;
  *
  **/
@@ -4069,7 +4050,6 @@ protected class Incremento_SsignoAssignment_1 extends AssignmentToken  {
 /************ begin Rule Variable ****************
  *
  * Variable:
- * 
  * 	nombre=EString Mat+=MATRIZ*;
  *
  **/
@@ -4179,7 +4159,6 @@ protected class Variable_MatAssignment_1 extends AssignmentToken  {
 /************ begin Rule VariableID ****************
  *
  * VariableID:
- * 
  * 	nombre=EString Mat+=MATRIZ*;
  *
  **/
@@ -4289,7 +4268,6 @@ protected class VariableID_MatAssignment_1 extends AssignmentToken  {
 /************ begin Rule ConstCadena ****************
  *
  * ConstCadena:
- * 
  * 	contenido=CAD;
  *
  **/
@@ -4335,7 +4313,6 @@ protected class ConstCadena_ContenidoAssignment extends AssignmentToken  {
 /************ begin Rule NumeroEntero ****************
  *
  * NumeroEntero:
- * 
  * 	valor=EInt;
  *
  **/
@@ -4381,7 +4358,6 @@ protected class NumeroEntero_ValorAssignment extends AssignmentToken  {
 /************ begin Rule NumeroDecimal ****************
  *
  * NumeroDecimal:
- * 
  * 	valor=EFloat;
  *
  **/
@@ -4427,7 +4403,6 @@ protected class NumeroDecimal_ValorAssignment extends AssignmentToken  {
 /************ begin Rule ValorBooleano ****************
  *
  * ValorBooleano:
- * 
  * 	valor=booleano;
  *
  **/
@@ -4476,7 +4451,6 @@ protected class ValorBooleano_ValorAssignment extends AssignmentToken  {
 /************ begin Rule operacion ****************
  *
  * operacion:
- * 
  * 	"(" op_izq=operando_izq signo_op=signo op_der=operando_der ")";
  *
  **/
@@ -4687,7 +4661,6 @@ protected class Operacion_RightParenthesisKeyword_4 extends KeywordToken  {
 /************ begin Rule operando_izq ****************
  *
  * operando_izq:
- * 
  * 	oper_izq=valor;
  *
  **/
@@ -4745,7 +4718,6 @@ protected class Operando_izq_Oper_izqAssignment extends AssignmentToken  {
 /************ begin Rule operando_der ****************
  *
  * operando_der:
- * 
  * 	oper_der=valor;
  *
  **/
@@ -4803,7 +4775,6 @@ protected class Operando_der_Oper_derAssignment extends AssignmentToken  {
 /************ begin Rule Sino ****************
  *
  * Sino:
- * 
  * 	{Sino} "sino" (sentencias+=Sentencias sentencias+=Sentencias*)?;
  *
  **/
@@ -5011,7 +4982,6 @@ protected class Sino_SentenciasAssignment_2_1 extends AssignmentToken  {
 /************ begin Rule ParametroFuncion ****************
  *
  * ParametroFuncion:
- * 
  * 	tipo=TipoVariable paso=TipoPaso variable=Variable;
  *
  **/
@@ -5165,19 +5135,14 @@ protected class ParametroFuncion_VariableAssignment_2 extends AssignmentToken  {
 /************ begin Rule Funcion ****************
  *
  * Funcion:
- * 
  * 	"funcion" tipo=TipoVariable nombre=EString "(" (parametrofuncion+=ParametroFuncion (","
- * 
  * 	parametrofuncion+=ParametroFuncion)*)? ")" (sentencias+=Sentencias sentencias+=Sentencias*)? "devuelve"
- * 
  * 	devuelve=valor "fin funcion";
  *
  **/
 
 // "funcion" tipo=TipoVariable nombre=EString "(" (parametrofuncion+=ParametroFuncion (","
-// 
 // parametrofuncion+=ParametroFuncion)*)? ")" (sentencias+=Sentencias sentencias+=Sentencias*)? "devuelve" devuelve=valor
-// 
 // "fin funcion"
 protected class Funcion_Group extends GroupToken {
 	
@@ -5718,15 +5683,12 @@ protected class Funcion_FinFuncionKeyword_9 extends KeywordToken  {
 /************ begin Rule Procedimiento ****************
  *
  * Procedimiento:
- * 
  * 	"procedimiento" nombre=EString "(" (parametrofuncion+=ParametroFuncion ("," parametrofuncion+=ParametroFuncion)*)?
- * 
  * 	")" (sentencias+=Sentencias sentencias+=Sentencias*)? "fin procedimiento";
  *
  **/
 
 // "procedimiento" nombre=EString "(" (parametrofuncion+=ParametroFuncion ("," parametrofuncion+=ParametroFuncion)*)? ")"
-// 
 // (sentencias+=Sentencias sentencias+=Sentencias*)? "fin procedimiento"
 protected class Procedimiento_Group extends GroupToken {
 	

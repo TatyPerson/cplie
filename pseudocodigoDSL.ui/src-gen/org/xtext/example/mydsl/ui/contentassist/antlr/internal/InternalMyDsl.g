@@ -1361,19 +1361,19 @@ rule__TipoVariable__Alternatives
 )
 
     |(
-{ before(grammarAccess.getTipoVariableAccess().getDecimalKeyword_2()); }
+{ before(grammarAccess.getTipoVariableAccess().getRealKeyword_2()); }
 
-	'decimal' 
+	'real' 
 
-{ after(grammarAccess.getTipoVariableAccess().getDecimalKeyword_2()); }
+{ after(grammarAccess.getTipoVariableAccess().getRealKeyword_2()); }
 )
 
     |(
-{ before(grammarAccess.getTipoVariableAccess().getBooleanoKeyword_3()); }
+{ before(grammarAccess.getTipoVariableAccess().getLogicoKeyword_3()); }
 
-	'booleano' 
+	'logico' 
 
-{ after(grammarAccess.getTipoVariableAccess().getBooleanoKeyword_3()); }
+{ after(grammarAccess.getTipoVariableAccess().getLogicoKeyword_3()); }
 )
 
     |(

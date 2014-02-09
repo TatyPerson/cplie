@@ -56,7 +56,7 @@ public enum TipoVariable implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BOOLEANO(3, "booleano", "booleano"),
+	LOGICO(3, "logico", "logico"),
 
 	/**
 	 * The '<em><b>Decimal</b></em>' literal object.
@@ -66,7 +66,7 @@ public enum TipoVariable implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DECIMAL(4, "decimal", "decimal");
+	REAL(4, "real", "real");
 
 	/**
 	 * The '<em><b>Entero</b></em>' literal value.
@@ -126,7 +126,7 @@ public enum TipoVariable implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BOOLEANO_VALUE = 3;
+	public static final int LOGICO_VALUE = 3;
 
 	/**
 	 * The '<em><b>Decimal</b></em>' literal value.
@@ -141,7 +141,7 @@ public enum TipoVariable implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DECIMAL_VALUE = 4;
+	public static final int REAL_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Tipo Variable</b></em>' enumerators.
@@ -154,8 +154,8 @@ public enum TipoVariable implements Enumerator {
 			ENTERO,
 			CARACTER,
 			CADENA,
-			BOOLEANO,
-			DECIMAL,
+			LOGICO,
+			REAL,
 		};
 
 	/**
@@ -209,8 +209,8 @@ public enum TipoVariable implements Enumerator {
 			case ENTERO_VALUE: return ENTERO;
 			case CARACTER_VALUE: return CARACTER;
 			case CADENA_VALUE: return CADENA;
-			case BOOLEANO_VALUE: return BOOLEANO;
-			case DECIMAL_VALUE: return DECIMAL;
+			case LOGICO_VALUE: return LOGICO;
+			case REAL_VALUE: return REAL;
 		}
 		return null;
 	}

@@ -88,11 +88,11 @@
         <layoutConstraint xmi:type="notation:Location" xmi:id="_2kVLAUkDEeK5F-3H-froxA"/>
       </children>
       <children xmi:type="notation:Node" xmi:id="_3NxJkEkDEeK5F-3H-froxA" type="2006">
-        <element xmi:type="ecore:EEnumLiteral" href="diagramaPseudocodigo.ecore#//TipoVariable/booleano"/>
+        <element xmi:type="ecore:EEnumLiteral" href="diagramaPseudocodigo.ecore#//TipoVariable/logico"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_3NxJkUkDEeK5F-3H-froxA"/>
       </children>
       <children xmi:type="notation:Node" xmi:id="_5Ba4gEkDEeK5F-3H-froxA" type="2006">
-        <element xmi:type="ecore:EEnumLiteral" href="diagramaPseudocodigo.ecore#//TipoVariable/decimal"/>
+        <element xmi:type="ecore:EEnumLiteral" href="diagramaPseudocodigo.ecore#//TipoVariable/real"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_5Ba4gUkDEeK5F-3H-froxA"/>
       </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_P_4HYUj7EeK5F-3H-froxA"/>

@@ -1467,17 +1467,17 @@ ruleTipoVariable returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTo
     }
 
     |
-	kw='decimal' 
+	kw='real' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getTipoVariableAccess().getDecimalKeyword_2()); 
+        newLeafNode(kw, grammarAccess.getTipoVariableAccess().getRealKeyword_2()); 
     }
 
     |
-	kw='booleano' 
+	kw='logico' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getTipoVariableAccess().getBooleanoKeyword_3()); 
+        newLeafNode(kw, grammarAccess.getTipoVariableAccess().getLogicoKeyword_3()); 
     }
 
     |
