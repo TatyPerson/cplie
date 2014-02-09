@@ -24,8 +24,7 @@ Operador returns Operador:
 	VariableID | ConstCadena | Caracter | NumeroEntero | NumeroDecimal | ValorBooleano;
 
 Caracter returns Caracter:
-	contenido=CAR
-;
+	contenido=CAR;
 
 
 valor returns valor:
@@ -42,22 +41,19 @@ EString returns ecore::EString:
 
 DeclaracionVariable returns DeclaracionVariable:
 	tipo=TipoVariable
-	tieneIDs+=Variable ( "," tieneIDs+=Variable)*
-		;
+	tieneIDs+=Variable ( "," tieneIDs+=Variable)*;
 
 LlamadaFuncion returns LlamadaFuncion:
 	nombre=EString
 	'('
 		(operador+=Operador ( "," operador+=Operador)* )?
-	')'
-	;
+	')';
 
 Asignacion returns Asignacion:
 	 lvalue=EString
 	 Mat+=MATRIZ*
 	 '='
-	operador=valor
-	;
+	operador=valor;
 
 Escribir returns Escribir:
 	'escribir'
@@ -87,8 +83,7 @@ repetir returns repetir:
 	'repetir'
 		(sentencias+=Sentencias ( sentencias+=Sentencias)*)?
 	 'cuando' valor=valor
-	 'fin repetir' 
-	;
+	 'fin repetir';
 
 desde returns desde:
 	'desde' asignacion=Asignacion 'hasta' valor=valor 'hacer'
@@ -97,22 +92,18 @@ desde returns desde:
 
 incremento returns incremento:
 	nombre=EString
-	ssigno=inc
-	;
+	ssigno=inc;
 
 TipoVariable returns TipoVariable:
-	'entero' | 'caracter' | 'decimal' | 'booleano' | 'cadena'
-	;
+	'entero' | 'caracter' | 'real' | 'logico' | 'cadena';
 	
 Variable returns Variable:
 	 nombre=EString
-	 Mat+=MATRIZ*
-	;
+	 Mat+=MATRIZ*;
 
 VariableID returns VariableID:
 	nombre=EString
-	Mat+=MATRIZ*
-	;
+	Mat+=MATRIZ*;
 
 terminal CAD: '"' ('a'..'z'|'A'..'Z'|'_'|' '|'!'|'#'|'@'|'%'|'&'|'('|')'|'='|'?'|'\\'|'0'..'9')* '"';
 terminal CAR: "'" ('a'..'z'|'A'..'Z'|'_'|' '|'!'|'#'|'@'|'%'|'&'|'('|')'|'='|'?'|'\\'|'0'..'9') "'";
@@ -122,20 +113,16 @@ terminal MATRIZ:
 
 
 ConstCadena returns ConstCadena:
-	contenido=CAD
-	;
+	contenido=CAD;
 
 NumeroEntero returns NumeroEntero:
-	 valor=EInt
-	;
+	 valor=EInt;
 
 NumeroDecimal returns NumeroDecimal:
-	 valor=EFloat
-	;
+	 valor=EFloat;
 
 ValorBooleano returns ValorBooleano:
-	 valor=booleano
-	;
+	 valor=booleano;
 
 EInt returns ecore::EInt:
 	'-'? INT;
@@ -152,27 +139,23 @@ operacion returns operacion:
 		op_izq=operando_izq
 		signo_op=signo		
 		op_der=operando_der
-	')'
-	;
+	')';
 
 signo returns signo:
 	('+' | '-' | '*' | '/' | '<' | '>' | '>=' | '<=' | 'y' | 'o' | '==' | '!=')
  /* TODO: implement this rule and an appropriate IValueConverter */;
 
 operando_izq returns operando_izq:
-	 oper_izq=valor
-	;
+	 oper_izq=valor;
 
 operando_der returns operando_der:
-	 oper_der=valor
-	;
+	 oper_der=valor;
 
 
 Sino returns Sino:
 	{Sino}
 	'sino'
-	(sentencias+=Sentencias ( sentencias+=Sentencias)* )?
-	;
+	(sentencias+=Sentencias ( sentencias+=Sentencias)* )?;
 
 inc returns inc:
 	"++" | "--" /* TODO: implement this rule and an appropriate IValueConverter */;
@@ -180,8 +163,7 @@ inc returns inc:
 ParametroFuncion returns ParametroFuncion:
 	tipo=TipoVariable
 	paso=TipoPaso
-	variable=Variable
-	;
+	variable=Variable;
 
 Funcion returns Funcion:
 	'funcion'
@@ -190,8 +172,7 @@ Funcion returns Funcion:
 	'('(parametrofuncion+=ParametroFuncion ( "," parametrofuncion+=ParametroFuncion)*  )?')'
 	( sentencias+=Sentencias (  sentencias+=Sentencias)*  )?
 	'devuelve' devuelve=valor
-	'fin funcion'
-	;
+	'fin funcion';
 Procedimiento returns Procedimiento:
 	'procedimiento'
 	nombre=EString

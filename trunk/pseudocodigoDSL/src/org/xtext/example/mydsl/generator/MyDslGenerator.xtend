@@ -61,8 +61,8 @@ class MyDslGenerator implements IGenerator {
 	def tipoVariable(TipoVariable tipo){
 		if(tipo == TipoVariable::ENTERO) return "int";
 		if(tipo == TipoVariable::CARACTER) return "char";
-		if(tipo == TipoVariable::DECIMAL) return "float";
-		if(tipo == TipoVariable::BOOLEANO) return "bool";
+		if(tipo == TipoVariable::REAL) return "float";
+		if(tipo == TipoVariable::LOGICO) return "bool";
 		if(tipo == TipoVariable::CADENA) return "string";		
 	}
 	

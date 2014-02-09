@@ -24,8 +24,8 @@
     <eLiterals name="entero"/>
     <eLiterals name="caracter" value="1"/>
     <eLiterals name="cadena" value="2"/>
-    <eLiterals name="booleano" value="3"/>
-    <eLiterals name="decimal" value="4"/>
+    <eLiterals name="logico" value="3"/>
+    <eLiterals name="real" value="4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LlamadaFuncion" eSuperTypes="#//Sentencias #//valor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"

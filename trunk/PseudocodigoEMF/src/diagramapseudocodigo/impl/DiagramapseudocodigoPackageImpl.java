@@ -1393,8 +1393,8 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		addEEnumLiteral(tipoVariableEEnum, TipoVariable.ENTERO);
 		addEEnumLiteral(tipoVariableEEnum, TipoVariable.CARACTER);
 		addEEnumLiteral(tipoVariableEEnum, TipoVariable.CADENA);
-		addEEnumLiteral(tipoVariableEEnum, TipoVariable.BOOLEANO);
-		addEEnumLiteral(tipoVariableEEnum, TipoVariable.DECIMAL);
+		addEEnumLiteral(tipoVariableEEnum, TipoVariable.LOGICO);
+		addEEnumLiteral(tipoVariableEEnum, TipoVariable.REAL);
 
 		initEEnum(signoEEnum, signo.class, "signo");
 		addEEnumLiteral(signoEEnum, signo.SUM);
