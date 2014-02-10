@@ -576,19 +576,19 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cMientrasKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cValorAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cValorValorParserRuleCall_1_0 = (RuleCall)cValorAssignment_1.eContents().get(0);
-		private final Keyword cRepetirKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cHacerKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Assignment cSentenciasAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
 		private final RuleCall cSentenciasSentenciasParserRuleCall_3_0_0 = (RuleCall)cSentenciasAssignment_3_0.eContents().get(0);
 		private final Assignment cSentenciasAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final RuleCall cSentenciasSentenciasParserRuleCall_3_1_0 = (RuleCall)cSentenciasAssignment_3_1.eContents().get(0);
-		private final Keyword cFinMientrasKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cFin_mientrasKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//mientras:
-		//	"mientras" valor=valor "repetir" (sentencias+=Sentencias sentencias+=Sentencias*)? "fin mientras";
+		//	"mientras" valor=valor "hacer" (sentencias+=Sentencias sentencias+=Sentencias*)? "fin_mientras";
 		public ParserRule getRule() { return rule; }
 
-		//"mientras" valor=valor "repetir" (sentencias+=Sentencias sentencias+=Sentencias*)? "fin mientras"
+		//"mientras" valor=valor "hacer" (sentencias+=Sentencias sentencias+=Sentencias*)? "fin_mientras"
 		public Group getGroup() { return cGroup; }
 
 		//"mientras"
@@ -600,8 +600,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//valor
 		public RuleCall getValorValorParserRuleCall_1_0() { return cValorValorParserRuleCall_1_0; }
 
-		//"repetir"
-		public Keyword getRepetirKeyword_2() { return cRepetirKeyword_2; }
+		//"hacer"
+		public Keyword getHacerKeyword_2() { return cHacerKeyword_2; }
 
 		//(sentencias+=Sentencias sentencias+=Sentencias*)?
 		public Group getGroup_3() { return cGroup_3; }
@@ -618,8 +618,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//Sentencias
 		public RuleCall getSentenciasSentenciasParserRuleCall_3_1_0() { return cSentenciasSentenciasParserRuleCall_3_1_0; }
 
-		//"fin mientras"
-		public Keyword getFinMientrasKeyword_4() { return cFinMientrasKeyword_4; }
+		//"fin_mientras"
+		public Keyword getFin_mientrasKeyword_4() { return cFin_mientrasKeyword_4; }
 	}
 
 	public class RepetirElements extends AbstractParserRuleElementFinder {
@@ -631,16 +631,15 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSentenciasSentenciasParserRuleCall_1_0_0 = (RuleCall)cSentenciasAssignment_1_0.eContents().get(0);
 		private final Assignment cSentenciasAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cSentenciasSentenciasParserRuleCall_1_1_0 = (RuleCall)cSentenciasAssignment_1_1.eContents().get(0);
-		private final Keyword cCuandoKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cHasta_queKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cValorAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cValorValorParserRuleCall_3_0 = (RuleCall)cValorAssignment_3.eContents().get(0);
-		private final Keyword cFinRepetirKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//repetir:
-		//	"repetir" (sentencias+=Sentencias sentencias+=Sentencias*)? "cuando" valor=valor "fin repetir";
+		//	"repetir" (sentencias+=Sentencias sentencias+=Sentencias*)? "hasta_que" valor=valor;
 		public ParserRule getRule() { return rule; }
 
-		//"repetir" (sentencias+=Sentencias sentencias+=Sentencias*)? "cuando" valor=valor "fin repetir"
+		//"repetir" (sentencias+=Sentencias sentencias+=Sentencias*)? "hasta_que" valor=valor
 		public Group getGroup() { return cGroup; }
 
 		//"repetir"
@@ -661,17 +660,14 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//Sentencias
 		public RuleCall getSentenciasSentenciasParserRuleCall_1_1_0() { return cSentenciasSentenciasParserRuleCall_1_1_0; }
 
-		//"cuando"
-		public Keyword getCuandoKeyword_2() { return cCuandoKeyword_2; }
+		//"hasta_que"
+		public Keyword getHasta_queKeyword_2() { return cHasta_queKeyword_2; }
 
 		//valor=valor
 		public Assignment getValorAssignment_3() { return cValorAssignment_3; }
 
 		//valor
 		public RuleCall getValorValorParserRuleCall_3_0() { return cValorValorParserRuleCall_3_0; }
-
-		//"fin repetir"
-		public Keyword getFinRepetirKeyword_4() { return cFinRepetirKeyword_4; }
 	}
 
 	public class DesdeElements extends AbstractParserRuleElementFinder {
@@ -1693,7 +1689,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//mientras:
-	//	"mientras" valor=valor "repetir" (sentencias+=Sentencias sentencias+=Sentencias*)? "fin mientras";
+	//	"mientras" valor=valor "hacer" (sentencias+=Sentencias sentencias+=Sentencias*)? "fin_mientras";
 	public MientrasElements getMientrasAccess() {
 		return (pMientras != null) ? pMientras : (pMientras = new MientrasElements());
 	}
@@ -1703,7 +1699,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//repetir:
-	//	"repetir" (sentencias+=Sentencias sentencias+=Sentencias*)? "cuando" valor=valor "fin repetir";
+	//	"repetir" (sentencias+=Sentencias sentencias+=Sentencias*)? "hasta_que" valor=valor;
 	public RepetirElements getRepetirAccess() {
 		return (pRepetir != null) ? pRepetir : (pRepetir = new RepetirElements());
 	}

@@ -1,5 +1,4 @@
 RULE_ID=6
-T__64=64
 T__29=29
 T__28=28
 T__62=62
@@ -59,54 +58,53 @@ T__37=37
 T__38=38
 T__39=39
 RULE_WS=12
-'E/S'=64
-'>='=50
-'cadena'=38
-'/'=47
-'=='=54
-'>'=49
-'fin funcion'=61
-'verdadero'=43
-'e'=42
-'+'=45
-'.'=40
+'E/S'=63
+'>='=49
+'cadena'=37
+'/'=46
+'=='=53
+'>'=48
+'fin funcion'=60
+'verdadero'=42
+'e'=41
+'+'=44
+'.'=39
 'fin inicio'=15
-'falso'=44
-'++'=57
-'logico'=37
-'fin desde'=33
-'fin mientras'=27
+'falso'=43
+'++'=56
+'logico'=36
+'fin desde'=32
 'inicio'=14
 'si'=22
-'caracter'=35
-'o'=53
+'caracter'=34
+'o'=52
 '('=17
-'-'=39
-'cuando'=28
+'-'=38
 ','=16
-'hacer'=32
-'real'=36
-'fin procedimiento'=63
-'sino'=56
+'hacer'=26
+'real'=35
+'fin procedimiento'=62
+'sino'=55
 'leer'=21
 'fin si'=24
 'entonces'=23
 'escribir'=20
 'hasta'=31
+'fin_mientras'=27
 '='=19
-'repetir'=26
+'repetir'=28
 ')'=18
-'fin repetir'=29
+'hasta_que'=29
 'desde'=30
 'mientras'=25
-'y'=52
-'<='=51
-'devuelve'=60
-'!='=55
-'funcion'=59
-'entero'=34
-'<'=48
-'--'=58
-'procedimiento'=62
-'*'=46
-'E'=41
+'y'=51
+'<='=50
+'devuelve'=59
+'!='=54
+'funcion'=58
+'entero'=33
+'<'=47
+'--'=57
+'procedimiento'=61
+'*'=45
+'E'=40
