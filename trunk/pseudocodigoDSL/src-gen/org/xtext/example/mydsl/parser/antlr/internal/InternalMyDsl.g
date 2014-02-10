@@ -2443,28 +2443,14 @@ ruleFuncion returns [EObject current=null]
     {
     	newLeafNode(otherlv_7, grammarAccess.getFuncionAccess().getRightParenthesisKeyword_5());
     }
+	otherlv_8='inicio' 
+    {
+    	newLeafNode(otherlv_8, grammarAccess.getFuncionAccess().getInicioKeyword_6());
+    }
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getFuncionAccess().getSentenciasSentenciasParserRuleCall_6_0_0()); 
-	    }
-		lv_sentencias_8_0=ruleSentencias		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getFuncionRule());
-	        }
-       		add(
-       			$current, 
-       			"sentencias",
-        		lv_sentencias_8_0, 
-        		"Sentencias");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getFuncionAccess().getSentenciasSentenciasParserRuleCall_6_1_0()); 
+	        newCompositeNode(grammarAccess.getFuncionAccess().getSentenciasSentenciasParserRuleCall_7_0_0()); 
 	    }
 		lv_sentencias_9_0=ruleSentencias		{
 	        if ($current==null) {
@@ -2479,31 +2465,49 @@ ruleFuncion returns [EObject current=null]
 	    }
 
 )
-)*)?	otherlv_10='devolver' 
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getFuncionAccess().getSentenciasSentenciasParserRuleCall_7_1_0()); 
+	    }
+		lv_sentencias_10_0=ruleSentencias		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getFuncionRule());
+	        }
+       		add(
+       			$current, 
+       			"sentencias",
+        		lv_sentencias_10_0, 
+        		"Sentencias");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*)?	otherlv_11='devolver' 
     {
-    	newLeafNode(otherlv_10, grammarAccess.getFuncionAccess().getDevolverKeyword_7());
+    	newLeafNode(otherlv_11, grammarAccess.getFuncionAccess().getDevolverKeyword_8());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getFuncionAccess().getDevuelveValorParserRuleCall_8_0()); 
+	        newCompositeNode(grammarAccess.getFuncionAccess().getDevuelveValorParserRuleCall_9_0()); 
 	    }
-		lv_devuelve_11_0=rulevalor		{
+		lv_devuelve_12_0=rulevalor		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getFuncionRule());
 	        }
        		set(
        			$current, 
        			"devuelve",
-        		lv_devuelve_11_0, 
+        		lv_devuelve_12_0, 
         		"valor");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_12='fin_funcion' 
+)	otherlv_13='fin_funcion' 
     {
-    	newLeafNode(otherlv_12, grammarAccess.getFuncionAccess().getFin_funcionKeyword_9());
+    	newLeafNode(otherlv_13, grammarAccess.getFuncionAccess().getFin_funcionKeyword_10());
     }
 )
 ;
