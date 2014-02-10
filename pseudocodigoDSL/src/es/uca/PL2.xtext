@@ -169,6 +169,7 @@ Funcion returns Funcion:
 	'funcion'
 	nombre=EString
 	'('(parametrofuncion+=ParametroFuncion ( "," parametrofuncion+=ParametroFuncion)*  )?')'
+	'inicio'
 	( sentencias+=Sentencias (  sentencias+=Sentencias)*  )?
 	'devolver' devuelve=valor
 	'fin_funcion';
