@@ -86,7 +86,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getProcedimientoAccess().getGroup(), "rule__Procedimiento__Group__0");
 					put(grammarAccess.getProcedimientoAccess().getGroup_3(), "rule__Procedimiento__Group_3__0");
 					put(grammarAccess.getProcedimientoAccess().getGroup_3_1(), "rule__Procedimiento__Group_3_1__0");
-					put(grammarAccess.getProcedimientoAccess().getGroup_5(), "rule__Procedimiento__Group_5__0");
+					put(grammarAccess.getProcedimientoAccess().getGroup_6(), "rule__Procedimiento__Group_6__0");
 					put(grammarAccess.getCodigoAccess().getFuncionAssignment_0_0(), "rule__Codigo__FuncionAssignment_0_0");
 					put(grammarAccess.getCodigoAccess().getFuncionAssignment_0_1(), "rule__Codigo__FuncionAssignment_0_1");
 					put(grammarAccess.getCodigoAccess().getTieneAssignment_1(), "rule__Codigo__TieneAssignment_1");
@@ -149,8 +149,8 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getProcedimientoAccess().getNombreAssignment_1(), "rule__Procedimiento__NombreAssignment_1");
 					put(grammarAccess.getProcedimientoAccess().getParametrofuncionAssignment_3_0(), "rule__Procedimiento__ParametrofuncionAssignment_3_0");
 					put(grammarAccess.getProcedimientoAccess().getParametrofuncionAssignment_3_1_1(), "rule__Procedimiento__ParametrofuncionAssignment_3_1_1");
-					put(grammarAccess.getProcedimientoAccess().getSentenciasAssignment_5_0(), "rule__Procedimiento__SentenciasAssignment_5_0");
-					put(grammarAccess.getProcedimientoAccess().getSentenciasAssignment_5_1(), "rule__Procedimiento__SentenciasAssignment_5_1");
+					put(grammarAccess.getProcedimientoAccess().getSentenciasAssignment_6_0(), "rule__Procedimiento__SentenciasAssignment_6_0");
+					put(grammarAccess.getProcedimientoAccess().getSentenciasAssignment_6_1(), "rule__Procedimiento__SentenciasAssignment_6_1");
 				}
 			};
 		}

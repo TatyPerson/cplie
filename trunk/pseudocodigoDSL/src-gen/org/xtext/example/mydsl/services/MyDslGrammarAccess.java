@@ -1366,20 +1366,21 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cParametrofuncionAssignment_3_1_1 = (Assignment)cGroup_3_1.eContents().get(1);
 		private final RuleCall cParametrofuncionParametroFuncionParserRuleCall_3_1_1_0 = (RuleCall)cParametrofuncionAssignment_3_1_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Assignment cSentenciasAssignment_5_0 = (Assignment)cGroup_5.eContents().get(0);
-		private final RuleCall cSentenciasSentenciasParserRuleCall_5_0_0 = (RuleCall)cSentenciasAssignment_5_0.eContents().get(0);
-		private final Assignment cSentenciasAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cSentenciasSentenciasParserRuleCall_5_1_0 = (RuleCall)cSentenciasAssignment_5_1.eContents().get(0);
-		private final Keyword cFinProcedimientoKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Keyword cInicioKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Assignment cSentenciasAssignment_6_0 = (Assignment)cGroup_6.eContents().get(0);
+		private final RuleCall cSentenciasSentenciasParserRuleCall_6_0_0 = (RuleCall)cSentenciasAssignment_6_0.eContents().get(0);
+		private final Assignment cSentenciasAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cSentenciasSentenciasParserRuleCall_6_1_0 = (RuleCall)cSentenciasAssignment_6_1.eContents().get(0);
+		private final Keyword cFin_procedimientoKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//Procedimiento:
 		//	"procedimiento" nombre=EString "(" (parametrofuncion+=ParametroFuncion ("," parametrofuncion+=ParametroFuncion)*)?
-		//	")" (sentencias+=Sentencias sentencias+=Sentencias*)? "fin procedimiento";
+		//	")" "inicio" (sentencias+=Sentencias sentencias+=Sentencias*)? "fin_procedimiento";
 		public ParserRule getRule() { return rule; }
 
 		//"procedimiento" nombre=EString "(" (parametrofuncion+=ParametroFuncion ("," parametrofuncion+=ParametroFuncion)*)? ")"
-		//(sentencias+=Sentencias sentencias+=Sentencias*)? "fin procedimiento"
+		//"inicio" (sentencias+=Sentencias sentencias+=Sentencias*)? "fin_procedimiento"
 		public Group getGroup() { return cGroup; }
 
 		//"procedimiento"
@@ -1418,23 +1419,26 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//")"
 		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 
+		//"inicio"
+		public Keyword getInicioKeyword_5() { return cInicioKeyword_5; }
+
 		//(sentencias+=Sentencias sentencias+=Sentencias*)?
-		public Group getGroup_5() { return cGroup_5; }
+		public Group getGroup_6() { return cGroup_6; }
 
 		//sentencias+=Sentencias
-		public Assignment getSentenciasAssignment_5_0() { return cSentenciasAssignment_5_0; }
+		public Assignment getSentenciasAssignment_6_0() { return cSentenciasAssignment_6_0; }
 
 		//Sentencias
-		public RuleCall getSentenciasSentenciasParserRuleCall_5_0_0() { return cSentenciasSentenciasParserRuleCall_5_0_0; }
+		public RuleCall getSentenciasSentenciasParserRuleCall_6_0_0() { return cSentenciasSentenciasParserRuleCall_6_0_0; }
 
 		//sentencias+=Sentencias*
-		public Assignment getSentenciasAssignment_5_1() { return cSentenciasAssignment_5_1; }
+		public Assignment getSentenciasAssignment_6_1() { return cSentenciasAssignment_6_1; }
 
 		//Sentencias
-		public RuleCall getSentenciasSentenciasParserRuleCall_5_1_0() { return cSentenciasSentenciasParserRuleCall_5_1_0; }
+		public RuleCall getSentenciasSentenciasParserRuleCall_6_1_0() { return cSentenciasSentenciasParserRuleCall_6_1_0; }
 
-		//"fin procedimiento"
-		public Keyword getFinProcedimientoKeyword_6() { return cFinProcedimientoKeyword_6; }
+		//"fin_procedimiento"
+		public Keyword getFin_procedimientoKeyword_7() { return cFin_procedimientoKeyword_7; }
 	}
 
 	public class TipoPasoElements extends AbstractParserRuleElementFinder {
@@ -1935,7 +1939,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 	//Procedimiento:
 	//	"procedimiento" nombre=EString "(" (parametrofuncion+=ParametroFuncion ("," parametrofuncion+=ParametroFuncion)*)?
-	//	")" (sentencias+=Sentencias sentencias+=Sentencias*)? "fin procedimiento";
+	//	")" "inicio" (sentencias+=Sentencias sentencias+=Sentencias*)? "fin_procedimiento";
 	public ProcedimientoElements getProcedimientoAccess() {
 		return (pProcedimiento != null) ? pProcedimiento : (pProcedimiento = new ProcedimientoElements());
 	}
