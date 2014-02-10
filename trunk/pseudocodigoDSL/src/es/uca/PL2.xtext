@@ -75,15 +75,14 @@ Si returns Si:
 
 mientras returns mientras:
 	'mientras'
-	valor=valor 'repetir'
+	valor=valor 'hacer'
 		(sentencias+=Sentencias ( sentencias+=Sentencias)*  )?
-	'fin mientras';
+	'fin_mientras';
 
 repetir returns repetir:
 	'repetir'
 		(sentencias+=Sentencias ( sentencias+=Sentencias)*)?
-	 'cuando' valor=valor
-	 'fin repetir';
+	 'hasta_que' valor=valor;
 
 desde returns desde:
 	'desde' asignacion=Asignacion 'hasta' valor=valor 'hacer'

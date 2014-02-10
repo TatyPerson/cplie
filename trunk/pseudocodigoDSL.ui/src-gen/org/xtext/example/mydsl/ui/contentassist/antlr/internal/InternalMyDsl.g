@@ -3126,11 +3126,11 @@ rule__Mientras__Group__2__Impl
     }
 :
 (
-{ before(grammarAccess.getMientrasAccess().getRepetirKeyword_2()); }
+{ before(grammarAccess.getMientrasAccess().getHacerKeyword_2()); }
 
-	'repetir' 
+	'hacer' 
 
-{ after(grammarAccess.getMientrasAccess().getRepetirKeyword_2()); }
+{ after(grammarAccess.getMientrasAccess().getHacerKeyword_2()); }
 )
 
 ;
@@ -3185,11 +3185,11 @@ rule__Mientras__Group__4__Impl
     }
 :
 (
-{ before(grammarAccess.getMientrasAccess().getFinMientrasKeyword_4()); }
+{ before(grammarAccess.getMientrasAccess().getFin_mientrasKeyword_4()); }
 
-	'fin mientras' 
+	'fin_mientras' 
 
-{ after(grammarAccess.getMientrasAccess().getFinMientrasKeyword_4()); }
+{ after(grammarAccess.getMientrasAccess().getFin_mientrasKeyword_4()); }
 )
 
 ;
@@ -3347,11 +3347,11 @@ rule__Repetir__Group__2__Impl
     }
 :
 (
-{ before(grammarAccess.getRepetirAccess().getCuandoKeyword_2()); }
+{ before(grammarAccess.getRepetirAccess().getHasta_queKeyword_2()); }
 
-	'cuando' 
+	'hasta_que' 
 
-{ after(grammarAccess.getRepetirAccess().getCuandoKeyword_2()); }
+{ after(grammarAccess.getRepetirAccess().getHasta_queKeyword_2()); }
 )
 
 ;
@@ -3366,7 +3366,6 @@ rule__Repetir__Group__3
     }
 :
 	rule__Repetir__Group__3__Impl
-	rule__Repetir__Group__4
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -3387,38 +3386,6 @@ rule__Repetir__Group__3__Impl
 finally {
 	restoreStackSize(stackSize);
 }
-
-
-rule__Repetir__Group__4
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-	rule__Repetir__Group__4__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Repetir__Group__4__Impl
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getRepetirAccess().getFinRepetirKeyword_4()); }
-
-	'fin repetir' 
-
-{ after(grammarAccess.getRepetirAccess().getFinRepetirKeyword_4()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
 
 
 

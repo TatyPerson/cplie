@@ -1134,9 +1134,9 @@ rulemientras returns [EObject current=null]
 	    }
 
 )
-)	otherlv_2='repetir' 
+)	otherlv_2='hacer' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getMientrasAccess().getRepetirKeyword_2());
+    	newLeafNode(otherlv_2, grammarAccess.getMientrasAccess().getHacerKeyword_2());
     }
 ((
 (
@@ -1174,9 +1174,9 @@ rulemientras returns [EObject current=null]
 	    }
 
 )
-)*)?	otherlv_5='fin mientras' 
+)*)?	otherlv_5='fin_mientras' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getMientrasAccess().getFinMientrasKeyword_4());
+    	newLeafNode(otherlv_5, grammarAccess.getMientrasAccess().getFin_mientrasKeyword_4());
     }
 )
 ;
@@ -1239,9 +1239,9 @@ rulerepetir returns [EObject current=null]
 	    }
 
 )
-)*)?	otherlv_3='cuando' 
+)*)?	otherlv_3='hasta_que' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getRepetirAccess().getCuandoKeyword_2());
+    	newLeafNode(otherlv_3, grammarAccess.getRepetirAccess().getHasta_queKeyword_2());
     }
 (
 (
@@ -1261,11 +1261,7 @@ rulerepetir returns [EObject current=null]
 	    }
 
 )
-)	otherlv_5='fin repetir' 
-    {
-    	newLeafNode(otherlv_5, grammarAccess.getRepetirAccess().getFinRepetirKeyword_4());
-    }
-)
+))
 ;
 
 

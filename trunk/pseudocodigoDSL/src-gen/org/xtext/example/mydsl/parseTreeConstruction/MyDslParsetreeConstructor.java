@@ -3066,11 +3066,11 @@ protected class Si_FinSiKeyword_5 extends KeywordToken  {
 /************ begin Rule mientras ****************
  *
  * mientras:
- * 	"mientras" valor=valor "repetir" (sentencias+=Sentencias sentencias+=Sentencias*)? "fin mientras";
+ * 	"mientras" valor=valor "hacer" (sentencias+=Sentencias sentencias+=Sentencias*)? "fin_mientras";
  *
  **/
 
-// "mientras" valor=valor "repetir" (sentencias+=Sentencias sentencias+=Sentencias*)? "fin mientras"
+// "mientras" valor=valor "hacer" (sentencias+=Sentencias sentencias+=Sentencias*)? "fin_mientras"
 protected class Mientras_Group extends GroupToken {
 	
 	public Mientras_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3085,7 +3085,7 @@ protected class Mientras_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Mientras_FinMientrasKeyword_4(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Mientras_Fin_mientrasKeyword_4(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -3166,16 +3166,16 @@ protected class Mientras_ValorAssignment_1 extends AssignmentToken  {
 	}	
 }
 
-// "repetir"
-protected class Mientras_RepetirKeyword_2 extends KeywordToken  {
+// "hacer"
+protected class Mientras_HacerKeyword_2 extends KeywordToken  {
 	
-	public Mientras_RepetirKeyword_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Mientras_HacerKeyword_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getMientrasAccess().getRepetirKeyword_2();
+		return grammarAccess.getMientrasAccess().getHacerKeyword_2();
 	}
 
     @Override
@@ -3251,7 +3251,7 @@ protected class Mientras_SentenciasAssignment_3_0 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new Mientras_RepetirKeyword_2(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new Mientras_HacerKeyword_2(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
@@ -3305,23 +3305,23 @@ protected class Mientras_SentenciasAssignment_3_1 extends AssignmentToken  {
 }
 
 
-// "fin mientras"
-protected class Mientras_FinMientrasKeyword_4 extends KeywordToken  {
+// "fin_mientras"
+protected class Mientras_Fin_mientrasKeyword_4 extends KeywordToken  {
 	
-	public Mientras_FinMientrasKeyword_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Mientras_Fin_mientrasKeyword_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getMientrasAccess().getFinMientrasKeyword_4();
+		return grammarAccess.getMientrasAccess().getFin_mientrasKeyword_4();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
 			case 0: return new Mientras_Group_3(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new Mientras_RepetirKeyword_2(lastRuleCallOrigin, this, 1, inst);
+			case 1: return new Mientras_HacerKeyword_2(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
@@ -3335,11 +3335,11 @@ protected class Mientras_FinMientrasKeyword_4 extends KeywordToken  {
 /************ begin Rule repetir ****************
  *
  * repetir:
- * 	"repetir" (sentencias+=Sentencias sentencias+=Sentencias*)? "cuando" valor=valor "fin repetir";
+ * 	"repetir" (sentencias+=Sentencias sentencias+=Sentencias*)? "hasta_que" valor=valor;
  *
  **/
 
-// "repetir" (sentencias+=Sentencias sentencias+=Sentencias*)? "cuando" valor=valor "fin repetir"
+// "repetir" (sentencias+=Sentencias sentencias+=Sentencias*)? "hasta_que" valor=valor
 protected class Repetir_Group extends GroupToken {
 	
 	public Repetir_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3354,7 +3354,7 @@ protected class Repetir_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Repetir_FinRepetirKeyword_4(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Repetir_ValorAssignment_3(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -3506,16 +3506,16 @@ protected class Repetir_SentenciasAssignment_1_1 extends AssignmentToken  {
 }
 
 
-// "cuando"
-protected class Repetir_CuandoKeyword_2 extends KeywordToken  {
+// "hasta_que"
+protected class Repetir_Hasta_queKeyword_2 extends KeywordToken  {
 	
-	public Repetir_CuandoKeyword_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Repetir_Hasta_queKeyword_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getRepetirAccess().getCuandoKeyword_2();
+		return grammarAccess.getRepetirAccess().getHasta_queKeyword_2();
 	}
 
     @Override
@@ -3569,32 +3569,10 @@ protected class Repetir_ValorAssignment_3 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new Repetir_CuandoKeyword_2(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new Repetir_Hasta_queKeyword_2(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
-}
-
-// "fin repetir"
-protected class Repetir_FinRepetirKeyword_4 extends KeywordToken  {
-	
-	public Repetir_FinRepetirKeyword_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getRepetirAccess().getFinRepetirKeyword_4();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new Repetir_ValorAssignment_3(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
 }
 
 
