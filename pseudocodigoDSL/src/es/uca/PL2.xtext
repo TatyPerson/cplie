@@ -87,7 +87,7 @@ repetir returns repetir:
 desde returns desde:
 	'desde' asignacion=Asignacion 'hasta' valor=valor 'hacer'
 		(sentencias+=Sentencias ( sentencias+=Sentencias)* )?
-	'fin desde';
+	'fin_desde';
 
 incremento returns incremento:
 	nombre=EString
@@ -165,13 +165,13 @@ ParametroFuncion returns ParametroFuncion:
 	variable=Variable;
 
 Funcion returns Funcion:
-	'funcion'
 	(tipo=TipoVariable)
+	'funcion'
 	nombre=EString
 	'('(parametrofuncion+=ParametroFuncion ( "," parametrofuncion+=ParametroFuncion)*  )?')'
 	( sentencias+=Sentencias (  sentencias+=Sentencias)*  )?
-	'devuelve' devuelve=valor
-	'fin funcion';
+	'devolver' devuelve=valor
+	'fin_funcion';
 Procedimiento returns Procedimiento:
 	'procedimiento'
 	nombre=EString

@@ -64,7 +64,6 @@ RULE_WS=12
 '=='=33
 '/'=26
 '>'=28
-'fin funcion'=61
 'verdadero'=21
 'e'=20
 '+'=23
@@ -72,10 +71,11 @@ RULE_WS=12
 'fin inicio'=39
 '++'=35
 'falso'=22
+'devolver'=60
 'logico'=17
-'fin desde'=56
 'inicio'=38
 'si'=46
+'fin_funcion'=61
 'o'=32
 'caracter'=15
 '('=41
@@ -99,7 +99,6 @@ RULE_WS=12
 'mientras'=49
 'y'=31
 '<='=30
-'devuelve'=60
 '!='=34
 'funcion'=59
 '--'=36
@@ -107,4 +106,5 @@ RULE_WS=12
 'entero'=14
 'procedimiento'=62
 '*'=25
+'fin_desde'=56
 'E'=19

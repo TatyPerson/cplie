@@ -1366,9 +1366,9 @@ ruledesde returns [EObject current=null]
 	    }
 
 )
-)*)?	otherlv_7='fin desde' 
+)*)?	otherlv_7='fin_desde' 
     {
-    	newLeafNode(otherlv_7, grammarAccess.getDesdeAccess().getFinDesdeKeyword_6());
+    	newLeafNode(otherlv_7, grammarAccess.getDesdeAccess().getFin_desdeKeyword_6());
     }
 )
 ;
@@ -2355,29 +2355,29 @@ ruleFuncion returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(	otherlv_0='funcion' 
-    {
-    	newLeafNode(otherlv_0, grammarAccess.getFuncionAccess().getFuncionKeyword_0());
-    }
-(
+((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getFuncionAccess().getTipoTipoVariableParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getFuncionAccess().getTipoTipoVariableParserRuleCall_0_0()); 
 	    }
-		lv_tipo_1_0=ruleTipoVariable		{
+		lv_tipo_0_0=ruleTipoVariable		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getFuncionRule());
 	        }
        		set(
        			$current, 
        			"tipo",
-        		lv_tipo_1_0, 
+        		lv_tipo_0_0, 
         		"TipoVariable");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)(
+)	otherlv_1='funcion' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getFuncionAccess().getFuncionKeyword_1());
+    }
+(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getFuncionAccess().getNombreEStringParserRuleCall_2_0()); 
@@ -2479,9 +2479,9 @@ ruleFuncion returns [EObject current=null]
 	    }
 
 )
-)*)?	otherlv_10='devuelve' 
+)*)?	otherlv_10='devolver' 
     {
-    	newLeafNode(otherlv_10, grammarAccess.getFuncionAccess().getDevuelveKeyword_7());
+    	newLeafNode(otherlv_10, grammarAccess.getFuncionAccess().getDevolverKeyword_7());
     }
 (
 (
@@ -2501,9 +2501,9 @@ ruleFuncion returns [EObject current=null]
 	    }
 
 )
-)	otherlv_12='fin funcion' 
+)	otherlv_12='fin_funcion' 
     {
-    	newLeafNode(otherlv_12, grammarAccess.getFuncionAccess().getFinFuncionKeyword_9());
+    	newLeafNode(otherlv_12, grammarAccess.getFuncionAccess().getFin_funcionKeyword_9());
     }
 )
 ;

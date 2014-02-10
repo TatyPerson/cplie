@@ -3654,11 +3654,11 @@ rule__Desde__Group__6__Impl
     }
 :
 (
-{ before(grammarAccess.getDesdeAccess().getFinDesdeKeyword_6()); }
+{ before(grammarAccess.getDesdeAccess().getFin_desdeKeyword_6()); }
 
-	'fin desde' 
+	'fin_desde' 
 
-{ after(grammarAccess.getDesdeAccess().getFinDesdeKeyword_6()); }
+{ after(grammarAccess.getDesdeAccess().getFin_desdeKeyword_6()); }
 )
 
 ;
@@ -4665,11 +4665,9 @@ rule__Funcion__Group__0__Impl
     }
 :
 (
-{ before(grammarAccess.getFuncionAccess().getFuncionKeyword_0()); }
-
-	'funcion' 
-
-{ after(grammarAccess.getFuncionAccess().getFuncionKeyword_0()); }
+{ before(grammarAccess.getFuncionAccess().getTipoAssignment_0()); }
+(rule__Funcion__TipoAssignment_0)
+{ after(grammarAccess.getFuncionAccess().getTipoAssignment_0()); }
 )
 
 ;
@@ -4696,9 +4694,11 @@ rule__Funcion__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getFuncionAccess().getTipoAssignment_1()); }
-(rule__Funcion__TipoAssignment_1)
-{ after(grammarAccess.getFuncionAccess().getTipoAssignment_1()); }
+{ before(grammarAccess.getFuncionAccess().getFuncionKeyword_1()); }
+
+	'funcion' 
+
+{ after(grammarAccess.getFuncionAccess().getFuncionKeyword_1()); }
 )
 
 ;
@@ -4874,11 +4874,11 @@ rule__Funcion__Group__7__Impl
     }
 :
 (
-{ before(grammarAccess.getFuncionAccess().getDevuelveKeyword_7()); }
+{ before(grammarAccess.getFuncionAccess().getDevolverKeyword_7()); }
 
-	'devuelve' 
+	'devolver' 
 
-{ after(grammarAccess.getFuncionAccess().getDevuelveKeyword_7()); }
+{ after(grammarAccess.getFuncionAccess().getDevolverKeyword_7()); }
 )
 
 ;
@@ -4933,11 +4933,11 @@ rule__Funcion__Group__9__Impl
     }
 :
 (
-{ before(grammarAccess.getFuncionAccess().getFinFuncionKeyword_9()); }
+{ before(grammarAccess.getFuncionAccess().getFin_funcionKeyword_9()); }
 
-	'fin funcion' 
+	'fin_funcion' 
 
-{ after(grammarAccess.getFuncionAccess().getFinFuncionKeyword_9()); }
+{ after(grammarAccess.getFuncionAccess().getFin_funcionKeyword_9()); }
 )
 
 ;
@@ -6341,14 +6341,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Funcion__TipoAssignment_1
+rule__Funcion__TipoAssignment_0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getFuncionAccess().getTipoTipoVariableParserRuleCall_1_0()); }
-	ruleTipoVariable{ after(grammarAccess.getFuncionAccess().getTipoTipoVariableParserRuleCall_1_0()); }
+{ before(grammarAccess.getFuncionAccess().getTipoTipoVariableParserRuleCall_0_0()); }
+	ruleTipoVariable{ after(grammarAccess.getFuncionAccess().getTipoTipoVariableParserRuleCall_0_0()); }
 )
 
 ;
