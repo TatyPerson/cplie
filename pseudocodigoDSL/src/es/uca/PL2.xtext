@@ -17,7 +17,7 @@ terminal ML_COMMENT : '/*' (!'*') -> '*/' ;
 terminal SL_COMMENT : '//' !('\n'|'\r')* ('\r'? '\n')? ;
 
 Sentencias returns Sentencias:
-	DeclaracionVariable | LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento;
+	LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento;
 
 
 Operador returns Operador:
@@ -32,9 +32,11 @@ valor returns valor:
 
 Inicio returns Inicio:
 	{Inicio}
+	'var'
+	( declaracionvariable+=DeclaracionVariable (	declaracionvariable+=DeclaracionVariable)*  )?
 	'inicio'
 		(tiene+=Sentencias (  tiene+=Sentencias)*  )?
-	'fin inicio';
+	'fin_inicio';
 
 EString returns ecore::EString:
 	STRING | ID;
@@ -169,14 +171,19 @@ Funcion returns Funcion:
 	'funcion'
 	nombre=EString
 	'('(parametrofuncion+=ParametroFuncion ( "," parametrofuncion+=ParametroFuncion)*  )?')'
+	'var'
+	( declaracionvariable+=DeclaracionVariable (	declaracionvariable+=DeclaracionVariable)*  )?
 	'inicio'
 	( sentencias+=Sentencias (  sentencias+=Sentencias)*  )?
 	'devolver' devuelve=valor
 	'fin_funcion';
+	
 Procedimiento returns Procedimiento:
 	'procedimiento'
 	nombre=EString
 	'('(parametrofuncion+=ParametroFuncion ( "," parametrofuncion+=ParametroFuncion)*  )?')'
+	'var'
+	( declaracionvariable+=DeclaracionVariable (	declaracionvariable+=DeclaracionVariable)*  )?
 	'inicio'
 	( sentencias+=Sentencias (  sentencias+=Sentencias)*  )?
 	'fin_procedimiento';
