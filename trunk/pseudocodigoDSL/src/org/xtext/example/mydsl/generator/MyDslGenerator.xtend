@@ -38,6 +38,9 @@ class MyDslGenerator implements IGenerator {
 	
 	def toC(Inicio myInicio)'''
 		int main(){
+			«FOR myVariable:myInicio.declaracionvariable»
+				«myVariable.toC»
+			«ENDFOR»
 			«FOR mySentencia:myInicio.tiene»
 				«mySentencia.toC»
 				
@@ -85,6 +88,9 @@ class MyDslGenerator implements IGenerator {
 	
 	def toC(Funcion myFun)'''
 		«myFun.tipo.tipoVariable» «myFun.nombre»(«myFun.parametrofuncion.toC»){
+			«FOR myVariable:myFun.declaracionvariable»
+				«myVariable.toC»
+			«ENDFOR»
 			«FOR mySentencia:myFun.sentencias»
 				«mySentencia.toC»
 			«ENDFOR»
@@ -94,6 +100,9 @@ class MyDslGenerator implements IGenerator {
 	
 	def toC(Procedimiento myFun)'''
 		void «myFun.nombre»(«myFun.parametrofuncion.toC»){
+			«FOR myVariable:myFun.declaracionvariable»
+				«myVariable.toC»
+			«ENDFOR»
 			«FOR mySentencia:myFun.sentencias»
 				«mySentencia.toC»
 			«ENDFOR»
@@ -101,12 +110,7 @@ class MyDslGenerator implements IGenerator {
 	'''
 	
 	def toC(Sentencias mySent){
-		if(mySent.eClass.name.equals("DeclaracionVariable")){
-			var DeclaracionVariable prueba = new DeclaracionVariableImpl
-			prueba = mySent as DeclaracionVariable
-			prueba.toC
-		}
-		else if(mySent.eClass.name.equals("Asignacion")){
+		if(mySent.eClass.name.equals("Asignacion")){
 			var Asignacion prueba = new AsignacionImpl
 			prueba = mySent as Asignacion
 			prueba.toC
