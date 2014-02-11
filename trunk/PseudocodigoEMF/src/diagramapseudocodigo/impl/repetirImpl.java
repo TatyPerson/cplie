@@ -32,7 +32,7 @@ public class repetirImpl extends BloqueImpl implements repetir {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.REPETIR;
 	}
 

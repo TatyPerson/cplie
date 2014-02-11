@@ -178,11 +178,6 @@ public class BloqueItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.BLOQUE__SENTENCIAS,
-				 DiagramapseudocodigoFactory.eINSTANCE.createDeclaracionVariable()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.BLOQUE__SENTENCIAS,
 				 DiagramapseudocodigoFactory.eINSTANCE.createLlamadaFuncion()));
 
 		newChildDescriptors.add

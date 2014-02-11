@@ -49,20 +49,20 @@ public enum TipoVariable implements Enumerator {
 	CADENA(2, "cadena", "cadena"),
 
 	/**
-	 * The '<em><b>Booleano</b></em>' literal object.
+	 * The '<em><b>Logico</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BOOLEANO_VALUE
+	 * @see #LOGICO_VALUE
 	 * @generated
 	 * @ordered
 	 */
 	LOGICO(3, "logico", "logico"),
 
 	/**
-	 * The '<em><b>Decimal</b></em>' literal object.
+	 * The '<em><b>Real</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #DECIMAL_VALUE
+	 * @see #REAL_VALUE
 	 * @generated
 	 * @ordered
 	 */
@@ -114,30 +114,30 @@ public enum TipoVariable implements Enumerator {
 	public static final int CADENA_VALUE = 2;
 
 	/**
-	 * The '<em><b>Booleano</b></em>' literal value.
+	 * The '<em><b>Logico</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Booleano</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BOOLEANO
-	 * @model name="booleano"
+	 * @see #LOGICO
+	 * @model name="logico"
 	 * @generated
 	 * @ordered
 	 */
 	public static final int LOGICO_VALUE = 3;
 
 	/**
-	 * The '<em><b>Decimal</b></em>' literal value.
+	 * The '<em><b>Real</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Decimal</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #DECIMAL
-	 * @model name="decimal"
+	 * @see #REAL
+	 * @model name="real"
 	 * @generated
 	 * @ordered
 	 */

@@ -2,21 +2,16 @@
  */
 package diagramapseudocodigo.impl;
 
+import diagramapseudocodigo.DeclaracionVariable;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Inicio;
 import diagramapseudocodigo.Sentencias;
-
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -28,12 +23,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link diagramapseudocodigo.impl.InicioImpl#getTiene <em>Tiene</em>}</li>
+ *   <li>{@link diagramapseudocodigo.impl.InicioImpl#getDeclaracionvariable <em>Declaracionvariable</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class InicioImpl extends EObjectImpl implements Inicio {
+public class InicioImpl extends MinimalEObjectImpl.Container implements Inicio {
 	/**
 	 * The cached value of the '{@link #getTiene() <em>Tiene</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -42,7 +38,17 @@ public class InicioImpl extends EObjectImpl implements Inicio {
 	 * @generated
 	 * @ordered
 	 */
-	public EList<Sentencias> tiene;
+	protected EList<Sentencias> tiene;
+
+	/**
+	 * The cached value of the '{@link #getDeclaracionvariable() <em>Declaracionvariable</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDeclaracionvariable()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<DeclaracionVariable> declaracionvariable;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -59,7 +65,7 @@ public class InicioImpl extends EObjectImpl implements Inicio {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.INICIO;
 	}
 
@@ -80,11 +86,25 @@ public class InicioImpl extends EObjectImpl implements Inicio {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<DeclaracionVariable> getDeclaracionvariable() {
+		if (declaracionvariable == null) {
+			declaracionvariable = new EObjectContainmentEList<DeclaracionVariable>(DeclaracionVariable.class, this, DiagramapseudocodigoPackage.INICIO__DECLARACIONVARIABLE);
+		}
+		return declaracionvariable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.INICIO__TIENE:
 				return ((InternalEList<?>)getTiene()).basicRemove(otherEnd, msgs);
+			case DiagramapseudocodigoPackage.INICIO__DECLARACIONVARIABLE:
+				return ((InternalEList<?>)getDeclaracionvariable()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -99,6 +119,8 @@ public class InicioImpl extends EObjectImpl implements Inicio {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.INICIO__TIENE:
 				return getTiene();
+			case DiagramapseudocodigoPackage.INICIO__DECLARACIONVARIABLE:
+				return getDeclaracionvariable();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -116,6 +138,10 @@ public class InicioImpl extends EObjectImpl implements Inicio {
 				getTiene().clear();
 				getTiene().addAll((Collection<? extends Sentencias>)newValue);
 				return;
+			case DiagramapseudocodigoPackage.INICIO__DECLARACIONVARIABLE:
+				getDeclaracionvariable().clear();
+				getDeclaracionvariable().addAll((Collection<? extends DeclaracionVariable>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -131,6 +157,9 @@ public class InicioImpl extends EObjectImpl implements Inicio {
 			case DiagramapseudocodigoPackage.INICIO__TIENE:
 				getTiene().clear();
 				return;
+			case DiagramapseudocodigoPackage.INICIO__DECLARACIONVARIABLE:
+				getDeclaracionvariable().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -145,6 +174,8 @@ public class InicioImpl extends EObjectImpl implements Inicio {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.INICIO__TIENE:
 				return tiene != null && !tiene.isEmpty();
+			case DiagramapseudocodigoPackage.INICIO__DECLARACIONVARIABLE:
+				return declaracionvariable != null && !declaracionvariable.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

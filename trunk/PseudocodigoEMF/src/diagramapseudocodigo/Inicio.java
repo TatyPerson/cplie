@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link diagramapseudocodigo.Inicio#getTiene <em>Tiene</em>}</li>
+ *   <li>{@link diagramapseudocodigo.Inicio#getDeclaracionvariable <em>Declaracionvariable</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,5 +39,21 @@ public interface Inicio extends EObject {
 	 * @generated
 	 */
 	EList<Sentencias> getTiene();
+
+	/**
+	 * Returns the value of the '<em><b>Declaracionvariable</b></em>' containment reference list.
+	 * The list contents are of type {@link diagramapseudocodigo.DeclaracionVariable}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Declaracionvariable</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Declaracionvariable</em>' containment reference list.
+	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getInicio_Declaracionvariable()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<DeclaracionVariable> getDeclaracionvariable();
 
 } // Inicio

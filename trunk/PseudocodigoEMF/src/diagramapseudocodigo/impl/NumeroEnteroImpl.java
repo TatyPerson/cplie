@@ -33,7 +33,7 @@ public class NumeroEnteroImpl extends OperadorImpl implements NumeroEntero {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int VALOR_EDEFAULT = 0;
+	protected static final int VALOR_EDEFAULT = 0;
 
 	/**
 	 * The cached value of the '{@link #getValor() <em>Valor</em>}' attribute.
@@ -43,7 +43,7 @@ public class NumeroEnteroImpl extends OperadorImpl implements NumeroEntero {
 	 * @generated
 	 * @ordered
 	 */
-	public int valor = VALOR_EDEFAULT;
+	protected int valor = VALOR_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -60,7 +60,7 @@ public class NumeroEnteroImpl extends OperadorImpl implements NumeroEntero {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.NUMERO_ENTERO;
 	}
 

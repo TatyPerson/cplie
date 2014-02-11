@@ -32,7 +32,7 @@ public class mientrasImpl extends BloqueImpl implements mientras {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.MIENTRAS;
 	}
 

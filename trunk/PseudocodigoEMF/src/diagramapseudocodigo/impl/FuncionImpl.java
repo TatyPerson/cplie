@@ -38,7 +38,7 @@ public class FuncionImpl extends SubprocesoImpl implements Funcion {
 	 * @generated
 	 * @ordered
 	 */
-	public static final TipoVariable TIPO_EDEFAULT = TipoVariable.ENTERO;
+	protected static final TipoVariable TIPO_EDEFAULT = TipoVariable.ENTERO;
 
 	/**
 	 * The cached value of the '{@link #getTipo() <em>Tipo</em>}' attribute.
@@ -48,7 +48,7 @@ public class FuncionImpl extends SubprocesoImpl implements Funcion {
 	 * @generated
 	 * @ordered
 	 */
-	public TipoVariable tipo = TIPO_EDEFAULT;
+	protected TipoVariable tipo = TIPO_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getDevuelve() <em>Devuelve</em>}' containment reference.
@@ -58,7 +58,7 @@ public class FuncionImpl extends SubprocesoImpl implements Funcion {
 	 * @generated
 	 * @ordered
 	 */
-	public valor devuelve;
+	protected valor devuelve;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -75,7 +75,7 @@ public class FuncionImpl extends SubprocesoImpl implements Funcion {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.FUNCION;
 	}
 

@@ -35,7 +35,7 @@ public class incrementoImpl extends SentenciasImpl implements incremento {
 	 * @generated
 	 * @ordered
 	 */
-	public static final String NOMBRE_EDEFAULT = null;
+	protected static final String NOMBRE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getNombre() <em>Nombre</em>}' attribute.
@@ -45,7 +45,7 @@ public class incrementoImpl extends SentenciasImpl implements incremento {
 	 * @generated
 	 * @ordered
 	 */
-	public String nombre = NOMBRE_EDEFAULT;
+	protected String nombre = NOMBRE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSsigno() <em>Ssigno</em>}' attribute.
@@ -55,7 +55,7 @@ public class incrementoImpl extends SentenciasImpl implements incremento {
 	 * @generated
 	 * @ordered
 	 */
-	public static final inc SSIGNO_EDEFAULT = inc.MASMAS;
+	protected static final inc SSIGNO_EDEFAULT = inc.MASMAS;
 
 	/**
 	 * The cached value of the '{@link #getSsigno() <em>Ssigno</em>}' attribute.
@@ -65,7 +65,7 @@ public class incrementoImpl extends SentenciasImpl implements incremento {
 	 * @generated
 	 * @ordered
 	 */
-	public inc ssigno = SSIGNO_EDEFAULT;
+	protected inc ssigno = SSIGNO_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -82,7 +82,7 @@ public class incrementoImpl extends SentenciasImpl implements incremento {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.INCREMENTO;
 	}
 

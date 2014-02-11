@@ -5,15 +5,12 @@ package diagramapseudocodigo.impl;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.operando_izq;
 import diagramapseudocodigo.valor;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,7 +25,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class operando_izqImpl extends EObjectImpl implements operando_izq {
+public class operando_izqImpl extends MinimalEObjectImpl.Container implements operando_izq {
 	/**
 	 * The cached value of the '{@link #getOper_izq() <em>Oper izq</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -37,7 +34,7 @@ public class operando_izqImpl extends EObjectImpl implements operando_izq {
 	 * @generated
 	 * @ordered
 	 */
-	public valor oper_izq;
+	protected valor oper_izq;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -54,7 +51,7 @@ public class operando_izqImpl extends EObjectImpl implements operando_izq {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.OPERANDO_IZQ;
 	}
 

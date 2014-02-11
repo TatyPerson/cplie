@@ -40,7 +40,7 @@ public class VariableIDImpl extends OperadorImpl implements VariableID {
 	 * @generated
 	 * @ordered
 	 */
-	public static final String NOMBRE_EDEFAULT = null;
+	protected static final String NOMBRE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getNombre() <em>Nombre</em>}' attribute.
@@ -50,7 +50,7 @@ public class VariableIDImpl extends OperadorImpl implements VariableID {
 	 * @generated
 	 * @ordered
 	 */
-	public String nombre = NOMBRE_EDEFAULT;
+	protected String nombre = NOMBRE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getMat() <em>Mat</em>}' attribute list.
@@ -60,7 +60,7 @@ public class VariableIDImpl extends OperadorImpl implements VariableID {
 	 * @generated
 	 * @ordered
 	 */
-	public EList<String> mat;
+	protected EList<String> mat;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -77,7 +77,7 @@ public class VariableIDImpl extends OperadorImpl implements VariableID {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.VARIABLE_ID;
 	}
 

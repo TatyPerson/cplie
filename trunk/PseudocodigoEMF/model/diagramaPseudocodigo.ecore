@@ -13,9 +13,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="Inicio">
     <eStructuralFeatures xsi:type="ecore:EReference" name="tiene" upperBound="-1"
         eType="#//Sentencias" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="declaracionvariable" upperBound="-1"
+        eType="#//DeclaracionVariable" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Sentencias" abstract="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DeclaracionVariable" eSuperTypes="#//Sentencias">
+  <eClassifiers xsi:type="ecore:EClass" name="DeclaracionVariable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tipo" lowerBound="1" eType="#//TipoVariable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tieneIDs" lowerBound="1"
         upperBound="-1" eType="#//Variable" containment="true"/>
@@ -154,6 +156,8 @@
         eType="#//Sentencias" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="declaracionvariable" upperBound="-1"
+        eType="#//DeclaracionVariable" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Procedimiento" eSuperTypes="#//Subproceso"/>
   <eClassifiers xsi:type="ecore:EEnum" name="TipoPaso">

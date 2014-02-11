@@ -436,6 +436,15 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getInicio_Declaracionvariable() {
+		return (EReference)inicioEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSentencias() {
 		return sentenciasEClass;
 	}
@@ -1021,6 +1030,15 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getSubproceso_Declaracionvariable() {
+		return (EReference)subprocesoEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getProcedimiento() {
 		return procedimientoEClass;
 	}
@@ -1123,6 +1141,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 
 		inicioEClass = createEClass(INICIO);
 		createEReference(inicioEClass, INICIO__TIENE);
+		createEReference(inicioEClass, INICIO__DECLARACIONVARIABLE);
 
 		sentenciasEClass = createEClass(SENTENCIAS);
 
@@ -1216,6 +1235,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		createEReference(subprocesoEClass, SUBPROCESO__PARAMETROFUNCION);
 		createEReference(subprocesoEClass, SUBPROCESO__SENTENCIAS);
 		createEAttribute(subprocesoEClass, SUBPROCESO__NOMBRE);
+		createEReference(subprocesoEClass, SUBPROCESO__DECLARACIONVARIABLE);
 
 		procedimientoEClass = createEClass(PROCEDIMIENTO);
 
@@ -1258,7 +1278,6 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		declaracionVariableEClass.getESuperTypes().add(this.getSentencias());
 		llamadaFuncionEClass.getESuperTypes().add(this.getSentencias());
 		llamadaFuncionEClass.getESuperTypes().add(this.getvalor());
 		variableIDEClass.getESuperTypes().add(this.getOperador());
@@ -1281,7 +1300,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		procedimientoEClass.getESuperTypes().add(this.getSubproceso());
 		caracterEClass.getESuperTypes().add(this.getOperador());
 
-		// Initialize classes and features; add operations and parameters
+		// Initialize classes, features, and operations; add parameters
 		initEClass(codigoEClass, Codigo.class, "Codigo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCodigo_Tiene(), this.getInicio(), null, "tiene", null, 1, 1, Codigo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCodigo_Funcion(), this.getSubproceso(), null, "funcion", null, 0, -1, Codigo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1289,6 +1308,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 
 		initEClass(inicioEClass, Inicio.class, "Inicio", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInicio_Tiene(), this.getSentencias(), null, "tiene", null, 0, -1, Inicio.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInicio_Declaracionvariable(), this.getDeclaracionVariable(), null, "declaracionvariable", null, 0, -1, Inicio.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sentenciasEClass, Sentencias.class, "Sentencias", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1382,6 +1402,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		initEReference(getSubproceso_Parametrofuncion(), this.getParametroFuncion(), null, "parametrofuncion", null, 0, -1, Subproceso.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSubproceso_Sentencias(), this.getSentencias(), null, "sentencias", null, 0, -1, Subproceso.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSubproceso_Nombre(), ecorePackage.getEString(), "nombre", null, 1, 1, Subproceso.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSubproceso_Declaracionvariable(), this.getDeclaracionVariable(), null, "declaracionvariable", null, 0, -1, Subproceso.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(procedimientoEClass, Procedimiento.class, "Procedimiento", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

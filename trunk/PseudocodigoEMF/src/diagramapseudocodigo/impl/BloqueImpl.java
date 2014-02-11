@@ -45,7 +45,7 @@ public abstract class BloqueImpl extends SentenciasImpl implements Bloque {
 	 * @generated
 	 * @ordered
 	 */
-	public valor valor;
+	protected valor valor;
 
 	/**
 	 * The cached value of the '{@link #getSentencias() <em>Sentencias</em>}' containment reference list.
@@ -55,7 +55,7 @@ public abstract class BloqueImpl extends SentenciasImpl implements Bloque {
 	 * @generated
 	 * @ordered
 	 */
-	public EList<Sentencias> sentencias;
+	protected EList<Sentencias> sentencias;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -72,7 +72,7 @@ public abstract class BloqueImpl extends SentenciasImpl implements Bloque {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.BLOQUE;
 	}
 

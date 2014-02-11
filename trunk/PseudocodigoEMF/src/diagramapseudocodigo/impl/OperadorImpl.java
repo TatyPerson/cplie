@@ -32,7 +32,7 @@ public abstract class OperadorImpl extends valorImpl implements Operador {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.OPERADOR;
 	}
 

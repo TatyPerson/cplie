@@ -6,20 +6,14 @@ import diagramapseudocodigo.Codigo;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Inicio;
 import diagramapseudocodigo.Subproceso;
-
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -38,7 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class CodigoImpl extends EObjectImpl implements Codigo {
+public class CodigoImpl extends MinimalEObjectImpl.Container implements Codigo {
 	/**
 	 * The cached value of the '{@link #getTiene() <em>Tiene</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -47,7 +41,7 @@ public class CodigoImpl extends EObjectImpl implements Codigo {
 	 * @generated
 	 * @ordered
 	 */
-	public Inicio tiene;
+	protected Inicio tiene;
 
 	/**
 	 * The cached value of the '{@link #getFuncion() <em>Funcion</em>}' containment reference list.
@@ -57,7 +51,7 @@ public class CodigoImpl extends EObjectImpl implements Codigo {
 	 * @generated
 	 * @ordered
 	 */
-	public EList<Subproceso> funcion;
+	protected EList<Subproceso> funcion;
 
 	/**
 	 * The default value of the '{@link #getNombre() <em>Nombre</em>}' attribute.
@@ -67,7 +61,7 @@ public class CodigoImpl extends EObjectImpl implements Codigo {
 	 * @generated
 	 * @ordered
 	 */
-	public static final String NOMBRE_EDEFAULT = null;
+	protected static final String NOMBRE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getNombre() <em>Nombre</em>}' attribute.
@@ -77,7 +71,7 @@ public class CodigoImpl extends EObjectImpl implements Codigo {
 	 * @generated
 	 * @ordered
 	 */
-	public String nombre = NOMBRE_EDEFAULT;
+	protected String nombre = NOMBRE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -94,7 +88,7 @@ public class CodigoImpl extends EObjectImpl implements Codigo {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.CODIGO;
 	}
 

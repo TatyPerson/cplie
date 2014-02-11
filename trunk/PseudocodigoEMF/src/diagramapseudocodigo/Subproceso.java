@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link diagramapseudocodigo.Subproceso#getParametrofuncion <em>Parametrofuncion</em>}</li>
  *   <li>{@link diagramapseudocodigo.Subproceso#getSentencias <em>Sentencias</em>}</li>
  *   <li>{@link diagramapseudocodigo.Subproceso#getNombre <em>Nombre</em>}</li>
+ *   <li>{@link diagramapseudocodigo.Subproceso#getDeclaracionvariable <em>Declaracionvariable</em>}</li>
  * </ul>
  * </p>
  *
@@ -82,5 +83,21 @@ public interface Subproceso extends EObject {
 	 * @generated
 	 */
 	void setNombre(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Declaracionvariable</b></em>' containment reference list.
+	 * The list contents are of type {@link diagramapseudocodigo.DeclaracionVariable}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Declaracionvariable</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Declaracionvariable</em>' containment reference list.
+	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getSubproceso_Declaracionvariable()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<DeclaracionVariable> getDeclaracionvariable();
 
 } // Subproceso

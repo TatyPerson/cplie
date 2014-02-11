@@ -33,7 +33,7 @@ public class ConstCadenaImpl extends OperadorImpl implements ConstCadena {
 	 * @generated
 	 * @ordered
 	 */
-	public static final String CONTENIDO_EDEFAULT = null;
+	protected static final String CONTENIDO_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getContenido() <em>Contenido</em>}' attribute.
@@ -43,7 +43,7 @@ public class ConstCadenaImpl extends OperadorImpl implements ConstCadena {
 	 * @generated
 	 * @ordered
 	 */
-	public String contenido = CONTENIDO_EDEFAULT;
+	protected String contenido = CONTENIDO_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -60,7 +60,7 @@ public class ConstCadenaImpl extends OperadorImpl implements ConstCadena {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.CONST_CADENA;
 	}
 

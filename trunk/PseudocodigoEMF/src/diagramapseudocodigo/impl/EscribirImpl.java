@@ -40,7 +40,7 @@ public class EscribirImpl extends SentenciasImpl implements Escribir {
 	 * @generated
 	 * @ordered
 	 */
-	public EList<Operador> operador;
+	protected EList<Operador> operador;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -57,7 +57,7 @@ public class EscribirImpl extends SentenciasImpl implements Escribir {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.ESCRIBIR;
 	}
 

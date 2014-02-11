@@ -34,7 +34,7 @@ public class ValorBooleanoImpl extends OperadorImpl implements ValorBooleano {
 	 * @generated
 	 * @ordered
 	 */
-	public static final booleano VALOR_EDEFAULT = booleano.VERDADERO;
+	protected static final booleano VALOR_EDEFAULT = booleano.VERDADERO;
 
 	/**
 	 * The cached value of the '{@link #getValor() <em>Valor</em>}' attribute.
@@ -44,7 +44,7 @@ public class ValorBooleanoImpl extends OperadorImpl implements ValorBooleano {
 	 * @generated
 	 * @ordered
 	 */
-	public booleano valor = VALOR_EDEFAULT;
+	protected booleano valor = VALOR_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -61,7 +61,7 @@ public class ValorBooleanoImpl extends OperadorImpl implements ValorBooleano {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.VALOR_BOOLEANO;
 	}
 

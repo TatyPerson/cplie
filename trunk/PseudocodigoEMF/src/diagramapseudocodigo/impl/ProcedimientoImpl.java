@@ -32,7 +32,7 @@ public class ProcedimientoImpl extends SubprocesoImpl implements Procedimiento {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.PROCEDIMIENTO;
 	}
 
