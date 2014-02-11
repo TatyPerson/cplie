@@ -3,7 +3,7 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/PseudocodigoEMF/src" modelPluginID="PseudocodigoEMF"
     modelName="DiagramaPseudocodigo" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
-    operationReflection="true" importOrganizing="true">
+    publicConstructors="true" operationReflection="true" importOrganizing="true">
   <foreignModel>diagramaPseudocodigo.ecore</foreignModel>
   <genPackages prefix="Diagramapseudocodigo" disposableProviderFactory="true" ecorePackage="diagramaPseudocodigo.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="diagramaPseudocodigo.ecore#//TipoVariable">
@@ -46,6 +46,7 @@
     </genClasses>
     <genClasses ecoreClass="diagramaPseudocodigo.ecore#//Inicio">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Inicio/tiene"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Inicio/declaracionvariable"/>
     </genClasses>
     <genClasses image="false" ecoreClass="diagramaPseudocodigo.ecore#//Sentencias"/>
     <genClasses ecoreClass="diagramaPseudocodigo.ecore#//DeclaracionVariable">
@@ -133,6 +134,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Subproceso/parametrofuncion"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Subproceso/sentencias"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//Subproceso/nombre"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Subproceso/declaracionvariable"/>
     </genClasses>
     <genClasses ecoreClass="diagramaPseudocodigo.ecore#//Procedimiento"/>
     <genClasses ecoreClass="diagramaPseudocodigo.ecore#//Caracter">
