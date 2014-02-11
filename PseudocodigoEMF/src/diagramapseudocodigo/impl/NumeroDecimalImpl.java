@@ -33,7 +33,7 @@ public class NumeroDecimalImpl extends OperadorImpl implements NumeroDecimal {
 	 * @generated
 	 * @ordered
 	 */
-	public static final float VALOR_EDEFAULT = 0.0F;
+	protected static final float VALOR_EDEFAULT = 0.0F;
 
 	/**
 	 * The cached value of the '{@link #getValor() <em>Valor</em>}' attribute.
@@ -43,7 +43,7 @@ public class NumeroDecimalImpl extends OperadorImpl implements NumeroDecimal {
 	 * @generated
 	 * @ordered
 	 */
-	public float valor = VALOR_EDEFAULT;
+	protected float valor = VALOR_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -60,7 +60,7 @@ public class NumeroDecimalImpl extends OperadorImpl implements NumeroDecimal {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.NUMERO_DECIMAL;
 	}
 

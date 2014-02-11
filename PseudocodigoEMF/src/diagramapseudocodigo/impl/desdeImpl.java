@@ -36,7 +36,7 @@ public class desdeImpl extends BloqueImpl implements desde {
 	 * @generated
 	 * @ordered
 	 */
-	public Asignacion asignacion;
+	protected Asignacion asignacion;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -53,7 +53,7 @@ public class desdeImpl extends BloqueImpl implements desde {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.DESDE;
 	}
 

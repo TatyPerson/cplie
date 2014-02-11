@@ -17,11 +17,15 @@ org.xtext.example.mydsl.MyDsl.templates=<?xml version\="1.0" encoding\="UTF-8" s
 «DEFINE model FOR MyDslProjectInfo»
 «FILE "src/programa.p"-»
 /*
- * Este es un ejemplo de código
+ * Algoritmo: Nombre_Algoritmo
+ * Autor: Nombre_Autor
+ * Fecha: Fecha_creación
  */
+var
+
 inicio
-//codigo
-fin inicio
+//Aquí va el código de su programa principal
+fin_inicio
 «ENDFILE»
 «ENDDEFINE»
  

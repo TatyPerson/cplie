@@ -44,7 +44,7 @@ public class LlamadaFuncionImpl extends SentenciasImpl implements LlamadaFuncion
 	 * @generated
 	 * @ordered
 	 */
-	public static final String NOMBRE_EDEFAULT = null;
+	protected static final String NOMBRE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getNombre() <em>Nombre</em>}' attribute.
@@ -54,7 +54,7 @@ public class LlamadaFuncionImpl extends SentenciasImpl implements LlamadaFuncion
 	 * @generated
 	 * @ordered
 	 */
-	public String nombre = NOMBRE_EDEFAULT;
+	protected String nombre = NOMBRE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getOperador() <em>Operador</em>}' containment reference list.
@@ -64,7 +64,7 @@ public class LlamadaFuncionImpl extends SentenciasImpl implements LlamadaFuncion
 	 * @generated
 	 * @ordered
 	 */
-	public EList<Operador> operador;
+	protected EList<Operador> operador;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -81,7 +81,7 @@ public class LlamadaFuncionImpl extends SentenciasImpl implements LlamadaFuncion
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION;
 	}
 

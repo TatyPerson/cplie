@@ -7,15 +7,12 @@ import diagramapseudocodigo.ParametroFuncion;
 import diagramapseudocodigo.TipoPaso;
 import diagramapseudocodigo.TipoVariable;
 import diagramapseudocodigo.Variable;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +29,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class ParametroFuncionImpl extends EObjectImpl implements ParametroFuncion {
+public class ParametroFuncionImpl extends MinimalEObjectImpl.Container implements ParametroFuncion {
 	/**
 	 * The default value of the '{@link #getTipo() <em>Tipo</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -41,7 +38,7 @@ public class ParametroFuncionImpl extends EObjectImpl implements ParametroFuncio
 	 * @generated
 	 * @ordered
 	 */
-	public static final TipoVariable TIPO_EDEFAULT = TipoVariable.ENTERO;
+	protected static final TipoVariable TIPO_EDEFAULT = TipoVariable.ENTERO;
 
 	/**
 	 * The cached value of the '{@link #getTipo() <em>Tipo</em>}' attribute.
@@ -51,7 +48,7 @@ public class ParametroFuncionImpl extends EObjectImpl implements ParametroFuncio
 	 * @generated
 	 * @ordered
 	 */
-	public TipoVariable tipo = TIPO_EDEFAULT;
+	protected TipoVariable tipo = TIPO_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference.
@@ -61,7 +58,7 @@ public class ParametroFuncionImpl extends EObjectImpl implements ParametroFuncio
 	 * @generated
 	 * @ordered
 	 */
-	public Variable variable;
+	protected Variable variable;
 
 	/**
 	 * The default value of the '{@link #getPaso() <em>Paso</em>}' attribute.
@@ -71,7 +68,7 @@ public class ParametroFuncionImpl extends EObjectImpl implements ParametroFuncio
 	 * @generated
 	 * @ordered
 	 */
-	public static final TipoPaso PASO_EDEFAULT = TipoPaso.ENTRADA;
+	protected static final TipoPaso PASO_EDEFAULT = TipoPaso.ENTRADA;
 
 	/**
 	 * The cached value of the '{@link #getPaso() <em>Paso</em>}' attribute.
@@ -81,7 +78,7 @@ public class ParametroFuncionImpl extends EObjectImpl implements ParametroFuncio
 	 * @generated
 	 * @ordered
 	 */
-	public TipoPaso paso = PASO_EDEFAULT;
+	protected TipoPaso paso = PASO_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -98,7 +95,7 @@ public class ParametroFuncionImpl extends EObjectImpl implements ParametroFuncio
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.PARAMETRO_FUNCION;
 	}
 

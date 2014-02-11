@@ -36,7 +36,7 @@ public class SiImpl extends BloqueImpl implements Si {
 	 * @generated
 	 * @ordered
 	 */
-	public Sino sino;
+	protected Sino sino;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -53,7 +53,7 @@ public class SiImpl extends BloqueImpl implements Si {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.SI;
 	}
 

@@ -44,7 +44,7 @@ public class AsignacionImpl extends SentenciasImpl implements Asignacion {
 	 * @generated
 	 * @ordered
 	 */
-	public static final String LVALUE_EDEFAULT = null;
+	protected static final String LVALUE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getLvalue() <em>Lvalue</em>}' attribute.
@@ -54,7 +54,7 @@ public class AsignacionImpl extends SentenciasImpl implements Asignacion {
 	 * @generated
 	 * @ordered
 	 */
-	public String lvalue = LVALUE_EDEFAULT;
+	protected String lvalue = LVALUE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getOperador() <em>Operador</em>}' containment reference.
@@ -64,7 +64,7 @@ public class AsignacionImpl extends SentenciasImpl implements Asignacion {
 	 * @generated
 	 * @ordered
 	 */
-	public valor operador;
+	protected valor operador;
 
 	/**
 	 * The cached value of the '{@link #getMat() <em>Mat</em>}' attribute list.
@@ -74,7 +74,7 @@ public class AsignacionImpl extends SentenciasImpl implements Asignacion {
 	 * @generated
 	 * @ordered
 	 */
-	public EList<String> mat;
+	protected EList<String> mat;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -91,7 +91,7 @@ public class AsignacionImpl extends SentenciasImpl implements Asignacion {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.ASIGNACION;
 	}
 

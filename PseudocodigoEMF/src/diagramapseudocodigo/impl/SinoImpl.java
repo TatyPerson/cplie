@@ -5,18 +5,12 @@ package diagramapseudocodigo.impl;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Sentencias;
 import diagramapseudocodigo.Sino;
-
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -33,7 +27,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class SinoImpl extends EObjectImpl implements Sino {
+public class SinoImpl extends MinimalEObjectImpl.Container implements Sino {
 	/**
 	 * The cached value of the '{@link #getSentencias() <em>Sentencias</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -42,7 +36,7 @@ public class SinoImpl extends EObjectImpl implements Sino {
 	 * @generated
 	 * @ordered
 	 */
-	public EList<Sentencias> sentencias;
+	protected EList<Sentencias> sentencias;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -59,7 +53,7 @@ public class SinoImpl extends EObjectImpl implements Sino {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.SINO;
 	}
 

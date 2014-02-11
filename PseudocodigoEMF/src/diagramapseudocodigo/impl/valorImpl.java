@@ -4,10 +4,8 @@ package diagramapseudocodigo.impl;
 
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.valor;
-
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,7 +16,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public abstract class valorImpl extends EObjectImpl implements valor {
+public abstract class valorImpl extends MinimalEObjectImpl.Container implements valor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -34,7 +32,7 @@ public abstract class valorImpl extends EObjectImpl implements valor {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.VALOR;
 	}
 

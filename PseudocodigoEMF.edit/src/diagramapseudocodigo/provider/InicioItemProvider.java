@@ -78,6 +78,7 @@ public class InicioItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.INICIO__TIENE);
+			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.INICIO__DECLARACIONVARIABLE);
 		}
 		return childrenFeatures;
 	}
@@ -130,6 +131,7 @@ public class InicioItemProvider
 
 		switch (notification.getFeatureID(Inicio.class)) {
 			case DiagramapseudocodigoPackage.INICIO__TIENE:
+			case DiagramapseudocodigoPackage.INICIO__DECLARACIONVARIABLE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -146,11 +148,6 @@ public class InicioItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.INICIO__TIENE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createDeclaracionVariable()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -196,6 +193,11 @@ public class InicioItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.INICIO__TIENE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createincremento()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.INICIO__DECLARACIONVARIABLE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createDeclaracionVariable()));
 	}
 
 	/**

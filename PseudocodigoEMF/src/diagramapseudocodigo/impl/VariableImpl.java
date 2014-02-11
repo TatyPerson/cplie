@@ -4,18 +4,12 @@ package diagramapseudocodigo.impl;
 
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Variable;
-
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 /**
@@ -32,7 +26,7 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  *
  * @generated
  */
-public class VariableImpl extends EObjectImpl implements Variable {
+public class VariableImpl extends MinimalEObjectImpl.Container implements Variable {
 	/**
 	 * The default value of the '{@link #getNombre() <em>Nombre</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -41,7 +35,7 @@ public class VariableImpl extends EObjectImpl implements Variable {
 	 * @generated
 	 * @ordered
 	 */
-	public static final String NOMBRE_EDEFAULT = null;
+	protected static final String NOMBRE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getNombre() <em>Nombre</em>}' attribute.
@@ -51,7 +45,7 @@ public class VariableImpl extends EObjectImpl implements Variable {
 	 * @generated
 	 * @ordered
 	 */
-	public String nombre = NOMBRE_EDEFAULT;
+	protected String nombre = NOMBRE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getMat() <em>Mat</em>}' attribute list.
@@ -61,7 +55,7 @@ public class VariableImpl extends EObjectImpl implements Variable {
 	 * @generated
 	 * @ordered
 	 */
-	public EList<String> mat;
+	protected EList<String> mat;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -78,7 +72,7 @@ public class VariableImpl extends EObjectImpl implements Variable {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.VARIABLE;
 	}
 

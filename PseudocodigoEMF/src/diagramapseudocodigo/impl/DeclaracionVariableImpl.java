@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -36,7 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class DeclaracionVariableImpl extends SentenciasImpl implements DeclaracionVariable {
+public class DeclaracionVariableImpl extends MinimalEObjectImpl.Container implements DeclaracionVariable {
 	/**
 	 * The default value of the '{@link #getTipo() <em>Tipo</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -45,7 +46,7 @@ public class DeclaracionVariableImpl extends SentenciasImpl implements Declaraci
 	 * @generated
 	 * @ordered
 	 */
-	public static final TipoVariable TIPO_EDEFAULT = TipoVariable.ENTERO;
+	protected static final TipoVariable TIPO_EDEFAULT = TipoVariable.ENTERO;
 
 	/**
 	 * The cached value of the '{@link #getTipo() <em>Tipo</em>}' attribute.
@@ -55,7 +56,7 @@ public class DeclaracionVariableImpl extends SentenciasImpl implements Declaraci
 	 * @generated
 	 * @ordered
 	 */
-	public TipoVariable tipo = TIPO_EDEFAULT;
+	protected TipoVariable tipo = TIPO_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getTieneIDs() <em>Tiene IDs</em>}' containment reference list.
@@ -65,7 +66,7 @@ public class DeclaracionVariableImpl extends SentenciasImpl implements Declaraci
 	 * @generated
 	 * @ordered
 	 */
-	public EList<Variable> tieneIDs;
+	protected EList<Variable> tieneIDs;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -82,7 +83,7 @@ public class DeclaracionVariableImpl extends SentenciasImpl implements Declaraci
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.DECLARACION_VARIABLE;
 	}
 

@@ -87,7 +87,6 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 			case DiagramapseudocodigoPackage.DECLARACION_VARIABLE: {
 				DeclaracionVariable declaracionVariable = (DeclaracionVariable)theEObject;
 				T result = caseDeclaracionVariable(declaracionVariable);
-				if (result == null) result = caseSentencias(declaracionVariable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

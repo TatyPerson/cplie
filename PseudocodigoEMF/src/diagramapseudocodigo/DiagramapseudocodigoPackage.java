@@ -103,6 +103,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int CODIGO_FEATURE_COUNT = 3;
 
 	/**
+	 * The number of operations of the '<em>Codigo</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CODIGO_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.InicioImpl <em>Inicio</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -122,13 +131,31 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int INICIO__TIENE = 0;
 
 	/**
+	 * The feature id for the '<em><b>Declaracionvariable</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INICIO__DECLARACIONVARIABLE = 1;
+
+	/**
 	 * The number of structural features of the '<em>Inicio</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INICIO_FEATURE_COUNT = 1;
+	int INICIO_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Inicio</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INICIO_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.SentenciasImpl <em>Sentencias</em>}' class.
@@ -150,6 +177,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int SENTENCIAS_FEATURE_COUNT = 0;
 
 	/**
+	 * The number of operations of the '<em>Sentencias</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SENTENCIAS_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.DeclaracionVariableImpl <em>Declaracion Variable</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -166,7 +202,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DECLARACION_VARIABLE__TIPO = SENTENCIAS_FEATURE_COUNT + 0;
+	int DECLARACION_VARIABLE__TIPO = 0;
 
 	/**
 	 * The feature id for the '<em><b>Tiene IDs</b></em>' containment reference list.
@@ -175,7 +211,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DECLARACION_VARIABLE__TIENE_IDS = SENTENCIAS_FEATURE_COUNT + 1;
+	int DECLARACION_VARIABLE__TIENE_IDS = 1;
 
 	/**
 	 * The number of structural features of the '<em>Declaracion Variable</em>' class.
@@ -184,7 +220,16 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DECLARACION_VARIABLE_FEATURE_COUNT = SENTENCIAS_FEATURE_COUNT + 2;
+	int DECLARACION_VARIABLE_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Declaracion Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARACION_VARIABLE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.LlamadaFuncionImpl <em>Llamada Funcion</em>}' class.
@@ -224,6 +269,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int LLAMADA_FUNCION_FEATURE_COUNT = SENTENCIAS_FEATURE_COUNT + 2;
 
 	/**
+	 * The number of operations of the '<em>Llamada Funcion</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LLAMADA_FUNCION_OPERATION_COUNT = SENTENCIAS_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.valorImpl <em>valor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -243,6 +297,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int VALOR_FEATURE_COUNT = 0;
 
 	/**
+	 * The number of operations of the '<em>valor</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALOR_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.OperadorImpl <em>Operador</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -260,6 +323,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @ordered
 	 */
 	int OPERADOR_FEATURE_COUNT = VALOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Operador</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERADOR_OPERATION_COUNT = VALOR_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.VariableIDImpl <em>Variable ID</em>}' class.
@@ -299,6 +371,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int VARIABLE_ID_FEATURE_COUNT = OPERADOR_FEATURE_COUNT + 2;
 
 	/**
+	 * The number of operations of the '<em>Variable ID</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_ID_OPERATION_COUNT = OPERADOR_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.cadenaImpl <em>cadena</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -316,6 +397,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @ordered
 	 */
 	int CADENA_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>cadena</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CADENA_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.ConstCadenaImpl <em>Const Cadena</em>}' class.
@@ -344,6 +434,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONST_CADENA_FEATURE_COUNT = OPERADOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Const Cadena</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONST_CADENA_OPERATION_COUNT = OPERADOR_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.VariableImpl <em>Variable</em>}' class.
@@ -383,6 +482,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int VARIABLE_FEATURE_COUNT = 2;
 
 	/**
+	 * The number of operations of the '<em>Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.NumeroEnteroImpl <em>Numero Entero</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -409,6 +517,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @ordered
 	 */
 	int NUMERO_ENTERO_FEATURE_COUNT = OPERADOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Numero Entero</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERO_ENTERO_OPERATION_COUNT = OPERADOR_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.AsignacionImpl <em>Asignacion</em>}' class.
@@ -457,6 +574,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int ASIGNACION_FEATURE_COUNT = SENTENCIAS_FEATURE_COUNT + 3;
 
 	/**
+	 * The number of operations of the '<em>Asignacion</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASIGNACION_OPERATION_COUNT = SENTENCIAS_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.EscribirImpl <em>Escribir</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -483,6 +609,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @ordered
 	 */
 	int ESCRIBIR_FEATURE_COUNT = SENTENCIAS_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Escribir</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ESCRIBIR_OPERATION_COUNT = SENTENCIAS_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.SubprocesoImpl <em>Subproceso</em>}' class.
@@ -522,13 +657,31 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int SUBPROCESO__NOMBRE = 2;
 
 	/**
+	 * The feature id for the '<em><b>Declaracionvariable</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBPROCESO__DECLARACIONVARIABLE = 3;
+
+	/**
 	 * The number of structural features of the '<em>Subproceso</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPROCESO_FEATURE_COUNT = 3;
+	int SUBPROCESO_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>Subproceso</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBPROCESO_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.FuncionImpl <em>Funcion</em>}' class.
@@ -568,6 +721,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int FUNCION__NOMBRE = SUBPROCESO__NOMBRE;
 
 	/**
+	 * The feature id for the '<em><b>Declaracionvariable</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCION__DECLARACIONVARIABLE = SUBPROCESO__DECLARACIONVARIABLE;
+
+	/**
 	 * The feature id for the '<em><b>Tipo</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -593,6 +755,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @ordered
 	 */
 	int FUNCION_FEATURE_COUNT = SUBPROCESO_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Funcion</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCION_OPERATION_COUNT = SUBPROCESO_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.ParametroFuncionImpl <em>Parametro Funcion</em>}' class.
@@ -641,6 +812,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int PARAMETRO_FUNCION_FEATURE_COUNT = 3;
 
 	/**
+	 * The number of operations of the '<em>Parametro Funcion</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETRO_FUNCION_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.LeerImpl <em>Leer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -669,6 +849,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int LEER_FEATURE_COUNT = SENTENCIAS_FEATURE_COUNT + 1;
 
 	/**
+	 * The number of operations of the '<em>Leer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEER_OPERATION_COUNT = SENTENCIAS_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.NumeroDecimalImpl <em>Numero Decimal</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -695,6 +884,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @ordered
 	 */
 	int NUMERO_DECIMAL_FEATURE_COUNT = OPERADOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Numero Decimal</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERO_DECIMAL_OPERATION_COUNT = OPERADOR_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.operacionImpl <em>operacion</em>}' class.
@@ -743,6 +941,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int OPERACION_FEATURE_COUNT = VALOR_FEATURE_COUNT + 3;
 
 	/**
+	 * The number of operations of the '<em>operacion</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERACION_OPERATION_COUNT = VALOR_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.operando_izqImpl <em>operando izq</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -769,6 +976,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @ordered
 	 */
 	int OPERANDO_IZQ_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>operando izq</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERANDO_IZQ_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.operando_derImpl <em>operando der</em>}' class.
@@ -799,6 +1015,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int OPERANDO_DER_FEATURE_COUNT = 1;
 
 	/**
+	 * The number of operations of the '<em>operando der</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERANDO_DER_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.ValorBooleanoImpl <em>Valor Booleano</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -825,6 +1050,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @ordered
 	 */
 	int VALOR_BOOLEANO_FEATURE_COUNT = OPERADOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Valor Booleano</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALOR_BOOLEANO_OPERATION_COUNT = OPERADOR_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.BloqueImpl <em>Bloque</em>}' class.
@@ -862,6 +1096,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @ordered
 	 */
 	int BLOQUE_FEATURE_COUNT = SENTENCIAS_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Bloque</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOQUE_OPERATION_COUNT = SENTENCIAS_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.SiImpl <em>Si</em>}' class.
@@ -910,6 +1153,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int SI_FEATURE_COUNT = BLOQUE_FEATURE_COUNT + 1;
 
 	/**
+	 * The number of operations of the '<em>Si</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SI_OPERATION_COUNT = BLOQUE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.SinoImpl <em>Sino</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -936,6 +1188,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @ordered
 	 */
 	int SINO_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Sino</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINO_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.mientrasImpl <em>mientras</em>}' class.
@@ -975,6 +1236,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int MIENTRAS_FEATURE_COUNT = BLOQUE_FEATURE_COUNT + 0;
 
 	/**
+	 * The number of operations of the '<em>mientras</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MIENTRAS_OPERATION_COUNT = BLOQUE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.repetirImpl <em>repetir</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1010,6 +1280,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @ordered
 	 */
 	int REPETIR_FEATURE_COUNT = BLOQUE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>repetir</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPETIR_OPERATION_COUNT = BLOQUE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.desdeImpl <em>desde</em>}' class.
@@ -1058,6 +1337,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int DESDE_FEATURE_COUNT = BLOQUE_FEATURE_COUNT + 1;
 
 	/**
+	 * The number of operations of the '<em>desde</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESDE_OPERATION_COUNT = BLOQUE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.incrementoImpl <em>incremento</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1093,6 +1381,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @ordered
 	 */
 	int INCREMENTO_FEATURE_COUNT = SENTENCIAS_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>incremento</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCREMENTO_OPERATION_COUNT = SENTENCIAS_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.ProcedimientoImpl <em>Procedimiento</em>}' class.
@@ -1132,6 +1429,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int PROCEDIMIENTO__NOMBRE = SUBPROCESO__NOMBRE;
 
 	/**
+	 * The feature id for the '<em><b>Declaracionvariable</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCEDIMIENTO__DECLARACIONVARIABLE = SUBPROCESO__DECLARACIONVARIABLE;
+
+	/**
 	 * The number of structural features of the '<em>Procedimiento</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1139,6 +1445,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @ordered
 	 */
 	int PROCEDIMIENTO_FEATURE_COUNT = SUBPROCESO_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Procedimiento</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCEDIMIENTO_OPERATION_COUNT = SUBPROCESO_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.CaracterImpl <em>Caracter</em>}' class.
@@ -1167,6 +1482,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @ordered
 	 */
 	int CARACTER_FEATURE_COUNT = OPERADOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Caracter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARACTER_OPERATION_COUNT = OPERADOR_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoVariable <em>Tipo Variable</em>}' enum.
@@ -1282,6 +1606,17 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getInicio_Tiene();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.Inicio#getDeclaracionvariable <em>Declaracionvariable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Declaracionvariable</em>'.
+	 * @see diagramapseudocodigo.Inicio#getDeclaracionvariable()
+	 * @see #getInicio()
+	 * @generated
+	 */
+	EReference getInicio_Declaracionvariable();
 
 	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.Sentencias <em>Sentencias</em>}'.
@@ -1971,6 +2306,17 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EAttribute getSubproceso_Nombre();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.Subproceso#getDeclaracionvariable <em>Declaracionvariable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Declaracionvariable</em>'.
+	 * @see diagramapseudocodigo.Subproceso#getDeclaracionvariable()
+	 * @see #getSubproceso()
+	 * @generated
+	 */
+	EReference getSubproceso_Declaracionvariable();
+
+	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.Procedimiento <em>Procedimiento</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2124,6 +2470,14 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EReference INICIO__TIENE = eINSTANCE.getInicio_Tiene();
+
+		/**
+		 * The meta object literal for the '<em><b>Declaracionvariable</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INICIO__DECLARACIONVARIABLE = eINSTANCE.getInicio_Declaracionvariable();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.SentenciasImpl <em>Sentencias</em>}' class.
@@ -2700,6 +3054,14 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SUBPROCESO__NOMBRE = eINSTANCE.getSubproceso_Nombre();
+
+		/**
+		 * The meta object literal for the '<em><b>Declaracionvariable</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SUBPROCESO__DECLARACIONVARIABLE = eINSTANCE.getSubproceso_Declaracionvariable();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.ProcedimientoImpl <em>Procedimiento</em>}' class.

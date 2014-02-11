@@ -4,10 +4,8 @@ package diagramapseudocodigo.impl;
 
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.cadena;
-
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,7 +16,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class cadenaImpl extends EObjectImpl implements cadena {
+public class cadenaImpl extends MinimalEObjectImpl.Container implements cadena {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -34,7 +32,7 @@ public class cadenaImpl extends EObjectImpl implements cadena {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.CADENA;
 	}
 

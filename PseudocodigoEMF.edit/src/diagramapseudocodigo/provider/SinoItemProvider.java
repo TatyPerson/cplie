@@ -150,11 +150,6 @@ public class SinoItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.SINO__SENTENCIAS,
-				 DiagramapseudocodigoFactory.eINSTANCE.createDeclaracionVariable()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.SINO__SENTENCIAS,
 				 DiagramapseudocodigoFactory.eINSTANCE.createLlamadaFuncion()));
 
 		newChildDescriptors.add

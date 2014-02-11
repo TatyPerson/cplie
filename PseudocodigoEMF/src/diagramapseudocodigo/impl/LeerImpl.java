@@ -36,7 +36,7 @@ public class LeerImpl extends SentenciasImpl implements Leer {
 	 * @generated
 	 * @ordered
 	 */
-	public VariableID variable;
+	protected VariableID variable;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -53,7 +53,7 @@ public class LeerImpl extends SentenciasImpl implements Leer {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.LEER;
 	}
 

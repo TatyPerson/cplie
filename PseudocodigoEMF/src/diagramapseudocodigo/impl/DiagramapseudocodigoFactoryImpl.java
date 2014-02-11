@@ -28,7 +28,7 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	 */
 	public static DiagramapseudocodigoFactory init() {
 		try {
-			DiagramapseudocodigoFactory theDiagramapseudocodigoFactory = (DiagramapseudocodigoFactory)EPackage.Registry.INSTANCE.getEFactory("http://diagramapseudocodigo/1.0"); 
+			DiagramapseudocodigoFactory theDiagramapseudocodigoFactory = (DiagramapseudocodigoFactory)EPackage.Registry.INSTANCE.getEFactory(DiagramapseudocodigoPackage.eNS_URI);
 			if (theDiagramapseudocodigoFactory != null) {
 				return theDiagramapseudocodigoFactory;
 			}

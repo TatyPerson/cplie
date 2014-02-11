@@ -40,7 +40,7 @@ public class operacionImpl extends valorImpl implements operacion {
 	 * @generated
 	 * @ordered
 	 */
-	public static final signo SIGNO_OP_EDEFAULT = signo.SUM;
+	protected static final signo SIGNO_OP_EDEFAULT = signo.SUM;
 
 	/**
 	 * The cached value of the '{@link #getSigno_op() <em>Signo op</em>}' attribute.
@@ -50,7 +50,7 @@ public class operacionImpl extends valorImpl implements operacion {
 	 * @generated
 	 * @ordered
 	 */
-	public signo signo_op = SIGNO_OP_EDEFAULT;
+	protected signo signo_op = SIGNO_OP_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getOp_izq() <em>Op izq</em>}' containment reference.
@@ -60,7 +60,7 @@ public class operacionImpl extends valorImpl implements operacion {
 	 * @generated
 	 * @ordered
 	 */
-	public operando_izq op_izq;
+	protected operando_izq op_izq;
 
 	/**
 	 * The cached value of the '{@link #getOp_der() <em>Op der</em>}' containment reference.
@@ -70,7 +70,7 @@ public class operacionImpl extends valorImpl implements operacion {
 	 * @generated
 	 * @ordered
 	 */
-	public operando_der op_der;
+	protected operando_der op_der;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -87,7 +87,7 @@ public class operacionImpl extends valorImpl implements operacion {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.OPERACION;
 	}
 

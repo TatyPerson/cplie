@@ -2,24 +2,19 @@
  */
 package diagramapseudocodigo.impl;
 
+import diagramapseudocodigo.DeclaracionVariable;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.ParametroFuncion;
 import diagramapseudocodigo.Sentencias;
 import diagramapseudocodigo.Subproceso;
-
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -33,12 +28,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link diagramapseudocodigo.impl.SubprocesoImpl#getParametrofuncion <em>Parametrofuncion</em>}</li>
  *   <li>{@link diagramapseudocodigo.impl.SubprocesoImpl#getSentencias <em>Sentencias</em>}</li>
  *   <li>{@link diagramapseudocodigo.impl.SubprocesoImpl#getNombre <em>Nombre</em>}</li>
+ *   <li>{@link diagramapseudocodigo.impl.SubprocesoImpl#getDeclaracionvariable <em>Declaracionvariable</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class SubprocesoImpl extends EObjectImpl implements Subproceso {
+public abstract class SubprocesoImpl extends MinimalEObjectImpl.Container implements Subproceso {
 	/**
 	 * The cached value of the '{@link #getParametrofuncion() <em>Parametrofuncion</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -47,7 +43,7 @@ public abstract class SubprocesoImpl extends EObjectImpl implements Subproceso {
 	 * @generated
 	 * @ordered
 	 */
-	public EList<ParametroFuncion> parametrofuncion;
+	protected EList<ParametroFuncion> parametrofuncion;
 
 	/**
 	 * The cached value of the '{@link #getSentencias() <em>Sentencias</em>}' containment reference list.
@@ -57,7 +53,7 @@ public abstract class SubprocesoImpl extends EObjectImpl implements Subproceso {
 	 * @generated
 	 * @ordered
 	 */
-	public EList<Sentencias> sentencias;
+	protected EList<Sentencias> sentencias;
 
 	/**
 	 * The default value of the '{@link #getNombre() <em>Nombre</em>}' attribute.
@@ -67,7 +63,7 @@ public abstract class SubprocesoImpl extends EObjectImpl implements Subproceso {
 	 * @generated
 	 * @ordered
 	 */
-	public static final String NOMBRE_EDEFAULT = null;
+	protected static final String NOMBRE_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getNombre() <em>Nombre</em>}' attribute.
@@ -77,7 +73,17 @@ public abstract class SubprocesoImpl extends EObjectImpl implements Subproceso {
 	 * @generated
 	 * @ordered
 	 */
-	public String nombre = NOMBRE_EDEFAULT;
+	protected String nombre = NOMBRE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getDeclaracionvariable() <em>Declaracionvariable</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDeclaracionvariable()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<DeclaracionVariable> declaracionvariable;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -94,7 +100,7 @@ public abstract class SubprocesoImpl extends EObjectImpl implements Subproceso {
 	 * @generated
 	 */
 	@Override
-	public EClass eStaticClass() {
+	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.SUBPROCESO;
 	}
 
@@ -148,6 +154,18 @@ public abstract class SubprocesoImpl extends EObjectImpl implements Subproceso {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<DeclaracionVariable> getDeclaracionvariable() {
+		if (declaracionvariable == null) {
+			declaracionvariable = new EObjectContainmentEList<DeclaracionVariable>(DeclaracionVariable.class, this, DiagramapseudocodigoPackage.SUBPROCESO__DECLARACIONVARIABLE);
+		}
+		return declaracionvariable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -155,6 +173,8 @@ public abstract class SubprocesoImpl extends EObjectImpl implements Subproceso {
 				return ((InternalEList<?>)getParametrofuncion()).basicRemove(otherEnd, msgs);
 			case DiagramapseudocodigoPackage.SUBPROCESO__SENTENCIAS:
 				return ((InternalEList<?>)getSentencias()).basicRemove(otherEnd, msgs);
+			case DiagramapseudocodigoPackage.SUBPROCESO__DECLARACIONVARIABLE:
+				return ((InternalEList<?>)getDeclaracionvariable()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -173,6 +193,8 @@ public abstract class SubprocesoImpl extends EObjectImpl implements Subproceso {
 				return getSentencias();
 			case DiagramapseudocodigoPackage.SUBPROCESO__NOMBRE:
 				return getNombre();
+			case DiagramapseudocodigoPackage.SUBPROCESO__DECLARACIONVARIABLE:
+				return getDeclaracionvariable();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -197,6 +219,10 @@ public abstract class SubprocesoImpl extends EObjectImpl implements Subproceso {
 			case DiagramapseudocodigoPackage.SUBPROCESO__NOMBRE:
 				setNombre((String)newValue);
 				return;
+			case DiagramapseudocodigoPackage.SUBPROCESO__DECLARACIONVARIABLE:
+				getDeclaracionvariable().clear();
+				getDeclaracionvariable().addAll((Collection<? extends DeclaracionVariable>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -218,6 +244,9 @@ public abstract class SubprocesoImpl extends EObjectImpl implements Subproceso {
 			case DiagramapseudocodigoPackage.SUBPROCESO__NOMBRE:
 				setNombre(NOMBRE_EDEFAULT);
 				return;
+			case DiagramapseudocodigoPackage.SUBPROCESO__DECLARACIONVARIABLE:
+				getDeclaracionvariable().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -236,6 +265,8 @@ public abstract class SubprocesoImpl extends EObjectImpl implements Subproceso {
 				return sentencias != null && !sentencias.isEmpty();
 			case DiagramapseudocodigoPackage.SUBPROCESO__NOMBRE:
 				return NOMBRE_EDEFAULT == null ? nombre != null : !NOMBRE_EDEFAULT.equals(nombre);
+			case DiagramapseudocodigoPackage.SUBPROCESO__DECLARACIONVARIABLE:
+				return declaracionvariable != null && !declaracionvariable.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
