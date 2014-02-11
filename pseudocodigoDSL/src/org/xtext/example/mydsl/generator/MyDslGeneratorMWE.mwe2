@@ -3,8 +3,8 @@ module org.xtext.example.mydsl.generator.MyDslGeneratorMWE
 
 import org.eclipse.emf.mwe.utils.*
 
-var targetDir = "xtend-gen"
-var modelPath = "model"
+var targetDir
+var modelPath
 
 Workflow {
 
