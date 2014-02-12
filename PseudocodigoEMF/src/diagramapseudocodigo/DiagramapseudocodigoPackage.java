@@ -1493,6 +1493,52 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int CARACTER_OPERATION_COUNT = OPERADOR_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.InternasImpl <em>Internas</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.InternasImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getInternas()
+	 * @generated
+	 */
+	int INTERNAS = 32;
+
+	/**
+	 * The feature id for the '<em><b>Nombre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERNAS__NOMBRE = SENTENCIAS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Operador</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERNAS__OPERADOR = SENTENCIAS_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Internas</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERNAS_FEATURE_COUNT = SENTENCIAS_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Internas</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERNAS_OPERATION_COUNT = SENTENCIAS_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoVariable <em>Tipo Variable</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1500,7 +1546,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoVariable()
 	 * @generated
 	 */
-	int TIPO_VARIABLE = 32;
+	int TIPO_VARIABLE = 33;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.signo <em>signo</em>}' enum.
@@ -1510,7 +1556,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getsigno()
 	 * @generated
 	 */
-	int SIGNO = 33;
+	int SIGNO = 34;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.booleano <em>booleano</em>}' enum.
@@ -1520,7 +1566,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getbooleano()
 	 * @generated
 	 */
-	int BOOLEANO = 34;
+	int BOOLEANO = 35;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.inc <em>inc</em>}' enum.
@@ -1530,7 +1576,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getinc()
 	 * @generated
 	 */
-	int INC = 35;
+	int INC = 36;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoPaso <em>Tipo Paso</em>}' enum.
@@ -1540,7 +1586,18 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoPaso()
 	 * @generated
 	 */
-	int TIPO_PASO = 36;
+	int TIPO_PASO = 37;
+
+
+	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.NombreInterna <em>Nombre Interna</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.NombreInterna
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getNombreInterna()
+	 * @generated
+	 */
+	int NOMBRE_INTERNA = 38;
 
 
 	/**
@@ -2348,6 +2405,38 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EAttribute getCaracter_Contenido();
 
 	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.Internas <em>Internas</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Internas</em>'.
+	 * @see diagramapseudocodigo.Internas
+	 * @generated
+	 */
+	EClass getInternas();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Internas#getNombre <em>Nombre</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Nombre</em>'.
+	 * @see diagramapseudocodigo.Internas#getNombre()
+	 * @see #getInternas()
+	 * @generated
+	 */
+	EAttribute getInternas_Nombre();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.Internas#getOperador <em>Operador</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Operador</em>'.
+	 * @see diagramapseudocodigo.Internas#getOperador()
+	 * @see #getInternas()
+	 * @generated
+	 */
+	EReference getInternas_Operador();
+
+	/**
 	 * Returns the meta object for enum '{@link diagramapseudocodigo.TipoVariable <em>Tipo Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2396,6 +2485,16 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getTipoPaso();
+
+	/**
+	 * Returns the meta object for enum '{@link diagramapseudocodigo.NombreInterna <em>Nombre Interna</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Nombre Interna</em>'.
+	 * @see diagramapseudocodigo.NombreInterna
+	 * @generated
+	 */
+	EEnum getNombreInterna();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -3092,6 +3191,32 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EAttribute CARACTER__CONTENIDO = eINSTANCE.getCaracter_Contenido();
 
 		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.InternasImpl <em>Internas</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.InternasImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getInternas()
+		 * @generated
+		 */
+		EClass INTERNAS = eINSTANCE.getInternas();
+
+		/**
+		 * The meta object literal for the '<em><b>Nombre</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INTERNAS__NOMBRE = eINSTANCE.getInternas_Nombre();
+
+		/**
+		 * The meta object literal for the '<em><b>Operador</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INTERNAS__OPERADOR = eINSTANCE.getInternas_Operador();
+
+		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.TipoVariable <em>Tipo Variable</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3140,6 +3265,16 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum TIPO_PASO = eINSTANCE.getTipoPaso();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.NombreInterna <em>Nombre Interna</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.NombreInterna
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getNombreInterna()
+		 * @generated
+		 */
+		EEnum NOMBRE_INTERNA = eINSTANCE.getNombreInterna();
 
 	}
 

@@ -196,6 +196,11 @@ public class InicioItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.INICIO__TIENE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createInternas()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.INICIO__DECLARACIONVARIABLE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createDeclaracionVariable()));
 	}

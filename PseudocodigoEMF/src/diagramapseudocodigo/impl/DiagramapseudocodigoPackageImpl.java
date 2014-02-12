@@ -13,8 +13,10 @@ import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Escribir;
 import diagramapseudocodigo.Funcion;
 import diagramapseudocodigo.Inicio;
+import diagramapseudocodigo.Internas;
 import diagramapseudocodigo.Leer;
 import diagramapseudocodigo.LlamadaFuncion;
+import diagramapseudocodigo.NombreInterna;
 import diagramapseudocodigo.NumeroDecimal;
 import diagramapseudocodigo.NumeroEntero;
 import diagramapseudocodigo.Operador;
@@ -286,6 +288,13 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass internasEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum tipoVariableEEnum = null;
 
 	/**
@@ -315,6 +324,13 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * @generated
 	 */
 	private EEnum tipoPasoEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum nombreInternaEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1066,6 +1082,33 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getInternas() {
+		return internasEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getInternas_Nombre() {
+		return (EAttribute)internasEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getInternas_Operador() {
+		return (EReference)internasEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getTipoVariable() {
 		return tipoVariableEEnum;
 	}
@@ -1104,6 +1147,15 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 */
 	public EEnum getTipoPaso() {
 		return tipoPasoEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getNombreInterna() {
+		return nombreInternaEEnum;
 	}
 
 	/**
@@ -1242,12 +1294,17 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		caracterEClass = createEClass(CARACTER);
 		createEAttribute(caracterEClass, CARACTER__CONTENIDO);
 
+		internasEClass = createEClass(INTERNAS);
+		createEAttribute(internasEClass, INTERNAS__NOMBRE);
+		createEReference(internasEClass, INTERNAS__OPERADOR);
+
 		// Create enums
 		tipoVariableEEnum = createEEnum(TIPO_VARIABLE);
 		signoEEnum = createEEnum(SIGNO);
 		booleanoEEnum = createEEnum(BOOLEANO);
 		incEEnum = createEEnum(INC);
 		tipoPasoEEnum = createEEnum(TIPO_PASO);
+		nombreInternaEEnum = createEEnum(NOMBRE_INTERNA);
 	}
 
 	/**
@@ -1299,6 +1356,8 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		incrementoEClass.getESuperTypes().add(this.getSentencias());
 		procedimientoEClass.getESuperTypes().add(this.getSubproceso());
 		caracterEClass.getESuperTypes().add(this.getOperador());
+		internasEClass.getESuperTypes().add(this.getSentencias());
+		internasEClass.getESuperTypes().add(this.getvalor());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(codigoEClass, Codigo.class, "Codigo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1409,6 +1468,10 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		initEClass(caracterEClass, Caracter.class, "Caracter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCaracter_Contenido(), ecorePackage.getEString(), "contenido", null, 1, 1, Caracter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(internasEClass, Internas.class, "Internas", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getInternas_Nombre(), this.getNombreInterna(), "nombre", null, 0, 1, Internas.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInternas_Operador(), this.getOperador(), null, "operador", null, 0, -1, Internas.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(tipoVariableEEnum, TipoVariable.class, "TipoVariable");
 		addEEnumLiteral(tipoVariableEEnum, TipoVariable.ENTERO);
@@ -1443,6 +1506,15 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		addEEnumLiteral(tipoPasoEEnum, TipoPaso.ENTRADA);
 		addEEnumLiteral(tipoPasoEEnum, TipoPaso.ENTRADA_SALIDA);
 		addEEnumLiteral(tipoPasoEEnum, TipoPaso.SALIDA);
+
+		initEEnum(nombreInternaEEnum, NombreInterna.class, "NombreInterna");
+		addEEnumLiteral(nombreInternaEEnum, NombreInterna.COS);
+		addEEnumLiteral(nombreInternaEEnum, NombreInterna.CUADRADO);
+		addEEnumLiteral(nombreInternaEEnum, NombreInterna.EXP);
+		addEEnumLiteral(nombreInternaEEnum, NombreInterna.LN);
+		addEEnumLiteral(nombreInternaEEnum, NombreInterna.LOG);
+		addEEnumLiteral(nombreInternaEEnum, NombreInterna.SEN);
+		addEEnumLiteral(nombreInternaEEnum, NombreInterna.SQRT);
 
 		// Create resource
 		createResource(eNS_URI);

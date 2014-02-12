@@ -163,10 +163,24 @@
   <eClassifiers xsi:type="ecore:EEnum" name="TipoPaso">
     <eLiterals name="Entrada" literal="E"/>
     <eLiterals name="EntradaSalida" value="1" literal="E/S"/>
-    <eLiterals name="Salida" value="2"/>
+    <eLiterals name="Salida" value="2" literal="S"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Caracter" eSuperTypes="#//Operador">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="contenido" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Internas" eSuperTypes="#//Sentencias #//valor">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="#//NombreInterna"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operador" upperBound="-1"
+        eType="#//Operador" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="NombreInterna">
+    <eLiterals name="cos"/>
+    <eLiterals name="cuadrado" value="1"/>
+    <eLiterals name="exp" value="2"/>
+    <eLiterals name="ln" value="3"/>
+    <eLiterals name="log" value="4"/>
+    <eLiterals name="sen" value="5"/>
+    <eLiterals name="sqrt" value="6"/>
   </eClassifiers>
 </ecore:EPackage>

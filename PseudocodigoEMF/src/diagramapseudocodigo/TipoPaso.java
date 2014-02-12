@@ -85,7 +85,7 @@ public enum TipoPaso implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #SALIDA
-	 * @model name="Salida"
+	 * @model name="Salida" literal="S"
 	 * @generated
 	 * @ordered
 	 */
