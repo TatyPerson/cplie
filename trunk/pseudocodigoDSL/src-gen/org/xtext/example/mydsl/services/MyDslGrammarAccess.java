@@ -1228,37 +1228,41 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	public class ParametroFuncionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ParametroFuncion");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cTipoAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cTipoTipoVariableParserRuleCall_0_0 = (RuleCall)cTipoAssignment_0.eContents().get(0);
-		private final Assignment cPasoAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cPasoTipoPasoParserRuleCall_1_0 = (RuleCall)cPasoAssignment_1.eContents().get(0);
-		private final Assignment cVariableAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cVariableVariableParserRuleCall_2_0 = (RuleCall)cVariableAssignment_2.eContents().get(0);
+		private final Assignment cPasoAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cPasoTipoPasoParserRuleCall_0_0 = (RuleCall)cPasoAssignment_0.eContents().get(0);
+		private final Assignment cTipoAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTipoTipoVariableParserRuleCall_1_0 = (RuleCall)cTipoAssignment_1.eContents().get(0);
+		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cVariableAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cVariableVariableParserRuleCall_3_0 = (RuleCall)cVariableAssignment_3.eContents().get(0);
 		
 		//ParametroFuncion:
-		//	tipo=TipoVariable paso=TipoPaso variable=Variable;
+		//	paso=TipoPaso tipo=TipoVariable+ ":" variable=Variable;
 		public ParserRule getRule() { return rule; }
 
-		//tipo=TipoVariable paso=TipoPaso variable=Variable
+		//paso=TipoPaso tipo=TipoVariable+ ":" variable=Variable
 		public Group getGroup() { return cGroup; }
 
-		//tipo=TipoVariable
-		public Assignment getTipoAssignment_0() { return cTipoAssignment_0; }
-
-		//TipoVariable
-		public RuleCall getTipoTipoVariableParserRuleCall_0_0() { return cTipoTipoVariableParserRuleCall_0_0; }
-
 		//paso=TipoPaso
-		public Assignment getPasoAssignment_1() { return cPasoAssignment_1; }
+		public Assignment getPasoAssignment_0() { return cPasoAssignment_0; }
 
 		//TipoPaso
-		public RuleCall getPasoTipoPasoParserRuleCall_1_0() { return cPasoTipoPasoParserRuleCall_1_0; }
+		public RuleCall getPasoTipoPasoParserRuleCall_0_0() { return cPasoTipoPasoParserRuleCall_0_0; }
+
+		//tipo=TipoVariable+
+		public Assignment getTipoAssignment_1() { return cTipoAssignment_1; }
+
+		//TipoVariable
+		public RuleCall getTipoTipoVariableParserRuleCall_1_0() { return cTipoTipoVariableParserRuleCall_1_0; }
+
+		//":"
+		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
 
 		//variable=Variable
-		public Assignment getVariableAssignment_2() { return cVariableAssignment_2; }
+		public Assignment getVariableAssignment_3() { return cVariableAssignment_3; }
 
 		//Variable
-		public RuleCall getVariableVariableParserRuleCall_2_0() { return cVariableVariableParserRuleCall_2_0; }
+		public RuleCall getVariableVariableParserRuleCall_3_0() { return cVariableVariableParserRuleCall_3_0; }
 	}
 
 	public class FuncionElements extends AbstractParserRuleElementFinder {
@@ -1995,7 +1999,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ParametroFuncion:
-	//	tipo=TipoVariable paso=TipoPaso variable=Variable;
+	//	paso=TipoPaso tipo=TipoVariable+ ":" variable=Variable;
 	public ParametroFuncionElements getParametroFuncionAccess() {
 		return (pParametroFuncion != null) ? pParametroFuncion : (pParametroFuncion = new ParametroFuncionElements());
 	}

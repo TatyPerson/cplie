@@ -141,9 +141,9 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getOperando_derAccess().getOper_derAssignment(), "rule__Operando_der__Oper_derAssignment");
 					put(grammarAccess.getSinoAccess().getSentenciasAssignment_2_0(), "rule__Sino__SentenciasAssignment_2_0");
 					put(grammarAccess.getSinoAccess().getSentenciasAssignment_2_1(), "rule__Sino__SentenciasAssignment_2_1");
-					put(grammarAccess.getParametroFuncionAccess().getTipoAssignment_0(), "rule__ParametroFuncion__TipoAssignment_0");
-					put(grammarAccess.getParametroFuncionAccess().getPasoAssignment_1(), "rule__ParametroFuncion__PasoAssignment_1");
-					put(grammarAccess.getParametroFuncionAccess().getVariableAssignment_2(), "rule__ParametroFuncion__VariableAssignment_2");
+					put(grammarAccess.getParametroFuncionAccess().getPasoAssignment_0(), "rule__ParametroFuncion__PasoAssignment_0");
+					put(grammarAccess.getParametroFuncionAccess().getTipoAssignment_1(), "rule__ParametroFuncion__TipoAssignment_1");
+					put(grammarAccess.getParametroFuncionAccess().getVariableAssignment_3(), "rule__ParametroFuncion__VariableAssignment_3");
 					put(grammarAccess.getFuncionAccess().getTipoAssignment_0(), "rule__Funcion__TipoAssignment_0");
 					put(grammarAccess.getFuncionAccess().getNombreAssignment_2(), "rule__Funcion__NombreAssignment_2");
 					put(grammarAccess.getFuncionAccess().getParametrofuncionAssignment_4_0(), "rule__Funcion__ParametrofuncionAssignment_4_0");
