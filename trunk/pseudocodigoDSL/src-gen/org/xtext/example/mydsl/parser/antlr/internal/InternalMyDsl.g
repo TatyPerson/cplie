@@ -686,41 +686,45 @@ ruleDeclaracionVariable returns [EObject current=null]
 	    }
 
 )
-)(
+)+	otherlv_1=':' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getDeclaracionVariableAccess().getColonKeyword_1());
+    }
+(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDeclaracionVariableAccess().getTieneIDsVariableParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getDeclaracionVariableAccess().getTieneIDsVariableParserRuleCall_2_0()); 
 	    }
-		lv_tieneIDs_1_0=ruleVariable		{
+		lv_tieneIDs_2_0=ruleVariable		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDeclaracionVariableRule());
 	        }
        		add(
        			$current, 
        			"tieneIDs",
-        		lv_tieneIDs_1_0, 
+        		lv_tieneIDs_2_0, 
         		"Variable");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)(	otherlv_2=',' 
+)(	otherlv_3=',' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getDeclaracionVariableAccess().getCommaKeyword_2_0());
+    	newLeafNode(otherlv_3, grammarAccess.getDeclaracionVariableAccess().getCommaKeyword_3_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDeclaracionVariableAccess().getTieneIDsVariableParserRuleCall_2_1_0()); 
+	        newCompositeNode(grammarAccess.getDeclaracionVariableAccess().getTieneIDsVariableParserRuleCall_3_1_0()); 
 	    }
-		lv_tieneIDs_3_0=ruleVariable		{
+		lv_tieneIDs_4_0=ruleVariable		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDeclaracionVariableRule());
 	        }
        		add(
        			$current, 
        			"tieneIDs",
-        		lv_tieneIDs_3_0, 
+        		lv_tieneIDs_4_0, 
         		"Variable");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2561,27 +2565,35 @@ ruleFuncion returns [EObject current=null]
     {
     	newLeafNode(otherlv_14, grammarAccess.getFuncionAccess().getDevolverKeyword_10());
     }
+	otherlv_15='(' 
+    {
+    	newLeafNode(otherlv_15, grammarAccess.getFuncionAccess().getLeftParenthesisKeyword_11());
+    }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getFuncionAccess().getDevuelveValorParserRuleCall_11_0()); 
+	        newCompositeNode(grammarAccess.getFuncionAccess().getDevuelveValorParserRuleCall_12_0()); 
 	    }
-		lv_devuelve_15_0=rulevalor		{
+		lv_devuelve_16_0=rulevalor		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getFuncionRule());
 	        }
        		set(
        			$current, 
        			"devuelve",
-        		lv_devuelve_15_0, 
+        		lv_devuelve_16_0, 
         		"valor");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_16='fin_funcion' 
+)	otherlv_17=')' 
     {
-    	newLeafNode(otherlv_16, grammarAccess.getFuncionAccess().getFin_funcionKeyword_12());
+    	newLeafNode(otherlv_17, grammarAccess.getFuncionAccess().getRightParenthesisKeyword_13());
+    }
+	otherlv_18='fin_funcion' 
+    {
+    	newLeafNode(otherlv_18, grammarAccess.getFuncionAccess().getFin_funcionKeyword_14());
     }
 )
 ;

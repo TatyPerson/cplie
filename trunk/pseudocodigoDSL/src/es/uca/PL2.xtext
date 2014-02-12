@@ -42,7 +42,7 @@ EString returns ecore::EString:
 	STRING | ID;
 
 DeclaracionVariable returns DeclaracionVariable:
-	tipo=TipoVariable
+	tipo=TipoVariable + ":"
 	tieneIDs+=Variable ( "," tieneIDs+=Variable)*;
 
 LlamadaFuncion returns LlamadaFuncion:
@@ -175,7 +175,7 @@ Funcion returns Funcion:
 	( declaracionvariable+=DeclaracionVariable (	declaracionvariable+=DeclaracionVariable)*  )?
 	'inicio'
 	( sentencias+=Sentencias (  sentencias+=Sentencias)*  )?
-	'devolver' devuelve=valor
+	'devolver' '(' devuelve=valor ')'
 	'fin_funcion';
 	
 Procedimiento returns Procedimiento:
