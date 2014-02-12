@@ -5064,11 +5064,11 @@ protected class Sino_SentenciasAssignment_2_1 extends AssignmentToken  {
 /************ begin Rule ParametroFuncion ****************
  *
  * ParametroFuncion:
- * 	tipo=TipoVariable paso=TipoPaso variable=Variable;
+ * 	paso=TipoPaso tipo=TipoVariable+ ":" variable=Variable;
  *
  **/
 
-// tipo=TipoVariable paso=TipoPaso variable=Variable
+// paso=TipoPaso tipo=TipoVariable+ ":" variable=Variable
 protected class ParametroFuncion_Group extends GroupToken {
 	
 	public ParametroFuncion_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5083,7 +5083,7 @@ protected class ParametroFuncion_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new ParametroFuncion_VariableAssignment_2(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new ParametroFuncion_VariableAssignment_3(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -5097,16 +5097,16 @@ protected class ParametroFuncion_Group extends GroupToken {
 
 }
 
-// tipo=TipoVariable
-protected class ParametroFuncion_TipoAssignment_0 extends AssignmentToken  {
+// paso=TipoPaso
+protected class ParametroFuncion_PasoAssignment_0 extends AssignmentToken  {
 	
-	public ParametroFuncion_TipoAssignment_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public ParametroFuncion_PasoAssignment_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getParametroFuncionAccess().getTipoAssignment_0();
+		return grammarAccess.getParametroFuncionAccess().getPasoAssignment_0();
 	}
 
     @Override
@@ -5118,11 +5118,11 @@ protected class ParametroFuncion_TipoAssignment_0 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("tipo",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("tipo");
-		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getParametroFuncionAccess().getTipoTipoVariableParserRuleCall_0_0(), value, null)) {
+		if((value = eObjectConsumer.getConsumable("paso",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("paso");
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getParametroFuncionAccess().getPasoTipoPasoParserRuleCall_0_0(), value, null)) {
 			type = AssignmentType.DATATYPE_RULE_CALL;
-			element = grammarAccess.getParametroFuncionAccess().getTipoTipoVariableParserRuleCall_0_0();
+			element = grammarAccess.getParametroFuncionAccess().getPasoTipoPasoParserRuleCall_0_0();
 			return obj;
 		}
 		return null;
@@ -5130,33 +5130,34 @@ protected class ParametroFuncion_TipoAssignment_0 extends AssignmentToken  {
 
 }
 
-// paso=TipoPaso
-protected class ParametroFuncion_PasoAssignment_1 extends AssignmentToken  {
+// tipo=TipoVariable+
+protected class ParametroFuncion_TipoAssignment_1 extends AssignmentToken  {
 	
-	public ParametroFuncion_PasoAssignment_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public ParametroFuncion_TipoAssignment_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getParametroFuncionAccess().getPasoAssignment_1();
+		return grammarAccess.getParametroFuncionAccess().getTipoAssignment_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new ParametroFuncion_TipoAssignment_0(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new ParametroFuncion_TipoAssignment_1(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new ParametroFuncion_PasoAssignment_0(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("paso",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("paso");
-		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getParametroFuncionAccess().getPasoTipoPasoParserRuleCall_1_0(), value, null)) {
+		if((value = eObjectConsumer.getConsumable("tipo",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("tipo");
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getParametroFuncionAccess().getTipoTipoVariableParserRuleCall_1_0(), value, null)) {
 			type = AssignmentType.DATATYPE_RULE_CALL;
-			element = grammarAccess.getParametroFuncionAccess().getPasoTipoPasoParserRuleCall_1_0();
+			element = grammarAccess.getParametroFuncionAccess().getTipoTipoVariableParserRuleCall_1_0();
 			return obj;
 		}
 		return null;
@@ -5164,16 +5165,38 @@ protected class ParametroFuncion_PasoAssignment_1 extends AssignmentToken  {
 
 }
 
-// variable=Variable
-protected class ParametroFuncion_VariableAssignment_2 extends AssignmentToken  {
+// ":"
+protected class ParametroFuncion_ColonKeyword_2 extends KeywordToken  {
 	
-	public ParametroFuncion_VariableAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public ParametroFuncion_ColonKeyword_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getParametroFuncionAccess().getColonKeyword_2();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new ParametroFuncion_TipoAssignment_1(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// variable=Variable
+protected class ParametroFuncion_VariableAssignment_3 extends AssignmentToken  {
+	
+	public ParametroFuncion_VariableAssignment_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getParametroFuncionAccess().getVariableAssignment_2();
+		return grammarAccess.getParametroFuncionAccess().getVariableAssignment_3();
 	}
 
     @Override
@@ -5192,7 +5215,7 @@ protected class ParametroFuncion_VariableAssignment_2 extends AssignmentToken  {
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getVariableRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getParametroFuncionAccess().getVariableVariableParserRuleCall_2_0(); 
+				element = grammarAccess.getParametroFuncionAccess().getVariableVariableParserRuleCall_3_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -5204,7 +5227,7 @@ protected class ParametroFuncion_VariableAssignment_2 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new ParametroFuncion_PasoAssignment_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new ParametroFuncion_ColonKeyword_2(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	

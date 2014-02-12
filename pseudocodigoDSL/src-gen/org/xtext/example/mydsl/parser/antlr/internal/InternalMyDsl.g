@@ -2313,34 +2313,16 @@ ruleParametroFuncion returns [EObject current=null]
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getParametroFuncionAccess().getTipoTipoVariableParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getParametroFuncionAccess().getPasoTipoPasoParserRuleCall_0_0()); 
 	    }
-		lv_tipo_0_0=ruleTipoVariable		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getParametroFuncionRule());
-	        }
-       		set(
-       			$current, 
-       			"tipo",
-        		lv_tipo_0_0, 
-        		"TipoVariable");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getParametroFuncionAccess().getPasoTipoPasoParserRuleCall_1_0()); 
-	    }
-		lv_paso_1_0=ruleTipoPaso		{
+		lv_paso_0_0=ruleTipoPaso		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getParametroFuncionRule());
 	        }
        		set(
        			$current, 
        			"paso",
-        		lv_paso_1_0, 
+        		lv_paso_0_0, 
         		"TipoPaso");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2349,16 +2331,38 @@ ruleParametroFuncion returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getParametroFuncionAccess().getVariableVariableParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getParametroFuncionAccess().getTipoTipoVariableParserRuleCall_1_0()); 
 	    }
-		lv_variable_2_0=ruleVariable		{
+		lv_tipo_1_0=ruleTipoVariable		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getParametroFuncionRule());
+	        }
+       		set(
+       			$current, 
+       			"tipo",
+        		lv_tipo_1_0, 
+        		"TipoVariable");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)+	otherlv_2=':' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getParametroFuncionAccess().getColonKeyword_2());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getParametroFuncionAccess().getVariableVariableParserRuleCall_3_0()); 
+	    }
+		lv_variable_3_0=ruleVariable		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getParametroFuncionRule());
 	        }
        		set(
        			$current, 
        			"variable",
-        		lv_variable_2_0, 
+        		lv_variable_3_0, 
         		"Variable");
 	        afterParserOrEnumRuleCall();
 	    }

@@ -162,8 +162,8 @@ inc returns inc:
 	"++" | "--" /* TODO: implement this rule and an appropriate IValueConverter */;
 	
 ParametroFuncion returns ParametroFuncion:
-	tipo=TipoVariable
 	paso=TipoPaso
+	tipo=TipoVariable + ":"
 	variable=Variable;
 
 Funcion returns Funcion:
