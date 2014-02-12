@@ -38,6 +38,7 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="diagramaPseudocodigo.ecore#//TipoPaso">
       <genEnumLiterals ecoreEnumLiteral="diagramaPseudocodigo.ecore#//TipoPaso/Entrada"/>
       <genEnumLiterals ecoreEnumLiteral="diagramaPseudocodigo.ecore#//TipoPaso/EntradaSalida"/>
+      <genEnumLiterals ecoreEnumLiteral="diagramaPseudocodigo.ecore#//TipoPaso/Salida"/>
     </genEnums>
     <genClasses ecoreClass="diagramaPseudocodigo.ecore#//Codigo">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Codigo/tiene"/>

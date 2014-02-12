@@ -1588,6 +1588,14 @@ rule__TipoPaso__Alternatives
 { after(grammarAccess.getTipoPasoAccess().getESKeyword_1()); }
 )
 
+    |(
+{ before(grammarAccess.getTipoPasoAccess().getSKeyword_2()); }
+
+	'S' 
+
+{ after(grammarAccess.getTipoPasoAccess().getSKeyword_2()); }
+)
+
 ;
 finally {
 	restoreStackSize(stackSize);

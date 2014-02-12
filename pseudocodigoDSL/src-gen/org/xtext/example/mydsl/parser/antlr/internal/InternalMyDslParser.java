@@ -21,11 +21,12 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalMyDslParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_CAR", "RULE_STRING", "RULE_ID", "RULE_MATRIZ", "RULE_CAD", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'var'", "'inicio'", "'fin_inicio'", "','", "'('", "')'", "'='", "'escribir'", "'leer'", "'si'", "'entonces'", "'fin si'", "'mientras'", "'hacer'", "'fin_mientras'", "'repetir'", "'hasta_que'", "'desde'", "'hasta'", "'fin_desde'", "'entero'", "'caracter'", "'real'", "'logico'", "'cadena'", "'-'", "'.'", "'E'", "'e'", "'verdadero'", "'falso'", "'+'", "'*'", "'/'", "'<'", "'>'", "'>='", "'<='", "'y'", "'o'", "'=='", "'!='", "'sino'", "'++'", "'--'", "'funcion'", "'devolver'", "'fin_funcion'", "'procedimiento'", "'fin_procedimiento'", "'E/S'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_CAR", "RULE_STRING", "RULE_ID", "RULE_MATRIZ", "RULE_CAD", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'var'", "'inicio'", "'fin_inicio'", "','", "'('", "')'", "'='", "'escribir'", "'leer'", "'si'", "'entonces'", "'fin si'", "'mientras'", "'hacer'", "'fin_mientras'", "'repetir'", "'hasta_que'", "'desde'", "'hasta'", "'fin_desde'", "'entero'", "'caracter'", "'real'", "'logico'", "'cadena'", "'-'", "'.'", "'E'", "'e'", "'verdadero'", "'falso'", "'+'", "'*'", "'/'", "'<'", "'>'", "'>='", "'<='", "'y'", "'o'", "'=='", "'!='", "'sino'", "'++'", "'--'", "'funcion'", "'devolver'", "'fin_funcion'", "'procedimiento'", "'fin_procedimiento'", "'E/S'", "'S'"
     };
     public static final int RULE_ID=6;
     public static final int T__64=64;
     public static final int T__29=29;
+    public static final int T__65=65;
     public static final int T__28=28;
     public static final int T__62=62;
     public static final int T__27=27;
@@ -7116,7 +7117,7 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTipoPaso"
-    // ../pseudocodigoDSL/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalMyDsl.g:2774:1: ruleTipoPaso returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'E' | kw= 'E/S' ) ;
+    // ../pseudocodigoDSL/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalMyDsl.g:2774:1: ruleTipoPaso returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'E' | kw= 'E/S' | kw= 'S' ) ;
     public final AntlrDatatypeRuleToken ruleTipoPaso() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -7125,25 +7126,34 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../pseudocodigoDSL/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalMyDsl.g:2777:28: ( (kw= 'E' | kw= 'E/S' ) )
-            // ../pseudocodigoDSL/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalMyDsl.g:2778:1: (kw= 'E' | kw= 'E/S' )
+            // ../pseudocodigoDSL/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalMyDsl.g:2777:28: ( (kw= 'E' | kw= 'E/S' | kw= 'S' ) )
+            // ../pseudocodigoDSL/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalMyDsl.g:2778:1: (kw= 'E' | kw= 'E/S' | kw= 'S' )
             {
-            // ../pseudocodigoDSL/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalMyDsl.g:2778:1: (kw= 'E' | kw= 'E/S' )
-            int alt52=2;
-            int LA52_0 = input.LA(1);
-
-            if ( (LA52_0==41) ) {
+            // ../pseudocodigoDSL/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalMyDsl.g:2778:1: (kw= 'E' | kw= 'E/S' | kw= 'S' )
+            int alt52=3;
+            switch ( input.LA(1) ) {
+            case 41:
+                {
                 alt52=1;
-            }
-            else if ( (LA52_0==64) ) {
+                }
+                break;
+            case 64:
+                {
                 alt52=2;
-            }
-            else {
+                }
+                break;
+            case 65:
+                {
+                alt52=3;
+                }
+                break;
+            default:
                 NoViableAltException nvae =
                     new NoViableAltException("", 52, 0, input);
 
                 throw nvae;
             }
+
             switch (alt52) {
                 case 1 :
                     // ../pseudocodigoDSL/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalMyDsl.g:2779:2: kw= 'E'
@@ -7163,6 +7173,17 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
 
                             current.merge(kw);
                             newLeafNode(kw, grammarAccess.getTipoPasoAccess().getESKeyword_1()); 
+                        
+
+                    }
+                    break;
+                case 3 :
+                    // ../pseudocodigoDSL/src-gen/org/xtext/example/mydsl/parser/antlr/internal/InternalMyDsl.g:2793:2: kw= 'S'
+                    {
+                    kw=(Token)match(input,65,FollowSets000.FOLLOW_65_in_ruleTipoPaso6180); 
+
+                            current.merge(kw);
+                            newLeafNode(kw, grammarAccess.getTipoPasoAccess().getSKeyword_2()); 
                         
 
                     }
@@ -7530,7 +7551,7 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_58_in_ruleinc5232 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleParametroFuncion_in_entryRuleParametroFuncion5272 = new BitSet(new long[]{0x0000000000000000L});
         public static final BitSet FOLLOW_EOF_in_entryRuleParametroFuncion5282 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleTipoVariable_in_ruleParametroFuncion5328 = new BitSet(new long[]{0x0000020000000000L,0x0000000000000001L});
+        public static final BitSet FOLLOW_ruleTipoVariable_in_ruleParametroFuncion5328 = new BitSet(new long[]{0x0000020000000000L,0x0000000000000003L});
         public static final BitSet FOLLOW_ruleTipoPaso_in_ruleParametroFuncion5349 = new BitSet(new long[]{0x0000000000000060L});
         public static final BitSet FOLLOW_ruleVariable_in_ruleParametroFuncion5370 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleFuncion_in_entryRuleFuncion5406 = new BitSet(new long[]{0x0000000000000000L});
@@ -7572,6 +7593,7 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_EOF_in_entryRuleTipoPaso6104 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_41_in_ruleTipoPaso6142 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_64_in_ruleTipoPaso6161 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_65_in_ruleTipoPaso6180 = new BitSet(new long[]{0x0000000000000002L});
     }
 
 

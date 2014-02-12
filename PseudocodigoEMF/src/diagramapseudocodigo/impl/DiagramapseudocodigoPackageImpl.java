@@ -1442,6 +1442,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		initEEnum(tipoPasoEEnum, TipoPaso.class, "TipoPaso");
 		addEEnumLiteral(tipoPasoEEnum, TipoPaso.ENTRADA);
 		addEEnumLiteral(tipoPasoEEnum, TipoPaso.ENTRADA_SALIDA);
+		addEEnumLiteral(tipoPasoEEnum, TipoPaso.SALIDA);
 
 		// Create resource
 		createResource(eNS_URI);

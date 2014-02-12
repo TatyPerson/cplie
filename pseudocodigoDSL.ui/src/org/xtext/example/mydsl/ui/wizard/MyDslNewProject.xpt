@@ -22,7 +22,7 @@ org.xtext.example.mydsl.MyDsl.templates=<?xml version\="1.0" encoding\="UTF-8" s
  * Fecha: Fecha_creación
  */
 var
-
+//Aquí va la lista de inicialización de las variables que utilizará en su programa principal
 inicio
 //Aquí va el código de su programa principal
 fin_inicio
