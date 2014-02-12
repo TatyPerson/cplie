@@ -169,9 +169,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="contenido" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Internas" eSuperTypes="#//Sentencias #//valor">
+  <eClassifiers xsi:type="ecore:EClass" name="Internas" eSuperTypes="#//valor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="#//NombreInterna"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operador" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operador" lowerBound="1"
         eType="#//Operador" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="NombreInterna">

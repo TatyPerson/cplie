@@ -223,11 +223,6 @@ public class SubprocesoItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.SUBPROCESO__SENTENCIAS,
-				 DiagramapseudocodigoFactory.eINSTANCE.createInternas()));
-
-		newChildDescriptors.add
-			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.SUBPROCESO__DECLARACIONVARIABLE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createDeclaracionVariable()));
 	}

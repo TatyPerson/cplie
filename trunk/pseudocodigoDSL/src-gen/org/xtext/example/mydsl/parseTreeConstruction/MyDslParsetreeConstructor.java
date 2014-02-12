@@ -386,11 +386,11 @@ protected class Subproceso_ProcedimientoParserRuleCall_1 extends RuleCallToken {
 /************ begin Rule Sentencias ****************
  *
  * Sentencias:
- * 	LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento | Internas;
+ * 	LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento;
  *
  **/
 
-// LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento | Internas
+// LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento
 protected class Sentencias_Alternatives extends AlternativesToken {
 
 	public Sentencias_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -414,7 +414,6 @@ protected class Sentencias_Alternatives extends AlternativesToken {
 			case 6: return new Sentencias_RepetirParserRuleCall_6(lastRuleCallOrigin, this, 6, inst);
 			case 7: return new Sentencias_DesdeParserRuleCall_7(lastRuleCallOrigin, this, 7, inst);
 			case 8: return new Sentencias_IncrementoParserRuleCall_8(lastRuleCallOrigin, this, 8, inst);
-			case 9: return new Sentencias_InternasParserRuleCall_9(lastRuleCallOrigin, this, 9, inst);
 			default: return null;
 		}	
 	}
@@ -423,7 +422,6 @@ protected class Sentencias_Alternatives extends AlternativesToken {
 	public IEObjectConsumer tryConsume() {
 		if(getEObject().eClass() != grammarAccess.getAsignacionRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getEscribirRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getInternasRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getLeerRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getLlamadaFuncionRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSiRule().getType().getClassifier() && 
@@ -761,42 +759,6 @@ protected class Sentencias_IncrementoParserRuleCall_8 extends RuleCallToken {
 	}	
 }
 
-// Internas
-protected class Sentencias_InternasParserRuleCall_9 extends RuleCallToken {
-	
-	public Sentencias_InternasParserRuleCall_9(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public RuleCall getGrammarElement() {
-		return grammarAccess.getSentenciasAccess().getInternasParserRuleCall_9();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new Internas_Group(this, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-    @Override
-	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getInternasRule().getType().getClassifier())
-			return null;
-		if(checkForRecursion(Internas_Group.class, eObjectConsumer)) return null;
-		return eObjectConsumer;
-	}
-	
-    @Override
-	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
-		switch(index) {
-			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
-		}	
-	}	
-}
-
 
 /************ end Rule Sentencias ****************/
 
@@ -804,11 +766,11 @@ protected class Sentencias_InternasParserRuleCall_9 extends RuleCallToken {
 /************ begin Rule Internas ****************
  *
  * Internas:
- * 	nombre=NombreInterna+ "(" (operador+=Operador ("," operador+=Operador)*)? ")";
+ * 	nombre=NombreInterna "(" operador=Operador ")";
  *
  **/
 
-// nombre=NombreInterna+ "(" (operador+=Operador ("," operador+=Operador)*)? ")"
+// nombre=NombreInterna "(" operador=Operador ")"
 protected class Internas_Group extends GroupToken {
 	
 	public Internas_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -837,7 +799,7 @@ protected class Internas_Group extends GroupToken {
 
 }
 
-// nombre=NombreInterna+
+// nombre=NombreInterna
 protected class Internas_NombreAssignment_0 extends AssignmentToken  {
 	
 	public Internas_NombreAssignment_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -852,8 +814,7 @@ protected class Internas_NombreAssignment_0 extends AssignmentToken  {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Internas_NombreAssignment_0(lastRuleCallOrigin, this, 0, inst);
-			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index - 1, inst);
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index, inst);
 		}	
 	}
 
@@ -893,39 +854,16 @@ protected class Internas_LeftParenthesisKeyword_1 extends KeywordToken  {
 
 }
 
-// (operador+=Operador ("," operador+=Operador)*)?
-protected class Internas_Group_2 extends GroupToken {
+// operador=Operador
+protected class Internas_OperadorAssignment_2 extends AssignmentToken  {
 	
-	public Internas_Group_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Group getGrammarElement() {
-		return grammarAccess.getInternasAccess().getGroup_2();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new Internas_Group_2_1(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new Internas_OperadorAssignment_2_0(lastRuleCallOrigin, this, 1, inst);
-			default: return null;
-		}	
-	}
-
-}
-
-// operador+=Operador
-protected class Internas_OperadorAssignment_2_0 extends AssignmentToken  {
-	
-	public Internas_OperadorAssignment_2_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Internas_OperadorAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getInternasAccess().getOperadorAssignment_2_0();
+		return grammarAccess.getInternasAccess().getOperadorAssignment_2();
 	}
 
     @Override
@@ -944,7 +882,7 @@ protected class Internas_OperadorAssignment_2_0 extends AssignmentToken  {
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getOperadorRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getInternasAccess().getOperadorOperadorParserRuleCall_2_0_0(); 
+				element = grammarAccess.getInternasAccess().getOperadorOperadorParserRuleCall_2_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -962,99 +900,6 @@ protected class Internas_OperadorAssignment_2_0 extends AssignmentToken  {
 	}	
 }
 
-// ("," operador+=Operador)*
-protected class Internas_Group_2_1 extends GroupToken {
-	
-	public Internas_Group_2_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Group getGrammarElement() {
-		return grammarAccess.getInternasAccess().getGroup_2_1();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new Internas_OperadorAssignment_2_1_1(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-}
-
-// ","
-protected class Internas_CommaKeyword_2_1_0 extends KeywordToken  {
-	
-	public Internas_CommaKeyword_2_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getInternasAccess().getCommaKeyword_2_1_0();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new Internas_Group_2_1(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new Internas_OperadorAssignment_2_0(lastRuleCallOrigin, this, 1, inst);
-			default: return null;
-		}	
-	}
-
-}
-
-// operador+=Operador
-protected class Internas_OperadorAssignment_2_1_1 extends AssignmentToken  {
-	
-	public Internas_OperadorAssignment_2_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Assignment getGrammarElement() {
-		return grammarAccess.getInternasAccess().getOperadorAssignment_2_1_1();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new Operador_Alternatives(this, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-    @Override	
-	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("operador",false)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("operador");
-		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
-			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getOperadorRule().getType().getClassifier())) {
-				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getInternasAccess().getOperadorOperadorParserRuleCall_2_1_1_0(); 
-				consumed = obj;
-				return param;
-			}
-		}
-		return null;
-	}
-
-    @Override
-	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
-		if(value == inst.getEObject() && !inst.isConsumed()) return null;
-		switch(index) {
-			case 0: return new Internas_CommaKeyword_2_1_0(lastRuleCallOrigin, next, actIndex, consumed);
-			default: return null;
-		}	
-	}	
-}
-
-
-
 // ")"
 protected class Internas_RightParenthesisKeyword_3 extends KeywordToken  {
 	
@@ -1070,8 +915,7 @@ protected class Internas_RightParenthesisKeyword_3 extends KeywordToken  {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Internas_Group_2(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new Internas_LeftParenthesisKeyword_1(lastRuleCallOrigin, this, 1, inst);
+			case 0: return new Internas_OperadorAssignment_2(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -1397,11 +1241,13 @@ protected class Caracter_ContenidoAssignment extends AssignmentToken  {
 /************ begin Rule valor ****************
  *
  * valor:
- * 	LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter;
+ * 	LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter |
+ * 	Internas;
  *
  **/
 
-// LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter
+// LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter |
+// Internas
 protected class Valor_Alternatives extends AlternativesToken {
 
 	public Valor_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1424,6 +1270,7 @@ protected class Valor_Alternatives extends AlternativesToken {
 			case 5: return new Valor_OperacionParserRuleCall_5(lastRuleCallOrigin, this, 5, inst);
 			case 6: return new Valor_ValorBooleanoParserRuleCall_6(lastRuleCallOrigin, this, 6, inst);
 			case 7: return new Valor_CaracterParserRuleCall_7(lastRuleCallOrigin, this, 7, inst);
+			case 8: return new Valor_InternasParserRuleCall_8(lastRuleCallOrigin, this, 8, inst);
 			default: return null;
 		}	
 	}
@@ -1432,6 +1279,7 @@ protected class Valor_Alternatives extends AlternativesToken {
 	public IEObjectConsumer tryConsume() {
 		if(getEObject().eClass() != grammarAccess.getCaracterRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getConstCadenaRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getInternasRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getLlamadaFuncionRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNumeroDecimalRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getNumeroEnteroRule().getType().getClassifier() && 
@@ -1721,6 +1569,42 @@ protected class Valor_CaracterParserRuleCall_7 extends RuleCallToken {
 		if(getEObject().eClass() != grammarAccess.getCaracterRule().getType().getClassifier())
 			return null;
 		if(checkForRecursion(Caracter_ContenidoAssignment.class, eObjectConsumer)) return null;
+		return eObjectConsumer;
+	}
+	
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+// Internas
+protected class Valor_InternasParserRuleCall_8 extends RuleCallToken {
+	
+	public Valor_InternasParserRuleCall_8(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getValorAccess().getInternasParserRuleCall_8();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Internas_Group(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getInternasRule().getType().getClassifier())
+			return null;
+		if(checkForRecursion(Internas_Group.class, eObjectConsumer)) return null;
 		return eObjectConsumer;
 	}
 	

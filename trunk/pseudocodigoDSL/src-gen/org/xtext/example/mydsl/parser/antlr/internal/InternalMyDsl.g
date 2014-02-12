@@ -281,16 +281,6 @@ ruleSentencias returns [EObject current=null]
         $current = $this_incremento_8.current; 
         afterParserOrEnumRuleCall();
     }
-
-    |
-    { 
-        newCompositeNode(grammarAccess.getSentenciasAccess().getInternasParserRuleCall_9()); 
-    }
-    this_Internas_9=ruleInternas
-    { 
-        $current = $this_Internas_9.current; 
-        afterParserOrEnumRuleCall();
-    }
 )
 ;
 
@@ -330,20 +320,20 @@ ruleInternas returns [EObject current=null]
 	    }
 
 )
-)+	otherlv_1='(' 
+)	otherlv_1='(' 
     {
     	newLeafNode(otherlv_1, grammarAccess.getInternasAccess().getLeftParenthesisKeyword_1());
     }
-((
+(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getInternasAccess().getOperadorOperadorParserRuleCall_2_0_0()); 
+	        newCompositeNode(grammarAccess.getInternasAccess().getOperadorOperadorParserRuleCall_2_0()); 
 	    }
 		lv_operador_2_0=ruleOperador		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getInternasRule());
 	        }
-       		add(
+       		set(
        			$current, 
        			"operador",
         		lv_operador_2_0, 
@@ -352,31 +342,9 @@ ruleInternas returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_3=',' 
+)	otherlv_3=')' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getInternasAccess().getCommaKeyword_2_1_0());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getInternasAccess().getOperadorOperadorParserRuleCall_2_1_1_0()); 
-	    }
-		lv_operador_4_0=ruleOperador		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getInternasRule());
-	        }
-       		add(
-       			$current, 
-       			"operador",
-        		lv_operador_4_0, 
-        		"Operador");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))*)?	otherlv_5=')' 
-    {
-    	newLeafNode(otherlv_5, grammarAccess.getInternasAccess().getRightParenthesisKeyword_3());
+    	newLeafNode(otherlv_3, grammarAccess.getInternasAccess().getRightParenthesisKeyword_3());
     }
 )
 ;
@@ -664,6 +632,16 @@ rulevalor returns [EObject current=null]
     this_Caracter_7=ruleCaracter
     { 
         $current = $this_Caracter_7.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getValorAccess().getInternasParserRuleCall_8()); 
+    }
+    this_Internas_8=ruleInternas
+    { 
+        $current = $this_Internas_8.current; 
         afterParserOrEnumRuleCall();
     }
 )

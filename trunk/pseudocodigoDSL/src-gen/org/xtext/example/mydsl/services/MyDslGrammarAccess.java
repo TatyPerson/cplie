@@ -90,13 +90,12 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRepetirParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		private final RuleCall cDesdeParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		private final RuleCall cIncrementoParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
-		private final RuleCall cInternasParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
 		
 		//Sentencias:
-		//	LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento | Internas;
+		//	LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento;
 		public ParserRule getRule() { return rule; }
 
-		//LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento | Internas
+		//LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//LlamadaFuncion
@@ -125,9 +124,6 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//incremento
 		public RuleCall getIncrementoParserRuleCall_8() { return cIncrementoParserRuleCall_8; }
-
-		//Internas
-		public RuleCall getInternasParserRuleCall_9() { return cInternasParserRuleCall_9; }
 	}
 
 	public class InternasElements extends AbstractParserRuleElementFinder {
@@ -136,23 +132,18 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNombreAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNombreNombreInternaParserRuleCall_0_0 = (RuleCall)cNombreAssignment_0.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Assignment cOperadorAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
-		private final RuleCall cOperadorOperadorParserRuleCall_2_0_0 = (RuleCall)cOperadorAssignment_2_0.eContents().get(0);
-		private final Group cGroup_2_1 = (Group)cGroup_2.eContents().get(1);
-		private final Keyword cCommaKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
-		private final Assignment cOperadorAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
-		private final RuleCall cOperadorOperadorParserRuleCall_2_1_1_0 = (RuleCall)cOperadorAssignment_2_1_1.eContents().get(0);
+		private final Assignment cOperadorAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOperadorOperadorParserRuleCall_2_0 = (RuleCall)cOperadorAssignment_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//Internas:
-		//	nombre=NombreInterna+ "(" (operador+=Operador ("," operador+=Operador)*)? ")";
+		//	nombre=NombreInterna "(" operador=Operador ")";
 		public ParserRule getRule() { return rule; }
 
-		//nombre=NombreInterna+ "(" (operador+=Operador ("," operador+=Operador)*)? ")"
+		//nombre=NombreInterna "(" operador=Operador ")"
 		public Group getGroup() { return cGroup; }
 
-		//nombre=NombreInterna+
+		//nombre=NombreInterna
 		public Assignment getNombreAssignment_0() { return cNombreAssignment_0; }
 
 		//NombreInterna
@@ -161,26 +152,11 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"("
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 
-		//(operador+=Operador ("," operador+=Operador)*)?
-		public Group getGroup_2() { return cGroup_2; }
-
-		//operador+=Operador
-		public Assignment getOperadorAssignment_2_0() { return cOperadorAssignment_2_0; }
+		//operador=Operador
+		public Assignment getOperadorAssignment_2() { return cOperadorAssignment_2; }
 
 		//Operador
-		public RuleCall getOperadorOperadorParserRuleCall_2_0_0() { return cOperadorOperadorParserRuleCall_2_0_0; }
-
-		//("," operador+=Operador)*
-		public Group getGroup_2_1() { return cGroup_2_1; }
-
-		//","
-		public Keyword getCommaKeyword_2_1_0() { return cCommaKeyword_2_1_0; }
-
-		//operador+=Operador
-		public Assignment getOperadorAssignment_2_1_1() { return cOperadorAssignment_2_1_1; }
-
-		//Operador
-		public RuleCall getOperadorOperadorParserRuleCall_2_1_1_0() { return cOperadorOperadorParserRuleCall_2_1_1_0; }
+		public RuleCall getOperadorOperadorParserRuleCall_2_0() { return cOperadorOperadorParserRuleCall_2_0; }
 
 		//")"
 		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
@@ -289,12 +265,15 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOperacionParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		private final RuleCall cValorBooleanoParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		private final RuleCall cCaracterParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		private final RuleCall cInternasParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
 		
 		//valor:
-		//	LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter;
+		//	LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter |
+		//	Internas;
 		public ParserRule getRule() { return rule; }
 
-		//LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter
+		//LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter |
+		//Internas
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//LlamadaFuncion
@@ -320,6 +299,9 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Caracter
 		public RuleCall getCaracterParserRuleCall_7() { return cCaracterParserRuleCall_7; }
+
+		//Internas
+		public RuleCall getInternasParserRuleCall_8() { return cInternasParserRuleCall_8; }
 	}
 
 	public class InicioElements extends AbstractParserRuleElementFinder {
@@ -1773,7 +1755,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//Sentencias:
-	//	LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento | Internas;
+	//	LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento;
 	public SentenciasElements getSentenciasAccess() {
 		return (pSentencias != null) ? pSentencias : (pSentencias = new SentenciasElements());
 	}
@@ -1783,7 +1765,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Internas:
-	//	nombre=NombreInterna+ "(" (operador+=Operador ("," operador+=Operador)*)? ")";
+	//	nombre=NombreInterna "(" operador=Operador ")";
 	public InternasElements getInternasAccess() {
 		return (pInternas != null) ? pInternas : (pInternas = new InternasElements());
 	}
@@ -1823,7 +1805,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//valor:
-	//	LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter;
+	//	LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter |
+	//	Internas;
 	public ValorElements getValorAccess() {
 		return (pValor != null) ? pValor : (pValor = new ValorElements());
 	}
