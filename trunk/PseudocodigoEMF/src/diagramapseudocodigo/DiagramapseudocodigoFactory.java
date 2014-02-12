@@ -265,6 +265,15 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	Caracter createCaracter();
 
 	/**
+	 * Returns a new object of class '<em>Internas</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Internas</em>'.
+	 * @generated
+	 */
+	Internas createInternas();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

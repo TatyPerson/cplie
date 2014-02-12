@@ -40,6 +40,15 @@
       <genEnumLiterals ecoreEnumLiteral="diagramaPseudocodigo.ecore#//TipoPaso/EntradaSalida"/>
       <genEnumLiterals ecoreEnumLiteral="diagramaPseudocodigo.ecore#//TipoPaso/Salida"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="diagramaPseudocodigo.ecore#//NombreInterna">
+      <genEnumLiterals ecoreEnumLiteral="diagramaPseudocodigo.ecore#//NombreInterna/cos"/>
+      <genEnumLiterals ecoreEnumLiteral="diagramaPseudocodigo.ecore#//NombreInterna/cuadrado"/>
+      <genEnumLiterals ecoreEnumLiteral="diagramaPseudocodigo.ecore#//NombreInterna/exp"/>
+      <genEnumLiterals ecoreEnumLiteral="diagramaPseudocodigo.ecore#//NombreInterna/ln"/>
+      <genEnumLiterals ecoreEnumLiteral="diagramaPseudocodigo.ecore#//NombreInterna/log"/>
+      <genEnumLiterals ecoreEnumLiteral="diagramaPseudocodigo.ecore#//NombreInterna/sen"/>
+      <genEnumLiterals ecoreEnumLiteral="diagramaPseudocodigo.ecore#//NombreInterna/sqrt"/>
+    </genEnums>
     <genClasses ecoreClass="diagramaPseudocodigo.ecore#//Codigo">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Codigo/tiene"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Codigo/funcion"/>
@@ -140,6 +149,10 @@
     <genClasses ecoreClass="diagramaPseudocodigo.ecore#//Procedimiento"/>
     <genClasses ecoreClass="diagramaPseudocodigo.ecore#//Caracter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//Caracter/contenido"/>
+    </genClasses>
+    <genClasses ecoreClass="diagramaPseudocodigo.ecore#//Internas">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//Internas/nombre"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Internas/operador"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

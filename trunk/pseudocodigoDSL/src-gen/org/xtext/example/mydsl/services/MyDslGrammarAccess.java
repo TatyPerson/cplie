@@ -90,12 +90,13 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRepetirParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		private final RuleCall cDesdeParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		private final RuleCall cIncrementoParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
+		private final RuleCall cInternasParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
 		
 		//Sentencias:
-		//	LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento;
+		//	LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento | Internas;
 		public ParserRule getRule() { return rule; }
 
-		//LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento
+		//LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento | Internas
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//LlamadaFuncion
@@ -124,6 +125,105 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//incremento
 		public RuleCall getIncrementoParserRuleCall_8() { return cIncrementoParserRuleCall_8; }
+
+		//Internas
+		public RuleCall getInternasParserRuleCall_9() { return cInternasParserRuleCall_9; }
+	}
+
+	public class InternasElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Internas");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNombreAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNombreNombreInternaParserRuleCall_0_0 = (RuleCall)cNombreAssignment_0.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Assignment cOperadorAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final RuleCall cOperadorOperadorParserRuleCall_2_0_0 = (RuleCall)cOperadorAssignment_2_0.eContents().get(0);
+		private final Group cGroup_2_1 = (Group)cGroup_2.eContents().get(1);
+		private final Keyword cCommaKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
+		private final Assignment cOperadorAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
+		private final RuleCall cOperadorOperadorParserRuleCall_2_1_1_0 = (RuleCall)cOperadorAssignment_2_1_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//Internas:
+		//	nombre=NombreInterna+ "(" (operador+=Operador ("," operador+=Operador)*)? ")";
+		public ParserRule getRule() { return rule; }
+
+		//nombre=NombreInterna+ "(" (operador+=Operador ("," operador+=Operador)*)? ")"
+		public Group getGroup() { return cGroup; }
+
+		//nombre=NombreInterna+
+		public Assignment getNombreAssignment_0() { return cNombreAssignment_0; }
+
+		//NombreInterna
+		public RuleCall getNombreNombreInternaParserRuleCall_0_0() { return cNombreNombreInternaParserRuleCall_0_0; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
+
+		//(operador+=Operador ("," operador+=Operador)*)?
+		public Group getGroup_2() { return cGroup_2; }
+
+		//operador+=Operador
+		public Assignment getOperadorAssignment_2_0() { return cOperadorAssignment_2_0; }
+
+		//Operador
+		public RuleCall getOperadorOperadorParserRuleCall_2_0_0() { return cOperadorOperadorParserRuleCall_2_0_0; }
+
+		//("," operador+=Operador)*
+		public Group getGroup_2_1() { return cGroup_2_1; }
+
+		//","
+		public Keyword getCommaKeyword_2_1_0() { return cCommaKeyword_2_1_0; }
+
+		//operador+=Operador
+		public Assignment getOperadorAssignment_2_1_1() { return cOperadorAssignment_2_1_1; }
+
+		//Operador
+		public RuleCall getOperadorOperadorParserRuleCall_2_1_1_0() { return cOperadorOperadorParserRuleCall_2_1_1_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
+	}
+
+	public class NombreInternaElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NombreInterna");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cCosKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cCuadradoKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cExpKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		private final Keyword cLnKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
+		private final Keyword cLogKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
+		private final Keyword cSenKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
+		private final Keyword cSqrtKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
+		
+		//NombreInterna:
+		//	"cos" | "cuadrado" | "exp" | "ln" | "log" | "sen" | "sqrt";
+		public ParserRule getRule() { return rule; }
+
+		//"cos" | "cuadrado" | "exp" | "ln" | "log" | "sen" | "sqrt"
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//"cos"
+		public Keyword getCosKeyword_0() { return cCosKeyword_0; }
+
+		//"cuadrado"
+		public Keyword getCuadradoKeyword_1() { return cCuadradoKeyword_1; }
+
+		//"exp"
+		public Keyword getExpKeyword_2() { return cExpKeyword_2; }
+
+		//"ln"
+		public Keyword getLnKeyword_3() { return cLnKeyword_3; }
+
+		//"log"
+		public Keyword getLogKeyword_4() { return cLogKeyword_4; }
+
+		//"sen"
+		public Keyword getSenKeyword_5() { return cSenKeyword_5; }
+
+		//"sqrt"
+		public Keyword getSqrtKeyword_6() { return cSqrtKeyword_6; }
 	}
 
 	public class OperadorElements extends AbstractParserRuleElementFinder {
@@ -1561,6 +1661,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private TerminalRule tML_COMMENT;
 	private TerminalRule tSL_COMMENT;
 	private SentenciasElements pSentencias;
+	private InternasElements pInternas;
+	private NombreInternaElements pNombreInterna;
 	private OperadorElements pOperador;
 	private CaracterElements pCaracter;
 	private ValorElements pValor;
@@ -1671,13 +1773,33 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//Sentencias:
-	//	LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento;
+	//	LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento | Internas;
 	public SentenciasElements getSentenciasAccess() {
 		return (pSentencias != null) ? pSentencias : (pSentencias = new SentenciasElements());
 	}
 	
 	public ParserRule getSentenciasRule() {
 		return getSentenciasAccess().getRule();
+	}
+
+	//Internas:
+	//	nombre=NombreInterna+ "(" (operador+=Operador ("," operador+=Operador)*)? ")";
+	public InternasElements getInternasAccess() {
+		return (pInternas != null) ? pInternas : (pInternas = new InternasElements());
+	}
+	
+	public ParserRule getInternasRule() {
+		return getInternasAccess().getRule();
+	}
+
+	//NombreInterna:
+	//	"cos" | "cuadrado" | "exp" | "ln" | "log" | "sen" | "sqrt";
+	public NombreInternaElements getNombreInternaAccess() {
+		return (pNombreInterna != null) ? pNombreInterna : (pNombreInterna = new NombreInternaElements());
+	}
+	
+	public ParserRule getNombreInternaRule() {
+		return getNombreInternaAccess().getRule();
 	}
 
 	//Operador:

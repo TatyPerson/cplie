@@ -84,6 +84,7 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 			case DiagramapseudocodigoPackage.INCREMENTO: return createincremento();
 			case DiagramapseudocodigoPackage.PROCEDIMIENTO: return createProcedimiento();
 			case DiagramapseudocodigoPackage.CARACTER: return createCaracter();
+			case DiagramapseudocodigoPackage.INTERNAS: return createInternas();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -107,6 +108,8 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 				return createincFromString(eDataType, initialValue);
 			case DiagramapseudocodigoPackage.TIPO_PASO:
 				return createTipoPasoFromString(eDataType, initialValue);
+			case DiagramapseudocodigoPackage.NOMBRE_INTERNA:
+				return createNombreInternaFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -130,6 +133,8 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 				return convertincToString(eDataType, instanceValue);
 			case DiagramapseudocodigoPackage.TIPO_PASO:
 				return convertTipoPasoToString(eDataType, instanceValue);
+			case DiagramapseudocodigoPackage.NOMBRE_INTERNA:
+				return convertNombreInternaToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -410,6 +415,16 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Internas createInternas() {
+		InternasImpl internas = new InternasImpl();
+		return internas;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public TipoVariable createTipoVariableFromString(EDataType eDataType, String initialValue) {
 		TipoVariable result = TipoVariable.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -502,6 +517,26 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	 * @generated
 	 */
 	public String convertTipoPasoToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NombreInterna createNombreInternaFromString(EDataType eDataType, String initialValue) {
+		NombreInterna result = NombreInterna.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertNombreInternaToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

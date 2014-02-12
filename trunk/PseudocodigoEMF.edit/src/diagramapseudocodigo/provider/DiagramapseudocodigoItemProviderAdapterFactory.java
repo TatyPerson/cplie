@@ -693,6 +693,29 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.Internas} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected InternasItemProvider internasItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.Internas}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createInternasAdapter() {
+		if (internasItemProvider == null) {
+			internasItemProvider = new InternasItemProvider(this);
+		}
+
+		return internasItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -818,6 +841,7 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 		if (incrementoItemProvider != null) incrementoItemProvider.dispose();
 		if (procedimientoItemProvider != null) procedimientoItemProvider.dispose();
 		if (caracterItemProvider != null) caracterItemProvider.dispose();
+		if (internasItemProvider != null) internasItemProvider.dispose();
 	}
 
 }

@@ -196,6 +196,10 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 				return createCaracterAdapter();
 			}
 			@Override
+			public Adapter caseInternas(Internas object) {
+				return createInternasAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -660,6 +664,20 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCaracterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.Internas <em>Internas</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.Internas
+	 * @generated
+	 */
+	public Adapter createInternasAdapter() {
 		return null;
 	}
 

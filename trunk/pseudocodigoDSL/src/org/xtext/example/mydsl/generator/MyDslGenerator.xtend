@@ -26,6 +26,7 @@ class MyDslGenerator implements IGenerator {
 	def toC(Codigo myCodigo)'''
 	#include <iostream>
 	#include <string>
+	#include <cmath>
 	
 	using namespace std;
 
@@ -157,7 +158,13 @@ class MyDslGenerator implements IGenerator {
 			var Escribir prueba = new EscribirImpl
 			prueba = mySent as Escribir
 			prueba.toC
-		}		
+		}
+		
+		else if(mySent.eClass.name.equals("Internas")) {
+			var Internas prueba = new InternasImpl
+			prueba = mySent as Internas
+			prueba.toC(true)
+		}	
 	}
 	
 	def pintarVariables(EList<Variable> v, TipoVariable tipo)'''
@@ -212,6 +219,11 @@ class MyDslGenerator implements IGenerator {
 			prueba = myVal as operacion
 			prueba.toC
 		}
+		else if(myVal.eClass.name.equals("Internas")) {
+			var Internas prueba = new InternasImpl
+			prueba = myVal as Internas
+			prueba.toC(false)
+		}	
 	}
 	
 	def toC(NumeroEntero numero){
@@ -248,6 +260,30 @@ class MyDslGenerator implements IGenerator {
 	def toC(Leer l)'''
 		cin >> «l.variable.nombre»;
 	'''
+	
+	def toC(Internas i, boolean verificar) {
+		if(i.nombre == NombreInterna::COS) {
+			'''cos(«i.operador.generaParametros»)«IF verificar»;«ENDIF»'''
+		}
+		else if(i.nombre == NombreInterna::SEN) {
+			'''sin(«i.operador.generaParametros»)«IF verificar»;«ENDIF»'''
+		}
+		else if(i.nombre == NombreInterna::CUADRADO) {
+			'''pow(«i.operador.generaParametros»)«IF verificar»,«2.0»);«ENDIF»'''
+		}
+		else if(i.nombre == NombreInterna::EXP) {
+			'''exp2(«i.operador.generaParametros»)«IF verificar»;«ENDIF»'''
+		}
+		else if(i.nombre == NombreInterna::LN) {
+			'''log(«i.operador.generaParametros»)«IF verificar»;«ENDIF»'''
+		}
+		else if(i.nombre == NombreInterna::LOG) {
+			'''log10(«i.operador.generaParametros»)«IF verificar»;«ENDIF»'''
+		}
+		else if(i.nombre == NombreInterna::SQRT) {
+			'''sqrt(«i.operador.generaParametros»)«IF verificar»;«ENDIF»'''
+		}
+	}		
 	
 	def coutOperadores(EList<Operador> operadores){
 		var resultado = "";

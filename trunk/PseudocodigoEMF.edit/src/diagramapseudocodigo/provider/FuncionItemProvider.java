@@ -214,6 +214,11 @@ public class FuncionItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.FUNCION__DEVUELVE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createCaracter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.FUNCION__DEVUELVE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createInternas()));
 	}
 
 	/**
