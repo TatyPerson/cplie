@@ -1509,16 +1509,16 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTERNAS__NOMBRE = SENTENCIAS_FEATURE_COUNT + 0;
+	int INTERNAS__NOMBRE = VALOR_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Operador</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Operador</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERNAS__OPERADOR = SENTENCIAS_FEATURE_COUNT + 1;
+	int INTERNAS__OPERADOR = VALOR_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Internas</em>' class.
@@ -1527,7 +1527,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTERNAS_FEATURE_COUNT = SENTENCIAS_FEATURE_COUNT + 2;
+	int INTERNAS_FEATURE_COUNT = VALOR_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Internas</em>' class.
@@ -1536,7 +1536,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INTERNAS_OPERATION_COUNT = SENTENCIAS_OPERATION_COUNT + 0;
+	int INTERNAS_OPERATION_COUNT = VALOR_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoVariable <em>Tipo Variable</em>}' enum.
@@ -2426,10 +2426,10 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EAttribute getInternas_Nombre();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.Internas#getOperador <em>Operador</em>}'.
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Internas#getOperador <em>Operador</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Operador</em>'.
+	 * @return the meta object for the containment reference '<em>Operador</em>'.
 	 * @see diagramapseudocodigo.Internas#getOperador()
 	 * @see #getInternas()
 	 * @generated
@@ -3209,7 +3209,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EAttribute INTERNAS__NOMBRE = eINSTANCE.getInternas_Nombre();
 
 		/**
-		 * The meta object literal for the '<em><b>Operador</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Operador</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

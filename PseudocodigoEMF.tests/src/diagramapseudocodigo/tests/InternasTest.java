@@ -13,7 +13,7 @@ import junit.textui.TestRunner;
  * <!-- end-user-doc -->
  * @generated
  */
-public class InternasTest extends SentenciasTest {
+public class InternasTest extends valorTest {
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -159,12 +159,6 @@ class MyDslGenerator implements IGenerator {
 			prueba = mySent as Escribir
 			prueba.toC
 		}
-		
-		else if(mySent.eClass.name.equals("Internas")) {
-			var Internas prueba = new InternasImpl
-			prueba = mySent as Internas
-			prueba.toC(true)
-		}	
 	}
 	
 	def pintarVariables(EList<Variable> v, TipoVariable tipo)'''
@@ -222,7 +216,7 @@ class MyDslGenerator implements IGenerator {
 		else if(myVal.eClass.name.equals("Internas")) {
 			var Internas prueba = new InternasImpl
 			prueba = myVal as Internas
-			prueba.toC(false)
+			prueba.toC
 		}	
 	}
 	
@@ -261,27 +255,27 @@ class MyDslGenerator implements IGenerator {
 		cin >> «l.variable.nombre»;
 	'''
 	
-	def toC(Internas i, boolean verificar) {
+	def toC(Internas i) {
 		if(i.nombre == NombreInterna::COS) {
-			'''cos(«i.operador.generaParametros»)«IF verificar»;«ENDIF»'''
+			'''cos(«i.operador.toC»)'''
 		}
 		else if(i.nombre == NombreInterna::SEN) {
-			'''sin(«i.operador.generaParametros»)«IF verificar»;«ENDIF»'''
+			'''sin(«i.operador.toC»)'''
 		}
 		else if(i.nombre == NombreInterna::CUADRADO) {
-			'''pow(«i.operador.generaParametros»)«IF verificar»,«2.0»);«ENDIF»'''
+			'''pow(«i.operador.toC»,«2.0»)'''
 		}
 		else if(i.nombre == NombreInterna::EXP) {
-			'''exp2(«i.operador.generaParametros»)«IF verificar»;«ENDIF»'''
+			'''exp2(«i.operador.toC»)'''
 		}
 		else if(i.nombre == NombreInterna::LN) {
-			'''log(«i.operador.generaParametros»)«IF verificar»;«ENDIF»'''
+			'''log(«i.operador.toC»)'''
 		}
 		else if(i.nombre == NombreInterna::LOG) {
-			'''log10(«i.operador.generaParametros»)«IF verificar»;«ENDIF»'''
+			'''log10(«i.operador.toC»)'''
 		}
 		else if(i.nombre == NombreInterna::SQRT) {
-			'''sqrt(«i.operador.generaParametros»)«IF verificar»;«ENDIF»'''
+			'''sqrt(«i.operador.toC»)'''
 		}
 	}		
 	

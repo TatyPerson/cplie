@@ -33,7 +33,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class InternasItemProvider
-	extends SentenciasItemProvider
+	extends valorItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,

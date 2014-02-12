@@ -6,15 +6,11 @@ import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Internas;
 import diagramapseudocodigo.NombreInterna;
 import diagramapseudocodigo.Operador;
-import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +26,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class InternasImpl extends SentenciasImpl implements Internas {
+public class InternasImpl extends valorImpl implements Internas {
 	/**
 	 * The default value of the '{@link #getNombre() <em>Nombre</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -51,14 +47,14 @@ public class InternasImpl extends SentenciasImpl implements Internas {
 	protected NombreInterna nombre = NOMBRE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOperador() <em>Operador</em>}' containment reference list.
+	 * The cached value of the '{@link #getOperador() <em>Operador</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOperador()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Operador> operador;
+	protected Operador operador;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -105,11 +101,42 @@ public class InternasImpl extends SentenciasImpl implements Internas {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Operador> getOperador() {
-		if (operador == null) {
-			operador = new EObjectContainmentEList<Operador>(Operador.class, this, DiagramapseudocodigoPackage.INTERNAS__OPERADOR);
-		}
+	public Operador getOperador() {
 		return operador;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOperador(Operador newOperador, NotificationChain msgs) {
+		Operador oldOperador = operador;
+		operador = newOperador;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.INTERNAS__OPERADOR, oldOperador, newOperador);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOperador(Operador newOperador) {
+		if (newOperador != operador) {
+			NotificationChain msgs = null;
+			if (operador != null)
+				msgs = ((InternalEObject)operador).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DiagramapseudocodigoPackage.INTERNAS__OPERADOR, null, msgs);
+			if (newOperador != null)
+				msgs = ((InternalEObject)newOperador).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiagramapseudocodigoPackage.INTERNAS__OPERADOR, null, msgs);
+			msgs = basicSetOperador(newOperador, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.INTERNAS__OPERADOR, newOperador, newOperador));
 	}
 
 	/**
@@ -121,7 +148,7 @@ public class InternasImpl extends SentenciasImpl implements Internas {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.INTERNAS__OPERADOR:
-				return ((InternalEList<?>)getOperador()).basicRemove(otherEnd, msgs);
+				return basicSetOperador(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -155,8 +182,7 @@ public class InternasImpl extends SentenciasImpl implements Internas {
 				setNombre((NombreInterna)newValue);
 				return;
 			case DiagramapseudocodigoPackage.INTERNAS__OPERADOR:
-				getOperador().clear();
-				getOperador().addAll((Collection<? extends Operador>)newValue);
+				setOperador((Operador)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -174,7 +200,7 @@ public class InternasImpl extends SentenciasImpl implements Internas {
 				setNombre(NOMBRE_EDEFAULT);
 				return;
 			case DiagramapseudocodigoPackage.INTERNAS__OPERADOR:
-				getOperador().clear();
+				setOperador((Operador)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -191,7 +217,7 @@ public class InternasImpl extends SentenciasImpl implements Internas {
 			case DiagramapseudocodigoPackage.INTERNAS__NOMBRE:
 				return nombre != NOMBRE_EDEFAULT;
 			case DiagramapseudocodigoPackage.INTERNAS__OPERADOR:
-				return operador != null && !operador.isEmpty();
+				return operador != null;
 		}
 		return super.eIsSet(featureID);
 	}

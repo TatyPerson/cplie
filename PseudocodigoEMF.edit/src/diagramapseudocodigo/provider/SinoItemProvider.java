@@ -191,11 +191,6 @@ public class SinoItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.SINO__SENTENCIAS,
 				 DiagramapseudocodigoFactory.eINSTANCE.createincremento()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.SINO__SENTENCIAS,
-				 DiagramapseudocodigoFactory.eINSTANCE.createInternas()));
 	}
 
 	/**

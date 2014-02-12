@@ -292,7 +292,6 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 			case DiagramapseudocodigoPackage.INTERNAS: {
 				Internas internas = (Internas)theEObject;
 				T result = caseInternas(internas);
-				if (result == null) result = caseSentencias(internas);
 				if (result == null) result = casevalor(internas);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

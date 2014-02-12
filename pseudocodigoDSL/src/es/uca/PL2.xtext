@@ -17,12 +17,12 @@ terminal ML_COMMENT : '/*' (!'*') -> '*/' ;
 terminal SL_COMMENT : '//' !('\n'|'\r')* ('\r'? '\n')? ;
 
 Sentencias returns Sentencias:
-	LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento | Internas;
+	LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento;
 
 Internas returns Internas:
-	nombre=NombreInterna +
+	nombre=NombreInterna
 	'('
-		(operador+=Operador ( "," operador+=Operador)* )?
+		(operador=Operador)
 	')';
 
 NombreInterna returns NombreInterna:
@@ -38,7 +38,7 @@ Caracter returns Caracter:
 
 
 valor returns valor:
-	LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter;
+	LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter | Internas;
 
 Inicio returns Inicio:
 	{Inicio}
