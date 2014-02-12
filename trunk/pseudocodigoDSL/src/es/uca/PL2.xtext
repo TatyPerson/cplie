@@ -189,4 +189,4 @@ Procedimiento returns Procedimiento:
 	'fin_procedimiento';
 	
 TipoPaso returns TipoPaso:
-	'E' | 'E/S'/* TODO: implement this rule and an appropriate IValueConverter */;
+	'E' | 'E/S' | 'S'/* TODO: implement this rule and an appropriate IValueConverter */;

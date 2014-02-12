@@ -1520,12 +1520,13 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cEKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cESKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cSKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
 		
 		/// * TODO: implement this rule and an appropriate IValueConverter * / TipoPaso:
-		//	"E" | "E/S";
+		//	"E" | "E/S" | "S";
 		public ParserRule getRule() { return rule; }
 
-		//"E" | "E/S"
+		//"E" | "E/S" | "S"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"E"
@@ -1533,6 +1534,9 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"E/S"
 		public Keyword getESKeyword_1() { return cESKeyword_1; }
+
+		//"S"
+		public Keyword getSKeyword_2() { return cSKeyword_2; }
 	}
 	
 	
@@ -2026,7 +2030,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * TODO: implement this rule and an appropriate IValueConverter * / TipoPaso:
-	//	"E" | "E/S";
+	//	"E" | "E/S" | "S";
 	public TipoPasoElements getTipoPasoAccess() {
 		return (pTipoPaso != null) ? pTipoPaso : (pTipoPaso = new TipoPasoElements());
 	}

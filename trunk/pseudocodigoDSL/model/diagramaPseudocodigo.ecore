@@ -163,6 +163,7 @@
   <eClassifiers xsi:type="ecore:EEnum" name="TipoPaso">
     <eLiterals name="Entrada" literal="E"/>
     <eLiterals name="EntradaSalida" value="1" literal="E/S"/>
+    <eLiterals name="Salida" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Caracter" eSuperTypes="#//Operador">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="contenido" lowerBound="1"

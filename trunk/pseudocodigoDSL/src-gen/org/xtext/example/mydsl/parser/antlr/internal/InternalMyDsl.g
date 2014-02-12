@@ -2788,6 +2788,13 @@ ruleTipoPaso returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken(
         $current.merge(kw);
         newLeafNode(kw, grammarAccess.getTipoPasoAccess().getESKeyword_1()); 
     }
+
+    |
+	kw='S' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getTipoPasoAccess().getSKeyword_2()); 
+    }
 )
     ;
 

@@ -36,7 +36,15 @@ public enum TipoPaso implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ENTRADA_SALIDA(1, "EntradaSalida", "E/S");
+	ENTRADA_SALIDA(1, "EntradaSalida", "E/S"), /**
+	 * The '<em><b>Salida</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #SALIDA_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SALIDA(2, "Salida", "S");
 
 	/**
 	 * The '<em><b>Entrada</b></em>' literal value.
@@ -69,6 +77,21 @@ public enum TipoPaso implements Enumerator {
 	public static final int ENTRADA_SALIDA_VALUE = 1;
 
 	/**
+	 * The '<em><b>Salida</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Salida</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SALIDA
+	 * @model name="Salida"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SALIDA_VALUE = 2;
+
+	/**
 	 * An array of all the '<em><b>Tipo Paso</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,6 +101,7 @@ public enum TipoPaso implements Enumerator {
 		new TipoPaso[] {
 			ENTRADA,
 			ENTRADA_SALIDA,
+			SALIDA,
 		};
 
 	/**
@@ -130,6 +154,7 @@ public enum TipoPaso implements Enumerator {
 		switch (value) {
 			case ENTRADA_VALUE: return ENTRADA;
 			case ENTRADA_SALIDA_VALUE: return ENTRADA_SALIDA;
+			case SALIDA_VALUE: return SALIDA;
 		}
 		return null;
 	}

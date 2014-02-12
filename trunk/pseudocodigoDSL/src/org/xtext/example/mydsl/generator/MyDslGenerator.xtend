@@ -76,10 +76,13 @@ class MyDslGenerator implements IGenerator {
 			if(actual != 1)
 				total = total + ", "
 			if(p.paso == TipoPaso::ENTRADA){
-				total = total + p.tipo.tipoVariable + " " + p.variable.nombre;
+				total = total + "const " + p.tipo.tipoVariable + " " + p.variable.nombre;
 			}
-			else{
+			else if(p.paso == TipoPaso::ENTRADA_SALIDA){
 				total = total + p.tipo.tipoVariable + " & " + p.variable.nombre;
+			}
+			else {
+				total = total + p.tipo.tipoVariable + " " + p.variable.nombre;
 			}
 			actual = actual + 1;
 		}
