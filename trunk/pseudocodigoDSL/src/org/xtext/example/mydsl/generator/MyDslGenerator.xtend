@@ -129,7 +129,7 @@ class MyDslGenerator implements IGenerator {
 			prueba = mySent as Si
 			prueba.toC
 		}
-		else if(mySent.eClass.name.equals("Segun")){
+		else if(mySent.eClass.name.equals("segun")){
 			var segun prueba = new segunImpl
 			prueba = mySent as segun
 			prueba.toC
@@ -358,17 +358,16 @@ class MyDslGenerator implements IGenerator {
 	'''
 	
 	def toC(segun mySegun)'''
+	«var actual = -1»
 	switch(«mySegun.valor.toC»){
 		«FOR sent:mySegun.operador»
-				«sent.toC»:
-				«FOR sent2:mySegun.sentencias»
-				«sent2.toC»:
-				«ENDFOR»
+		case «sent.toC»:
+			«mySegun.sentencias.get(actual = actual + 1).toC»
+		break;
 		«ENDFOR»
 		default:
-			«FOR sent2:mySegun.sentencias»
-				«sent2.toC»:
-			«ENDFOR»
+			«mySegun.sentencias.get(actual = actual + 1).toC»
+		break;
 	}
 	'''
 	
