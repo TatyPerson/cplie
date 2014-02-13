@@ -129,6 +129,11 @@ class MyDslGenerator implements IGenerator {
 			prueba = mySent as Si
 			prueba.toC
 		}
+		else if(mySent.eClass.name.equals("Segun")){
+			var segun prueba = new segunImpl
+			prueba = mySent as segun
+			prueba.toC
+		}
 		else if(mySent.eClass.name.equals("mientras")){
 			var mientras prueba = new mientrasImpl
 			prueba = mySent as mientras
@@ -350,6 +355,21 @@ class MyDslGenerator implements IGenerator {
 		«IF mySi.sino != null» 
 		«mySi.sino.toC»
 		«ENDIF»
+	'''
+	
+	def toC(segun mySegun)'''
+	switch(«mySegun.valor.toC»){
+		«FOR sent:mySegun.operador»
+				«sent.toC»:
+				«FOR sent2:mySegun.sentencias»
+				«sent2.toC»:
+				«ENDFOR»
+		«ENDFOR»
+		default:
+			«FOR sent2:mySegun.sentencias»
+				«sent2.toC»:
+			«ENDFOR»
+	}
 	'''
 	
 	def toC(Sino mySino)'''

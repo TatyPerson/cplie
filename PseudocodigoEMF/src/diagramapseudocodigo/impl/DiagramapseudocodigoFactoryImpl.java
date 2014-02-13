@@ -85,6 +85,7 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 			case DiagramapseudocodigoPackage.PROCEDIMIENTO: return createProcedimiento();
 			case DiagramapseudocodigoPackage.CARACTER: return createCaracter();
 			case DiagramapseudocodigoPackage.INTERNAS: return createInternas();
+			case DiagramapseudocodigoPackage.SEGUN: return createsegun();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -418,6 +419,16 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	public Internas createInternas() {
 		InternasImpl internas = new InternasImpl();
 		return internas;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public segun createsegun() {
+		segunImpl segun = new segunImpl();
+		return segun;
 	}
 
 	/**

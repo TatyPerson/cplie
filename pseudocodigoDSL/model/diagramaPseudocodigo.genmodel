@@ -154,5 +154,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//Internas/nombre"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Internas/operador"/>
     </genClasses>
+    <genClasses ecoreClass="diagramaPseudocodigo.ecore#//segun">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//segun/operador"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

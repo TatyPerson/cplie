@@ -1539,6 +1539,61 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int INTERNAS_OPERATION_COUNT = VALOR_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.segunImpl <em>segun</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.segunImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getsegun()
+	 * @generated
+	 */
+	int SEGUN = 33;
+
+	/**
+	 * The feature id for the '<em><b>Valor</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEGUN__VALOR = BLOQUE__VALOR;
+
+	/**
+	 * The feature id for the '<em><b>Sentencias</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEGUN__SENTENCIAS = BLOQUE__SENTENCIAS;
+
+	/**
+	 * The feature id for the '<em><b>Operador</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEGUN__OPERADOR = BLOQUE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>segun</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEGUN_FEATURE_COUNT = BLOQUE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>segun</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEGUN_OPERATION_COUNT = BLOQUE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoVariable <em>Tipo Variable</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1546,7 +1601,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoVariable()
 	 * @generated
 	 */
-	int TIPO_VARIABLE = 33;
+	int TIPO_VARIABLE = 34;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.signo <em>signo</em>}' enum.
@@ -1556,7 +1611,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getsigno()
 	 * @generated
 	 */
-	int SIGNO = 34;
+	int SIGNO = 35;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.booleano <em>booleano</em>}' enum.
@@ -1566,7 +1621,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getbooleano()
 	 * @generated
 	 */
-	int BOOLEANO = 35;
+	int BOOLEANO = 36;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.inc <em>inc</em>}' enum.
@@ -1576,7 +1631,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getinc()
 	 * @generated
 	 */
-	int INC = 36;
+	int INC = 37;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoPaso <em>Tipo Paso</em>}' enum.
@@ -1586,7 +1641,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoPaso()
 	 * @generated
 	 */
-	int TIPO_PASO = 37;
+	int TIPO_PASO = 38;
 
 
 	/**
@@ -1597,7 +1652,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getNombreInterna()
 	 * @generated
 	 */
-	int NOMBRE_INTERNA = 38;
+	int NOMBRE_INTERNA = 39;
 
 
 	/**
@@ -2437,6 +2492,27 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EReference getInternas_Operador();
 
 	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.segun <em>segun</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>segun</em>'.
+	 * @see diagramapseudocodigo.segun
+	 * @generated
+	 */
+	EClass getsegun();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.segun#getOperador <em>Operador</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Operador</em>'.
+	 * @see diagramapseudocodigo.segun#getOperador()
+	 * @see #getsegun()
+	 * @generated
+	 */
+	EReference getsegun_Operador();
+
+	/**
 	 * Returns the meta object for enum '{@link diagramapseudocodigo.TipoVariable <em>Tipo Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3215,6 +3291,24 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EReference INTERNAS__OPERADOR = eINSTANCE.getInternas_Operador();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.segunImpl <em>segun</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.segunImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getsegun()
+		 * @generated
+		 */
+		EClass SEGUN = eINSTANCE.getsegun();
+
+		/**
+		 * The meta object literal for the '<em><b>Operador</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SEGUN__OPERADOR = eINSTANCE.getsegun_Operador();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.TipoVariable <em>Tipo Variable</em>}' enum.

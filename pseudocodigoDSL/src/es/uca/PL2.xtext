@@ -17,7 +17,7 @@ terminal ML_COMMENT : '/*' (!'*') -> '*/' ;
 terminal SL_COMMENT : '//' !('\n'|'\r')* ('\r'? '\n')? ;
 
 Sentencias returns Sentencias:
-	LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento;
+	LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento | segun;
 
 Internas returns Internas:
 	nombre=NombreInterna
@@ -100,6 +100,13 @@ desde returns desde:
 	'desde' asignacion=Asignacion 'hasta' valor=valor 'hacer'
 		(sentencias+=Sentencias ( sentencias+=Sentencias)* )?
 	'fin_desde';
+	
+segun returns segun:
+	'segun_sea''('valor=valor')''hacer'
+		(operador+=Operador ':' sentencias+=Sentencias ( operador+=Operador ':' sentencias+=Sentencias )* )? 
+		'en_otro_caso:'
+		(sentencias+=Sentencias ( sentencias+=Sentencias)* )?
+	'fin_segun';
 
 incremento returns incremento:
 	nombre=EString

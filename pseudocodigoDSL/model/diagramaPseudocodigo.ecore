@@ -183,4 +183,8 @@
     <eLiterals name="sen" value="5"/>
     <eLiterals name="sqrt" value="6"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="segun" eSuperTypes="#//Bloque">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operador" lowerBound="1"
+        upperBound="-1" eType="#//Operador" containment="true"/>
+  </eClassifiers>
 </ecore:EPackage>
