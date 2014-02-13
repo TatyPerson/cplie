@@ -716,6 +716,29 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.segun} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected segunItemProvider segunItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.segun}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createsegunAdapter() {
+		if (segunItemProvider == null) {
+			segunItemProvider = new segunItemProvider(this);
+		}
+
+		return segunItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -842,6 +865,7 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 		if (procedimientoItemProvider != null) procedimientoItemProvider.dispose();
 		if (caracterItemProvider != null) caracterItemProvider.dispose();
 		if (internasItemProvider != null) internasItemProvider.dispose();
+		if (segunItemProvider != null) segunItemProvider.dispose();
 	}
 
 }

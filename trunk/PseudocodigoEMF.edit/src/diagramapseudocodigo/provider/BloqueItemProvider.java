@@ -224,6 +224,11 @@ public class BloqueItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.BLOQUE__SENTENCIAS,
 				 DiagramapseudocodigoFactory.eINSTANCE.createincremento()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.BLOQUE__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createsegun()));
 	}
 
 	/**

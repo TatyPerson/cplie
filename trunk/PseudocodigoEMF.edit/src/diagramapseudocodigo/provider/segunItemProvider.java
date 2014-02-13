@@ -5,15 +5,13 @@ package diagramapseudocodigo.provider;
 
 import diagramapseudocodigo.DiagramapseudocodigoFactory;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
-import diagramapseudocodigo.Inicio;
+import diagramapseudocodigo.segun;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -23,17 +21,16 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link diagramapseudocodigo.Inicio} object.
+ * This is the item provider adapter for a {@link diagramapseudocodigo.segun} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class InicioItemProvider
-	extends ItemProviderAdapter
+public class segunItemProvider
+	extends BloqueItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -46,7 +43,7 @@ public class InicioItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InicioItemProvider(AdapterFactory adapterFactory) {
+	public segunItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -77,8 +74,7 @@ public class InicioItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.INICIO__TIENE);
-			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.INICIO__DECLARACIONVARIABLE);
+			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.SEGUN__OPERADOR);
 		}
 		return childrenFeatures;
 	}
@@ -97,14 +93,14 @@ public class InicioItemProvider
 	}
 
 	/**
-	 * This returns Inicio.gif.
+	 * This returns segun.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Inicio"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/segun"));
 	}
 
 	/**
@@ -115,7 +111,7 @@ public class InicioItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Inicio_type");
+		return getString("_UI_segun_type");
 	}
 
 	/**
@@ -129,9 +125,8 @@ public class InicioItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Inicio.class)) {
-			case DiagramapseudocodigoPackage.INICIO__TIENE:
-			case DiagramapseudocodigoPackage.INICIO__DECLARACIONVARIABLE:
+		switch (notification.getFeatureID(segun.class)) {
+			case DiagramapseudocodigoPackage.SEGUN__OPERADOR:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -151,69 +146,57 @@ public class InicioItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.INICIO__TIENE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createLlamadaFuncion()));
+				(DiagramapseudocodigoPackage.Literals.SEGUN__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createVariableID()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.INICIO__TIENE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createAsignacion()));
+				(DiagramapseudocodigoPackage.Literals.SEGUN__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createConstCadena()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.INICIO__TIENE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createEscribir()));
+				(DiagramapseudocodigoPackage.Literals.SEGUN__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNumeroEntero()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.INICIO__TIENE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createLeer()));
+				(DiagramapseudocodigoPackage.Literals.SEGUN__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNumeroDecimal()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.INICIO__TIENE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createSi()));
+				(DiagramapseudocodigoPackage.Literals.SEGUN__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorBooleano()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.INICIO__TIENE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createmientras()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.INICIO__TIENE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createrepetir()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.INICIO__TIENE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createdesde()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.INICIO__TIENE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createincremento()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.INICIO__TIENE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createsegun()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.INICIO__DECLARACIONVARIABLE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createDeclaracionVariable()));
+				(DiagramapseudocodigoPackage.Literals.SEGUN__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createCaracter()));
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public ResourceLocator getResourceLocator() {
-		return DiagramaPseudocodigoEditPlugin.INSTANCE;
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == DiagramapseudocodigoPackage.Literals.BLOQUE__VALOR ||
+			childFeature == DiagramapseudocodigoPackage.Literals.BLOQUE__SENTENCIAS ||
+			childFeature == DiagramapseudocodigoPackage.Literals.SEGUN__OPERADOR;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }
