@@ -1671,63 +1671,99 @@ rulesegun returns [EObject current=null]
 	    }
 
 )
-)((
+)?(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSegunAccess().getOperadorOperadorParserRuleCall_5_3_0_0()); 
+	        newCompositeNode(grammarAccess.getSegunAccess().getDevuelveDevolverParserRuleCall_5_3_0()); 
 	    }
-		lv_operador_8_0=ruleOperador		{
+		lv_devuelve_8_0=ruleDevolver		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getSegunRule());
+	        }
+       		add(
+       			$current, 
+       			"devuelve",
+        		lv_devuelve_8_0, 
+        		"Devolver");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)?((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getSegunAccess().getOperadorOperadorParserRuleCall_5_4_0_0()); 
+	    }
+		lv_operador_9_0=ruleOperador		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getSegunRule());
 	        }
        		add(
        			$current, 
        			"operador",
-        		lv_operador_8_0, 
+        		lv_operador_9_0, 
         		"Operador");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_9=':' 
+)	otherlv_10=':' 
     {
-    	newLeafNode(otherlv_9, grammarAccess.getSegunAccess().getColonKeyword_5_3_1());
+    	newLeafNode(otherlv_10, grammarAccess.getSegunAccess().getColonKeyword_5_4_1());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSegunAccess().getSentenciasSentenciasParserRuleCall_5_3_2_0()); 
+	        newCompositeNode(grammarAccess.getSegunAccess().getSentenciasSentenciasParserRuleCall_5_4_2_0()); 
 	    }
-		lv_sentencias_10_0=ruleSentencias		{
+		lv_sentencias_11_0=ruleSentencias		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getSegunRule());
 	        }
        		add(
        			$current, 
        			"sentencias",
-        		lv_sentencias_10_0, 
+        		lv_sentencias_11_0, 
         		"Sentencias");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))*)?	otherlv_11='en_otro_caso:' 
+)?(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getSegunAccess().getDevuelveDevolverParserRuleCall_5_4_3_0()); 
+	    }
+		lv_devuelve_12_0=ruleDevolver		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getSegunRule());
+	        }
+       		add(
+       			$current, 
+       			"devuelve",
+        		lv_devuelve_12_0, 
+        		"Devolver");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)?)*)?	otherlv_13='en_otro_caso:' 
     {
-    	newLeafNode(otherlv_11, grammarAccess.getSegunAccess().getEn_otro_casoKeyword_6());
+    	newLeafNode(otherlv_13, grammarAccess.getSegunAccess().getEn_otro_casoKeyword_6());
     }
 ((
 (
 		{ 
 	        newCompositeNode(grammarAccess.getSegunAccess().getSentenciasSentenciasParserRuleCall_7_0_0()); 
 	    }
-		lv_sentencias_12_0=ruleSentencias		{
+		lv_sentencias_14_0=ruleSentencias		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getSegunRule());
 	        }
        		add(
        			$current, 
        			"sentencias",
-        		lv_sentencias_12_0, 
+        		lv_sentencias_14_0, 
         		"Sentencias");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -1738,22 +1774,40 @@ rulesegun returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getSegunAccess().getSentenciasSentenciasParserRuleCall_7_1_0()); 
 	    }
-		lv_sentencias_13_0=ruleSentencias		{
+		lv_sentencias_15_0=ruleSentencias		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getSegunRule());
 	        }
        		add(
        			$current, 
        			"sentencias",
-        		lv_sentencias_13_0, 
+        		lv_sentencias_15_0, 
         		"Sentencias");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)*)?	otherlv_14='fin_segun' 
+)*)?(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getSegunAccess().getDevuelveDevolverParserRuleCall_8_0()); 
+	    }
+		lv_devuelve_16_0=ruleDevolver		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getSegunRule());
+	        }
+       		add(
+       			$current, 
+       			"devuelve",
+        		lv_devuelve_16_0, 
+        		"Devolver");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)?	otherlv_17='fin_segun' 
     {
-    	newLeafNode(otherlv_14, grammarAccess.getSegunAccess().getFin_segunKeyword_8());
+    	newLeafNode(otherlv_17, grammarAccess.getSegunAccess().getFin_segunKeyword_9());
     }
 )
 ;

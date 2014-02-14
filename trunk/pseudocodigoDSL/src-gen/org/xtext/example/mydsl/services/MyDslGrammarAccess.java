@@ -870,27 +870,35 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColonKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
 		private final Assignment cSentenciasAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
 		private final RuleCall cSentenciasSentenciasParserRuleCall_5_2_0 = (RuleCall)cSentenciasAssignment_5_2.eContents().get(0);
-		private final Group cGroup_5_3 = (Group)cGroup_5.eContents().get(3);
-		private final Assignment cOperadorAssignment_5_3_0 = (Assignment)cGroup_5_3.eContents().get(0);
-		private final RuleCall cOperadorOperadorParserRuleCall_5_3_0_0 = (RuleCall)cOperadorAssignment_5_3_0.eContents().get(0);
-		private final Keyword cColonKeyword_5_3_1 = (Keyword)cGroup_5_3.eContents().get(1);
-		private final Assignment cSentenciasAssignment_5_3_2 = (Assignment)cGroup_5_3.eContents().get(2);
-		private final RuleCall cSentenciasSentenciasParserRuleCall_5_3_2_0 = (RuleCall)cSentenciasAssignment_5_3_2.eContents().get(0);
+		private final Assignment cDevuelveAssignment_5_3 = (Assignment)cGroup_5.eContents().get(3);
+		private final RuleCall cDevuelveDevolverParserRuleCall_5_3_0 = (RuleCall)cDevuelveAssignment_5_3.eContents().get(0);
+		private final Group cGroup_5_4 = (Group)cGroup_5.eContents().get(4);
+		private final Assignment cOperadorAssignment_5_4_0 = (Assignment)cGroup_5_4.eContents().get(0);
+		private final RuleCall cOperadorOperadorParserRuleCall_5_4_0_0 = (RuleCall)cOperadorAssignment_5_4_0.eContents().get(0);
+		private final Keyword cColonKeyword_5_4_1 = (Keyword)cGroup_5_4.eContents().get(1);
+		private final Assignment cSentenciasAssignment_5_4_2 = (Assignment)cGroup_5_4.eContents().get(2);
+		private final RuleCall cSentenciasSentenciasParserRuleCall_5_4_2_0 = (RuleCall)cSentenciasAssignment_5_4_2.eContents().get(0);
+		private final Assignment cDevuelveAssignment_5_4_3 = (Assignment)cGroup_5_4.eContents().get(3);
+		private final RuleCall cDevuelveDevolverParserRuleCall_5_4_3_0 = (RuleCall)cDevuelveAssignment_5_4_3.eContents().get(0);
 		private final Keyword cEn_otro_casoKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
 		private final Assignment cSentenciasAssignment_7_0 = (Assignment)cGroup_7.eContents().get(0);
 		private final RuleCall cSentenciasSentenciasParserRuleCall_7_0_0 = (RuleCall)cSentenciasAssignment_7_0.eContents().get(0);
 		private final Assignment cSentenciasAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
 		private final RuleCall cSentenciasSentenciasParserRuleCall_7_1_0 = (RuleCall)cSentenciasAssignment_7_1.eContents().get(0);
-		private final Keyword cFin_segunKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Assignment cDevuelveAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cDevuelveDevolverParserRuleCall_8_0 = (RuleCall)cDevuelveAssignment_8.eContents().get(0);
+		private final Keyword cFin_segunKeyword_9 = (Keyword)cGroup.eContents().get(9);
 		
 		//segun:
-		//	"segun_sea" "(" valor=valor ")" "hacer" (operador+=Operador ":" sentencias+=Sentencias (operador+=Operador ":"
-		//	sentencias+=Sentencias)*)? "en_otro_caso:" (sentencias+=Sentencias sentencias+=Sentencias*)? "fin_segun";
+		//	"segun_sea" "(" valor=valor ")" "hacer" (operador+=Operador ":" sentencias+=Sentencias? devuelve+=Devolver?
+		//	(operador+=Operador ":" sentencias+=Sentencias? devuelve+=Devolver?)*)? "en_otro_caso:" (sentencias+=Sentencias
+		//	sentencias+=Sentencias*)? devuelve+=Devolver? "fin_segun";
 		public ParserRule getRule() { return rule; }
 
-		//"segun_sea" "(" valor=valor ")" "hacer" (operador+=Operador ":" sentencias+=Sentencias (operador+=Operador ":"
-		//sentencias+=Sentencias)*)? "en_otro_caso:" (sentencias+=Sentencias sentencias+=Sentencias*)? "fin_segun"
+		//"segun_sea" "(" valor=valor ")" "hacer" (operador+=Operador ":" sentencias+=Sentencias? devuelve+=Devolver?
+		//(operador+=Operador ":" sentencias+=Sentencias? devuelve+=Devolver?)*)? "en_otro_caso:" (sentencias+=Sentencias
+		//sentencias+=Sentencias*)? devuelve+=Devolver? "fin_segun"
 		public Group getGroup() { return cGroup; }
 
 		//"segun_sea"
@@ -911,7 +919,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"hacer"
 		public Keyword getHacerKeyword_4() { return cHacerKeyword_4; }
 
-		//(operador+=Operador ":" sentencias+=Sentencias (operador+=Operador ":" sentencias+=Sentencias)*)?
+		//(operador+=Operador ":" sentencias+=Sentencias? devuelve+=Devolver? (operador+=Operador ":" sentencias+=Sentencias?
+		//devuelve+=Devolver?)*)?
 		public Group getGroup_5() { return cGroup_5; }
 
 		//operador+=Operador
@@ -923,29 +932,41 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//":"
 		public Keyword getColonKeyword_5_1() { return cColonKeyword_5_1; }
 
-		//sentencias+=Sentencias
+		//sentencias+=Sentencias?
 		public Assignment getSentenciasAssignment_5_2() { return cSentenciasAssignment_5_2; }
 
 		//Sentencias
 		public RuleCall getSentenciasSentenciasParserRuleCall_5_2_0() { return cSentenciasSentenciasParserRuleCall_5_2_0; }
 
-		//(operador+=Operador ":" sentencias+=Sentencias)*
-		public Group getGroup_5_3() { return cGroup_5_3; }
+		//devuelve+=Devolver?
+		public Assignment getDevuelveAssignment_5_3() { return cDevuelveAssignment_5_3; }
+
+		//Devolver
+		public RuleCall getDevuelveDevolverParserRuleCall_5_3_0() { return cDevuelveDevolverParserRuleCall_5_3_0; }
+
+		//(operador+=Operador ":" sentencias+=Sentencias? devuelve+=Devolver?)*
+		public Group getGroup_5_4() { return cGroup_5_4; }
 
 		//operador+=Operador
-		public Assignment getOperadorAssignment_5_3_0() { return cOperadorAssignment_5_3_0; }
+		public Assignment getOperadorAssignment_5_4_0() { return cOperadorAssignment_5_4_0; }
 
 		//Operador
-		public RuleCall getOperadorOperadorParserRuleCall_5_3_0_0() { return cOperadorOperadorParserRuleCall_5_3_0_0; }
+		public RuleCall getOperadorOperadorParserRuleCall_5_4_0_0() { return cOperadorOperadorParserRuleCall_5_4_0_0; }
 
 		//":"
-		public Keyword getColonKeyword_5_3_1() { return cColonKeyword_5_3_1; }
+		public Keyword getColonKeyword_5_4_1() { return cColonKeyword_5_4_1; }
 
-		//sentencias+=Sentencias
-		public Assignment getSentenciasAssignment_5_3_2() { return cSentenciasAssignment_5_3_2; }
+		//sentencias+=Sentencias?
+		public Assignment getSentenciasAssignment_5_4_2() { return cSentenciasAssignment_5_4_2; }
 
 		//Sentencias
-		public RuleCall getSentenciasSentenciasParserRuleCall_5_3_2_0() { return cSentenciasSentenciasParserRuleCall_5_3_2_0; }
+		public RuleCall getSentenciasSentenciasParserRuleCall_5_4_2_0() { return cSentenciasSentenciasParserRuleCall_5_4_2_0; }
+
+		//devuelve+=Devolver?
+		public Assignment getDevuelveAssignment_5_4_3() { return cDevuelveAssignment_5_4_3; }
+
+		//Devolver
+		public RuleCall getDevuelveDevolverParserRuleCall_5_4_3_0() { return cDevuelveDevolverParserRuleCall_5_4_3_0; }
 
 		//"en_otro_caso:"
 		public Keyword getEn_otro_casoKeyword_6() { return cEn_otro_casoKeyword_6; }
@@ -965,8 +986,14 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//Sentencias
 		public RuleCall getSentenciasSentenciasParserRuleCall_7_1_0() { return cSentenciasSentenciasParserRuleCall_7_1_0; }
 
+		//devuelve+=Devolver?
+		public Assignment getDevuelveAssignment_8() { return cDevuelveAssignment_8; }
+
+		//Devolver
+		public RuleCall getDevuelveDevolverParserRuleCall_8_0() { return cDevuelveDevolverParserRuleCall_8_0; }
+
 		//"fin_segun"
-		public Keyword getFin_segunKeyword_8() { return cFin_segunKeyword_8; }
+		public Keyword getFin_segunKeyword_9() { return cFin_segunKeyword_9; }
 	}
 
 	public class IncrementoElements extends AbstractParserRuleElementFinder {
@@ -2088,8 +2115,9 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//segun:
-	//	"segun_sea" "(" valor=valor ")" "hacer" (operador+=Operador ":" sentencias+=Sentencias (operador+=Operador ":"
-	//	sentencias+=Sentencias)*)? "en_otro_caso:" (sentencias+=Sentencias sentencias+=Sentencias*)? "fin_segun";
+	//	"segun_sea" "(" valor=valor ")" "hacer" (operador+=Operador ":" sentencias+=Sentencias? devuelve+=Devolver?
+	//	(operador+=Operador ":" sentencias+=Sentencias? devuelve+=Devolver?)*)? "en_otro_caso:" (sentencias+=Sentencias
+	//	sentencias+=Sentencias*)? devuelve+=Devolver? "fin_segun";
 	public SegunElements getSegunAccess() {
 		return (pSegun != null) ? pSegun : (pSegun = new SegunElements());
 	}
