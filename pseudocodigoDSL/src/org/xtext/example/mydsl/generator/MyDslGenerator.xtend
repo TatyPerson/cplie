@@ -363,15 +363,26 @@ class MyDslGenerator implements IGenerator {
 	'''
 	
 	def toC(segun mySegun)'''
-	«var actual = -1»
+	«var actualSent = -1»
+	«var actualDev = -1»
 	switch(«mySegun.valor.toC»){
 		«FOR sent:mySegun.operador»
 		case «sent.toC»:
-			«mySegun.sentencias.get(actual = actual + 1).toC»
+			«IF mySegun.sentencias.size() != 0» 
+			«mySegun.sentencias.get(actualSent = actualSent + 1).toC»
+			«ENDIF»
+			«IF mySegun.devuelve.size() != 0» 
+			«mySegun.devuelve.get(actualDev = actualDev + 1).toC»
+			«ENDIF»
 		break;
 		«ENDFOR»
 		default:
-			«mySegun.sentencias.get(actual = actual + 1).toC»
+			«IF mySegun.sentencias.size() != 0» 
+			«mySegun.sentencias.get(actualSent = actualSent + 1).toC»
+			«ENDIF»
+			«IF mySegun.devuelve.size() != 0»
+			«mySegun.devuelve.get(actualDev = actualDev + 1).toC»
+			«ENDIF»
 		break;
 	}
 	'''

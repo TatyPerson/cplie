@@ -4341,13 +4341,15 @@ protected class Desde_Fin_desdeKeyword_6 extends KeywordToken  {
 /************ begin Rule segun ****************
  *
  * segun:
- * 	"segun_sea" "(" valor=valor ")" "hacer" (operador+=Operador ":" sentencias+=Sentencias (operador+=Operador ":"
- * 	sentencias+=Sentencias)*)? "en_otro_caso:" (sentencias+=Sentencias sentencias+=Sentencias*)? "fin_segun";
+ * 	"segun_sea" "(" valor=valor ")" "hacer" (operador+=Operador ":" sentencias+=Sentencias? devuelve+=Devolver?
+ * 	(operador+=Operador ":" sentencias+=Sentencias? devuelve+=Devolver?)*)? "en_otro_caso:" (sentencias+=Sentencias
+ * 	sentencias+=Sentencias*)? devuelve+=Devolver? "fin_segun";
  *
  **/
 
-// "segun_sea" "(" valor=valor ")" "hacer" (operador+=Operador ":" sentencias+=Sentencias (operador+=Operador ":"
-// sentencias+=Sentencias)*)? "en_otro_caso:" (sentencias+=Sentencias sentencias+=Sentencias*)? "fin_segun"
+// "segun_sea" "(" valor=valor ")" "hacer" (operador+=Operador ":" sentencias+=Sentencias? devuelve+=Devolver?
+// (operador+=Operador ":" sentencias+=Sentencias? devuelve+=Devolver?)*)? "en_otro_caso:" (sentencias+=Sentencias
+// sentencias+=Sentencias*)? devuelve+=Devolver? "fin_segun"
 protected class Segun_Group extends GroupToken {
 	
 	public Segun_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4362,7 +4364,7 @@ protected class Segun_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Segun_Fin_segunKeyword_8(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Segun_Fin_segunKeyword_9(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -4509,7 +4511,8 @@ protected class Segun_HacerKeyword_4 extends KeywordToken  {
 
 }
 
-// (operador+=Operador ":" sentencias+=Sentencias (operador+=Operador ":" sentencias+=Sentencias)*)?
+// (operador+=Operador ":" sentencias+=Sentencias? devuelve+=Devolver? (operador+=Operador ":" sentencias+=Sentencias?
+// devuelve+=Devolver?)*)?
 protected class Segun_Group_5 extends GroupToken {
 	
 	public Segun_Group_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4524,8 +4527,10 @@ protected class Segun_Group_5 extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Segun_Group_5_3(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new Segun_SentenciasAssignment_5_2(lastRuleCallOrigin, this, 1, inst);
+			case 0: return new Segun_Group_5_4(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new Segun_DevuelveAssignment_5_3(lastRuleCallOrigin, this, 1, inst);
+			case 2: return new Segun_SentenciasAssignment_5_2(lastRuleCallOrigin, this, 2, inst);
+			case 3: return new Segun_ColonKeyword_5_1(lastRuleCallOrigin, this, 3, inst);
 			default: return null;
 		}	
 	}
@@ -4600,7 +4605,7 @@ protected class Segun_ColonKeyword_5_1 extends KeywordToken  {
 
 }
 
-// sentencias+=Sentencias
+// sentencias+=Sentencias?
 protected class Segun_SentenciasAssignment_5_2 extends AssignmentToken  {
 	
 	public Segun_SentenciasAssignment_5_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4622,7 +4627,7 @@ protected class Segun_SentenciasAssignment_5_2 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("sentencias",true)) == null) return null;
+		if((value = eObjectConsumer.getConsumable("sentencias",false)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("sentencias");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
@@ -4646,22 +4651,71 @@ protected class Segun_SentenciasAssignment_5_2 extends AssignmentToken  {
 	}	
 }
 
-// (operador+=Operador ":" sentencias+=Sentencias)*
-protected class Segun_Group_5_3 extends GroupToken {
+// devuelve+=Devolver?
+protected class Segun_DevuelveAssignment_5_3 extends AssignmentToken  {
 	
-	public Segun_Group_5_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Segun_DevuelveAssignment_5_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
-	public Group getGrammarElement() {
-		return grammarAccess.getSegunAccess().getGroup_5_3();
+	public Assignment getGrammarElement() {
+		return grammarAccess.getSegunAccess().getDevuelveAssignment_5_3();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Segun_SentenciasAssignment_5_3_2(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Devolver_Group(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("devuelve",false)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("devuelve");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getDevolverRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getSegunAccess().getDevuelveDevolverParserRuleCall_5_3_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new Segun_SentenciasAssignment_5_2(lastRuleCallOrigin, next, actIndex, consumed);
+			case 1: return new Segun_ColonKeyword_5_1(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+// (operador+=Operador ":" sentencias+=Sentencias? devuelve+=Devolver?)*
+protected class Segun_Group_5_4 extends GroupToken {
+	
+	public Segun_Group_5_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getSegunAccess().getGroup_5_4();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Segun_DevuelveAssignment_5_4_3(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new Segun_SentenciasAssignment_5_4_2(lastRuleCallOrigin, this, 1, inst);
+			case 2: return new Segun_ColonKeyword_5_4_1(lastRuleCallOrigin, this, 2, inst);
 			default: return null;
 		}	
 	}
@@ -4669,15 +4723,15 @@ protected class Segun_Group_5_3 extends GroupToken {
 }
 
 // operador+=Operador
-protected class Segun_OperadorAssignment_5_3_0 extends AssignmentToken  {
+protected class Segun_OperadorAssignment_5_4_0 extends AssignmentToken  {
 	
-	public Segun_OperadorAssignment_5_3_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Segun_OperadorAssignment_5_4_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getSegunAccess().getOperadorAssignment_5_3_0();
+		return grammarAccess.getSegunAccess().getOperadorAssignment_5_4_0();
 	}
 
     @Override
@@ -4696,7 +4750,7 @@ protected class Segun_OperadorAssignment_5_3_0 extends AssignmentToken  {
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getOperadorRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getSegunAccess().getOperadorOperadorParserRuleCall_5_3_0_0(); 
+				element = grammarAccess.getSegunAccess().getOperadorOperadorParserRuleCall_5_4_0_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -4708,45 +4762,47 @@ protected class Segun_OperadorAssignment_5_3_0 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new Segun_Group_5_3(lastRuleCallOrigin, next, actIndex, consumed);
-			case 1: return new Segun_SentenciasAssignment_5_2(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new Segun_Group_5_4(lastRuleCallOrigin, next, actIndex, consumed);
+			case 1: return new Segun_DevuelveAssignment_5_3(lastRuleCallOrigin, next, actIndex, consumed);
+			case 2: return new Segun_SentenciasAssignment_5_2(lastRuleCallOrigin, next, actIndex, consumed);
+			case 3: return new Segun_ColonKeyword_5_1(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
 
 // ":"
-protected class Segun_ColonKeyword_5_3_1 extends KeywordToken  {
+protected class Segun_ColonKeyword_5_4_1 extends KeywordToken  {
 	
-	public Segun_ColonKeyword_5_3_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Segun_ColonKeyword_5_4_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getSegunAccess().getColonKeyword_5_3_1();
+		return grammarAccess.getSegunAccess().getColonKeyword_5_4_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Segun_OperadorAssignment_5_3_0(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Segun_OperadorAssignment_5_4_0(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
 
 }
 
-// sentencias+=Sentencias
-protected class Segun_SentenciasAssignment_5_3_2 extends AssignmentToken  {
+// sentencias+=Sentencias?
+protected class Segun_SentenciasAssignment_5_4_2 extends AssignmentToken  {
 	
-	public Segun_SentenciasAssignment_5_3_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Segun_SentenciasAssignment_5_4_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getSegunAccess().getSentenciasAssignment_5_3_2();
+		return grammarAccess.getSegunAccess().getSentenciasAssignment_5_4_2();
 	}
 
     @Override
@@ -4759,13 +4815,13 @@ protected class Segun_SentenciasAssignment_5_3_2 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("sentencias",true)) == null) return null;
+		if((value = eObjectConsumer.getConsumable("sentencias",false)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("sentencias");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getSentenciasRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getSegunAccess().getSentenciasSentenciasParserRuleCall_5_3_2_0(); 
+				element = grammarAccess.getSegunAccess().getSentenciasSentenciasParserRuleCall_5_4_2_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -4777,7 +4833,54 @@ protected class Segun_SentenciasAssignment_5_3_2 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new Segun_ColonKeyword_5_3_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new Segun_ColonKeyword_5_4_1(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+// devuelve+=Devolver?
+protected class Segun_DevuelveAssignment_5_4_3 extends AssignmentToken  {
+	
+	public Segun_DevuelveAssignment_5_4_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getSegunAccess().getDevuelveAssignment_5_4_3();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Devolver_Group(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("devuelve",false)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("devuelve");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getDevolverRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getSegunAccess().getDevuelveDevolverParserRuleCall_5_4_3_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new Segun_SentenciasAssignment_5_4_2(lastRuleCallOrigin, next, actIndex, consumed);
+			case 1: return new Segun_ColonKeyword_5_4_1(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
@@ -4925,23 +5028,71 @@ protected class Segun_SentenciasAssignment_7_1 extends AssignmentToken  {
 }
 
 
-// "fin_segun"
-protected class Segun_Fin_segunKeyword_8 extends KeywordToken  {
+// devuelve+=Devolver?
+protected class Segun_DevuelveAssignment_8 extends AssignmentToken  {
 	
-	public Segun_Fin_segunKeyword_8(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Segun_DevuelveAssignment_8(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getSegunAccess().getFin_segunKeyword_8();
+	public Assignment getGrammarElement() {
+		return grammarAccess.getSegunAccess().getDevuelveAssignment_8();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Segun_Group_7(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new Segun_En_otro_casoKeyword_6(lastRuleCallOrigin, this, 1, inst);
+			case 0: return new Devolver_Group(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("devuelve",false)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("devuelve");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getDevolverRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getSegunAccess().getDevuelveDevolverParserRuleCall_8_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new Segun_Group_7(lastRuleCallOrigin, next, actIndex, consumed);
+			case 1: return new Segun_En_otro_casoKeyword_6(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+// "fin_segun"
+protected class Segun_Fin_segunKeyword_9 extends KeywordToken  {
+	
+	public Segun_Fin_segunKeyword_9(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getSegunAccess().getFin_segunKeyword_9();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Segun_DevuelveAssignment_8(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new Segun_Group_7(lastRuleCallOrigin, this, 1, inst);
+			case 2: return new Segun_En_otro_casoKeyword_6(lastRuleCallOrigin, this, 2, inst);
 			default: return null;
 		}	
 	}
