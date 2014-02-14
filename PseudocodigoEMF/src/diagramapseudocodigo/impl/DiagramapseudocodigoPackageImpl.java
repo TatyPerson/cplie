@@ -8,6 +8,7 @@ import diagramapseudocodigo.Caracter;
 import diagramapseudocodigo.Codigo;
 import diagramapseudocodigo.ConstCadena;
 import diagramapseudocodigo.DeclaracionVariable;
+import diagramapseudocodigo.Devolver;
 import diagramapseudocodigo.DiagramapseudocodigoFactory;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Escribir;
@@ -297,6 +298,13 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * @generated
 	 */
 	private EClass segunEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass devolverEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -910,6 +918,15 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getSi_Devuelve() {
+		return (EReference)siEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSino() {
 		return sinoEClass;
 	}
@@ -921,6 +938,15 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 */
 	public EReference getSino_Sentencias() {
 		return (EReference)sinoEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSino_Devuelve() {
+		return (EReference)sinoEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1135,6 +1161,42 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getsegun_Devuelve() {
+		return (EReference)segunEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDevolver() {
+		return devolverEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDevolver_EReference0() {
+		return (EReference)devolverEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDevolver_Devuelve() {
+		return (EReference)devolverEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getTipoVariable() {
 		return tipoVariableEEnum;
 	}
@@ -1290,9 +1352,11 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 
 		siEClass = createEClass(SI);
 		createEReference(siEClass, SI__SINO);
+		createEReference(siEClass, SI__DEVUELVE);
 
 		sinoEClass = createEClass(SINO);
 		createEReference(sinoEClass, SINO__SENTENCIAS);
+		createEReference(sinoEClass, SINO__DEVUELVE);
 
 		bloqueEClass = createEClass(BLOQUE);
 		createEReference(bloqueEClass, BLOQUE__VALOR);
@@ -1326,6 +1390,11 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 
 		segunEClass = createEClass(SEGUN);
 		createEReference(segunEClass, SEGUN__OPERADOR);
+		createEReference(segunEClass, SEGUN__DEVUELVE);
+
+		devolverEClass = createEClass(DEVOLVER);
+		createEReference(devolverEClass, DEVOLVER__EREFERENCE0);
+		createEReference(devolverEClass, DEVOLVER__DEVUELVE);
 
 		// Create enums
 		tipoVariableEEnum = createEEnum(TIPO_VARIABLE);
@@ -1436,7 +1505,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 
 		initEClass(funcionEClass, Funcion.class, "Funcion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFuncion_Tipo(), this.getTipoVariable(), "tipo", null, 0, 1, Funcion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFuncion_Devuelve(), this.getvalor(), null, "devuelve", null, 1, 1, Funcion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFuncion_Devuelve(), this.getDevolver(), null, "devuelve", null, 0, 1, Funcion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(parametroFuncionEClass, ParametroFuncion.class, "ParametroFuncion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getParametroFuncion_Tipo(), this.getTipoVariable(), "tipo", null, 1, 1, ParametroFuncion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1467,9 +1536,11 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 
 		initEClass(siEClass, Si.class, "Si", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSi_Sino(), this.getSino(), null, "sino", null, 0, 1, Si.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSi_Devuelve(), this.getDevolver(), null, "devuelve", null, 0, 1, Si.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sinoEClass, Sino.class, "Sino", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSino_Sentencias(), this.getSentencias(), null, "sentencias", null, 0, -1, Sino.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSino_Devuelve(), this.getDevolver(), null, "devuelve", null, 0, 1, Sino.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bloqueEClass, Bloque.class, "Bloque", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBloque_Valor(), this.getvalor(), null, "valor", null, 1, 1, Bloque.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1503,6 +1574,11 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 
 		initEClass(segunEClass, segun.class, "segun", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getsegun_Operador(), this.getOperador(), null, "operador", null, 1, -1, segun.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getsegun_Devuelve(), this.getDevolver(), null, "devuelve", null, 0, -1, segun.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(devolverEClass, Devolver.class, "Devolver", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDevolver_EReference0(), this.getDevolver(), null, "EReference0", null, 0, 1, Devolver.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDevolver_Devuelve(), this.getvalor(), null, "devuelve", null, 1, 1, Devolver.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(tipoVariableEEnum, TipoVariable.class, "TipoVariable");

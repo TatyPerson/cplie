@@ -75,6 +75,7 @@ public class segunItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.SEGUN__OPERADOR);
+			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.SEGUN__DEVUELVE);
 		}
 		return childrenFeatures;
 	}
@@ -127,6 +128,7 @@ public class segunItemProvider
 
 		switch (notification.getFeatureID(segun.class)) {
 			case DiagramapseudocodigoPackage.SEGUN__OPERADOR:
+			case DiagramapseudocodigoPackage.SEGUN__DEVUELVE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -173,6 +175,11 @@ public class segunItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.SEGUN__OPERADOR,
 				 DiagramapseudocodigoFactory.eINSTANCE.createCaracter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.SEGUN__DEVUELVE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createDevolver()));
 	}
 
 	/**

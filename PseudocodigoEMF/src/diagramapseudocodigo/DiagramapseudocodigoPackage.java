@@ -1144,13 +1144,22 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int SI__SINO = BLOQUE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Devuelve</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SI__DEVUELVE = BLOQUE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Si</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SI_FEATURE_COUNT = BLOQUE_FEATURE_COUNT + 1;
+	int SI_FEATURE_COUNT = BLOQUE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Si</em>' class.
@@ -1181,13 +1190,22 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int SINO__SENTENCIAS = 0;
 
 	/**
+	 * The feature id for the '<em><b>Devuelve</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINO__DEVUELVE = 1;
+
+	/**
 	 * The number of structural features of the '<em>Sino</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SINO_FEATURE_COUNT = 1;
+	int SINO_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Sino</em>' class.
@@ -1576,13 +1594,22 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int SEGUN__OPERADOR = BLOQUE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Devuelve</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEGUN__DEVUELVE = BLOQUE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>segun</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEGUN_FEATURE_COUNT = BLOQUE_FEATURE_COUNT + 1;
+	int SEGUN_FEATURE_COUNT = BLOQUE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>segun</em>' class.
@@ -1594,6 +1621,52 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int SEGUN_OPERATION_COUNT = BLOQUE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.DevolverImpl <em>Devolver</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.DevolverImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getDevolver()
+	 * @generated
+	 */
+	int DEVOLVER = 34;
+
+	/**
+	 * The feature id for the '<em><b>EReference0</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEVOLVER__EREFERENCE0 = 0;
+
+	/**
+	 * The feature id for the '<em><b>Devuelve</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEVOLVER__DEVUELVE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Devolver</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEVOLVER_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Devolver</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEVOLVER_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoVariable <em>Tipo Variable</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1601,7 +1674,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoVariable()
 	 * @generated
 	 */
-	int TIPO_VARIABLE = 34;
+	int TIPO_VARIABLE = 35;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.signo <em>signo</em>}' enum.
@@ -1611,7 +1684,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getsigno()
 	 * @generated
 	 */
-	int SIGNO = 35;
+	int SIGNO = 36;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.booleano <em>booleano</em>}' enum.
@@ -1621,7 +1694,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getbooleano()
 	 * @generated
 	 */
-	int BOOLEANO = 36;
+	int BOOLEANO = 37;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.inc <em>inc</em>}' enum.
@@ -1631,7 +1704,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getinc()
 	 * @generated
 	 */
-	int INC = 37;
+	int INC = 38;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoPaso <em>Tipo Paso</em>}' enum.
@@ -1641,7 +1714,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoPaso()
 	 * @generated
 	 */
-	int TIPO_PASO = 38;
+	int TIPO_PASO = 39;
 
 
 	/**
@@ -1652,7 +1725,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getNombreInterna()
 	 * @generated
 	 */
-	int NOMBRE_INTERNA = 39;
+	int NOMBRE_INTERNA = 40;
 
 
 	/**
@@ -2249,6 +2322,17 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EReference getSi_Sino();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Si#getDevuelve <em>Devuelve</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Devuelve</em>'.
+	 * @see diagramapseudocodigo.Si#getDevuelve()
+	 * @see #getSi()
+	 * @generated
+	 */
+	EReference getSi_Devuelve();
+
+	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.Sino <em>Sino</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2268,6 +2352,17 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSino_Sentencias();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Sino#getDevuelve <em>Devuelve</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Devuelve</em>'.
+	 * @see diagramapseudocodigo.Sino#getDevuelve()
+	 * @see #getSino()
+	 * @generated
+	 */
+	EReference getSino_Devuelve();
 
 	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.Bloque <em>Bloque</em>}'.
@@ -2511,6 +2606,49 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getsegun_Operador();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.segun#getDevuelve <em>Devuelve</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Devuelve</em>'.
+	 * @see diagramapseudocodigo.segun#getDevuelve()
+	 * @see #getsegun()
+	 * @generated
+	 */
+	EReference getsegun_Devuelve();
+
+	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.Devolver <em>Devolver</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Devolver</em>'.
+	 * @see diagramapseudocodigo.Devolver
+	 * @generated
+	 */
+	EClass getDevolver();
+
+	/**
+	 * Returns the meta object for the reference '{@link diagramapseudocodigo.Devolver#getEReference0 <em>EReference0</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>EReference0</em>'.
+	 * @see diagramapseudocodigo.Devolver#getEReference0()
+	 * @see #getDevolver()
+	 * @generated
+	 */
+	EReference getDevolver_EReference0();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Devolver#getDevuelve <em>Devuelve</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Devuelve</em>'.
+	 * @see diagramapseudocodigo.Devolver#getDevuelve()
+	 * @see #getDevolver()
+	 * @generated
+	 */
+	EReference getDevolver_Devuelve();
 
 	/**
 	 * Returns the meta object for enum '{@link diagramapseudocodigo.TipoVariable <em>Tipo Variable</em>}'.
@@ -3089,6 +3227,14 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EReference SI__SINO = eINSTANCE.getSi_Sino();
 
 		/**
+		 * The meta object literal for the '<em><b>Devuelve</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SI__DEVUELVE = eINSTANCE.getSi_Devuelve();
+
+		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.SinoImpl <em>Sino</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3105,6 +3251,14 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SINO__SENTENCIAS = eINSTANCE.getSino_Sentencias();
+
+		/**
+		 * The meta object literal for the '<em><b>Devuelve</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SINO__DEVUELVE = eINSTANCE.getSino_Devuelve();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.BloqueImpl <em>Bloque</em>}' class.
@@ -3309,6 +3463,40 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SEGUN__OPERADOR = eINSTANCE.getsegun_Operador();
+
+		/**
+		 * The meta object literal for the '<em><b>Devuelve</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SEGUN__DEVUELVE = eINSTANCE.getsegun_Devuelve();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.DevolverImpl <em>Devolver</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.DevolverImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getDevolver()
+		 * @generated
+		 */
+		EClass DEVOLVER = eINSTANCE.getDevolver();
+
+		/**
+		 * The meta object literal for the '<em><b>EReference0</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEVOLVER__EREFERENCE0 = eINSTANCE.getDevolver_EReference0();
+
+		/**
+		 * The meta object literal for the '<em><b>Devuelve</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEVOLVER__DEVUELVE = eINSTANCE.getDevolver_Devuelve();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.TipoVariable <em>Tipo Variable</em>}' enum.

@@ -13,6 +13,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link diagramapseudocodigo.segun#getOperador <em>Operador</em>}</li>
+ *   <li>{@link diagramapseudocodigo.segun#getDevuelve <em>Devuelve</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,5 +37,21 @@ public interface segun extends Bloque {
 	 * @generated
 	 */
 	EList<Operador> getOperador();
+
+	/**
+	 * Returns the value of the '<em><b>Devuelve</b></em>' containment reference list.
+	 * The list contents are of type {@link diagramapseudocodigo.Devolver}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Devuelve</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Devuelve</em>' containment reference list.
+	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getsegun_Devuelve()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Devolver> getDevuelve();
 
 } // segun

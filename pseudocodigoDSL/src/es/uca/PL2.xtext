@@ -19,6 +19,7 @@ terminal SL_COMMENT : '//' !('\n'|'\r')* ('\r'? '\n')? ;
 Sentencias returns Sentencias:
 	LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento | segun;
 
+
 Internas returns Internas:
 	nombre=NombreInterna
 	'('
@@ -82,8 +83,9 @@ Leer returns Leer:
 Si returns Si:
 	'si'valor=valor 'entonces'
 		(sentencias+=Sentencias ( sentencias+=Sentencias)* )?
+		(devuelve=Devolver)?
 	(sino=Sino)?
-	'fin si';
+	'fin_si';
 
 mientras returns mientras:
 	'mientras'
@@ -173,7 +175,12 @@ operando_der returns operando_der:
 Sino returns Sino:
 	{Sino}
 	'sino'
-	(sentencias+=Sentencias ( sentencias+=Sentencias)* )?;
+	(sentencias+=Sentencias ( sentencias+=Sentencias)* )?
+	(devuelve=Devolver)?;
+
+Devolver returns Devolver:
+	{Devolver}
+	'devolver' '(' devuelve=valor ')';
 
 inc returns inc:
 	"++" | "--" /* TODO: implement this rule and an appropriate IValueConverter */;
@@ -192,7 +199,7 @@ Funcion returns Funcion:
 	( declaracionvariable+=DeclaracionVariable (	declaracionvariable+=DeclaracionVariable)*  )?
 	'inicio'
 	( sentencias+=Sentencias (  sentencias+=Sentencias)*  )?
-	'devolver' '(' devuelve=valor ')'
+	(devuelve=Devolver)?
 	'fin_funcion';
 	
 Procedimiento returns Procedimiento:

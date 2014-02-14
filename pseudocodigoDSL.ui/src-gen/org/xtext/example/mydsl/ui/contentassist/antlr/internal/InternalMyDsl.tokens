@@ -90,7 +90,8 @@ T__73=73
 'falso'=29
 'cuadrado'=15
 '++'=42
-'devolver'=73
+'devolver'=72
+'fin_si'=58
 'logico'=24
 'log'=18
 'var'=48
@@ -109,7 +110,6 @@ T__73=73
 'sino'=71
 'exp'=16
 'leer'=55
-'fin si'=58
 'entonces'=57
 'escribir'=54
 'hasta'=65
@@ -125,7 +125,7 @@ T__73=73
 'y'=38
 '<='=37
 '!='=41
-'funcion'=72
+'funcion'=73
 '<'=34
 'sqrt'=20
 'entero'=21

@@ -98,7 +98,9 @@ class MyDslGenerator implements IGenerator {
 			«FOR mySentencia:myFun.sentencias»
 				«mySentencia.toC»
 			«ENDFOR»
-			return «myFun.devuelve.toC»;
+			«IF myFun.devuelve != null» 
+			«myFun.devuelve.toC»
+			«ENDIF»
 		}
 	'''
 	
@@ -350,7 +352,10 @@ class MyDslGenerator implements IGenerator {
 			«FOR sent:mySi.sentencias»
 				
 				«sent.toC»
-			«ENDFOR»	
+			«ENDFOR»
+			«IF mySi.devuelve != null» 
+			«mySi.devuelve.toC»
+			«ENDIF»	
 		}
 		«IF mySi.sino != null» 
 		«mySi.sino.toC»
@@ -371,12 +376,19 @@ class MyDslGenerator implements IGenerator {
 	}
 	'''
 	
+	def toC(Devolver myDevuelve)'''
+		return «myDevuelve.devuelve.toC»;
+	'''
+	
 	def toC(Sino mySino)'''
 		else{
 			«FOR sent:mySino.sentencias»
 				
 				«sent.toC»
-			«ENDFOR»	
+			«ENDFOR»
+			«IF mySino.devuelve != null» 
+			«mySino.devuelve.toC»
+			«ENDIF»	
 		}
 	'''
 	

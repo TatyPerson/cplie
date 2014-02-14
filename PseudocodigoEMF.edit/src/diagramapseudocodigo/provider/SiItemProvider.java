@@ -75,6 +75,7 @@ public class SiItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.SI__SINO);
+			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.SI__DEVUELVE);
 		}
 		return childrenFeatures;
 	}
@@ -127,6 +128,7 @@ public class SiItemProvider
 
 		switch (notification.getFeatureID(Si.class)) {
 			case DiagramapseudocodigoPackage.SI__SINO:
+			case DiagramapseudocodigoPackage.SI__DEVUELVE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -148,6 +150,11 @@ public class SiItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.SI__SINO,
 				 DiagramapseudocodigoFactory.eINSTANCE.createSino()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.SI__DEVUELVE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createDevolver()));
 	}
 
 	/**

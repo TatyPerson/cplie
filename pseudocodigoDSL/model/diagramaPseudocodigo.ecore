@@ -67,8 +67,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Funcion" eSuperTypes="#//Subproceso">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tipo" eType="#//TipoVariable"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="devuelve" lowerBound="1"
-        eType="#//valor" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="devuelve" eType="#//Devolver"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParametroFuncion">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tipo" lowerBound="1" eType="#//TipoVariable"/>
@@ -122,10 +122,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Si" eSuperTypes="#//Bloque">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sino" eType="#//Sino" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="devuelve" eType="#//Devolver"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Sino">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sentencias" upperBound="-1"
         eType="#//Sentencias" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="devuelve" eType="#//Devolver"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Bloque" abstract="true" eSuperTypes="#//Sentencias">
     <eStructuralFeatures xsi:type="ecore:EReference" name="valor" lowerBound="1" eType="#//valor"
@@ -186,5 +190,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="segun" eSuperTypes="#//Bloque">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operador" lowerBound="1"
         upperBound="-1" eType="#//Operador" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="devuelve" upperBound="-1"
+        eType="#//Devolver" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Devolver">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="EReference0" eType="#//Devolver"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="devuelve" lowerBound="1"
+        eType="#//valor" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

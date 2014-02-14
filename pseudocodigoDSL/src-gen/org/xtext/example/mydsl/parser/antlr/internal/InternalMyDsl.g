@@ -1260,24 +1260,42 @@ ruleSi returns [EObject current=null]
 )*)?(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSiAccess().getSinoSinoParserRuleCall_4_0()); 
+	        newCompositeNode(grammarAccess.getSiAccess().getDevuelveDevolverParserRuleCall_4_0()); 
 	    }
-		lv_sino_5_0=ruleSino		{
+		lv_devuelve_5_0=ruleDevolver		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getSiRule());
+	        }
+       		set(
+       			$current, 
+       			"devuelve",
+        		lv_devuelve_5_0, 
+        		"Devolver");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)?(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getSiAccess().getSinoSinoParserRuleCall_5_0()); 
+	    }
+		lv_sino_6_0=ruleSino		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getSiRule());
 	        }
        		set(
        			$current, 
        			"sino",
-        		lv_sino_5_0, 
+        		lv_sino_6_0, 
         		"Sino");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)?	otherlv_6='fin si' 
+)?	otherlv_7='fin_si' 
     {
-    	newLeafNode(otherlv_6, grammarAccess.getSiAccess().getFinSiKeyword_5());
+    	newLeafNode(otherlv_7, grammarAccess.getSiAccess().getFin_siKeyword_6());
     }
 )
 ;
@@ -2592,7 +2610,82 @@ ruleSino returns [EObject current=null]
 	    }
 
 )
-)*)?)
+)*)?(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getSinoAccess().getDevuelveDevolverParserRuleCall_3_0()); 
+	    }
+		lv_devuelve_4_0=ruleDevolver		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getSinoRule());
+	        }
+       		set(
+       			$current, 
+       			"devuelve",
+        		lv_devuelve_4_0, 
+        		"Devolver");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)?)
+;
+
+
+
+
+
+// Entry rule entryRuleDevolver
+entryRuleDevolver returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getDevolverRule()); }
+	 iv_ruleDevolver=ruleDevolver 
+	 { $current=$iv_ruleDevolver.current; } 
+	 EOF 
+;
+
+// Rule Devolver
+ruleDevolver returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getDevolverAccess().getDevolverAction_0(),
+            $current);
+    }
+)	otherlv_1='devolver' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getDevolverAccess().getDevolverKeyword_1());
+    }
+	otherlv_2='(' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getDevolverAccess().getLeftParenthesisKeyword_2());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getDevolverAccess().getDevuelveValorParserRuleCall_3_0()); 
+	    }
+		lv_devuelve_3_0=rulevalor		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getDevolverRule());
+	        }
+       		set(
+       			$current, 
+       			"devuelve",
+        		lv_devuelve_3_0, 
+        		"valor");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_4=')' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getDevolverAccess().getRightParenthesisKeyword_4());
+    }
+)
 ;
 
 
@@ -2894,39 +2987,27 @@ ruleFuncion returns [EObject current=null]
 	    }
 
 )
-)*)?	otherlv_14='devolver' 
-    {
-    	newLeafNode(otherlv_14, grammarAccess.getFuncionAccess().getDevolverKeyword_10());
-    }
-	otherlv_15='(' 
-    {
-    	newLeafNode(otherlv_15, grammarAccess.getFuncionAccess().getLeftParenthesisKeyword_11());
-    }
-(
+)*)?(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getFuncionAccess().getDevuelveValorParserRuleCall_12_0()); 
+	        newCompositeNode(grammarAccess.getFuncionAccess().getDevuelveDevolverParserRuleCall_10_0()); 
 	    }
-		lv_devuelve_16_0=rulevalor		{
+		lv_devuelve_14_0=ruleDevolver		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getFuncionRule());
 	        }
        		set(
        			$current, 
        			"devuelve",
-        		lv_devuelve_16_0, 
-        		"valor");
+        		lv_devuelve_14_0, 
+        		"Devolver");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_17=')' 
+)?	otherlv_15='fin_funcion' 
     {
-    	newLeafNode(otherlv_17, grammarAccess.getFuncionAccess().getRightParenthesisKeyword_13());
-    }
-	otherlv_18='fin_funcion' 
-    {
-    	newLeafNode(otherlv_18, grammarAccess.getFuncionAccess().getFin_funcionKeyword_14());
+    	newLeafNode(otherlv_15, grammarAccess.getFuncionAccess().getFin_funcionKeyword_11());
     }
 )
 ;
