@@ -2,6 +2,7 @@
  */
 package diagramapseudocodigo.impl;
 
+import diagramapseudocodigo.Devolver;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Operador;
 import diagramapseudocodigo.segun;
@@ -26,6 +27,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link diagramapseudocodigo.impl.segunImpl#getOperador <em>Operador</em>}</li>
+ *   <li>{@link diagramapseudocodigo.impl.segunImpl#getDevuelve <em>Devuelve</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,6 +43,16 @@ public class segunImpl extends BloqueImpl implements segun {
 	 * @ordered
 	 */
 	protected EList<Operador> operador;
+
+	/**
+	 * The cached value of the '{@link #getDevuelve() <em>Devuelve</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDevuelve()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Devolver> devuelve;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -78,11 +90,25 @@ public class segunImpl extends BloqueImpl implements segun {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Devolver> getDevuelve() {
+		if (devuelve == null) {
+			devuelve = new EObjectContainmentEList<Devolver>(Devolver.class, this, DiagramapseudocodigoPackage.SEGUN__DEVUELVE);
+		}
+		return devuelve;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.SEGUN__OPERADOR:
 				return ((InternalEList<?>)getOperador()).basicRemove(otherEnd, msgs);
+			case DiagramapseudocodigoPackage.SEGUN__DEVUELVE:
+				return ((InternalEList<?>)getDevuelve()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -97,6 +123,8 @@ public class segunImpl extends BloqueImpl implements segun {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.SEGUN__OPERADOR:
 				return getOperador();
+			case DiagramapseudocodigoPackage.SEGUN__DEVUELVE:
+				return getDevuelve();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -114,6 +142,10 @@ public class segunImpl extends BloqueImpl implements segun {
 				getOperador().clear();
 				getOperador().addAll((Collection<? extends Operador>)newValue);
 				return;
+			case DiagramapseudocodigoPackage.SEGUN__DEVUELVE:
+				getDevuelve().clear();
+				getDevuelve().addAll((Collection<? extends Devolver>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -129,6 +161,9 @@ public class segunImpl extends BloqueImpl implements segun {
 			case DiagramapseudocodigoPackage.SEGUN__OPERADOR:
 				getOperador().clear();
 				return;
+			case DiagramapseudocodigoPackage.SEGUN__DEVUELVE:
+				getDevuelve().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -143,6 +178,8 @@ public class segunImpl extends BloqueImpl implements segun {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.SEGUN__OPERADOR:
 				return operador != null && !operador.isEmpty();
+			case DiagramapseudocodigoPackage.SEGUN__DEVUELVE:
+				return devuelve != null && !devuelve.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

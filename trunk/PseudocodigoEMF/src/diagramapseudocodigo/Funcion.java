@@ -59,12 +59,12 @@ public interface Funcion extends Subproceso {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Devuelve</em>' containment reference.
-	 * @see #setDevuelve(valor)
+	 * @see #setDevuelve(Devolver)
 	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getFuncion_Devuelve()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
-	valor getDevuelve();
+	Devolver getDevuelve();
 
 	/**
 	 * Sets the value of the '{@link diagramapseudocodigo.Funcion#getDevuelve <em>Devuelve</em>}' containment reference.
@@ -74,6 +74,6 @@ public interface Funcion extends Subproceso {
 	 * @see #getDevuelve()
 	 * @generated
 	 */
-	void setDevuelve(valor value);
+	void setDevuelve(Devolver value);
 
 } // Funcion

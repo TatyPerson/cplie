@@ -283,6 +283,15 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	segun createsegun();
 
 	/**
+	 * Returns a new object of class '<em>Devolver</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Devolver</em>'.
+	 * @generated
+	 */
+	Devolver createDevolver();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -2,17 +2,14 @@
  */
 package diagramapseudocodigo.impl;
 
+import diagramapseudocodigo.Devolver;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Funcion;
 import diagramapseudocodigo.TipoVariable;
-import diagramapseudocodigo.valor;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -58,7 +55,7 @@ public class FuncionImpl extends SubprocesoImpl implements Funcion {
 	 * @generated
 	 * @ordered
 	 */
-	protected valor devuelve;
+	protected Devolver devuelve;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -105,7 +102,7 @@ public class FuncionImpl extends SubprocesoImpl implements Funcion {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public valor getDevuelve() {
+	public Devolver getDevuelve() {
 		return devuelve;
 	}
 
@@ -114,8 +111,8 @@ public class FuncionImpl extends SubprocesoImpl implements Funcion {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetDevuelve(valor newDevuelve, NotificationChain msgs) {
-		valor oldDevuelve = devuelve;
+	public NotificationChain basicSetDevuelve(Devolver newDevuelve, NotificationChain msgs) {
+		Devolver oldDevuelve = devuelve;
 		devuelve = newDevuelve;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.FUNCION__DEVUELVE, oldDevuelve, newDevuelve);
@@ -129,7 +126,7 @@ public class FuncionImpl extends SubprocesoImpl implements Funcion {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDevuelve(valor newDevuelve) {
+	public void setDevuelve(Devolver newDevuelve) {
 		if (newDevuelve != devuelve) {
 			NotificationChain msgs = null;
 			if (devuelve != null)
@@ -185,7 +182,7 @@ public class FuncionImpl extends SubprocesoImpl implements Funcion {
 				setTipo((TipoVariable)newValue);
 				return;
 			case DiagramapseudocodigoPackage.FUNCION__DEVUELVE:
-				setDevuelve((valor)newValue);
+				setDevuelve((Devolver)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -203,7 +200,7 @@ public class FuncionImpl extends SubprocesoImpl implements Funcion {
 				setTipo(TIPO_EDEFAULT);
 				return;
 			case DiagramapseudocodigoPackage.FUNCION__DEVUELVE:
-				setDevuelve((valor)null);
+				setDevuelve((Devolver)null);
 				return;
 		}
 		super.eUnset(featureID);

@@ -178,70 +178,7 @@ public class FuncionItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.FUNCION__DEVUELVE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createLlamadaFuncion()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.FUNCION__DEVUELVE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createVariableID()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.FUNCION__DEVUELVE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createConstCadena()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.FUNCION__DEVUELVE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createNumeroEntero()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.FUNCION__DEVUELVE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createNumeroDecimal()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.FUNCION__DEVUELVE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createoperacion()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.FUNCION__DEVUELVE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createValorBooleano()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.FUNCION__DEVUELVE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createCaracter()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.FUNCION__DEVUELVE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createInternas()));
-	}
-
-	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
-
-		boolean qualify =
-			childFeature == DiagramapseudocodigoPackage.Literals.SUBPROCESO__SENTENCIAS ||
-			childFeature == DiagramapseudocodigoPackage.Literals.FUNCION__DEVUELVE;
-
-		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
+				 DiagramapseudocodigoFactory.eINSTANCE.createDevolver()));
 	}
 
 }

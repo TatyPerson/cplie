@@ -2,6 +2,7 @@
  */
 package diagramapseudocodigo.impl;
 
+import diagramapseudocodigo.Devolver;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Si;
 import diagramapseudocodigo.Sino;
@@ -22,6 +23,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link diagramapseudocodigo.impl.SiImpl#getSino <em>Sino</em>}</li>
+ *   <li>{@link diagramapseudocodigo.impl.SiImpl#getDevuelve <em>Devuelve</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,6 +39,16 @@ public class SiImpl extends BloqueImpl implements Si {
 	 * @ordered
 	 */
 	protected Sino sino;
+
+	/**
+	 * The cached value of the '{@link #getDevuelve() <em>Devuelve</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDevuelve()
+	 * @generated
+	 * @ordered
+	 */
+	protected Devolver devuelve;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -105,11 +117,56 @@ public class SiImpl extends BloqueImpl implements Si {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Devolver getDevuelve() {
+		return devuelve;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetDevuelve(Devolver newDevuelve, NotificationChain msgs) {
+		Devolver oldDevuelve = devuelve;
+		devuelve = newDevuelve;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.SI__DEVUELVE, oldDevuelve, newDevuelve);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDevuelve(Devolver newDevuelve) {
+		if (newDevuelve != devuelve) {
+			NotificationChain msgs = null;
+			if (devuelve != null)
+				msgs = ((InternalEObject)devuelve).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DiagramapseudocodigoPackage.SI__DEVUELVE, null, msgs);
+			if (newDevuelve != null)
+				msgs = ((InternalEObject)newDevuelve).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiagramapseudocodigoPackage.SI__DEVUELVE, null, msgs);
+			msgs = basicSetDevuelve(newDevuelve, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.SI__DEVUELVE, newDevuelve, newDevuelve));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.SI__SINO:
 				return basicSetSino(null, msgs);
+			case DiagramapseudocodigoPackage.SI__DEVUELVE:
+				return basicSetDevuelve(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -124,6 +181,8 @@ public class SiImpl extends BloqueImpl implements Si {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.SI__SINO:
 				return getSino();
+			case DiagramapseudocodigoPackage.SI__DEVUELVE:
+				return getDevuelve();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -138,6 +197,9 @@ public class SiImpl extends BloqueImpl implements Si {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.SI__SINO:
 				setSino((Sino)newValue);
+				return;
+			case DiagramapseudocodigoPackage.SI__DEVUELVE:
+				setDevuelve((Devolver)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -154,6 +216,9 @@ public class SiImpl extends BloqueImpl implements Si {
 			case DiagramapseudocodigoPackage.SI__SINO:
 				setSino((Sino)null);
 				return;
+			case DiagramapseudocodigoPackage.SI__DEVUELVE:
+				setDevuelve((Devolver)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -168,6 +233,8 @@ public class SiImpl extends BloqueImpl implements Si {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.SI__SINO:
 				return sino != null;
+			case DiagramapseudocodigoPackage.SI__DEVUELVE:
+				return devuelve != null;
 		}
 		return super.eIsSet(featureID);
 	}

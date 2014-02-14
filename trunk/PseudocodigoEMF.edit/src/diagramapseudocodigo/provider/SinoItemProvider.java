@@ -78,6 +78,7 @@ public class SinoItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.SINO__SENTENCIAS);
+			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.SINO__DEVUELVE);
 		}
 		return childrenFeatures;
 	}
@@ -130,6 +131,7 @@ public class SinoItemProvider
 
 		switch (notification.getFeatureID(Sino.class)) {
 			case DiagramapseudocodigoPackage.SINO__SENTENCIAS:
+			case DiagramapseudocodigoPackage.SINO__DEVUELVE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -196,6 +198,11 @@ public class SinoItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.SINO__SENTENCIAS,
 				 DiagramapseudocodigoFactory.eINSTANCE.createsegun()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.SINO__DEVUELVE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createDevolver()));
 	}
 
 	/**

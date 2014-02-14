@@ -739,6 +739,29 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.Devolver} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DevolverItemProvider devolverItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.Devolver}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDevolverAdapter() {
+		if (devolverItemProvider == null) {
+			devolverItemProvider = new DevolverItemProvider(this);
+		}
+
+		return devolverItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -866,6 +889,7 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 		if (caracterItemProvider != null) caracterItemProvider.dispose();
 		if (internasItemProvider != null) internasItemProvider.dispose();
 		if (segunItemProvider != null) segunItemProvider.dispose();
+		if (devolverItemProvider != null) devolverItemProvider.dispose();
 	}
 
 }
