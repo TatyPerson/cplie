@@ -234,61 +234,81 @@ ruleSentencias returns [EObject current=null]
 
     |
     { 
-        newCompositeNode(grammarAccess.getSentenciasAccess().getSiParserRuleCall_4()); 
+        newCompositeNode(grammarAccess.getSentenciasAccess().getIncrementoParserRuleCall_4()); 
     }
-    this_Si_4=ruleSi
+    this_incremento_4=ruleincremento
     { 
-        $current = $this_Si_4.current; 
+        $current = $this_incremento_4.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSentenciasAccess().getMientrasParserRuleCall_5()); 
+        newCompositeNode(grammarAccess.getSentenciasAccess().getBloqueParserRuleCall_5()); 
     }
-    this_mientras_5=rulemientras
+    this_Bloque_5=ruleBloque
     { 
-        $current = $this_mientras_5.current; 
+        $current = $this_Bloque_5.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleBloque
+entryRuleBloque returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getBloqueRule()); }
+	 iv_ruleBloque=ruleBloque 
+	 { $current=$iv_ruleBloque.current; } 
+	 EOF 
+;
+
+// Rule Bloque
+ruleBloque returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+    { 
+        newCompositeNode(grammarAccess.getBloqueAccess().getSiParserRuleCall_0()); 
+    }
+    this_Si_0=ruleSi
+    { 
+        $current = $this_Si_0.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSentenciasAccess().getRepetirParserRuleCall_6()); 
+        newCompositeNode(grammarAccess.getBloqueAccess().getMientrasParserRuleCall_1()); 
     }
-    this_repetir_6=rulerepetir
+    this_mientras_1=rulemientras
     { 
-        $current = $this_repetir_6.current; 
+        $current = $this_mientras_1.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSentenciasAccess().getDesdeParserRuleCall_7()); 
+        newCompositeNode(grammarAccess.getBloqueAccess().getRepetirParserRuleCall_2()); 
     }
-    this_desde_7=ruledesde
+    this_repetir_2=rulerepetir
     { 
-        $current = $this_desde_7.current; 
+        $current = $this_repetir_2.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getSentenciasAccess().getIncrementoParserRuleCall_8()); 
+        newCompositeNode(grammarAccess.getBloqueAccess().getSegunParserRuleCall_3()); 
     }
-    this_incremento_8=ruleincremento
+    this_segun_3=rulesegun
     { 
-        $current = $this_incremento_8.current; 
-        afterParserOrEnumRuleCall();
-    }
-
-    |
-    { 
-        newCompositeNode(grammarAccess.getSentenciasAccess().getSegunParserRuleCall_9()); 
-    }
-    this_segun_9=rulesegun
-    { 
-        $current = $this_segun_9.current; 
+        $current = $this_segun_3.current; 
         afterParserOrEnumRuleCall();
     }
 )
@@ -1471,113 +1491,6 @@ rulerepetir returns [EObject current=null]
 ;
 
 
-
-
-
-// Entry rule entryRuledesde
-entryRuledesde returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getDesdeRule()); }
-	 iv_ruledesde=ruledesde 
-	 { $current=$iv_ruledesde.current; } 
-	 EOF 
-;
-
-// Rule desde
-ruledesde returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(	otherlv_0='desde' 
-    {
-    	newLeafNode(otherlv_0, grammarAccess.getDesdeAccess().getDesdeKeyword_0());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getDesdeAccess().getAsignacionAsignacionParserRuleCall_1_0()); 
-	    }
-		lv_asignacion_1_0=ruleAsignacion		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getDesdeRule());
-	        }
-       		set(
-       			$current, 
-       			"asignacion",
-        		lv_asignacion_1_0, 
-        		"Asignacion");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)	otherlv_2='hasta' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getDesdeAccess().getHastaKeyword_2());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getDesdeAccess().getValorValorParserRuleCall_3_0()); 
-	    }
-		lv_valor_3_0=rulevalor		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getDesdeRule());
-	        }
-       		set(
-       			$current, 
-       			"valor",
-        		lv_valor_3_0, 
-        		"valor");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)	otherlv_4='hacer' 
-    {
-    	newLeafNode(otherlv_4, grammarAccess.getDesdeAccess().getHacerKeyword_4());
-    }
-((
-(
-		{ 
-	        newCompositeNode(grammarAccess.getDesdeAccess().getSentenciasSentenciasParserRuleCall_5_0_0()); 
-	    }
-		lv_sentencias_5_0=ruleSentencias		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getDesdeRule());
-	        }
-       		add(
-       			$current, 
-       			"sentencias",
-        		lv_sentencias_5_0, 
-        		"Sentencias");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getDesdeAccess().getSentenciasSentenciasParserRuleCall_5_1_0()); 
-	    }
-		lv_sentencias_6_0=ruleSentencias		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getDesdeRule());
-	        }
-       		add(
-       			$current, 
-       			"sentencias",
-        		lv_sentencias_6_0, 
-        		"Sentencias");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)*)?	otherlv_7='fin_desde' 
-    {
-    	newLeafNode(otherlv_7, grammarAccess.getDesdeAccess().getFin_desdeKeyword_6());
-    }
-)
-;
 
 
 

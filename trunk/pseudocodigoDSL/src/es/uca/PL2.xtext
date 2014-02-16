@@ -17,8 +17,10 @@ terminal ML_COMMENT : '/*' (!'*') -> '*/' ;
 terminal SL_COMMENT : '//' !('\n'|'\r')* ('\r'? '\n')? ;
 
 Sentencias returns Sentencias:
-	LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento | segun;
+	LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque;
 
+Bloque returns Bloque:
+	Si | mientras | repetir | segun;
 
 Internas returns Internas:
 	nombre=NombreInterna
