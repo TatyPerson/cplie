@@ -1827,19 +1827,23 @@ ruleunaria returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-((
+(	otherlv_0='(' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getUnariaAccess().getLeftParenthesisKeyword_0());
+    }
+(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getUnariaAccess().getSsignoIncParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getUnariaAccess().getSsignoIncParserRuleCall_1_0()); 
 	    }
-		lv_ssigno_0_0=ruleinc		{
+		lv_ssigno_1_0=ruleinc		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getUnariaRule());
 	        }
        		set(
        			$current, 
        			"ssigno",
-        		lv_ssigno_0_0, 
+        		lv_ssigno_1_0, 
         		"inc");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -1848,22 +1852,26 @@ ruleunaria returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getUnariaAccess().getVariableValorParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getUnariaAccess().getVariableValorParserRuleCall_2_0()); 
 	    }
-		lv_variable_1_0=rulevalor		{
+		lv_variable_2_0=rulevalor		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getUnariaRule());
 	        }
        		set(
        			$current, 
        			"variable",
-        		lv_variable_1_0, 
+        		lv_variable_2_0, 
         		"valor");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))
+)	otherlv_3=')' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getUnariaAccess().getRightParenthesisKeyword_3());
+    }
+)
 ;
 
 

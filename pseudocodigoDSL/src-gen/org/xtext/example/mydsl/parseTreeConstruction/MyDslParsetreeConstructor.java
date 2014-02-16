@@ -5309,11 +5309,11 @@ protected class Incremento_SsignoAssignment_1 extends AssignmentToken  {
 /************ begin Rule unaria ****************
  *
  * unaria:
- * 	ssigno=inc variable=valor;
+ * 	"(" ssigno=inc variable=valor ")";
  *
  **/
 
-// ssigno=inc variable=valor
+// "(" ssigno=inc variable=valor ")"
 protected class Unaria_Group extends GroupToken {
 	
 	public Unaria_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5328,7 +5328,7 @@ protected class Unaria_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Unaria_VariableAssignment_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Unaria_RightParenthesisKeyword_3(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -5342,16 +5342,16 @@ protected class Unaria_Group extends GroupToken {
 
 }
 
-// ssigno=inc
-protected class Unaria_SsignoAssignment_0 extends AssignmentToken  {
+// "("
+protected class Unaria_LeftParenthesisKeyword_0 extends KeywordToken  {
 	
-	public Unaria_SsignoAssignment_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Unaria_LeftParenthesisKeyword_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
-	public Assignment getGrammarElement() {
-		return grammarAccess.getUnariaAccess().getSsignoAssignment_0();
+	public Keyword getGrammarElement() {
+		return grammarAccess.getUnariaAccess().getLeftParenthesisKeyword_0();
 	}
 
     @Override
@@ -5361,13 +5361,35 @@ protected class Unaria_SsignoAssignment_0 extends AssignmentToken  {
 		}	
 	}
 
+}
+
+// ssigno=inc
+protected class Unaria_SsignoAssignment_1 extends AssignmentToken  {
+	
+	public Unaria_SsignoAssignment_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getUnariaAccess().getSsignoAssignment_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Unaria_LeftParenthesisKeyword_0(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
     @Override	
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("ssigno",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("ssigno");
-		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getUnariaAccess().getSsignoIncParserRuleCall_0_0(), value, null)) {
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getUnariaAccess().getSsignoIncParserRuleCall_1_0(), value, null)) {
 			type = AssignmentType.DATATYPE_RULE_CALL;
-			element = grammarAccess.getUnariaAccess().getSsignoIncParserRuleCall_0_0();
+			element = grammarAccess.getUnariaAccess().getSsignoIncParserRuleCall_1_0();
 			return obj;
 		}
 		return null;
@@ -5376,15 +5398,15 @@ protected class Unaria_SsignoAssignment_0 extends AssignmentToken  {
 }
 
 // variable=valor
-protected class Unaria_VariableAssignment_1 extends AssignmentToken  {
+protected class Unaria_VariableAssignment_2 extends AssignmentToken  {
 	
-	public Unaria_VariableAssignment_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Unaria_VariableAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getUnariaAccess().getVariableAssignment_1();
+		return grammarAccess.getUnariaAccess().getVariableAssignment_2();
 	}
 
     @Override
@@ -5403,7 +5425,7 @@ protected class Unaria_VariableAssignment_1 extends AssignmentToken  {
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getValorRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getUnariaAccess().getVariableValorParserRuleCall_1_0(); 
+				element = grammarAccess.getUnariaAccess().getVariableValorParserRuleCall_2_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -5415,10 +5437,32 @@ protected class Unaria_VariableAssignment_1 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new Unaria_SsignoAssignment_0(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new Unaria_SsignoAssignment_1(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
+}
+
+// ")"
+protected class Unaria_RightParenthesisKeyword_3 extends KeywordToken  {
+	
+	public Unaria_RightParenthesisKeyword_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getUnariaAccess().getRightParenthesisKeyword_3();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Unaria_VariableAssignment_2(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
 }
 
 

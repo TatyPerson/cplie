@@ -1048,29 +1048,37 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	public class UnariaElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "unaria");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cSsignoAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cSsignoIncParserRuleCall_0_0 = (RuleCall)cSsignoAssignment_0.eContents().get(0);
-		private final Assignment cVariableAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cVariableValorParserRuleCall_1_0 = (RuleCall)cVariableAssignment_1.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cSsignoAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cSsignoIncParserRuleCall_1_0 = (RuleCall)cSsignoAssignment_1.eContents().get(0);
+		private final Assignment cVariableAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cVariableValorParserRuleCall_2_0 = (RuleCall)cVariableAssignment_2.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//unaria:
-		//	ssigno=inc variable=valor;
+		//	"(" ssigno=inc variable=valor ")";
 		public ParserRule getRule() { return rule; }
 
-		//ssigno=inc variable=valor
+		//"(" ssigno=inc variable=valor ")"
 		public Group getGroup() { return cGroup; }
 
+		//"("
+		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
+
 		//ssigno=inc
-		public Assignment getSsignoAssignment_0() { return cSsignoAssignment_0; }
+		public Assignment getSsignoAssignment_1() { return cSsignoAssignment_1; }
 
 		//inc
-		public RuleCall getSsignoIncParserRuleCall_0_0() { return cSsignoIncParserRuleCall_0_0; }
+		public RuleCall getSsignoIncParserRuleCall_1_0() { return cSsignoIncParserRuleCall_1_0; }
 
 		//variable=valor
-		public Assignment getVariableAssignment_1() { return cVariableAssignment_1; }
+		public Assignment getVariableAssignment_2() { return cVariableAssignment_2; }
 
 		//valor
-		public RuleCall getVariableValorParserRuleCall_1_0() { return cVariableValorParserRuleCall_1_0; }
+		public RuleCall getVariableValorParserRuleCall_2_0() { return cVariableValorParserRuleCall_2_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
 	}
 
 	public class TipoVariableElements extends AbstractParserRuleElementFinder {
@@ -2212,7 +2220,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//unaria:
-	//	ssigno=inc variable=valor;
+	//	"(" ssigno=inc variable=valor ")";
 	public UnariaElements getUnariaAccess() {
 		return (pUnaria != null) ? pUnaria : (pUnaria = new UnariaElements());
 	}

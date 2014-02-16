@@ -123,8 +123,10 @@ incremento returns incremento:
 	ssigno=inc;
 	
 unaria returns unaria:
+	'('
 	ssigno=inc
-	variable=valor;
+	variable=valor
+	')';
 
 TipoVariable returns TipoVariable:
 	'entero' | 'caracter' | 'real' | 'logico' | 'cadena';
