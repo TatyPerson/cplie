@@ -36,7 +36,15 @@ public enum inc implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MENOSMENOS(1, "menosmenos", "--");
+	MENOSMENOS(1, "menosmenos", "--"), /**
+	 * The '<em><b>No</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #NO_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	NO(2, "no", "no");
 
 	/**
 	 * The '<em><b>Masmas</b></em>' literal value.
@@ -69,6 +77,21 @@ public enum inc implements Enumerator {
 	public static final int MENOSMENOS_VALUE = 1;
 
 	/**
+	 * The '<em><b>No</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>No</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NO
+	 * @model name="no"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NO_VALUE = 2;
+
+	/**
 	 * An array of all the '<em><b>inc</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,6 +101,7 @@ public enum inc implements Enumerator {
 		new inc[] {
 			MASMAS,
 			MENOSMENOS,
+			NO,
 		};
 
 	/**
@@ -130,6 +154,7 @@ public enum inc implements Enumerator {
 		switch (value) {
 			case MASMAS_VALUE: return MASMAS;
 			case MENOSMENOS_VALUE: return MENOSMENOS;
+			case NO_VALUE: return NO;
 		}
 		return null;
 	}

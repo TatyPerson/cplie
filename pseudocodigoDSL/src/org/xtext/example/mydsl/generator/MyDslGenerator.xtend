@@ -230,6 +230,11 @@ class MyDslGenerator implements IGenerator {
 			prueba = myVal as Internas
 			prueba.toC
 		}	
+		else if(myVal.eClass.name.equals("unaria")) {
+			var unaria prueba = new unariaImpl
+			prueba = myVal as unaria
+			prueba.toC
+		}
 	}
 	
 	def toC(NumeroEntero numero){
@@ -262,6 +267,9 @@ class MyDslGenerator implements IGenerator {
 	def toC(incremento inc)'''
 		«inc.nombre»«inc.ssigno»;
 		'''
+	def toC(unaria myUnaria)'''
+		!«myUnaria.variable.toC»
+	'''
 	
 	def toC(Leer l)'''
 		cin >> «l.variable.nombre»;

@@ -41,7 +41,7 @@ Caracter returns Caracter:
 
 
 valor returns valor:
-	LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter | Internas;
+	LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter | Internas | unaria;
 
 Inicio returns Inicio:
 	{Inicio}
@@ -121,6 +121,10 @@ segun returns segun:
 incremento returns incremento:
 	nombre=EString
 	ssigno=inc;
+	
+unaria returns unaria:
+	ssigno=inc
+	variable=valor;
 
 TipoVariable returns TipoVariable:
 	'entero' | 'caracter' | 'real' | 'logico' | 'cadena';
@@ -191,7 +195,7 @@ Devolver returns Devolver:
 	'devolver' '(' devuelve=valor ')';
 
 inc returns inc:
-	"++" | "--" /* TODO: implement this rule and an appropriate IValueConverter */;
+	"++" | "--" | "no" /* TODO: implement this rule and an appropriate IValueConverter */;
 	
 ParametroFuncion returns ParametroFuncion:
 	paso=TipoPaso

@@ -316,6 +316,13 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DiagramapseudocodigoPackage.UNARIA: {
+				unaria unaria = (unaria)theEObject;
+				T result = caseunaria(unaria);
+				if (result == null) result = casevalor(unaria);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -857,6 +864,21 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCaso(Caso object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>unaria</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>unaria</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseunaria(unaria object) {
 		return null;
 	}
 

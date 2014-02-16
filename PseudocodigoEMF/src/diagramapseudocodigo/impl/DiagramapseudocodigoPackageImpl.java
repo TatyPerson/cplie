@@ -45,6 +45,7 @@ import diagramapseudocodigo.operando_izq;
 import diagramapseudocodigo.repetir;
 import diagramapseudocodigo.segun;
 import diagramapseudocodigo.signo;
+import diagramapseudocodigo.unaria;
 import diagramapseudocodigo.valor;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -313,6 +314,13 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * @generated
 	 */
 	private EClass casoEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass unariaEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1241,6 +1249,33 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getunaria() {
+		return unariaEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getunaria_Variable() {
+		return (EReference)unariaEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getunaria_Ssigno() {
+		return (EAttribute)unariaEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getTipoVariable() {
 		return tipoVariableEEnum;
 	}
@@ -1445,6 +1480,10 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		createEReference(casoEClass, CASO__DEVUELVE);
 		createEReference(casoEClass, CASO__SENTENCIAS);
 
+		unariaEClass = createEClass(UNARIA);
+		createEAttribute(unariaEClass, UNARIA__SSIGNO);
+		createEReference(unariaEClass, UNARIA__VARIABLE);
+
 		// Create enums
 		tipoVariableEEnum = createEEnum(TIPO_VARIABLE);
 		signoEEnum = createEEnum(SIGNO);
@@ -1505,6 +1544,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		caracterEClass.getESuperTypes().add(this.getOperador());
 		internasEClass.getESuperTypes().add(this.getvalor());
 		segunEClass.getESuperTypes().add(this.getBloque());
+		unariaEClass.getESuperTypes().add(this.getvalor());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(codigoEClass, Codigo.class, "Codigo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1634,6 +1674,10 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		initEReference(getCaso_Devuelve(), this.getDevolver(), null, "devuelve", null, 0, 1, Caso.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCaso_Sentencias(), this.getSentencias(), null, "sentencias", null, 0, -1, Caso.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(unariaEClass, unaria.class, "unaria", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getunaria_Ssigno(), this.getinc(), "ssigno", null, 1, 1, unaria.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getunaria_Variable(), this.getvalor(), null, "variable", null, 1, 1, unaria.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(tipoVariableEEnum, TipoVariable.class, "TipoVariable");
 		addEEnumLiteral(tipoVariableEEnum, TipoVariable.ENTERO);
@@ -1663,6 +1707,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		initEEnum(incEEnum, inc.class, "inc");
 		addEEnumLiteral(incEEnum, inc.MASMAS);
 		addEEnumLiteral(incEEnum, inc.MENOSMENOS);
+		addEEnumLiteral(incEEnum, inc.NO);
 
 		initEEnum(tipoPasoEEnum, TipoPaso.class, "TipoPaso");
 		addEEnumLiteral(tipoPasoEEnum, TipoPaso.ENTRADA);

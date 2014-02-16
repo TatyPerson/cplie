@@ -1722,6 +1722,52 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int CASO_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.unariaImpl <em>unaria</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.unariaImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getunaria()
+	 * @generated
+	 */
+	int UNARIA = 36;
+
+	/**
+	 * The feature id for the '<em><b>Ssigno</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNARIA__SSIGNO = VALOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Variable</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNARIA__VARIABLE = VALOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>unaria</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNARIA_FEATURE_COUNT = VALOR_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>unaria</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNARIA_OPERATION_COUNT = VALOR_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoVariable <em>Tipo Variable</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1729,7 +1775,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoVariable()
 	 * @generated
 	 */
-	int TIPO_VARIABLE = 36;
+	int TIPO_VARIABLE = 37;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.signo <em>signo</em>}' enum.
@@ -1739,7 +1785,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getsigno()
 	 * @generated
 	 */
-	int SIGNO = 37;
+	int SIGNO = 38;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.booleano <em>booleano</em>}' enum.
@@ -1749,7 +1795,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getbooleano()
 	 * @generated
 	 */
-	int BOOLEANO = 38;
+	int BOOLEANO = 39;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.inc <em>inc</em>}' enum.
@@ -1759,7 +1805,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getinc()
 	 * @generated
 	 */
-	int INC = 39;
+	int INC = 40;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoPaso <em>Tipo Paso</em>}' enum.
@@ -1769,7 +1815,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoPaso()
 	 * @generated
 	 */
-	int TIPO_PASO = 40;
+	int TIPO_PASO = 41;
 
 
 	/**
@@ -1780,7 +1826,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getNombreInterna()
 	 * @generated
 	 */
-	int NOMBRE_INTERNA = 41;
+	int NOMBRE_INTERNA = 42;
 
 
 	/**
@@ -2749,6 +2795,38 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EReference getCaso_Sentencias();
 
 	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.unaria <em>unaria</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>unaria</em>'.
+	 * @see diagramapseudocodigo.unaria
+	 * @generated
+	 */
+	EClass getunaria();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.unaria#getVariable <em>Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Variable</em>'.
+	 * @see diagramapseudocodigo.unaria#getVariable()
+	 * @see #getunaria()
+	 * @generated
+	 */
+	EReference getunaria_Variable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.unaria#getSsigno <em>Ssigno</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Ssigno</em>'.
+	 * @see diagramapseudocodigo.unaria#getSsigno()
+	 * @see #getunaria()
+	 * @generated
+	 */
+	EAttribute getunaria_Ssigno();
+
+	/**
 	 * Returns the meta object for enum '{@link diagramapseudocodigo.TipoVariable <em>Tipo Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3629,6 +3707,32 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CASO__SENTENCIAS = eINSTANCE.getCaso_Sentencias();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.unariaImpl <em>unaria</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.unariaImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getunaria()
+		 * @generated
+		 */
+		EClass UNARIA = eINSTANCE.getunaria();
+
+		/**
+		 * The meta object literal for the '<em><b>Variable</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference UNARIA__VARIABLE = eINSTANCE.getunaria_Variable();
+
+		/**
+		 * The meta object literal for the '<em><b>Ssigno</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute UNARIA__SSIGNO = eINSTANCE.getunaria_Ssigno();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.TipoVariable <em>Tipo Variable</em>}' enum.

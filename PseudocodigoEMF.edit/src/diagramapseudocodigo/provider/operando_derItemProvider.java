@@ -191,6 +191,11 @@ public class operando_derItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.OPERANDO_DER__OPER_DER,
 				 DiagramapseudocodigoFactory.eINSTANCE.createInternas()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.OPERANDO_DER__OPER_DER,
+				 DiagramapseudocodigoFactory.eINSTANCE.createunaria()));
 	}
 
 	/**
