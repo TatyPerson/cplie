@@ -87,6 +87,7 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 			case DiagramapseudocodigoPackage.INTERNAS: return createInternas();
 			case DiagramapseudocodigoPackage.SEGUN: return createsegun();
 			case DiagramapseudocodigoPackage.DEVOLVER: return createDevolver();
+			case DiagramapseudocodigoPackage.CASO: return createCaso();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -440,6 +441,16 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	public Devolver createDevolver() {
 		DevolverImpl devolver = new DevolverImpl();
 		return devolver;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Caso createCaso() {
+		CasoImpl caso = new CasoImpl();
+		return caso;
 	}
 
 	/**

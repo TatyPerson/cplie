@@ -103,12 +103,17 @@ desde returns desde:
 		(sentencias+=Sentencias ( sentencias+=Sentencias)* )?
 	'fin_desde';
 	
+Caso returns Caso:
+	operador=Operador ':' (sentencias+=Sentencias ( sentencias+=Sentencias )* )?
+	(devuelve=Devolver)?
+;
+	
 segun returns segun:
 	'segun_sea''('valor=valor')''hacer'
-		(operador+=Operador ':' (sentencias+=Sentencias)? (devuelve+=Devolver)? ( operador+=Operador ':' (sentencias+=Sentencias)? (devuelve+=Devolver)? )* )? 
+		(caso+=Caso ( caso+=Caso )* )?
 		'en_otro_caso:'
 		(sentencias+=Sentencias ( sentencias+=Sentencias )* )?
-		(devuelve+=Devolver)?
+		(devuelve=Devolver)?
 	'fin_segun';
 
 incremento returns incremento:
