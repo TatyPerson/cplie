@@ -85,18 +85,14 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAsignacionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cEscribirParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cLeerParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cSiParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cMientrasParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cRepetirParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
-		private final RuleCall cDesdeParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
-		private final RuleCall cIncrementoParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
-		private final RuleCall cSegunParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
+		private final RuleCall cIncrementoParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cBloqueParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		
 		//Sentencias:
-		//	LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento | segun;
+		//	LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque;
 		public ParserRule getRule() { return rule; }
 
-		//LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento | segun
+		//LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//LlamadaFuncion
@@ -111,23 +107,39 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//Leer
 		public RuleCall getLeerParserRuleCall_3() { return cLeerParserRuleCall_3; }
 
+		//incremento
+		public RuleCall getIncrementoParserRuleCall_4() { return cIncrementoParserRuleCall_4; }
+
+		//Bloque
+		public RuleCall getBloqueParserRuleCall_5() { return cBloqueParserRuleCall_5; }
+	}
+
+	public class BloqueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Bloque");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cSiParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cMientrasParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cRepetirParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cSegunParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		
+		//Bloque:
+		//	Si | mientras | repetir | segun;
+		public ParserRule getRule() { return rule; }
+
+		//Si | mientras | repetir | segun
+		public Alternatives getAlternatives() { return cAlternatives; }
+
 		//Si
-		public RuleCall getSiParserRuleCall_4() { return cSiParserRuleCall_4; }
+		public RuleCall getSiParserRuleCall_0() { return cSiParserRuleCall_0; }
 
 		//mientras
-		public RuleCall getMientrasParserRuleCall_5() { return cMientrasParserRuleCall_5; }
+		public RuleCall getMientrasParserRuleCall_1() { return cMientrasParserRuleCall_1; }
 
 		//repetir
-		public RuleCall getRepetirParserRuleCall_6() { return cRepetirParserRuleCall_6; }
-
-		//desde
-		public RuleCall getDesdeParserRuleCall_7() { return cDesdeParserRuleCall_7; }
-
-		//incremento
-		public RuleCall getIncrementoParserRuleCall_8() { return cIncrementoParserRuleCall_8; }
+		public RuleCall getRepetirParserRuleCall_2() { return cRepetirParserRuleCall_2; }
 
 		//segun
-		public RuleCall getSegunParserRuleCall_9() { return cSegunParserRuleCall_9; }
+		public RuleCall getSegunParserRuleCall_3() { return cSegunParserRuleCall_3; }
 	}
 
 	public class InternasElements extends AbstractParserRuleElementFinder {
@@ -1833,6 +1845,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private TerminalRule tML_COMMENT;
 	private TerminalRule tSL_COMMENT;
 	private SentenciasElements pSentencias;
+	private BloqueElements pBloque;
 	private InternasElements pInternas;
 	private NombreInternaElements pNombreInterna;
 	private OperadorElements pOperador;
@@ -1948,13 +1961,23 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//Sentencias:
-	//	LlamadaFuncion | Asignacion | Escribir | Leer | Si | mientras | repetir | desde | incremento | segun;
+	//	LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque;
 	public SentenciasElements getSentenciasAccess() {
 		return (pSentencias != null) ? pSentencias : (pSentencias = new SentenciasElements());
 	}
 	
 	public ParserRule getSentenciasRule() {
 		return getSentenciasAccess().getRule();
+	}
+
+	//Bloque:
+	//	Si | mientras | repetir | segun;
+	public BloqueElements getBloqueAccess() {
+		return (pBloque != null) ? pBloque : (pBloque = new BloqueElements());
+	}
+	
+	public ParserRule getBloqueRule() {
+		return getBloqueAccess().getRule();
 	}
 
 	//Internas:
