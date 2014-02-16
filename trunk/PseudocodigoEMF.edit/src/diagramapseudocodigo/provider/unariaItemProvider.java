@@ -3,9 +3,10 @@
 package diagramapseudocodigo.provider;
 
 
-import diagramapseudocodigo.Devolver;
 import diagramapseudocodigo.DiagramapseudocodigoFactory;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
+import diagramapseudocodigo.inc;
+import diagramapseudocodigo.unaria;
 
 import java.util.Collection;
 import java.util.List;
@@ -13,7 +14,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -23,17 +23,17 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link diagramapseudocodigo.Devolver} object.
+ * This is the item provider adapter for a {@link diagramapseudocodigo.unaria} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DevolverItemProvider
-	extends ItemProviderAdapter
+public class unariaItemProvider
+	extends valorItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -46,7 +46,7 @@ public class DevolverItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DevolverItemProvider(AdapterFactory adapterFactory) {
+	public unariaItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -61,29 +61,29 @@ public class DevolverItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addEReference0PropertyDescriptor(object);
+			addSsignoPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the EReference0 feature.
+	 * This adds a property descriptor for the Ssigno feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEReference0PropertyDescriptor(Object object) {
+	protected void addSsignoPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Devolver_EReference0_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Devolver_EReference0_feature", "_UI_Devolver_type"),
-				 DiagramapseudocodigoPackage.Literals.DEVOLVER__EREFERENCE0,
+				 getString("_UI_unaria_ssigno_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_unaria_ssigno_feature", "_UI_unaria_type"),
+				 DiagramapseudocodigoPackage.Literals.UNARIA__SSIGNO,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -100,7 +100,7 @@ public class DevolverItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.DEVOLVER__DEVUELVE);
+			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.UNARIA__VARIABLE);
 		}
 		return childrenFeatures;
 	}
@@ -119,14 +119,14 @@ public class DevolverItemProvider
 	}
 
 	/**
-	 * This returns Devolver.gif.
+	 * This returns unaria.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Devolver"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/unaria"));
 	}
 
 	/**
@@ -137,7 +137,11 @@ public class DevolverItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_Devolver_type");
+		inc labelValue = ((unaria)object).getSsigno();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ?
+			getString("_UI_unaria_type") :
+			getString("_UI_unaria_type") + " " + label;
 	}
 
 	/**
@@ -151,8 +155,11 @@ public class DevolverItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Devolver.class)) {
-			case DiagramapseudocodigoPackage.DEVOLVER__DEVUELVE:
+		switch (notification.getFeatureID(unaria.class)) {
+			case DiagramapseudocodigoPackage.UNARIA__SSIGNO:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case DiagramapseudocodigoPackage.UNARIA__VARIABLE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -172,64 +179,53 @@ public class DevolverItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.DEVOLVER__DEVUELVE,
+				(DiagramapseudocodigoPackage.Literals.UNARIA__VARIABLE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createLlamadaFuncion()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.DEVOLVER__DEVUELVE,
+				(DiagramapseudocodigoPackage.Literals.UNARIA__VARIABLE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createVariableID()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.DEVOLVER__DEVUELVE,
+				(DiagramapseudocodigoPackage.Literals.UNARIA__VARIABLE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createConstCadena()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.DEVOLVER__DEVUELVE,
+				(DiagramapseudocodigoPackage.Literals.UNARIA__VARIABLE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createNumeroEntero()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.DEVOLVER__DEVUELVE,
+				(DiagramapseudocodigoPackage.Literals.UNARIA__VARIABLE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createNumeroDecimal()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.DEVOLVER__DEVUELVE,
+				(DiagramapseudocodigoPackage.Literals.UNARIA__VARIABLE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createoperacion()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.DEVOLVER__DEVUELVE,
+				(DiagramapseudocodigoPackage.Literals.UNARIA__VARIABLE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createValorBooleano()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.DEVOLVER__DEVUELVE,
+				(DiagramapseudocodigoPackage.Literals.UNARIA__VARIABLE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createCaracter()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.DEVOLVER__DEVUELVE,
+				(DiagramapseudocodigoPackage.Literals.UNARIA__VARIABLE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createInternas()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.DEVOLVER__DEVUELVE,
+				(DiagramapseudocodigoPackage.Literals.UNARIA__VARIABLE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createunaria()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return DiagramaPseudocodigoEditPlugin.INSTANCE;
 	}
 
 }

@@ -301,6 +301,15 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	Caso createCaso();
 
 	/**
+	 * Returns a new object of class '<em>unaria</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>unaria</em>'.
+	 * @generated
+	 */
+	unaria createunaria();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

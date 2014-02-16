@@ -88,6 +88,7 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 			case DiagramapseudocodigoPackage.SEGUN: return createsegun();
 			case DiagramapseudocodigoPackage.DEVOLVER: return createDevolver();
 			case DiagramapseudocodigoPackage.CASO: return createCaso();
+			case DiagramapseudocodigoPackage.UNARIA: return createunaria();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -451,6 +452,16 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	public Caso createCaso() {
 		CasoImpl caso = new CasoImpl();
 		return caso;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public unaria createunaria() {
+		unariaImpl unaria = new unariaImpl();
+		return unaria;
 	}
 
 	/**

@@ -152,6 +152,7 @@
   <eClassifiers xsi:type="ecore:EEnum" name="inc">
     <eLiterals name="masmas" literal="++"/>
     <eLiterals name="menosmenos" value="1" literal="--"/>
+    <eLiterals name="no" value="2" literal="no"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Subproceso" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parametrofuncion" upperBound="-1"
@@ -205,5 +206,11 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sentencias" upperBound="-1"
         eType="#//Sentencias" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="unaria" eSuperTypes="#//valor">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ssigno" lowerBound="1"
+        eType="#//inc"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1"
+        eType="#//valor" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

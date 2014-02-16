@@ -282,14 +282,15 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValorBooleanoParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		private final RuleCall cCaracterParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		private final RuleCall cInternasParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
+		private final RuleCall cUnariaParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
 		
 		//valor:
 		//	LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter |
-		//	Internas;
+		//	Internas | unaria;
 		public ParserRule getRule() { return rule; }
 
 		//LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter |
-		//Internas
+		//Internas | unaria
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//LlamadaFuncion
@@ -318,6 +319,9 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Internas
 		public RuleCall getInternasParserRuleCall_8() { return cInternasParserRuleCall_8; }
+
+		//unaria
+		public RuleCall getUnariaParserRuleCall_9() { return cUnariaParserRuleCall_9; }
 	}
 
 	public class InicioElements extends AbstractParserRuleElementFinder {
@@ -1041,6 +1045,34 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getSsignoIncParserRuleCall_1_0() { return cSsignoIncParserRuleCall_1_0; }
 	}
 
+	public class UnariaElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "unaria");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cSsignoAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cSsignoIncParserRuleCall_0_0 = (RuleCall)cSsignoAssignment_0.eContents().get(0);
+		private final Assignment cVariableAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cVariableValorParserRuleCall_1_0 = (RuleCall)cVariableAssignment_1.eContents().get(0);
+		
+		//unaria:
+		//	ssigno=inc variable=valor;
+		public ParserRule getRule() { return rule; }
+
+		//ssigno=inc variable=valor
+		public Group getGroup() { return cGroup; }
+
+		//ssigno=inc
+		public Assignment getSsignoAssignment_0() { return cSsignoAssignment_0; }
+
+		//inc
+		public RuleCall getSsignoIncParserRuleCall_0_0() { return cSsignoIncParserRuleCall_0_0; }
+
+		//variable=valor
+		public Assignment getVariableAssignment_1() { return cVariableAssignment_1; }
+
+		//valor
+		public RuleCall getVariableValorParserRuleCall_1_0() { return cVariableValorParserRuleCall_1_0; }
+	}
+
 	public class TipoVariableElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TipoVariable");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -1510,12 +1542,13 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cPlusSignPlusSignKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cHyphenMinusHyphenMinusKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cNoKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
 		
 		/// * TODO: implement this rule and an appropriate IValueConverter * / inc:
-		//	"++" | "--";
+		//	"++" | "--" | "no";
 		public ParserRule getRule() { return rule; }
 
-		//"++" | "--"
+		//"++" | "--" | "no"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"++"
@@ -1523,6 +1556,9 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"--"
 		public Keyword getHyphenMinusHyphenMinusKeyword_1() { return cHyphenMinusHyphenMinusKeyword_1; }
+
+		//"no"
+		public Keyword getNoKeyword_2() { return cNoKeyword_2; }
 	}
 
 	public class ParametroFuncionElements extends AbstractParserRuleElementFinder {
@@ -1865,6 +1901,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private CasoElements pCaso;
 	private SegunElements pSegun;
 	private IncrementoElements pIncremento;
+	private UnariaElements pUnaria;
 	private TipoVariableElements pTipoVariable;
 	private VariableElements pVariable;
 	private VariableIDElements pVariableID;
@@ -2022,7 +2059,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 	//valor:
 	//	LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter |
-	//	Internas;
+	//	Internas | unaria;
 	public ValorElements getValorAccess() {
 		return (pValor != null) ? pValor : (pValor = new ValorElements());
 	}
@@ -2172,6 +2209,16 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getIncrementoRule() {
 		return getIncrementoAccess().getRule();
+	}
+
+	//unaria:
+	//	ssigno=inc variable=valor;
+	public UnariaElements getUnariaAccess() {
+		return (pUnaria != null) ? pUnaria : (pUnaria = new UnariaElements());
+	}
+	
+	public ParserRule getUnariaRule() {
+		return getUnariaAccess().getRule();
 	}
 
 	//TipoVariable:
@@ -2353,7 +2400,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * TODO: implement this rule and an appropriate IValueConverter * / inc:
-	//	"++" | "--";
+	//	"++" | "--" | "no";
 	public IncElements getIncAccess() {
 		return (pInc != null) ? pInc : (pInc = new IncElements());
 	}

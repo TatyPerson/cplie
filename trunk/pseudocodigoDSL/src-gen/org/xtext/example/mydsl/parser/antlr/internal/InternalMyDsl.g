@@ -674,6 +674,16 @@ rulevalor returns [EObject current=null]
         $current = $this_Internas_8.current; 
         afterParserOrEnumRuleCall();
     }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getValorAccess().getUnariaParserRuleCall_9()); 
+    }
+    this_unaria_9=ruleunaria
+    { 
+        $current = $this_unaria_9.current; 
+        afterParserOrEnumRuleCall();
+    }
 )
 ;
 
@@ -1803,6 +1813,63 @@ ruleincremento returns [EObject current=null]
 
 
 
+// Entry rule entryRuleunaria
+entryRuleunaria returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getUnariaRule()); }
+	 iv_ruleunaria=ruleunaria 
+	 { $current=$iv_ruleunaria.current; } 
+	 EOF 
+;
+
+// Rule unaria
+ruleunaria returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getUnariaAccess().getSsignoIncParserRuleCall_0_0()); 
+	    }
+		lv_ssigno_0_0=ruleinc		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getUnariaRule());
+	        }
+       		set(
+       			$current, 
+       			"ssigno",
+        		lv_ssigno_0_0, 
+        		"inc");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getUnariaAccess().getVariableValorParserRuleCall_1_0()); 
+	    }
+		lv_variable_1_0=rulevalor		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getUnariaRule());
+	        }
+       		set(
+       			$current, 
+       			"variable",
+        		lv_variable_1_0, 
+        		"valor");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+;
+
+
+
+
+
 // Entry rule entryRuleTipoVariable
 entryRuleTipoVariable returns [String current=null] 
 	:
@@ -2702,6 +2769,13 @@ ruleinc returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
     {
         $current.merge(kw);
         newLeafNode(kw, grammarAccess.getIncAccess().getHyphenMinusHyphenMinusKeyword_1()); 
+    }
+
+    |
+	kw='no' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getIncAccess().getNoKeyword_2()); 
     }
 )
     ;

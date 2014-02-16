@@ -34,6 +34,7 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="diagramaPseudocodigo.ecore#//inc">
       <genEnumLiterals ecoreEnumLiteral="diagramaPseudocodigo.ecore#//inc/masmas"/>
       <genEnumLiterals ecoreEnumLiteral="diagramaPseudocodigo.ecore#//inc/menosmenos"/>
+      <genEnumLiterals ecoreEnumLiteral="diagramaPseudocodigo.ecore#//inc/no"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="diagramaPseudocodigo.ecore#//TipoPaso">
       <genEnumLiterals ecoreEnumLiteral="diagramaPseudocodigo.ecore#//TipoPaso/Entrada"/>
@@ -168,6 +169,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Caso/operador"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Caso/devuelve"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Caso/sentencias"/>
+    </genClasses>
+    <genClasses ecoreClass="diagramaPseudocodigo.ecore#//unaria">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//unaria/ssigno"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//unaria/variable"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

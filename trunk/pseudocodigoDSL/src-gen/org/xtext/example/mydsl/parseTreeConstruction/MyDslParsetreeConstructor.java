@@ -51,20 +51,21 @@ protected class ThisRootNode extends RootToken {
 			case 18: return new Caso_Group(this, this, 18, inst);
 			case 19: return new Segun_Group(this, this, 19, inst);
 			case 20: return new Incremento_Group(this, this, 20, inst);
-			case 21: return new Variable_Group(this, this, 21, inst);
-			case 22: return new VariableID_Group(this, this, 22, inst);
-			case 23: return new ConstCadena_ContenidoAssignment(this, this, 23, inst);
-			case 24: return new NumeroEntero_ValorAssignment(this, this, 24, inst);
-			case 25: return new NumeroDecimal_ValorAssignment(this, this, 25, inst);
-			case 26: return new ValorBooleano_ValorAssignment(this, this, 26, inst);
-			case 27: return new Operacion_Group(this, this, 27, inst);
-			case 28: return new Operando_izq_Oper_izqAssignment(this, this, 28, inst);
-			case 29: return new Operando_der_Oper_derAssignment(this, this, 29, inst);
-			case 30: return new Sino_Group(this, this, 30, inst);
-			case 31: return new Devolver_Group(this, this, 31, inst);
-			case 32: return new ParametroFuncion_Group(this, this, 32, inst);
-			case 33: return new Funcion_Group(this, this, 33, inst);
-			case 34: return new Procedimiento_Group(this, this, 34, inst);
+			case 21: return new Unaria_Group(this, this, 21, inst);
+			case 22: return new Variable_Group(this, this, 22, inst);
+			case 23: return new VariableID_Group(this, this, 23, inst);
+			case 24: return new ConstCadena_ContenidoAssignment(this, this, 24, inst);
+			case 25: return new NumeroEntero_ValorAssignment(this, this, 25, inst);
+			case 26: return new NumeroDecimal_ValorAssignment(this, this, 26, inst);
+			case 27: return new ValorBooleano_ValorAssignment(this, this, 27, inst);
+			case 28: return new Operacion_Group(this, this, 28, inst);
+			case 29: return new Operando_izq_Oper_izqAssignment(this, this, 29, inst);
+			case 30: return new Operando_der_Oper_derAssignment(this, this, 30, inst);
+			case 31: return new Sino_Group(this, this, 31, inst);
+			case 32: return new Devolver_Group(this, this, 32, inst);
+			case 33: return new ParametroFuncion_Group(this, this, 33, inst);
+			case 34: return new Funcion_Group(this, this, 34, inst);
+			case 35: return new Procedimiento_Group(this, this, 35, inst);
 			default: return null;
 		}	
 	}	
@@ -1328,12 +1329,12 @@ protected class Caracter_ContenidoAssignment extends AssignmentToken  {
  *
  * valor:
  * 	LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter |
- * 	Internas;
+ * 	Internas | unaria;
  *
  **/
 
 // LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter |
-// Internas
+// Internas | unaria
 protected class Valor_Alternatives extends AlternativesToken {
 
 	public Valor_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1357,6 +1358,7 @@ protected class Valor_Alternatives extends AlternativesToken {
 			case 6: return new Valor_ValorBooleanoParserRuleCall_6(lastRuleCallOrigin, this, 6, inst);
 			case 7: return new Valor_CaracterParserRuleCall_7(lastRuleCallOrigin, this, 7, inst);
 			case 8: return new Valor_InternasParserRuleCall_8(lastRuleCallOrigin, this, 8, inst);
+			case 9: return new Valor_UnariaParserRuleCall_9(lastRuleCallOrigin, this, 9, inst);
 			default: return null;
 		}	
 	}
@@ -1371,7 +1373,8 @@ protected class Valor_Alternatives extends AlternativesToken {
 		   getEObject().eClass() != grammarAccess.getNumeroEnteroRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getValorBooleanoRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getVariableIDRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getOperacionRule().getType().getClassifier())
+		   getEObject().eClass() != grammarAccess.getOperacionRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getUnariaRule().getType().getClassifier())
 			return null;
 		return eObjectConsumer;
 	}
@@ -1691,6 +1694,42 @@ protected class Valor_InternasParserRuleCall_8 extends RuleCallToken {
 		if(getEObject().eClass() != grammarAccess.getInternasRule().getType().getClassifier())
 			return null;
 		if(checkForRecursion(Internas_Group.class, eObjectConsumer)) return null;
+		return eObjectConsumer;
+	}
+	
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+// unaria
+protected class Valor_UnariaParserRuleCall_9 extends RuleCallToken {
+	
+	public Valor_UnariaParserRuleCall_9(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getValorAccess().getUnariaParserRuleCall_9();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Unaria_Group(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getUnariaRule().getType().getClassifier())
+			return null;
+		if(checkForRecursion(Unaria_Group.class, eObjectConsumer)) return null;
 		return eObjectConsumer;
 	}
 	
@@ -5265,6 +5304,125 @@ protected class Incremento_SsignoAssignment_1 extends AssignmentToken  {
 
 
 /************ end Rule incremento ****************/
+
+
+/************ begin Rule unaria ****************
+ *
+ * unaria:
+ * 	ssigno=inc variable=valor;
+ *
+ **/
+
+// ssigno=inc variable=valor
+protected class Unaria_Group extends GroupToken {
+	
+	public Unaria_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getUnariaAccess().getGroup();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Unaria_VariableAssignment_1(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getUnariaRule().getType().getClassifier())
+			return null;
+		return eObjectConsumer;
+	}
+
+}
+
+// ssigno=inc
+protected class Unaria_SsignoAssignment_0 extends AssignmentToken  {
+	
+	public Unaria_SsignoAssignment_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getUnariaAccess().getSsignoAssignment_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index, inst);
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("ssigno",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("ssigno");
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getUnariaAccess().getSsignoIncParserRuleCall_0_0(), value, null)) {
+			type = AssignmentType.DATATYPE_RULE_CALL;
+			element = grammarAccess.getUnariaAccess().getSsignoIncParserRuleCall_0_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+// variable=valor
+protected class Unaria_VariableAssignment_1 extends AssignmentToken  {
+	
+	public Unaria_VariableAssignment_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getUnariaAccess().getVariableAssignment_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Valor_Alternatives(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("variable",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("variable");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getValorRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getUnariaAccess().getVariableValorParserRuleCall_1_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new Unaria_SsignoAssignment_0(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+
+/************ end Rule unaria ****************/
 
 
 
