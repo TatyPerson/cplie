@@ -157,12 +157,17 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Internas/operador"/>
     </genClasses>
     <genClasses ecoreClass="diagramaPseudocodigo.ecore#//segun">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//segun/operador"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//segun/caso"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//segun/devuelve"/>
     </genClasses>
     <genClasses ecoreClass="diagramaPseudocodigo.ecore#//Devolver">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Devolver/EReference0"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Devolver/devuelve"/>
+    </genClasses>
+    <genClasses ecoreClass="diagramaPseudocodigo.ecore#//Caso">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Caso/operador"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Caso/devuelve"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Caso/sentencias"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

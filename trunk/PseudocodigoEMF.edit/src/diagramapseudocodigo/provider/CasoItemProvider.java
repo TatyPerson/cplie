@@ -3,9 +3,9 @@
 package diagramapseudocodigo.provider;
 
 
+import diagramapseudocodigo.Caso;
 import diagramapseudocodigo.DiagramapseudocodigoFactory;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
-import diagramapseudocodigo.segun;
 
 import java.util.Collection;
 import java.util.List;
@@ -13,24 +13,25 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link diagramapseudocodigo.segun} object.
+ * This is the item provider adapter for a {@link diagramapseudocodigo.Caso} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class segunItemProvider
-	extends BloqueItemProvider
+public class CasoItemProvider
+	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -43,7 +44,7 @@ public class segunItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public segunItemProvider(AdapterFactory adapterFactory) {
+	public CasoItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -74,8 +75,9 @@ public class segunItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.SEGUN__CASO);
-			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.SEGUN__DEVUELVE);
+			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR);
+			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CASO__DEVUELVE);
+			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS);
 		}
 		return childrenFeatures;
 	}
@@ -94,14 +96,14 @@ public class segunItemProvider
 	}
 
 	/**
-	 * This returns segun.gif.
+	 * This returns Caso.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/segun"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Caso"));
 	}
 
 	/**
@@ -112,7 +114,7 @@ public class segunItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_segun_type");
+		return getString("_UI_Caso_type");
 	}
 
 	/**
@@ -126,9 +128,10 @@ public class segunItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(segun.class)) {
-			case DiagramapseudocodigoPackage.SEGUN__CASO:
-			case DiagramapseudocodigoPackage.SEGUN__DEVUELVE:
+		switch (notification.getFeatureID(Caso.class)) {
+			case DiagramapseudocodigoPackage.CASO__OPERADOR:
+			case DiagramapseudocodigoPackage.CASO__DEVUELVE:
+			case DiagramapseudocodigoPackage.CASO__SENTENCIAS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -148,36 +151,99 @@ public class segunItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.SEGUN__CASO,
-				 DiagramapseudocodigoFactory.eINSTANCE.createCaso()));
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createVariableID()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.SEGUN__DEVUELVE,
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createConstCadena()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNumeroEntero()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNumeroDecimal()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorBooleano()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createCaracter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__DEVUELVE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createDevolver()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createLlamadaFuncion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createAsignacion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createEscribir()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createLeer()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createSi()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createmientras()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createrepetir()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createdesde()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createincremento()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createsegun()));
 	}
 
 	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
-
-		boolean qualify =
-			childFeature == DiagramapseudocodigoPackage.Literals.BLOQUE__VALOR ||
-			childFeature == DiagramapseudocodigoPackage.Literals.BLOQUE__SENTENCIAS;
-
-		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
+	public ResourceLocator getResourceLocator() {
+		return DiagramaPseudocodigoEditPlugin.INSTANCE;
 	}
 
 }

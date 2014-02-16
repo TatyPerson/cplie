@@ -136,6 +136,11 @@ class MyDslGenerator implements IGenerator {
 			prueba = mySent as segun
 			prueba.toC
 		}
+		else if(mySent.eClass.name.equals("Caso")){
+			var Caso prueba = new CasoImpl
+			prueba = mySent as Caso
+			prueba.toC
+		}
 		else if(mySent.eClass.name.equals("mientras")){
 			var mientras prueba = new mientrasImpl
 			prueba = mySent as mientras
@@ -362,26 +367,28 @@ class MyDslGenerator implements IGenerator {
 		«ENDIF»
 	'''
 	
-	def toC(segun mySegun)'''
-	«var actualSent = -1»
-	«var actualDev = -1»
-	switch(«mySegun.valor.toC»){
-		«FOR sent:mySegun.operador»
-		case «sent.toC»:
-			«IF mySegun.sentencias.size() != 0» 
-			«mySegun.sentencias.get(actualSent = actualSent + 1).toC»
-			«ENDIF»
-			«IF mySegun.devuelve.size() != 0» 
-			«mySegun.devuelve.get(actualDev = actualDev + 1).toC»
+	def toC(Caso myCaso)'''
+		case «myCaso.operador.toC»:
+			«FOR sent:myCaso.sentencias»
+				«sent.toC»
+			«ENDFOR»
+			«IF myCaso.devuelve != null» 
+			«myCaso.devuelve.toC»
 			«ENDIF»
 		break;
+	'''
+	
+	def toC(segun mySegun)'''
+	switch(«mySegun.valor.toC»){
+		«FOR cas:mySegun.caso»
+			«cas.toC» 
 		«ENDFOR»
 		default:
-			«IF mySegun.sentencias.size() != 0» 
-			«mySegun.sentencias.get(actualSent = actualSent + 1).toC»
-			«ENDIF»
-			«IF mySegun.devuelve.size() != 0»
-			«mySegun.devuelve.get(actualDev = actualDev + 1).toC»
+			«FOR sent:mySegun.sentencias»
+				«sent.toC»
+			«ENDFOR»
+			«IF mySegun.devuelve != null» 
+			«mySegun.devuelve.toC»
 			«ENDIF»
 		break;
 	}

@@ -762,6 +762,29 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.Caso} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CasoItemProvider casoItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.Caso}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCasoAdapter() {
+		if (casoItemProvider == null) {
+			casoItemProvider = new CasoItemProvider(this);
+		}
+
+		return casoItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -890,6 +913,7 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 		if (internasItemProvider != null) internasItemProvider.dispose();
 		if (segunItemProvider != null) segunItemProvider.dispose();
 		if (devolverItemProvider != null) devolverItemProvider.dispose();
+		if (casoItemProvider != null) casoItemProvider.dispose();
 	}
 
 }
