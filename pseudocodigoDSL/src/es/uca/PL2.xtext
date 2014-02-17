@@ -8,10 +8,12 @@ Codigo returns Codigo:
 	('const'
 		( constantes+=Constantes (constantes+=Constantes)* )? )?
 	('tipo'
-		( vector+=Vector (vector+=Vector)* )? )?
+		( tipocomplejo+=TipoComplejo (tipocomplejo+=TipoComplejo)* )? )?
 	(funcion+=Subproceso (funcion+=Subproceso)* )?
-	tiene=Inicio
-	;
+	tiene=Inicio;
+	
+TipoComplejo returns TipoComplejo:
+	Vector | Matriz;
 
 
 Subproceso returns Subproceso:
@@ -55,8 +57,11 @@ Constantes returns Constantes:
 	variable=Variable '=' valor=valor;
 
 Vector returns Vector:
-	'vector' ' [' constante=EString '] ' 'de ' tipoInterno=TipoVariable ' : ' nombre=EString
-;
+	'vector' ' [' constante=EString '] ' 'de ' tipoInterno=TipoVariable ' : ' nombre=EString;
+
+Matriz returns Matriz:
+	'matriz' ' [' constante=EString '][' constante2=EString '] ' 'de ' tipoInterno=TipoVariable ' : ' nombre=EString;
+
 
 Inicio returns Inicio:
 	{Inicio}
@@ -85,7 +90,7 @@ LlamadaFuncion returns LlamadaFuncion:
 
 Asignacion returns Asignacion:
 	 lvalue=EString
-	 Mat+=MATRIZ*
+	 Mat+=MAT*
 	 '='
 	operador=valor;
 
@@ -152,16 +157,16 @@ TipoVariable returns TipoVariable:
 	
 Variable returns Variable:
 	 nombre=EString
-	 Mat+=MATRIZ*;
+	 Mat+=MAT*;
 
 VariableID returns VariableID:
 	nombre=EString
-	Mat+=MATRIZ*;
+	Mat+=MAT*;
 
 terminal CAD: '"' ('a'..'z'|'A'..'Z'|'_'|' '|'!'|'#'|'@'|'%'|'&'|'('|')'|'='|'?'|'\\'|'0'..'9')* '"';
 terminal CAR: "'" ('a'..'z'|'A'..'Z'|'_'|' '|'!'|'#'|'@'|'%'|'&'|'('|')'|'='|'?'|'\\'|'0'..'9') "'";
 
-terminal MATRIZ: 
+terminal MAT: 
 '[' ('a'..'z'|'A'..'Z'|'0'..'9')*('--'|'++')? ']' ;
 
 

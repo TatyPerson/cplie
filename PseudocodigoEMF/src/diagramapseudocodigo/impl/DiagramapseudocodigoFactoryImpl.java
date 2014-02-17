@@ -93,6 +93,8 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 			case DiagramapseudocodigoPackage.VECTOR: return createVector();
 			case DiagramapseudocodigoPackage.DECLARACION_PROPIA: return createDeclaracionPropia();
 			case DiagramapseudocodigoPackage.DECLARACION: return createDeclaracion();
+			case DiagramapseudocodigoPackage.MATRIZ: return createMatriz();
+			case DiagramapseudocodigoPackage.TIPO_COMPLEJO: return createTipoComplejo();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -506,6 +508,26 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	public Declaracion createDeclaracion() {
 		DeclaracionImpl declaracion = new DeclaracionImpl();
 		return declaracion;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Matriz createMatriz() {
+		MatrizImpl matriz = new MatrizImpl();
+		return matriz;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TipoComplejo createTipoComplejo() {
+		TipoComplejoImpl tipoComplejo = new TipoComplejoImpl();
+		return tipoComplejo;
 	}
 
 	/**

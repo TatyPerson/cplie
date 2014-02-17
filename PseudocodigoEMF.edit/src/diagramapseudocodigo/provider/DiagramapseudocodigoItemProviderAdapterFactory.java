@@ -900,6 +900,52 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.Matriz} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MatrizItemProvider matrizItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.Matriz}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMatrizAdapter() {
+		if (matrizItemProvider == null) {
+			matrizItemProvider = new MatrizItemProvider(this);
+		}
+
+		return matrizItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.TipoComplejo} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TipoComplejoItemProvider tipoComplejoItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.TipoComplejo}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTipoComplejoAdapter() {
+		if (tipoComplejoItemProvider == null) {
+			tipoComplejoItemProvider = new TipoComplejoItemProvider(this);
+		}
+
+		return tipoComplejoItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1034,6 +1080,8 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 		if (vectorItemProvider != null) vectorItemProvider.dispose();
 		if (declaracionPropiaItemProvider != null) declaracionPropiaItemProvider.dispose();
 		if (declaracionItemProvider != null) declaracionItemProvider.dispose();
+		if (matrizItemProvider != null) matrizItemProvider.dispose();
+		if (tipoComplejoItemProvider != null) tipoComplejoItemProvider.dispose();
 	}
 
 }

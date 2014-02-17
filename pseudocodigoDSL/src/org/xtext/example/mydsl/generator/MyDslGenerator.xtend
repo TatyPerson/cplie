@@ -33,8 +33,8 @@ class MyDslGenerator implements IGenerator {
 	«FOR myConstante:myCodigo.constantes»
 		«myConstante.toC»
 	«ENDFOR»
-	«FOR myVector:myCodigo.vector»
-		«myVector.toC»
+	«FOR myComplejo:myCodigo.tipocomplejo»
+		«myComplejo.toC»
 	«ENDFOR»
 
 	«FOR funcion:myCodigo.funcion»
@@ -44,12 +44,30 @@ class MyDslGenerator implements IGenerator {
 	«myCodigo.tiene.toC»
 	'''
 	
+	def toC(TipoComplejo myComplejo){
+		if(myComplejo.eClass.name.equals("Vector")){
+			var Vector prueba = new VectorImpl
+			prueba = myComplejo as Vector
+			prueba.toC
+		}
+		else if(myComplejo.eClass.name.equals("Matriz")){
+			var Matriz prueba = new MatrizImpl
+			prueba = myComplejo as Matriz
+			prueba.toC
+		}
+	
+	}
+	
 	def toC(Constantes myConstante)'''
 		#define «myConstante.variable.nombre»  «myConstante.valor.toC»
 	'''
 	
 	def toC(Vector myVector)'''
 		typedef «tipoVariable(myVector.tipoInterno)» «myVector.nombre»[«myVector.constante»];
+	'''
+	
+	def toC(Matriz myMatriz)'''
+		typedef «tipoVariable(myMatriz.tipoInterno)» «myMatriz.nombre»[«myMatriz.constante»][«myMatriz.constante2»];
 	'''
 	
 	def toC(Inicio myInicio)'''

@@ -333,6 +333,7 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 			case DiagramapseudocodigoPackage.VECTOR: {
 				Vector vector = (Vector)theEObject;
 				T result = caseVector(vector);
+				if (result == null) result = caseTipoComplejo(vector);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -346,6 +347,19 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 			case DiagramapseudocodigoPackage.DECLARACION: {
 				Declaracion declaracion = (Declaracion)theEObject;
 				T result = caseDeclaracion(declaracion);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiagramapseudocodigoPackage.MATRIZ: {
+				Matriz matriz = (Matriz)theEObject;
+				T result = caseMatriz(matriz);
+				if (result == null) result = caseTipoComplejo(matriz);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiagramapseudocodigoPackage.TIPO_COMPLEJO: {
+				TipoComplejo tipoComplejo = (TipoComplejo)theEObject;
+				T result = caseTipoComplejo(tipoComplejo);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -965,6 +979,36 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDeclaracion(Declaracion object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Matriz</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Matriz</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMatriz(Matriz object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Tipo Complejo</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Tipo Complejo</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTipoComplejo(TipoComplejo object) {
 		return null;
 	}
 

@@ -3,28 +3,49 @@
 package diagramapseudocodigo.impl;
 
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
+import diagramapseudocodigo.Matriz;
 import diagramapseudocodigo.TipoVariable;
-import diagramapseudocodigo.Vector;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Vector</b></em>'.
+ * An implementation of the model object '<em><b>Matriz</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link diagramapseudocodigo.impl.VectorImpl#getTipoInterno <em>Tipo Interno</em>}</li>
- *   <li>{@link diagramapseudocodigo.impl.VectorImpl#getNombre <em>Nombre</em>}</li>
- *   <li>{@link diagramapseudocodigo.impl.VectorImpl#getConstante <em>Constante</em>}</li>
+ *   <li>{@link diagramapseudocodigo.impl.MatrizImpl#getConstante <em>Constante</em>}</li>
+ *   <li>{@link diagramapseudocodigo.impl.MatrizImpl#getTipoInterno <em>Tipo Interno</em>}</li>
+ *   <li>{@link diagramapseudocodigo.impl.MatrizImpl#getNombre <em>Nombre</em>}</li>
+ *   <li>{@link diagramapseudocodigo.impl.MatrizImpl#getConstante2 <em>Constante2</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class VectorImpl extends TipoComplejoImpl implements Vector {
+public class MatrizImpl extends TipoComplejoImpl implements Matriz {
+	/**
+	 * The default value of the '{@link #getConstante() <em>Constante</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConstante()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CONSTANTE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getConstante() <em>Constante</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConstante()
+	 * @generated
+	 * @ordered
+	 */
+	protected String constante = CONSTANTE_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getTipoInterno() <em>Tipo Interno</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -66,31 +87,31 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	protected String nombre = NOMBRE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getConstante() <em>Constante</em>}' attribute.
+	 * The default value of the '{@link #getConstante2() <em>Constante2</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConstante()
+	 * @see #getConstante2()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String CONSTANTE_EDEFAULT = null;
+	protected static final String CONSTANTE2_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getConstante() <em>Constante</em>}' attribute.
+	 * The cached value of the '{@link #getConstante2() <em>Constante2</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConstante()
+	 * @see #getConstante2()
 	 * @generated
 	 * @ordered
 	 */
-	protected String constante = CONSTANTE_EDEFAULT;
+	protected String constante2 = CONSTANTE2_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VectorImpl() {
+	public MatrizImpl() {
 		super();
 	}
 
@@ -101,7 +122,7 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DiagramapseudocodigoPackage.Literals.VECTOR;
+		return DiagramapseudocodigoPackage.Literals.MATRIZ;
 	}
 
 	/**
@@ -122,7 +143,7 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 		String oldConstante = constante;
 		constante = newConstante;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.VECTOR__CONSTANTE, oldConstante, constante));
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.MATRIZ__CONSTANTE, oldConstante, constante));
 	}
 
 	/**
@@ -143,7 +164,7 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 		TipoVariable oldTipoInterno = tipoInterno;
 		tipoInterno = newTipoInterno == null ? TIPO_INTERNO_EDEFAULT : newTipoInterno;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.VECTOR__TIPO_INTERNO, oldTipoInterno, tipoInterno));
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.MATRIZ__TIPO_INTERNO, oldTipoInterno, tipoInterno));
 	}
 
 	/**
@@ -164,7 +185,28 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 		String oldNombre = nombre;
 		nombre = newNombre;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.VECTOR__NOMBRE, oldNombre, nombre));
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.MATRIZ__NOMBRE, oldNombre, nombre));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getConstante2() {
+		return constante2;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setConstante2(String newConstante2) {
+		String oldConstante2 = constante2;
+		constante2 = newConstante2;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.MATRIZ__CONSTANTE2, oldConstante2, constante2));
 	}
 
 	/**
@@ -175,12 +217,14 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DiagramapseudocodigoPackage.VECTOR__TIPO_INTERNO:
-				return getTipoInterno();
-			case DiagramapseudocodigoPackage.VECTOR__NOMBRE:
-				return getNombre();
-			case DiagramapseudocodigoPackage.VECTOR__CONSTANTE:
+			case DiagramapseudocodigoPackage.MATRIZ__CONSTANTE:
 				return getConstante();
+			case DiagramapseudocodigoPackage.MATRIZ__TIPO_INTERNO:
+				return getTipoInterno();
+			case DiagramapseudocodigoPackage.MATRIZ__NOMBRE:
+				return getNombre();
+			case DiagramapseudocodigoPackage.MATRIZ__CONSTANTE2:
+				return getConstante2();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -193,14 +237,17 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DiagramapseudocodigoPackage.VECTOR__TIPO_INTERNO:
+			case DiagramapseudocodigoPackage.MATRIZ__CONSTANTE:
+				setConstante((String)newValue);
+				return;
+			case DiagramapseudocodigoPackage.MATRIZ__TIPO_INTERNO:
 				setTipoInterno((TipoVariable)newValue);
 				return;
-			case DiagramapseudocodigoPackage.VECTOR__NOMBRE:
+			case DiagramapseudocodigoPackage.MATRIZ__NOMBRE:
 				setNombre((String)newValue);
 				return;
-			case DiagramapseudocodigoPackage.VECTOR__CONSTANTE:
-				setConstante((String)newValue);
+			case DiagramapseudocodigoPackage.MATRIZ__CONSTANTE2:
+				setConstante2((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -214,14 +261,17 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DiagramapseudocodigoPackage.VECTOR__TIPO_INTERNO:
+			case DiagramapseudocodigoPackage.MATRIZ__CONSTANTE:
+				setConstante(CONSTANTE_EDEFAULT);
+				return;
+			case DiagramapseudocodigoPackage.MATRIZ__TIPO_INTERNO:
 				setTipoInterno(TIPO_INTERNO_EDEFAULT);
 				return;
-			case DiagramapseudocodigoPackage.VECTOR__NOMBRE:
+			case DiagramapseudocodigoPackage.MATRIZ__NOMBRE:
 				setNombre(NOMBRE_EDEFAULT);
 				return;
-			case DiagramapseudocodigoPackage.VECTOR__CONSTANTE:
-				setConstante(CONSTANTE_EDEFAULT);
+			case DiagramapseudocodigoPackage.MATRIZ__CONSTANTE2:
+				setConstante2(CONSTANTE2_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -235,12 +285,14 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DiagramapseudocodigoPackage.VECTOR__TIPO_INTERNO:
-				return tipoInterno != TIPO_INTERNO_EDEFAULT;
-			case DiagramapseudocodigoPackage.VECTOR__NOMBRE:
-				return NOMBRE_EDEFAULT == null ? nombre != null : !NOMBRE_EDEFAULT.equals(nombre);
-			case DiagramapseudocodigoPackage.VECTOR__CONSTANTE:
+			case DiagramapseudocodigoPackage.MATRIZ__CONSTANTE:
 				return CONSTANTE_EDEFAULT == null ? constante != null : !CONSTANTE_EDEFAULT.equals(constante);
+			case DiagramapseudocodigoPackage.MATRIZ__TIPO_INTERNO:
+				return tipoInterno != TIPO_INTERNO_EDEFAULT;
+			case DiagramapseudocodigoPackage.MATRIZ__NOMBRE:
+				return NOMBRE_EDEFAULT == null ? nombre != null : !NOMBRE_EDEFAULT.equals(nombre);
+			case DiagramapseudocodigoPackage.MATRIZ__CONSTANTE2:
+				return CONSTANTE2_EDEFAULT == null ? constante2 != null : !CONSTANTE2_EDEFAULT.equals(constante2);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -255,14 +307,16 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (tipoInterno: ");
+		result.append(" (constante: ");
+		result.append(constante);
+		result.append(", tipoInterno: ");
 		result.append(tipoInterno);
 		result.append(", nombre: ");
 		result.append(nombre);
-		result.append(", constante: ");
-		result.append(constante);
+		result.append(", constante2: ");
+		result.append(constante2);
 		result.append(')');
 		return result.toString();
 	}
 
-} //VectorImpl
+} //MatrizImpl

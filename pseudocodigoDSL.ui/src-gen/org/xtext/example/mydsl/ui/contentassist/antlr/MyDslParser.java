@@ -37,6 +37,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
+					put(grammarAccess.getTipoComplejoAccess().getAlternatives(), "rule__TipoComplejo__Alternatives");
 					put(grammarAccess.getSubprocesoAccess().getAlternatives(), "rule__Subproceso__Alternatives");
 					put(grammarAccess.getSentenciasAccess().getAlternatives(), "rule__Sentencias__Alternatives");
 					put(grammarAccess.getBloqueAccess().getAlternatives(), "rule__Bloque__Alternatives");
@@ -60,6 +61,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getInternasAccess().getGroup(), "rule__Internas__Group__0");
 					put(grammarAccess.getConstantesAccess().getGroup(), "rule__Constantes__Group__0");
 					put(grammarAccess.getVectorAccess().getGroup(), "rule__Vector__Group__0");
+					put(grammarAccess.getMatrizAccess().getGroup(), "rule__Matriz__Group__0");
 					put(grammarAccess.getInicioAccess().getGroup(), "rule__Inicio__Group__0");
 					put(grammarAccess.getInicioAccess().getGroup_2(), "rule__Inicio__Group_2__0");
 					put(grammarAccess.getInicioAccess().getGroup_4(), "rule__Inicio__Group_4__0");
@@ -111,8 +113,8 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getProcedimientoAccess().getGroup_10(), "rule__Procedimiento__Group_10__0");
 					put(grammarAccess.getCodigoAccess().getConstantesAssignment_0_1_0(), "rule__Codigo__ConstantesAssignment_0_1_0");
 					put(grammarAccess.getCodigoAccess().getConstantesAssignment_0_1_1(), "rule__Codigo__ConstantesAssignment_0_1_1");
-					put(grammarAccess.getCodigoAccess().getVectorAssignment_1_1_0(), "rule__Codigo__VectorAssignment_1_1_0");
-					put(grammarAccess.getCodigoAccess().getVectorAssignment_1_1_1(), "rule__Codigo__VectorAssignment_1_1_1");
+					put(grammarAccess.getCodigoAccess().getTipocomplejoAssignment_1_1_0(), "rule__Codigo__TipocomplejoAssignment_1_1_0");
+					put(grammarAccess.getCodigoAccess().getTipocomplejoAssignment_1_1_1(), "rule__Codigo__TipocomplejoAssignment_1_1_1");
 					put(grammarAccess.getCodigoAccess().getFuncionAssignment_2_0(), "rule__Codigo__FuncionAssignment_2_0");
 					put(grammarAccess.getCodigoAccess().getFuncionAssignment_2_1(), "rule__Codigo__FuncionAssignment_2_1");
 					put(grammarAccess.getCodigoAccess().getTieneAssignment_3(), "rule__Codigo__TieneAssignment_3");
@@ -124,6 +126,10 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getVectorAccess().getConstanteAssignment_2(), "rule__Vector__ConstanteAssignment_2");
 					put(grammarAccess.getVectorAccess().getTipoInternoAssignment_5(), "rule__Vector__TipoInternoAssignment_5");
 					put(grammarAccess.getVectorAccess().getNombreAssignment_7(), "rule__Vector__NombreAssignment_7");
+					put(grammarAccess.getMatrizAccess().getConstanteAssignment_2(), "rule__Matriz__ConstanteAssignment_2");
+					put(grammarAccess.getMatrizAccess().getConstante2Assignment_4(), "rule__Matriz__Constante2Assignment_4");
+					put(grammarAccess.getMatrizAccess().getTipoInternoAssignment_7(), "rule__Matriz__TipoInternoAssignment_7");
+					put(grammarAccess.getMatrizAccess().getNombreAssignment_9(), "rule__Matriz__NombreAssignment_9");
 					put(grammarAccess.getInicioAccess().getDeclaracionAssignment_2_0(), "rule__Inicio__DeclaracionAssignment_2_0");
 					put(grammarAccess.getInicioAccess().getDeclaracionAssignment_2_1(), "rule__Inicio__DeclaracionAssignment_2_1");
 					put(grammarAccess.getInicioAccess().getTieneAssignment_4_0(), "rule__Inicio__TieneAssignment_4_0");
