@@ -17,6 +17,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link diagramapseudocodigo.Codigo#getTiene <em>Tiene</em>}</li>
  *   <li>{@link diagramapseudocodigo.Codigo#getFuncion <em>Funcion</em>}</li>
  *   <li>{@link diagramapseudocodigo.Codigo#getNombre <em>Nombre</em>}</li>
+ *   <li>{@link diagramapseudocodigo.Codigo#getConstantes <em>Constantes</em>}</li>
+ *   <li>{@link diagramapseudocodigo.Codigo#getVector <em>Vector</em>}</li>
  * </ul>
  * </p>
  *
@@ -92,5 +94,37 @@ public interface Codigo extends EObject {
 	 * @generated
 	 */
 	void setNombre(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Constantes</b></em>' containment reference list.
+	 * The list contents are of type {@link diagramapseudocodigo.Constantes}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Constantes</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Constantes</em>' containment reference list.
+	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getCodigo_Constantes()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Constantes> getConstantes();
+
+	/**
+	 * Returns the value of the '<em><b>Vector</b></em>' containment reference list.
+	 * The list contents are of type {@link diagramapseudocodigo.Vector}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Vector</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Vector</em>' containment reference list.
+	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getCodigo_Vector()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Vector> getVector();
 
 } // Codigo

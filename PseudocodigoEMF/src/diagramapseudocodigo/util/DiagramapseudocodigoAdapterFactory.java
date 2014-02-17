@@ -216,6 +216,18 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 				return createunariaAdapter();
 			}
 			@Override
+			public Adapter caseConstantes(Constantes object) {
+				return createConstantesAdapter();
+			}
+			@Override
+			public Adapter caseVector(Vector object) {
+				return createVectorAdapter();
+			}
+			@Override
+			public Adapter caseDeclaracionPropia(DeclaracionPropia object) {
+				return createDeclaracionPropiaAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -750,6 +762,48 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createunariaAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.Constantes <em>Constantes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.Constantes
+	 * @generated
+	 */
+	public Adapter createConstantesAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.Vector <em>Vector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.Vector
+	 * @generated
+	 */
+	public Adapter createVectorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.DeclaracionPropia <em>Declaracion Propia</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.DeclaracionPropia
+	 * @generated
+	 */
+	public Adapter createDeclaracionPropiaAdapter() {
 		return null;
 	}
 

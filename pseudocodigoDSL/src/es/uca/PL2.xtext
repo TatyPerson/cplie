@@ -5,6 +5,10 @@ import "http://diagramapseudocodigo/1.0"
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 Codigo returns Codigo:
+	('const'
+		( constantes+=Constantes (constantes+=Constantes)* )? )?
+	('tipo'
+		( vector+=Vector (vector+=Vector)* )? )?
 	(funcion+=Subproceso (funcion+=Subproceso)* )?
 	tiene=Inicio
 	;
@@ -20,7 +24,7 @@ Sentencias returns Sentencias:
 	LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque;
 
 Bloque returns Bloque:
-	Si | mientras | repetir | segun;
+	Si | mientras | repetir | desde | segun;
 
 Internas returns Internas:
 	nombre=NombreInterna
@@ -43,10 +47,19 @@ Caracter returns Caracter:
 valor returns valor:
 	LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter | Internas | unaria;
 
+
+Constantes returns Constantes:
+	variable=Variable '=' valor=valor;
+
+Vector returns Vector:
+	'vector' ' [' constante=EString '] ' 'de ' tipoInterno=TipoVariable ' : ' nombre=EString
+;
+
 Inicio returns Inicio:
 	{Inicio}
 	'var'
 	( declaracionvariable+=DeclaracionVariable (	declaracionvariable+=DeclaracionVariable)*  )?
+	( declaracionpropia+=DeclaracionPropia (declaracionpropia+=DeclaracionPropia)* )?
 	'inicio'
 		(tiene+=Sentencias (  tiene+=Sentencias)*  )?
 	'fin_inicio';
@@ -55,8 +68,12 @@ EString returns ecore::EString:
 	STRING | ID;
 
 DeclaracionVariable returns DeclaracionVariable:
-	tipo=TipoVariable + ":"
-	tieneIDs+=Variable ( "," tieneIDs+=Variable)*;
+	tipo=TipoVariable + ':'
+	tieneIDs+=Variable ( ',' tieneIDs+=Variable)*;
+	
+DeclaracionPropia returns DeclaracionPropia:
+	tipo=EString + ':'
+	variable+=Variable (',' variable+=Variable)*;
 
 LlamadaFuncion returns LlamadaFuncion:
 	nombre=EString
@@ -209,6 +226,8 @@ Funcion returns Funcion:
 	'funcion'
 	nombre=EString
 	'('(parametrofuncion+=ParametroFuncion ( "," parametrofuncion+=ParametroFuncion)*  )?')'
+	'const'?
+	'tipo'?
 	'var'
 	( declaracionvariable+=DeclaracionVariable (	declaracionvariable+=DeclaracionVariable)*  )?
 	'inicio'
@@ -220,6 +239,8 @@ Procedimiento returns Procedimiento:
 	'procedimiento'
 	nombre=EString
 	'('(parametrofuncion+=ParametroFuncion ( "," parametrofuncion+=ParametroFuncion)*  )?')'
+	'const'?
+	'tipo'?
 	'var'
 	( declaracionvariable+=DeclaracionVariable (	declaracionvariable+=DeclaracionVariable)*  )?
 	'inicio'

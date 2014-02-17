@@ -29,6 +29,13 @@ class MyDslGenerator implements IGenerator {
 	#include <cmath>
 	
 	using namespace std;
+	
+	«FOR myConstante:myCodigo.constantes»
+		«myConstante.toC»
+	«ENDFOR»
+	«FOR myVector:myCodigo.vector»
+		«myVector.toC»
+	«ENDFOR»
 
 	«FOR funcion:myCodigo.funcion»
 		«funcion.toC»
@@ -37,9 +44,20 @@ class MyDslGenerator implements IGenerator {
 	«myCodigo.tiene.toC»
 	'''
 	
+	def toC(Constantes myConstante)'''
+		#define «myConstante.variable.nombre»  «myConstante.valor.toC»
+	'''
+	
+	def toC(Vector myVector)'''
+		typedef «tipoVariable(myVector.tipoInterno)» «myVector.nombre»[«myVector.constante»];
+	'''
+	
 	def toC(Inicio myInicio)'''
 		int main(){
 			«FOR myVariable:myInicio.declaracionvariable»
+				«myVariable.toC»
+			«ENDFOR»
+			«FOR myVariable:myInicio.declaracionpropia»
 				«myVariable.toC»
 			«ENDFOR»
 			«FOR mySentencia:myInicio.tiene»
@@ -173,13 +191,17 @@ class MyDslGenerator implements IGenerator {
 		}
 	}
 	
-	def pintarVariables(EList<Variable> v, TipoVariable tipo)'''
+	def pintarVariables(EList<Variable> v)'''
 	«v.get(0).nombre»«FOR matri:v.get(0).mat»«matri.toString»«ENDFOR»«FOR id:v»«IF id.nombre != v.get(0).nombre», «id.nombre»«FOR matri2:id.mat»«matri2.toString»«ENDFOR»«ENDIF»«ENDFOR»;	
 	'''
 	
 	// «myDec.tieneIDs.get(0).nombre»«FOR id:myDec.tieneIDs»«IF id.nombre != myDec.tieneIDs.get(0).nombre», «id.nombre»«ENDIF»«ENDFOR»;
 	def toC(DeclaracionVariable myDec)'''
-		«myDec.tipo.tipoVariable» «pintarVariables(myDec.tieneIDs, myDec.tipo)»
+		«myDec.tipo.tipoVariable» «pintarVariables(myDec.tieneIDs)»
+	'''
+	
+	def toC(DeclaracionPropia myDec)'''
+		«myDec.tipo» «pintarVariables(myDec.variable)»
 	'''
 	
 	def toC(Asignacion asig)'''

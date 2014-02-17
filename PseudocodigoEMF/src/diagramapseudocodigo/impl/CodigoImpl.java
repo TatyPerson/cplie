@@ -3,9 +3,11 @@
 package diagramapseudocodigo.impl;
 
 import diagramapseudocodigo.Codigo;
+import diagramapseudocodigo.Constantes;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Inicio;
 import diagramapseudocodigo.Subproceso;
+import diagramapseudocodigo.Vector;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -27,6 +29,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link diagramapseudocodigo.impl.CodigoImpl#getTiene <em>Tiene</em>}</li>
  *   <li>{@link diagramapseudocodigo.impl.CodigoImpl#getFuncion <em>Funcion</em>}</li>
  *   <li>{@link diagramapseudocodigo.impl.CodigoImpl#getNombre <em>Nombre</em>}</li>
+ *   <li>{@link diagramapseudocodigo.impl.CodigoImpl#getConstantes <em>Constantes</em>}</li>
+ *   <li>{@link diagramapseudocodigo.impl.CodigoImpl#getVector <em>Vector</em>}</li>
  * </ul>
  * </p>
  *
@@ -72,6 +76,26 @@ public class CodigoImpl extends MinimalEObjectImpl.Container implements Codigo {
 	 * @ordered
 	 */
 	protected String nombre = NOMBRE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getConstantes() <em>Constantes</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConstantes()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Constantes> constantes;
+
+	/**
+	 * The cached value of the '{@link #getVector() <em>Vector</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVector()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Vector> vector;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -173,6 +197,30 @@ public class CodigoImpl extends MinimalEObjectImpl.Container implements Codigo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Constantes> getConstantes() {
+		if (constantes == null) {
+			constantes = new EObjectContainmentEList<Constantes>(Constantes.class, this, DiagramapseudocodigoPackage.CODIGO__CONSTANTES);
+		}
+		return constantes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Vector> getVector() {
+		if (vector == null) {
+			vector = new EObjectContainmentEList<Vector>(Vector.class, this, DiagramapseudocodigoPackage.CODIGO__VECTOR);
+		}
+		return vector;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -180,6 +228,10 @@ public class CodigoImpl extends MinimalEObjectImpl.Container implements Codigo {
 				return basicSetTiene(null, msgs);
 			case DiagramapseudocodigoPackage.CODIGO__FUNCION:
 				return ((InternalEList<?>)getFuncion()).basicRemove(otherEnd, msgs);
+			case DiagramapseudocodigoPackage.CODIGO__CONSTANTES:
+				return ((InternalEList<?>)getConstantes()).basicRemove(otherEnd, msgs);
+			case DiagramapseudocodigoPackage.CODIGO__VECTOR:
+				return ((InternalEList<?>)getVector()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -198,6 +250,10 @@ public class CodigoImpl extends MinimalEObjectImpl.Container implements Codigo {
 				return getFuncion();
 			case DiagramapseudocodigoPackage.CODIGO__NOMBRE:
 				return getNombre();
+			case DiagramapseudocodigoPackage.CODIGO__CONSTANTES:
+				return getConstantes();
+			case DiagramapseudocodigoPackage.CODIGO__VECTOR:
+				return getVector();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -221,6 +277,14 @@ public class CodigoImpl extends MinimalEObjectImpl.Container implements Codigo {
 			case DiagramapseudocodigoPackage.CODIGO__NOMBRE:
 				setNombre((String)newValue);
 				return;
+			case DiagramapseudocodigoPackage.CODIGO__CONSTANTES:
+				getConstantes().clear();
+				getConstantes().addAll((Collection<? extends Constantes>)newValue);
+				return;
+			case DiagramapseudocodigoPackage.CODIGO__VECTOR:
+				getVector().clear();
+				getVector().addAll((Collection<? extends Vector>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -242,6 +306,12 @@ public class CodigoImpl extends MinimalEObjectImpl.Container implements Codigo {
 			case DiagramapseudocodigoPackage.CODIGO__NOMBRE:
 				setNombre(NOMBRE_EDEFAULT);
 				return;
+			case DiagramapseudocodigoPackage.CODIGO__CONSTANTES:
+				getConstantes().clear();
+				return;
+			case DiagramapseudocodigoPackage.CODIGO__VECTOR:
+				getVector().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -260,6 +330,10 @@ public class CodigoImpl extends MinimalEObjectImpl.Container implements Codigo {
 				return funcion != null && !funcion.isEmpty();
 			case DiagramapseudocodigoPackage.CODIGO__NOMBRE:
 				return NOMBRE_EDEFAULT == null ? nombre != null : !NOMBRE_EDEFAULT.equals(nombre);
+			case DiagramapseudocodigoPackage.CODIGO__CONSTANTES:
+				return constantes != null && !constantes.isEmpty();
+			case DiagramapseudocodigoPackage.CODIGO__VECTOR:
+				return vector != null && !vector.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

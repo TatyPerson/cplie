@@ -310,6 +310,33 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	unaria createunaria();
 
 	/**
+	 * Returns a new object of class '<em>Constantes</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Constantes</em>'.
+	 * @generated
+	 */
+	Constantes createConstantes();
+
+	/**
+	 * Returns a new object of class '<em>Vector</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Vector</em>'.
+	 * @generated
+	 */
+	Vector createVector();
+
+	/**
+	 * Returns a new object of class '<em>Declaracion Propia</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Declaracion Propia</em>'.
+	 * @generated
+	 */
+	DeclaracionPropia createDeclaracionPropia();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -104,6 +104,8 @@ public class CodigoItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CODIGO__TIENE);
 			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CODIGO__FUNCION);
+			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CODIGO__CONSTANTES);
+			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CODIGO__VECTOR);
 		}
 		return childrenFeatures;
 	}
@@ -163,6 +165,8 @@ public class CodigoItemProvider
 				return;
 			case DiagramapseudocodigoPackage.CODIGO__TIENE:
 			case DiagramapseudocodigoPackage.CODIGO__FUNCION:
+			case DiagramapseudocodigoPackage.CODIGO__CONSTANTES:
+			case DiagramapseudocodigoPackage.CODIGO__VECTOR:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -194,6 +198,16 @@ public class CodigoItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.CODIGO__FUNCION,
 				 DiagramapseudocodigoFactory.eINSTANCE.createProcedimiento()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CODIGO__CONSTANTES,
+				 DiagramapseudocodigoFactory.eINSTANCE.createConstantes()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CODIGO__VECTOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createVector()));
 	}
 
 	/**
