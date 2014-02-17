@@ -92,6 +92,7 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 			case DiagramapseudocodigoPackage.CONSTANTES: return createConstantes();
 			case DiagramapseudocodigoPackage.VECTOR: return createVector();
 			case DiagramapseudocodigoPackage.DECLARACION_PROPIA: return createDeclaracionPropia();
+			case DiagramapseudocodigoPackage.DECLARACION: return createDeclaracion();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -495,6 +496,16 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	public DeclaracionPropia createDeclaracionPropia() {
 		DeclaracionPropiaImpl declaracionPropia = new DeclaracionPropiaImpl();
 		return declaracionPropia;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Declaracion createDeclaracion() {
+		DeclaracionImpl declaracion = new DeclaracionImpl();
+		return declaracion;
 	}
 
 	/**

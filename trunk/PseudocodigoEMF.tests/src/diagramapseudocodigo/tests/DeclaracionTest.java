@@ -2,17 +2,28 @@
  */
 package diagramapseudocodigo.tests;
 
-import diagramapseudocodigo.DeclaracionVariable;
+import diagramapseudocodigo.Declaracion;
 import diagramapseudocodigo.DiagramapseudocodigoFactory;
+
+import junit.framework.TestCase;
+
 import junit.textui.TestRunner;
 
 /**
  * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>Declaracion Variable</b></em>'.
+ * A test case for the model object '<em><b>Declaracion</b></em>'.
  * <!-- end-user-doc -->
  * @generated
  */
-public class DeclaracionVariableTest extends DeclaracionTest {
+public class DeclaracionTest extends TestCase {
+
+	/**
+	 * The fixture for this Declaracion test case.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected Declaracion fixture = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -20,28 +31,37 @@ public class DeclaracionVariableTest extends DeclaracionTest {
 	 * @generated
 	 */
 	public static void main(String[] args) {
-		TestRunner.run(DeclaracionVariableTest.class);
+		TestRunner.run(DeclaracionTest.class);
 	}
 
 	/**
-	 * Constructs a new Declaracion Variable test case with the given name.
+	 * Constructs a new Declaracion test case with the given name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeclaracionVariableTest(String name) {
+	public DeclaracionTest(String name) {
 		super(name);
 	}
 
 	/**
-	 * Returns the fixture for this Declaracion Variable test case.
+	 * Sets the fixture for this Declaracion test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected DeclaracionVariable getFixture() {
-		return (DeclaracionVariable)fixture;
+	protected void setFixture(Declaracion fixture) {
+		this.fixture = fixture;
+	}
+
+	/**
+	 * Returns the fixture for this Declaracion test case.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected Declaracion getFixture() {
+		return fixture;
 	}
 
 	/**
@@ -52,7 +72,7 @@ public class DeclaracionVariableTest extends DeclaracionTest {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(DiagramapseudocodigoFactory.eINSTANCE.createDeclaracionVariable());
+		setFixture(DiagramapseudocodigoFactory.eINSTANCE.createDeclaracion());
 	}
 
 	/**
@@ -66,4 +86,4 @@ public class DeclaracionVariableTest extends DeclaracionTest {
 		setFixture(null);
 	}
 
-} //DeclaracionVariableTest
+} //DeclaracionTest

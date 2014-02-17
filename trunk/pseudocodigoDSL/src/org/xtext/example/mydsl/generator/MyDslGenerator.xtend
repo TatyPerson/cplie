@@ -54,10 +54,7 @@ class MyDslGenerator implements IGenerator {
 	
 	def toC(Inicio myInicio)'''
 		int main(){
-			«FOR myVariable:myInicio.declaracionvariable»
-				«myVariable.toC»
-			«ENDFOR»
-			«FOR myVariable:myInicio.declaracionpropia»
+			«FOR myVariable:myInicio.declaracion»
 				«myVariable.toC»
 			«ENDFOR»
 			«FOR mySentencia:myInicio.tiene»
@@ -110,10 +107,7 @@ class MyDslGenerator implements IGenerator {
 	
 	def toC(Funcion myFun)'''
 		«myFun.tipo.tipoVariable» «myFun.nombre»(«myFun.parametrofuncion.toC»){
-			«FOR myVariable:myFun.declaracionvariable»
-				«myVariable.toC»
-			«ENDFOR»
-			«FOR myVariable:myFun.declaracionpropia»
+			«FOR myVariable:myFun.declaracion»
 				«myVariable.toC»
 			«ENDFOR»
 			«FOR mySentencia:myFun.sentencias»
@@ -127,10 +121,7 @@ class MyDslGenerator implements IGenerator {
 	
 	def toC(Procedimiento myFun)'''
 		void «myFun.nombre»(«myFun.parametrofuncion.toC»){
-			«FOR myVariable:myFun.declaracionvariable»
-				«myVariable.toC»
-			«ENDFOR»
-			«FOR myVariable:myFun.declaracionpropia»
+			«FOR myVariable:myFun.declaracion»
 				«myVariable.toC»
 			«ENDFOR»
 			«FOR mySentencia:myFun.sentencias»
@@ -202,6 +193,22 @@ class MyDslGenerator implements IGenerator {
 	'''
 	
 	// «myDec.tieneIDs.get(0).nombre»«FOR id:myDec.tieneIDs»«IF id.nombre != myDec.tieneIDs.get(0).nombre», «id.nombre»«ENDIF»«ENDFOR»;
+	
+	
+	def toC(Declaracion myDec){
+		if(myDec.eClass.name.equals("DeclaracionVariable")){
+			var DeclaracionVariable prueba = new DeclaracionVariableImpl
+			prueba = myDec as DeclaracionVariable
+			prueba.toC
+		}
+		else if(myDec.eClass.name.equals("DeclaracionPropia")){
+			var DeclaracionPropia prueba = new DeclaracionPropiaImpl
+			prueba = myDec as DeclaracionPropia
+			prueba.toC
+		}
+	
+	}
+	
 	def toC(DeclaracionVariable myDec)'''
 		«myDec.tipo.tipoVariable» «pintarVariables(myDec.tieneIDs)»
 	'''

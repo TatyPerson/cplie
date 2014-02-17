@@ -26,6 +26,9 @@ Sentencias returns Sentencias:
 Bloque returns Bloque:
 	Si | mientras | repetir | desde | segun;
 
+Declaracion returns Declaracion:
+	DeclaracionVariable | DeclaracionPropia;
+
 Internas returns Internas:
 	nombre=NombreInterna
 	'('
@@ -58,8 +61,7 @@ Vector returns Vector:
 Inicio returns Inicio:
 	{Inicio}
 	'var'
-	( declaracionvariable+=DeclaracionVariable (	declaracionvariable+=DeclaracionVariable)*  )?
-	( declaracionpropia+=DeclaracionPropia (declaracionpropia+=DeclaracionPropia)* )?
+	( declaracion+=Declaracion ( declaracion+=Declaracion)* )?
 	'inicio'
 		(tiene+=Sentencias (  tiene+=Sentencias)*  )?
 	'fin_inicio';
@@ -229,8 +231,7 @@ Funcion returns Funcion:
 	'const'?
 	'tipo'?
 	'var'
-	( declaracionvariable+=DeclaracionVariable (	declaracionvariable+=DeclaracionVariable)*  )?
-	( declaracionpropia+=DeclaracionPropia (declaracionpropia+=DeclaracionPropia)* )?
+	( declaracion+=Declaracion ( declaracion+=Declaracion)* )?
 	'inicio'
 	( sentencias+=Sentencias (  sentencias+=Sentencias)*  )?
 	(devuelve=Devolver)?
@@ -243,8 +244,7 @@ Procedimiento returns Procedimiento:
 	'const'?
 	'tipo'?
 	'var'
-	( declaracionvariable+=DeclaracionVariable (	declaracionvariable+=DeclaracionVariable)*  )?
-	( declaracionpropia+=DeclaracionPropia (declaracionpropia+=DeclaracionPropia)* )?
+	( declaracion+=Declaracion ( declaracion+=Declaracion)* )?
 	'inicio'
 	( sentencias+=Sentencias (  sentencias+=Sentencias)*  )?
 	'fin_procedimiento';

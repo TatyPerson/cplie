@@ -3,7 +3,6 @@
 package diagramapseudocodigo;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface DeclaracionVariable extends EObject {
+public interface DeclaracionVariable extends Declaracion {
 	/**
 	 * Returns the value of the '<em><b>Tipo</b></em>' attribute.
 	 * The literals are from the enumeration {@link diagramapseudocodigo.TipoVariable}.

@@ -2,8 +2,7 @@
  */
 package diagramapseudocodigo.impl;
 
-import diagramapseudocodigo.DeclaracionPropia;
-import diagramapseudocodigo.DeclaracionVariable;
+import diagramapseudocodigo.Declaracion;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.ParametroFuncion;
 import diagramapseudocodigo.Sentencias;
@@ -29,8 +28,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link diagramapseudocodigo.impl.SubprocesoImpl#getParametrofuncion <em>Parametrofuncion</em>}</li>
  *   <li>{@link diagramapseudocodigo.impl.SubprocesoImpl#getSentencias <em>Sentencias</em>}</li>
  *   <li>{@link diagramapseudocodigo.impl.SubprocesoImpl#getNombre <em>Nombre</em>}</li>
- *   <li>{@link diagramapseudocodigo.impl.SubprocesoImpl#getDeclaracionvariable <em>Declaracionvariable</em>}</li>
- *   <li>{@link diagramapseudocodigo.impl.SubprocesoImpl#getDeclaracionpropia <em>Declaracionpropia</em>}</li>
+ *   <li>{@link diagramapseudocodigo.impl.SubprocesoImpl#getDeclaracion <em>Declaracion</em>}</li>
  * </ul>
  * </p>
  *
@@ -78,24 +76,14 @@ public abstract class SubprocesoImpl extends MinimalEObjectImpl.Container implem
 	protected String nombre = NOMBRE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getDeclaracionvariable() <em>Declaracionvariable</em>}' containment reference list.
+	 * The cached value of the '{@link #getDeclaracion() <em>Declaracion</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDeclaracionvariable()
+	 * @see #getDeclaracion()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<DeclaracionVariable> declaracionvariable;
-
-	/**
-	 * The cached value of the '{@link #getDeclaracionpropia() <em>Declaracionpropia</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDeclaracionpropia()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<DeclaracionPropia> declaracionpropia;
+	protected EList<Declaracion> declaracion;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -166,23 +154,11 @@ public abstract class SubprocesoImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DeclaracionVariable> getDeclaracionvariable() {
-		if (declaracionvariable == null) {
-			declaracionvariable = new EObjectContainmentEList<DeclaracionVariable>(DeclaracionVariable.class, this, DiagramapseudocodigoPackage.SUBPROCESO__DECLARACIONVARIABLE);
+	public EList<Declaracion> getDeclaracion() {
+		if (declaracion == null) {
+			declaracion = new EObjectContainmentEList<Declaracion>(Declaracion.class, this, DiagramapseudocodigoPackage.SUBPROCESO__DECLARACION);
 		}
-		return declaracionvariable;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<DeclaracionPropia> getDeclaracionpropia() {
-		if (declaracionpropia == null) {
-			declaracionpropia = new EObjectContainmentEList<DeclaracionPropia>(DeclaracionPropia.class, this, DiagramapseudocodigoPackage.SUBPROCESO__DECLARACIONPROPIA);
-		}
-		return declaracionpropia;
+		return declaracion;
 	}
 
 	/**
@@ -197,10 +173,8 @@ public abstract class SubprocesoImpl extends MinimalEObjectImpl.Container implem
 				return ((InternalEList<?>)getParametrofuncion()).basicRemove(otherEnd, msgs);
 			case DiagramapseudocodigoPackage.SUBPROCESO__SENTENCIAS:
 				return ((InternalEList<?>)getSentencias()).basicRemove(otherEnd, msgs);
-			case DiagramapseudocodigoPackage.SUBPROCESO__DECLARACIONVARIABLE:
-				return ((InternalEList<?>)getDeclaracionvariable()).basicRemove(otherEnd, msgs);
-			case DiagramapseudocodigoPackage.SUBPROCESO__DECLARACIONPROPIA:
-				return ((InternalEList<?>)getDeclaracionpropia()).basicRemove(otherEnd, msgs);
+			case DiagramapseudocodigoPackage.SUBPROCESO__DECLARACION:
+				return ((InternalEList<?>)getDeclaracion()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -219,10 +193,8 @@ public abstract class SubprocesoImpl extends MinimalEObjectImpl.Container implem
 				return getSentencias();
 			case DiagramapseudocodigoPackage.SUBPROCESO__NOMBRE:
 				return getNombre();
-			case DiagramapseudocodigoPackage.SUBPROCESO__DECLARACIONVARIABLE:
-				return getDeclaracionvariable();
-			case DiagramapseudocodigoPackage.SUBPROCESO__DECLARACIONPROPIA:
-				return getDeclaracionpropia();
+			case DiagramapseudocodigoPackage.SUBPROCESO__DECLARACION:
+				return getDeclaracion();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -247,13 +219,9 @@ public abstract class SubprocesoImpl extends MinimalEObjectImpl.Container implem
 			case DiagramapseudocodigoPackage.SUBPROCESO__NOMBRE:
 				setNombre((String)newValue);
 				return;
-			case DiagramapseudocodigoPackage.SUBPROCESO__DECLARACIONVARIABLE:
-				getDeclaracionvariable().clear();
-				getDeclaracionvariable().addAll((Collection<? extends DeclaracionVariable>)newValue);
-				return;
-			case DiagramapseudocodigoPackage.SUBPROCESO__DECLARACIONPROPIA:
-				getDeclaracionpropia().clear();
-				getDeclaracionpropia().addAll((Collection<? extends DeclaracionPropia>)newValue);
+			case DiagramapseudocodigoPackage.SUBPROCESO__DECLARACION:
+				getDeclaracion().clear();
+				getDeclaracion().addAll((Collection<? extends Declaracion>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -276,11 +244,8 @@ public abstract class SubprocesoImpl extends MinimalEObjectImpl.Container implem
 			case DiagramapseudocodigoPackage.SUBPROCESO__NOMBRE:
 				setNombre(NOMBRE_EDEFAULT);
 				return;
-			case DiagramapseudocodigoPackage.SUBPROCESO__DECLARACIONVARIABLE:
-				getDeclaracionvariable().clear();
-				return;
-			case DiagramapseudocodigoPackage.SUBPROCESO__DECLARACIONPROPIA:
-				getDeclaracionpropia().clear();
+			case DiagramapseudocodigoPackage.SUBPROCESO__DECLARACION:
+				getDeclaracion().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -300,10 +265,8 @@ public abstract class SubprocesoImpl extends MinimalEObjectImpl.Container implem
 				return sentencias != null && !sentencias.isEmpty();
 			case DiagramapseudocodigoPackage.SUBPROCESO__NOMBRE:
 				return NOMBRE_EDEFAULT == null ? nombre != null : !NOMBRE_EDEFAULT.equals(nombre);
-			case DiagramapseudocodigoPackage.SUBPROCESO__DECLARACIONVARIABLE:
-				return declaracionvariable != null && !declaracionvariable.isEmpty();
-			case DiagramapseudocodigoPackage.SUBPROCESO__DECLARACIONPROPIA:
-				return declaracionpropia != null && !declaracionpropia.isEmpty();
+			case DiagramapseudocodigoPackage.SUBPROCESO__DECLARACION:
+				return declaracion != null && !declaracion.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

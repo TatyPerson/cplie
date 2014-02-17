@@ -5,20 +5,13 @@ package diagramapseudocodigo.impl;
 import diagramapseudocodigo.DeclaracionPropia;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Variable;
-
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -36,7 +29,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class DeclaracionPropiaImpl extends MinimalEObjectImpl.Container implements DeclaracionPropia {
+public class DeclaracionPropiaImpl extends DeclaracionImpl implements DeclaracionPropia {
 	/**
 	 * The default value of the '{@link #getTipo() <em>Tipo</em>}' attribute.
 	 * <!-- begin-user-doc -->
