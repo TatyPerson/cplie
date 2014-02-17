@@ -808,6 +808,75 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.Constantes} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ConstantesItemProvider constantesItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.Constantes}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createConstantesAdapter() {
+		if (constantesItemProvider == null) {
+			constantesItemProvider = new ConstantesItemProvider(this);
+		}
+
+		return constantesItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.Vector} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected VectorItemProvider vectorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.Vector}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createVectorAdapter() {
+		if (vectorItemProvider == null) {
+			vectorItemProvider = new VectorItemProvider(this);
+		}
+
+		return vectorItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.DeclaracionPropia} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DeclaracionPropiaItemProvider declaracionPropiaItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.DeclaracionPropia}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDeclaracionPropiaAdapter() {
+		if (declaracionPropiaItemProvider == null) {
+			declaracionPropiaItemProvider = new DeclaracionPropiaItemProvider(this);
+		}
+
+		return declaracionPropiaItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -938,6 +1007,9 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 		if (devolverItemProvider != null) devolverItemProvider.dispose();
 		if (casoItemProvider != null) casoItemProvider.dispose();
 		if (unariaItemProvider != null) unariaItemProvider.dispose();
+		if (constantesItemProvider != null) constantesItemProvider.dispose();
+		if (vectorItemProvider != null) vectorItemProvider.dispose();
+		if (declaracionPropiaItemProvider != null) declaracionPropiaItemProvider.dispose();
 	}
 
 }

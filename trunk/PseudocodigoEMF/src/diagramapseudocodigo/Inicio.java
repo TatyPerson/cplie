@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link diagramapseudocodigo.Inicio#getTiene <em>Tiene</em>}</li>
  *   <li>{@link diagramapseudocodigo.Inicio#getDeclaracionvariable <em>Declaracionvariable</em>}</li>
+ *   <li>{@link diagramapseudocodigo.Inicio#getDeclaracionpropia <em>Declaracionpropia</em>}</li>
  * </ul>
  * </p>
  *
@@ -55,5 +56,21 @@ public interface Inicio extends EObject {
 	 * @generated
 	 */
 	EList<DeclaracionVariable> getDeclaracionvariable();
+
+	/**
+	 * Returns the value of the '<em><b>Declaracionpropia</b></em>' containment reference list.
+	 * The list contents are of type {@link diagramapseudocodigo.DeclaracionPropia}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Declaracionpropia</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Declaracionpropia</em>' containment reference list.
+	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getInicio_Declaracionpropia()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<DeclaracionPropia> getDeclaracionpropia();
 
 } // Inicio

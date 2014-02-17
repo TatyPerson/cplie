@@ -105,6 +105,7 @@ public class SubprocesoItemProvider
 			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.SUBPROCESO__PARAMETROFUNCION);
 			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.SUBPROCESO__SENTENCIAS);
 			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.SUBPROCESO__DECLARACIONVARIABLE);
+			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.SUBPROCESO__DECLARACIONPROPIA);
 		}
 		return childrenFeatures;
 	}
@@ -154,6 +155,7 @@ public class SubprocesoItemProvider
 			case DiagramapseudocodigoPackage.SUBPROCESO__PARAMETROFUNCION:
 			case DiagramapseudocodigoPackage.SUBPROCESO__SENTENCIAS:
 			case DiagramapseudocodigoPackage.SUBPROCESO__DECLARACIONVARIABLE:
+			case DiagramapseudocodigoPackage.SUBPROCESO__DECLARACIONPROPIA:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -230,6 +232,11 @@ public class SubprocesoItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.SUBPROCESO__DECLARACIONVARIABLE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createDeclaracionVariable()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.SUBPROCESO__DECLARACIONPROPIA,
+				 DiagramapseudocodigoFactory.eINSTANCE.createDeclaracionPropia()));
 	}
 
 	/**
