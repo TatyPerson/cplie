@@ -3,16 +3,16 @@
 package diagramapseudocodigo.tests;
 
 import diagramapseudocodigo.DiagramapseudocodigoFactory;
-import diagramapseudocodigo.Vector;
+import diagramapseudocodigo.Matriz;
 import junit.textui.TestRunner;
 
 /**
  * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>Vector</b></em>'.
+ * A test case for the model object '<em><b>Matriz</b></em>'.
  * <!-- end-user-doc -->
  * @generated
  */
-public class VectorTest extends TipoComplejoTest {
+public class MatrizTest extends TipoComplejoTest {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -20,28 +20,28 @@ public class VectorTest extends TipoComplejoTest {
 	 * @generated
 	 */
 	public static void main(String[] args) {
-		TestRunner.run(VectorTest.class);
+		TestRunner.run(MatrizTest.class);
 	}
 
 	/**
-	 * Constructs a new Vector test case with the given name.
+	 * Constructs a new Matriz test case with the given name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VectorTest(String name) {
+	public MatrizTest(String name) {
 		super(name);
 	}
 
 	/**
-	 * Returns the fixture for this Vector test case.
+	 * Returns the fixture for this Matriz test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected Vector getFixture() {
-		return (Vector)fixture;
+	protected Matriz getFixture() {
+		return (Matriz)fixture;
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class VectorTest extends TipoComplejoTest {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(DiagramapseudocodigoFactory.eINSTANCE.createVector());
+		setFixture(DiagramapseudocodigoFactory.eINSTANCE.createMatriz());
 	}
 
 	/**
@@ -66,4 +66,4 @@ public class VectorTest extends TipoComplejoTest {
 		setFixture(null);
 	}
 
-} //VectorTest
+} //MatrizTest

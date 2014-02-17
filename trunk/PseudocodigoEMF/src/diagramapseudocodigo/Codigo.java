@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link diagramapseudocodigo.Codigo#getFuncion <em>Funcion</em>}</li>
  *   <li>{@link diagramapseudocodigo.Codigo#getNombre <em>Nombre</em>}</li>
  *   <li>{@link diagramapseudocodigo.Codigo#getConstantes <em>Constantes</em>}</li>
- *   <li>{@link diagramapseudocodigo.Codigo#getVector <em>Vector</em>}</li>
+ *   <li>{@link diagramapseudocodigo.Codigo#getTipocomplejo <em>Tipocomplejo</em>}</li>
  * </ul>
  * </p>
  *
@@ -112,19 +112,19 @@ public interface Codigo extends EObject {
 	EList<Constantes> getConstantes();
 
 	/**
-	 * Returns the value of the '<em><b>Vector</b></em>' containment reference list.
-	 * The list contents are of type {@link diagramapseudocodigo.Vector}.
+	 * Returns the value of the '<em><b>Tipocomplejo</b></em>' containment reference list.
+	 * The list contents are of type {@link diagramapseudocodigo.TipoComplejo}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Vector</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Tipocomplejo</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Vector</em>' containment reference list.
-	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getCodigo_Vector()
+	 * @return the value of the '<em>Tipocomplejo</em>' containment reference list.
+	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getCodigo_Tipocomplejo()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Vector> getVector();
+	EList<TipoComplejo> getTipocomplejo();
 
 } // Codigo

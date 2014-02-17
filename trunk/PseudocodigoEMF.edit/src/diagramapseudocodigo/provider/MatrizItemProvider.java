@@ -4,13 +4,11 @@ package diagramapseudocodigo.provider;
 
 
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
-import diagramapseudocodigo.TipoVariable;
-import diagramapseudocodigo.Vector;
+import diagramapseudocodigo.Matriz;
 import java.util.Collection;
 import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -22,12 +20,12 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link diagramapseudocodigo.Vector} object.
+ * This is the item provider adapter for a {@link diagramapseudocodigo.Matriz} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class VectorItemProvider
+public class MatrizItemProvider
 	extends TipoComplejoItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -41,7 +39,7 @@ public class VectorItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VectorItemProvider(AdapterFactory adapterFactory) {
+	public MatrizItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -56,10 +54,34 @@ public class VectorItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addConstantePropertyDescriptor(object);
 			addTipoInternoPropertyDescriptor(object);
 			addNombrePropertyDescriptor(object);
+			addConstante2PropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Constante feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addConstantePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Matriz_constante_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Matriz_constante_feature", "_UI_Matriz_type"),
+				 DiagramapseudocodigoPackage.Literals.MATRIZ__CONSTANTE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -73,9 +95,9 @@ public class VectorItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Vector_tipoInterno_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Vector_tipoInterno_feature", "_UI_Vector_type"),
-				 DiagramapseudocodigoPackage.Literals.VECTOR__TIPO_INTERNO,
+				 getString("_UI_Matriz_tipoInterno_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Matriz_tipoInterno_feature", "_UI_Matriz_type"),
+				 DiagramapseudocodigoPackage.Literals.MATRIZ__TIPO_INTERNO,
 				 true,
 				 false,
 				 false,
@@ -95,9 +117,9 @@ public class VectorItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Vector_nombre_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Vector_nombre_feature", "_UI_Vector_type"),
-				 DiagramapseudocodigoPackage.Literals.VECTOR__NOMBRE,
+				 getString("_UI_Matriz_nombre_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Matriz_nombre_feature", "_UI_Matriz_type"),
+				 DiagramapseudocodigoPackage.Literals.MATRIZ__NOMBRE,
 				 true,
 				 false,
 				 false,
@@ -107,44 +129,36 @@ public class VectorItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Constante2 feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.VECTOR__CONSTANTE);
-		}
-		return childrenFeatures;
+	protected void addConstante2PropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Matriz_constante2_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Matriz_constante2_feature", "_UI_Matriz_type"),
+				 DiagramapseudocodigoPackage.Literals.MATRIZ__CONSTANTE2,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns Vector.gif.
+	 * This returns Matriz.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Vector"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Matriz"));
 	}
 
 	/**
@@ -155,11 +169,10 @@ public class VectorItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		TipoVariable labelValue = ((Vector)object).getTipoInterno();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((Matriz)object).getConstante();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Vector_type") :
-			getString("_UI_Vector_type") + " " + label;
+			getString("_UI_Matriz_type") :
+			getString("_UI_Matriz_type") + " " + label;
 	}
 
 	/**
@@ -173,13 +186,12 @@ public class VectorItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Vector.class)) {
-			case DiagramapseudocodigoPackage.VECTOR__TIPO_INTERNO:
-			case DiagramapseudocodigoPackage.VECTOR__NOMBRE:
+		switch (notification.getFeatureID(Matriz.class)) {
+			case DiagramapseudocodigoPackage.MATRIZ__CONSTANTE:
+			case DiagramapseudocodigoPackage.MATRIZ__TIPO_INTERNO:
+			case DiagramapseudocodigoPackage.MATRIZ__NOMBRE:
+			case DiagramapseudocodigoPackage.MATRIZ__CONSTANTE2:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case DiagramapseudocodigoPackage.VECTOR__CONSTANTE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -195,11 +207,6 @@ public class VectorItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.VECTOR__CONSTANTE,
-				 ""));
 	}
 
 }

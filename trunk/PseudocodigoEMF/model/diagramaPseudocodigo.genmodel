@@ -55,7 +55,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Codigo/funcion"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//Codigo/nombre"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Codigo/constantes"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Codigo/vector"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Codigo/tipocomplejo"/>
     </genClasses>
     <genClasses ecoreClass="diagramaPseudocodigo.ecore#//Inicio">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Inicio/tiene"/>
@@ -190,5 +190,12 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//DeclaracionPropia/variable"/>
     </genClasses>
     <genClasses ecoreClass="diagramaPseudocodigo.ecore#//Declaracion"/>
+    <genClasses ecoreClass="diagramaPseudocodigo.ecore#//Matriz">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//Matriz/constante"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//Matriz/tipoInterno"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//Matriz/nombre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//Matriz/constante2"/>
+    </genClasses>
+    <genClasses ecoreClass="diagramaPseudocodigo.ecore#//TipoComplejo"/>
   </genPackages>
 </genmodel:GenModel>

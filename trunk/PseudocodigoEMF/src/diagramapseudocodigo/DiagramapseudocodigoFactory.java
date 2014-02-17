@@ -346,6 +346,24 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	Declaracion createDeclaracion();
 
 	/**
+	 * Returns a new object of class '<em>Matriz</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Matriz</em>'.
+	 * @generated
+	 */
+	Matriz createMatriz();
+
+	/**
+	 * Returns a new object of class '<em>Tipo Complejo</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tipo Complejo</em>'.
+	 * @generated
+	 */
+	TipoComplejo createTipoComplejo();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -232,6 +232,14 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 				return createDeclaracionAdapter();
 			}
 			@Override
+			public Adapter caseMatriz(Matriz object) {
+				return createMatrizAdapter();
+			}
+			@Override
+			public Adapter caseTipoComplejo(TipoComplejo object) {
+				return createTipoComplejoAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -822,6 +830,34 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDeclaracionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.Matriz <em>Matriz</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.Matriz
+	 * @generated
+	 */
+	public Adapter createMatrizAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.TipoComplejo <em>Tipo Complejo</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.TipoComplejo
+	 * @generated
+	 */
+	public Adapter createTipoComplejoAdapter() {
 		return null;
 	}
 
