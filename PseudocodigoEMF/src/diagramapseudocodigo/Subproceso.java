@@ -17,8 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link diagramapseudocodigo.Subproceso#getParametrofuncion <em>Parametrofuncion</em>}</li>
  *   <li>{@link diagramapseudocodigo.Subproceso#getSentencias <em>Sentencias</em>}</li>
  *   <li>{@link diagramapseudocodigo.Subproceso#getNombre <em>Nombre</em>}</li>
- *   <li>{@link diagramapseudocodigo.Subproceso#getDeclaracionvariable <em>Declaracionvariable</em>}</li>
- *   <li>{@link diagramapseudocodigo.Subproceso#getDeclaracionpropia <em>Declaracionpropia</em>}</li>
+ *   <li>{@link diagramapseudocodigo.Subproceso#getDeclaracion <em>Declaracion</em>}</li>
  * </ul>
  * </p>
  *
@@ -86,35 +85,19 @@ public interface Subproceso extends EObject {
 	void setNombre(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Declaracionvariable</b></em>' containment reference list.
-	 * The list contents are of type {@link diagramapseudocodigo.DeclaracionVariable}.
+	 * Returns the value of the '<em><b>Declaracion</b></em>' containment reference list.
+	 * The list contents are of type {@link diagramapseudocodigo.Declaracion}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Declaracionvariable</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Declaracion</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Declaracionvariable</em>' containment reference list.
-	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getSubproceso_Declaracionvariable()
+	 * @return the value of the '<em>Declaracion</em>' containment reference list.
+	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getSubproceso_Declaracion()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<DeclaracionVariable> getDeclaracionvariable();
-
-	/**
-	 * Returns the value of the '<em><b>Declaracionpropia</b></em>' containment reference list.
-	 * The list contents are of type {@link diagramapseudocodigo.DeclaracionPropia}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Declaracionpropia</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Declaracionpropia</em>' containment reference list.
-	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getSubproceso_Declaracionpropia()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<DeclaracionPropia> getDeclaracionpropia();
+	EList<Declaracion> getDeclaracion();
 
 } // Subproceso

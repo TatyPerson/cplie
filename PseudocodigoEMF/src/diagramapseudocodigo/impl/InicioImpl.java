@@ -2,8 +2,7 @@
  */
 package diagramapseudocodigo.impl;
 
-import diagramapseudocodigo.DeclaracionPropia;
-import diagramapseudocodigo.DeclaracionVariable;
+import diagramapseudocodigo.Declaracion;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Inicio;
 import diagramapseudocodigo.Sentencias;
@@ -24,8 +23,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link diagramapseudocodigo.impl.InicioImpl#getTiene <em>Tiene</em>}</li>
- *   <li>{@link diagramapseudocodigo.impl.InicioImpl#getDeclaracionvariable <em>Declaracionvariable</em>}</li>
- *   <li>{@link diagramapseudocodigo.impl.InicioImpl#getDeclaracionpropia <em>Declaracionpropia</em>}</li>
+ *   <li>{@link diagramapseudocodigo.impl.InicioImpl#getDeclaracion <em>Declaracion</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,24 +41,14 @@ public class InicioImpl extends MinimalEObjectImpl.Container implements Inicio {
 	protected EList<Sentencias> tiene;
 
 	/**
-	 * The cached value of the '{@link #getDeclaracionvariable() <em>Declaracionvariable</em>}' containment reference list.
+	 * The cached value of the '{@link #getDeclaracion() <em>Declaracion</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDeclaracionvariable()
+	 * @see #getDeclaracion()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<DeclaracionVariable> declaracionvariable;
-
-	/**
-	 * The cached value of the '{@link #getDeclaracionpropia() <em>Declaracionpropia</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDeclaracionpropia()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<DeclaracionPropia> declaracionpropia;
+	protected EList<Declaracion> declaracion;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -98,23 +86,11 @@ public class InicioImpl extends MinimalEObjectImpl.Container implements Inicio {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DeclaracionVariable> getDeclaracionvariable() {
-		if (declaracionvariable == null) {
-			declaracionvariable = new EObjectContainmentEList<DeclaracionVariable>(DeclaracionVariable.class, this, DiagramapseudocodigoPackage.INICIO__DECLARACIONVARIABLE);
+	public EList<Declaracion> getDeclaracion() {
+		if (declaracion == null) {
+			declaracion = new EObjectContainmentEList<Declaracion>(Declaracion.class, this, DiagramapseudocodigoPackage.INICIO__DECLARACION);
 		}
-		return declaracionvariable;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<DeclaracionPropia> getDeclaracionpropia() {
-		if (declaracionpropia == null) {
-			declaracionpropia = new EObjectContainmentEList<DeclaracionPropia>(DeclaracionPropia.class, this, DiagramapseudocodigoPackage.INICIO__DECLARACIONPROPIA);
-		}
-		return declaracionpropia;
+		return declaracion;
 	}
 
 	/**
@@ -127,10 +103,8 @@ public class InicioImpl extends MinimalEObjectImpl.Container implements Inicio {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.INICIO__TIENE:
 				return ((InternalEList<?>)getTiene()).basicRemove(otherEnd, msgs);
-			case DiagramapseudocodigoPackage.INICIO__DECLARACIONVARIABLE:
-				return ((InternalEList<?>)getDeclaracionvariable()).basicRemove(otherEnd, msgs);
-			case DiagramapseudocodigoPackage.INICIO__DECLARACIONPROPIA:
-				return ((InternalEList<?>)getDeclaracionpropia()).basicRemove(otherEnd, msgs);
+			case DiagramapseudocodigoPackage.INICIO__DECLARACION:
+				return ((InternalEList<?>)getDeclaracion()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -145,10 +119,8 @@ public class InicioImpl extends MinimalEObjectImpl.Container implements Inicio {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.INICIO__TIENE:
 				return getTiene();
-			case DiagramapseudocodigoPackage.INICIO__DECLARACIONVARIABLE:
-				return getDeclaracionvariable();
-			case DiagramapseudocodigoPackage.INICIO__DECLARACIONPROPIA:
-				return getDeclaracionpropia();
+			case DiagramapseudocodigoPackage.INICIO__DECLARACION:
+				return getDeclaracion();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -166,13 +138,9 @@ public class InicioImpl extends MinimalEObjectImpl.Container implements Inicio {
 				getTiene().clear();
 				getTiene().addAll((Collection<? extends Sentencias>)newValue);
 				return;
-			case DiagramapseudocodigoPackage.INICIO__DECLARACIONVARIABLE:
-				getDeclaracionvariable().clear();
-				getDeclaracionvariable().addAll((Collection<? extends DeclaracionVariable>)newValue);
-				return;
-			case DiagramapseudocodigoPackage.INICIO__DECLARACIONPROPIA:
-				getDeclaracionpropia().clear();
-				getDeclaracionpropia().addAll((Collection<? extends DeclaracionPropia>)newValue);
+			case DiagramapseudocodigoPackage.INICIO__DECLARACION:
+				getDeclaracion().clear();
+				getDeclaracion().addAll((Collection<? extends Declaracion>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -189,11 +157,8 @@ public class InicioImpl extends MinimalEObjectImpl.Container implements Inicio {
 			case DiagramapseudocodigoPackage.INICIO__TIENE:
 				getTiene().clear();
 				return;
-			case DiagramapseudocodigoPackage.INICIO__DECLARACIONVARIABLE:
-				getDeclaracionvariable().clear();
-				return;
-			case DiagramapseudocodigoPackage.INICIO__DECLARACIONPROPIA:
-				getDeclaracionpropia().clear();
+			case DiagramapseudocodigoPackage.INICIO__DECLARACION:
+				getDeclaracion().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -209,10 +174,8 @@ public class InicioImpl extends MinimalEObjectImpl.Container implements Inicio {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.INICIO__TIENE:
 				return tiene != null && !tiene.isEmpty();
-			case DiagramapseudocodigoPackage.INICIO__DECLARACIONVARIABLE:
-				return declaracionvariable != null && !declaracionvariable.isEmpty();
-			case DiagramapseudocodigoPackage.INICIO__DECLARACIONPROPIA:
-				return declaracionpropia != null && !declaracionpropia.isEmpty();
+			case DiagramapseudocodigoPackage.INICIO__DECLARACION:
+				return declaracion != null && !declaracion.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

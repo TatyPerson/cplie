@@ -9,6 +9,7 @@ import diagramapseudocodigo.Caso;
 import diagramapseudocodigo.Codigo;
 import diagramapseudocodigo.ConstCadena;
 import diagramapseudocodigo.Constantes;
+import diagramapseudocodigo.Declaracion;
 import diagramapseudocodigo.DeclaracionPropia;
 import diagramapseudocodigo.DeclaracionVariable;
 import diagramapseudocodigo.Devolver;
@@ -351,6 +352,13 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass declaracionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum tipoVariableEEnum = null;
 
 	/**
@@ -526,17 +534,8 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInicio_Declaracionvariable() {
+	public EReference getInicio_Declaracion() {
 		return (EReference)inicioEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getInicio_Declaracionpropia() {
-		return (EReference)inicioEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1147,17 +1146,8 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSubproceso_Declaracionvariable() {
+	public EReference getSubproceso_Declaracion() {
 		return (EReference)subprocesoEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSubproceso_Declaracionpropia() {
-		return (EReference)subprocesoEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1399,6 +1389,15 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getDeclaracion() {
+		return declaracionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getVector_TipoInterno() {
 		return (EAttribute)vectorEClass.getEStructuralFeatures().get(0);
 	}
@@ -1512,8 +1511,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 
 		inicioEClass = createEClass(INICIO);
 		createEReference(inicioEClass, INICIO__TIENE);
-		createEReference(inicioEClass, INICIO__DECLARACIONVARIABLE);
-		createEReference(inicioEClass, INICIO__DECLARACIONPROPIA);
+		createEReference(inicioEClass, INICIO__DECLARACION);
 
 		sentenciasEClass = createEClass(SENTENCIAS);
 
@@ -1609,8 +1607,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		createEReference(subprocesoEClass, SUBPROCESO__PARAMETROFUNCION);
 		createEReference(subprocesoEClass, SUBPROCESO__SENTENCIAS);
 		createEAttribute(subprocesoEClass, SUBPROCESO__NOMBRE);
-		createEReference(subprocesoEClass, SUBPROCESO__DECLARACIONVARIABLE);
-		createEReference(subprocesoEClass, SUBPROCESO__DECLARACIONPROPIA);
+		createEReference(subprocesoEClass, SUBPROCESO__DECLARACION);
 
 		procedimientoEClass = createEClass(PROCEDIMIENTO);
 
@@ -1651,6 +1648,8 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		createEAttribute(declaracionPropiaEClass, DECLARACION_PROPIA__TIPO);
 		createEReference(declaracionPropiaEClass, DECLARACION_PROPIA__VARIABLE);
 
+		declaracionEClass = createEClass(DECLARACION);
+
 		// Create enums
 		tipoVariableEEnum = createEEnum(TIPO_VARIABLE);
 		signoEEnum = createEEnum(SIGNO);
@@ -1688,6 +1687,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		declaracionVariableEClass.getESuperTypes().add(this.getDeclaracion());
 		llamadaFuncionEClass.getESuperTypes().add(this.getSentencias());
 		llamadaFuncionEClass.getESuperTypes().add(this.getvalor());
 		variableIDEClass.getESuperTypes().add(this.getOperador());
@@ -1712,6 +1712,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		internasEClass.getESuperTypes().add(this.getvalor());
 		segunEClass.getESuperTypes().add(this.getBloque());
 		unariaEClass.getESuperTypes().add(this.getvalor());
+		declaracionPropiaEClass.getESuperTypes().add(this.getDeclaracion());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(codigoEClass, Codigo.class, "Codigo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1723,8 +1724,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 
 		initEClass(inicioEClass, Inicio.class, "Inicio", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInicio_Tiene(), this.getSentencias(), null, "tiene", null, 0, -1, Inicio.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInicio_Declaracionvariable(), this.getDeclaracionVariable(), null, "declaracionvariable", null, 0, -1, Inicio.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInicio_Declaracionpropia(), this.getDeclaracionPropia(), null, "declaracionpropia", null, 0, -1, Inicio.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInicio_Declaracion(), this.getDeclaracion(), null, "declaracion", null, 0, -1, Inicio.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sentenciasEClass, Sentencias.class, "Sentencias", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1820,8 +1820,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		initEReference(getSubproceso_Parametrofuncion(), this.getParametroFuncion(), null, "parametrofuncion", null, 0, -1, Subproceso.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSubproceso_Sentencias(), this.getSentencias(), null, "sentencias", null, 0, -1, Subproceso.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSubproceso_Nombre(), ecorePackage.getEString(), "nombre", null, 1, 1, Subproceso.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSubproceso_Declaracionvariable(), this.getDeclaracionVariable(), null, "declaracionvariable", null, 0, -1, Subproceso.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSubproceso_Declaracionpropia(), this.getDeclaracionPropia(), null, "declaracionpropia", null, 0, -1, Subproceso.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSubproceso_Declaracion(), this.getDeclaracion(), null, "declaracion", null, 0, -1, Subproceso.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(procedimientoEClass, Procedimiento.class, "Procedimiento", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1861,6 +1860,8 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		initEClass(declaracionPropiaEClass, DeclaracionPropia.class, "DeclaracionPropia", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDeclaracionPropia_Tipo(), ecorePackage.getEString(), "tipo", null, 1, 1, DeclaracionPropia.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDeclaracionPropia_Variable(), this.getVariable(), null, "variable", null, 0, -1, DeclaracionPropia.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(declaracionEClass, Declaracion.class, "Declaracion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(tipoVariableEEnum, TipoVariable.class, "TipoVariable");

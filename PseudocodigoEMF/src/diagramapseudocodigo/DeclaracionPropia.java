@@ -4,8 +4,6 @@ package diagramapseudocodigo;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Declaracion Propia</b></em>'.
@@ -23,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface DeclaracionPropia extends EObject {
+public interface DeclaracionPropia extends Declaracion {
 	/**
 	 * Returns the value of the '<em><b>Tipo</b></em>' attribute.
 	 * <!-- begin-user-doc -->

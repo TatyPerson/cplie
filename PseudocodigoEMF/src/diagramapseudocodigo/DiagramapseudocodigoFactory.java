@@ -337,6 +337,15 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	DeclaracionPropia createDeclaracionPropia();
 
 	/**
+	 * Returns a new object of class '<em>Declaracion</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Declaracion</em>'.
+	 * @generated
+	 */
+	Declaracion createDeclaracion();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

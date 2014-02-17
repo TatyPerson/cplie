@@ -877,6 +877,29 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.Declaracion} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DeclaracionItemProvider declaracionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.Declaracion}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDeclaracionAdapter() {
+		if (declaracionItemProvider == null) {
+			declaracionItemProvider = new DeclaracionItemProvider(this);
+		}
+
+		return declaracionItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1010,6 +1033,7 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 		if (constantesItemProvider != null) constantesItemProvider.dispose();
 		if (vectorItemProvider != null) vectorItemProvider.dispose();
 		if (declaracionPropiaItemProvider != null) declaracionPropiaItemProvider.dispose();
+		if (declaracionItemProvider != null) declaracionItemProvider.dispose();
 	}
 
 }

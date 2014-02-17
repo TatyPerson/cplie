@@ -149,22 +149,13 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int INICIO__TIENE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Declaracionvariable</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Declaracion</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INICIO__DECLARACIONVARIABLE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Declaracionpropia</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INICIO__DECLARACIONPROPIA = 2;
+	int INICIO__DECLARACION = 1;
 
 	/**
 	 * The number of structural features of the '<em>Inicio</em>' class.
@@ -173,7 +164,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INICIO_FEATURE_COUNT = 3;
+	int INICIO_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Inicio</em>' class.
@@ -213,6 +204,34 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int SENTENCIAS_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.DeclaracionImpl <em>Declaracion</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.DeclaracionImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getDeclaracion()
+	 * @generated
+	 */
+	int DECLARACION = 40;
+
+	/**
+	 * The number of structural features of the '<em>Declaracion</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARACION_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Declaracion</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARACION_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.DeclaracionVariableImpl <em>Declaracion Variable</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -229,7 +248,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DECLARACION_VARIABLE__TIPO = 0;
+	int DECLARACION_VARIABLE__TIPO = DECLARACION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Tiene IDs</b></em>' containment reference list.
@@ -238,7 +257,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DECLARACION_VARIABLE__TIENE_IDS = 1;
+	int DECLARACION_VARIABLE__TIENE_IDS = DECLARACION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Declaracion Variable</em>' class.
@@ -247,7 +266,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DECLARACION_VARIABLE_FEATURE_COUNT = 2;
+	int DECLARACION_VARIABLE_FEATURE_COUNT = DECLARACION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Declaracion Variable</em>' class.
@@ -256,7 +275,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DECLARACION_VARIABLE_OPERATION_COUNT = 0;
+	int DECLARACION_VARIABLE_OPERATION_COUNT = DECLARACION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.LlamadaFuncionImpl <em>Llamada Funcion</em>}' class.
@@ -684,22 +703,13 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int SUBPROCESO__NOMBRE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Declaracionvariable</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Declaracion</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPROCESO__DECLARACIONVARIABLE = 3;
-
-	/**
-	 * The feature id for the '<em><b>Declaracionpropia</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBPROCESO__DECLARACIONPROPIA = 4;
+	int SUBPROCESO__DECLARACION = 3;
 
 	/**
 	 * The number of structural features of the '<em>Subproceso</em>' class.
@@ -708,7 +718,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUBPROCESO_FEATURE_COUNT = 5;
+	int SUBPROCESO_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Subproceso</em>' class.
@@ -757,22 +767,13 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int FUNCION__NOMBRE = SUBPROCESO__NOMBRE;
 
 	/**
-	 * The feature id for the '<em><b>Declaracionvariable</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Declaracion</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCION__DECLARACIONVARIABLE = SUBPROCESO__DECLARACIONVARIABLE;
-
-	/**
-	 * The feature id for the '<em><b>Declaracionpropia</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCION__DECLARACIONPROPIA = SUBPROCESO__DECLARACIONPROPIA;
+	int FUNCION__DECLARACION = SUBPROCESO__DECLARACION;
 
 	/**
 	 * The feature id for the '<em><b>Tipo</b></em>' attribute.
@@ -1492,22 +1493,13 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int PROCEDIMIENTO__NOMBRE = SUBPROCESO__NOMBRE;
 
 	/**
-	 * The feature id for the '<em><b>Declaracionvariable</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Declaracion</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCEDIMIENTO__DECLARACIONVARIABLE = SUBPROCESO__DECLARACIONVARIABLE;
-
-	/**
-	 * The feature id for the '<em><b>Declaracionpropia</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROCEDIMIENTO__DECLARACIONPROPIA = SUBPROCESO__DECLARACIONPROPIA;
+	int PROCEDIMIENTO__DECLARACION = SUBPROCESO__DECLARACION;
 
 	/**
 	 * The number of structural features of the '<em>Procedimiento</em>' class.
@@ -1939,7 +1931,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DECLARACION_PROPIA__TIPO = 0;
+	int DECLARACION_PROPIA__TIPO = DECLARACION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Variable</b></em>' containment reference list.
@@ -1948,7 +1940,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DECLARACION_PROPIA__VARIABLE = 1;
+	int DECLARACION_PROPIA__VARIABLE = DECLARACION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Declaracion Propia</em>' class.
@@ -1957,7 +1949,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DECLARACION_PROPIA_FEATURE_COUNT = 2;
+	int DECLARACION_PROPIA_FEATURE_COUNT = DECLARACION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Declaracion Propia</em>' class.
@@ -1966,7 +1958,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DECLARACION_PROPIA_OPERATION_COUNT = 0;
+	int DECLARACION_PROPIA_OPERATION_COUNT = DECLARACION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoVariable <em>Tipo Variable</em>}' enum.
@@ -1976,7 +1968,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoVariable()
 	 * @generated
 	 */
-	int TIPO_VARIABLE = 40;
+	int TIPO_VARIABLE = 41;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.signo <em>signo</em>}' enum.
@@ -1986,7 +1978,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getsigno()
 	 * @generated
 	 */
-	int SIGNO = 41;
+	int SIGNO = 42;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.booleano <em>booleano</em>}' enum.
@@ -1996,7 +1988,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getbooleano()
 	 * @generated
 	 */
-	int BOOLEANO = 42;
+	int BOOLEANO = 43;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.inc <em>inc</em>}' enum.
@@ -2006,7 +1998,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getinc()
 	 * @generated
 	 */
-	int INC = 43;
+	int INC = 44;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoPaso <em>Tipo Paso</em>}' enum.
@@ -2016,7 +2008,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoPaso()
 	 * @generated
 	 */
-	int TIPO_PASO = 44;
+	int TIPO_PASO = 45;
 
 
 	/**
@@ -2027,7 +2019,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getNombreInterna()
 	 * @generated
 	 */
-	int NOMBRE_INTERNA = 45;
+	int NOMBRE_INTERNA = 46;
 
 
 	/**
@@ -2117,26 +2109,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EReference getInicio_Tiene();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.Inicio#getDeclaracionvariable <em>Declaracionvariable</em>}'.
+	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.Inicio#getDeclaracion <em>Declaracion</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Declaracionvariable</em>'.
-	 * @see diagramapseudocodigo.Inicio#getDeclaracionvariable()
+	 * @return the meta object for the containment reference list '<em>Declaracion</em>'.
+	 * @see diagramapseudocodigo.Inicio#getDeclaracion()
 	 * @see #getInicio()
 	 * @generated
 	 */
-	EReference getInicio_Declaracionvariable();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.Inicio#getDeclaracionpropia <em>Declaracionpropia</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Declaracionpropia</em>'.
-	 * @see diagramapseudocodigo.Inicio#getDeclaracionpropia()
-	 * @see #getInicio()
-	 * @generated
-	 */
-	EReference getInicio_Declaracionpropia();
+	EReference getInicio_Declaracion();
 
 	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.Sentencias <em>Sentencias</em>}'.
@@ -2848,26 +2829,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EAttribute getSubproceso_Nombre();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.Subproceso#getDeclaracionvariable <em>Declaracionvariable</em>}'.
+	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.Subproceso#getDeclaracion <em>Declaracion</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Declaracionvariable</em>'.
-	 * @see diagramapseudocodigo.Subproceso#getDeclaracionvariable()
+	 * @return the meta object for the containment reference list '<em>Declaracion</em>'.
+	 * @see diagramapseudocodigo.Subproceso#getDeclaracion()
 	 * @see #getSubproceso()
 	 * @generated
 	 */
-	EReference getSubproceso_Declaracionvariable();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.Subproceso#getDeclaracionpropia <em>Declaracionpropia</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Declaracionpropia</em>'.
-	 * @see diagramapseudocodigo.Subproceso#getDeclaracionpropia()
-	 * @see #getSubproceso()
-	 * @generated
-	 */
-	EReference getSubproceso_Declaracionpropia();
+	EReference getSubproceso_Declaracion();
 
 	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.Procedimiento <em>Procedimiento</em>}'.
@@ -3146,6 +3116,16 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EReference getDeclaracionPropia_Variable();
 
 	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.Declaracion <em>Declaracion</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Declaracion</em>'.
+	 * @see diagramapseudocodigo.Declaracion
+	 * @generated
+	 */
+	EClass getDeclaracion();
+
+	/**
 	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Vector#getTipoInterno <em>Tipo Interno</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3329,20 +3309,12 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EReference INICIO__TIENE = eINSTANCE.getInicio_Tiene();
 
 		/**
-		 * The meta object literal for the '<em><b>Declaracionvariable</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Declaracion</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INICIO__DECLARACIONVARIABLE = eINSTANCE.getInicio_Declaracionvariable();
-
-		/**
-		 * The meta object literal for the '<em><b>Declaracionpropia</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INICIO__DECLARACIONPROPIA = eINSTANCE.getInicio_Declaracionpropia();
+		EReference INICIO__DECLARACION = eINSTANCE.getInicio_Declaracion();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.SentenciasImpl <em>Sentencias</em>}' class.
@@ -3937,20 +3909,12 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EAttribute SUBPROCESO__NOMBRE = eINSTANCE.getSubproceso_Nombre();
 
 		/**
-		 * The meta object literal for the '<em><b>Declaracionvariable</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Declaracion</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SUBPROCESO__DECLARACIONVARIABLE = eINSTANCE.getSubproceso_Declaracionvariable();
-
-		/**
-		 * The meta object literal for the '<em><b>Declaracionpropia</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SUBPROCESO__DECLARACIONPROPIA = eINSTANCE.getSubproceso_Declaracionpropia();
+		EReference SUBPROCESO__DECLARACION = eINSTANCE.getSubproceso_Declaracion();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.ProcedimientoImpl <em>Procedimiento</em>}' class.
@@ -4179,6 +4143,16 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EReference DECLARACION_PROPIA__VARIABLE = eINSTANCE.getDeclaracionPropia_Variable();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.DeclaracionImpl <em>Declaracion</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.DeclaracionImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getDeclaracion()
+		 * @generated
+		 */
+		EClass DECLARACION = eINSTANCE.getDeclaracion();
 
 		/**
 		 * The meta object literal for the '<em><b>Tipo Interno</b></em>' attribute feature.

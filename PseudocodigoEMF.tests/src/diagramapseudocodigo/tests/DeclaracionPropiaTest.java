@@ -4,9 +4,6 @@ package diagramapseudocodigo.tests;
 
 import diagramapseudocodigo.DeclaracionPropia;
 import diagramapseudocodigo.DiagramapseudocodigoFactory;
-
-import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
 
 /**
@@ -15,15 +12,7 @@ import junit.textui.TestRunner;
  * <!-- end-user-doc -->
  * @generated
  */
-public class DeclaracionPropiaTest extends TestCase {
-
-	/**
-	 * The fixture for this Declaracion Propia test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DeclaracionPropia fixture = null;
+public class DeclaracionPropiaTest extends DeclaracionTest {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -45,23 +34,14 @@ public class DeclaracionPropiaTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Declaracion Propia test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void setFixture(DeclaracionPropia fixture) {
-		this.fixture = fixture;
-	}
-
-	/**
 	 * Returns the fixture for this Declaracion Propia test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected DeclaracionPropia getFixture() {
-		return fixture;
+		return (DeclaracionPropia)fixture;
 	}
 
 	/**

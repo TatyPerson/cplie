@@ -87,6 +87,7 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 			case DiagramapseudocodigoPackage.DECLARACION_VARIABLE: {
 				DeclaracionVariable declaracionVariable = (DeclaracionVariable)theEObject;
 				T result = caseDeclaracionVariable(declaracionVariable);
+				if (result == null) result = caseDeclaracion(declaracionVariable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -338,6 +339,13 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 			case DiagramapseudocodigoPackage.DECLARACION_PROPIA: {
 				DeclaracionPropia declaracionPropia = (DeclaracionPropia)theEObject;
 				T result = caseDeclaracionPropia(declaracionPropia);
+				if (result == null) result = caseDeclaracion(declaracionPropia);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiagramapseudocodigoPackage.DECLARACION: {
+				Declaracion declaracion = (Declaracion)theEObject;
+				T result = caseDeclaracion(declaracion);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -942,6 +950,21 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDeclaracionPropia(DeclaracionPropia object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Declaracion</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Declaracion</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDeclaracion(Declaracion object) {
 		return null;
 	}
 
