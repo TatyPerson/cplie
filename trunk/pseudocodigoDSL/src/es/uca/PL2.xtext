@@ -230,6 +230,7 @@ Funcion returns Funcion:
 	'tipo'?
 	'var'
 	( declaracionvariable+=DeclaracionVariable (	declaracionvariable+=DeclaracionVariable)*  )?
+	( declaracionpropia+=DeclaracionPropia (declaracionpropia+=DeclaracionPropia)* )?
 	'inicio'
 	( sentencias+=Sentencias (  sentencias+=Sentencias)*  )?
 	(devuelve=Devolver)?
@@ -243,6 +244,7 @@ Procedimiento returns Procedimiento:
 	'tipo'?
 	'var'
 	( declaracionvariable+=DeclaracionVariable (	declaracionvariable+=DeclaracionVariable)*  )?
+	( declaracionpropia+=DeclaracionPropia (declaracionpropia+=DeclaracionPropia)* )?
 	'inicio'
 	( sentencias+=Sentencias (  sentencias+=Sentencias)*  )?
 	'fin_procedimiento';

@@ -113,6 +113,9 @@ class MyDslGenerator implements IGenerator {
 			«FOR myVariable:myFun.declaracionvariable»
 				«myVariable.toC»
 			«ENDFOR»
+			«FOR myVariable:myFun.declaracionpropia»
+				«myVariable.toC»
+			«ENDFOR»
 			«FOR mySentencia:myFun.sentencias»
 				«mySentencia.toC»
 			«ENDFOR»
@@ -125,6 +128,9 @@ class MyDslGenerator implements IGenerator {
 	def toC(Procedimiento myFun)'''
 		void «myFun.nombre»(«myFun.parametrofuncion.toC»){
 			«FOR myVariable:myFun.declaracionvariable»
+				«myVariable.toC»
+			«ENDFOR»
+			«FOR myVariable:myFun.declaracionpropia»
 				«myVariable.toC»
 			«ENDFOR»
 			«FOR mySentencia:myFun.sentencias»
