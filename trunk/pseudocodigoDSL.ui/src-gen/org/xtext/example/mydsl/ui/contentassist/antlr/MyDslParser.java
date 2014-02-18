@@ -64,6 +64,8 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getConstantesAccess().getGroup(), "rule__Constantes__Group__0");
 					put(grammarAccess.getVectorAccess().getGroup(), "rule__Vector__Group__0");
 					put(grammarAccess.getMatrizAccess().getGroup(), "rule__Matriz__Group__0");
+					put(grammarAccess.getRegistroAccess().getGroup(), "rule__Registro__Group__0");
+					put(grammarAccess.getRegistroAccess().getGroup_2(), "rule__Registro__Group_2__0");
 					put(grammarAccess.getInicioAccess().getGroup(), "rule__Inicio__Group__0");
 					put(grammarAccess.getInicioAccess().getGroup_2(), "rule__Inicio__Group_2__0");
 					put(grammarAccess.getInicioAccess().getGroup_4(), "rule__Inicio__Group_4__0");
@@ -133,6 +135,9 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMatrizAccess().getValorAssignment_4(), "rule__Matriz__ValorAssignment_4");
 					put(grammarAccess.getMatrizAccess().getTipoInternoAssignment_7(), "rule__Matriz__TipoInternoAssignment_7");
 					put(grammarAccess.getMatrizAccess().getNombreAssignment_9(), "rule__Matriz__NombreAssignment_9");
+					put(grammarAccess.getRegistroAccess().getNombreAssignment_1(), "rule__Registro__NombreAssignment_1");
+					put(grammarAccess.getRegistroAccess().getVariableAssignment_2_0(), "rule__Registro__VariableAssignment_2_0");
+					put(grammarAccess.getRegistroAccess().getVariableAssignment_2_1(), "rule__Registro__VariableAssignment_2_1");
 					put(grammarAccess.getInicioAccess().getDeclaracionAssignment_2_0(), "rule__Inicio__DeclaracionAssignment_2_0");
 					put(grammarAccess.getInicioAccess().getDeclaracionAssignment_2_1(), "rule__Inicio__DeclaracionAssignment_2_1");
 					put(grammarAccess.getInicioAccess().getTieneAssignment_4_0(), "rule__Inicio__TieneAssignment_4_0");

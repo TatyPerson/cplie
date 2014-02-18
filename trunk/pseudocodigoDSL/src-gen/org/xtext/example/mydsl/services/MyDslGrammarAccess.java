@@ -121,12 +121,13 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cVectorParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cMatrizParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cRegistroParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//TipoComplejo:
-		//	Vector | Matriz;
+		//	Vector | Matriz | Registro;
 		public ParserRule getRule() { return rule; }
 
-		//Vector | Matriz
+		//Vector | Matriz | Registro
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//Vector
@@ -134,6 +135,9 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Matriz
 		public RuleCall getMatrizParserRuleCall_1() { return cMatrizParserRuleCall_1; }
+
+		//Registro
+		public RuleCall getRegistroParserRuleCall_2() { return cRegistroParserRuleCall_2; }
 	}
 
 	public class SubprocesoElements extends AbstractParserRuleElementFinder {
@@ -608,6 +612,54 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//EString
 		public RuleCall getNombreEStringParserRuleCall_9_0() { return cNombreEStringParserRuleCall_9_0; }
+	}
+
+	public class RegistroElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Registro");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cRegistroKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNombreAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNombreEStringParserRuleCall_1_0 = (RuleCall)cNombreAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Assignment cVariableAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final RuleCall cVariableDeclaracionVariableParserRuleCall_2_0_0 = (RuleCall)cVariableAssignment_2_0.eContents().get(0);
+		private final Assignment cVariableAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cVariableDeclaracionVariableParserRuleCall_2_1_0 = (RuleCall)cVariableAssignment_2_1.eContents().get(0);
+		private final Keyword cFin_registroKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//Registro:
+		//	"registro:" nombre=EString (variable+=DeclaracionVariable variable+=DeclaracionVariable*) "fin_registro";
+		public ParserRule getRule() { return rule; }
+
+		//"registro:" nombre=EString (variable+=DeclaracionVariable variable+=DeclaracionVariable*) "fin_registro"
+		public Group getGroup() { return cGroup; }
+
+		//"registro:"
+		public Keyword getRegistroKeyword_0() { return cRegistroKeyword_0; }
+
+		//nombre=EString
+		public Assignment getNombreAssignment_1() { return cNombreAssignment_1; }
+
+		//EString
+		public RuleCall getNombreEStringParserRuleCall_1_0() { return cNombreEStringParserRuleCall_1_0; }
+
+		//variable+=DeclaracionVariable variable+=DeclaracionVariable*
+		public Group getGroup_2() { return cGroup_2; }
+
+		//variable+=DeclaracionVariable
+		public Assignment getVariableAssignment_2_0() { return cVariableAssignment_2_0; }
+
+		//DeclaracionVariable
+		public RuleCall getVariableDeclaracionVariableParserRuleCall_2_0_0() { return cVariableDeclaracionVariableParserRuleCall_2_0_0; }
+
+		//variable+=DeclaracionVariable*
+		public Assignment getVariableAssignment_2_1() { return cVariableAssignment_2_1; }
+
+		//DeclaracionVariable
+		public RuleCall getVariableDeclaracionVariableParserRuleCall_2_1_0() { return cVariableDeclaracionVariableParserRuleCall_2_1_0; }
+
+		//"fin_registro"
+		public Keyword getFin_registroKeyword_3() { return cFin_registroKeyword_3; }
 	}
 
 	public class InicioElements extends AbstractParserRuleElementFinder {
@@ -2250,6 +2302,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private ConstantesElements pConstantes;
 	private VectorElements pVector;
 	private MatrizElements pMatriz;
+	private RegistroElements pRegistro;
 	private InicioElements pInicio;
 	private EStringElements pEString;
 	private DeclaracionVariableElements pDeclaracionVariable;
@@ -2341,7 +2394,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TipoComplejo:
-	//	Vector | Matriz;
+	//	Vector | Matriz | Registro;
 	public TipoComplejoElements getTipoComplejoAccess() {
 		return (pTipoComplejo != null) ? pTipoComplejo : (pTipoComplejo = new TipoComplejoElements());
 	}
@@ -2481,6 +2534,16 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getMatrizRule() {
 		return getMatrizAccess().getRule();
+	}
+
+	//Registro:
+	//	"registro:" nombre=EString (variable+=DeclaracionVariable variable+=DeclaracionVariable*) "fin_registro";
+	public RegistroElements getRegistroAccess() {
+		return (pRegistro != null) ? pRegistro : (pRegistro = new RegistroElements());
+	}
+	
+	public ParserRule getRegistroRule() {
+		return getRegistroAccess().getRule();
 	}
 
 	//Inicio:

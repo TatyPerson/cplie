@@ -364,6 +364,15 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	TipoComplejo createTipoComplejo();
 
 	/**
+	 * Returns a new object of class '<em>Registro</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Registro</em>'.
+	 * @generated
+	 */
+	Registro createRegistro();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

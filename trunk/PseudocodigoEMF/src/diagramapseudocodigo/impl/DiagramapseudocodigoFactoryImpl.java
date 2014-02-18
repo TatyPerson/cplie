@@ -95,6 +95,7 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 			case DiagramapseudocodigoPackage.DECLARACION: return createDeclaracion();
 			case DiagramapseudocodigoPackage.MATRIZ: return createMatriz();
 			case DiagramapseudocodigoPackage.TIPO_COMPLEJO: return createTipoComplejo();
+			case DiagramapseudocodigoPackage.REGISTRO: return createRegistro();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -528,6 +529,16 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	public TipoComplejo createTipoComplejo() {
 		TipoComplejoImpl tipoComplejo = new TipoComplejoImpl();
 		return tipoComplejo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Registro createRegistro() {
+		RegistroImpl registro = new RegistroImpl();
+		return registro;
 	}
 
 	/**

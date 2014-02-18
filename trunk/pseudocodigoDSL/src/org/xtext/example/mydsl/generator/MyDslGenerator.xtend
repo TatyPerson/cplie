@@ -55,7 +55,11 @@ class MyDslGenerator implements IGenerator {
 			prueba = myComplejo as Matriz
 			prueba.toC
 		}
-	
+		else if(myComplejo.eClass.name.equals("Registro")){
+			var Registro prueba = new RegistroImpl
+			prueba = myComplejo as Registro
+			prueba.toC
+		}
 	}
 	
 	def toC(Constantes myConstante)'''
@@ -68,6 +72,14 @@ class MyDslGenerator implements IGenerator {
 	
 	def toC(Matriz myMatriz)'''
 		typedef «tipoVariable(myMatriz.tipoInterno)» «myMatriz.nombre»[«myMatriz.valor.get(0).toC»][«myMatriz.valor.get(1).toC»];
+	'''
+	
+	def toC(Registro myRegistro)'''
+		typedef struct «myRegistro.nombre» {
+			«FOR myVariable:myRegistro.variable»
+				«myVariable.toC»
+			«ENDFOR»
+		}
 	'''
 	
 	def toC(Inicio myInicio)'''

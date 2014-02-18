@@ -946,6 +946,29 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.Registro} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RegistroItemProvider registroItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.Registro}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRegistroAdapter() {
+		if (registroItemProvider == null) {
+			registroItemProvider = new RegistroItemProvider(this);
+		}
+
+		return registroItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1082,6 +1105,7 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 		if (declaracionItemProvider != null) declaracionItemProvider.dispose();
 		if (matrizItemProvider != null) matrizItemProvider.dispose();
 		if (tipoComplejoItemProvider != null) tipoComplejoItemProvider.dispose();
+		if (registroItemProvider != null) registroItemProvider.dispose();
 	}
 
 }

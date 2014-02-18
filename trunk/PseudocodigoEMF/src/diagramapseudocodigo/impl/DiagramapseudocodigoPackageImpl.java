@@ -28,6 +28,7 @@ import diagramapseudocodigo.NumeroEntero;
 import diagramapseudocodigo.Operador;
 import diagramapseudocodigo.ParametroFuncion;
 import diagramapseudocodigo.Procedimiento;
+import diagramapseudocodigo.Registro;
 import diagramapseudocodigo.Sentencias;
 import diagramapseudocodigo.Si;
 import diagramapseudocodigo.Sino;
@@ -369,6 +370,13 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * @generated
 	 */
 	private EClass tipoComplejoEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass registroEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1450,6 +1458,33 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getRegistro() {
+		return registroEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRegistro_Variable() {
+		return (EReference)registroEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRegistro_Nombre() {
+		return (EAttribute)registroEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getVector_TipoInterno() {
 		return (EAttribute)vectorEClass.getEStructuralFeatures().get(0);
 	}
@@ -1718,6 +1753,10 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 
 		tipoComplejoEClass = createEClass(TIPO_COMPLEJO);
 
+		registroEClass = createEClass(REGISTRO);
+		createEReference(registroEClass, REGISTRO__VARIABLE);
+		createEAttribute(registroEClass, REGISTRO__NOMBRE);
+
 		// Create enums
 		tipoVariableEEnum = createEEnum(TIPO_VARIABLE);
 		signoEEnum = createEEnum(SIGNO);
@@ -1783,6 +1822,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		vectorEClass.getESuperTypes().add(this.getTipoComplejo());
 		declaracionPropiaEClass.getESuperTypes().add(this.getDeclaracion());
 		matrizEClass.getESuperTypes().add(this.getTipoComplejo());
+		registroEClass.getESuperTypes().add(this.getTipoComplejo());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(codigoEClass, Codigo.class, "Codigo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1939,6 +1979,10 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		initEReference(getMatriz_Valor(), this.getvalor(), null, "valor", null, 0, 2, Matriz.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(tipoComplejoEClass, TipoComplejo.class, "TipoComplejo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(registroEClass, Registro.class, "Registro", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRegistro_Variable(), this.getDeclaracionVariable(), null, "variable", null, 1, -1, Registro.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRegistro_Nombre(), ecorePackage.getEString(), "nombre", null, 1, 1, Registro.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(tipoVariableEEnum, TipoVariable.class, "TipoVariable");
