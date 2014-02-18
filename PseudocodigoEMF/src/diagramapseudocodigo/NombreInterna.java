@@ -84,7 +84,15 @@ public enum NombreInterna implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SQRT(6, "sqrt", "sqrt");
+	SQRT(6, "sqrt", "sqrt"), /**
+	 * The '<em><b>Longitud</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #LONGITUD_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	LONGITUD(7, "longitud", "longitud");
 
 	/**
 	 * The '<em><b>Cos</b></em>' literal value.
@@ -192,6 +200,21 @@ public enum NombreInterna implements Enumerator {
 	public static final int SQRT_VALUE = 6;
 
 	/**
+	 * The '<em><b>Longitud</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Longitud</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #LONGITUD
+	 * @model name="longitud"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LONGITUD_VALUE = 7;
+
+	/**
 	 * An array of all the '<em><b>Nombre Interna</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -206,6 +229,7 @@ public enum NombreInterna implements Enumerator {
 			LOG,
 			SEN,
 			SQRT,
+			LONGITUD,
 		};
 
 	/**
@@ -263,6 +287,7 @@ public enum NombreInterna implements Enumerator {
 			case LOG_VALUE: return LOG;
 			case SEN_VALUE: return SEN;
 			case SQRT_VALUE: return SQRT;
+			case LONGITUD_VALUE: return LONGITUD;
 		}
 		return null;
 	}

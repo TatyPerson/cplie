@@ -1698,6 +1698,14 @@ rule__NombreInterna__Alternatives
 { after(grammarAccess.getNombreInternaAccess().getSqrtKeyword_6()); }
 )
 
+    |(
+{ before(grammarAccess.getNombreInternaAccess().getLongitudKeyword_7()); }
+
+	'longitud' 
+
+{ after(grammarAccess.getNombreInternaAccess().getLongitudKeyword_7()); }
+)
+
 ;
 finally {
 	restoreStackSize(stackSize);

@@ -1984,6 +1984,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		addEEnumLiteral(nombreInternaEEnum, NombreInterna.LOG);
 		addEEnumLiteral(nombreInternaEEnum, NombreInterna.SEN);
 		addEEnumLiteral(nombreInternaEEnum, NombreInterna.SQRT);
+		addEEnumLiteral(nombreInternaEEnum, NombreInterna.LONGITUD);
 
 		// Create resource
 		createResource(eNS_URI);
