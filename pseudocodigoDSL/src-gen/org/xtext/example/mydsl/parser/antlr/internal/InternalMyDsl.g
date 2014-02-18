@@ -251,6 +251,16 @@ ruleTipoComplejo returns [EObject current=null]
         $current = $this_Matriz_1.current; 
         afterParserOrEnumRuleCall();
     }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getTipoComplejoAccess().getRegistroParserRuleCall_2()); 
+    }
+    this_Registro_2=ruleRegistro
+    { 
+        $current = $this_Registro_2.current; 
+        afterParserOrEnumRuleCall();
+    }
 )
 ;
 
@@ -1164,6 +1174,89 @@ ruleMatriz returns [EObject current=null]
 
 )
 ))
+;
+
+
+
+
+
+// Entry rule entryRuleRegistro
+entryRuleRegistro returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getRegistroRule()); }
+	 iv_ruleRegistro=ruleRegistro 
+	 { $current=$iv_ruleRegistro.current; } 
+	 EOF 
+;
+
+// Rule Registro
+ruleRegistro returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='registro:' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getRegistroAccess().getRegistroKeyword_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getRegistroAccess().getNombreEStringParserRuleCall_1_0()); 
+	    }
+		lv_nombre_1_0=ruleEString		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getRegistroRule());
+	        }
+       		set(
+       			$current, 
+       			"nombre",
+        		lv_nombre_1_0, 
+        		"EString");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getRegistroAccess().getVariableDeclaracionVariableParserRuleCall_2_0_0()); 
+	    }
+		lv_variable_2_0=ruleDeclaracionVariable		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getRegistroRule());
+	        }
+       		add(
+       			$current, 
+       			"variable",
+        		lv_variable_2_0, 
+        		"DeclaracionVariable");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getRegistroAccess().getVariableDeclaracionVariableParserRuleCall_2_1_0()); 
+	    }
+		lv_variable_3_0=ruleDeclaracionVariable		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getRegistroRule());
+	        }
+       		add(
+       			$current, 
+       			"variable",
+        		lv_variable_3_0, 
+        		"DeclaracionVariable");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*)	otherlv_4='fin_registro' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getRegistroAccess().getFin_registroKeyword_3());
+    }
+)
 ;
 
 

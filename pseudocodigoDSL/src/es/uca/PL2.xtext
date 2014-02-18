@@ -13,7 +13,7 @@ Codigo returns Codigo:
 	tiene=Inicio;
 	
 TipoComplejo returns TipoComplejo:
-	Vector | Matriz;
+	Vector | Matriz | Registro;
 
 
 Subproceso returns Subproceso:
@@ -61,6 +61,12 @@ Vector returns Vector:
 
 Matriz returns Matriz:
 	'matriz' ' [' valor+=valor '][' valor+=valor '] ' 'de ' tipoInterno=TipoVariable ' : ' nombre=EString;
+	
+
+Registro returns Registro:
+	'registro:' nombre=EString
+			(variable+=DeclaracionVariable (variable+=DeclaracionVariable)* )
+	'fin_registro';
 
 
 Inicio returns Inicio:

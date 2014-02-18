@@ -3,20 +3,14 @@
 package diagramapseudocodigo.provider;
 
 
-import diagramapseudocodigo.Codigo;
 import diagramapseudocodigo.DiagramapseudocodigoFactory;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
-
+import diagramapseudocodigo.Registro;
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -25,17 +19,16 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link diagramapseudocodigo.Codigo} object.
+ * This is the item provider adapter for a {@link diagramapseudocodigo.Registro} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class CodigoItemProvider
-	extends ItemProviderAdapter
+public class RegistroItemProvider
+	extends TipoComplejoItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -48,7 +41,7 @@ public class CodigoItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CodigoItemProvider(AdapterFactory adapterFactory) {
+	public RegistroItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -79,9 +72,9 @@ public class CodigoItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Codigo_nombre_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Codigo_nombre_feature", "_UI_Codigo_type"),
-				 DiagramapseudocodigoPackage.Literals.CODIGO__NOMBRE,
+				 getString("_UI_Registro_nombre_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Registro_nombre_feature", "_UI_Registro_type"),
+				 DiagramapseudocodigoPackage.Literals.REGISTRO__NOMBRE,
 				 true,
 				 false,
 				 false,
@@ -102,10 +95,7 @@ public class CodigoItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CODIGO__TIENE);
-			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CODIGO__FUNCION);
-			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CODIGO__CONSTANTES);
-			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO);
+			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.REGISTRO__VARIABLE);
 		}
 		return childrenFeatures;
 	}
@@ -124,14 +114,14 @@ public class CodigoItemProvider
 	}
 
 	/**
-	 * This returns Codigo.gif.
+	 * This returns Registro.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Codigo"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Registro"));
 	}
 
 	/**
@@ -142,10 +132,10 @@ public class CodigoItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Codigo)object).getNombre();
+		String label = ((Registro)object).getNombre();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Codigo_type") :
-			getString("_UI_Codigo_type") + " " + label;
+			getString("_UI_Registro_type") :
+			getString("_UI_Registro_type") + " " + label;
 	}
 
 	/**
@@ -159,14 +149,11 @@ public class CodigoItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Codigo.class)) {
-			case DiagramapseudocodigoPackage.CODIGO__NOMBRE:
+		switch (notification.getFeatureID(Registro.class)) {
+			case DiagramapseudocodigoPackage.REGISTRO__NOMBRE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case DiagramapseudocodigoPackage.CODIGO__TIENE:
-			case DiagramapseudocodigoPackage.CODIGO__FUNCION:
-			case DiagramapseudocodigoPackage.CODIGO__CONSTANTES:
-			case DiagramapseudocodigoPackage.CODIGO__TIPOCOMPLEJO:
+			case DiagramapseudocodigoPackage.REGISTRO__VARIABLE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -186,54 +173,8 @@ public class CodigoItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__TIENE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createInicio()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__FUNCION,
-				 DiagramapseudocodigoFactory.eINSTANCE.createFuncion()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__FUNCION,
-				 DiagramapseudocodigoFactory.eINSTANCE.createProcedimiento()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__CONSTANTES,
-				 DiagramapseudocodigoFactory.eINSTANCE.createConstantes()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO,
-				 DiagramapseudocodigoFactory.eINSTANCE.createTipoComplejo()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO,
-				 DiagramapseudocodigoFactory.eINSTANCE.createVector()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO,
-				 DiagramapseudocodigoFactory.eINSTANCE.createMatriz()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO,
-				 DiagramapseudocodigoFactory.eINSTANCE.createRegistro()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return DiagramaPseudocodigoEditPlugin.INSTANCE;
+				(DiagramapseudocodigoPackage.Literals.REGISTRO__VARIABLE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createDeclaracionVariable()));
 	}
 
 }
