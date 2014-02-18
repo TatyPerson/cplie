@@ -34,11 +34,11 @@ Declaracion returns Declaracion:
 Internas returns Internas:
 	nombre=NombreInterna
 	'('
-		(operador=Operador)
+		(operador+=Operador ( ',' operador+=Operador)* )
 	')';
 
 NombreInterna returns NombreInterna:
-	'cos' | 'cuadrado' | 'exp' | 'ln' | 'log' | 'sen' | 'sqrt' | 'longitud'
+	'cos' | 'cuadrado' | 'exp' | 'ln' | 'log' | 'sen' | 'sqrt' | 'longitud' | 'concatena'
 ;
 
 

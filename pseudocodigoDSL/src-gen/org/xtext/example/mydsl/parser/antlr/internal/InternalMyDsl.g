@@ -524,16 +524,16 @@ ruleInternas returns [EObject current=null]
     {
     	newLeafNode(otherlv_1, grammarAccess.getInternasAccess().getLeftParenthesisKeyword_1());
     }
-(
+((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getInternasAccess().getOperadorOperadorParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getInternasAccess().getOperadorOperadorParserRuleCall_2_0_0()); 
 	    }
 		lv_operador_2_0=ruleOperador		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getInternasRule());
 	        }
-       		set(
+       		add(
        			$current, 
        			"operador",
         		lv_operador_2_0, 
@@ -542,9 +542,31 @@ ruleInternas returns [EObject current=null]
 	    }
 
 )
-)	otherlv_3=')' 
+)(	otherlv_3=',' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getInternasAccess().getRightParenthesisKeyword_3());
+    	newLeafNode(otherlv_3, grammarAccess.getInternasAccess().getCommaKeyword_2_1_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getInternasAccess().getOperadorOperadorParserRuleCall_2_1_1_0()); 
+	    }
+		lv_operador_4_0=ruleOperador		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getInternasRule());
+	        }
+       		add(
+       			$current, 
+       			"operador",
+        		lv_operador_4_0, 
+        		"Operador");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))*)	otherlv_5=')' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getInternasAccess().getRightParenthesisKeyword_3());
     }
 )
 ;
@@ -621,6 +643,13 @@ ruleNombreInterna returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     {
         $current.merge(kw);
         newLeafNode(kw, grammarAccess.getNombreInternaAccess().getLongitudKeyword_7()); 
+    }
+
+    |
+	kw='concatena' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNombreInternaAccess().getConcatenaKeyword_8()); 
     }
 )
     ;

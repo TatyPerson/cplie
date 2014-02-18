@@ -790,6 +790,10 @@
         <element xmi:type="ecore:EEnumLiteral" href="diagramaPseudocodigo.ecore#//NombreInterna/longitud"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_pHZ3UZg2EeOS59DT4PKl0Q"/>
       </children>
+      <children xmi:type="notation:Node" xmi:id="_qdPaIJg8EeOS59DT4PKl0Q" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="diagramaPseudocodigo.ecore#//NombreInterna/concatena"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_qdPaIZg8EeOS59DT4PKl0Q"/>
+      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_DRER8ZPQEeOzT_vMWnJDXQ"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_DRER8pPQEeOzT_vMWnJDXQ"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_DRER85PQEeOzT_vMWnJDXQ"/>

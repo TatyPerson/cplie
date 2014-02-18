@@ -2,6 +2,8 @@
  */
 package diagramapseudocodigo;
 
+import org.eclipse.emf.common.util.EList;
+
 
 
 
@@ -53,29 +55,19 @@ public interface Internas extends valor {
 	void setNombre(NombreInterna value);
 
 	/**
-	 * Returns the value of the '<em><b>Operador</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Operador</b></em>' containment reference list.
+	 * The list contents are of type {@link diagramapseudocodigo.Operador}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Operador</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Operador</em>' containment reference.
-	 * @see #setOperador(Operador)
+	 * @return the value of the '<em>Operador</em>' containment reference list.
 	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getInternas_Operador()
-	 * @model containment="true" required="true"
+	 * @model containment="true" required="true" upper="2"
 	 * @generated
 	 */
-	Operador getOperador();
-
-	/**
-	 * Sets the value of the '{@link diagramapseudocodigo.Internas#getOperador <em>Operador</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Operador</em>' containment reference.
-	 * @see #getOperador()
-	 * @generated
-	 */
-	void setOperador(Operador value);
+	EList<Operador> getOperador();
 
 } // Internas
