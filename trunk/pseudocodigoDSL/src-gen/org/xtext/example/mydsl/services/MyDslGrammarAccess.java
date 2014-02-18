@@ -250,15 +250,20 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNombreAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNombreNombreInternaParserRuleCall_0_0 = (RuleCall)cNombreAssignment_0.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cOperadorAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOperadorOperadorParserRuleCall_2_0 = (RuleCall)cOperadorAssignment_2.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Assignment cOperadorAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final RuleCall cOperadorOperadorParserRuleCall_2_0_0 = (RuleCall)cOperadorAssignment_2_0.eContents().get(0);
+		private final Group cGroup_2_1 = (Group)cGroup_2.eContents().get(1);
+		private final Keyword cCommaKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
+		private final Assignment cOperadorAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
+		private final RuleCall cOperadorOperadorParserRuleCall_2_1_1_0 = (RuleCall)cOperadorAssignment_2_1_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//Internas:
-		//	nombre=NombreInterna "(" operador=Operador ")";
+		//	nombre=NombreInterna "(" (operador+=Operador ("," operador+=Operador)*) ")";
 		public ParserRule getRule() { return rule; }
 
-		//nombre=NombreInterna "(" operador=Operador ")"
+		//nombre=NombreInterna "(" (operador+=Operador ("," operador+=Operador)*) ")"
 		public Group getGroup() { return cGroup; }
 
 		//nombre=NombreInterna
@@ -270,11 +275,26 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"("
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 
-		//operador=Operador
-		public Assignment getOperadorAssignment_2() { return cOperadorAssignment_2; }
+		//operador+=Operador ("," operador+=Operador)*
+		public Group getGroup_2() { return cGroup_2; }
+
+		//operador+=Operador
+		public Assignment getOperadorAssignment_2_0() { return cOperadorAssignment_2_0; }
 
 		//Operador
-		public RuleCall getOperadorOperadorParserRuleCall_2_0() { return cOperadorOperadorParserRuleCall_2_0; }
+		public RuleCall getOperadorOperadorParserRuleCall_2_0_0() { return cOperadorOperadorParserRuleCall_2_0_0; }
+
+		//("," operador+=Operador)*
+		public Group getGroup_2_1() { return cGroup_2_1; }
+
+		//","
+		public Keyword getCommaKeyword_2_1_0() { return cCommaKeyword_2_1_0; }
+
+		//operador+=Operador
+		public Assignment getOperadorAssignment_2_1_1() { return cOperadorAssignment_2_1_1; }
+
+		//Operador
+		public RuleCall getOperadorOperadorParserRuleCall_2_1_1_0() { return cOperadorOperadorParserRuleCall_2_1_1_0; }
 
 		//")"
 		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
@@ -291,12 +311,13 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSenKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
 		private final Keyword cSqrtKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
 		private final Keyword cLongitudKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
+		private final Keyword cConcatenaKeyword_8 = (Keyword)cAlternatives.eContents().get(8);
 		
 		//NombreInterna:
-		//	"cos" | "cuadrado" | "exp" | "ln" | "log" | "sen" | "sqrt" | "longitud";
+		//	"cos" | "cuadrado" | "exp" | "ln" | "log" | "sen" | "sqrt" | "longitud" | "concatena";
 		public ParserRule getRule() { return rule; }
 
-		//"cos" | "cuadrado" | "exp" | "ln" | "log" | "sen" | "sqrt" | "longitud"
+		//"cos" | "cuadrado" | "exp" | "ln" | "log" | "sen" | "sqrt" | "longitud" | "concatena"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"cos"
@@ -322,6 +343,9 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"longitud"
 		public Keyword getLongitudKeyword_7() { return cLongitudKeyword_7; }
+
+		//"concatena"
+		public Keyword getConcatenaKeyword_8() { return cConcatenaKeyword_8; }
 	}
 
 	public class OperadorElements extends AbstractParserRuleElementFinder {
@@ -2379,7 +2403,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Internas:
-	//	nombre=NombreInterna "(" operador=Operador ")";
+	//	nombre=NombreInterna "(" (operador+=Operador ("," operador+=Operador)*) ")";
 	public InternasElements getInternasAccess() {
 		return (pInternas != null) ? pInternas : (pInternas = new InternasElements());
 	}
@@ -2389,7 +2413,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NombreInterna:
-	//	"cos" | "cuadrado" | "exp" | "ln" | "log" | "sen" | "sqrt" | "longitud";
+	//	"cos" | "cuadrado" | "exp" | "ln" | "log" | "sen" | "sqrt" | "longitud" | "concatena";
 	public NombreInternaElements getNombreInternaAccess() {
 		return (pNombreInterna != null) ? pNombreInterna : (pNombreInterna = new NombreInternaElements());
 	}

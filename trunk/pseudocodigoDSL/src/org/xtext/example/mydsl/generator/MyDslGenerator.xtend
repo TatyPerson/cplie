@@ -330,28 +330,31 @@ class MyDslGenerator implements IGenerator {
 	
 	def toC(Internas i) {
 		if(i.nombre == NombreInterna::COS) {
-			'''cos(«i.operador.toC»)'''
+			'''cos(«i.operador.get(0).toC»)'''
 		}
 		else if(i.nombre == NombreInterna::SEN) {
-			'''sin(«i.operador.toC»)'''
+			'''sin(«i.operador.get(0).toC»)'''
 		}
 		else if(i.nombre == NombreInterna::CUADRADO) {
-			'''pow(«i.operador.toC»,«2.0»)'''
+			'''pow(«i.operador.get(0).toC»,«2.0»)'''
 		}
 		else if(i.nombre == NombreInterna::EXP) {
-			'''exp2(«i.operador.toC»)'''
+			'''exp2(«i.operador.get(0).toC»)'''
 		}
 		else if(i.nombre == NombreInterna::LN) {
-			'''log(«i.operador.toC»)'''
+			'''log(«i.operador.get(0).toC»)'''
 		}
 		else if(i.nombre == NombreInterna::LOG) {
-			'''log10(«i.operador.toC»)'''
+			'''log10(«i.operador.get(0).toC»)'''
 		}
 		else if(i.nombre == NombreInterna::SQRT) {
-			'''sqrt(«i.operador.toC»)'''
+			'''sqrt(«i.operador.get(0).toC»)'''
 		}
 		else if(i.nombre == NombreInterna::LONGITUD) {
-			'''strlen(«i.operador.toC»)'''
+			'''strlen(«i.operador.get(0).toC»)'''
+		}
+		else if(i.nombre == NombreInterna::CONCATENA) {
+			'''strcat(«i.operador.get(0).toC»,«i.operador.get(1).toC»)'''
 		}
 	}		
 	
