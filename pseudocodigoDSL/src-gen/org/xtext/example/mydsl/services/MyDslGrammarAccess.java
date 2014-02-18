@@ -463,8 +463,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cVectorKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cSpaceLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cConstanteAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cConstanteEStringParserRuleCall_2_0 = (RuleCall)cConstanteAssignment_2.eContents().get(0);
+		private final Assignment cValorAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cValorValorParserRuleCall_2_0 = (RuleCall)cValorAssignment_2.eContents().get(0);
 		private final Keyword cRightSquareBracketSpaceKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Keyword cDeKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cTipoInternoAssignment_5 = (Assignment)cGroup.eContents().get(5);
@@ -474,10 +474,10 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNombreEStringParserRuleCall_7_0 = (RuleCall)cNombreAssignment_7.eContents().get(0);
 		
 		//Vector:
-		//	"vector" " [" constante=EString "] " "de " tipoInterno=TipoVariable " : " nombre=EString;
+		//	"vector" " [" valor=valor "] " "de " tipoInterno=TipoVariable " : " nombre=EString;
 		public ParserRule getRule() { return rule; }
 
-		//"vector" " [" constante=EString "] " "de " tipoInterno=TipoVariable " : " nombre=EString
+		//"vector" " [" valor=valor "] " "de " tipoInterno=TipoVariable " : " nombre=EString
 		public Group getGroup() { return cGroup; }
 
 		//"vector"
@@ -486,11 +486,11 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//" ["
 		public Keyword getSpaceLeftSquareBracketKeyword_1() { return cSpaceLeftSquareBracketKeyword_1; }
 
-		//constante=EString
-		public Assignment getConstanteAssignment_2() { return cConstanteAssignment_2; }
+		//valor=valor
+		public Assignment getValorAssignment_2() { return cValorAssignment_2; }
 
-		//EString
-		public RuleCall getConstanteEStringParserRuleCall_2_0() { return cConstanteEStringParserRuleCall_2_0; }
+		//valor
+		public RuleCall getValorValorParserRuleCall_2_0() { return cValorValorParserRuleCall_2_0; }
 
 		//"] "
 		public Keyword getRightSquareBracketSpaceKeyword_3() { return cRightSquareBracketSpaceKeyword_3; }
@@ -519,11 +519,11 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cMatrizKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cSpaceLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cConstanteAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cConstanteEStringParserRuleCall_2_0 = (RuleCall)cConstanteAssignment_2.eContents().get(0);
+		private final Assignment cValorAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cValorValorParserRuleCall_2_0 = (RuleCall)cValorAssignment_2.eContents().get(0);
 		private final Keyword cRightSquareBracketLeftSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cConstante2Assignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cConstante2EStringParserRuleCall_4_0 = (RuleCall)cConstante2Assignment_4.eContents().get(0);
+		private final Assignment cValorAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cValorValorParserRuleCall_4_0 = (RuleCall)cValorAssignment_4.eContents().get(0);
 		private final Keyword cRightSquareBracketSpaceKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Keyword cDeKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Assignment cTipoInternoAssignment_7 = (Assignment)cGroup.eContents().get(7);
@@ -533,10 +533,10 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNombreEStringParserRuleCall_9_0 = (RuleCall)cNombreAssignment_9.eContents().get(0);
 		
 		//Matriz:
-		//	"matriz" " [" constante=EString "][" constante2=EString "] " "de " tipoInterno=TipoVariable " : " nombre=EString;
+		//	"matriz" " [" valor+=valor "][" valor+=valor "] " "de " tipoInterno=TipoVariable " : " nombre=EString;
 		public ParserRule getRule() { return rule; }
 
-		//"matriz" " [" constante=EString "][" constante2=EString "] " "de " tipoInterno=TipoVariable " : " nombre=EString
+		//"matriz" " [" valor+=valor "][" valor+=valor "] " "de " tipoInterno=TipoVariable " : " nombre=EString
 		public Group getGroup() { return cGroup; }
 
 		//"matriz"
@@ -545,20 +545,20 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//" ["
 		public Keyword getSpaceLeftSquareBracketKeyword_1() { return cSpaceLeftSquareBracketKeyword_1; }
 
-		//constante=EString
-		public Assignment getConstanteAssignment_2() { return cConstanteAssignment_2; }
+		//valor+=valor
+		public Assignment getValorAssignment_2() { return cValorAssignment_2; }
 
-		//EString
-		public RuleCall getConstanteEStringParserRuleCall_2_0() { return cConstanteEStringParserRuleCall_2_0; }
+		//valor
+		public RuleCall getValorValorParserRuleCall_2_0() { return cValorValorParserRuleCall_2_0; }
 
 		//"]["
 		public Keyword getRightSquareBracketLeftSquareBracketKeyword_3() { return cRightSquareBracketLeftSquareBracketKeyword_3; }
 
-		//constante2=EString
-		public Assignment getConstante2Assignment_4() { return cConstante2Assignment_4; }
+		//valor+=valor
+		public Assignment getValorAssignment_4() { return cValorAssignment_4; }
 
-		//EString
-		public RuleCall getConstante2EStringParserRuleCall_4_0() { return cConstante2EStringParserRuleCall_4_0; }
+		//valor
+		public RuleCall getValorValorParserRuleCall_4_0() { return cValorValorParserRuleCall_4_0; }
 
 		//"] "
 		public Keyword getRightSquareBracketSpaceKeyword_5() { return cRightSquareBracketSpaceKeyword_5; }
@@ -2436,7 +2436,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Vector:
-	//	"vector" " [" constante=EString "] " "de " tipoInterno=TipoVariable " : " nombre=EString;
+	//	"vector" " [" valor=valor "] " "de " tipoInterno=TipoVariable " : " nombre=EString;
 	public VectorElements getVectorAccess() {
 		return (pVector != null) ? pVector : (pVector = new VectorElements());
 	}
@@ -2446,7 +2446,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Matriz:
-	//	"matriz" " [" constante=EString "][" constante2=EString "] " "de " tipoInterno=TipoVariable " : " nombre=EString;
+	//	"matriz" " [" valor+=valor "][" valor+=valor "] " "de " tipoInterno=TipoVariable " : " nombre=EString;
 	public MatrizElements getMatrizAccess() {
 		return (pMatriz != null) ? pMatriz : (pMatriz = new MatrizElements());
 	}

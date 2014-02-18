@@ -63,11 +63,11 @@ class MyDslGenerator implements IGenerator {
 	'''
 	
 	def toC(Vector myVector)'''
-		typedef «tipoVariable(myVector.tipoInterno)» «myVector.nombre»[«myVector.constante»];
+		typedef «tipoVariable(myVector.tipoInterno)» «myVector.nombre»[«myVector.valor.toC»];
 	'''
 	
 	def toC(Matriz myMatriz)'''
-		typedef «tipoVariable(myMatriz.tipoInterno)» «myMatriz.nombre»[«myMatriz.constante»][«myMatriz.constante2»];
+		typedef «tipoVariable(myMatriz.tipoInterno)» «myMatriz.nombre»[«myMatriz.valor.get(0).toC»][«myMatriz.valor.get(1).toC»];
 	'''
 	
 	def toC(Inicio myInicio)'''

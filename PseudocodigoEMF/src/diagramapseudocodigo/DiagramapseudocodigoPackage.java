@@ -1916,13 +1916,13 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int VECTOR__NOMBRE = TIPO_COMPLEJO_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Constante</b></em>' attribute.
+	 * The feature id for the '<em><b>Valor</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VECTOR__CONSTANTE = TIPO_COMPLEJO_FEATURE_COUNT + 2;
+	int VECTOR__VALOR = TIPO_COMPLEJO_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Vector</em>' class.
@@ -1999,22 +1999,13 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int MATRIZ = 41;
 
 	/**
-	 * The feature id for the '<em><b>Constante</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MATRIZ__CONSTANTE = TIPO_COMPLEJO_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Tipo Interno</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MATRIZ__TIPO_INTERNO = TIPO_COMPLEJO_FEATURE_COUNT + 1;
+	int MATRIZ__TIPO_INTERNO = TIPO_COMPLEJO_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Nombre</b></em>' attribute.
@@ -2023,16 +2014,16 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATRIZ__NOMBRE = TIPO_COMPLEJO_FEATURE_COUNT + 2;
+	int MATRIZ__NOMBRE = TIPO_COMPLEJO_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Constante2</b></em>' attribute.
+	 * The feature id for the '<em><b>Valor</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MATRIZ__CONSTANTE2 = TIPO_COMPLEJO_FEATURE_COUNT + 3;
+	int MATRIZ__VALOR = TIPO_COMPLEJO_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Matriz</em>' class.
@@ -2041,7 +2032,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATRIZ_FEATURE_COUNT = TIPO_COMPLEJO_FEATURE_COUNT + 4;
+	int MATRIZ_FEATURE_COUNT = TIPO_COMPLEJO_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Matriz</em>' class.
@@ -3165,17 +3156,6 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EClass getVector();
 
 	/**
-	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Vector#getConstante <em>Constante</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Constante</em>'.
-	 * @see diagramapseudocodigo.Vector#getConstante()
-	 * @see #getVector()
-	 * @generated
-	 */
-	EAttribute getVector_Constante();
-
-	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.DeclaracionPropia <em>Declaracion Propia</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3228,17 +3208,6 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EClass getMatriz();
 
 	/**
-	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Matriz#getConstante <em>Constante</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Constante</em>'.
-	 * @see diagramapseudocodigo.Matriz#getConstante()
-	 * @see #getMatriz()
-	 * @generated
-	 */
-	EAttribute getMatriz_Constante();
-
-	/**
 	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Matriz#getTipoInterno <em>Tipo Interno</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3261,15 +3230,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EAttribute getMatriz_Nombre();
 
 	/**
-	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Matriz#getConstante2 <em>Constante2</em>}'.
+	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.Matriz#getValor <em>Valor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Constante2</em>'.
-	 * @see diagramapseudocodigo.Matriz#getConstante2()
+	 * @return the meta object for the containment reference list '<em>Valor</em>'.
+	 * @see diagramapseudocodigo.Matriz#getValor()
 	 * @see #getMatriz()
 	 * @generated
 	 */
-	EAttribute getMatriz_Constante2();
+	EReference getMatriz_Valor();
 
 	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.TipoComplejo <em>Tipo Complejo</em>}'.
@@ -3302,6 +3271,17 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getVector_Nombre();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Vector#getValor <em>Valor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Valor</em>'.
+	 * @see diagramapseudocodigo.Vector#getValor()
+	 * @see #getVector()
+	 * @generated
+	 */
+	EReference getVector_Valor();
 
 	/**
 	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.unaria#getSsigno <em>Ssigno</em>}'.
@@ -4267,14 +4247,6 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EClass VECTOR = eINSTANCE.getVector();
 
 		/**
-		 * The meta object literal for the '<em><b>Constante</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute VECTOR__CONSTANTE = eINSTANCE.getVector_Constante();
-
-		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.DeclaracionPropiaImpl <em>Declaracion Propia</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4321,14 +4293,6 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EClass MATRIZ = eINSTANCE.getMatriz();
 
 		/**
-		 * The meta object literal for the '<em><b>Constante</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MATRIZ__CONSTANTE = eINSTANCE.getMatriz_Constante();
-
-		/**
 		 * The meta object literal for the '<em><b>Tipo Interno</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4345,12 +4309,12 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EAttribute MATRIZ__NOMBRE = eINSTANCE.getMatriz_Nombre();
 
 		/**
-		 * The meta object literal for the '<em><b>Constante2</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Valor</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MATRIZ__CONSTANTE2 = eINSTANCE.getMatriz_Constante2();
+		EReference MATRIZ__VALOR = eINSTANCE.getMatriz_Valor();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.TipoComplejoImpl <em>Tipo Complejo</em>}' class.
@@ -4377,6 +4341,14 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute VECTOR__NOMBRE = eINSTANCE.getVector_Nombre();
+
+		/**
+		 * The meta object literal for the '<em><b>Valor</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VECTOR__VALOR = eINSTANCE.getVector_Valor();
 
 		/**
 		 * The meta object literal for the '<em><b>Ssigno</b></em>' attribute feature.

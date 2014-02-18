@@ -123,11 +123,11 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCaracterAccess().getContenidoAssignment(), "rule__Caracter__ContenidoAssignment");
 					put(grammarAccess.getConstantesAccess().getVariableAssignment_0(), "rule__Constantes__VariableAssignment_0");
 					put(grammarAccess.getConstantesAccess().getValorAssignment_2(), "rule__Constantes__ValorAssignment_2");
-					put(grammarAccess.getVectorAccess().getConstanteAssignment_2(), "rule__Vector__ConstanteAssignment_2");
+					put(grammarAccess.getVectorAccess().getValorAssignment_2(), "rule__Vector__ValorAssignment_2");
 					put(grammarAccess.getVectorAccess().getTipoInternoAssignment_5(), "rule__Vector__TipoInternoAssignment_5");
 					put(grammarAccess.getVectorAccess().getNombreAssignment_7(), "rule__Vector__NombreAssignment_7");
-					put(grammarAccess.getMatrizAccess().getConstanteAssignment_2(), "rule__Matriz__ConstanteAssignment_2");
-					put(grammarAccess.getMatrizAccess().getConstante2Assignment_4(), "rule__Matriz__Constante2Assignment_4");
+					put(grammarAccess.getMatrizAccess().getValorAssignment_2(), "rule__Matriz__ValorAssignment_2");
+					put(grammarAccess.getMatrizAccess().getValorAssignment_4(), "rule__Matriz__ValorAssignment_4");
 					put(grammarAccess.getMatrizAccess().getTipoInternoAssignment_7(), "rule__Matriz__TipoInternoAssignment_7");
 					put(grammarAccess.getMatrizAccess().getNombreAssignment_9(), "rule__Matriz__NombreAssignment_9");
 					put(grammarAccess.getInicioAccess().getDeclaracionAssignment_2_0(), "rule__Inicio__DeclaracionAssignment_2_0");

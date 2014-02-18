@@ -13,7 +13,7 @@ package diagramapseudocodigo;
  * <ul>
  *   <li>{@link diagramapseudocodigo.Vector#getTipoInterno <em>Tipo Interno</em>}</li>
  *   <li>{@link diagramapseudocodigo.Vector#getNombre <em>Nombre</em>}</li>
- *   <li>{@link diagramapseudocodigo.Vector#getConstante <em>Constante</em>}</li>
+ *   <li>{@link diagramapseudocodigo.Vector#getValor <em>Valor</em>}</li>
  * </ul>
  * </p>
  *
@@ -22,32 +22,6 @@ package diagramapseudocodigo;
  * @generated
  */
 public interface Vector extends TipoComplejo {
-	/**
-	 * Returns the value of the '<em><b>Constante</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Constante</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constante</em>' attribute.
-	 * @see #setConstante(String)
-	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getVector_Constante()
-	 * @model required="true"
-	 * @generated
-	 */
-	String getConstante();
-
-	/**
-	 * Sets the value of the '{@link diagramapseudocodigo.Vector#getConstante <em>Constante</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Constante</em>' attribute.
-	 * @see #getConstante()
-	 * @generated
-	 */
-	void setConstante(String value);
-
 	/**
 	 * Returns the value of the '<em><b>Tipo Interno</b></em>' attribute.
 	 * The literals are from the enumeration {@link diagramapseudocodigo.TipoVariable}.
@@ -102,5 +76,31 @@ public interface Vector extends TipoComplejo {
 	 * @generated
 	 */
 	void setNombre(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Valor</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Valor</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Valor</em>' containment reference.
+	 * @see #setValor(valor)
+	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getVector_Valor()
+	 * @model containment="true"
+	 * @generated
+	 */
+	valor getValor();
+
+	/**
+	 * Sets the value of the '{@link diagramapseudocodigo.Vector#getValor <em>Valor</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Valor</em>' containment reference.
+	 * @see #getValor()
+	 * @generated
+	 */
+	void setValor(valor value);
 
 } // Vector
