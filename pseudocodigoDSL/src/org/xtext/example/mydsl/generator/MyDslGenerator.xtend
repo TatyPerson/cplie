@@ -79,7 +79,7 @@ class MyDslGenerator implements IGenerator {
 			«FOR myVariable:myRegistro.variable»
 				«myVariable.toC»
 			«ENDFOR»
-		}
+		} «myRegistro.nombre»;
 	'''
 	
 	def toC(Inicio myInicio)'''
