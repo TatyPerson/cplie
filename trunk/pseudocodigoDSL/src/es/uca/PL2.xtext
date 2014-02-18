@@ -13,7 +13,7 @@ Codigo returns Codigo:
 	tiene=Inicio;
 	
 TipoComplejo returns TipoComplejo:
-	Vector | Matriz | Registro | Archivo;
+	Vector | Matriz | Registro | Archivo | Enumerado;
 
 
 Subproceso returns Subproceso:
@@ -78,6 +78,10 @@ Registro returns Registro:
 	
 Archivo returns Archivo:
 	'archivo de ' tipo=Tipo':' nombre=EString;
+	
+
+Enumerado returns Enumerado:
+	nombre=EString '=' ' {'(valor+=valor (',' valor+=valor )* )'}';
 
 
 Inicio returns Inicio:

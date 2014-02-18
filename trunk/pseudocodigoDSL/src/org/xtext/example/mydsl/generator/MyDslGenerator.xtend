@@ -102,7 +102,7 @@ class MyDslGenerator implements IGenerator {
 	'''
 	
 	def toC(Registro myRegistro)'''
-		typedef struct «myRegistro.nombre» {
+		typedef struct {
 			«FOR myVariable:myRegistro.variable»
 				«myVariable.toC»
 			«ENDFOR»

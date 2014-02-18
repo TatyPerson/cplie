@@ -100,6 +100,7 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 			case DiagramapseudocodigoPackage.TIPO_DEFINIDO: return createTipoDefinido();
 			case DiagramapseudocodigoPackage.TIPO_EXISTENTE: return createTipoExistente();
 			case DiagramapseudocodigoPackage.ARCHIVO: return createArchivo();
+			case DiagramapseudocodigoPackage.ENUMERADO: return createEnumerado();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -583,6 +584,16 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	public Archivo createArchivo() {
 		ArchivoImpl archivo = new ArchivoImpl();
 		return archivo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Enumerado createEnumerado() {
+		EnumeradoImpl enumerado = new EnumeradoImpl();
+		return enumerado;
 	}
 
 	/**
