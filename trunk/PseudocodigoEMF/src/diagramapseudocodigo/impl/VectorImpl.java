@@ -5,8 +5,11 @@ package diagramapseudocodigo.impl;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.TipoVariable;
 import diagramapseudocodigo.Vector;
+import diagramapseudocodigo.valor;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -18,7 +21,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link diagramapseudocodigo.impl.VectorImpl#getTipoInterno <em>Tipo Interno</em>}</li>
  *   <li>{@link diagramapseudocodigo.impl.VectorImpl#getNombre <em>Nombre</em>}</li>
- *   <li>{@link diagramapseudocodigo.impl.VectorImpl#getConstante <em>Constante</em>}</li>
+ *   <li>{@link diagramapseudocodigo.impl.VectorImpl#getValor <em>Valor</em>}</li>
  * </ul>
  * </p>
  *
@@ -66,24 +69,14 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	protected String nombre = NOMBRE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getConstante() <em>Constante</em>}' attribute.
+	 * The cached value of the '{@link #getValor() <em>Valor</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConstante()
+	 * @see #getValor()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String CONSTANTE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getConstante() <em>Constante</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConstante()
-	 * @generated
-	 * @ordered
-	 */
-	protected String constante = CONSTANTE_EDEFAULT;
+	protected valor valor;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -102,27 +95,6 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	@Override
 	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.VECTOR;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getConstante() {
-		return constante;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setConstante(String newConstante) {
-		String oldConstante = constante;
-		constante = newConstante;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.VECTOR__CONSTANTE, oldConstante, constante));
 	}
 
 	/**
@@ -172,6 +144,63 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public valor getValor() {
+		return valor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetValor(valor newValor, NotificationChain msgs) {
+		valor oldValor = valor;
+		valor = newValor;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.VECTOR__VALOR, oldValor, newValor);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setValor(valor newValor) {
+		if (newValor != valor) {
+			NotificationChain msgs = null;
+			if (valor != null)
+				msgs = ((InternalEObject)valor).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DiagramapseudocodigoPackage.VECTOR__VALOR, null, msgs);
+			if (newValor != null)
+				msgs = ((InternalEObject)newValor).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiagramapseudocodigoPackage.VECTOR__VALOR, null, msgs);
+			msgs = basicSetValor(newValor, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.VECTOR__VALOR, newValor, newValor));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DiagramapseudocodigoPackage.VECTOR__VALOR:
+				return basicSetValor(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -179,8 +208,8 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 				return getTipoInterno();
 			case DiagramapseudocodigoPackage.VECTOR__NOMBRE:
 				return getNombre();
-			case DiagramapseudocodigoPackage.VECTOR__CONSTANTE:
-				return getConstante();
+			case DiagramapseudocodigoPackage.VECTOR__VALOR:
+				return getValor();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -199,8 +228,8 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 			case DiagramapseudocodigoPackage.VECTOR__NOMBRE:
 				setNombre((String)newValue);
 				return;
-			case DiagramapseudocodigoPackage.VECTOR__CONSTANTE:
-				setConstante((String)newValue);
+			case DiagramapseudocodigoPackage.VECTOR__VALOR:
+				setValor((valor)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -220,8 +249,8 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 			case DiagramapseudocodigoPackage.VECTOR__NOMBRE:
 				setNombre(NOMBRE_EDEFAULT);
 				return;
-			case DiagramapseudocodigoPackage.VECTOR__CONSTANTE:
-				setConstante(CONSTANTE_EDEFAULT);
+			case DiagramapseudocodigoPackage.VECTOR__VALOR:
+				setValor((valor)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -239,8 +268,8 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 				return tipoInterno != TIPO_INTERNO_EDEFAULT;
 			case DiagramapseudocodigoPackage.VECTOR__NOMBRE:
 				return NOMBRE_EDEFAULT == null ? nombre != null : !NOMBRE_EDEFAULT.equals(nombre);
-			case DiagramapseudocodigoPackage.VECTOR__CONSTANTE:
-				return CONSTANTE_EDEFAULT == null ? constante != null : !CONSTANTE_EDEFAULT.equals(constante);
+			case DiagramapseudocodigoPackage.VECTOR__VALOR:
+				return valor != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -259,8 +288,6 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 		result.append(tipoInterno);
 		result.append(", nombre: ");
 		result.append(nombre);
-		result.append(", constante: ");
-		result.append(constante);
 		result.append(')');
 		return result.toString();
 	}

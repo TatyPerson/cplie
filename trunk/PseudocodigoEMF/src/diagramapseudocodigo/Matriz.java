@@ -2,6 +2,8 @@
  */
 package diagramapseudocodigo;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -11,10 +13,9 @@ package diagramapseudocodigo;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link diagramapseudocodigo.Matriz#getConstante <em>Constante</em>}</li>
  *   <li>{@link diagramapseudocodigo.Matriz#getTipoInterno <em>Tipo Interno</em>}</li>
  *   <li>{@link diagramapseudocodigo.Matriz#getNombre <em>Nombre</em>}</li>
- *   <li>{@link diagramapseudocodigo.Matriz#getConstante2 <em>Constante2</em>}</li>
+ *   <li>{@link diagramapseudocodigo.Matriz#getValor <em>Valor</em>}</li>
  * </ul>
  * </p>
  *
@@ -23,32 +24,6 @@ package diagramapseudocodigo;
  * @generated
  */
 public interface Matriz extends TipoComplejo {
-	/**
-	 * Returns the value of the '<em><b>Constante</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Constante</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constante</em>' attribute.
-	 * @see #setConstante(String)
-	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getMatriz_Constante()
-	 * @model required="true"
-	 * @generated
-	 */
-	String getConstante();
-
-	/**
-	 * Sets the value of the '{@link diagramapseudocodigo.Matriz#getConstante <em>Constante</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Constante</em>' attribute.
-	 * @see #getConstante()
-	 * @generated
-	 */
-	void setConstante(String value);
-
 	/**
 	 * Returns the value of the '<em><b>Tipo Interno</b></em>' attribute.
 	 * The literals are from the enumeration {@link diagramapseudocodigo.TipoVariable}.
@@ -105,29 +80,19 @@ public interface Matriz extends TipoComplejo {
 	void setNombre(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Constante2</b></em>' attribute.
+	 * Returns the value of the '<em><b>Valor</b></em>' containment reference list.
+	 * The list contents are of type {@link diagramapseudocodigo.valor}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Constante2</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Valor</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constante2</em>' attribute.
-	 * @see #setConstante2(String)
-	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getMatriz_Constante2()
-	 * @model required="true"
+	 * @return the value of the '<em>Valor</em>' containment reference list.
+	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getMatriz_Valor()
+	 * @model containment="true" upper="2"
 	 * @generated
 	 */
-	String getConstante2();
-
-	/**
-	 * Sets the value of the '{@link diagramapseudocodigo.Matriz#getConstante2 <em>Constante2</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Constante2</em>' attribute.
-	 * @see #getConstante2()
-	 * @generated
-	 */
-	void setConstante2(String value);
+	EList<valor> getValor();
 
 } // Matriz

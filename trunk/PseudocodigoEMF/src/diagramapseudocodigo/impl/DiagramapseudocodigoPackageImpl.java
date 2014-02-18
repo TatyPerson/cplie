@@ -1369,15 +1369,6 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getVector_Constante() {
-		return (EAttribute)vectorEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getDeclaracionPropia() {
 		return declaracionPropiaEClass;
 	}
@@ -1423,7 +1414,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMatriz_Constante() {
+	public EAttribute getMatriz_TipoInterno() {
 		return (EAttribute)matrizEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1432,7 +1423,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMatriz_TipoInterno() {
+	public EAttribute getMatriz_Nombre() {
 		return (EAttribute)matrizEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1441,17 +1432,8 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMatriz_Nombre() {
-		return (EAttribute)matrizEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMatriz_Constante2() {
-		return (EAttribute)matrizEClass.getEStructuralFeatures().get(3);
+	public EReference getMatriz_Valor() {
+		return (EReference)matrizEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1479,6 +1461,15 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 */
 	public EAttribute getVector_Nombre() {
 		return (EAttribute)vectorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getVector_Valor() {
+		return (EReference)vectorEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1712,7 +1703,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		vectorEClass = createEClass(VECTOR);
 		createEAttribute(vectorEClass, VECTOR__TIPO_INTERNO);
 		createEAttribute(vectorEClass, VECTOR__NOMBRE);
-		createEAttribute(vectorEClass, VECTOR__CONSTANTE);
+		createEReference(vectorEClass, VECTOR__VALOR);
 
 		declaracionPropiaEClass = createEClass(DECLARACION_PROPIA);
 		createEAttribute(declaracionPropiaEClass, DECLARACION_PROPIA__TIPO);
@@ -1721,10 +1712,9 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		declaracionEClass = createEClass(DECLARACION);
 
 		matrizEClass = createEClass(MATRIZ);
-		createEAttribute(matrizEClass, MATRIZ__CONSTANTE);
 		createEAttribute(matrizEClass, MATRIZ__TIPO_INTERNO);
 		createEAttribute(matrizEClass, MATRIZ__NOMBRE);
-		createEAttribute(matrizEClass, MATRIZ__CONSTANTE2);
+		createEReference(matrizEClass, MATRIZ__VALOR);
 
 		tipoComplejoEClass = createEClass(TIPO_COMPLEJO);
 
@@ -1935,7 +1925,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		initEClass(vectorEClass, Vector.class, "Vector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getVector_TipoInterno(), this.getTipoVariable(), "tipoInterno", null, 1, 1, Vector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getVector_Nombre(), ecorePackage.getEString(), "nombre", null, 1, 1, Vector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getVector_Constante(), ecorePackage.getEString(), "constante", null, 1, 1, Vector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVector_Valor(), this.getvalor(), null, "valor", null, 0, 1, Vector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(declaracionPropiaEClass, DeclaracionPropia.class, "DeclaracionPropia", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDeclaracionPropia_Tipo(), ecorePackage.getEString(), "tipo", null, 1, 1, DeclaracionPropia.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1944,10 +1934,9 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		initEClass(declaracionEClass, Declaracion.class, "Declaracion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(matrizEClass, Matriz.class, "Matriz", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMatriz_Constante(), ecorePackage.getEString(), "constante", null, 1, 1, Matriz.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMatriz_TipoInterno(), this.getTipoVariable(), "tipoInterno", null, 1, 1, Matriz.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMatriz_Nombre(), ecorePackage.getEString(), "nombre", null, 1, 1, Matriz.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMatriz_Constante2(), ecorePackage.getEString(), "constante2", null, 1, 1, Matriz.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMatriz_Valor(), this.getvalor(), null, "valor", null, 0, 2, Matriz.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(tipoComplejoEClass, TipoComplejo.class, "TipoComplejo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

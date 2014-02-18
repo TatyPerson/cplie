@@ -947,17 +947,17 @@ ruleVector returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getVectorAccess().getConstanteEStringParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getVectorAccess().getValorValorParserRuleCall_2_0()); 
 	    }
-		lv_constante_2_0=ruleEString		{
+		lv_valor_2_0=rulevalor		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getVectorRule());
 	        }
        		set(
        			$current, 
-       			"constante",
-        		lv_constante_2_0, 
-        		"EString");
+       			"valor",
+        		lv_valor_2_0, 
+        		"valor");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1042,17 +1042,17 @@ ruleMatriz returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMatrizAccess().getConstanteEStringParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getMatrizAccess().getValorValorParserRuleCall_2_0()); 
 	    }
-		lv_constante_2_0=ruleEString		{
+		lv_valor_2_0=rulevalor		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getMatrizRule());
 	        }
-       		set(
+       		add(
        			$current, 
-       			"constante",
-        		lv_constante_2_0, 
-        		"EString");
+       			"valor",
+        		lv_valor_2_0, 
+        		"valor");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1064,17 +1064,17 @@ ruleMatriz returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMatrizAccess().getConstante2EStringParserRuleCall_4_0()); 
+	        newCompositeNode(grammarAccess.getMatrizAccess().getValorValorParserRuleCall_4_0()); 
 	    }
-		lv_constante2_4_0=ruleEString		{
+		lv_valor_4_0=rulevalor		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getMatrizRule());
 	        }
-       		set(
+       		add(
        			$current, 
-       			"constante2",
-        		lv_constante2_4_0, 
-        		"EString");
+       			"valor",
+        		lv_valor_4_0, 
+        		"valor");
 	        afterParserOrEnumRuleCall();
 	    }
 

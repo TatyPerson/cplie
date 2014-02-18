@@ -57,10 +57,10 @@ Constantes returns Constantes:
 	variable=Variable '=' valor=valor;
 
 Vector returns Vector:
-	'vector' ' [' constante=EString '] ' 'de ' tipoInterno=TipoVariable ' : ' nombre=EString;
+	'vector' ' [' valor=valor '] ' 'de ' tipoInterno=TipoVariable ' : ' nombre=EString;
 
 Matriz returns Matriz:
-	'matriz' ' [' constante=EString '][' constante2=EString '] ' 'de ' tipoInterno=TipoVariable ' : ' nombre=EString;
+	'matriz' ' [' valor+=valor '][' valor+=valor '] ' 'de ' tipoInterno=TipoVariable ' : ' nombre=EString;
 
 
 Inicio returns Inicio:

@@ -8117,31 +8117,31 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Vector__Group__2__Impl"
-    // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:2849:1: rule__Vector__Group__2__Impl : ( ( rule__Vector__ConstanteAssignment_2 ) ) ;
+    // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:2849:1: rule__Vector__Group__2__Impl : ( ( rule__Vector__ValorAssignment_2 ) ) ;
     public final void rule__Vector__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:2853:1: ( ( ( rule__Vector__ConstanteAssignment_2 ) ) )
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:2854:1: ( ( rule__Vector__ConstanteAssignment_2 ) )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:2853:1: ( ( ( rule__Vector__ValorAssignment_2 ) ) )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:2854:1: ( ( rule__Vector__ValorAssignment_2 ) )
             {
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:2854:1: ( ( rule__Vector__ConstanteAssignment_2 ) )
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:2855:1: ( rule__Vector__ConstanteAssignment_2 )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:2854:1: ( ( rule__Vector__ValorAssignment_2 ) )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:2855:1: ( rule__Vector__ValorAssignment_2 )
             {
-             before(grammarAccess.getVectorAccess().getConstanteAssignment_2()); 
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:2856:1: ( rule__Vector__ConstanteAssignment_2 )
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:2856:2: rule__Vector__ConstanteAssignment_2
+             before(grammarAccess.getVectorAccess().getValorAssignment_2()); 
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:2856:1: ( rule__Vector__ValorAssignment_2 )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:2856:2: rule__Vector__ValorAssignment_2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__Vector__ConstanteAssignment_2_in_rule__Vector__Group__2__Impl6078);
-            rule__Vector__ConstanteAssignment_2();
+            pushFollow(FollowSets000.FOLLOW_rule__Vector__ValorAssignment_2_in_rule__Vector__Group__2__Impl6078);
+            rule__Vector__ValorAssignment_2();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getVectorAccess().getConstanteAssignment_2()); 
+             after(grammarAccess.getVectorAccess().getValorAssignment_2()); 
 
             }
 
@@ -8742,31 +8742,31 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Matriz__Group__2__Impl"
-    // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3106:1: rule__Matriz__Group__2__Impl : ( ( rule__Matriz__ConstanteAssignment_2 ) ) ;
+    // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3106:1: rule__Matriz__Group__2__Impl : ( ( rule__Matriz__ValorAssignment_2 ) ) ;
     public final void rule__Matriz__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3110:1: ( ( ( rule__Matriz__ConstanteAssignment_2 ) ) )
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3111:1: ( ( rule__Matriz__ConstanteAssignment_2 ) )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3110:1: ( ( ( rule__Matriz__ValorAssignment_2 ) ) )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3111:1: ( ( rule__Matriz__ValorAssignment_2 ) )
             {
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3111:1: ( ( rule__Matriz__ConstanteAssignment_2 ) )
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3112:1: ( rule__Matriz__ConstanteAssignment_2 )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3111:1: ( ( rule__Matriz__ValorAssignment_2 ) )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3112:1: ( rule__Matriz__ValorAssignment_2 )
             {
-             before(grammarAccess.getMatrizAccess().getConstanteAssignment_2()); 
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3113:1: ( rule__Matriz__ConstanteAssignment_2 )
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3113:2: rule__Matriz__ConstanteAssignment_2
+             before(grammarAccess.getMatrizAccess().getValorAssignment_2()); 
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3113:1: ( rule__Matriz__ValorAssignment_2 )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3113:2: rule__Matriz__ValorAssignment_2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__Matriz__ConstanteAssignment_2_in_rule__Matriz__Group__2__Impl6581);
-            rule__Matriz__ConstanteAssignment_2();
+            pushFollow(FollowSets000.FOLLOW_rule__Matriz__ValorAssignment_2_in_rule__Matriz__Group__2__Impl6581);
+            rule__Matriz__ValorAssignment_2();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getMatrizAccess().getConstanteAssignment_2()); 
+             after(grammarAccess.getMatrizAccess().getValorAssignment_2()); 
 
             }
 
@@ -8902,31 +8902,31 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Matriz__Group__4__Impl"
-    // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3166:1: rule__Matriz__Group__4__Impl : ( ( rule__Matriz__Constante2Assignment_4 ) ) ;
+    // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3166:1: rule__Matriz__Group__4__Impl : ( ( rule__Matriz__ValorAssignment_4 ) ) ;
     public final void rule__Matriz__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3170:1: ( ( ( rule__Matriz__Constante2Assignment_4 ) ) )
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3171:1: ( ( rule__Matriz__Constante2Assignment_4 ) )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3170:1: ( ( ( rule__Matriz__ValorAssignment_4 ) ) )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3171:1: ( ( rule__Matriz__ValorAssignment_4 ) )
             {
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3171:1: ( ( rule__Matriz__Constante2Assignment_4 ) )
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3172:1: ( rule__Matriz__Constante2Assignment_4 )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3171:1: ( ( rule__Matriz__ValorAssignment_4 ) )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3172:1: ( rule__Matriz__ValorAssignment_4 )
             {
-             before(grammarAccess.getMatrizAccess().getConstante2Assignment_4()); 
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3173:1: ( rule__Matriz__Constante2Assignment_4 )
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3173:2: rule__Matriz__Constante2Assignment_4
+             before(grammarAccess.getMatrizAccess().getValorAssignment_4()); 
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3173:1: ( rule__Matriz__ValorAssignment_4 )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:3173:2: rule__Matriz__ValorAssignment_4
             {
-            pushFollow(FollowSets000.FOLLOW_rule__Matriz__Constante2Assignment_4_in_rule__Matriz__Group__4__Impl6703);
-            rule__Matriz__Constante2Assignment_4();
+            pushFollow(FollowSets000.FOLLOW_rule__Matriz__ValorAssignment_4_in_rule__Matriz__Group__4__Impl6703);
+            rule__Matriz__ValorAssignment_4();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getMatrizAccess().getConstante2Assignment_4()); 
+             after(grammarAccess.getMatrizAccess().getValorAssignment_4()); 
 
             }
 
@@ -24894,26 +24894,26 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Constantes__ValorAssignment_2"
 
 
-    // $ANTLR start "rule__Vector__ConstanteAssignment_2"
-    // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9166:1: rule__Vector__ConstanteAssignment_2 : ( ruleEString ) ;
-    public final void rule__Vector__ConstanteAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__Vector__ValorAssignment_2"
+    // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9166:1: rule__Vector__ValorAssignment_2 : ( rulevalor ) ;
+    public final void rule__Vector__ValorAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9170:1: ( ( ruleEString ) )
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9171:1: ( ruleEString )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9170:1: ( ( rulevalor ) )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9171:1: ( rulevalor )
             {
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9171:1: ( ruleEString )
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9172:1: ruleEString
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9171:1: ( rulevalor )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9172:1: rulevalor
             {
-             before(grammarAccess.getVectorAccess().getConstanteEStringParserRuleCall_2_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleEString_in_rule__Vector__ConstanteAssignment_218579);
-            ruleEString();
+             before(grammarAccess.getVectorAccess().getValorValorParserRuleCall_2_0()); 
+            pushFollow(FollowSets000.FOLLOW_rulevalor_in_rule__Vector__ValorAssignment_218579);
+            rulevalor();
 
             state._fsp--;
 
-             after(grammarAccess.getVectorAccess().getConstanteEStringParserRuleCall_2_0()); 
+             after(grammarAccess.getVectorAccess().getValorValorParserRuleCall_2_0()); 
 
             }
 
@@ -24932,7 +24932,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Vector__ConstanteAssignment_2"
+    // $ANTLR end "rule__Vector__ValorAssignment_2"
 
 
     // $ANTLR start "rule__Vector__TipoInternoAssignment_5"
@@ -25017,26 +25017,26 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Vector__NombreAssignment_7"
 
 
-    // $ANTLR start "rule__Matriz__ConstanteAssignment_2"
-    // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9211:1: rule__Matriz__ConstanteAssignment_2 : ( ruleEString ) ;
-    public final void rule__Matriz__ConstanteAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__Matriz__ValorAssignment_2"
+    // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9211:1: rule__Matriz__ValorAssignment_2 : ( rulevalor ) ;
+    public final void rule__Matriz__ValorAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9215:1: ( ( ruleEString ) )
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9216:1: ( ruleEString )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9215:1: ( ( rulevalor ) )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9216:1: ( rulevalor )
             {
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9216:1: ( ruleEString )
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9217:1: ruleEString
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9216:1: ( rulevalor )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9217:1: rulevalor
             {
-             before(grammarAccess.getMatrizAccess().getConstanteEStringParserRuleCall_2_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleEString_in_rule__Matriz__ConstanteAssignment_218672);
-            ruleEString();
+             before(grammarAccess.getMatrizAccess().getValorValorParserRuleCall_2_0()); 
+            pushFollow(FollowSets000.FOLLOW_rulevalor_in_rule__Matriz__ValorAssignment_218672);
+            rulevalor();
 
             state._fsp--;
 
-             after(grammarAccess.getMatrizAccess().getConstanteEStringParserRuleCall_2_0()); 
+             after(grammarAccess.getMatrizAccess().getValorValorParserRuleCall_2_0()); 
 
             }
 
@@ -25055,29 +25055,29 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Matriz__ConstanteAssignment_2"
+    // $ANTLR end "rule__Matriz__ValorAssignment_2"
 
 
-    // $ANTLR start "rule__Matriz__Constante2Assignment_4"
-    // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9226:1: rule__Matriz__Constante2Assignment_4 : ( ruleEString ) ;
-    public final void rule__Matriz__Constante2Assignment_4() throws RecognitionException {
+    // $ANTLR start "rule__Matriz__ValorAssignment_4"
+    // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9226:1: rule__Matriz__ValorAssignment_4 : ( rulevalor ) ;
+    public final void rule__Matriz__ValorAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9230:1: ( ( ruleEString ) )
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9231:1: ( ruleEString )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9230:1: ( ( rulevalor ) )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9231:1: ( rulevalor )
             {
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9231:1: ( ruleEString )
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9232:1: ruleEString
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9231:1: ( rulevalor )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:9232:1: rulevalor
             {
-             before(grammarAccess.getMatrizAccess().getConstante2EStringParserRuleCall_4_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleEString_in_rule__Matriz__Constante2Assignment_418703);
-            ruleEString();
+             before(grammarAccess.getMatrizAccess().getValorValorParserRuleCall_4_0()); 
+            pushFollow(FollowSets000.FOLLOW_rulevalor_in_rule__Matriz__ValorAssignment_418703);
+            rulevalor();
 
             state._fsp--;
 
-             after(grammarAccess.getMatrizAccess().getConstante2EStringParserRuleCall_4_0()); 
+             after(grammarAccess.getMatrizAccess().getValorValorParserRuleCall_4_0()); 
 
             }
 
@@ -25096,7 +25096,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Matriz__Constante2Assignment_4"
+    // $ANTLR end "rule__Matriz__ValorAssignment_4"
 
 
     // $ANTLR start "rule__Matriz__TipoInternoAssignment_7"
@@ -28632,15 +28632,17 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
     static final String[] DFA8_transitionS = {
             "\1\1\1\2\1\5\1\11\1\uffff\1\3\4\uffff\7\12\7\uffff\2\10\1\uffff"+
             "\1\4\21\uffff\1\7\36\uffff\1\6",
-            "\6\13\13\uffff\5\13\2\uffff\16\13\6\uffff\1\13\1\14\1\13\10"+
-            "\uffff\1\13\1\uffff\1\13\2\uffff\23\13\1\uffff\3\13",
-            "\6\13\13\uffff\5\13\2\uffff\16\13\6\uffff\1\13\1\14\1\13\10"+
-            "\uffff\1\13\1\uffff\1\13\2\uffff\23\13\1\uffff\3\13",
+            "\6\13\13\uffff\5\13\2\uffff\16\13\6\uffff\1\13\1\14\1\13\3"+
+            "\uffff\1\13\3\uffff\2\13\1\uffff\1\13\2\uffff\23\13\1\uffff"+
+            "\3\13",
+            "\6\13\13\uffff\5\13\2\uffff\16\13\6\uffff\1\13\1\14\1\13\3"+
+            "\uffff\1\13\3\uffff\2\13\1\uffff\1\13\2\uffff\23\13\1\uffff"+
+            "\3\13",
             "",
             "\1\5\111\uffff\1\6",
             "\4\16\1\uffff\1\16\13\uffff\5\16\2\uffff\16\16\6\uffff\1\16"+
-            "\1\uffff\1\16\10\uffff\1\16\1\uffff\1\16\2\uffff\20\16\1\15"+
-            "\2\16\1\uffff\3\16",
+            "\1\uffff\1\16\3\uffff\1\16\3\uffff\2\16\1\uffff\1\16\2\uffff"+
+            "\20\16\1\15\2\16\1\uffff\3\16",
             "",
             "\4\20\1\uffff\1\20\4\uffff\7\20\7\uffff\2\20\1\uffff\1\20"+
             "\12\uffff\3\17\4\uffff\1\20\36\uffff\1\20",
@@ -28654,13 +28656,14 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             "",
             "",
             "\4\6\1\uffff\1\6\13\uffff\5\6\1\22\1\23\16\6\6\uffff\1\6\1"+
-            "\uffff\1\6\10\uffff\1\6\1\uffff\1\6\1\16\1\uffff\23\6\1\uffff"+
-            "\3\6",
+            "\uffff\1\6\3\uffff\1\6\3\uffff\2\6\1\uffff\1\6\1\16\1\uffff"+
+            "\23\6\1\uffff\3\6",
             "\1\25\30\uffff\1\24",
             "\1\25\30\uffff\1\24",
             "\1\25",
             "\4\6\1\uffff\1\6\13\uffff\5\6\2\uffff\16\6\6\uffff\1\6\1\uffff"+
-            "\1\6\10\uffff\1\6\1\uffff\1\6\1\16\1\uffff\23\6\1\uffff\3\6"
+            "\1\6\3\uffff\1\6\3\uffff\2\6\1\uffff\1\6\1\16\1\uffff\23\6\1"+
+            "\uffff\3\6"
     };
 
     static final short[] DFA8_eot = DFA.unpackEncodedString(DFA8_eotS);
@@ -29092,12 +29095,12 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
         public static final BitSet FOLLOW_rule__Vector__Group__0__Impl_in_rule__Vector__Group__05924 = new BitSet(new long[]{0x0020000000000000L});
         public static final BitSet FOLLOW_rule__Vector__Group__1_in_rule__Vector__Group__05927 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_52_in_rule__Vector__Group__0__Impl5955 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__Vector__Group__1__Impl_in_rule__Vector__Group__15986 = new BitSet(new long[]{0x0000000000000030L});
+        public static final BitSet FOLLOW_rule__Vector__Group__1__Impl_in_rule__Vector__Group__15986 = new BitSet(new long[]{0x00020000B01FC2F0L,0x0000000000010000L});
         public static final BitSet FOLLOW_rule__Vector__Group__2_in_rule__Vector__Group__15989 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_53_in_rule__Vector__Group__1__Impl6017 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__Vector__Group__2__Impl_in_rule__Vector__Group__26048 = new BitSet(new long[]{0x0040000000000000L});
         public static final BitSet FOLLOW_rule__Vector__Group__3_in_rule__Vector__Group__26051 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__Vector__ConstanteAssignment_2_in_rule__Vector__Group__2__Impl6078 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__Vector__ValorAssignment_2_in_rule__Vector__Group__2__Impl6078 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__Vector__Group__3__Impl_in_rule__Vector__Group__36108 = new BitSet(new long[]{0x0080000000000000L});
         public static final BitSet FOLLOW_rule__Vector__Group__4_in_rule__Vector__Group__36111 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_54_in_rule__Vector__Group__3__Impl6139 = new BitSet(new long[]{0x0000000000000002L});
@@ -29115,18 +29118,18 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
         public static final BitSet FOLLOW_rule__Matriz__Group__0__Impl_in_rule__Matriz__Group__06427 = new BitSet(new long[]{0x0020000000000000L});
         public static final BitSet FOLLOW_rule__Matriz__Group__1_in_rule__Matriz__Group__06430 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_57_in_rule__Matriz__Group__0__Impl6458 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__Matriz__Group__1__Impl_in_rule__Matriz__Group__16489 = new BitSet(new long[]{0x0000000000000030L});
+        public static final BitSet FOLLOW_rule__Matriz__Group__1__Impl_in_rule__Matriz__Group__16489 = new BitSet(new long[]{0x00020000B01FC2F0L,0x0000000000010000L});
         public static final BitSet FOLLOW_rule__Matriz__Group__2_in_rule__Matriz__Group__16492 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_53_in_rule__Matriz__Group__1__Impl6520 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__Matriz__Group__2__Impl_in_rule__Matriz__Group__26551 = new BitSet(new long[]{0x0400000000000000L});
         public static final BitSet FOLLOW_rule__Matriz__Group__3_in_rule__Matriz__Group__26554 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__Matriz__ConstanteAssignment_2_in_rule__Matriz__Group__2__Impl6581 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__Matriz__Group__3__Impl_in_rule__Matriz__Group__36611 = new BitSet(new long[]{0x0000000000000030L});
+        public static final BitSet FOLLOW_rule__Matriz__ValorAssignment_2_in_rule__Matriz__Group__2__Impl6581 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__Matriz__Group__3__Impl_in_rule__Matriz__Group__36611 = new BitSet(new long[]{0x00020000B01FC2F0L,0x0000000000010000L});
         public static final BitSet FOLLOW_rule__Matriz__Group__4_in_rule__Matriz__Group__36614 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_58_in_rule__Matriz__Group__3__Impl6642 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__Matriz__Group__4__Impl_in_rule__Matriz__Group__46673 = new BitSet(new long[]{0x0040000000000000L});
         public static final BitSet FOLLOW_rule__Matriz__Group__5_in_rule__Matriz__Group__46676 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__Matriz__Constante2Assignment_4_in_rule__Matriz__Group__4__Impl6703 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__Matriz__ValorAssignment_4_in_rule__Matriz__Group__4__Impl6703 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__Matriz__Group__5__Impl_in_rule__Matriz__Group__56733 = new BitSet(new long[]{0x0080000000000000L});
         public static final BitSet FOLLOW_rule__Matriz__Group__6_in_rule__Matriz__Group__56736 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_54_in_rule__Matriz__Group__5__Impl6764 = new BitSet(new long[]{0x0000000000000002L});
@@ -29638,11 +29641,11 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
         public static final BitSet FOLLOW_RULE_CAR_in_rule__Caracter__ContenidoAssignment18486 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleVariable_in_rule__Constantes__VariableAssignment_018517 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rulevalor_in_rule__Constantes__ValorAssignment_218548 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleEString_in_rule__Vector__ConstanteAssignment_218579 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rulevalor_in_rule__Vector__ValorAssignment_218579 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleTipoVariable_in_rule__Vector__TipoInternoAssignment_518610 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleEString_in_rule__Vector__NombreAssignment_718641 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleEString_in_rule__Matriz__ConstanteAssignment_218672 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleEString_in_rule__Matriz__Constante2Assignment_418703 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rulevalor_in_rule__Matriz__ValorAssignment_218672 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rulevalor_in_rule__Matriz__ValorAssignment_418703 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleTipoVariable_in_rule__Matriz__TipoInternoAssignment_718734 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleEString_in_rule__Matriz__NombreAssignment_918765 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleDeclaracion_in_rule__Inicio__DeclaracionAssignment_2_018796 = new BitSet(new long[]{0x0000000000000002L});

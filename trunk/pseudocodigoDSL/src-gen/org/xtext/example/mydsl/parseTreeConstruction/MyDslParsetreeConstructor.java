@@ -2506,11 +2506,11 @@ protected class Constantes_ValorAssignment_2 extends AssignmentToken  {
 /************ begin Rule Vector ****************
  *
  * Vector:
- * 	"vector" " [" constante=EString "] " "de " tipoInterno=TipoVariable " : " nombre=EString;
+ * 	"vector" " [" valor=valor "] " "de " tipoInterno=TipoVariable " : " nombre=EString;
  *
  **/
 
-// "vector" " [" constante=EString "] " "de " tipoInterno=TipoVariable " : " nombre=EString
+// "vector" " [" valor=valor "] " "de " tipoInterno=TipoVariable " : " nombre=EString
 protected class Vector_Group extends GroupToken {
 	
 	public Vector_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2582,38 +2582,50 @@ protected class Vector_SpaceLeftSquareBracketKeyword_1 extends KeywordToken  {
 
 }
 
-// constante=EString
-protected class Vector_ConstanteAssignment_2 extends AssignmentToken  {
+// valor=valor
+protected class Vector_ValorAssignment_2 extends AssignmentToken  {
 	
-	public Vector_ConstanteAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Vector_ValorAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getVectorAccess().getConstanteAssignment_2();
+		return grammarAccess.getVectorAccess().getValorAssignment_2();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Vector_SpaceLeftSquareBracketKeyword_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Valor_Alternatives(this, this, 0, inst);
 			default: return null;
 		}	
 	}
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("constante",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("constante");
-		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getVectorAccess().getConstanteEStringParserRuleCall_2_0(), value, null)) {
-			type = AssignmentType.DATATYPE_RULE_CALL;
-			element = grammarAccess.getVectorAccess().getConstanteEStringParserRuleCall_2_0();
-			return obj;
+		if((value = eObjectConsumer.getConsumable("valor",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("valor");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getValorRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getVectorAccess().getValorValorParserRuleCall_2_0(); 
+				consumed = obj;
+				return param;
+			}
 		}
 		return null;
 	}
 
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new Vector_SpaceLeftSquareBracketKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
 }
 
 // "] "
@@ -2631,7 +2643,7 @@ protected class Vector_RightSquareBracketSpaceKeyword_3 extends KeywordToken  {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Vector_ConstanteAssignment_2(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Vector_ValorAssignment_2(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -2757,11 +2769,11 @@ protected class Vector_NombreAssignment_7 extends AssignmentToken  {
 /************ begin Rule Matriz ****************
  *
  * Matriz:
- * 	"matriz" " [" constante=EString "][" constante2=EString "] " "de " tipoInterno=TipoVariable " : " nombre=EString;
+ * 	"matriz" " [" valor+=valor "][" valor+=valor "] " "de " tipoInterno=TipoVariable " : " nombre=EString;
  *
  **/
 
-// "matriz" " [" constante=EString "][" constante2=EString "] " "de " tipoInterno=TipoVariable " : " nombre=EString
+// "matriz" " [" valor+=valor "][" valor+=valor "] " "de " tipoInterno=TipoVariable " : " nombre=EString
 protected class Matriz_Group extends GroupToken {
 	
 	public Matriz_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2833,38 +2845,50 @@ protected class Matriz_SpaceLeftSquareBracketKeyword_1 extends KeywordToken  {
 
 }
 
-// constante=EString
-protected class Matriz_ConstanteAssignment_2 extends AssignmentToken  {
+// valor+=valor
+protected class Matriz_ValorAssignment_2 extends AssignmentToken  {
 	
-	public Matriz_ConstanteAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Matriz_ValorAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getMatrizAccess().getConstanteAssignment_2();
+		return grammarAccess.getMatrizAccess().getValorAssignment_2();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Matriz_SpaceLeftSquareBracketKeyword_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Valor_Alternatives(this, this, 0, inst);
 			default: return null;
 		}	
 	}
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("constante",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("constante");
-		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getMatrizAccess().getConstanteEStringParserRuleCall_2_0(), value, null)) {
-			type = AssignmentType.DATATYPE_RULE_CALL;
-			element = grammarAccess.getMatrizAccess().getConstanteEStringParserRuleCall_2_0();
-			return obj;
+		if((value = eObjectConsumer.getConsumable("valor",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("valor");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getValorRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getMatrizAccess().getValorValorParserRuleCall_2_0(); 
+				consumed = obj;
+				return param;
+			}
 		}
 		return null;
 	}
 
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new Matriz_SpaceLeftSquareBracketKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
 }
 
 // "]["
@@ -2882,45 +2906,57 @@ protected class Matriz_RightSquareBracketLeftSquareBracketKeyword_3 extends Keyw
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Matriz_ConstanteAssignment_2(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Matriz_ValorAssignment_2(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
 
 }
 
-// constante2=EString
-protected class Matriz_Constante2Assignment_4 extends AssignmentToken  {
+// valor+=valor
+protected class Matriz_ValorAssignment_4 extends AssignmentToken  {
 	
-	public Matriz_Constante2Assignment_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Matriz_ValorAssignment_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getMatrizAccess().getConstante2Assignment_4();
+		return grammarAccess.getMatrizAccess().getValorAssignment_4();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Matriz_RightSquareBracketLeftSquareBracketKeyword_3(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Valor_Alternatives(this, this, 0, inst);
 			default: return null;
 		}	
 	}
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("constante2",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("constante2");
-		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getMatrizAccess().getConstante2EStringParserRuleCall_4_0(), value, null)) {
-			type = AssignmentType.DATATYPE_RULE_CALL;
-			element = grammarAccess.getMatrizAccess().getConstante2EStringParserRuleCall_4_0();
-			return obj;
+		if((value = eObjectConsumer.getConsumable("valor",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("valor");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getValorRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getMatrizAccess().getValorValorParserRuleCall_4_0(); 
+				consumed = obj;
+				return param;
+			}
 		}
 		return null;
 	}
 
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new Matriz_RightSquareBracketLeftSquareBracketKeyword_3(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
 }
 
 // "] "
@@ -2938,7 +2974,7 @@ protected class Matriz_RightSquareBracketSpaceKeyword_5 extends KeywordToken  {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Matriz_Constante2Assignment_4(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Matriz_ValorAssignment_4(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}

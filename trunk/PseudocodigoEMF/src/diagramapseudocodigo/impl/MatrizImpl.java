@@ -5,9 +5,16 @@ package diagramapseudocodigo.impl;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Matriz;
 import diagramapseudocodigo.TipoVariable;
+import diagramapseudocodigo.valor;
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,36 +23,15 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link diagramapseudocodigo.impl.MatrizImpl#getConstante <em>Constante</em>}</li>
  *   <li>{@link diagramapseudocodigo.impl.MatrizImpl#getTipoInterno <em>Tipo Interno</em>}</li>
  *   <li>{@link diagramapseudocodigo.impl.MatrizImpl#getNombre <em>Nombre</em>}</li>
- *   <li>{@link diagramapseudocodigo.impl.MatrizImpl#getConstante2 <em>Constante2</em>}</li>
+ *   <li>{@link diagramapseudocodigo.impl.MatrizImpl#getValor <em>Valor</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class MatrizImpl extends TipoComplejoImpl implements Matriz {
-	/**
-	 * The default value of the '{@link #getConstante() <em>Constante</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConstante()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String CONSTANTE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getConstante() <em>Constante</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConstante()
-	 * @generated
-	 * @ordered
-	 */
-	protected String constante = CONSTANTE_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getTipoInterno() <em>Tipo Interno</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -87,24 +73,14 @@ public class MatrizImpl extends TipoComplejoImpl implements Matriz {
 	protected String nombre = NOMBRE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getConstante2() <em>Constante2</em>}' attribute.
+	 * The cached value of the '{@link #getValor() <em>Valor</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConstante2()
+	 * @see #getValor()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String CONSTANTE2_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getConstante2() <em>Constante2</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConstante2()
-	 * @generated
-	 * @ordered
-	 */
-	protected String constante2 = CONSTANTE2_EDEFAULT;
+	protected EList<valor> valor;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -123,27 +99,6 @@ public class MatrizImpl extends TipoComplejoImpl implements Matriz {
 	@Override
 	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.MATRIZ;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getConstante() {
-		return constante;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setConstante(String newConstante) {
-		String oldConstante = constante;
-		constante = newConstante;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.MATRIZ__CONSTANTE, oldConstante, constante));
 	}
 
 	/**
@@ -193,8 +148,11 @@ public class MatrizImpl extends TipoComplejoImpl implements Matriz {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getConstante2() {
-		return constante2;
+	public EList<valor> getValor() {
+		if (valor == null) {
+			valor = new EObjectContainmentEList<valor>(valor.class, this, DiagramapseudocodigoPackage.MATRIZ__VALOR);
+		}
+		return valor;
 	}
 
 	/**
@@ -202,11 +160,13 @@ public class MatrizImpl extends TipoComplejoImpl implements Matriz {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setConstante2(String newConstante2) {
-		String oldConstante2 = constante2;
-		constante2 = newConstante2;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.MATRIZ__CONSTANTE2, oldConstante2, constante2));
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DiagramapseudocodigoPackage.MATRIZ__VALOR:
+				return ((InternalEList<?>)getValor()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -217,14 +177,12 @@ public class MatrizImpl extends TipoComplejoImpl implements Matriz {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DiagramapseudocodigoPackage.MATRIZ__CONSTANTE:
-				return getConstante();
 			case DiagramapseudocodigoPackage.MATRIZ__TIPO_INTERNO:
 				return getTipoInterno();
 			case DiagramapseudocodigoPackage.MATRIZ__NOMBRE:
 				return getNombre();
-			case DiagramapseudocodigoPackage.MATRIZ__CONSTANTE2:
-				return getConstante2();
+			case DiagramapseudocodigoPackage.MATRIZ__VALOR:
+				return getValor();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -234,20 +192,19 @@ public class MatrizImpl extends TipoComplejoImpl implements Matriz {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DiagramapseudocodigoPackage.MATRIZ__CONSTANTE:
-				setConstante((String)newValue);
-				return;
 			case DiagramapseudocodigoPackage.MATRIZ__TIPO_INTERNO:
 				setTipoInterno((TipoVariable)newValue);
 				return;
 			case DiagramapseudocodigoPackage.MATRIZ__NOMBRE:
 				setNombre((String)newValue);
 				return;
-			case DiagramapseudocodigoPackage.MATRIZ__CONSTANTE2:
-				setConstante2((String)newValue);
+			case DiagramapseudocodigoPackage.MATRIZ__VALOR:
+				getValor().clear();
+				getValor().addAll((Collection<? extends valor>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -261,17 +218,14 @@ public class MatrizImpl extends TipoComplejoImpl implements Matriz {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DiagramapseudocodigoPackage.MATRIZ__CONSTANTE:
-				setConstante(CONSTANTE_EDEFAULT);
-				return;
 			case DiagramapseudocodigoPackage.MATRIZ__TIPO_INTERNO:
 				setTipoInterno(TIPO_INTERNO_EDEFAULT);
 				return;
 			case DiagramapseudocodigoPackage.MATRIZ__NOMBRE:
 				setNombre(NOMBRE_EDEFAULT);
 				return;
-			case DiagramapseudocodigoPackage.MATRIZ__CONSTANTE2:
-				setConstante2(CONSTANTE2_EDEFAULT);
+			case DiagramapseudocodigoPackage.MATRIZ__VALOR:
+				getValor().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -285,14 +239,12 @@ public class MatrizImpl extends TipoComplejoImpl implements Matriz {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DiagramapseudocodigoPackage.MATRIZ__CONSTANTE:
-				return CONSTANTE_EDEFAULT == null ? constante != null : !CONSTANTE_EDEFAULT.equals(constante);
 			case DiagramapseudocodigoPackage.MATRIZ__TIPO_INTERNO:
 				return tipoInterno != TIPO_INTERNO_EDEFAULT;
 			case DiagramapseudocodigoPackage.MATRIZ__NOMBRE:
 				return NOMBRE_EDEFAULT == null ? nombre != null : !NOMBRE_EDEFAULT.equals(nombre);
-			case DiagramapseudocodigoPackage.MATRIZ__CONSTANTE2:
-				return CONSTANTE2_EDEFAULT == null ? constante2 != null : !CONSTANTE2_EDEFAULT.equals(constante2);
+			case DiagramapseudocodigoPackage.MATRIZ__VALOR:
+				return valor != null && !valor.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -307,14 +259,10 @@ public class MatrizImpl extends TipoComplejoImpl implements Matriz {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (constante: ");
-		result.append(constante);
-		result.append(", tipoInterno: ");
+		result.append(" (tipoInterno: ");
 		result.append(tipoInterno);
 		result.append(", nombre: ");
 		result.append(nombre);
-		result.append(", constante2: ");
-		result.append(constante2);
 		result.append(')');
 		return result.toString();
 	}
