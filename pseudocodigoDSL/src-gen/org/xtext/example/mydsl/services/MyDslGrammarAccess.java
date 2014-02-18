@@ -458,6 +458,58 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getUnariaParserRuleCall_9() { return cUnariaParserRuleCall_9; }
 	}
 
+	public class TipoElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Tipo");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cTipoDefinidoParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cTipoExistenteParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//Tipo:
+		//	TipoDefinido | TipoExistente;
+		public ParserRule getRule() { return rule; }
+
+		//TipoDefinido | TipoExistente
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//TipoDefinido
+		public RuleCall getTipoDefinidoParserRuleCall_0() { return cTipoDefinidoParserRuleCall_0; }
+
+		//TipoExistente
+		public RuleCall getTipoExistenteParserRuleCall_1() { return cTipoExistenteParserRuleCall_1; }
+	}
+
+	public class TipoDefinidoElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TipoDefinido");
+		private final Assignment cTipoAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cTipoEStringParserRuleCall_0 = (RuleCall)cTipoAssignment.eContents().get(0);
+		
+		//TipoDefinido:
+		//	tipo=EString;
+		public ParserRule getRule() { return rule; }
+
+		//tipo=EString
+		public Assignment getTipoAssignment() { return cTipoAssignment; }
+
+		//EString
+		public RuleCall getTipoEStringParserRuleCall_0() { return cTipoEStringParserRuleCall_0; }
+	}
+
+	public class TipoExistenteElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TipoExistente");
+		private final Assignment cTipoAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cTipoTipoVariableParserRuleCall_0 = (RuleCall)cTipoAssignment.eContents().get(0);
+		
+		//TipoExistente:
+		//	tipo=TipoVariable;
+		public ParserRule getRule() { return rule; }
+
+		//tipo=TipoVariable
+		public Assignment getTipoAssignment() { return cTipoAssignment; }
+
+		//TipoVariable
+		public RuleCall getTipoTipoVariableParserRuleCall_0() { return cTipoTipoVariableParserRuleCall_0; }
+	}
+
 	public class ConstantesElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Constantes");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -499,17 +551,17 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValorValorParserRuleCall_2_0 = (RuleCall)cValorAssignment_2.eContents().get(0);
 		private final Keyword cRightSquareBracketSpaceKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Keyword cDeKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cTipoInternoAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cTipoInternoTipoVariableParserRuleCall_5_0 = (RuleCall)cTipoInternoAssignment_5.eContents().get(0);
+		private final Assignment cTipoAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cTipoTipoParserRuleCall_5_0 = (RuleCall)cTipoAssignment_5.eContents().get(0);
 		private final Keyword cSpaceColonSpaceKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Assignment cNombreAssignment_7 = (Assignment)cGroup.eContents().get(7);
 		private final RuleCall cNombreEStringParserRuleCall_7_0 = (RuleCall)cNombreAssignment_7.eContents().get(0);
 		
 		//Vector:
-		//	"vector" " [" valor=valor "] " "de " tipoInterno=TipoVariable " : " nombre=EString;
+		//	"vector" " [" valor=valor "] " "de " tipo=Tipo " : " nombre=EString;
 		public ParserRule getRule() { return rule; }
 
-		//"vector" " [" valor=valor "] " "de " tipoInterno=TipoVariable " : " nombre=EString
+		//"vector" " [" valor=valor "] " "de " tipo=Tipo " : " nombre=EString
 		public Group getGroup() { return cGroup; }
 
 		//"vector"
@@ -530,11 +582,11 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"de "
 		public Keyword getDeKeyword_4() { return cDeKeyword_4; }
 
-		//tipoInterno=TipoVariable
-		public Assignment getTipoInternoAssignment_5() { return cTipoInternoAssignment_5; }
+		//tipo=Tipo
+		public Assignment getTipoAssignment_5() { return cTipoAssignment_5; }
 
-		//TipoVariable
-		public RuleCall getTipoInternoTipoVariableParserRuleCall_5_0() { return cTipoInternoTipoVariableParserRuleCall_5_0; }
+		//Tipo
+		public RuleCall getTipoTipoParserRuleCall_5_0() { return cTipoTipoParserRuleCall_5_0; }
 
 		//" : "
 		public Keyword getSpaceColonSpaceKeyword_6() { return cSpaceColonSpaceKeyword_6; }
@@ -558,17 +610,17 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValorValorParserRuleCall_4_0 = (RuleCall)cValorAssignment_4.eContents().get(0);
 		private final Keyword cRightSquareBracketSpaceKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Keyword cDeKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Assignment cTipoInternoAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cTipoInternoTipoVariableParserRuleCall_7_0 = (RuleCall)cTipoInternoAssignment_7.eContents().get(0);
+		private final Assignment cTipoAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cTipoTipoParserRuleCall_7_0 = (RuleCall)cTipoAssignment_7.eContents().get(0);
 		private final Keyword cSpaceColonSpaceKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		private final Assignment cNombreAssignment_9 = (Assignment)cGroup.eContents().get(9);
 		private final RuleCall cNombreEStringParserRuleCall_9_0 = (RuleCall)cNombreAssignment_9.eContents().get(0);
 		
 		//Matriz:
-		//	"matriz" " [" valor+=valor "][" valor+=valor "] " "de " tipoInterno=TipoVariable " : " nombre=EString;
+		//	"matriz" " [" valor+=valor "][" valor+=valor "] " "de " tipo=Tipo " : " nombre=EString;
 		public ParserRule getRule() { return rule; }
 
-		//"matriz" " [" valor+=valor "][" valor+=valor "] " "de " tipoInterno=TipoVariable " : " nombre=EString
+		//"matriz" " [" valor+=valor "][" valor+=valor "] " "de " tipo=Tipo " : " nombre=EString
 		public Group getGroup() { return cGroup; }
 
 		//"matriz"
@@ -598,11 +650,11 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"de "
 		public Keyword getDeKeyword_6() { return cDeKeyword_6; }
 
-		//tipoInterno=TipoVariable
-		public Assignment getTipoInternoAssignment_7() { return cTipoInternoAssignment_7; }
+		//tipo=Tipo
+		public Assignment getTipoAssignment_7() { return cTipoAssignment_7; }
 
-		//TipoVariable
-		public RuleCall getTipoInternoTipoVariableParserRuleCall_7_0() { return cTipoInternoTipoVariableParserRuleCall_7_0; }
+		//Tipo
+		public RuleCall getTipoTipoParserRuleCall_7_0() { return cTipoTipoParserRuleCall_7_0; }
 
 		//" : "
 		public Keyword getSpaceColonSpaceKeyword_8() { return cSpaceColonSpaceKeyword_8; }
@@ -2299,6 +2351,9 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private OperadorElements pOperador;
 	private CaracterElements pCaracter;
 	private ValorElements pValor;
+	private TipoElements pTipo;
+	private TipoDefinidoElements pTipoDefinido;
+	private TipoExistenteElements pTipoExistente;
 	private ConstantesElements pConstantes;
 	private VectorElements pVector;
 	private MatrizElements pMatriz;
@@ -2506,6 +2561,36 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getValorAccess().getRule();
 	}
 
+	//Tipo:
+	//	TipoDefinido | TipoExistente;
+	public TipoElements getTipoAccess() {
+		return (pTipo != null) ? pTipo : (pTipo = new TipoElements());
+	}
+	
+	public ParserRule getTipoRule() {
+		return getTipoAccess().getRule();
+	}
+
+	//TipoDefinido:
+	//	tipo=EString;
+	public TipoDefinidoElements getTipoDefinidoAccess() {
+		return (pTipoDefinido != null) ? pTipoDefinido : (pTipoDefinido = new TipoDefinidoElements());
+	}
+	
+	public ParserRule getTipoDefinidoRule() {
+		return getTipoDefinidoAccess().getRule();
+	}
+
+	//TipoExistente:
+	//	tipo=TipoVariable;
+	public TipoExistenteElements getTipoExistenteAccess() {
+		return (pTipoExistente != null) ? pTipoExistente : (pTipoExistente = new TipoExistenteElements());
+	}
+	
+	public ParserRule getTipoExistenteRule() {
+		return getTipoExistenteAccess().getRule();
+	}
+
 	//Constantes:
 	//	variable=Variable "=" valor=valor;
 	public ConstantesElements getConstantesAccess() {
@@ -2517,7 +2602,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Vector:
-	//	"vector" " [" valor=valor "] " "de " tipoInterno=TipoVariable " : " nombre=EString;
+	//	"vector" " [" valor=valor "] " "de " tipo=Tipo " : " nombre=EString;
 	public VectorElements getVectorAccess() {
 		return (pVector != null) ? pVector : (pVector = new VectorElements());
 	}
@@ -2527,7 +2612,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Matriz:
-	//	"matriz" " [" valor+=valor "][" valor+=valor "] " "de " tipoInterno=TipoVariable " : " nombre=EString;
+	//	"matriz" " [" valor+=valor "][" valor+=valor "] " "de " tipo=Tipo " : " nombre=EString;
 	public MatrizElements getMatrizAccess() {
 		return (pMatriz != null) ? pMatriz : (pMatriz = new MatrizElements());
 	}

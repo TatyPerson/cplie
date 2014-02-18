@@ -62,16 +62,38 @@ class MyDslGenerator implements IGenerator {
 		}
 	}
 	
+	def toC(Tipo myTipo) {
+		if(myTipo.eClass.name.equals("TipoDefinido")){
+			var TipoDefinido prueba = new TipoDefinidoImpl
+			prueba = myTipo as TipoDefinido
+			prueba.toC
+		}
+		else if(myTipo.eClass.name.equals("TipoExistente")){
+			var TipoExistente prueba = new TipoExistenteImpl
+			prueba = myTipo as TipoExistente
+			prueba.toC
+		}
+	}
+	
+	def toC(TipoExistente myTipo) {
+		return tipoVariable(myTipo.tipo)
+	}
+	
+	def toC(TipoDefinido myTipo) {
+		return myTipo.tipo
+	}
+	
 	def toC(Constantes myConstante)'''
 		#define «myConstante.variable.nombre»  «myConstante.valor.toC»
 	'''
 	
+	
 	def toC(Vector myVector)'''
-		typedef «tipoVariable(myVector.tipoInterno)» «myVector.nombre»[«myVector.valor.toC»];
+		typedef «myVector.tipo.toC» «myVector.nombre»[«myVector.valor.toC»];
 	'''
 	
 	def toC(Matriz myMatriz)'''
-		typedef «tipoVariable(myMatriz.tipoInterno)» «myMatriz.nombre»[«myMatriz.valor.get(0).toC»][«myMatriz.valor.get(1).toC»];
+		typedef «myMatriz.tipo.toC» «myMatriz.nombre»[«myMatriz.valor.get(0).toC»][«myMatriz.valor.get(1).toC»];
 	'''
 	
 	def toC(Registro myRegistro)'''

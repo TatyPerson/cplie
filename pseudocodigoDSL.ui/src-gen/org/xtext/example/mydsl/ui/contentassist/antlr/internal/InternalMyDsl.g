@@ -364,6 +364,90 @@ finally {
 
 
 
+// Entry rule entryRuleTipo
+entryRuleTipo 
+:
+{ before(grammarAccess.getTipoRule()); }
+	 ruleTipo
+{ after(grammarAccess.getTipoRule()); } 
+	 EOF 
+;
+
+// Rule Tipo
+ruleTipo
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getTipoAccess().getAlternatives()); }
+(rule__Tipo__Alternatives)
+{ after(grammarAccess.getTipoAccess().getAlternatives()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+// Entry rule entryRuleTipoDefinido
+entryRuleTipoDefinido 
+:
+{ before(grammarAccess.getTipoDefinidoRule()); }
+	 ruleTipoDefinido
+{ after(grammarAccess.getTipoDefinidoRule()); } 
+	 EOF 
+;
+
+// Rule TipoDefinido
+ruleTipoDefinido
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getTipoDefinidoAccess().getTipoAssignment()); }
+(rule__TipoDefinido__TipoAssignment)
+{ after(grammarAccess.getTipoDefinidoAccess().getTipoAssignment()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+// Entry rule entryRuleTipoExistente
+entryRuleTipoExistente 
+:
+{ before(grammarAccess.getTipoExistenteRule()); }
+	 ruleTipoExistente
+{ after(grammarAccess.getTipoExistenteRule()); } 
+	 EOF 
+;
+
+// Rule TipoExistente
+ruleTipoExistente
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getTipoExistenteAccess().getTipoAssignment()); }
+(rule__TipoExistente__TipoAssignment)
+{ after(grammarAccess.getTipoExistenteAccess().getTipoAssignment()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
 // Entry rule entryRuleConstantes
 entryRuleConstantes 
 :
@@ -1869,6 +1953,28 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__Tipo__Alternatives
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getTipoAccess().getTipoDefinidoParserRuleCall_0()); }
+	ruleTipoDefinido
+{ after(grammarAccess.getTipoAccess().getTipoDefinidoParserRuleCall_0()); }
+)
+
+    |(
+{ before(grammarAccess.getTipoAccess().getTipoExistenteParserRuleCall_1()); }
+	ruleTipoExistente
+{ after(grammarAccess.getTipoAccess().getTipoExistenteParserRuleCall_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__EString__Alternatives
     @init {
 		int stackSize = keepStackSize();
@@ -3117,9 +3223,9 @@ rule__Vector__Group__5__Impl
     }
 :
 (
-{ before(grammarAccess.getVectorAccess().getTipoInternoAssignment_5()); }
-(rule__Vector__TipoInternoAssignment_5)
-{ after(grammarAccess.getVectorAccess().getTipoInternoAssignment_5()); }
+{ before(grammarAccess.getVectorAccess().getTipoAssignment_5()); }
+(rule__Vector__TipoAssignment_5)
+{ after(grammarAccess.getVectorAccess().getTipoAssignment_5()); }
 )
 
 ;
@@ -3434,9 +3540,9 @@ rule__Matriz__Group__7__Impl
     }
 :
 (
-{ before(grammarAccess.getMatrizAccess().getTipoInternoAssignment_7()); }
-(rule__Matriz__TipoInternoAssignment_7)
-{ after(grammarAccess.getMatrizAccess().getTipoInternoAssignment_7()); }
+{ before(grammarAccess.getMatrizAccess().getTipoAssignment_7()); }
+(rule__Matriz__TipoAssignment_7)
+{ after(grammarAccess.getMatrizAccess().getTipoAssignment_7()); }
 )
 
 ;
@@ -9510,6 +9616,36 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__TipoDefinido__TipoAssignment
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getTipoDefinidoAccess().getTipoEStringParserRuleCall_0()); }
+	ruleEString{ after(grammarAccess.getTipoDefinidoAccess().getTipoEStringParserRuleCall_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__TipoExistente__TipoAssignment
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getTipoExistenteAccess().getTipoTipoVariableParserRuleCall_0()); }
+	ruleTipoVariable{ after(grammarAccess.getTipoExistenteAccess().getTipoTipoVariableParserRuleCall_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__Constantes__VariableAssignment_0
     @init {
 		int stackSize = keepStackSize();
@@ -9555,14 +9691,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Vector__TipoInternoAssignment_5
+rule__Vector__TipoAssignment_5
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getVectorAccess().getTipoInternoTipoVariableParserRuleCall_5_0()); }
-	ruleTipoVariable{ after(grammarAccess.getVectorAccess().getTipoInternoTipoVariableParserRuleCall_5_0()); }
+{ before(grammarAccess.getVectorAccess().getTipoTipoParserRuleCall_5_0()); }
+	ruleTipo{ after(grammarAccess.getVectorAccess().getTipoTipoParserRuleCall_5_0()); }
 )
 
 ;
@@ -9615,14 +9751,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Matriz__TipoInternoAssignment_7
+rule__Matriz__TipoAssignment_7
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getMatrizAccess().getTipoInternoTipoVariableParserRuleCall_7_0()); }
-	ruleTipoVariable{ after(grammarAccess.getMatrizAccess().getTipoInternoTipoVariableParserRuleCall_7_0()); }
+{ before(grammarAccess.getMatrizAccess().getTipoTipoParserRuleCall_7_0()); }
+	ruleTipo{ after(grammarAccess.getMatrizAccess().getTipoTipoParserRuleCall_7_0()); }
 )
 
 ;

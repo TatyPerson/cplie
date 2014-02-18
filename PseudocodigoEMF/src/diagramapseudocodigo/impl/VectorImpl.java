@@ -3,7 +3,7 @@
 package diagramapseudocodigo.impl;
 
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
-import diagramapseudocodigo.TipoVariable;
+import diagramapseudocodigo.Tipo;
 import diagramapseudocodigo.Vector;
 import diagramapseudocodigo.valor;
 import org.eclipse.emf.common.notify.Notification;
@@ -19,35 +19,15 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link diagramapseudocodigo.impl.VectorImpl#getTipoInterno <em>Tipo Interno</em>}</li>
  *   <li>{@link diagramapseudocodigo.impl.VectorImpl#getNombre <em>Nombre</em>}</li>
  *   <li>{@link diagramapseudocodigo.impl.VectorImpl#getValor <em>Valor</em>}</li>
+ *   <li>{@link diagramapseudocodigo.impl.VectorImpl#getTipo <em>Tipo</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class VectorImpl extends TipoComplejoImpl implements Vector {
-	/**
-	 * The default value of the '{@link #getTipoInterno() <em>Tipo Interno</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTipoInterno()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final TipoVariable TIPO_INTERNO_EDEFAULT = TipoVariable.ENTERO;
-
-	/**
-	 * The cached value of the '{@link #getTipoInterno() <em>Tipo Interno</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTipoInterno()
-	 * @generated
-	 * @ordered
-	 */
-	protected TipoVariable tipoInterno = TIPO_INTERNO_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getNombre() <em>Nombre</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -79,6 +59,16 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	protected valor valor;
 
 	/**
+	 * The cached value of the '{@link #getTipo() <em>Tipo</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTipo()
+	 * @generated
+	 * @ordered
+	 */
+	protected Tipo tipo;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -95,27 +85,6 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	@Override
 	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.VECTOR;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TipoVariable getTipoInterno() {
-		return tipoInterno;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTipoInterno(TipoVariable newTipoInterno) {
-		TipoVariable oldTipoInterno = tipoInterno;
-		tipoInterno = newTipoInterno == null ? TIPO_INTERNO_EDEFAULT : newTipoInterno;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.VECTOR__TIPO_INTERNO, oldTipoInterno, tipoInterno));
 	}
 
 	/**
@@ -187,11 +156,56 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Tipo getTipo() {
+		return tipo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetTipo(Tipo newTipo, NotificationChain msgs) {
+		Tipo oldTipo = tipo;
+		tipo = newTipo;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.VECTOR__TIPO, oldTipo, newTipo);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTipo(Tipo newTipo) {
+		if (newTipo != tipo) {
+			NotificationChain msgs = null;
+			if (tipo != null)
+				msgs = ((InternalEObject)tipo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DiagramapseudocodigoPackage.VECTOR__TIPO, null, msgs);
+			if (newTipo != null)
+				msgs = ((InternalEObject)newTipo).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiagramapseudocodigoPackage.VECTOR__TIPO, null, msgs);
+			msgs = basicSetTipo(newTipo, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.VECTOR__TIPO, newTipo, newTipo));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.VECTOR__VALOR:
 				return basicSetValor(null, msgs);
+			case DiagramapseudocodigoPackage.VECTOR__TIPO:
+				return basicSetTipo(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -204,12 +218,12 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DiagramapseudocodigoPackage.VECTOR__TIPO_INTERNO:
-				return getTipoInterno();
 			case DiagramapseudocodigoPackage.VECTOR__NOMBRE:
 				return getNombre();
 			case DiagramapseudocodigoPackage.VECTOR__VALOR:
 				return getValor();
+			case DiagramapseudocodigoPackage.VECTOR__TIPO:
+				return getTipo();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -222,14 +236,14 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DiagramapseudocodigoPackage.VECTOR__TIPO_INTERNO:
-				setTipoInterno((TipoVariable)newValue);
-				return;
 			case DiagramapseudocodigoPackage.VECTOR__NOMBRE:
 				setNombre((String)newValue);
 				return;
 			case DiagramapseudocodigoPackage.VECTOR__VALOR:
 				setValor((valor)newValue);
+				return;
+			case DiagramapseudocodigoPackage.VECTOR__TIPO:
+				setTipo((Tipo)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -243,14 +257,14 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DiagramapseudocodigoPackage.VECTOR__TIPO_INTERNO:
-				setTipoInterno(TIPO_INTERNO_EDEFAULT);
-				return;
 			case DiagramapseudocodigoPackage.VECTOR__NOMBRE:
 				setNombre(NOMBRE_EDEFAULT);
 				return;
 			case DiagramapseudocodigoPackage.VECTOR__VALOR:
 				setValor((valor)null);
+				return;
+			case DiagramapseudocodigoPackage.VECTOR__TIPO:
+				setTipo((Tipo)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -264,12 +278,12 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DiagramapseudocodigoPackage.VECTOR__TIPO_INTERNO:
-				return tipoInterno != TIPO_INTERNO_EDEFAULT;
 			case DiagramapseudocodigoPackage.VECTOR__NOMBRE:
 				return NOMBRE_EDEFAULT == null ? nombre != null : !NOMBRE_EDEFAULT.equals(nombre);
 			case DiagramapseudocodigoPackage.VECTOR__VALOR:
 				return valor != null;
+			case DiagramapseudocodigoPackage.VECTOR__TIPO:
+				return tipo != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -284,9 +298,7 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (tipoInterno: ");
-		result.append(tipoInterno);
-		result.append(", nombre: ");
+		result.append(" (nombre: ");
 		result.append(nombre);
 		result.append(')');
 		return result.toString();

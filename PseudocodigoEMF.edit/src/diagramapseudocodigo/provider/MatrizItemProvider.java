@@ -6,7 +6,6 @@ package diagramapseudocodigo.provider;
 import diagramapseudocodigo.DiagramapseudocodigoFactory;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Matriz;
-import diagramapseudocodigo.TipoVariable;
 import java.util.Collection;
 import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -57,32 +56,9 @@ public class MatrizItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTipoInternoPropertyDescriptor(object);
 			addNombrePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Tipo Interno feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTipoInternoPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Matriz_tipoInterno_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Matriz_tipoInterno_feature", "_UI_Matriz_type"),
-				 DiagramapseudocodigoPackage.Literals.MATRIZ__TIPO_INTERNO,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -120,6 +96,7 @@ public class MatrizItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.MATRIZ__VALOR);
+			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.MATRIZ__TIPO);
 		}
 		return childrenFeatures;
 	}
@@ -156,8 +133,7 @@ public class MatrizItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		TipoVariable labelValue = ((Matriz)object).getTipoInterno();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((Matriz)object).getNombre();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Matriz_type") :
 			getString("_UI_Matriz_type") + " " + label;
@@ -175,11 +151,11 @@ public class MatrizItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Matriz.class)) {
-			case DiagramapseudocodigoPackage.MATRIZ__TIPO_INTERNO:
 			case DiagramapseudocodigoPackage.MATRIZ__NOMBRE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case DiagramapseudocodigoPackage.MATRIZ__VALOR:
+			case DiagramapseudocodigoPackage.MATRIZ__TIPO:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -246,6 +222,21 @@ public class MatrizItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.MATRIZ__VALOR,
 				 DiagramapseudocodigoFactory.eINSTANCE.createunaria()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.MATRIZ__TIPO,
+				 DiagramapseudocodigoFactory.eINSTANCE.createTipo()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.MATRIZ__TIPO,
+				 DiagramapseudocodigoFactory.eINSTANCE.createTipoDefinido()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.MATRIZ__TIPO,
+				 DiagramapseudocodigoFactory.eINSTANCE.createTipoExistente()));
 	}
 
 }

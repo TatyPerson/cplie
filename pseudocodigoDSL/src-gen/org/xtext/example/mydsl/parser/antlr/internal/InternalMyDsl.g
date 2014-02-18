@@ -907,6 +907,124 @@ rulevalor returns [EObject current=null]
 
 
 
+// Entry rule entryRuleTipo
+entryRuleTipo returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getTipoRule()); }
+	 iv_ruleTipo=ruleTipo 
+	 { $current=$iv_ruleTipo.current; } 
+	 EOF 
+;
+
+// Rule Tipo
+ruleTipo returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+    { 
+        newCompositeNode(grammarAccess.getTipoAccess().getTipoDefinidoParserRuleCall_0()); 
+    }
+    this_TipoDefinido_0=ruleTipoDefinido
+    { 
+        $current = $this_TipoDefinido_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getTipoAccess().getTipoExistenteParserRuleCall_1()); 
+    }
+    this_TipoExistente_1=ruleTipoExistente
+    { 
+        $current = $this_TipoExistente_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleTipoDefinido
+entryRuleTipoDefinido returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getTipoDefinidoRule()); }
+	 iv_ruleTipoDefinido=ruleTipoDefinido 
+	 { $current=$iv_ruleTipoDefinido.current; } 
+	 EOF 
+;
+
+// Rule TipoDefinido
+ruleTipoDefinido returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getTipoDefinidoAccess().getTipoEStringParserRuleCall_0()); 
+	    }
+		lv_tipo_0_0=ruleEString		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getTipoDefinidoRule());
+	        }
+       		set(
+       			$current, 
+       			"tipo",
+        		lv_tipo_0_0, 
+        		"EString");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)
+;
+
+
+
+
+
+// Entry rule entryRuleTipoExistente
+entryRuleTipoExistente returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getTipoExistenteRule()); }
+	 iv_ruleTipoExistente=ruleTipoExistente 
+	 { $current=$iv_ruleTipoExistente.current; } 
+	 EOF 
+;
+
+// Rule TipoExistente
+ruleTipoExistente returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getTipoExistenteAccess().getTipoTipoVariableParserRuleCall_0()); 
+	    }
+		lv_tipo_0_0=ruleTipoVariable		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getTipoExistenteRule());
+	        }
+       		set(
+       			$current, 
+       			"tipo",
+        		lv_tipo_0_0, 
+        		"TipoVariable");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)
+;
+
+
+
+
+
 // Entry rule entryRuleConstantes
 entryRuleConstantes returns [EObject current=null] 
 	:
@@ -1019,17 +1137,17 @@ ruleVector returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getVectorAccess().getTipoInternoTipoVariableParserRuleCall_5_0()); 
+	        newCompositeNode(grammarAccess.getVectorAccess().getTipoTipoParserRuleCall_5_0()); 
 	    }
-		lv_tipoInterno_5_0=ruleTipoVariable		{
+		lv_tipo_5_0=ruleTipo		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getVectorRule());
 	        }
        		set(
        			$current, 
-       			"tipoInterno",
-        		lv_tipoInterno_5_0, 
-        		"TipoVariable");
+       			"tipo",
+        		lv_tipo_5_0, 
+        		"Tipo");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1136,17 +1254,17 @@ ruleMatriz returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMatrizAccess().getTipoInternoTipoVariableParserRuleCall_7_0()); 
+	        newCompositeNode(grammarAccess.getMatrizAccess().getTipoTipoParserRuleCall_7_0()); 
 	    }
-		lv_tipoInterno_7_0=ruleTipoVariable		{
+		lv_tipo_7_0=ruleTipo		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getMatrizRule());
 	        }
        		set(
        			$current, 
-       			"tipoInterno",
-        		lv_tipoInterno_7_0, 
-        		"TipoVariable");
+       			"tipo",
+        		lv_tipo_7_0, 
+        		"Tipo");
 	        afterParserOrEnumRuleCall();
 	    }
 

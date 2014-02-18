@@ -969,6 +969,75 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.Tipo} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TipoItemProvider tipoItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.Tipo}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTipoAdapter() {
+		if (tipoItemProvider == null) {
+			tipoItemProvider = new TipoItemProvider(this);
+		}
+
+		return tipoItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.TipoDefinido} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TipoDefinidoItemProvider tipoDefinidoItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.TipoDefinido}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTipoDefinidoAdapter() {
+		if (tipoDefinidoItemProvider == null) {
+			tipoDefinidoItemProvider = new TipoDefinidoItemProvider(this);
+		}
+
+		return tipoDefinidoItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.TipoExistente} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TipoExistenteItemProvider tipoExistenteItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.TipoExistente}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTipoExistenteAdapter() {
+		if (tipoExistenteItemProvider == null) {
+			tipoExistenteItemProvider = new TipoExistenteItemProvider(this);
+		}
+
+		return tipoExistenteItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1106,6 +1175,9 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 		if (matrizItemProvider != null) matrizItemProvider.dispose();
 		if (tipoComplejoItemProvider != null) tipoComplejoItemProvider.dispose();
 		if (registroItemProvider != null) registroItemProvider.dispose();
+		if (tipoItemProvider != null) tipoItemProvider.dispose();
+		if (tipoDefinidoItemProvider != null) tipoDefinidoItemProvider.dispose();
+		if (tipoExistenteItemProvider != null) tipoExistenteItemProvider.dispose();
 	}
 
 }
