@@ -400,6 +400,15 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	TipoExistente createTipoExistente();
 
 	/**
+	 * Returns a new object of class '<em>Archivo</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Archivo</em>'.
+	 * @generated
+	 */
+	Archivo createArchivo();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

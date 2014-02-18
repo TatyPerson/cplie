@@ -13,7 +13,7 @@ Codigo returns Codigo:
 	tiene=Inicio;
 	
 TipoComplejo returns TipoComplejo:
-	Vector | Matriz | Registro;
+	Vector | Matriz | Registro | Archivo;
 
 
 Subproceso returns Subproceso:
@@ -75,6 +75,9 @@ Registro returns Registro:
 	'registro:' nombre=EString
 			(variable+=DeclaracionVariable (variable+=DeclaracionVariable)* )
 	'fin_registro';
+	
+Archivo returns Archivo:
+	'archivo de ' tipo=Tipo':' nombre=EString;
 
 
 Inicio returns Inicio:

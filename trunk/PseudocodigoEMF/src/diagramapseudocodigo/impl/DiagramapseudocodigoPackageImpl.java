@@ -2,6 +2,7 @@
  */
 package diagramapseudocodigo.impl;
 
+import diagramapseudocodigo.Archivo;
 import diagramapseudocodigo.Asignacion;
 import diagramapseudocodigo.Bloque;
 import diagramapseudocodigo.Caracter;
@@ -401,6 +402,13 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * @generated
 	 */
 	private EClass tipoExistenteEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass archivoEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1554,8 +1562,35 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getArchivo() {
+		return archivoEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getArchivo_Nombre() {
+		return (EAttribute)archivoEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getArchivo_Tipo() {
+		return (EReference)archivoEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getVector_Nombre() {
-		return (EAttribute)vectorEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)vectorEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1564,7 +1599,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * @generated
 	 */
 	public EReference getVector_Valor() {
-		return (EReference)vectorEClass.getEStructuralFeatures().get(1);
+		return (EReference)vectorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1573,7 +1608,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * @generated
 	 */
 	public EReference getVector_Tipo() {
-		return (EReference)vectorEClass.getEStructuralFeatures().get(2);
+		return (EReference)vectorEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1805,9 +1840,9 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		createEReference(constantesEClass, CONSTANTES__VALOR);
 
 		vectorEClass = createEClass(VECTOR);
-		createEAttribute(vectorEClass, VECTOR__NOMBRE);
 		createEReference(vectorEClass, VECTOR__VALOR);
 		createEReference(vectorEClass, VECTOR__TIPO);
+		createEAttribute(vectorEClass, VECTOR__NOMBRE);
 
 		declaracionPropiaEClass = createEClass(DECLARACION_PROPIA);
 		createEAttribute(declaracionPropiaEClass, DECLARACION_PROPIA__TIPO);
@@ -1833,6 +1868,10 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 
 		tipoExistenteEClass = createEClass(TIPO_EXISTENTE);
 		createEAttribute(tipoExistenteEClass, TIPO_EXISTENTE__TIPO);
+
+		archivoEClass = createEClass(ARCHIVO);
+		createEAttribute(archivoEClass, ARCHIVO__NOMBRE);
+		createEReference(archivoEClass, ARCHIVO__TIPO);
 
 		// Create enums
 		tipoVariableEEnum = createEEnum(TIPO_VARIABLE);
@@ -1902,6 +1941,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		registroEClass.getESuperTypes().add(this.getTipoComplejo());
 		tipoDefinidoEClass.getESuperTypes().add(this.getTipo());
 		tipoExistenteEClass.getESuperTypes().add(this.getTipo());
+		archivoEClass.getESuperTypes().add(this.getTipoComplejo());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(codigoEClass, Codigo.class, "Codigo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2042,9 +2082,9 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		initEReference(getConstantes_Valor(), this.getvalor(), null, "valor", null, 1, 1, Constantes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(vectorEClass, Vector.class, "Vector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getVector_Nombre(), ecorePackage.getEString(), "nombre", null, 1, 1, Vector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVector_Valor(), this.getvalor(), null, "valor", null, 0, 1, Vector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVector_Tipo(), this.getTipo(), null, "tipo", null, 1, 1, Vector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVector_Nombre(), ecorePackage.getEString(), "nombre", null, 1, 1, Vector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(declaracionPropiaEClass, DeclaracionPropia.class, "DeclaracionPropia", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDeclaracionPropia_Tipo(), ecorePackage.getEString(), "tipo", null, 1, 1, DeclaracionPropia.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2070,6 +2110,10 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 
 		initEClass(tipoExistenteEClass, TipoExistente.class, "TipoExistente", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTipoExistente_Tipo(), this.getTipoVariable(), "tipo", null, 1, 1, TipoExistente.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(archivoEClass, Archivo.class, "Archivo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getArchivo_Nombre(), ecorePackage.getEString(), "nombre", null, 1, 1, Archivo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getArchivo_Tipo(), this.getTipo(), null, "tipo", null, 1, 1, Archivo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(tipoVariableEEnum, TipoVariable.class, "TipoVariable");

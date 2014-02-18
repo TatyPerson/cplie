@@ -11,9 +11,9 @@ package diagramapseudocodigo;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link diagramapseudocodigo.Vector#getNombre <em>Nombre</em>}</li>
  *   <li>{@link diagramapseudocodigo.Vector#getValor <em>Valor</em>}</li>
  *   <li>{@link diagramapseudocodigo.Vector#getTipo <em>Tipo</em>}</li>
+ *   <li>{@link diagramapseudocodigo.Vector#getNombre <em>Nombre</em>}</li>
  * </ul>
  * </p>
  *

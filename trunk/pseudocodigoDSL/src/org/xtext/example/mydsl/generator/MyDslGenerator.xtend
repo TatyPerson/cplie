@@ -60,6 +60,11 @@ class MyDslGenerator implements IGenerator {
 			prueba = myComplejo as Registro
 			prueba.toC
 		}
+		else if(myComplejo.eClass.name.equals("Archivo")){
+			var Archivo prueba = new ArchivoImpl
+			prueba = myComplejo as Archivo
+			prueba.toC
+		}
 	}
 	
 	def toC(Tipo myTipo) {
@@ -102,6 +107,10 @@ class MyDslGenerator implements IGenerator {
 				«myVariable.toC»
 			«ENDFOR»
 		} «myRegistro.nombre»;
+	'''
+	
+	def toC(Archivo myArchivo)'''
+		typedef FILE *«myArchivo.nombre»;
 	'''
 	
 	def toC(Inicio myInicio)'''

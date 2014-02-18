@@ -1038,6 +1038,29 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.Archivo} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ArchivoItemProvider archivoItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.Archivo}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createArchivoAdapter() {
+		if (archivoItemProvider == null) {
+			archivoItemProvider = new ArchivoItemProvider(this);
+		}
+
+		return archivoItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1178,6 +1201,7 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 		if (tipoItemProvider != null) tipoItemProvider.dispose();
 		if (tipoDefinidoItemProvider != null) tipoDefinidoItemProvider.dispose();
 		if (tipoExistenteItemProvider != null) tipoExistenteItemProvider.dispose();
+		if (archivoItemProvider != null) archivoItemProvider.dispose();
 	}
 
 }

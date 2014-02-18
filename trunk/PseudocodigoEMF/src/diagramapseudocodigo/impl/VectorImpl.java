@@ -19,35 +19,15 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link diagramapseudocodigo.impl.VectorImpl#getNombre <em>Nombre</em>}</li>
  *   <li>{@link diagramapseudocodigo.impl.VectorImpl#getValor <em>Valor</em>}</li>
  *   <li>{@link diagramapseudocodigo.impl.VectorImpl#getTipo <em>Tipo</em>}</li>
+ *   <li>{@link diagramapseudocodigo.impl.VectorImpl#getNombre <em>Nombre</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class VectorImpl extends TipoComplejoImpl implements Vector {
-	/**
-	 * The default value of the '{@link #getNombre() <em>Nombre</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNombre()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NOMBRE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getNombre() <em>Nombre</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNombre()
-	 * @generated
-	 * @ordered
-	 */
-	protected String nombre = NOMBRE_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getValor() <em>Valor</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -67,6 +47,26 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	 * @ordered
 	 */
 	protected Tipo tipo;
+
+	/**
+	 * The default value of the '{@link #getNombre() <em>Nombre</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNombre()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NOMBRE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getNombre() <em>Nombre</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNombre()
+	 * @generated
+	 * @ordered
+	 */
+	protected String nombre = NOMBRE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -218,12 +218,12 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DiagramapseudocodigoPackage.VECTOR__NOMBRE:
-				return getNombre();
 			case DiagramapseudocodigoPackage.VECTOR__VALOR:
 				return getValor();
 			case DiagramapseudocodigoPackage.VECTOR__TIPO:
 				return getTipo();
+			case DiagramapseudocodigoPackage.VECTOR__NOMBRE:
+				return getNombre();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -236,14 +236,14 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DiagramapseudocodigoPackage.VECTOR__NOMBRE:
-				setNombre((String)newValue);
-				return;
 			case DiagramapseudocodigoPackage.VECTOR__VALOR:
 				setValor((valor)newValue);
 				return;
 			case DiagramapseudocodigoPackage.VECTOR__TIPO:
 				setTipo((Tipo)newValue);
+				return;
+			case DiagramapseudocodigoPackage.VECTOR__NOMBRE:
+				setNombre((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -257,14 +257,14 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DiagramapseudocodigoPackage.VECTOR__NOMBRE:
-				setNombre(NOMBRE_EDEFAULT);
-				return;
 			case DiagramapseudocodigoPackage.VECTOR__VALOR:
 				setValor((valor)null);
 				return;
 			case DiagramapseudocodigoPackage.VECTOR__TIPO:
 				setTipo((Tipo)null);
+				return;
+			case DiagramapseudocodigoPackage.VECTOR__NOMBRE:
+				setNombre(NOMBRE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -278,12 +278,12 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DiagramapseudocodigoPackage.VECTOR__NOMBRE:
-				return NOMBRE_EDEFAULT == null ? nombre != null : !NOMBRE_EDEFAULT.equals(nombre);
 			case DiagramapseudocodigoPackage.VECTOR__VALOR:
 				return valor != null;
 			case DiagramapseudocodigoPackage.VECTOR__TIPO:
 				return tipo != null;
+			case DiagramapseudocodigoPackage.VECTOR__NOMBRE:
+				return NOMBRE_EDEFAULT == null ? nombre != null : !NOMBRE_EDEFAULT.equals(nombre);
 		}
 		return super.eIsSet(featureID);
 	}
