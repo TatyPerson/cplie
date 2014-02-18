@@ -1898,22 +1898,13 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int VECTOR = 38;
 
 	/**
-	 * The feature id for the '<em><b>Tipo Interno</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VECTOR__TIPO_INTERNO = TIPO_COMPLEJO_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Nombre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VECTOR__NOMBRE = TIPO_COMPLEJO_FEATURE_COUNT + 1;
+	int VECTOR__NOMBRE = TIPO_COMPLEJO_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Valor</b></em>' containment reference.
@@ -1922,7 +1913,16 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VECTOR__VALOR = TIPO_COMPLEJO_FEATURE_COUNT + 2;
+	int VECTOR__VALOR = TIPO_COMPLEJO_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Tipo</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VECTOR__TIPO = TIPO_COMPLEJO_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Vector</em>' class.
@@ -1999,22 +1999,13 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int MATRIZ = 41;
 
 	/**
-	 * The feature id for the '<em><b>Tipo Interno</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MATRIZ__TIPO_INTERNO = TIPO_COMPLEJO_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Nombre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MATRIZ__NOMBRE = TIPO_COMPLEJO_FEATURE_COUNT + 1;
+	int MATRIZ__NOMBRE = TIPO_COMPLEJO_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Valor</b></em>' containment reference list.
@@ -2023,7 +2014,16 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATRIZ__VALOR = TIPO_COMPLEJO_FEATURE_COUNT + 2;
+	int MATRIZ__VALOR = TIPO_COMPLEJO_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Tipo</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MATRIZ__TIPO = TIPO_COMPLEJO_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Matriz</em>' class.
@@ -2090,6 +2090,108 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int REGISTRO_OPERATION_COUNT = TIPO_COMPLEJO_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.TipoImpl <em>Tipo</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.TipoImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipo()
+	 * @generated
+	 */
+	int TIPO = 44;
+
+	/**
+	 * The number of structural features of the '<em>Tipo</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIPO_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Tipo</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIPO_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.TipoDefinidoImpl <em>Tipo Definido</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.TipoDefinidoImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoDefinido()
+	 * @generated
+	 */
+	int TIPO_DEFINIDO = 45;
+
+	/**
+	 * The feature id for the '<em><b>Tipo</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIPO_DEFINIDO__TIPO = TIPO_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Tipo Definido</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIPO_DEFINIDO_FEATURE_COUNT = TIPO_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Tipo Definido</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIPO_DEFINIDO_OPERATION_COUNT = TIPO_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.TipoExistenteImpl <em>Tipo Existente</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.TipoExistenteImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoExistente()
+	 * @generated
+	 */
+	int TIPO_EXISTENTE = 46;
+
+	/**
+	 * The feature id for the '<em><b>Tipo</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIPO_EXISTENTE__TIPO = TIPO_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Tipo Existente</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIPO_EXISTENTE_FEATURE_COUNT = TIPO_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Tipo Existente</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIPO_EXISTENTE_OPERATION_COUNT = TIPO_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoVariable <em>Tipo Variable</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2097,7 +2199,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoVariable()
 	 * @generated
 	 */
-	int TIPO_VARIABLE = 44;
+	int TIPO_VARIABLE = 47;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.signo <em>signo</em>}' enum.
@@ -2107,7 +2209,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getsigno()
 	 * @generated
 	 */
-	int SIGNO = 45;
+	int SIGNO = 48;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.booleano <em>booleano</em>}' enum.
@@ -2117,7 +2219,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getbooleano()
 	 * @generated
 	 */
-	int BOOLEANO = 46;
+	int BOOLEANO = 49;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.inc <em>inc</em>}' enum.
@@ -2127,7 +2229,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getinc()
 	 * @generated
 	 */
-	int INC = 47;
+	int INC = 50;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoPaso <em>Tipo Paso</em>}' enum.
@@ -2137,7 +2239,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoPaso()
 	 * @generated
 	 */
-	int TIPO_PASO = 48;
+	int TIPO_PASO = 51;
 
 
 	/**
@@ -2148,7 +2250,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getNombreInterna()
 	 * @generated
 	 */
-	int NOMBRE_INTERNA = 49;
+	int NOMBRE_INTERNA = 52;
 
 
 	/**
@@ -3254,17 +3356,6 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EClass getMatriz();
 
 	/**
-	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Matriz#getTipoInterno <em>Tipo Interno</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Tipo Interno</em>'.
-	 * @see diagramapseudocodigo.Matriz#getTipoInterno()
-	 * @see #getMatriz()
-	 * @generated
-	 */
-	EAttribute getMatriz_TipoInterno();
-
-	/**
 	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Matriz#getNombre <em>Nombre</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3285,6 +3376,17 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMatriz_Valor();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Matriz#getTipo <em>Tipo</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Tipo</em>'.
+	 * @see diagramapseudocodigo.Matriz#getTipo()
+	 * @see #getMatriz()
+	 * @generated
+	 */
+	EReference getMatriz_Tipo();
 
 	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.TipoComplejo <em>Tipo Complejo</em>}'.
@@ -3329,15 +3431,56 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EAttribute getRegistro_Nombre();
 
 	/**
-	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Vector#getTipoInterno <em>Tipo Interno</em>}'.
+	 * Returns the meta object for class '{@link diagramapseudocodigo.Tipo <em>Tipo</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Tipo Interno</em>'.
-	 * @see diagramapseudocodigo.Vector#getTipoInterno()
-	 * @see #getVector()
+	 * @return the meta object for class '<em>Tipo</em>'.
+	 * @see diagramapseudocodigo.Tipo
 	 * @generated
 	 */
-	EAttribute getVector_TipoInterno();
+	EClass getTipo();
+
+	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.TipoDefinido <em>Tipo Definido</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Tipo Definido</em>'.
+	 * @see diagramapseudocodigo.TipoDefinido
+	 * @generated
+	 */
+	EClass getTipoDefinido();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.TipoDefinido#getTipo <em>Tipo</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Tipo</em>'.
+	 * @see diagramapseudocodigo.TipoDefinido#getTipo()
+	 * @see #getTipoDefinido()
+	 * @generated
+	 */
+	EAttribute getTipoDefinido_Tipo();
+
+	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.TipoExistente <em>Tipo Existente</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Tipo Existente</em>'.
+	 * @see diagramapseudocodigo.TipoExistente
+	 * @generated
+	 */
+	EClass getTipoExistente();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.TipoExistente#getTipo <em>Tipo</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Tipo</em>'.
+	 * @see diagramapseudocodigo.TipoExistente#getTipo()
+	 * @see #getTipoExistente()
+	 * @generated
+	 */
+	EAttribute getTipoExistente_Tipo();
 
 	/**
 	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Vector#getNombre <em>Nombre</em>}'.
@@ -3360,6 +3503,17 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getVector_Valor();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Vector#getTipo <em>Tipo</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Tipo</em>'.
+	 * @see diagramapseudocodigo.Vector#getTipo()
+	 * @see #getVector()
+	 * @generated
+	 */
+	EReference getVector_Tipo();
 
 	/**
 	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.unaria#getSsigno <em>Ssigno</em>}'.
@@ -4371,14 +4525,6 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EClass MATRIZ = eINSTANCE.getMatriz();
 
 		/**
-		 * The meta object literal for the '<em><b>Tipo Interno</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MATRIZ__TIPO_INTERNO = eINSTANCE.getMatriz_TipoInterno();
-
-		/**
 		 * The meta object literal for the '<em><b>Nombre</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4393,6 +4539,14 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MATRIZ__VALOR = eINSTANCE.getMatriz_Valor();
+
+		/**
+		 * The meta object literal for the '<em><b>Tipo</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MATRIZ__TIPO = eINSTANCE.getMatriz_Tipo();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.TipoComplejoImpl <em>Tipo Complejo</em>}' class.
@@ -4431,12 +4585,50 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EAttribute REGISTRO__NOMBRE = eINSTANCE.getRegistro_Nombre();
 
 		/**
-		 * The meta object literal for the '<em><b>Tipo Interno</b></em>' attribute feature.
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.TipoImpl <em>Tipo</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.TipoImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipo()
+		 * @generated
+		 */
+		EClass TIPO = eINSTANCE.getTipo();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.TipoDefinidoImpl <em>Tipo Definido</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.TipoDefinidoImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoDefinido()
+		 * @generated
+		 */
+		EClass TIPO_DEFINIDO = eINSTANCE.getTipoDefinido();
+
+		/**
+		 * The meta object literal for the '<em><b>Tipo</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute VECTOR__TIPO_INTERNO = eINSTANCE.getVector_TipoInterno();
+		EAttribute TIPO_DEFINIDO__TIPO = eINSTANCE.getTipoDefinido_Tipo();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.TipoExistenteImpl <em>Tipo Existente</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.TipoExistenteImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoExistente()
+		 * @generated
+		 */
+		EClass TIPO_EXISTENTE = eINSTANCE.getTipoExistente();
+
+		/**
+		 * The meta object literal for the '<em><b>Tipo</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TIPO_EXISTENTE__TIPO = eINSTANCE.getTipoExistente_Tipo();
 
 		/**
 		 * The meta object literal for the '<em><b>Nombre</b></em>' attribute feature.
@@ -4453,6 +4645,14 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EReference VECTOR__VALOR = eINSTANCE.getVector_Valor();
+
+		/**
+		 * The meta object literal for the '<em><b>Tipo</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VECTOR__TIPO = eINSTANCE.getVector_Tipo();
 
 		/**
 		 * The meta object literal for the '<em><b>Ssigno</b></em>' attribute feature.

@@ -5,7 +5,6 @@ package diagramapseudocodigo.provider;
 
 import diagramapseudocodigo.DiagramapseudocodigoFactory;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
-import diagramapseudocodigo.TipoVariable;
 import diagramapseudocodigo.Vector;
 import java.util.Collection;
 import java.util.List;
@@ -57,32 +56,9 @@ public class VectorItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTipoInternoPropertyDescriptor(object);
 			addNombrePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Tipo Interno feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTipoInternoPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Vector_tipoInterno_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Vector_tipoInterno_feature", "_UI_Vector_type"),
-				 DiagramapseudocodigoPackage.Literals.VECTOR__TIPO_INTERNO,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -120,6 +96,7 @@ public class VectorItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.VECTOR__VALOR);
+			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.VECTOR__TIPO);
 		}
 		return childrenFeatures;
 	}
@@ -156,8 +133,7 @@ public class VectorItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		TipoVariable labelValue = ((Vector)object).getTipoInterno();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((Vector)object).getNombre();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Vector_type") :
 			getString("_UI_Vector_type") + " " + label;
@@ -175,11 +151,11 @@ public class VectorItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Vector.class)) {
-			case DiagramapseudocodigoPackage.VECTOR__TIPO_INTERNO:
 			case DiagramapseudocodigoPackage.VECTOR__NOMBRE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case DiagramapseudocodigoPackage.VECTOR__VALOR:
+			case DiagramapseudocodigoPackage.VECTOR__TIPO:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -246,6 +222,21 @@ public class VectorItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.VECTOR__VALOR,
 				 DiagramapseudocodigoFactory.eINSTANCE.createunaria()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VECTOR__TIPO,
+				 DiagramapseudocodigoFactory.eINSTANCE.createTipo()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VECTOR__TIPO,
+				 DiagramapseudocodigoFactory.eINSTANCE.createTipoDefinido()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VECTOR__TIPO,
+				 DiagramapseudocodigoFactory.eINSTANCE.createTipoExistente()));
 	}
 
 }

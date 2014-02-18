@@ -373,6 +373,33 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	Registro createRegistro();
 
 	/**
+	 * Returns a new object of class '<em>Tipo</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tipo</em>'.
+	 * @generated
+	 */
+	Tipo createTipo();
+
+	/**
+	 * Returns a new object of class '<em>Tipo Definido</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tipo Definido</em>'.
+	 * @generated
+	 */
+	TipoDefinido createTipoDefinido();
+
+	/**
+	 * Returns a new object of class '<em>Tipo Existente</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tipo Existente</em>'.
+	 * @generated
+	 */
+	TipoExistente createTipoExistente();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -52,15 +52,23 @@ Caracter returns Caracter:
 valor returns valor:
 	LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter | Internas | unaria;
 
+Tipo returns Tipo:
+	TipoDefinido | TipoExistente;
+	
+TipoDefinido returns TipoDefinido:
+	tipo=EString;
+
+TipoExistente returns TipoExistente:
+	tipo=TipoVariable;
 
 Constantes returns Constantes:
 	variable=Variable '=' valor=valor;
 
 Vector returns Vector:
-	'vector' ' [' valor=valor '] ' 'de ' tipoInterno=TipoVariable ' : ' nombre=EString;
+	'vector' ' [' valor=valor '] ' 'de ' tipo=Tipo ' : ' nombre=EString;
 
 Matriz returns Matriz:
-	'matriz' ' [' valor+=valor '][' valor+=valor '] ' 'de ' tipoInterno=TipoVariable ' : ' nombre=EString;
+	'matriz' ' [' valor+=valor '][' valor+=valor '] ' 'de ' tipo=Tipo ' : ' nombre=EString;
 	
 
 Registro returns Registro:

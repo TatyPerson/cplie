@@ -183,9 +183,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Constantes/valor"/>
     </genClasses>
     <genClasses ecoreClass="diagramaPseudocodigo.ecore#//Vector">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//Vector/tipoInterno"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//Vector/nombre"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Vector/valor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Vector/tipo"/>
     </genClasses>
     <genClasses ecoreClass="diagramaPseudocodigo.ecore#//DeclaracionPropia">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//DeclaracionPropia/tipo"/>
@@ -193,14 +193,21 @@
     </genClasses>
     <genClasses ecoreClass="diagramaPseudocodigo.ecore#//Declaracion"/>
     <genClasses ecoreClass="diagramaPseudocodigo.ecore#//Matriz">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//Matriz/tipoInterno"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//Matriz/nombre"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Matriz/valor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Matriz/tipo"/>
     </genClasses>
     <genClasses ecoreClass="diagramaPseudocodigo.ecore#//TipoComplejo"/>
     <genClasses ecoreClass="diagramaPseudocodigo.ecore#//Registro">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Registro/variable"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//Registro/nombre"/>
+    </genClasses>
+    <genClasses ecoreClass="diagramaPseudocodigo.ecore#//Tipo"/>
+    <genClasses ecoreClass="diagramaPseudocodigo.ecore#//TipoDefinido">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//TipoDefinido/tipo"/>
+    </genClasses>
+    <genClasses ecoreClass="diagramaPseudocodigo.ecore#//TipoExistente">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//TipoExistente/tipo"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

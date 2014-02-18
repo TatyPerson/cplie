@@ -13,9 +13,9 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link diagramapseudocodigo.Matriz#getTipoInterno <em>Tipo Interno</em>}</li>
  *   <li>{@link diagramapseudocodigo.Matriz#getNombre <em>Nombre</em>}</li>
  *   <li>{@link diagramapseudocodigo.Matriz#getValor <em>Valor</em>}</li>
+ *   <li>{@link diagramapseudocodigo.Matriz#getTipo <em>Tipo</em>}</li>
  * </ul>
  * </p>
  *
@@ -24,35 +24,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Matriz extends TipoComplejo {
-	/**
-	 * Returns the value of the '<em><b>Tipo Interno</b></em>' attribute.
-	 * The literals are from the enumeration {@link diagramapseudocodigo.TipoVariable}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Tipo Interno</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Tipo Interno</em>' attribute.
-	 * @see diagramapseudocodigo.TipoVariable
-	 * @see #setTipoInterno(TipoVariable)
-	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getMatriz_TipoInterno()
-	 * @model required="true"
-	 * @generated
-	 */
-	TipoVariable getTipoInterno();
-
-	/**
-	 * Sets the value of the '{@link diagramapseudocodigo.Matriz#getTipoInterno <em>Tipo Interno</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Tipo Interno</em>' attribute.
-	 * @see diagramapseudocodigo.TipoVariable
-	 * @see #getTipoInterno()
-	 * @generated
-	 */
-	void setTipoInterno(TipoVariable value);
-
 	/**
 	 * Returns the value of the '<em><b>Nombre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -94,5 +65,31 @@ public interface Matriz extends TipoComplejo {
 	 * @generated
 	 */
 	EList<valor> getValor();
+
+	/**
+	 * Returns the value of the '<em><b>Tipo</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Tipo</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Tipo</em>' containment reference.
+	 * @see #setTipo(Tipo)
+	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getMatriz_Tipo()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	Tipo getTipo();
+
+	/**
+	 * Sets the value of the '{@link diagramapseudocodigo.Matriz#getTipo <em>Tipo</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Tipo</em>' containment reference.
+	 * @see #getTipo()
+	 * @generated
+	 */
+	void setTipo(Tipo value);
 
 } // Matriz

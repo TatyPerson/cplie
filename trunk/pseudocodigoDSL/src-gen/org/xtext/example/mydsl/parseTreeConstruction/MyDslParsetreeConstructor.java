@@ -40,39 +40,42 @@ protected class ThisRootNode extends RootToken {
 			case 7: return new Operador_Alternatives(this, this, 7, inst);
 			case 8: return new Caracter_ContenidoAssignment(this, this, 8, inst);
 			case 9: return new Valor_Alternatives(this, this, 9, inst);
-			case 10: return new Constantes_Group(this, this, 10, inst);
-			case 11: return new Vector_Group(this, this, 11, inst);
-			case 12: return new Matriz_Group(this, this, 12, inst);
-			case 13: return new Registro_Group(this, this, 13, inst);
-			case 14: return new Inicio_Group(this, this, 14, inst);
-			case 15: return new DeclaracionVariable_Group(this, this, 15, inst);
-			case 16: return new DeclaracionPropia_Group(this, this, 16, inst);
-			case 17: return new LlamadaFuncion_Group(this, this, 17, inst);
-			case 18: return new Asignacion_Group(this, this, 18, inst);
-			case 19: return new Escribir_Group(this, this, 19, inst);
-			case 20: return new Leer_Group(this, this, 20, inst);
-			case 21: return new Si_Group(this, this, 21, inst);
-			case 22: return new Mientras_Group(this, this, 22, inst);
-			case 23: return new Repetir_Group(this, this, 23, inst);
-			case 24: return new Desde_Group(this, this, 24, inst);
-			case 25: return new Caso_Group(this, this, 25, inst);
-			case 26: return new Segun_Group(this, this, 26, inst);
-			case 27: return new Incremento_Group(this, this, 27, inst);
-			case 28: return new Unaria_Group(this, this, 28, inst);
-			case 29: return new Variable_Group(this, this, 29, inst);
-			case 30: return new VariableID_Group(this, this, 30, inst);
-			case 31: return new ConstCadena_ContenidoAssignment(this, this, 31, inst);
-			case 32: return new NumeroEntero_ValorAssignment(this, this, 32, inst);
-			case 33: return new NumeroDecimal_ValorAssignment(this, this, 33, inst);
-			case 34: return new ValorBooleano_ValorAssignment(this, this, 34, inst);
-			case 35: return new Operacion_Group(this, this, 35, inst);
-			case 36: return new Operando_izq_Oper_izqAssignment(this, this, 36, inst);
-			case 37: return new Operando_der_Oper_derAssignment(this, this, 37, inst);
-			case 38: return new Sino_Group(this, this, 38, inst);
-			case 39: return new Devolver_Group(this, this, 39, inst);
-			case 40: return new ParametroFuncion_Group(this, this, 40, inst);
-			case 41: return new Funcion_Group(this, this, 41, inst);
-			case 42: return new Procedimiento_Group(this, this, 42, inst);
+			case 10: return new Tipo_Alternatives(this, this, 10, inst);
+			case 11: return new TipoDefinido_TipoAssignment(this, this, 11, inst);
+			case 12: return new TipoExistente_TipoAssignment(this, this, 12, inst);
+			case 13: return new Constantes_Group(this, this, 13, inst);
+			case 14: return new Vector_Group(this, this, 14, inst);
+			case 15: return new Matriz_Group(this, this, 15, inst);
+			case 16: return new Registro_Group(this, this, 16, inst);
+			case 17: return new Inicio_Group(this, this, 17, inst);
+			case 18: return new DeclaracionVariable_Group(this, this, 18, inst);
+			case 19: return new DeclaracionPropia_Group(this, this, 19, inst);
+			case 20: return new LlamadaFuncion_Group(this, this, 20, inst);
+			case 21: return new Asignacion_Group(this, this, 21, inst);
+			case 22: return new Escribir_Group(this, this, 22, inst);
+			case 23: return new Leer_Group(this, this, 23, inst);
+			case 24: return new Si_Group(this, this, 24, inst);
+			case 25: return new Mientras_Group(this, this, 25, inst);
+			case 26: return new Repetir_Group(this, this, 26, inst);
+			case 27: return new Desde_Group(this, this, 27, inst);
+			case 28: return new Caso_Group(this, this, 28, inst);
+			case 29: return new Segun_Group(this, this, 29, inst);
+			case 30: return new Incremento_Group(this, this, 30, inst);
+			case 31: return new Unaria_Group(this, this, 31, inst);
+			case 32: return new Variable_Group(this, this, 32, inst);
+			case 33: return new VariableID_Group(this, this, 33, inst);
+			case 34: return new ConstCadena_ContenidoAssignment(this, this, 34, inst);
+			case 35: return new NumeroEntero_ValorAssignment(this, this, 35, inst);
+			case 36: return new NumeroDecimal_ValorAssignment(this, this, 36, inst);
+			case 37: return new ValorBooleano_ValorAssignment(this, this, 37, inst);
+			case 38: return new Operacion_Group(this, this, 38, inst);
+			case 39: return new Operando_izq_Oper_izqAssignment(this, this, 39, inst);
+			case 40: return new Operando_der_Oper_derAssignment(this, this, 40, inst);
+			case 41: return new Sino_Group(this, this, 41, inst);
+			case 42: return new Devolver_Group(this, this, 42, inst);
+			case 43: return new ParametroFuncion_Group(this, this, 43, inst);
+			case 44: return new Funcion_Group(this, this, 44, inst);
+			case 45: return new Procedimiento_Group(this, this, 45, inst);
 			default: return null;
 		}	
 	}	
@@ -2505,6 +2508,210 @@ protected class Valor_UnariaParserRuleCall_9 extends RuleCallToken {
 /************ end Rule valor ****************/
 
 
+/************ begin Rule Tipo ****************
+ *
+ * Tipo:
+ * 	TipoDefinido | TipoExistente;
+ *
+ **/
+
+// TipoDefinido | TipoExistente
+protected class Tipo_Alternatives extends AlternativesToken {
+
+	public Tipo_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Alternatives getGrammarElement() {
+		return grammarAccess.getTipoAccess().getAlternatives();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Tipo_TipoDefinidoParserRuleCall_0(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new Tipo_TipoExistenteParserRuleCall_1(lastRuleCallOrigin, this, 1, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getTipoDefinidoRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getTipoExistenteRule().getType().getClassifier())
+			return null;
+		return eObjectConsumer;
+	}
+
+}
+
+// TipoDefinido
+protected class Tipo_TipoDefinidoParserRuleCall_0 extends RuleCallToken {
+	
+	public Tipo_TipoDefinidoParserRuleCall_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getTipoAccess().getTipoDefinidoParserRuleCall_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new TipoDefinido_TipoAssignment(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getTipoDefinidoRule().getType().getClassifier())
+			return null;
+		if(checkForRecursion(TipoDefinido_TipoAssignment.class, eObjectConsumer)) return null;
+		return eObjectConsumer;
+	}
+	
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+// TipoExistente
+protected class Tipo_TipoExistenteParserRuleCall_1 extends RuleCallToken {
+	
+	public Tipo_TipoExistenteParserRuleCall_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getTipoAccess().getTipoExistenteParserRuleCall_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new TipoExistente_TipoAssignment(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getTipoExistenteRule().getType().getClassifier())
+			return null;
+		if(checkForRecursion(TipoExistente_TipoAssignment.class, eObjectConsumer)) return null;
+		return eObjectConsumer;
+	}
+	
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+
+/************ end Rule Tipo ****************/
+
+
+/************ begin Rule TipoDefinido ****************
+ *
+ * TipoDefinido:
+ * 	tipo=EString;
+ *
+ **/
+
+// tipo=EString
+protected class TipoDefinido_TipoAssignment extends AssignmentToken  {
+	
+	public TipoDefinido_TipoAssignment(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getTipoDefinidoAccess().getTipoAssignment();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index, inst);
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getTipoDefinidoRule().getType().getClassifier())
+			return null;
+		if((value = eObjectConsumer.getConsumable("tipo",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("tipo");
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getTipoDefinidoAccess().getTipoEStringParserRuleCall_0(), value, null)) {
+			type = AssignmentType.DATATYPE_RULE_CALL;
+			element = grammarAccess.getTipoDefinidoAccess().getTipoEStringParserRuleCall_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+/************ end Rule TipoDefinido ****************/
+
+
+/************ begin Rule TipoExistente ****************
+ *
+ * TipoExistente:
+ * 	tipo=TipoVariable;
+ *
+ **/
+
+// tipo=TipoVariable
+protected class TipoExistente_TipoAssignment extends AssignmentToken  {
+	
+	public TipoExistente_TipoAssignment(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getTipoExistenteAccess().getTipoAssignment();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index, inst);
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getTipoExistenteRule().getType().getClassifier())
+			return null;
+		if((value = eObjectConsumer.getConsumable("tipo",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("tipo");
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getTipoExistenteAccess().getTipoTipoVariableParserRuleCall_0(), value, null)) {
+			type = AssignmentType.DATATYPE_RULE_CALL;
+			element = grammarAccess.getTipoExistenteAccess().getTipoTipoVariableParserRuleCall_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+/************ end Rule TipoExistente ****************/
+
+
 /************ begin Rule Constantes ****************
  *
  * Constantes:
@@ -2661,11 +2868,11 @@ protected class Constantes_ValorAssignment_2 extends AssignmentToken  {
 /************ begin Rule Vector ****************
  *
  * Vector:
- * 	"vector" " [" valor=valor "] " "de " tipoInterno=TipoVariable " : " nombre=EString;
+ * 	"vector" " [" valor=valor "] " "de " tipo=Tipo " : " nombre=EString;
  *
  **/
 
-// "vector" " [" valor=valor "] " "de " tipoInterno=TipoVariable " : " nombre=EString
+// "vector" " [" valor=valor "] " "de " tipo=Tipo " : " nombre=EString
 protected class Vector_Group extends GroupToken {
 	
 	public Vector_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2827,38 +3034,50 @@ protected class Vector_DeKeyword_4 extends KeywordToken  {
 
 }
 
-// tipoInterno=TipoVariable
-protected class Vector_TipoInternoAssignment_5 extends AssignmentToken  {
+// tipo=Tipo
+protected class Vector_TipoAssignment_5 extends AssignmentToken  {
 	
-	public Vector_TipoInternoAssignment_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Vector_TipoAssignment_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getVectorAccess().getTipoInternoAssignment_5();
+		return grammarAccess.getVectorAccess().getTipoAssignment_5();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Vector_DeKeyword_4(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Tipo_Alternatives(this, this, 0, inst);
 			default: return null;
 		}	
 	}
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("tipoInterno",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("tipoInterno");
-		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getVectorAccess().getTipoInternoTipoVariableParserRuleCall_5_0(), value, null)) {
-			type = AssignmentType.DATATYPE_RULE_CALL;
-			element = grammarAccess.getVectorAccess().getTipoInternoTipoVariableParserRuleCall_5_0();
-			return obj;
+		if((value = eObjectConsumer.getConsumable("tipo",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("tipo");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getTipoRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getVectorAccess().getTipoTipoParserRuleCall_5_0(); 
+				consumed = obj;
+				return param;
+			}
 		}
 		return null;
 	}
 
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new Vector_DeKeyword_4(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
 }
 
 // " : "
@@ -2876,7 +3095,7 @@ protected class Vector_SpaceColonSpaceKeyword_6 extends KeywordToken  {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Vector_TipoInternoAssignment_5(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Vector_TipoAssignment_5(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -2924,11 +3143,11 @@ protected class Vector_NombreAssignment_7 extends AssignmentToken  {
 /************ begin Rule Matriz ****************
  *
  * Matriz:
- * 	"matriz" " [" valor+=valor "][" valor+=valor "] " "de " tipoInterno=TipoVariable " : " nombre=EString;
+ * 	"matriz" " [" valor+=valor "][" valor+=valor "] " "de " tipo=Tipo " : " nombre=EString;
  *
  **/
 
-// "matriz" " [" valor+=valor "][" valor+=valor "] " "de " tipoInterno=TipoVariable " : " nombre=EString
+// "matriz" " [" valor+=valor "][" valor+=valor "] " "de " tipo=Tipo " : " nombre=EString
 protected class Matriz_Group extends GroupToken {
 	
 	public Matriz_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3158,38 +3377,50 @@ protected class Matriz_DeKeyword_6 extends KeywordToken  {
 
 }
 
-// tipoInterno=TipoVariable
-protected class Matriz_TipoInternoAssignment_7 extends AssignmentToken  {
+// tipo=Tipo
+protected class Matriz_TipoAssignment_7 extends AssignmentToken  {
 	
-	public Matriz_TipoInternoAssignment_7(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Matriz_TipoAssignment_7(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getMatrizAccess().getTipoInternoAssignment_7();
+		return grammarAccess.getMatrizAccess().getTipoAssignment_7();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Matriz_DeKeyword_6(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Tipo_Alternatives(this, this, 0, inst);
 			default: return null;
 		}	
 	}
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("tipoInterno",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("tipoInterno");
-		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getMatrizAccess().getTipoInternoTipoVariableParserRuleCall_7_0(), value, null)) {
-			type = AssignmentType.DATATYPE_RULE_CALL;
-			element = grammarAccess.getMatrizAccess().getTipoInternoTipoVariableParserRuleCall_7_0();
-			return obj;
+		if((value = eObjectConsumer.getConsumable("tipo",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("tipo");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getTipoRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getMatrizAccess().getTipoTipoParserRuleCall_7_0(); 
+				consumed = obj;
+				return param;
+			}
 		}
 		return null;
 	}
 
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new Matriz_DeKeyword_6(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
 }
 
 // " : "
@@ -3207,7 +3438,7 @@ protected class Matriz_SpaceColonSpaceKeyword_8 extends KeywordToken  {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Matriz_TipoInternoAssignment_7(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Matriz_TipoAssignment_7(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}

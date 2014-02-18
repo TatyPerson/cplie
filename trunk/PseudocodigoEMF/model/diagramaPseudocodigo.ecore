@@ -226,11 +226,11 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Vector" eSuperTypes="#//TipoComplejo">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tipoInterno" lowerBound="1"
-        eType="#//TipoVariable"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="valor" eType="#//valor"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tipo" lowerBound="1" eType="#//Tipo"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DeclaracionPropia" eSuperTypes="#//Declaracion">
@@ -240,11 +240,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Declaracion"/>
   <eClassifiers xsi:type="ecore:EClass" name="Matriz" eSuperTypes="#//TipoComplejo">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tipoInterno" lowerBound="1"
-        eType="#//TipoVariable"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="valor" upperBound="2" eType="#//valor"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tipo" lowerBound="1" eType="#//Tipo"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TipoComplejo"/>
@@ -253,5 +253,12 @@
         upperBound="-1" eType="#//DeclaracionVariable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Tipo"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TipoDefinido" eSuperTypes="#//Tipo">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tipo" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TipoExistente" eSuperTypes="#//Tipo">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tipo" lowerBound="1" eType="#//TipoVariable"/>
   </eClassifiers>
 </ecore:EPackage>

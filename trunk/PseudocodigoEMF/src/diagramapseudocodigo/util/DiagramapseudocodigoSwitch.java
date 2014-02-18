@@ -370,6 +370,26 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DiagramapseudocodigoPackage.TIPO: {
+				Tipo tipo = (Tipo)theEObject;
+				T result = caseTipo(tipo);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiagramapseudocodigoPackage.TIPO_DEFINIDO: {
+				TipoDefinido tipoDefinido = (TipoDefinido)theEObject;
+				T result = caseTipoDefinido(tipoDefinido);
+				if (result == null) result = caseTipo(tipoDefinido);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiagramapseudocodigoPackage.TIPO_EXISTENTE: {
+				TipoExistente tipoExistente = (TipoExistente)theEObject;
+				T result = caseTipoExistente(tipoExistente);
+				if (result == null) result = caseTipo(tipoExistente);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1031,6 +1051,51 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseRegistro(Registro object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Tipo</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Tipo</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTipo(Tipo object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Tipo Definido</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Tipo Definido</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTipoDefinido(TipoDefinido object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Tipo Existente</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Tipo Existente</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTipoExistente(TipoExistente object) {
 		return null;
 	}
 
