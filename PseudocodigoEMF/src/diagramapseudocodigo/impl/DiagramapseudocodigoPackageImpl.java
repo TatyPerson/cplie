@@ -16,6 +16,7 @@ import diagramapseudocodigo.DeclaracionVariable;
 import diagramapseudocodigo.Devolver;
 import diagramapseudocodigo.DiagramapseudocodigoFactory;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
+import diagramapseudocodigo.Enumerado;
 import diagramapseudocodigo.Escribir;
 import diagramapseudocodigo.Funcion;
 import diagramapseudocodigo.Inicio;
@@ -409,6 +410,13 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * @generated
 	 */
 	private EClass archivoEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass enumeradoEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1589,6 +1597,33 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getEnumerado() {
+		return enumeradoEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEnumerado_Nombre() {
+		return (EAttribute)enumeradoEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEnumerado_Valor() {
+		return (EReference)enumeradoEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getVector_Nombre() {
 		return (EAttribute)vectorEClass.getEStructuralFeatures().get(2);
 	}
@@ -1873,6 +1908,10 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		createEAttribute(archivoEClass, ARCHIVO__NOMBRE);
 		createEReference(archivoEClass, ARCHIVO__TIPO);
 
+		enumeradoEClass = createEClass(ENUMERADO);
+		createEAttribute(enumeradoEClass, ENUMERADO__NOMBRE);
+		createEReference(enumeradoEClass, ENUMERADO__VALOR);
+
 		// Create enums
 		tipoVariableEEnum = createEEnum(TIPO_VARIABLE);
 		signoEEnum = createEEnum(SIGNO);
@@ -1942,6 +1981,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		tipoDefinidoEClass.getESuperTypes().add(this.getTipo());
 		tipoExistenteEClass.getESuperTypes().add(this.getTipo());
 		archivoEClass.getESuperTypes().add(this.getTipoComplejo());
+		enumeradoEClass.getESuperTypes().add(this.getTipoComplejo());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(codigoEClass, Codigo.class, "Codigo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2114,6 +2154,10 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		initEClass(archivoEClass, Archivo.class, "Archivo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getArchivo_Nombre(), ecorePackage.getEString(), "nombre", null, 1, 1, Archivo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getArchivo_Tipo(), this.getTipo(), null, "tipo", null, 1, 1, Archivo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(enumeradoEClass, Enumerado.class, "Enumerado", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEnumerado_Nombre(), ecorePackage.getEString(), "nombre", null, 1, 1, Enumerado.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEnumerado_Valor(), this.getvalor(), null, "valor", null, 1, -1, Enumerado.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(tipoVariableEEnum, TipoVariable.class, "TipoVariable");

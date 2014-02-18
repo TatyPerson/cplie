@@ -271,6 +271,16 @@ ruleTipoComplejo returns [EObject current=null]
         $current = $this_Archivo_3.current; 
         afterParserOrEnumRuleCall();
     }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getTipoComplejoAccess().getEnumeradoParserRuleCall_4()); 
+    }
+    this_Enumerado_4=ruleEnumerado
+    { 
+        $current = $this_Enumerado_4.current; 
+        afterParserOrEnumRuleCall();
+    }
 )
 ;
 
@@ -1450,6 +1460,97 @@ ruleArchivo returns [EObject current=null]
 
 )
 ))
+;
+
+
+
+
+
+// Entry rule entryRuleEnumerado
+entryRuleEnumerado returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getEnumeradoRule()); }
+	 iv_ruleEnumerado=ruleEnumerado 
+	 { $current=$iv_ruleEnumerado.current; } 
+	 EOF 
+;
+
+// Rule Enumerado
+ruleEnumerado returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getEnumeradoAccess().getNombreEStringParserRuleCall_0_0()); 
+	    }
+		lv_nombre_0_0=ruleEString		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getEnumeradoRule());
+	        }
+       		set(
+       			$current, 
+       			"nombre",
+        		lv_nombre_0_0, 
+        		"EString");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_1='=' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getEnumeradoAccess().getEqualsSignKeyword_1());
+    }
+	otherlv_2=' {' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getEnumeradoAccess().getSpaceLeftCurlyBracketKeyword_2());
+    }
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getEnumeradoAccess().getValorValorParserRuleCall_3_0_0()); 
+	    }
+		lv_valor_3_0=rulevalor		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getEnumeradoRule());
+	        }
+       		add(
+       			$current, 
+       			"valor",
+        		lv_valor_3_0, 
+        		"valor");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(	otherlv_4=',' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getEnumeradoAccess().getCommaKeyword_3_1_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getEnumeradoAccess().getValorValorParserRuleCall_3_1_1_0()); 
+	    }
+		lv_valor_5_0=rulevalor		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getEnumeradoRule());
+	        }
+       		add(
+       			$current, 
+       			"valor",
+        		lv_valor_5_0, 
+        		"valor");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))*)	otherlv_6='}' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getEnumeradoAccess().getRightCurlyBracketKeyword_4());
+    }
+)
 ;
 
 

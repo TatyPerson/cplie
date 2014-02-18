@@ -213,5 +213,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//Archivo/nombre"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Archivo/tipo"/>
     </genClasses>
+    <genClasses ecoreClass="diagramaPseudocodigo.ecore#//Enumerado">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//Enumerado/nombre"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Enumerado/valor"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

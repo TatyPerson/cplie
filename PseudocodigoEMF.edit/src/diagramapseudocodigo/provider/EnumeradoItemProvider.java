@@ -3,17 +3,15 @@
 package diagramapseudocodigo.provider;
 
 
-import diagramapseudocodigo.Codigo;
 import diagramapseudocodigo.DiagramapseudocodigoFactory;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
+import diagramapseudocodigo.Enumerado;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -25,17 +23,16 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link diagramapseudocodigo.Codigo} object.
+ * This is the item provider adapter for a {@link diagramapseudocodigo.Enumerado} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class CodigoItemProvider
-	extends ItemProviderAdapter
+public class EnumeradoItemProvider
+	extends TipoComplejoItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -48,7 +45,7 @@ public class CodigoItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CodigoItemProvider(AdapterFactory adapterFactory) {
+	public EnumeradoItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -79,9 +76,9 @@ public class CodigoItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Codigo_nombre_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Codigo_nombre_feature", "_UI_Codigo_type"),
-				 DiagramapseudocodigoPackage.Literals.CODIGO__NOMBRE,
+				 getString("_UI_Enumerado_nombre_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Enumerado_nombre_feature", "_UI_Enumerado_type"),
+				 DiagramapseudocodigoPackage.Literals.ENUMERADO__NOMBRE,
 				 true,
 				 false,
 				 false,
@@ -102,10 +99,7 @@ public class CodigoItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CODIGO__TIENE);
-			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CODIGO__FUNCION);
-			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CODIGO__CONSTANTES);
-			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO);
+			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.ENUMERADO__VALOR);
 		}
 		return childrenFeatures;
 	}
@@ -124,14 +118,14 @@ public class CodigoItemProvider
 	}
 
 	/**
-	 * This returns Codigo.gif.
+	 * This returns Enumerado.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Codigo"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Enumerado"));
 	}
 
 	/**
@@ -142,10 +136,10 @@ public class CodigoItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Codigo)object).getNombre();
+		String label = ((Enumerado)object).getNombre();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Codigo_type") :
-			getString("_UI_Codigo_type") + " " + label;
+			getString("_UI_Enumerado_type") :
+			getString("_UI_Enumerado_type") + " " + label;
 	}
 
 	/**
@@ -159,14 +153,11 @@ public class CodigoItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Codigo.class)) {
-			case DiagramapseudocodigoPackage.CODIGO__NOMBRE:
+		switch (notification.getFeatureID(Enumerado.class)) {
+			case DiagramapseudocodigoPackage.ENUMERADO__NOMBRE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case DiagramapseudocodigoPackage.CODIGO__TIENE:
-			case DiagramapseudocodigoPackage.CODIGO__FUNCION:
-			case DiagramapseudocodigoPackage.CODIGO__CONSTANTES:
-			case DiagramapseudocodigoPackage.CODIGO__TIPOCOMPLEJO:
+			case DiagramapseudocodigoPackage.ENUMERADO__VALOR:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -186,64 +177,53 @@ public class CodigoItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__TIENE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createInicio()));
+				(DiagramapseudocodigoPackage.Literals.ENUMERADO__VALOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createLlamadaFuncion()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__FUNCION,
-				 DiagramapseudocodigoFactory.eINSTANCE.createFuncion()));
+				(DiagramapseudocodigoPackage.Literals.ENUMERADO__VALOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createVariableID()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__FUNCION,
-				 DiagramapseudocodigoFactory.eINSTANCE.createProcedimiento()));
+				(DiagramapseudocodigoPackage.Literals.ENUMERADO__VALOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createConstCadena()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__CONSTANTES,
-				 DiagramapseudocodigoFactory.eINSTANCE.createConstantes()));
+				(DiagramapseudocodigoPackage.Literals.ENUMERADO__VALOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNumeroEntero()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO,
-				 DiagramapseudocodigoFactory.eINSTANCE.createTipoComplejo()));
+				(DiagramapseudocodigoPackage.Literals.ENUMERADO__VALOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNumeroDecimal()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO,
-				 DiagramapseudocodigoFactory.eINSTANCE.createVector()));
+				(DiagramapseudocodigoPackage.Literals.ENUMERADO__VALOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createoperacion()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO,
-				 DiagramapseudocodigoFactory.eINSTANCE.createMatriz()));
+				(DiagramapseudocodigoPackage.Literals.ENUMERADO__VALOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorBooleano()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO,
-				 DiagramapseudocodigoFactory.eINSTANCE.createRegistro()));
+				(DiagramapseudocodigoPackage.Literals.ENUMERADO__VALOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createCaracter()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO,
-				 DiagramapseudocodigoFactory.eINSTANCE.createArchivo()));
+				(DiagramapseudocodigoPackage.Literals.ENUMERADO__VALOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createInternas()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO,
-				 DiagramapseudocodigoFactory.eINSTANCE.createEnumerado()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return DiagramaPseudocodigoEditPlugin.INSTANCE;
+				(DiagramapseudocodigoPackage.Literals.ENUMERADO__VALOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createunaria()));
 	}
 
 }

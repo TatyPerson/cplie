@@ -409,6 +409,15 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	Archivo createArchivo();
 
 	/**
+	 * Returns a new object of class '<em>Enumerado</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Enumerado</em>'.
+	 * @generated
+	 */
+	Enumerado createEnumerado();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
