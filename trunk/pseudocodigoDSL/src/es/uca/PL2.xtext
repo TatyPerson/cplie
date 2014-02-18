@@ -38,7 +38,7 @@ Internas returns Internas:
 	')';
 
 NombreInterna returns NombreInterna:
-	'cos' | 'cuadrado' | 'exp' | 'ln' | 'log' | 'sen' | 'sqrt'
+	'cos' | 'cuadrado' | 'exp' | 'ln' | 'log' | 'sen' | 'sqrt' | 'longitud'
 ;
 
 

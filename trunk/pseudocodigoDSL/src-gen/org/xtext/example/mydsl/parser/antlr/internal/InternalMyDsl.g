@@ -615,6 +615,13 @@ ruleNombreInterna returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
         $current.merge(kw);
         newLeafNode(kw, grammarAccess.getNombreInternaAccess().getSqrtKeyword_6()); 
     }
+
+    |
+	kw='longitud' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNombreInternaAccess().getLongitudKeyword_7()); 
+    }
 )
     ;
 

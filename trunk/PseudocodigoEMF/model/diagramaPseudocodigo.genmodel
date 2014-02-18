@@ -49,6 +49,7 @@
       <genEnumLiterals ecoreEnumLiteral="diagramaPseudocodigo.ecore#//NombreInterna/log"/>
       <genEnumLiterals ecoreEnumLiteral="diagramaPseudocodigo.ecore#//NombreInterna/sen"/>
       <genEnumLiterals ecoreEnumLiteral="diagramaPseudocodigo.ecore#//NombreInterna/sqrt"/>
+      <genEnumLiterals ecoreEnumLiteral="diagramaPseudocodigo.ecore#//NombreInterna/longitud"/>
     </genEnums>
     <genClasses ecoreClass="diagramaPseudocodigo.ecore#//Codigo">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Codigo/tiene"/>

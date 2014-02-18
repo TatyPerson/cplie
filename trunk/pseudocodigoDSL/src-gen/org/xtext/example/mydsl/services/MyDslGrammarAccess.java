@@ -290,12 +290,13 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLogKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
 		private final Keyword cSenKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
 		private final Keyword cSqrtKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
+		private final Keyword cLongitudKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
 		
 		//NombreInterna:
-		//	"cos" | "cuadrado" | "exp" | "ln" | "log" | "sen" | "sqrt";
+		//	"cos" | "cuadrado" | "exp" | "ln" | "log" | "sen" | "sqrt" | "longitud";
 		public ParserRule getRule() { return rule; }
 
-		//"cos" | "cuadrado" | "exp" | "ln" | "log" | "sen" | "sqrt"
+		//"cos" | "cuadrado" | "exp" | "ln" | "log" | "sen" | "sqrt" | "longitud"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"cos"
@@ -318,6 +319,9 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"sqrt"
 		public Keyword getSqrtKeyword_6() { return cSqrtKeyword_6; }
+
+		//"longitud"
+		public Keyword getLongitudKeyword_7() { return cLongitudKeyword_7; }
 	}
 
 	public class OperadorElements extends AbstractParserRuleElementFinder {
@@ -2385,7 +2389,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NombreInterna:
-	//	"cos" | "cuadrado" | "exp" | "ln" | "log" | "sen" | "sqrt";
+	//	"cos" | "cuadrado" | "exp" | "ln" | "log" | "sen" | "sqrt" | "longitud";
 	public NombreInternaElements getNombreInternaAccess() {
 		return (pNombreInterna != null) ? pNombreInterna : (pNombreInterna = new NombreInternaElements());
 	}

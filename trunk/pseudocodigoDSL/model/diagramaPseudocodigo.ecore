@@ -191,6 +191,7 @@
     <eLiterals name="log" value="4"/>
     <eLiterals name="sen" value="5"/>
     <eLiterals name="sqrt" value="6"/>
+    <eLiterals name="longitud" value="7"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="segun" eSuperTypes="#//Bloque">
     <eStructuralFeatures xsi:type="ecore:EReference" name="caso" upperBound="-1" eType="#//Caso"

@@ -350,6 +350,9 @@ class MyDslGenerator implements IGenerator {
 		else if(i.nombre == NombreInterna::SQRT) {
 			'''sqrt(«i.operador.toC»)'''
 		}
+		else if(i.nombre == NombreInterna::LONGITUD) {
+			'''strlen(«i.operador.toC»)'''
+		}
 	}		
 	
 	def coutOperadores(EList<Operador> operadores){
