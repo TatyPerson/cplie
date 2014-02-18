@@ -261,6 +261,16 @@ ruleTipoComplejo returns [EObject current=null]
         $current = $this_Registro_2.current; 
         afterParserOrEnumRuleCall();
     }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getTipoComplejoAccess().getArchivoParserRuleCall_3()); 
+    }
+    this_Archivo_3=ruleArchivo
+    { 
+        $current = $this_Archivo_3.current; 
+        afterParserOrEnumRuleCall();
+    }
 )
 ;
 
@@ -1375,6 +1385,71 @@ ruleRegistro returns [EObject current=null]
     	newLeafNode(otherlv_4, grammarAccess.getRegistroAccess().getFin_registroKeyword_3());
     }
 )
+;
+
+
+
+
+
+// Entry rule entryRuleArchivo
+entryRuleArchivo returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getArchivoRule()); }
+	 iv_ruleArchivo=ruleArchivo 
+	 { $current=$iv_ruleArchivo.current; } 
+	 EOF 
+;
+
+// Rule Archivo
+ruleArchivo returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='archivo de ' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getArchivoAccess().getArchivoDeKeyword_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getArchivoAccess().getTipoTipoParserRuleCall_1_0()); 
+	    }
+		lv_tipo_1_0=ruleTipo		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getArchivoRule());
+	        }
+       		set(
+       			$current, 
+       			"tipo",
+        		lv_tipo_1_0, 
+        		"Tipo");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_2=':' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getArchivoAccess().getColonKeyword_2());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getArchivoAccess().getNombreEStringParserRuleCall_3_0()); 
+	    }
+		lv_nombre_3_0=ruleEString		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getArchivoRule());
+	        }
+       		set(
+       			$current, 
+       			"nombre",
+        		lv_nombre_3_0, 
+        		"EString");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
 ;
 
 

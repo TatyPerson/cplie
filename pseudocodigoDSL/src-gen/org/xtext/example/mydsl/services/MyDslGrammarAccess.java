@@ -122,12 +122,13 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cVectorParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cMatrizParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cRegistroParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cArchivoParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//TipoComplejo:
-		//	Vector | Matriz | Registro;
+		//	Vector | Matriz | Registro | Archivo;
 		public ParserRule getRule() { return rule; }
 
-		//Vector | Matriz | Registro
+		//Vector | Matriz | Registro | Archivo
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//Vector
@@ -138,6 +139,9 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Registro
 		public RuleCall getRegistroParserRuleCall_2() { return cRegistroParserRuleCall_2; }
+
+		//Archivo
+		public RuleCall getArchivoParserRuleCall_3() { return cArchivoParserRuleCall_3; }
 	}
 
 	public class SubprocesoElements extends AbstractParserRuleElementFinder {
@@ -712,6 +716,42 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"fin_registro"
 		public Keyword getFin_registroKeyword_3() { return cFin_registroKeyword_3; }
+	}
+
+	public class ArchivoElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Archivo");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cArchivoDeKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cTipoAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTipoTipoParserRuleCall_1_0 = (RuleCall)cTipoAssignment_1.eContents().get(0);
+		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cNombreAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cNombreEStringParserRuleCall_3_0 = (RuleCall)cNombreAssignment_3.eContents().get(0);
+		
+		//Archivo:
+		//	"archivo de " tipo=Tipo ":" nombre=EString;
+		public ParserRule getRule() { return rule; }
+
+		//"archivo de " tipo=Tipo ":" nombre=EString
+		public Group getGroup() { return cGroup; }
+
+		//"archivo de "
+		public Keyword getArchivoDeKeyword_0() { return cArchivoDeKeyword_0; }
+
+		//tipo=Tipo
+		public Assignment getTipoAssignment_1() { return cTipoAssignment_1; }
+
+		//Tipo
+		public RuleCall getTipoTipoParserRuleCall_1_0() { return cTipoTipoParserRuleCall_1_0; }
+
+		//":"
+		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
+
+		//nombre=EString
+		public Assignment getNombreAssignment_3() { return cNombreAssignment_3; }
+
+		//EString
+		public RuleCall getNombreEStringParserRuleCall_3_0() { return cNombreEStringParserRuleCall_3_0; }
 	}
 
 	public class InicioElements extends AbstractParserRuleElementFinder {
@@ -2358,6 +2398,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private VectorElements pVector;
 	private MatrizElements pMatriz;
 	private RegistroElements pRegistro;
+	private ArchivoElements pArchivo;
 	private InicioElements pInicio;
 	private EStringElements pEString;
 	private DeclaracionVariableElements pDeclaracionVariable;
@@ -2449,7 +2490,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TipoComplejo:
-	//	Vector | Matriz | Registro;
+	//	Vector | Matriz | Registro | Archivo;
 	public TipoComplejoElements getTipoComplejoAccess() {
 		return (pTipoComplejo != null) ? pTipoComplejo : (pTipoComplejo = new TipoComplejoElements());
 	}
@@ -2629,6 +2670,16 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getRegistroRule() {
 		return getRegistroAccess().getRule();
+	}
+
+	//Archivo:
+	//	"archivo de " tipo=Tipo ":" nombre=EString;
+	public ArchivoElements getArchivoAccess() {
+		return (pArchivo != null) ? pArchivo : (pArchivo = new ArchivoElements());
+	}
+	
+	public ParserRule getArchivoRule() {
+		return getArchivoAccess().getRule();
 	}
 
 	//Inicio:

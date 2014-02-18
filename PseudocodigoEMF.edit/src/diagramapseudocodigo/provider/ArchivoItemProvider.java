@@ -3,7 +3,7 @@
 package diagramapseudocodigo.provider;
 
 
-import diagramapseudocodigo.Codigo;
+import diagramapseudocodigo.Archivo;
 import diagramapseudocodigo.DiagramapseudocodigoFactory;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 
@@ -12,8 +12,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -25,17 +23,16 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link diagramapseudocodigo.Codigo} object.
+ * This is the item provider adapter for a {@link diagramapseudocodigo.Archivo} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class CodigoItemProvider
-	extends ItemProviderAdapter
+public class ArchivoItemProvider
+	extends TipoComplejoItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -48,7 +45,7 @@ public class CodigoItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CodigoItemProvider(AdapterFactory adapterFactory) {
+	public ArchivoItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -79,9 +76,9 @@ public class CodigoItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Codigo_nombre_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Codigo_nombre_feature", "_UI_Codigo_type"),
-				 DiagramapseudocodigoPackage.Literals.CODIGO__NOMBRE,
+				 getString("_UI_Archivo_nombre_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Archivo_nombre_feature", "_UI_Archivo_type"),
+				 DiagramapseudocodigoPackage.Literals.ARCHIVO__NOMBRE,
 				 true,
 				 false,
 				 false,
@@ -102,10 +99,7 @@ public class CodigoItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CODIGO__TIENE);
-			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CODIGO__FUNCION);
-			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CODIGO__CONSTANTES);
-			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO);
+			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.ARCHIVO__TIPO);
 		}
 		return childrenFeatures;
 	}
@@ -124,14 +118,14 @@ public class CodigoItemProvider
 	}
 
 	/**
-	 * This returns Codigo.gif.
+	 * This returns Archivo.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Codigo"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Archivo"));
 	}
 
 	/**
@@ -142,10 +136,10 @@ public class CodigoItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Codigo)object).getNombre();
+		String label = ((Archivo)object).getNombre();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Codigo_type") :
-			getString("_UI_Codigo_type") + " " + label;
+			getString("_UI_Archivo_type") :
+			getString("_UI_Archivo_type") + " " + label;
 	}
 
 	/**
@@ -159,14 +153,11 @@ public class CodigoItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Codigo.class)) {
-			case DiagramapseudocodigoPackage.CODIGO__NOMBRE:
+		switch (notification.getFeatureID(Archivo.class)) {
+			case DiagramapseudocodigoPackage.ARCHIVO__NOMBRE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case DiagramapseudocodigoPackage.CODIGO__TIENE:
-			case DiagramapseudocodigoPackage.CODIGO__FUNCION:
-			case DiagramapseudocodigoPackage.CODIGO__CONSTANTES:
-			case DiagramapseudocodigoPackage.CODIGO__TIPOCOMPLEJO:
+			case DiagramapseudocodigoPackage.ARCHIVO__TIPO:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -186,59 +177,18 @@ public class CodigoItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__TIENE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createInicio()));
+				(DiagramapseudocodigoPackage.Literals.ARCHIVO__TIPO,
+				 DiagramapseudocodigoFactory.eINSTANCE.createTipo()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__FUNCION,
-				 DiagramapseudocodigoFactory.eINSTANCE.createFuncion()));
+				(DiagramapseudocodigoPackage.Literals.ARCHIVO__TIPO,
+				 DiagramapseudocodigoFactory.eINSTANCE.createTipoDefinido()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__FUNCION,
-				 DiagramapseudocodigoFactory.eINSTANCE.createProcedimiento()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__CONSTANTES,
-				 DiagramapseudocodigoFactory.eINSTANCE.createConstantes()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO,
-				 DiagramapseudocodigoFactory.eINSTANCE.createTipoComplejo()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO,
-				 DiagramapseudocodigoFactory.eINSTANCE.createVector()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO,
-				 DiagramapseudocodigoFactory.eINSTANCE.createMatriz()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO,
-				 DiagramapseudocodigoFactory.eINSTANCE.createRegistro()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO,
-				 DiagramapseudocodigoFactory.eINSTANCE.createArchivo()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return DiagramaPseudocodigoEditPlugin.INSTANCE;
+				(DiagramapseudocodigoPackage.Literals.ARCHIVO__TIPO,
+				 DiagramapseudocodigoFactory.eINSTANCE.createTipoExistente()));
 	}
 
 }
