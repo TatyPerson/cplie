@@ -35,6 +35,7 @@ import diagramapseudocodigo.Sentencias;
 import diagramapseudocodigo.Si;
 import diagramapseudocodigo.Sino;
 import diagramapseudocodigo.Subproceso;
+import diagramapseudocodigo.Subrango;
 import diagramapseudocodigo.Tipo;
 import diagramapseudocodigo.TipoComplejo;
 import diagramapseudocodigo.TipoDefinido;
@@ -415,6 +416,13 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * @generated
 	 */
 	private EClass enumeradoEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass subrangoEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1622,6 +1630,42 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getSubrango() {
+		return subrangoEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSubrango_Nombre() {
+		return (EAttribute)subrangoEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSubrango_Limite_inf() {
+		return (EAttribute)subrangoEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSubrango_Limite_sup() {
+		return (EAttribute)subrangoEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getVector_Nombre() {
 		return (EAttribute)vectorEClass.getEStructuralFeatures().get(2);
 	}
@@ -1910,6 +1954,11 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		createEAttribute(enumeradoEClass, ENUMERADO__NOMBRE);
 		createEReference(enumeradoEClass, ENUMERADO__VALOR);
 
+		subrangoEClass = createEClass(SUBRANGO);
+		createEAttribute(subrangoEClass, SUBRANGO__NOMBRE);
+		createEAttribute(subrangoEClass, SUBRANGO__LIMITE_INF);
+		createEAttribute(subrangoEClass, SUBRANGO__LIMITE_SUP);
+
 		// Create enums
 		tipoVariableEEnum = createEEnum(TIPO_VARIABLE);
 		signoEEnum = createEEnum(SIGNO);
@@ -1980,6 +2029,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		tipoExistenteEClass.getESuperTypes().add(this.getTipo());
 		archivoEClass.getESuperTypes().add(this.getTipoComplejo());
 		enumeradoEClass.getESuperTypes().add(this.getTipoComplejo());
+		subrangoEClass.getESuperTypes().add(this.getTipoComplejo());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(codigoEClass, Codigo.class, "Codigo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2156,6 +2206,11 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		initEClass(enumeradoEClass, Enumerado.class, "Enumerado", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEnumerado_Nombre(), ecorePackage.getEString(), "nombre", null, 1, 1, Enumerado.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEnumerado_Valor(), this.getvalor(), null, "valor", null, 1, -1, Enumerado.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(subrangoEClass, Subrango.class, "Subrango", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSubrango_Nombre(), ecorePackage.getEString(), "nombre", null, 1, 1, Subrango.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSubrango_Limite_inf(), ecorePackage.getEInt(), "limite_inf", null, 1, 1, Subrango.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSubrango_Limite_sup(), ecorePackage.getEInt(), "limite_sup", null, 1, 1, Subrango.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(tipoVariableEEnum, TipoVariable.class, "TipoVariable");

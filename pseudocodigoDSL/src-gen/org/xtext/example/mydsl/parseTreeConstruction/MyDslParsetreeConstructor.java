@@ -49,35 +49,36 @@ protected class ThisRootNode extends RootToken {
 			case 16: return new Registro_Group(this, this, 16, inst);
 			case 17: return new Archivo_Group(this, this, 17, inst);
 			case 18: return new Enumerado_Group(this, this, 18, inst);
-			case 19: return new Inicio_Group(this, this, 19, inst);
-			case 20: return new DeclaracionVariable_Group(this, this, 20, inst);
-			case 21: return new DeclaracionPropia_Group(this, this, 21, inst);
-			case 22: return new LlamadaFuncion_Group(this, this, 22, inst);
-			case 23: return new Asignacion_Group(this, this, 23, inst);
-			case 24: return new Escribir_Group(this, this, 24, inst);
-			case 25: return new Leer_Group(this, this, 25, inst);
-			case 26: return new Si_Group(this, this, 26, inst);
-			case 27: return new Mientras_Group(this, this, 27, inst);
-			case 28: return new Repetir_Group(this, this, 28, inst);
-			case 29: return new Desde_Group(this, this, 29, inst);
-			case 30: return new Caso_Group(this, this, 30, inst);
-			case 31: return new Segun_Group(this, this, 31, inst);
-			case 32: return new Incremento_Group(this, this, 32, inst);
-			case 33: return new Unaria_Group(this, this, 33, inst);
-			case 34: return new Variable_Group(this, this, 34, inst);
-			case 35: return new VariableID_Group(this, this, 35, inst);
-			case 36: return new ConstCadena_ContenidoAssignment(this, this, 36, inst);
-			case 37: return new NumeroEntero_ValorAssignment(this, this, 37, inst);
-			case 38: return new NumeroDecimal_ValorAssignment(this, this, 38, inst);
-			case 39: return new ValorBooleano_ValorAssignment(this, this, 39, inst);
-			case 40: return new Operacion_Group(this, this, 40, inst);
-			case 41: return new Operando_izq_Oper_izqAssignment(this, this, 41, inst);
-			case 42: return new Operando_der_Oper_derAssignment(this, this, 42, inst);
-			case 43: return new Sino_Group(this, this, 43, inst);
-			case 44: return new Devolver_Group(this, this, 44, inst);
-			case 45: return new ParametroFuncion_Group(this, this, 45, inst);
-			case 46: return new Funcion_Group(this, this, 46, inst);
-			case 47: return new Procedimiento_Group(this, this, 47, inst);
+			case 19: return new Subrango_Group(this, this, 19, inst);
+			case 20: return new Inicio_Group(this, this, 20, inst);
+			case 21: return new DeclaracionVariable_Group(this, this, 21, inst);
+			case 22: return new DeclaracionPropia_Group(this, this, 22, inst);
+			case 23: return new LlamadaFuncion_Group(this, this, 23, inst);
+			case 24: return new Asignacion_Group(this, this, 24, inst);
+			case 25: return new Escribir_Group(this, this, 25, inst);
+			case 26: return new Leer_Group(this, this, 26, inst);
+			case 27: return new Si_Group(this, this, 27, inst);
+			case 28: return new Mientras_Group(this, this, 28, inst);
+			case 29: return new Repetir_Group(this, this, 29, inst);
+			case 30: return new Desde_Group(this, this, 30, inst);
+			case 31: return new Caso_Group(this, this, 31, inst);
+			case 32: return new Segun_Group(this, this, 32, inst);
+			case 33: return new Incremento_Group(this, this, 33, inst);
+			case 34: return new Unaria_Group(this, this, 34, inst);
+			case 35: return new Variable_Group(this, this, 35, inst);
+			case 36: return new VariableID_Group(this, this, 36, inst);
+			case 37: return new ConstCadena_ContenidoAssignment(this, this, 37, inst);
+			case 38: return new NumeroEntero_ValorAssignment(this, this, 38, inst);
+			case 39: return new NumeroDecimal_ValorAssignment(this, this, 39, inst);
+			case 40: return new ValorBooleano_ValorAssignment(this, this, 40, inst);
+			case 41: return new Operacion_Group(this, this, 41, inst);
+			case 42: return new Operando_izq_Oper_izqAssignment(this, this, 42, inst);
+			case 43: return new Operando_der_Oper_derAssignment(this, this, 43, inst);
+			case 44: return new Sino_Group(this, this, 44, inst);
+			case 45: return new Devolver_Group(this, this, 45, inst);
+			case 46: return new ParametroFuncion_Group(this, this, 46, inst);
+			case 47: return new Funcion_Group(this, this, 47, inst);
+			case 48: return new Procedimiento_Group(this, this, 48, inst);
 			default: return null;
 		}	
 	}	
@@ -620,11 +621,11 @@ protected class Codigo_TieneAssignment_3 extends AssignmentToken  {
 /************ begin Rule TipoComplejo ****************
  *
  * TipoComplejo:
- * 	Vector | Matriz | Registro | Archivo | Enumerado;
+ * 	Vector | Matriz | Registro | Archivo | Enumerado | Subrango;
  *
  **/
 
-// Vector | Matriz | Registro | Archivo | Enumerado
+// Vector | Matriz | Registro | Archivo | Enumerado | Subrango
 protected class TipoComplejo_Alternatives extends AlternativesToken {
 
 	public TipoComplejo_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -644,6 +645,7 @@ protected class TipoComplejo_Alternatives extends AlternativesToken {
 			case 2: return new TipoComplejo_RegistroParserRuleCall_2(lastRuleCallOrigin, this, 2, inst);
 			case 3: return new TipoComplejo_ArchivoParserRuleCall_3(lastRuleCallOrigin, this, 3, inst);
 			case 4: return new TipoComplejo_EnumeradoParserRuleCall_4(lastRuleCallOrigin, this, 4, inst);
+			case 5: return new TipoComplejo_SubrangoParserRuleCall_5(lastRuleCallOrigin, this, 5, inst);
 			default: return null;
 		}	
 	}
@@ -654,6 +656,7 @@ protected class TipoComplejo_Alternatives extends AlternativesToken {
 		   getEObject().eClass() != grammarAccess.getEnumeradoRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getMatrizRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getRegistroRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getSubrangoRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getVectorRule().getType().getClassifier())
 			return null;
 		return eObjectConsumer;
@@ -830,6 +833,42 @@ protected class TipoComplejo_EnumeradoParserRuleCall_4 extends RuleCallToken {
 		if(getEObject().eClass() != grammarAccess.getEnumeradoRule().getType().getClassifier())
 			return null;
 		if(checkForRecursion(Enumerado_Group.class, eObjectConsumer)) return null;
+		return eObjectConsumer;
+	}
+	
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+// Subrango
+protected class TipoComplejo_SubrangoParserRuleCall_5 extends RuleCallToken {
+	
+	public TipoComplejo_SubrangoParserRuleCall_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getTipoComplejoAccess().getSubrangoParserRuleCall_5();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Subrango_Group(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getSubrangoRule().getType().getClassifier())
+			return null;
+		if(checkForRecursion(Subrango_Group.class, eObjectConsumer)) return null;
 		return eObjectConsumer;
 	}
 	
@@ -4257,6 +4296,191 @@ protected class Enumerado_RightCurlyBracketKeyword_4 extends KeywordToken  {
 
 
 /************ end Rule Enumerado ****************/
+
+
+/************ begin Rule Subrango ****************
+ *
+ * Subrango:
+ * 	nombre=EString "=" limite_inf=EInt ".." limite_sup=EInt;
+ *
+ **/
+
+// nombre=EString "=" limite_inf=EInt ".." limite_sup=EInt
+protected class Subrango_Group extends GroupToken {
+	
+	public Subrango_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getSubrangoAccess().getGroup();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Subrango_Limite_supAssignment_4(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getSubrangoRule().getType().getClassifier())
+			return null;
+		return eObjectConsumer;
+	}
+
+}
+
+// nombre=EString
+protected class Subrango_NombreAssignment_0 extends AssignmentToken  {
+	
+	public Subrango_NombreAssignment_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getSubrangoAccess().getNombreAssignment_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index, inst);
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("nombre",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("nombre");
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getSubrangoAccess().getNombreEStringParserRuleCall_0_0(), value, null)) {
+			type = AssignmentType.DATATYPE_RULE_CALL;
+			element = grammarAccess.getSubrangoAccess().getNombreEStringParserRuleCall_0_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+// "="
+protected class Subrango_EqualsSignKeyword_1 extends KeywordToken  {
+	
+	public Subrango_EqualsSignKeyword_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getSubrangoAccess().getEqualsSignKeyword_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Subrango_NombreAssignment_0(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// limite_inf=EInt
+protected class Subrango_Limite_infAssignment_2 extends AssignmentToken  {
+	
+	public Subrango_Limite_infAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getSubrangoAccess().getLimite_infAssignment_2();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Subrango_EqualsSignKeyword_1(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("limite_inf",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("limite_inf");
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getSubrangoAccess().getLimite_infEIntParserRuleCall_2_0(), value, null)) {
+			type = AssignmentType.DATATYPE_RULE_CALL;
+			element = grammarAccess.getSubrangoAccess().getLimite_infEIntParserRuleCall_2_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+// ".."
+protected class Subrango_FullStopFullStopKeyword_3 extends KeywordToken  {
+	
+	public Subrango_FullStopFullStopKeyword_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getSubrangoAccess().getFullStopFullStopKeyword_3();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Subrango_Limite_infAssignment_2(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// limite_sup=EInt
+protected class Subrango_Limite_supAssignment_4 extends AssignmentToken  {
+	
+	public Subrango_Limite_supAssignment_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getSubrangoAccess().getLimite_supAssignment_4();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Subrango_FullStopFullStopKeyword_3(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("limite_sup",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("limite_sup");
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getSubrangoAccess().getLimite_supEIntParserRuleCall_4_0(), value, null)) {
+			type = AssignmentType.DATATYPE_RULE_CALL;
+			element = grammarAccess.getSubrangoAccess().getLimite_supEIntParserRuleCall_4_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+
+/************ end Rule Subrango ****************/
 
 
 /************ begin Rule Inicio ****************

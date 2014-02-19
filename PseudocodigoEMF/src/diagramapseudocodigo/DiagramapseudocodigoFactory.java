@@ -418,6 +418,15 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	Enumerado createEnumerado();
 
 	/**
+	 * Returns a new object of class '<em>Subrango</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Subrango</em>'.
+	 * @generated
+	 */
+	Subrango createSubrango();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

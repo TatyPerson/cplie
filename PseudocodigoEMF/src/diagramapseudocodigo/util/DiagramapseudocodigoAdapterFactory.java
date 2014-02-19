@@ -264,6 +264,10 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 				return createEnumeradoAdapter();
 			}
 			@Override
+			public Adapter caseSubrango(Subrango object) {
+				return createSubrangoAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -966,6 +970,20 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEnumeradoAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.Subrango <em>Subrango</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.Subrango
+	 * @generated
+	 */
+	public Adapter createSubrangoAdapter() {
 		return null;
 	}
 

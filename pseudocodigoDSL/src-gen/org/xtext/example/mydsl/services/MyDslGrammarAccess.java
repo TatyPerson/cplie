@@ -124,12 +124,13 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRegistroParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cArchivoParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cEnumeradoParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cSubrangoParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		
 		//TipoComplejo:
-		//	Vector | Matriz | Registro | Archivo | Enumerado;
+		//	Vector | Matriz | Registro | Archivo | Enumerado | Subrango;
 		public ParserRule getRule() { return rule; }
 
-		//Vector | Matriz | Registro | Archivo | Enumerado
+		//Vector | Matriz | Registro | Archivo | Enumerado | Subrango
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//Vector
@@ -146,6 +147,9 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Enumerado
 		public RuleCall getEnumeradoParserRuleCall_4() { return cEnumeradoParserRuleCall_4; }
+
+		//Subrango
+		public RuleCall getSubrangoParserRuleCall_5() { return cSubrangoParserRuleCall_5; }
 	}
 
 	public class SubprocesoElements extends AbstractParserRuleElementFinder {
@@ -816,6 +820,50 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+	}
+
+	public class SubrangoElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Subrango");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNombreAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNombreEStringParserRuleCall_0_0 = (RuleCall)cNombreAssignment_0.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cLimite_infAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cLimite_infEIntParserRuleCall_2_0 = (RuleCall)cLimite_infAssignment_2.eContents().get(0);
+		private final Keyword cFullStopFullStopKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cLimite_supAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cLimite_supEIntParserRuleCall_4_0 = (RuleCall)cLimite_supAssignment_4.eContents().get(0);
+		
+		//Subrango:
+		//	nombre=EString "=" limite_inf=EInt ".." limite_sup=EInt;
+		public ParserRule getRule() { return rule; }
+
+		//nombre=EString "=" limite_inf=EInt ".." limite_sup=EInt
+		public Group getGroup() { return cGroup; }
+
+		//nombre=EString
+		public Assignment getNombreAssignment_0() { return cNombreAssignment_0; }
+
+		//EString
+		public RuleCall getNombreEStringParserRuleCall_0_0() { return cNombreEStringParserRuleCall_0_0; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+
+		//limite_inf=EInt
+		public Assignment getLimite_infAssignment_2() { return cLimite_infAssignment_2; }
+
+		//EInt
+		public RuleCall getLimite_infEIntParserRuleCall_2_0() { return cLimite_infEIntParserRuleCall_2_0; }
+
+		//".."
+		public Keyword getFullStopFullStopKeyword_3() { return cFullStopFullStopKeyword_3; }
+
+		//limite_sup=EInt
+		public Assignment getLimite_supAssignment_4() { return cLimite_supAssignment_4; }
+
+		//EInt
+		public RuleCall getLimite_supEIntParserRuleCall_4_0() { return cLimite_supEIntParserRuleCall_4_0; }
 	}
 
 	public class InicioElements extends AbstractParserRuleElementFinder {
@@ -2464,6 +2512,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private RegistroElements pRegistro;
 	private ArchivoElements pArchivo;
 	private EnumeradoElements pEnumerado;
+	private SubrangoElements pSubrango;
 	private InicioElements pInicio;
 	private EStringElements pEString;
 	private DeclaracionVariableElements pDeclaracionVariable;
@@ -2555,7 +2604,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TipoComplejo:
-	//	Vector | Matriz | Registro | Archivo | Enumerado;
+	//	Vector | Matriz | Registro | Archivo | Enumerado | Subrango;
 	public TipoComplejoElements getTipoComplejoAccess() {
 		return (pTipoComplejo != null) ? pTipoComplejo : (pTipoComplejo = new TipoComplejoElements());
 	}
@@ -2755,6 +2804,16 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getEnumeradoRule() {
 		return getEnumeradoAccess().getRule();
+	}
+
+	//Subrango:
+	//	nombre=EString "=" limite_inf=EInt ".." limite_sup=EInt;
+	public SubrangoElements getSubrangoAccess() {
+		return (pSubrango != null) ? pSubrango : (pSubrango = new SubrangoElements());
+	}
+	
+	public ParserRule getSubrangoRule() {
+		return getSubrangoAccess().getRule();
 	}
 
 	//Inicio:

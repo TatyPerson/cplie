@@ -101,6 +101,7 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 			case DiagramapseudocodigoPackage.TIPO_EXISTENTE: return createTipoExistente();
 			case DiagramapseudocodigoPackage.ARCHIVO: return createArchivo();
 			case DiagramapseudocodigoPackage.ENUMERADO: return createEnumerado();
+			case DiagramapseudocodigoPackage.SUBRANGO: return createSubrango();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -594,6 +595,16 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	public Enumerado createEnumerado() {
 		EnumeradoImpl enumerado = new EnumeradoImpl();
 		return enumerado;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Subrango createSubrango() {
+		SubrangoImpl subrango = new SubrangoImpl();
+		return subrango;
 	}
 
 	/**
