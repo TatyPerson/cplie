@@ -71,6 +71,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEnumeradoAccess().getGroup(), "rule__Enumerado__Group__0");
 					put(grammarAccess.getEnumeradoAccess().getGroup_3(), "rule__Enumerado__Group_3__0");
 					put(grammarAccess.getEnumeradoAccess().getGroup_3_1(), "rule__Enumerado__Group_3_1__0");
+					put(grammarAccess.getSubrangoAccess().getGroup(), "rule__Subrango__Group__0");
 					put(grammarAccess.getInicioAccess().getGroup(), "rule__Inicio__Group__0");
 					put(grammarAccess.getInicioAccess().getGroup_2(), "rule__Inicio__Group_2__0");
 					put(grammarAccess.getInicioAccess().getGroup_4(), "rule__Inicio__Group_4__0");
@@ -150,6 +151,9 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEnumeradoAccess().getNombreAssignment_0(), "rule__Enumerado__NombreAssignment_0");
 					put(grammarAccess.getEnumeradoAccess().getValorAssignment_3_0(), "rule__Enumerado__ValorAssignment_3_0");
 					put(grammarAccess.getEnumeradoAccess().getValorAssignment_3_1_1(), "rule__Enumerado__ValorAssignment_3_1_1");
+					put(grammarAccess.getSubrangoAccess().getNombreAssignment_0(), "rule__Subrango__NombreAssignment_0");
+					put(grammarAccess.getSubrangoAccess().getLimite_infAssignment_2(), "rule__Subrango__Limite_infAssignment_2");
+					put(grammarAccess.getSubrangoAccess().getLimite_supAssignment_4(), "rule__Subrango__Limite_supAssignment_4");
 					put(grammarAccess.getInicioAccess().getDeclaracionAssignment_2_0(), "rule__Inicio__DeclaracionAssignment_2_0");
 					put(grammarAccess.getInicioAccess().getDeclaracionAssignment_2_1(), "rule__Inicio__DeclaracionAssignment_2_1");
 					put(grammarAccess.getInicioAccess().getTieneAssignment_4_0(), "rule__Inicio__TieneAssignment_4_0");

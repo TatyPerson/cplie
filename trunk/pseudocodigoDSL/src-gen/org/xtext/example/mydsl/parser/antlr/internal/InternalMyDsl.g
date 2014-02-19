@@ -281,6 +281,16 @@ ruleTipoComplejo returns [EObject current=null]
         $current = $this_Enumerado_4.current; 
         afterParserOrEnumRuleCall();
     }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getTipoComplejoAccess().getSubrangoParserRuleCall_5()); 
+    }
+    this_Subrango_5=ruleSubrango
+    { 
+        $current = $this_Subrango_5.current; 
+        afterParserOrEnumRuleCall();
+    }
 )
 ;
 
@@ -1551,6 +1561,89 @@ ruleEnumerado returns [EObject current=null]
     	newLeafNode(otherlv_6, grammarAccess.getEnumeradoAccess().getRightCurlyBracketKeyword_4());
     }
 )
+;
+
+
+
+
+
+// Entry rule entryRuleSubrango
+entryRuleSubrango returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getSubrangoRule()); }
+	 iv_ruleSubrango=ruleSubrango 
+	 { $current=$iv_ruleSubrango.current; } 
+	 EOF 
+;
+
+// Rule Subrango
+ruleSubrango returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getSubrangoAccess().getNombreEStringParserRuleCall_0_0()); 
+	    }
+		lv_nombre_0_0=ruleEString		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getSubrangoRule());
+	        }
+       		set(
+       			$current, 
+       			"nombre",
+        		lv_nombre_0_0, 
+        		"EString");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_1='=' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getSubrangoAccess().getEqualsSignKeyword_1());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getSubrangoAccess().getLimite_infEIntParserRuleCall_2_0()); 
+	    }
+		lv_limite_inf_2_0=ruleEInt		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getSubrangoRule());
+	        }
+       		set(
+       			$current, 
+       			"limite_inf",
+        		lv_limite_inf_2_0, 
+        		"EInt");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_3='..' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getSubrangoAccess().getFullStopFullStopKeyword_3());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getSubrangoAccess().getLimite_supEIntParserRuleCall_4_0()); 
+	    }
+		lv_limite_sup_4_0=ruleEInt		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getSubrangoRule());
+	        }
+       		set(
+       			$current, 
+       			"limite_sup",
+        		lv_limite_sup_4_0, 
+        		"EInt");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
 ;
 
 

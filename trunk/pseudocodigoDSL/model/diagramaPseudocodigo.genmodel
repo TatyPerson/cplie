@@ -217,5 +217,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//Enumerado/nombre"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//Enumerado/valor"/>
     </genClasses>
+    <genClasses ecoreClass="diagramaPseudocodigo.ecore#//Subrango">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//Subrango/nombre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//Subrango/limite_inf"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//Subrango/limite_sup"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

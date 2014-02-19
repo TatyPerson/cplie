@@ -233,6 +233,11 @@ public class CodigoItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO,
 				 DiagramapseudocodigoFactory.eINSTANCE.createEnumerado()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO,
+				 DiagramapseudocodigoFactory.eINSTANCE.createSubrango()));
 	}
 
 	/**

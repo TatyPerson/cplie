@@ -2284,6 +2284,61 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int ENUMERADO_OPERATION_COUNT = TIPO_COMPLEJO_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.SubrangoImpl <em>Subrango</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.SubrangoImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getSubrango()
+	 * @generated
+	 */
+	int SUBRANGO = 49;
+
+	/**
+	 * The feature id for the '<em><b>Nombre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBRANGO__NOMBRE = TIPO_COMPLEJO_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Limite inf</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBRANGO__LIMITE_INF = TIPO_COMPLEJO_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Limite sup</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBRANGO__LIMITE_SUP = TIPO_COMPLEJO_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Subrango</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBRANGO_FEATURE_COUNT = TIPO_COMPLEJO_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Subrango</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBRANGO_OPERATION_COUNT = TIPO_COMPLEJO_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoVariable <em>Tipo Variable</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2291,7 +2346,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoVariable()
 	 * @generated
 	 */
-	int TIPO_VARIABLE = 49;
+	int TIPO_VARIABLE = 50;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.signo <em>signo</em>}' enum.
@@ -2301,7 +2356,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getsigno()
 	 * @generated
 	 */
-	int SIGNO = 50;
+	int SIGNO = 51;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.booleano <em>booleano</em>}' enum.
@@ -2311,7 +2366,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getbooleano()
 	 * @generated
 	 */
-	int BOOLEANO = 51;
+	int BOOLEANO = 52;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.inc <em>inc</em>}' enum.
@@ -2321,7 +2376,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getinc()
 	 * @generated
 	 */
-	int INC = 52;
+	int INC = 53;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoPaso <em>Tipo Paso</em>}' enum.
@@ -2331,7 +2386,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoPaso()
 	 * @generated
 	 */
-	int TIPO_PASO = 53;
+	int TIPO_PASO = 54;
 
 
 	/**
@@ -2342,7 +2397,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getNombreInterna()
 	 * @generated
 	 */
-	int NOMBRE_INTERNA = 54;
+	int NOMBRE_INTERNA = 55;
 
 
 	/**
@@ -3639,6 +3694,49 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EReference getEnumerado_Valor();
 
 	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.Subrango <em>Subrango</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Subrango</em>'.
+	 * @see diagramapseudocodigo.Subrango
+	 * @generated
+	 */
+	EClass getSubrango();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Subrango#getNombre <em>Nombre</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Nombre</em>'.
+	 * @see diagramapseudocodigo.Subrango#getNombre()
+	 * @see #getSubrango()
+	 * @generated
+	 */
+	EAttribute getSubrango_Nombre();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Subrango#getLimite_inf <em>Limite inf</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Limite inf</em>'.
+	 * @see diagramapseudocodigo.Subrango#getLimite_inf()
+	 * @see #getSubrango()
+	 * @generated
+	 */
+	EAttribute getSubrango_Limite_inf();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Subrango#getLimite_sup <em>Limite sup</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Limite sup</em>'.
+	 * @see diagramapseudocodigo.Subrango#getLimite_sup()
+	 * @see #getSubrango()
+	 * @generated
+	 */
+	EAttribute getSubrango_Limite_sup();
+
+	/**
 	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Vector#getNombre <em>Nombre</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4837,6 +4935,40 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ENUMERADO__VALOR = eINSTANCE.getEnumerado_Valor();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.SubrangoImpl <em>Subrango</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.SubrangoImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getSubrango()
+		 * @generated
+		 */
+		EClass SUBRANGO = eINSTANCE.getSubrango();
+
+		/**
+		 * The meta object literal for the '<em><b>Nombre</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SUBRANGO__NOMBRE = eINSTANCE.getSubrango_Nombre();
+
+		/**
+		 * The meta object literal for the '<em><b>Limite inf</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SUBRANGO__LIMITE_INF = eINSTANCE.getSubrango_Limite_inf();
+
+		/**
+		 * The meta object literal for the '<em><b>Limite sup</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SUBRANGO__LIMITE_SUP = eINSTANCE.getSubrango_Limite_sup();
 
 		/**
 		 * The meta object literal for the '<em><b>Nombre</b></em>' attribute feature.
