@@ -4091,11 +4091,11 @@ rule__Enumerado__Group__2__Impl
     }
 :
 (
-{ before(grammarAccess.getEnumeradoAccess().getSpaceLeftCurlyBracketKeyword_2()); }
+{ before(grammarAccess.getEnumeradoAccess().getLeftCurlyBracketKeyword_2()); }
 
-	' {' 
+	'{' 
 
-{ after(grammarAccess.getEnumeradoAccess().getSpaceLeftCurlyBracketKeyword_2()); }
+{ after(grammarAccess.getEnumeradoAccess().getLeftCurlyBracketKeyword_2()); }
 )
 
 ;

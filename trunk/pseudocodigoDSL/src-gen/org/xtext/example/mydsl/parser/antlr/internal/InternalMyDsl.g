@@ -1502,9 +1502,9 @@ ruleEnumerado returns [EObject current=null]
     {
     	newLeafNode(otherlv_1, grammarAccess.getEnumeradoAccess().getEqualsSignKeyword_1());
     }
-	otherlv_2=' {' 
+	otherlv_2='{' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getEnumeradoAccess().getSpaceLeftCurlyBracketKeyword_2());
+    	newLeafNode(otherlv_2, grammarAccess.getEnumeradoAccess().getLeftCurlyBracketKeyword_2());
     }
 ((
 (

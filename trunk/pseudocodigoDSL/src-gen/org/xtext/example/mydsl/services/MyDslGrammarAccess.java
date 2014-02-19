@@ -764,7 +764,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNombreAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNombreEStringParserRuleCall_0_0 = (RuleCall)cNombreAssignment_0.eContents().get(0);
 		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cSpaceLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Assignment cValorAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
 		private final RuleCall cValorValorParserRuleCall_3_0_0 = (RuleCall)cValorAssignment_3_0.eContents().get(0);
@@ -775,10 +775,10 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Enumerado:
-		//	nombre=EString "=" " {" (valor+=valor ("," valor+=valor)*) "}";
+		//	nombre=EString "=" "{" (valor+=valor ("," valor+=valor)*) "}";
 		public ParserRule getRule() { return rule; }
 
-		//nombre=EString "=" " {" (valor+=valor ("," valor+=valor)*) "}"
+		//nombre=EString "=" "{" (valor+=valor ("," valor+=valor)*) "}"
 		public Group getGroup() { return cGroup; }
 
 		//nombre=EString
@@ -790,8 +790,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"="
 		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
 
-		//" {"
-		public Keyword getSpaceLeftCurlyBracketKeyword_2() { return cSpaceLeftCurlyBracketKeyword_2; }
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 
 		//valor+=valor ("," valor+=valor)*
 		public Group getGroup_3() { return cGroup_3; }
@@ -2748,7 +2748,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Enumerado:
-	//	nombre=EString "=" " {" (valor+=valor ("," valor+=valor)*) "}";
+	//	nombre=EString "=" "{" (valor+=valor ("," valor+=valor)*) "}";
 	public EnumeradoElements getEnumeradoAccess() {
 		return (pEnumerado != null) ? pEnumerado : (pEnumerado = new EnumeradoElements());
 	}

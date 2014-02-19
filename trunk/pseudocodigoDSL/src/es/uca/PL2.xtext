@@ -81,7 +81,7 @@ Archivo returns Archivo:
 	
 
 Enumerado returns Enumerado:
-	nombre=EString '=' ' {'(valor+=valor (',' valor+=valor )* )'}';
+	nombre=EString '=' '{'(valor+=valor (',' valor+=valor )* )'}';
 
 
 Inicio returns Inicio:
