@@ -29,12 +29,12 @@ public interface desde extends Bloque {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Asignacion</em>' containment reference.
-	 * @see #setAsignacion(Asignacion)
+	 * @see #setAsignacion(AsignacionNormal)
 	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getdesde_Asignacion()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	Asignacion getAsignacion();
+	AsignacionNormal getAsignacion();
 
 	/**
 	 * Sets the value of the '{@link diagramapseudocodigo.desde#getAsignacion <em>Asignacion</em>}' containment reference.
@@ -44,6 +44,6 @@ public interface desde extends Bloque {
 	 * @see #getAsignacion()
 	 * @generated
 	 */
-	void setAsignacion(Asignacion value);
+	void setAsignacion(AsignacionNormal value);
 
 } // desde

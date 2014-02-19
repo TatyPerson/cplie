@@ -12,7 +12,6 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link diagramapseudocodigo.Asignacion#getLvalue <em>Lvalue</em>}</li>
  *   <li>{@link diagramapseudocodigo.Asignacion#getOperador <em>Operador</em>}</li>
  *   <li>{@link diagramapseudocodigo.Asignacion#getMat <em>Mat</em>}</li>
  * </ul>
@@ -23,32 +22,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Asignacion extends Sentencias {
-	/**
-	 * Returns the value of the '<em><b>Lvalue</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Lvalue</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Lvalue</em>' attribute.
-	 * @see #setLvalue(String)
-	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getAsignacion_Lvalue()
-	 * @model required="true"
-	 * @generated
-	 */
-	String getLvalue();
-
-	/**
-	 * Sets the value of the '{@link diagramapseudocodigo.Asignacion#getLvalue <em>Lvalue</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Lvalue</em>' attribute.
-	 * @see #getLvalue()
-	 * @generated
-	 */
-	void setLvalue(String value);
-
 	/**
 	 * Returns the value of the '<em><b>Operador</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

@@ -181,12 +181,13 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cLeerParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cIncrementoParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cBloqueParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cValorComplejoParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		
 		//Sentencias:
-		//	LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque;
+		//	LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque | ValorComplejo;
 		public ParserRule getRule() { return rule; }
 
-		//LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque
+		//LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque | ValorComplejo
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//LlamadaFuncion
@@ -206,6 +207,9 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Bloque
 		public RuleCall getBloqueParserRuleCall_5() { return cBloqueParserRuleCall_5; }
+
+		//ValorComplejo
+		public RuleCall getValorComplejoParserRuleCall_6() { return cValorComplejoParserRuleCall_6; }
 	}
 
 	public class BloqueElements extends AbstractParserRuleElementFinder {
@@ -429,14 +433,15 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cCaracterParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		private final RuleCall cInternasParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
 		private final RuleCall cUnariaParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
+		private final RuleCall cValorComplejoParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
 		
 		//valor:
 		//	LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter |
-		//	Internas | unaria;
+		//	Internas | unaria | ValorComplejo;
 		public ParserRule getRule() { return rule; }
 
 		//LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter |
-		//Internas | unaria
+		//Internas | unaria | ValorComplejo
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//LlamadaFuncion
@@ -468,6 +473,89 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//unaria
 		public RuleCall getUnariaParserRuleCall_9() { return cUnariaParserRuleCall_9; }
+
+		//ValorComplejo
+		public RuleCall getValorComplejoParserRuleCall_10() { return cValorComplejoParserRuleCall_10; }
+	}
+
+	public class ValorComplejoElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ValorComplejo");
+		private final RuleCall cValorRegistroParserRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//ValorComplejo:
+		//	ValorRegistro;
+		public ParserRule getRule() { return rule; }
+
+		//ValorRegistro
+		public RuleCall getValorRegistroParserRuleCall() { return cValorRegistroParserRuleCall; }
+	}
+
+	public class ValorRegistroElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ValorRegistro");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNombre_registroAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNombre_registroEStringParserRuleCall_0_0 = (RuleCall)cNombre_registroAssignment_0.eContents().get(0);
+		private final Keyword cFullStopKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Assignment cCampoAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final RuleCall cCampoCampoRegistroParserRuleCall_2_0_0 = (RuleCall)cCampoAssignment_2_0.eContents().get(0);
+		private final Group cGroup_2_1 = (Group)cGroup_2.eContents().get(1);
+		private final Keyword cFullStopKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
+		private final Assignment cCampoAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
+		private final RuleCall cCampoCampoRegistroParserRuleCall_2_1_1_0 = (RuleCall)cCampoAssignment_2_1_1.eContents().get(0);
+		
+		//ValorRegistro:
+		//	nombre_registro=EString "." (campo+=CampoRegistro ("." campo+=CampoRegistro)*);
+		public ParserRule getRule() { return rule; }
+
+		//nombre_registro=EString "." (campo+=CampoRegistro ("." campo+=CampoRegistro)*)
+		public Group getGroup() { return cGroup; }
+
+		//nombre_registro=EString
+		public Assignment getNombre_registroAssignment_0() { return cNombre_registroAssignment_0; }
+
+		//EString
+		public RuleCall getNombre_registroEStringParserRuleCall_0_0() { return cNombre_registroEStringParserRuleCall_0_0; }
+
+		//"."
+		public Keyword getFullStopKeyword_1() { return cFullStopKeyword_1; }
+
+		//campo+=CampoRegistro ("." campo+=CampoRegistro)*
+		public Group getGroup_2() { return cGroup_2; }
+
+		//campo+=CampoRegistro
+		public Assignment getCampoAssignment_2_0() { return cCampoAssignment_2_0; }
+
+		//CampoRegistro
+		public RuleCall getCampoCampoRegistroParserRuleCall_2_0_0() { return cCampoCampoRegistroParserRuleCall_2_0_0; }
+
+		//("." campo+=CampoRegistro)*
+		public Group getGroup_2_1() { return cGroup_2_1; }
+
+		//"."
+		public Keyword getFullStopKeyword_2_1_0() { return cFullStopKeyword_2_1_0; }
+
+		//campo+=CampoRegistro
+		public Assignment getCampoAssignment_2_1_1() { return cCampoAssignment_2_1_1; }
+
+		//CampoRegistro
+		public RuleCall getCampoCampoRegistroParserRuleCall_2_1_1_0() { return cCampoCampoRegistroParserRuleCall_2_1_1_0; }
+	}
+
+	public class CampoRegistroElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "CampoRegistro");
+		private final Assignment cNombre_campoAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cNombre_campoEStringParserRuleCall_0 = (RuleCall)cNombre_campoAssignment.eContents().get(0);
+		
+		//CampoRegistro:
+		//	nombre_campo=EString;
+		public ParserRule getRule() { return rule; }
+
+		//nombre_campo=EString
+		public Assignment getNombre_campoAssignment() { return cNombre_campoAssignment; }
+
+		//EString
+		public RuleCall getNombre_campoEStringParserRuleCall_0() { return cNombre_campoEStringParserRuleCall_0; }
 	}
 
 	public class TipoElements extends AbstractParserRuleElementFinder {
@@ -1110,6 +1198,26 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class AsignacionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Asignacion");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cAsignacionNormalParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cAsignacionComplejaParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//Asignacion:
+		//	AsignacionNormal | AsignacionCompleja;
+		public ParserRule getRule() { return rule; }
+
+		//AsignacionNormal | AsignacionCompleja
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//AsignacionNormal
+		public RuleCall getAsignacionNormalParserRuleCall_0() { return cAsignacionNormalParserRuleCall_0; }
+
+		//AsignacionCompleja
+		public RuleCall getAsignacionComplejaParserRuleCall_1() { return cAsignacionComplejaParserRuleCall_1; }
+	}
+
+	public class AsignacionNormalElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AsignacionNormal");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cLvalueAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cLvalueEStringParserRuleCall_0_0 = (RuleCall)cLvalueAssignment_0.eContents().get(0);
@@ -1119,7 +1227,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOperadorAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cOperadorValorParserRuleCall_3_0 = (RuleCall)cOperadorAssignment_3.eContents().get(0);
 		
-		//Asignacion:
+		//AsignacionNormal:
 		//	lvalue=EString Mat+=MAT* "=" operador=valor;
 		public ParserRule getRule() { return rule; }
 
@@ -1131,6 +1239,46 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//EString
 		public RuleCall getLvalueEStringParserRuleCall_0_0() { return cLvalueEStringParserRuleCall_0_0; }
+
+		//Mat+=MAT*
+		public Assignment getMatAssignment_1() { return cMatAssignment_1; }
+
+		//MAT
+		public RuleCall getMatMATTerminalRuleCall_1_0() { return cMatMATTerminalRuleCall_1_0; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
+
+		//operador=valor
+		public Assignment getOperadorAssignment_3() { return cOperadorAssignment_3; }
+
+		//valor
+		public RuleCall getOperadorValorParserRuleCall_3_0() { return cOperadorValorParserRuleCall_3_0; }
+	}
+
+	public class AsignacionComplejaElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AsignacionCompleja");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cComplejoAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cComplejoValorComplejoParserRuleCall_0_0 = (RuleCall)cComplejoAssignment_0.eContents().get(0);
+		private final Assignment cMatAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cMatMATTerminalRuleCall_1_0 = (RuleCall)cMatAssignment_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cOperadorAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cOperadorValorParserRuleCall_3_0 = (RuleCall)cOperadorAssignment_3.eContents().get(0);
+		
+		//AsignacionCompleja:
+		//	complejo=ValorComplejo Mat+=MAT* "=" operador=valor;
+		public ParserRule getRule() { return rule; }
+
+		//complejo=ValorComplejo Mat+=MAT* "=" operador=valor
+		public Group getGroup() { return cGroup; }
+
+		//complejo=ValorComplejo
+		public Assignment getComplejoAssignment_0() { return cComplejoAssignment_0; }
+
+		//ValorComplejo
+		public RuleCall getComplejoValorComplejoParserRuleCall_0_0() { return cComplejoValorComplejoParserRuleCall_0_0; }
 
 		//Mat+=MAT*
 		public Assignment getMatAssignment_1() { return cMatAssignment_1; }
@@ -1401,7 +1549,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cDesdeKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cAsignacionAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cAsignacionAsignacionParserRuleCall_1_0 = (RuleCall)cAsignacionAssignment_1.eContents().get(0);
+		private final RuleCall cAsignacionAsignacionNormalParserRuleCall_1_0 = (RuleCall)cAsignacionAssignment_1.eContents().get(0);
 		private final Keyword cHastaKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cValorAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cValorValorParserRuleCall_3_0 = (RuleCall)cValorAssignment_3.eContents().get(0);
@@ -1414,21 +1562,22 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFin_desdeKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//desde:
-		//	"desde" asignacion=Asignacion "hasta" valor=valor "hacer" (sentencias+=Sentencias sentencias+=Sentencias*)?
+		//	"desde" asignacion=AsignacionNormal "hasta" valor=valor "hacer" (sentencias+=Sentencias sentencias+=Sentencias*)?
 		//	"fin_desde";
 		public ParserRule getRule() { return rule; }
 
-		//"desde" asignacion=Asignacion "hasta" valor=valor "hacer" (sentencias+=Sentencias sentencias+=Sentencias*)? "fin_desde"
+		//"desde" asignacion=AsignacionNormal "hasta" valor=valor "hacer" (sentencias+=Sentencias sentencias+=Sentencias*)?
+		//"fin_desde"
 		public Group getGroup() { return cGroup; }
 
 		//"desde"
 		public Keyword getDesdeKeyword_0() { return cDesdeKeyword_0; }
 
-		//asignacion=Asignacion
+		//asignacion=AsignacionNormal
 		public Assignment getAsignacionAssignment_1() { return cAsignacionAssignment_1; }
 
-		//Asignacion
-		public RuleCall getAsignacionAsignacionParserRuleCall_1_0() { return cAsignacionAsignacionParserRuleCall_1_0; }
+		//AsignacionNormal
+		public RuleCall getAsignacionAsignacionNormalParserRuleCall_1_0() { return cAsignacionAsignacionNormalParserRuleCall_1_0; }
 
 		//"hasta"
 		public Keyword getHastaKeyword_2() { return cHastaKeyword_2; }
@@ -2503,6 +2652,9 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private OperadorElements pOperador;
 	private CaracterElements pCaracter;
 	private ValorElements pValor;
+	private ValorComplejoElements pValorComplejo;
+	private ValorRegistroElements pValorRegistro;
+	private CampoRegistroElements pCampoRegistro;
 	private TipoElements pTipo;
 	private TipoDefinidoElements pTipoDefinido;
 	private TipoExistenteElements pTipoExistente;
@@ -2519,6 +2671,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private DeclaracionPropiaElements pDeclaracionPropia;
 	private LlamadaFuncionElements pLlamadaFuncion;
 	private AsignacionElements pAsignacion;
+	private AsignacionNormalElements pAsignacionNormal;
+	private AsignacionComplejaElements pAsignacionCompleja;
 	private EscribirElements pEscribir;
 	private LeerElements pLeer;
 	private SiElements pSi;
@@ -2636,7 +2790,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//Sentencias:
-	//	LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque;
+	//	LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque | ValorComplejo;
 	public SentenciasElements getSentenciasAccess() {
 		return (pSentencias != null) ? pSentencias : (pSentencias = new SentenciasElements());
 	}
@@ -2707,13 +2861,43 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 	//valor:
 	//	LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter |
-	//	Internas | unaria;
+	//	Internas | unaria | ValorComplejo;
 	public ValorElements getValorAccess() {
 		return (pValor != null) ? pValor : (pValor = new ValorElements());
 	}
 	
 	public ParserRule getValorRule() {
 		return getValorAccess().getRule();
+	}
+
+	//ValorComplejo:
+	//	ValorRegistro;
+	public ValorComplejoElements getValorComplejoAccess() {
+		return (pValorComplejo != null) ? pValorComplejo : (pValorComplejo = new ValorComplejoElements());
+	}
+	
+	public ParserRule getValorComplejoRule() {
+		return getValorComplejoAccess().getRule();
+	}
+
+	//ValorRegistro:
+	//	nombre_registro=EString "." (campo+=CampoRegistro ("." campo+=CampoRegistro)*);
+	public ValorRegistroElements getValorRegistroAccess() {
+		return (pValorRegistro != null) ? pValorRegistro : (pValorRegistro = new ValorRegistroElements());
+	}
+	
+	public ParserRule getValorRegistroRule() {
+		return getValorRegistroAccess().getRule();
+	}
+
+	//CampoRegistro:
+	//	nombre_campo=EString;
+	public CampoRegistroElements getCampoRegistroAccess() {
+		return (pCampoRegistro != null) ? pCampoRegistro : (pCampoRegistro = new CampoRegistroElements());
+	}
+	
+	public ParserRule getCampoRegistroRule() {
+		return getCampoRegistroAccess().getRule();
 	}
 
 	//Tipo:
@@ -2868,13 +3052,33 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Asignacion:
-	//	lvalue=EString Mat+=MAT* "=" operador=valor;
+	//	AsignacionNormal | AsignacionCompleja;
 	public AsignacionElements getAsignacionAccess() {
 		return (pAsignacion != null) ? pAsignacion : (pAsignacion = new AsignacionElements());
 	}
 	
 	public ParserRule getAsignacionRule() {
 		return getAsignacionAccess().getRule();
+	}
+
+	//AsignacionNormal:
+	//	lvalue=EString Mat+=MAT* "=" operador=valor;
+	public AsignacionNormalElements getAsignacionNormalAccess() {
+		return (pAsignacionNormal != null) ? pAsignacionNormal : (pAsignacionNormal = new AsignacionNormalElements());
+	}
+	
+	public ParserRule getAsignacionNormalRule() {
+		return getAsignacionNormalAccess().getRule();
+	}
+
+	//AsignacionCompleja:
+	//	complejo=ValorComplejo Mat+=MAT* "=" operador=valor;
+	public AsignacionComplejaElements getAsignacionComplejaAccess() {
+		return (pAsignacionCompleja != null) ? pAsignacionCompleja : (pAsignacionCompleja = new AsignacionComplejaElements());
+	}
+	
+	public ParserRule getAsignacionComplejaRule() {
+		return getAsignacionComplejaAccess().getRule();
 	}
 
 	//Escribir:
@@ -2928,7 +3132,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//desde:
-	//	"desde" asignacion=Asignacion "hasta" valor=valor "hacer" (sentencias+=Sentencias sentencias+=Sentencias*)?
+	//	"desde" asignacion=AsignacionNormal "hasta" valor=valor "hacer" (sentencias+=Sentencias sentencias+=Sentencias*)?
 	//	"fin_desde";
 	public DesdeElements getDesdeAccess() {
 		return (pDesde != null) ? pDesde : (pDesde = new DesdeElements());

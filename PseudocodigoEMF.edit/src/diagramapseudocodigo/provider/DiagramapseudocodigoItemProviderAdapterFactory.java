@@ -1107,6 +1107,121 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.ValorComplejo} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ValorComplejoItemProvider valorComplejoItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.ValorComplejo}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createValorComplejoAdapter() {
+		if (valorComplejoItemProvider == null) {
+			valorComplejoItemProvider = new ValorComplejoItemProvider(this);
+		}
+
+		return valorComplejoItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.ValorRegistro} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ValorRegistroItemProvider valorRegistroItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.ValorRegistro}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createValorRegistroAdapter() {
+		if (valorRegistroItemProvider == null) {
+			valorRegistroItemProvider = new ValorRegistroItemProvider(this);
+		}
+
+		return valorRegistroItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.CampoRegistro} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CampoRegistroItemProvider campoRegistroItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.CampoRegistro}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCampoRegistroAdapter() {
+		if (campoRegistroItemProvider == null) {
+			campoRegistroItemProvider = new CampoRegistroItemProvider(this);
+		}
+
+		return campoRegistroItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.AsignacionNormal} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AsignacionNormalItemProvider asignacionNormalItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.AsignacionNormal}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAsignacionNormalAdapter() {
+		if (asignacionNormalItemProvider == null) {
+			asignacionNormalItemProvider = new AsignacionNormalItemProvider(this);
+		}
+
+		return asignacionNormalItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.AsignacionCompleja} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AsignacionComplejaItemProvider asignacionComplejaItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.AsignacionCompleja}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAsignacionComplejaAdapter() {
+		if (asignacionComplejaItemProvider == null) {
+			asignacionComplejaItemProvider = new AsignacionComplejaItemProvider(this);
+		}
+
+		return asignacionComplejaItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1250,6 +1365,11 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 		if (archivoItemProvider != null) archivoItemProvider.dispose();
 		if (enumeradoItemProvider != null) enumeradoItemProvider.dispose();
 		if (subrangoItemProvider != null) subrangoItemProvider.dispose();
+		if (valorComplejoItemProvider != null) valorComplejoItemProvider.dispose();
+		if (valorRegistroItemProvider != null) valorRegistroItemProvider.dispose();
+		if (campoRegistroItemProvider != null) campoRegistroItemProvider.dispose();
+		if (asignacionNormalItemProvider != null) asignacionNormalItemProvider.dispose();
+		if (asignacionComplejaItemProvider != null) asignacionComplejaItemProvider.dispose();
 	}
 
 }

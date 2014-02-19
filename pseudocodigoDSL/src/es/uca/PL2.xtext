@@ -23,7 +23,7 @@ terminal ML_COMMENT : '/*' (!'*') -> '*/' ;
 terminal SL_COMMENT : '//' !('\n'|'\r')* ('\r'? '\n')? ;
 
 Sentencias returns Sentencias:
-	LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque;
+	LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque | ValorComplejo;
 
 Bloque returns Bloque:
 	Si | mientras | repetir | desde | segun;
@@ -50,7 +50,16 @@ Caracter returns Caracter:
 
 
 valor returns valor:
-	LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter | Internas | unaria;
+	LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter | Internas | unaria | ValorComplejo;
+
+ValorComplejo returns ValorComplejo:
+	ValorRegistro;
+
+ValorRegistro returns ValorRegistro:
+	nombre_registro=EString '.' (campo+=CampoRegistro ('.' campo+=CampoRegistro)* );
+	
+CampoRegistro returns CampoRegistro:
+	nombre_campo=EString;
 
 Tipo returns Tipo:
 	TipoDefinido | TipoExistente;
@@ -113,8 +122,17 @@ LlamadaFuncion returns LlamadaFuncion:
 	')';
 
 Asignacion returns Asignacion:
+	 AsignacionNormal | AsignacionCompleja;
+	
+AsignacionNormal returns AsignacionNormal:
 	 lvalue=EString
 	 Mat+=MAT*
+	 '='
+	operador=valor;
+
+AsignacionCompleja returns AsignacionCompleja:
+	complejo=ValorComplejo
+	Mat+=MAT*
 	 '='
 	operador=valor;
 
@@ -149,7 +167,7 @@ repetir returns repetir:
 	 'hasta_que' valor=valor;
 
 desde returns desde:
-	'desde' asignacion=Asignacion 'hasta' valor=valor 'hacer'
+	'desde' asignacion=AsignacionNormal 'hasta' valor=valor 'hacer'
 		(sentencias+=Sentencias ( sentencias+=Sentencias)* )?
 	'fin_desde';
 	

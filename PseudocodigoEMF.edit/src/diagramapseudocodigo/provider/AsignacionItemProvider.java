@@ -60,32 +60,9 @@ public class AsignacionItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addLvaluePropertyDescriptor(object);
 			addMatPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Lvalue feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addLvaluePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Asignacion_lvalue_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Asignacion_lvalue_feature", "_UI_Asignacion_type"),
-				 DiagramapseudocodigoPackage.Literals.ASIGNACION__LVALUE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -159,10 +136,7 @@ public class AsignacionItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Asignacion)object).getLvalue();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Asignacion_type") :
-			getString("_UI_Asignacion_type") + " " + label;
+		return getString("_UI_Asignacion_type");
 	}
 
 	/**
@@ -177,7 +151,6 @@ public class AsignacionItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Asignacion.class)) {
-			case DiagramapseudocodigoPackage.ASIGNACION__LVALUE:
 			case DiagramapseudocodigoPackage.ASIGNACION__MAT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -248,6 +221,16 @@ public class AsignacionItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.ASIGNACION__OPERADOR,
 				 DiagramapseudocodigoFactory.eINSTANCE.createunaria()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.ASIGNACION__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorComplejo()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.ASIGNACION__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorRegistro()));
 	}
 
 }

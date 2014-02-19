@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link diagramapseudocodigo.impl.AsignacionImpl#getLvalue <em>Lvalue</em>}</li>
  *   <li>{@link diagramapseudocodigo.impl.AsignacionImpl#getOperador <em>Operador</em>}</li>
  *   <li>{@link diagramapseudocodigo.impl.AsignacionImpl#getMat <em>Mat</em>}</li>
  * </ul>
@@ -36,26 +35,6 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  * @generated
  */
 public class AsignacionImpl extends SentenciasImpl implements Asignacion {
-	/**
-	 * The default value of the '{@link #getLvalue() <em>Lvalue</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLvalue()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String LVALUE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getLvalue() <em>Lvalue</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLvalue()
-	 * @generated
-	 * @ordered
-	 */
-	protected String lvalue = LVALUE_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getOperador() <em>Operador</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -93,27 +72,6 @@ public class AsignacionImpl extends SentenciasImpl implements Asignacion {
 	@Override
 	protected EClass eStaticClass() {
 		return DiagramapseudocodigoPackage.Literals.ASIGNACION;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getLvalue() {
-		return lvalue;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setLvalue(String newLvalue) {
-		String oldLvalue = lvalue;
-		lvalue = newLvalue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.ASIGNACION__LVALUE, oldLvalue, lvalue));
 	}
 
 	/**
@@ -193,8 +151,6 @@ public class AsignacionImpl extends SentenciasImpl implements Asignacion {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DiagramapseudocodigoPackage.ASIGNACION__LVALUE:
-				return getLvalue();
 			case DiagramapseudocodigoPackage.ASIGNACION__OPERADOR:
 				return getOperador();
 			case DiagramapseudocodigoPackage.ASIGNACION__MAT:
@@ -212,9 +168,6 @@ public class AsignacionImpl extends SentenciasImpl implements Asignacion {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DiagramapseudocodigoPackage.ASIGNACION__LVALUE:
-				setLvalue((String)newValue);
-				return;
 			case DiagramapseudocodigoPackage.ASIGNACION__OPERADOR:
 				setOperador((valor)newValue);
 				return;
@@ -234,9 +187,6 @@ public class AsignacionImpl extends SentenciasImpl implements Asignacion {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DiagramapseudocodigoPackage.ASIGNACION__LVALUE:
-				setLvalue(LVALUE_EDEFAULT);
-				return;
 			case DiagramapseudocodigoPackage.ASIGNACION__OPERADOR:
 				setOperador((valor)null);
 				return;
@@ -255,8 +205,6 @@ public class AsignacionImpl extends SentenciasImpl implements Asignacion {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DiagramapseudocodigoPackage.ASIGNACION__LVALUE:
-				return LVALUE_EDEFAULT == null ? lvalue != null : !LVALUE_EDEFAULT.equals(lvalue);
 			case DiagramapseudocodigoPackage.ASIGNACION__OPERADOR:
 				return operador != null;
 			case DiagramapseudocodigoPackage.ASIGNACION__MAT:
@@ -275,9 +223,7 @@ public class AsignacionImpl extends SentenciasImpl implements Asignacion {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (lvalue: ");
-		result.append(lvalue);
-		result.append(", Mat: ");
+		result.append(" (Mat: ");
 		result.append(mat);
 		result.append(')');
 		return result.toString();

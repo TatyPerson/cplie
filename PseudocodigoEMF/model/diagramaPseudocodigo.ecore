@@ -59,8 +59,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="valor" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Asignacion" eSuperTypes="#//Sentencias">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lvalue" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operador" lowerBound="1"
         eType="#//valor" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Mat" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -145,7 +143,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="repetir" eSuperTypes="#//Bloque"/>
   <eClassifiers xsi:type="ecore:EClass" name="desde" eSuperTypes="#//Bloque">
     <eStructuralFeatures xsi:type="ecore:EReference" name="asignacion" lowerBound="1"
-        eType="#//Asignacion" containment="true"/>
+        eType="#//AsignacionNormal" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="incremento" eSuperTypes="#//Sentencias">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
@@ -280,5 +278,24 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="limite_sup" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ValorComplejo" eSuperTypes="#//Operador #//Sentencias"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ValorRegistro" eSuperTypes="#//ValorComplejo">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre_registro" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="campo" lowerBound="1" upperBound="-1"
+        eType="#//CampoRegistro" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CampoRegistro">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre_campo" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AsignacionNormal" eSuperTypes="#//Asignacion">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lvalue" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AsignacionCompleja" eSuperTypes="#//Asignacion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="complejo" lowerBound="1"
+        eType="#//ValorComplejo" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

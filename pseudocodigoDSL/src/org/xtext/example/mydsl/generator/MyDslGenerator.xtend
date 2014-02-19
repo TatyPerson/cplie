@@ -209,9 +209,14 @@ class MyDslGenerator implements IGenerator {
 	'''
 	
 	def toC(Sentencias mySent){
-		if(mySent.eClass.name.equals("Asignacion")){
-			var Asignacion prueba = new AsignacionImpl
-			prueba = mySent as Asignacion
+		if(mySent.eClass.name.equals("AsignacionNormal")){
+			var AsignacionNormal prueba = new AsignacionNormalImpl
+			prueba = mySent as AsignacionNormal
+			prueba.toC
+		}
+		else if(mySent.eClass.name.equals("AsignacionCompleja")){
+			var AsignacionCompleja prueba = new AsignacionComplejaImpl
+			prueba = mySent as AsignacionCompleja
 			prueba.toC
 		}
 		else if(mySent.eClass.name.equals("LlamadaFuncion")){
@@ -294,9 +299,42 @@ class MyDslGenerator implements IGenerator {
 	def toC(DeclaracionPropia myDec)'''
 		«myDec.tipo» «pintarVariables(myDec.variable)»
 	'''
+
+	def toC(Asignacion myAsig) {
+		if(myAsig.eClass.name.equals("AsignacionNormal")){
+			var AsignacionNormal prueba = new AsignacionNormalImpl
+			prueba = myAsig as AsignacionNormal
+			prueba.toC
+		}
+		else if(myAsig.eClass.name.equals("AsignacionCompleja")){
+			var AsignacionCompleja prueba = new AsignacionComplejaImpl
+			prueba = myAsig as AsignacionCompleja
+			prueba.toC
+		}
+	}
 	
-	def toC(Asignacion asig)'''
+	def toC(AsignacionNormal asig)'''
 	«asig.lvalue»«FOR matri:asig.mat»«matri.toString»«ENDFOR» = «asig.operador.toC»;'''
+	
+	def toC(AsignacionCompleja asig)'''
+	«asig.complejo.toC»«FOR matri:asig.mat»«matri.toString»«ENDFOR» = «asig.operador.toC»;'''
+	
+	def toC(ValorComplejo myComplejo) {
+		if(myComplejo.eClass.name.equals("ValorRegistro")){
+			var ValorRegistro prueba = new ValorRegistroImpl
+			prueba = myComplejo as ValorRegistro
+			prueba.toC
+		}
+	}
+	
+	def toC(ValorRegistro myValor) '''
+		«myValor.nombre_registro».«FOR myVariable:myValor.campo»«myVariable.toC»«ENDFOR»
+	'''
+	
+	def toC(CampoRegistro myCampo)'''
+		«myCampo.nombre_campo»
+	'''
+	
 	
 	def toC(valor myVal){
 		if(myVal.eClass.name.equals("NumeroEntero")){
@@ -547,7 +585,7 @@ class MyDslGenerator implements IGenerator {
 	'''
 	
 	def toC(desde d)'''
-		for(«d.asignacion.toC» «d.asignacion.lvalue» <= «d.valor.toC»; «d.asignacion.lvalue»++){
+		for(«d.asignacion.toC» «d.asignacion.toC» <= «d.valor.toC»; «d.asignacion.toC»++){
 			«FOR sent:d.sentencias»
 				
 				«sent.toC»
