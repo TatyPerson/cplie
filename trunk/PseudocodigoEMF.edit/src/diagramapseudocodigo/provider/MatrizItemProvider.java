@@ -225,6 +225,16 @@ public class MatrizItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.MATRIZ__VALOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorComplejo()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.MATRIZ__VALOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorRegistro()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.MATRIZ__TIPO,
 				 DiagramapseudocodigoFactory.eINSTANCE.createTipo()));
 

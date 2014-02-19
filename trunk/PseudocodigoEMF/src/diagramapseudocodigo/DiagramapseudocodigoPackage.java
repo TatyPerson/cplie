@@ -584,22 +584,13 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int ASIGNACION = 11;
 
 	/**
-	 * The feature id for the '<em><b>Lvalue</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIGNACION__LVALUE = SENTENCIAS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Operador</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASIGNACION__OPERADOR = SENTENCIAS_FEATURE_COUNT + 1;
+	int ASIGNACION__OPERADOR = SENTENCIAS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Mat</b></em>' attribute list.
@@ -608,7 +599,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASIGNACION__MAT = SENTENCIAS_FEATURE_COUNT + 2;
+	int ASIGNACION__MAT = SENTENCIAS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Asignacion</em>' class.
@@ -617,7 +608,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASIGNACION_FEATURE_COUNT = SENTENCIAS_FEATURE_COUNT + 3;
+	int ASIGNACION_FEATURE_COUNT = SENTENCIAS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Asignacion</em>' class.
@@ -2339,6 +2330,227 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int SUBRANGO_OPERATION_COUNT = TIPO_COMPLEJO_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.ValorComplejoImpl <em>Valor Complejo</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.ValorComplejoImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getValorComplejo()
+	 * @generated
+	 */
+	int VALOR_COMPLEJO = 50;
+
+	/**
+	 * The number of structural features of the '<em>Valor Complejo</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALOR_COMPLEJO_FEATURE_COUNT = OPERADOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Valor Complejo</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALOR_COMPLEJO_OPERATION_COUNT = OPERADOR_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.ValorRegistroImpl <em>Valor Registro</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.ValorRegistroImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getValorRegistro()
+	 * @generated
+	 */
+	int VALOR_REGISTRO = 51;
+
+	/**
+	 * The feature id for the '<em><b>Nombre registro</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALOR_REGISTRO__NOMBRE_REGISTRO = VALOR_COMPLEJO_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Campo</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALOR_REGISTRO__CAMPO = VALOR_COMPLEJO_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Valor Registro</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALOR_REGISTRO_FEATURE_COUNT = VALOR_COMPLEJO_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Valor Registro</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALOR_REGISTRO_OPERATION_COUNT = VALOR_COMPLEJO_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.CampoRegistroImpl <em>Campo Registro</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.CampoRegistroImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getCampoRegistro()
+	 * @generated
+	 */
+	int CAMPO_REGISTRO = 52;
+
+	/**
+	 * The feature id for the '<em><b>Nombre campo</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMPO_REGISTRO__NOMBRE_CAMPO = 0;
+
+	/**
+	 * The number of structural features of the '<em>Campo Registro</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMPO_REGISTRO_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Campo Registro</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAMPO_REGISTRO_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.AsignacionNormalImpl <em>Asignacion Normal</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.AsignacionNormalImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getAsignacionNormal()
+	 * @generated
+	 */
+	int ASIGNACION_NORMAL = 53;
+
+	/**
+	 * The feature id for the '<em><b>Operador</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASIGNACION_NORMAL__OPERADOR = ASIGNACION__OPERADOR;
+
+	/**
+	 * The feature id for the '<em><b>Mat</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASIGNACION_NORMAL__MAT = ASIGNACION__MAT;
+
+	/**
+	 * The feature id for the '<em><b>Lvalue</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASIGNACION_NORMAL__LVALUE = ASIGNACION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Asignacion Normal</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASIGNACION_NORMAL_FEATURE_COUNT = ASIGNACION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Asignacion Normal</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASIGNACION_NORMAL_OPERATION_COUNT = ASIGNACION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.AsignacionComplejaImpl <em>Asignacion Compleja</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.AsignacionComplejaImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getAsignacionCompleja()
+	 * @generated
+	 */
+	int ASIGNACION_COMPLEJA = 54;
+
+	/**
+	 * The feature id for the '<em><b>Operador</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASIGNACION_COMPLEJA__OPERADOR = ASIGNACION__OPERADOR;
+
+	/**
+	 * The feature id for the '<em><b>Mat</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASIGNACION_COMPLEJA__MAT = ASIGNACION__MAT;
+
+	/**
+	 * The feature id for the '<em><b>Complejo</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASIGNACION_COMPLEJA__COMPLEJO = ASIGNACION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Asignacion Compleja</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASIGNACION_COMPLEJA_FEATURE_COUNT = ASIGNACION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Asignacion Compleja</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASIGNACION_COMPLEJA_OPERATION_COUNT = ASIGNACION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoVariable <em>Tipo Variable</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2346,7 +2558,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoVariable()
 	 * @generated
 	 */
-	int TIPO_VARIABLE = 50;
+	int TIPO_VARIABLE = 55;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.signo <em>signo</em>}' enum.
@@ -2356,7 +2568,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getsigno()
 	 * @generated
 	 */
-	int SIGNO = 51;
+	int SIGNO = 56;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.booleano <em>booleano</em>}' enum.
@@ -2366,7 +2578,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getbooleano()
 	 * @generated
 	 */
-	int BOOLEANO = 52;
+	int BOOLEANO = 57;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.inc <em>inc</em>}' enum.
@@ -2376,7 +2588,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getinc()
 	 * @generated
 	 */
-	int INC = 53;
+	int INC = 58;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoPaso <em>Tipo Paso</em>}' enum.
@@ -2386,7 +2598,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoPaso()
 	 * @generated
 	 */
-	int TIPO_PASO = 54;
+	int TIPO_PASO = 59;
 
 
 	/**
@@ -2397,7 +2609,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getNombreInterna()
 	 * @generated
 	 */
-	int NOMBRE_INTERNA = 55;
+	int NOMBRE_INTERNA = 60;
 
 
 	/**
@@ -2706,17 +2918,6 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getAsignacion();
-
-	/**
-	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Asignacion#getLvalue <em>Lvalue</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Lvalue</em>'.
-	 * @see diagramapseudocodigo.Asignacion#getLvalue()
-	 * @see #getAsignacion()
-	 * @generated
-	 */
-	EAttribute getAsignacion_Lvalue();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Asignacion#getOperador <em>Operador</em>}'.
@@ -3737,6 +3938,111 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EAttribute getSubrango_Limite_sup();
 
 	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.ValorComplejo <em>Valor Complejo</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Valor Complejo</em>'.
+	 * @see diagramapseudocodigo.ValorComplejo
+	 * @generated
+	 */
+	EClass getValorComplejo();
+
+	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.ValorRegistro <em>Valor Registro</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Valor Registro</em>'.
+	 * @see diagramapseudocodigo.ValorRegistro
+	 * @generated
+	 */
+	EClass getValorRegistro();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.ValorRegistro#getNombre_registro <em>Nombre registro</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Nombre registro</em>'.
+	 * @see diagramapseudocodigo.ValorRegistro#getNombre_registro()
+	 * @see #getValorRegistro()
+	 * @generated
+	 */
+	EAttribute getValorRegistro_Nombre_registro();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.ValorRegistro#getCampo <em>Campo</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Campo</em>'.
+	 * @see diagramapseudocodigo.ValorRegistro#getCampo()
+	 * @see #getValorRegistro()
+	 * @generated
+	 */
+	EReference getValorRegistro_Campo();
+
+	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.CampoRegistro <em>Campo Registro</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Campo Registro</em>'.
+	 * @see diagramapseudocodigo.CampoRegistro
+	 * @generated
+	 */
+	EClass getCampoRegistro();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.CampoRegistro#getNombre_campo <em>Nombre campo</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Nombre campo</em>'.
+	 * @see diagramapseudocodigo.CampoRegistro#getNombre_campo()
+	 * @see #getCampoRegistro()
+	 * @generated
+	 */
+	EAttribute getCampoRegistro_Nombre_campo();
+
+	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.AsignacionNormal <em>Asignacion Normal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Asignacion Normal</em>'.
+	 * @see diagramapseudocodigo.AsignacionNormal
+	 * @generated
+	 */
+	EClass getAsignacionNormal();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.AsignacionNormal#getLvalue <em>Lvalue</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Lvalue</em>'.
+	 * @see diagramapseudocodigo.AsignacionNormal#getLvalue()
+	 * @see #getAsignacionNormal()
+	 * @generated
+	 */
+	EAttribute getAsignacionNormal_Lvalue();
+
+	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.AsignacionCompleja <em>Asignacion Compleja</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Asignacion Compleja</em>'.
+	 * @see diagramapseudocodigo.AsignacionCompleja
+	 * @generated
+	 */
+	EClass getAsignacionCompleja();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.AsignacionCompleja#getComplejo <em>Complejo</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Complejo</em>'.
+	 * @see diagramapseudocodigo.AsignacionCompleja#getComplejo()
+	 * @see #getAsignacionCompleja()
+	 * @generated
+	 */
+	EReference getAsignacionCompleja_Complejo();
+
+	/**
 	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Vector#getNombre <em>Nombre</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4117,14 +4423,6 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ASIGNACION = eINSTANCE.getAsignacion();
-
-		/**
-		 * The meta object literal for the '<em><b>Lvalue</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ASIGNACION__LVALUE = eINSTANCE.getAsignacion_Lvalue();
 
 		/**
 		 * The meta object literal for the '<em><b>Operador</b></em>' containment reference feature.
@@ -4969,6 +5267,96 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SUBRANGO__LIMITE_SUP = eINSTANCE.getSubrango_Limite_sup();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.ValorComplejoImpl <em>Valor Complejo</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.ValorComplejoImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getValorComplejo()
+		 * @generated
+		 */
+		EClass VALOR_COMPLEJO = eINSTANCE.getValorComplejo();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.ValorRegistroImpl <em>Valor Registro</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.ValorRegistroImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getValorRegistro()
+		 * @generated
+		 */
+		EClass VALOR_REGISTRO = eINSTANCE.getValorRegistro();
+
+		/**
+		 * The meta object literal for the '<em><b>Nombre registro</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VALOR_REGISTRO__NOMBRE_REGISTRO = eINSTANCE.getValorRegistro_Nombre_registro();
+
+		/**
+		 * The meta object literal for the '<em><b>Campo</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALOR_REGISTRO__CAMPO = eINSTANCE.getValorRegistro_Campo();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.CampoRegistroImpl <em>Campo Registro</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.CampoRegistroImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getCampoRegistro()
+		 * @generated
+		 */
+		EClass CAMPO_REGISTRO = eINSTANCE.getCampoRegistro();
+
+		/**
+		 * The meta object literal for the '<em><b>Nombre campo</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CAMPO_REGISTRO__NOMBRE_CAMPO = eINSTANCE.getCampoRegistro_Nombre_campo();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.AsignacionNormalImpl <em>Asignacion Normal</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.AsignacionNormalImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getAsignacionNormal()
+		 * @generated
+		 */
+		EClass ASIGNACION_NORMAL = eINSTANCE.getAsignacionNormal();
+
+		/**
+		 * The meta object literal for the '<em><b>Lvalue</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ASIGNACION_NORMAL__LVALUE = eINSTANCE.getAsignacionNormal_Lvalue();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.AsignacionComplejaImpl <em>Asignacion Compleja</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.AsignacionComplejaImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getAsignacionCompleja()
+		 * @generated
+		 */
+		EClass ASIGNACION_COMPLEJA = eINSTANCE.getAsignacionCompleja();
+
+		/**
+		 * The meta object literal for the '<em><b>Complejo</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASIGNACION_COMPLEJA__COMPLEJO = eINSTANCE.getAsignacionCompleja_Complejo();
 
 		/**
 		 * The meta object literal for the '<em><b>Nombre</b></em>' attribute feature.

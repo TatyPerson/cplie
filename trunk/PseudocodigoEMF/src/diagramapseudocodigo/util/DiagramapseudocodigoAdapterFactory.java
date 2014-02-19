@@ -268,6 +268,26 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 				return createSubrangoAdapter();
 			}
 			@Override
+			public Adapter caseValorComplejo(ValorComplejo object) {
+				return createValorComplejoAdapter();
+			}
+			@Override
+			public Adapter caseValorRegistro(ValorRegistro object) {
+				return createValorRegistroAdapter();
+			}
+			@Override
+			public Adapter caseCampoRegistro(CampoRegistro object) {
+				return createCampoRegistroAdapter();
+			}
+			@Override
+			public Adapter caseAsignacionNormal(AsignacionNormal object) {
+				return createAsignacionNormalAdapter();
+			}
+			@Override
+			public Adapter caseAsignacionCompleja(AsignacionCompleja object) {
+				return createAsignacionComplejaAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -984,6 +1004,76 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSubrangoAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.ValorComplejo <em>Valor Complejo</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.ValorComplejo
+	 * @generated
+	 */
+	public Adapter createValorComplejoAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.ValorRegistro <em>Valor Registro</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.ValorRegistro
+	 * @generated
+	 */
+	public Adapter createValorRegistroAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.CampoRegistro <em>Campo Registro</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.CampoRegistro
+	 * @generated
+	 */
+	public Adapter createCampoRegistroAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.AsignacionNormal <em>Asignacion Normal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.AsignacionNormal
+	 * @generated
+	 */
+	public Adapter createAsignacionNormalAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.AsignacionCompleja <em>Asignacion Compleja</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.AsignacionCompleja
+	 * @generated
+	 */
+	public Adapter createAsignacionComplejaAdapter() {
 		return null;
 	}
 

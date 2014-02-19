@@ -225,6 +225,16 @@ public class VectorItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VECTOR__VALOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorComplejo()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VECTOR__VALOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorRegistro()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.VECTOR__TIPO,
 				 DiagramapseudocodigoFactory.eINSTANCE.createTipo()));
 

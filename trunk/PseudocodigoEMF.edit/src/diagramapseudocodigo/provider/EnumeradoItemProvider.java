@@ -224,6 +224,16 @@ public class EnumeradoItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.ENUMERADO__VALOR,
 				 DiagramapseudocodigoFactory.eINSTANCE.createunaria()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.ENUMERADO__VALOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorComplejo()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.ENUMERADO__VALOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorRegistro()));
 	}
 
 }

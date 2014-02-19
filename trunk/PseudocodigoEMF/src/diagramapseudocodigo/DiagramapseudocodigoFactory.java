@@ -427,6 +427,51 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	Subrango createSubrango();
 
 	/**
+	 * Returns a new object of class '<em>Valor Complejo</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Valor Complejo</em>'.
+	 * @generated
+	 */
+	ValorComplejo createValorComplejo();
+
+	/**
+	 * Returns a new object of class '<em>Valor Registro</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Valor Registro</em>'.
+	 * @generated
+	 */
+	ValorRegistro createValorRegistro();
+
+	/**
+	 * Returns a new object of class '<em>Campo Registro</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Campo Registro</em>'.
+	 * @generated
+	 */
+	CampoRegistro createCampoRegistro();
+
+	/**
+	 * Returns a new object of class '<em>Asignacion Normal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Asignacion Normal</em>'.
+	 * @generated
+	 */
+	AsignacionNormal createAsignacionNormal();
+
+	/**
+	 * Returns a new object of class '<em>Asignacion Compleja</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Asignacion Compleja</em>'.
+	 * @generated
+	 */
+	AsignacionCompleja createAsignacionCompleja();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

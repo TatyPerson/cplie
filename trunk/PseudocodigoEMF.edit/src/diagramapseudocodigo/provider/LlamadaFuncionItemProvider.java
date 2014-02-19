@@ -204,6 +204,16 @@ public class LlamadaFuncionItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__OPERADOR,
 				 DiagramapseudocodigoFactory.eINSTANCE.createCaracter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorComplejo()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorRegistro()));
 	}
 
 }

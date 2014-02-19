@@ -102,6 +102,11 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 			case DiagramapseudocodigoPackage.ARCHIVO: return createArchivo();
 			case DiagramapseudocodigoPackage.ENUMERADO: return createEnumerado();
 			case DiagramapseudocodigoPackage.SUBRANGO: return createSubrango();
+			case DiagramapseudocodigoPackage.VALOR_COMPLEJO: return createValorComplejo();
+			case DiagramapseudocodigoPackage.VALOR_REGISTRO: return createValorRegistro();
+			case DiagramapseudocodigoPackage.CAMPO_REGISTRO: return createCampoRegistro();
+			case DiagramapseudocodigoPackage.ASIGNACION_NORMAL: return createAsignacionNormal();
+			case DiagramapseudocodigoPackage.ASIGNACION_COMPLEJA: return createAsignacionCompleja();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -605,6 +610,56 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	public Subrango createSubrango() {
 		SubrangoImpl subrango = new SubrangoImpl();
 		return subrango;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ValorComplejo createValorComplejo() {
+		ValorComplejoImpl valorComplejo = new ValorComplejoImpl();
+		return valorComplejo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ValorRegistro createValorRegistro() {
+		ValorRegistroImpl valorRegistro = new ValorRegistroImpl();
+		return valorRegistro;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CampoRegistro createCampoRegistro() {
+		CampoRegistroImpl campoRegistro = new CampoRegistroImpl();
+		return campoRegistro;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AsignacionNormal createAsignacionNormal() {
+		AsignacionNormalImpl asignacionNormal = new AsignacionNormalImpl();
+		return asignacionNormal;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AsignacionCompleja createAsignacionCompleja() {
+		AsignacionComplejaImpl asignacionCompleja = new AsignacionComplejaImpl();
+		return asignacionCompleja;
 	}
 
 	/**

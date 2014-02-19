@@ -201,6 +201,26 @@ public class SinoItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.SINO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorComplejo()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.SINO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorRegistro()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.SINO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createAsignacionNormal()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.SINO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createAsignacionCompleja()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.SINO__DEVUELVE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createDevolver()));
 	}

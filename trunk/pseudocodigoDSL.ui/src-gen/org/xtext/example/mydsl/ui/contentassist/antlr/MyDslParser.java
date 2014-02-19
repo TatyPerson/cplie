@@ -47,6 +47,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getValorAccess().getAlternatives(), "rule__Valor__Alternatives");
 					put(grammarAccess.getTipoAccess().getAlternatives(), "rule__Tipo__Alternatives");
 					put(grammarAccess.getEStringAccess().getAlternatives(), "rule__EString__Alternatives");
+					put(grammarAccess.getAsignacionAccess().getAlternatives(), "rule__Asignacion__Alternatives");
 					put(grammarAccess.getTipoVariableAccess().getAlternatives(), "rule__TipoVariable__Alternatives");
 					put(grammarAccess.getEFloatAccess().getAlternatives_4_0(), "rule__EFloat__Alternatives_4_0");
 					put(grammarAccess.getBooleanoAccess().getAlternatives(), "rule__Booleano__Alternatives");
@@ -62,6 +63,9 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getInternasAccess().getGroup(), "rule__Internas__Group__0");
 					put(grammarAccess.getInternasAccess().getGroup_2(), "rule__Internas__Group_2__0");
 					put(grammarAccess.getInternasAccess().getGroup_2_1(), "rule__Internas__Group_2_1__0");
+					put(grammarAccess.getValorRegistroAccess().getGroup(), "rule__ValorRegistro__Group__0");
+					put(grammarAccess.getValorRegistroAccess().getGroup_2(), "rule__ValorRegistro__Group_2__0");
+					put(grammarAccess.getValorRegistroAccess().getGroup_2_1(), "rule__ValorRegistro__Group_2_1__0");
 					put(grammarAccess.getConstantesAccess().getGroup(), "rule__Constantes__Group__0");
 					put(grammarAccess.getVectorAccess().getGroup(), "rule__Vector__Group__0");
 					put(grammarAccess.getMatrizAccess().getGroup(), "rule__Matriz__Group__0");
@@ -82,7 +86,8 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLlamadaFuncionAccess().getGroup(), "rule__LlamadaFuncion__Group__0");
 					put(grammarAccess.getLlamadaFuncionAccess().getGroup_2(), "rule__LlamadaFuncion__Group_2__0");
 					put(grammarAccess.getLlamadaFuncionAccess().getGroup_2_1(), "rule__LlamadaFuncion__Group_2_1__0");
-					put(grammarAccess.getAsignacionAccess().getGroup(), "rule__Asignacion__Group__0");
+					put(grammarAccess.getAsignacionNormalAccess().getGroup(), "rule__AsignacionNormal__Group__0");
+					put(grammarAccess.getAsignacionComplejaAccess().getGroup(), "rule__AsignacionCompleja__Group__0");
 					put(grammarAccess.getEscribirAccess().getGroup(), "rule__Escribir__Group__0");
 					put(grammarAccess.getEscribirAccess().getGroup_3(), "rule__Escribir__Group_3__0");
 					put(grammarAccess.getLeerAccess().getGroup(), "rule__Leer__Group__0");
@@ -132,6 +137,10 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getInternasAccess().getOperadorAssignment_2_0(), "rule__Internas__OperadorAssignment_2_0");
 					put(grammarAccess.getInternasAccess().getOperadorAssignment_2_1_1(), "rule__Internas__OperadorAssignment_2_1_1");
 					put(grammarAccess.getCaracterAccess().getContenidoAssignment(), "rule__Caracter__ContenidoAssignment");
+					put(grammarAccess.getValorRegistroAccess().getNombre_registroAssignment_0(), "rule__ValorRegistro__Nombre_registroAssignment_0");
+					put(grammarAccess.getValorRegistroAccess().getCampoAssignment_2_0(), "rule__ValorRegistro__CampoAssignment_2_0");
+					put(grammarAccess.getValorRegistroAccess().getCampoAssignment_2_1_1(), "rule__ValorRegistro__CampoAssignment_2_1_1");
+					put(grammarAccess.getCampoRegistroAccess().getNombre_campoAssignment(), "rule__CampoRegistro__Nombre_campoAssignment");
 					put(grammarAccess.getTipoDefinidoAccess().getTipoAssignment(), "rule__TipoDefinido__TipoAssignment");
 					put(grammarAccess.getTipoExistenteAccess().getTipoAssignment(), "rule__TipoExistente__TipoAssignment");
 					put(grammarAccess.getConstantesAccess().getVariableAssignment_0(), "rule__Constantes__VariableAssignment_0");
@@ -167,9 +176,12 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLlamadaFuncionAccess().getNombreAssignment_0(), "rule__LlamadaFuncion__NombreAssignment_0");
 					put(grammarAccess.getLlamadaFuncionAccess().getOperadorAssignment_2_0(), "rule__LlamadaFuncion__OperadorAssignment_2_0");
 					put(grammarAccess.getLlamadaFuncionAccess().getOperadorAssignment_2_1_1(), "rule__LlamadaFuncion__OperadorAssignment_2_1_1");
-					put(grammarAccess.getAsignacionAccess().getLvalueAssignment_0(), "rule__Asignacion__LvalueAssignment_0");
-					put(grammarAccess.getAsignacionAccess().getMatAssignment_1(), "rule__Asignacion__MatAssignment_1");
-					put(grammarAccess.getAsignacionAccess().getOperadorAssignment_3(), "rule__Asignacion__OperadorAssignment_3");
+					put(grammarAccess.getAsignacionNormalAccess().getLvalueAssignment_0(), "rule__AsignacionNormal__LvalueAssignment_0");
+					put(grammarAccess.getAsignacionNormalAccess().getMatAssignment_1(), "rule__AsignacionNormal__MatAssignment_1");
+					put(grammarAccess.getAsignacionNormalAccess().getOperadorAssignment_3(), "rule__AsignacionNormal__OperadorAssignment_3");
+					put(grammarAccess.getAsignacionComplejaAccess().getComplejoAssignment_0(), "rule__AsignacionCompleja__ComplejoAssignment_0");
+					put(grammarAccess.getAsignacionComplejaAccess().getMatAssignment_1(), "rule__AsignacionCompleja__MatAssignment_1");
+					put(grammarAccess.getAsignacionComplejaAccess().getOperadorAssignment_3(), "rule__AsignacionCompleja__OperadorAssignment_3");
 					put(grammarAccess.getEscribirAccess().getOperadorAssignment_2(), "rule__Escribir__OperadorAssignment_2");
 					put(grammarAccess.getEscribirAccess().getOperadorAssignment_3_1(), "rule__Escribir__OperadorAssignment_3_1");
 					put(grammarAccess.getLeerAccess().getVariableAssignment_2(), "rule__Leer__VariableAssignment_2");
