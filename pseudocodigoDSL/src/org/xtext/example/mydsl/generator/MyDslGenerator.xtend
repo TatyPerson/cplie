@@ -65,6 +65,11 @@ class MyDslGenerator implements IGenerator {
 			prueba = myComplejo as Archivo
 			prueba.toC
 		}
+		else if(myComplejo.eClass.name.equals("Enumerado")){
+			var Enumerado prueba = new EnumeradoImpl
+			prueba = myComplejo as Enumerado
+			prueba.toC
+		}
 	}
 	
 	def toC(Tipo myTipo) {
@@ -111,6 +116,18 @@ class MyDslGenerator implements IGenerator {
 	
 	def toC(Archivo myArchivo)'''
 		typedef FILE *«myArchivo.nombre»;
+	'''
+	
+	def toC(Enumerado myEnumerado)'''
+		typedef enum {
+			«FOR myVariable:myEnumerado.valor»
+				«IF myVariable == myEnumerado.valor.get(myEnumerado.valor.size()-1)»
+					«myVariable.toC»	
+				«ELSE»
+					«myVariable.toC»,
+				«ENDIF»	
+			«ENDFOR»
+		} «myEnumerado.nombre»;
 	'''
 	
 	def toC(Inicio myInicio)'''
@@ -544,7 +561,7 @@ class MyDslGenerator implements IGenerator {
 				
 				«sent.toC»
 			«ENDFOR»
-		}while(«m.valor.toC»)
+		}while(!«m.valor.toC»);
 	'''
 }
 

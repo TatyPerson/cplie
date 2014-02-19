@@ -3961,11 +3961,11 @@ protected class Archivo_NombreAssignment_3 extends AssignmentToken  {
 /************ begin Rule Enumerado ****************
  *
  * Enumerado:
- * 	nombre=EString "=" " {" (valor+=valor ("," valor+=valor)*) "}";
+ * 	nombre=EString "=" "{" (valor+=valor ("," valor+=valor)*) "}";
  *
  **/
 
-// nombre=EString "=" " {" (valor+=valor ("," valor+=valor)*) "}"
+// nombre=EString "=" "{" (valor+=valor ("," valor+=valor)*) "}"
 protected class Enumerado_Group extends GroupToken {
 	
 	public Enumerado_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4049,16 +4049,16 @@ protected class Enumerado_EqualsSignKeyword_1 extends KeywordToken  {
 
 }
 
-// " {"
-protected class Enumerado_SpaceLeftCurlyBracketKeyword_2 extends KeywordToken  {
+// "{"
+protected class Enumerado_LeftCurlyBracketKeyword_2 extends KeywordToken  {
 	
-	public Enumerado_SpaceLeftCurlyBracketKeyword_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Enumerado_LeftCurlyBracketKeyword_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getEnumeradoAccess().getSpaceLeftCurlyBracketKeyword_2();
+		return grammarAccess.getEnumeradoAccess().getLeftCurlyBracketKeyword_2();
 	}
 
     @Override
@@ -4134,7 +4134,7 @@ protected class Enumerado_ValorAssignment_3_0 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new Enumerado_SpaceLeftCurlyBracketKeyword_2(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new Enumerado_LeftCurlyBracketKeyword_2(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	

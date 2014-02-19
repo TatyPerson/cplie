@@ -1314,7 +1314,7 @@
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_t8w6QU3PEeK8YbVIyDnblA" routing="Rectilinear" lineColor="4210752"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_t8w6Qk3PEeK8YbVIyDnblA" fontName="Segoe UI"/>
     <element xsi:nil="true"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_t8w6Q03PEeK8YbVIyDnblA" points="[-5, 0, 161, -12]$[-164, 1, 2, -11]"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_t8w6Q03PEeK8YbVIyDnblA" points="[-6, 15, 215, -2]$[-201, 15, 20, -2]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_t8yvcE3PEeK8YbVIyDnblA" id="(0.05511811023622047,0.5098039215686274)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_t8yvcU3PEeK8YbVIyDnblA" id="(0.803921568627451,0.37209302325581395)"/>
   </edges>
@@ -1810,7 +1810,8 @@
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_GmroEZigEeOIbok9UB3O0A" lineColor="4210752"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_GmroEpigEeOIbok9UB3O0A" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
     <element xmi:type="ecore:EReference" href="diagramaPseudocodigo.ecore#//Enumerado/valor"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_GmroE5igEeOIbok9UB3O0A" points="[22, 22, -163, -163]$[135, 178, -50, -7]"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_GmroE5igEeOIbok9UB3O0A" points="[22, -3, -132, 18]$[140, -19, -14, 2]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_GmvScJigEeOIbok9UB3O0A" id="(0.8294573643410853,0.4117647058823529)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WN-scJj1EeOBp4kQyfJU4g" id="(0.4215686274509804,0.23255813953488372)"/>
   </edges>
 </notation:Diagram>

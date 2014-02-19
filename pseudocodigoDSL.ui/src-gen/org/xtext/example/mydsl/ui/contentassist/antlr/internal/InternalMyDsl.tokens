@@ -96,7 +96,6 @@ RULE_WS=12
 '/'=35
 '=='=42
 'matriz'=60
-' {'=66
 ']['=61
 'segun_sea'=84
 'registro:'=62
@@ -116,6 +115,7 @@ RULE_WS=12
 'devolver'=89
 'fin_si'=75
 'logico'=26
+'{'=66
 'log'=18
 'var'=68
 'concatena'=22
