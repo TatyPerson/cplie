@@ -317,7 +317,7 @@ class MyDslGenerator implements IGenerator {
 	«asig.lvalue»«FOR matri:asig.mat»«matri.toString»«ENDFOR» = «asig.operador.toC»;'''
 	
 	def toC(AsignacionCompleja asig)'''
-	«asig.complejo.toC»«FOR matri:asig.mat»«matri.toString»«ENDFOR» = «asig.operador.toC»;'''
+	«asig.complejo.toC.toString»«FOR matri:asig.mat»«matri.toString»«ENDFOR» = «asig.operador.toC.toString»;'''
 	
 	def toC(ValorComplejo myComplejo) {
 		if(myComplejo.eClass.name.equals("ValorRegistro")){
@@ -327,13 +327,20 @@ class MyDslGenerator implements IGenerator {
 		}
 	}
 	
-	def toC(ValorRegistro myValor) '''
-		«myValor.nombre_registro».«FOR myVariable:myValor.campo»«myVariable.toC»«ENDFOR»
-	'''
+	def toC(ValorRegistro myValor) {
+		//Este método esta escrito con otra sintaxis diferente porque me generaba un salto de línea innecesario
+		var concat = new String;
+		concat = myValor.nombre_registro.toString + '.'
+		for(myVariable:myValor.campo) {
+			concat = concat + myVariable.toC.toString;
+		}
+		return concat;
+	}
 	
-	def toC(CampoRegistro myCampo)'''
-		«myCampo.nombre_campo»
-	'''
+	def toC(CampoRegistro myCampo) {
+		//Este método esta escrito con otra sintaxis diferente porque me generaba un salto de línea innecesario
+		return myCampo.nombre_campo;
+	}
 	
 	
 	def toC(valor myVal){
