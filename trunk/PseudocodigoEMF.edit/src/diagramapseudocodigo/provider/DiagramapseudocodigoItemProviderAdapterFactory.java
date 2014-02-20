@@ -1222,6 +1222,52 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.SubrangoNumerico} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SubrangoNumericoItemProvider subrangoNumericoItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.SubrangoNumerico}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSubrangoNumericoAdapter() {
+		if (subrangoNumericoItemProvider == null) {
+			subrangoNumericoItemProvider = new SubrangoNumericoItemProvider(this);
+		}
+
+		return subrangoNumericoItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.SubrangoRegistro} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SubrangoRegistroItemProvider subrangoRegistroItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.SubrangoRegistro}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSubrangoRegistroAdapter() {
+		if (subrangoRegistroItemProvider == null) {
+			subrangoRegistroItemProvider = new SubrangoRegistroItemProvider(this);
+		}
+
+		return subrangoRegistroItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1370,6 +1416,8 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 		if (campoRegistroItemProvider != null) campoRegistroItemProvider.dispose();
 		if (asignacionNormalItemProvider != null) asignacionNormalItemProvider.dispose();
 		if (asignacionComplejaItemProvider != null) asignacionComplejaItemProvider.dispose();
+		if (subrangoNumericoItemProvider != null) subrangoNumericoItemProvider.dispose();
+		if (subrangoRegistroItemProvider != null) subrangoRegistroItemProvider.dispose();
 	}
 
 }

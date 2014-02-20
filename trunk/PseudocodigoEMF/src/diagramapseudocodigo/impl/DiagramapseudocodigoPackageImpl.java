@@ -39,6 +39,8 @@ import diagramapseudocodigo.Si;
 import diagramapseudocodigo.Sino;
 import diagramapseudocodigo.Subproceso;
 import diagramapseudocodigo.Subrango;
+import diagramapseudocodigo.SubrangoNumerico;
+import diagramapseudocodigo.SubrangoRegistro;
 import diagramapseudocodigo.Tipo;
 import diagramapseudocodigo.TipoComplejo;
 import diagramapseudocodigo.TipoDefinido;
@@ -463,6 +465,20 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * @generated
 	 */
 	private EClass asignacionComplejaEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass subrangoNumericoEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass subrangoRegistroEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1679,24 +1695,6 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSubrango_Limite_inf() {
-		return (EAttribute)subrangoEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getSubrango_Limite_sup() {
-		return (EAttribute)subrangoEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getValorComplejo() {
 		return valorComplejoEClass;
 	}
@@ -1780,6 +1778,42 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 */
 	public EReference getAsignacionCompleja_Complejo() {
 		return (EReference)asignacionComplejaEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSubrangoNumerico() {
+		return subrangoNumericoEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSubrangoNumerico_Limite_inf() {
+		return (EAttribute)subrangoNumericoEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSubrangoNumerico_Limite_sup() {
+		return (EAttribute)subrangoNumericoEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSubrangoRegistro() {
+		return subrangoRegistroEClass;
 	}
 
 	/**
@@ -2076,8 +2110,6 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 
 		subrangoEClass = createEClass(SUBRANGO);
 		createEAttribute(subrangoEClass, SUBRANGO__NOMBRE);
-		createEAttribute(subrangoEClass, SUBRANGO__LIMITE_INF);
-		createEAttribute(subrangoEClass, SUBRANGO__LIMITE_SUP);
 
 		valorComplejoEClass = createEClass(VALOR_COMPLEJO);
 
@@ -2093,6 +2125,12 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 
 		asignacionComplejaEClass = createEClass(ASIGNACION_COMPLEJA);
 		createEReference(asignacionComplejaEClass, ASIGNACION_COMPLEJA__COMPLEJO);
+
+		subrangoNumericoEClass = createEClass(SUBRANGO_NUMERICO);
+		createEAttribute(subrangoNumericoEClass, SUBRANGO_NUMERICO__LIMITE_INF);
+		createEAttribute(subrangoNumericoEClass, SUBRANGO_NUMERICO__LIMITE_SUP);
+
+		subrangoRegistroEClass = createEClass(SUBRANGO_REGISTRO);
 
 		// Create enums
 		tipoVariableEEnum = createEEnum(TIPO_VARIABLE);
@@ -2170,6 +2208,8 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		valorRegistroEClass.getESuperTypes().add(this.getValorComplejo());
 		asignacionNormalEClass.getESuperTypes().add(this.getAsignacion());
 		asignacionComplejaEClass.getESuperTypes().add(this.getAsignacion());
+		subrangoNumericoEClass.getESuperTypes().add(this.getSubrango());
+		subrangoRegistroEClass.getESuperTypes().add(this.getSubrango());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(codigoEClass, Codigo.class, "Codigo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2348,8 +2388,6 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 
 		initEClass(subrangoEClass, Subrango.class, "Subrango", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSubrango_Nombre(), ecorePackage.getEString(), "nombre", null, 1, 1, Subrango.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSubrango_Limite_inf(), ecorePackage.getEInt(), "limite_inf", null, 1, 1, Subrango.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSubrango_Limite_sup(), ecorePackage.getEInt(), "limite_sup", null, 1, 1, Subrango.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(valorComplejoEClass, ValorComplejo.class, "ValorComplejo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2365,6 +2403,12 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 
 		initEClass(asignacionComplejaEClass, AsignacionCompleja.class, "AsignacionCompleja", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAsignacionCompleja_Complejo(), this.getValorComplejo(), null, "complejo", null, 1, 1, AsignacionCompleja.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(subrangoNumericoEClass, SubrangoNumerico.class, "SubrangoNumerico", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSubrangoNumerico_Limite_inf(), ecorePackage.getEInt(), "limite_inf", null, 1, 1, SubrangoNumerico.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSubrangoNumerico_Limite_sup(), ecorePackage.getEInt(), "limite_sup", null, 1, 1, SubrangoNumerico.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(subrangoRegistroEClass, SubrangoRegistro.class, "SubrangoRegistro", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(tipoVariableEEnum, TipoVariable.class, "TipoVariable");

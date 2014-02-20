@@ -912,6 +912,18 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class SubrangoElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Subrango");
+		private final RuleCall cSubrangoNumericoParserRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//Subrango:
+		//	SubrangoNumerico;
+		public ParserRule getRule() { return rule; }
+
+		//SubrangoNumerico
+		public RuleCall getSubrangoNumericoParserRuleCall() { return cSubrangoNumericoParserRuleCall; }
+	}
+
+	public class SubrangoNumericoElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SubrangoNumerico");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNombreAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNombreEStringParserRuleCall_0_0 = (RuleCall)cNombreAssignment_0.eContents().get(0);
@@ -922,7 +934,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cLimite_supAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cLimite_supEIntParserRuleCall_4_0 = (RuleCall)cLimite_supAssignment_4.eContents().get(0);
 		
-		//Subrango:
+		//SubrangoNumerico:
 		//	nombre=EString "=" limite_inf=EInt ".." limite_sup=EInt;
 		public ParserRule getRule() { return rule; }
 
@@ -2665,6 +2677,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private ArchivoElements pArchivo;
 	private EnumeradoElements pEnumerado;
 	private SubrangoElements pSubrango;
+	private SubrangoNumericoElements pSubrangoNumerico;
 	private InicioElements pInicio;
 	private EStringElements pEString;
 	private DeclaracionVariableElements pDeclaracionVariable;
@@ -2991,13 +3004,23 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Subrango:
-	//	nombre=EString "=" limite_inf=EInt ".." limite_sup=EInt;
+	//	SubrangoNumerico;
 	public SubrangoElements getSubrangoAccess() {
 		return (pSubrango != null) ? pSubrango : (pSubrango = new SubrangoElements());
 	}
 	
 	public ParserRule getSubrangoRule() {
 		return getSubrangoAccess().getRule();
+	}
+
+	//SubrangoNumerico:
+	//	nombre=EString "=" limite_inf=EInt ".." limite_sup=EInt;
+	public SubrangoNumericoElements getSubrangoNumericoAccess() {
+		return (pSubrangoNumerico != null) ? pSubrangoNumerico : (pSubrangoNumerico = new SubrangoNumericoElements());
+	}
+	
+	public ParserRule getSubrangoNumericoRule() {
+		return getSubrangoNumericoAccess().getRule();
 	}
 
 	//Inicio:

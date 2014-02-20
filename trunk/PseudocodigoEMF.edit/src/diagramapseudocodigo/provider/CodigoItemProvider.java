@@ -238,6 +238,16 @@ public class CodigoItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO,
 				 DiagramapseudocodigoFactory.eINSTANCE.createSubrango()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO,
+				 DiagramapseudocodigoFactory.eINSTANCE.createSubrangoNumerico()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO,
+				 DiagramapseudocodigoFactory.eINSTANCE.createSubrangoRegistro()));
 	}
 
 	/**

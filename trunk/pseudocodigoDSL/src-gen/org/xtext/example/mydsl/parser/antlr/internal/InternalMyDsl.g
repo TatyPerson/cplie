@@ -1753,14 +1753,44 @@ ruleSubrango returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
+
+    { 
+        newCompositeNode(grammarAccess.getSubrangoAccess().getSubrangoNumericoParserRuleCall()); 
+    }
+    this_SubrangoNumerico_0=ruleSubrangoNumerico
+    { 
+        $current = $this_SubrangoNumerico_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+;
+
+
+
+
+
+// Entry rule entryRuleSubrangoNumerico
+entryRuleSubrangoNumerico returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getSubrangoNumericoRule()); }
+	 iv_ruleSubrangoNumerico=ruleSubrangoNumerico 
+	 { $current=$iv_ruleSubrangoNumerico.current; } 
+	 EOF 
+;
+
+// Rule SubrangoNumerico
+ruleSubrangoNumerico returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSubrangoAccess().getNombreEStringParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getSubrangoNumericoAccess().getNombreEStringParserRuleCall_0_0()); 
 	    }
 		lv_nombre_0_0=ruleEString		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getSubrangoRule());
+	            $current = createModelElementForParent(grammarAccess.getSubrangoNumericoRule());
 	        }
        		set(
        			$current, 
@@ -1773,16 +1803,16 @@ ruleSubrango returns [EObject current=null]
 )
 )	otherlv_1='=' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getSubrangoAccess().getEqualsSignKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getSubrangoNumericoAccess().getEqualsSignKeyword_1());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSubrangoAccess().getLimite_infEIntParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getSubrangoNumericoAccess().getLimite_infEIntParserRuleCall_2_0()); 
 	    }
 		lv_limite_inf_2_0=ruleEInt		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getSubrangoRule());
+	            $current = createModelElementForParent(grammarAccess.getSubrangoNumericoRule());
 	        }
        		set(
        			$current, 
@@ -1795,16 +1825,16 @@ ruleSubrango returns [EObject current=null]
 )
 )	otherlv_3='..' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getSubrangoAccess().getFullStopFullStopKeyword_3());
+    	newLeafNode(otherlv_3, grammarAccess.getSubrangoNumericoAccess().getFullStopFullStopKeyword_3());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSubrangoAccess().getLimite_supEIntParserRuleCall_4_0()); 
+	        newCompositeNode(grammarAccess.getSubrangoNumericoAccess().getLimite_supEIntParserRuleCall_4_0()); 
 	    }
 		lv_limite_sup_4_0=ruleEInt		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getSubrangoRule());
+	            $current = createModelElementForParent(grammarAccess.getSubrangoNumericoRule());
 	        }
        		set(
        			$current, 
