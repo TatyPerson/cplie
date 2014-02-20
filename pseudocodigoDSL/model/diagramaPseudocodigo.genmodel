@@ -218,8 +218,6 @@
     </genClasses>
     <genClasses ecoreClass="diagramaPseudocodigo.ecore#//Subrango">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//Subrango/nombre"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//Subrango/limite_inf"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//Subrango/limite_sup"/>
     </genClasses>
     <genClasses ecoreClass="diagramaPseudocodigo.ecore#//ValorComplejo"/>
     <genClasses ecoreClass="diagramaPseudocodigo.ecore#//ValorRegistro">
@@ -235,5 +233,10 @@
     <genClasses ecoreClass="diagramaPseudocodigo.ecore#//AsignacionCompleja">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//AsignacionCompleja/complejo"/>
     </genClasses>
+    <genClasses ecoreClass="diagramaPseudocodigo.ecore#//SubrangoNumerico">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//SubrangoNumerico/limite_inf"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//SubrangoNumerico/limite_sup"/>
+    </genClasses>
+    <genClasses ecoreClass="diagramaPseudocodigo.ecore#//SubrangoRegistro"/>
   </genPackages>
 </genmodel:GenModel>

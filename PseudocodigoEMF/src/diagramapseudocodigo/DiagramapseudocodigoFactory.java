@@ -472,6 +472,24 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	AsignacionCompleja createAsignacionCompleja();
 
 	/**
+	 * Returns a new object of class '<em>Subrango Numerico</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Subrango Numerico</em>'.
+	 * @generated
+	 */
+	SubrangoNumerico createSubrangoNumerico();
+
+	/**
+	 * Returns a new object of class '<em>Subrango Registro</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Subrango Registro</em>'.
+	 * @generated
+	 */
+	SubrangoRegistro createSubrangoRegistro();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

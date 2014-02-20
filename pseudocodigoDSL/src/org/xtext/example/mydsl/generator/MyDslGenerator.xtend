@@ -70,6 +70,11 @@ class MyDslGenerator implements IGenerator {
 			prueba = myComplejo as Enumerado
 			prueba.toC
 		}
+		else if(myComplejo.eClass.name.equals("SubrangoNumerico")){
+			var SubrangoNumerico prueba = new SubrangoNumericoImpl
+			prueba = myComplejo as SubrangoNumerico
+			prueba.toC
+		}
 	}
 	
 	def toC(Tipo myTipo) {
@@ -119,16 +124,23 @@ class MyDslGenerator implements IGenerator {
 	'''
 	
 	def toC(Enumerado myEnumerado)'''
-		typedef enum {
-			«FOR myVariable:myEnumerado.valor»
-				«IF myVariable == myEnumerado.valor.get(myEnumerado.valor.size()-1)»
-					«myVariable.toC»	
-				«ELSE»
-					«myVariable.toC»,
-				«ENDIF»	
-			«ENDFOR»
-		} «myEnumerado.nombre»;
+		typedef enum {«FOR myVariable:myEnumerado.valor»«IF myVariable == myEnumerado.valor.get(myEnumerado.valor.size()-1)»«myVariable.toC»«ELSE»«myVariable.toC», «ENDIF»«ENDFOR»} «myEnumerado.nombre»;
 	'''
+	
+	def toC(SubrangoNumerico mySubrango) '''
+		typedef enum {«generaSubrango(mySubrango.limite_inf,mySubrango.limite_sup)»} «mySubrango.nombre»;
+		'''
+		
+	def generaSubrango(int limite_inf, int limite_sup) {
+		var concat = new String
+		var i = limite_inf
+		while(i < limite_sup) {
+			concat = concat + i + ", "
+			i = i+1
+		}
+		concat = concat + i;
+		return concat;
+	}
 	
 	def toC(Inicio myInicio)'''
 		int main(){

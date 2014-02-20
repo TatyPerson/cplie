@@ -452,6 +452,22 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DiagramapseudocodigoPackage.SUBRANGO_NUMERICO: {
+				SubrangoNumerico subrangoNumerico = (SubrangoNumerico)theEObject;
+				T result = caseSubrangoNumerico(subrangoNumerico);
+				if (result == null) result = caseSubrango(subrangoNumerico);
+				if (result == null) result = caseTipoComplejo(subrangoNumerico);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiagramapseudocodigoPackage.SUBRANGO_REGISTRO: {
+				SubrangoRegistro subrangoRegistro = (SubrangoRegistro)theEObject;
+				T result = caseSubrangoRegistro(subrangoRegistro);
+				if (result == null) result = caseSubrango(subrangoRegistro);
+				if (result == null) result = caseTipoComplejo(subrangoRegistro);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1278,6 +1294,36 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAsignacionCompleja(AsignacionCompleja object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Subrango Numerico</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Subrango Numerico</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSubrangoNumerico(SubrangoNumerico object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Subrango Registro</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Subrango Registro</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSubrangoRegistro(SubrangoRegistro object) {
 		return null;
 	}
 

@@ -4,7 +4,7 @@ package diagramapseudocodigo.provider;
 
 
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
-import diagramapseudocodigo.Subrango;
+import diagramapseudocodigo.SubrangoNumerico;
 
 import java.util.Collection;
 import java.util.List;
@@ -23,13 +23,13 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link diagramapseudocodigo.Subrango} object.
+ * This is the item provider adapter for a {@link diagramapseudocodigo.SubrangoNumerico} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SubrangoItemProvider
-	extends TipoComplejoItemProvider
+public class SubrangoNumericoItemProvider
+	extends SubrangoItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -42,7 +42,7 @@ public class SubrangoItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SubrangoItemProvider(AdapterFactory adapterFactory) {
+	public SubrangoNumericoItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -57,42 +57,65 @@ public class SubrangoItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNombrePropertyDescriptor(object);
+			addLimite_infPropertyDescriptor(object);
+			addLimite_supPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Nombre feature.
+	 * This adds a property descriptor for the Limite inf feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNombrePropertyDescriptor(Object object) {
+	protected void addLimite_infPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Subrango_nombre_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Subrango_nombre_feature", "_UI_Subrango_type"),
-				 DiagramapseudocodigoPackage.Literals.SUBRANGO__NOMBRE,
+				 getString("_UI_SubrangoNumerico_limite_inf_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SubrangoNumerico_limite_inf_feature", "_UI_SubrangoNumerico_type"),
+				 DiagramapseudocodigoPackage.Literals.SUBRANGO_NUMERICO__LIMITE_INF,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This returns Subrango.gif.
+	 * This adds a property descriptor for the Limite sup feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLimite_supPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SubrangoNumerico_limite_sup_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SubrangoNumerico_limite_sup_feature", "_UI_SubrangoNumerico_type"),
+				 DiagramapseudocodigoPackage.Literals.SUBRANGO_NUMERICO__LIMITE_SUP,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns SubrangoNumerico.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Subrango"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SubrangoNumerico"));
 	}
 
 	/**
@@ -103,10 +126,10 @@ public class SubrangoItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Subrango)object).getNombre();
+		String label = ((SubrangoNumerico)object).getNombre();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Subrango_type") :
-			getString("_UI_Subrango_type") + " " + label;
+			getString("_UI_SubrangoNumerico_type") :
+			getString("_UI_SubrangoNumerico_type") + " " + label;
 	}
 
 	/**
@@ -120,8 +143,9 @@ public class SubrangoItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Subrango.class)) {
-			case DiagramapseudocodigoPackage.SUBRANGO__NOMBRE:
+		switch (notification.getFeatureID(SubrangoNumerico.class)) {
+			case DiagramapseudocodigoPackage.SUBRANGO_NUMERICO__LIMITE_INF:
+			case DiagramapseudocodigoPackage.SUBRANGO_NUMERICO__LIMITE_SUP:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

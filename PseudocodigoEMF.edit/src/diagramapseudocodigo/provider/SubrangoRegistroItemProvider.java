@@ -3,8 +3,7 @@
 package diagramapseudocodigo.provider;
 
 
-import diagramapseudocodigo.DiagramapseudocodigoPackage;
-import diagramapseudocodigo.Subrango;
+import diagramapseudocodigo.SubrangoRegistro;
 
 import java.util.Collection;
 import java.util.List;
@@ -12,24 +11,21 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link diagramapseudocodigo.Subrango} object.
+ * This is the item provider adapter for a {@link diagramapseudocodigo.SubrangoRegistro} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SubrangoItemProvider
-	extends TipoComplejoItemProvider
+public class SubrangoRegistroItemProvider
+	extends SubrangoItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -42,7 +38,7 @@ public class SubrangoItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SubrangoItemProvider(AdapterFactory adapterFactory) {
+	public SubrangoRegistroItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -57,42 +53,19 @@ public class SubrangoItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNombrePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Nombre feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addNombrePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Subrango_nombre_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Subrango_nombre_feature", "_UI_Subrango_type"),
-				 DiagramapseudocodigoPackage.Literals.SUBRANGO__NOMBRE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns Subrango.gif.
+	 * This returns SubrangoRegistro.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Subrango"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SubrangoRegistro"));
 	}
 
 	/**
@@ -103,10 +76,10 @@ public class SubrangoItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Subrango)object).getNombre();
+		String label = ((SubrangoRegistro)object).getNombre();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Subrango_type") :
-			getString("_UI_Subrango_type") + " " + label;
+			getString("_UI_SubrangoRegistro_type") :
+			getString("_UI_SubrangoRegistro_type") + " " + label;
 	}
 
 	/**
@@ -119,12 +92,6 @@ public class SubrangoItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(Subrango.class)) {
-			case DiagramapseudocodigoPackage.SUBRANGO__NOMBRE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 

@@ -288,6 +288,14 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 				return createAsignacionComplejaAdapter();
 			}
 			@Override
+			public Adapter caseSubrangoNumerico(SubrangoNumerico object) {
+				return createSubrangoNumericoAdapter();
+			}
+			@Override
+			public Adapter caseSubrangoRegistro(SubrangoRegistro object) {
+				return createSubrangoRegistroAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -1074,6 +1082,34 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAsignacionComplejaAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.SubrangoNumerico <em>Subrango Numerico</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.SubrangoNumerico
+	 * @generated
+	 */
+	public Adapter createSubrangoNumericoAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.SubrangoRegistro <em>Subrango Registro</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.SubrangoRegistro
+	 * @generated
+	 */
+	public Adapter createSubrangoRegistroAdapter() {
 		return null;
 	}
 
