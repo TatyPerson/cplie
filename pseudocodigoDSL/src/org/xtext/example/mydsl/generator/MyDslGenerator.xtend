@@ -592,7 +592,7 @@ class MyDslGenerator implements IGenerator {
 	'''
 	
 	def toC(desde d)'''
-		for(«d.asignacion.toC» «d.asignacion.toC» <= «d.valor.toC»; «d.asignacion.toC»++){
+		for(«d.asignacion.toC» «d.asignacion.lvalue.toString» <= «d.valor.toC»; «d.asignacion.lvalue.toString»++){
 			«FOR sent:d.sentencias»
 				
 				«sent.toC»
