@@ -359,6 +359,12 @@ class MyDslGenerator implements IGenerator {
 		return myCampo.nombre_campo;
 	}
 	
+	def toC(ValorMatriz myValor) {
+		var concat = new String;
+		concat = myValor.nombre_matriz.toString + '[' + myValor.elemento_i.toString + '][' + myValor.elemento_j.toString + ']';
+		return concat;
+	}
+	
 	
 	def toC(valor myVal){
 		if(myVal.eClass.name.equals("NumeroEntero")){
@@ -418,6 +424,11 @@ class MyDslGenerator implements IGenerator {
 		else if(myVal.eClass.name.equals("ValorVector")) {
 			var ValorVector prueba = new ValorVectorImpl
 			prueba = myVal as ValorVector
+			prueba.toC
+		}
+		else if(myVal.eClass.name.equals("ValorMatriz")) {
+			var ValorMatriz prueba = new ValorMatrizImpl
+			prueba = myVal as ValorMatriz
 			prueba.toC
 		}
 	}

@@ -211,6 +211,11 @@ public class operando_izqItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.OPERANDO_IZQ__OPER_IZQ,
 				 DiagramapseudocodigoFactory.eINSTANCE.createValorVector()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.OPERANDO_IZQ__OPER_IZQ,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorMatriz()));
 	}
 
 	/**

@@ -240,6 +240,11 @@ public class VectorItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VECTOR__VALOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorMatriz()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.VECTOR__TIPO,
 				 DiagramapseudocodigoFactory.eINSTANCE.createTipo()));
 

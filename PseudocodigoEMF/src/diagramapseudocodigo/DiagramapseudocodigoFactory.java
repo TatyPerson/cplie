@@ -499,6 +499,15 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	ValorVector createValorVector();
 
 	/**
+	 * Returns a new object of class '<em>Valor Matriz</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Valor Matriz</em>'.
+	 * @generated
+	 */
+	ValorMatriz createValorMatriz();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
