@@ -188,7 +188,7 @@ class MyDslGenerator implements IGenerator {
 				total = total + p.tipo.tipoVariable + "* " + p.variable.nombre;
 			}
 			else {
-				total = total + p.tipo.tipoVariable + " " + p.variable.nombre;
+				total = total + p.tipo.tipoVariable + "* " + p.variable.nombre;
 			}
 			actual = actual + 1;
 		}
