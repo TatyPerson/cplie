@@ -405,6 +405,11 @@ class MyDslGenerator implements IGenerator {
 			prueba = myVal as unaria
 			prueba.toC
 		}
+		else if(myVal.eClass.name.equals("ValorRegistro")) {
+			var ValorComplejo prueba = new ValorComplejoImpl
+			prueba = myVal as ValorComplejo
+			prueba.toC
+		}
 	}
 	
 	def toC(NumeroEntero numero){
