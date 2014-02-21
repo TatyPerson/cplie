@@ -480,14 +480,22 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class ValorComplejoElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ValorComplejo");
-		private final RuleCall cValorRegistroParserRuleCall = (RuleCall)rule.eContents().get(1);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cValorRegistroParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cValorVectorParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//ValorComplejo:
-		//	ValorRegistro;
+		//	ValorRegistro | ValorVector;
 		public ParserRule getRule() { return rule; }
 
+		//ValorRegistro | ValorVector
+		public Alternatives getAlternatives() { return cAlternatives; }
+
 		//ValorRegistro
-		public RuleCall getValorRegistroParserRuleCall() { return cValorRegistroParserRuleCall; }
+		public RuleCall getValorRegistroParserRuleCall_0() { return cValorRegistroParserRuleCall_0; }
+
+		//ValorVector
+		public RuleCall getValorVectorParserRuleCall_1() { return cValorVectorParserRuleCall_1; }
 	}
 
 	public class ValorRegistroElements extends AbstractParserRuleElementFinder {
@@ -540,6 +548,42 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//CampoRegistro
 		public RuleCall getCampoCampoRegistroParserRuleCall_2_1_1_0() { return cCampoCampoRegistroParserRuleCall_2_1_1_0; }
+	}
+
+	public class ValorVectorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ValorVector");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNombre_vectorAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNombre_vectorEStringParserRuleCall_0_0 = (RuleCall)cNombre_vectorAssignment_0.eContents().get(0);
+		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cElementoAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cElementoEIntParserRuleCall_2_0 = (RuleCall)cElementoAssignment_2.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//ValorVector:
+		//	nombre_vector=EString "[" elemento=EInt "]";
+		public ParserRule getRule() { return rule; }
+
+		//nombre_vector=EString "[" elemento=EInt "]"
+		public Group getGroup() { return cGroup; }
+
+		//nombre_vector=EString
+		public Assignment getNombre_vectorAssignment_0() { return cNombre_vectorAssignment_0; }
+
+		//EString
+		public RuleCall getNombre_vectorEStringParserRuleCall_0_0() { return cNombre_vectorEStringParserRuleCall_0_0; }
+
+		//"["
+		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
+
+		//elemento=EInt
+		public Assignment getElementoAssignment_2() { return cElementoAssignment_2; }
+
+		//EInt
+		public RuleCall getElementoEIntParserRuleCall_2_0() { return cElementoEIntParserRuleCall_2_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
 	}
 
 	public class CampoRegistroElements extends AbstractParserRuleElementFinder {
@@ -2666,6 +2710,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private ValorElements pValor;
 	private ValorComplejoElements pValorComplejo;
 	private ValorRegistroElements pValorRegistro;
+	private ValorVectorElements pValorVector;
 	private CampoRegistroElements pCampoRegistro;
 	private TipoElements pTipo;
 	private TipoDefinidoElements pTipoDefinido;
@@ -2884,7 +2929,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ValorComplejo:
-	//	ValorRegistro;
+	//	ValorRegistro | ValorVector;
 	public ValorComplejoElements getValorComplejoAccess() {
 		return (pValorComplejo != null) ? pValorComplejo : (pValorComplejo = new ValorComplejoElements());
 	}
@@ -2901,6 +2946,16 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getValorRegistroRule() {
 		return getValorRegistroAccess().getRule();
+	}
+
+	//ValorVector:
+	//	nombre_vector=EString "[" elemento=EInt "]";
+	public ValorVectorElements getValorVectorAccess() {
+		return (pValorVector != null) ? pValorVector : (pValorVector = new ValorVectorElements());
+	}
+	
+	public ParserRule getValorVectorRule() {
+		return getValorVectorAccess().getRule();
 	}
 
 	//CampoRegistro:

@@ -1268,6 +1268,29 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.ValorVector} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ValorVectorItemProvider valorVectorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.ValorVector}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createValorVectorAdapter() {
+		if (valorVectorItemProvider == null) {
+			valorVectorItemProvider = new ValorVectorItemProvider(this);
+		}
+
+		return valorVectorItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1418,6 +1441,7 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 		if (asignacionComplejaItemProvider != null) asignacionComplejaItemProvider.dispose();
 		if (subrangoNumericoItemProvider != null) subrangoNumericoItemProvider.dispose();
 		if (subrangoRegistroItemProvider != null) subrangoRegistroItemProvider.dispose();
+		if (valorVectorItemProvider != null) valorVectorItemProvider.dispose();
 	}
 
 }

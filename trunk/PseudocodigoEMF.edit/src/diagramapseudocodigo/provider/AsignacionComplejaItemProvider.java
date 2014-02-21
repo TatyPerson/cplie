@@ -153,6 +153,11 @@ public class AsignacionComplejaItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO,
 				 DiagramapseudocodigoFactory.eINSTANCE.createValorRegistro()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorVector()));
 	}
 
 	/**

@@ -45,6 +45,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNombreInternaAccess().getAlternatives(), "rule__NombreInterna__Alternatives");
 					put(grammarAccess.getOperadorAccess().getAlternatives(), "rule__Operador__Alternatives");
 					put(grammarAccess.getValorAccess().getAlternatives(), "rule__Valor__Alternatives");
+					put(grammarAccess.getValorComplejoAccess().getAlternatives(), "rule__ValorComplejo__Alternatives");
 					put(grammarAccess.getTipoAccess().getAlternatives(), "rule__Tipo__Alternatives");
 					put(grammarAccess.getEStringAccess().getAlternatives(), "rule__EString__Alternatives");
 					put(grammarAccess.getAsignacionAccess().getAlternatives(), "rule__Asignacion__Alternatives");
@@ -66,6 +67,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getValorRegistroAccess().getGroup(), "rule__ValorRegistro__Group__0");
 					put(grammarAccess.getValorRegistroAccess().getGroup_2(), "rule__ValorRegistro__Group_2__0");
 					put(grammarAccess.getValorRegistroAccess().getGroup_2_1(), "rule__ValorRegistro__Group_2_1__0");
+					put(grammarAccess.getValorVectorAccess().getGroup(), "rule__ValorVector__Group__0");
 					put(grammarAccess.getConstantesAccess().getGroup(), "rule__Constantes__Group__0");
 					put(grammarAccess.getVectorAccess().getGroup(), "rule__Vector__Group__0");
 					put(grammarAccess.getMatrizAccess().getGroup(), "rule__Matriz__Group__0");
@@ -140,6 +142,8 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getValorRegistroAccess().getNombre_registroAssignment_0(), "rule__ValorRegistro__Nombre_registroAssignment_0");
 					put(grammarAccess.getValorRegistroAccess().getCampoAssignment_2_0(), "rule__ValorRegistro__CampoAssignment_2_0");
 					put(grammarAccess.getValorRegistroAccess().getCampoAssignment_2_1_1(), "rule__ValorRegistro__CampoAssignment_2_1_1");
+					put(grammarAccess.getValorVectorAccess().getNombre_vectorAssignment_0(), "rule__ValorVector__Nombre_vectorAssignment_0");
+					put(grammarAccess.getValorVectorAccess().getElementoAssignment_2(), "rule__ValorVector__ElementoAssignment_2");
 					put(grammarAccess.getCampoRegistroAccess().getNombre_campoAssignment(), "rule__CampoRegistro__Nombre_campoAssignment");
 					put(grammarAccess.getTipoDefinidoAccess().getTipoAssignment(), "rule__TipoDefinido__TipoAssignment");
 					put(grammarAccess.getTipoExistenteAccess().getTipoAssignment(), "rule__TipoExistente__TipoAssignment");

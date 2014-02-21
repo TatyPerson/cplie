@@ -53,10 +53,13 @@ valor returns valor:
 	LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter | Internas | unaria | ValorComplejo;
 
 ValorComplejo returns ValorComplejo:
-	ValorRegistro;
+	ValorRegistro | ValorVector;
 
 ValorRegistro returns ValorRegistro:
 	nombre_registro=EString '.' (campo+=CampoRegistro ('.' campo+=CampoRegistro)* );
+	
+ValorVector returns ValorVector:
+	nombre_vector=EString '['elemento=EInt']';
 	
 CampoRegistro returns CampoRegistro:
 	nombre_campo=EString;

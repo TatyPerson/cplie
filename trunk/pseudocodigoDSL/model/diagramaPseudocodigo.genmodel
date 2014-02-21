@@ -238,5 +238,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//SubrangoNumerico/limite_sup"/>
     </genClasses>
     <genClasses ecoreClass="diagramaPseudocodigo.ecore#//SubrangoRegistro"/>
+    <genClasses ecoreClass="diagramaPseudocodigo.ecore#//ValorVector">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//ValorVector/nombre_vector"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//ValorVector/campo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//ValorVector/elemento"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

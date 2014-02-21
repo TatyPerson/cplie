@@ -50,6 +50,7 @@ import diagramapseudocodigo.TipoVariable;
 import diagramapseudocodigo.ValorBooleano;
 import diagramapseudocodigo.ValorComplejo;
 import diagramapseudocodigo.ValorRegistro;
+import diagramapseudocodigo.ValorVector;
 import diagramapseudocodigo.Variable;
 import diagramapseudocodigo.VariableID;
 import diagramapseudocodigo.Vector;
@@ -479,6 +480,13 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * @generated
 	 */
 	private EClass subrangoRegistroEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass valorVectorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1821,6 +1829,42 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getValorVector() {
+		return valorVectorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getValorVector_Nombre_vector() {
+		return (EAttribute)valorVectorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getValorVector_Campo() {
+		return (EReference)valorVectorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getValorVector_Elemento() {
+		return (EAttribute)valorVectorEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getVector_Nombre() {
 		return (EAttribute)vectorEClass.getEStructuralFeatures().get(2);
 	}
@@ -2132,6 +2176,11 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 
 		subrangoRegistroEClass = createEClass(SUBRANGO_REGISTRO);
 
+		valorVectorEClass = createEClass(VALOR_VECTOR);
+		createEAttribute(valorVectorEClass, VALOR_VECTOR__NOMBRE_VECTOR);
+		createEReference(valorVectorEClass, VALOR_VECTOR__CAMPO);
+		createEAttribute(valorVectorEClass, VALOR_VECTOR__ELEMENTO);
+
 		// Create enums
 		tipoVariableEEnum = createEEnum(TIPO_VARIABLE);
 		signoEEnum = createEEnum(SIGNO);
@@ -2210,6 +2259,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		asignacionComplejaEClass.getESuperTypes().add(this.getAsignacion());
 		subrangoNumericoEClass.getESuperTypes().add(this.getSubrango());
 		subrangoRegistroEClass.getESuperTypes().add(this.getSubrango());
+		valorVectorEClass.getESuperTypes().add(this.getValorComplejo());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(codigoEClass, Codigo.class, "Codigo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2409,6 +2459,11 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		initEAttribute(getSubrangoNumerico_Limite_sup(), ecorePackage.getEInt(), "limite_sup", null, 1, 1, SubrangoNumerico.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(subrangoRegistroEClass, SubrangoRegistro.class, "SubrangoRegistro", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(valorVectorEClass, ValorVector.class, "ValorVector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getValorVector_Nombre_vector(), ecorePackage.getEString(), "nombre_vector", null, 1, 1, ValorVector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getValorVector_Campo(), this.getCampoRegistro(), null, "campo", null, 0, -1, ValorVector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getValorVector_Elemento(), ecorePackage.getEInt(), "elemento", null, 1, 1, ValorVector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(tipoVariableEEnum, TipoVariable.class, "TipoVariable");

@@ -1242,6 +1242,30 @@
     <element xmi:type="ecore:EClass" href="diagramaPseudocodigo.ecore#//SubrangoRegistro"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_iCkmQpoxEeO9mLJm1-Nazw" x="700" y="-5" width="133"/>
   </children>
+  <children xmi:type="notation:Node" xmi:id="_8kM-sJrdEeOKW6JSlg7Hyg" type="1001">
+    <children xmi:type="notation:Node" xmi:id="_8kQCAJrdEeOKW6JSlg7Hyg" type="4001"/>
+    <children xmi:type="notation:Node" xmi:id="_8kQCAZrdEeOKW6JSlg7Hyg" type="5001">
+      <children xmi:type="notation:Node" xmi:id="_MvI8QJreEeOKW6JSlg7Hyg" type="2001">
+        <element xmi:type="ecore:EAttribute" href="diagramaPseudocodigo.ecore#//ValorVector/nombre_vector"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_MvI8QZreEeOKW6JSlg7Hyg"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_8rRakJreEeOKW6JSlg7Hyg" type="2001">
+        <element xmi:type="ecore:EAttribute" href="diagramaPseudocodigo.ecore#//ValorVector/elemento"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_8rRakZreEeOKW6JSlg7Hyg"/>
+      </children>
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_8kQCAprdEeOKW6JSlg7Hyg"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_8kQCA5rdEeOKW6JSlg7Hyg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_8kQCBJrdEeOKW6JSlg7Hyg"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_8kQpEJrdEeOKW6JSlg7Hyg" type="5002">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_8kQpEZrdEeOKW6JSlg7Hyg"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_8kQpEprdEeOKW6JSlg7Hyg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_8kQpE5rdEeOKW6JSlg7Hyg"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_8kM-sZrdEeOKW6JSlg7Hyg" fontColor="4210752" fontName="Segoe UI" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+    <element xmi:type="ecore:EClass" href="diagramaPseudocodigo.ecore#//ValorVector"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8kM-sprdEeOKW6JSlg7Hyg" x="1160" y="655"/>
+  </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_QcvfAUj6EeK5F-3H-froxA"/>
   <element xmi:type="ecore:EPackage" href="diagramaPseudocodigo.ecore#/"/>
   <edges xmi:type="notation:Edge" xmi:id="_YrSNwEj6EeK5F-3H-froxA" type="3002" source="_Su5H0Ej6EeK5F-3H-froxA" target="_VjzfcEj6EeK5F-3H-froxA">
@@ -1986,5 +2010,19 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_0Em5IplREeONmus6kPA09g" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
     <element xmi:type="ecore:EReference" href="diagramaPseudocodigo.ecore#//AsignacionCompleja/complejo"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_0Em5I5lREeONmus6kPA09g" points="[7, 23, -95, -409]$[102, 317, 0, -115]$[102, 412, 0, -20]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_RfqsAJreEeOKW6JSlg7Hyg" type="3002" source="_8kM-sJrdEeOKW6JSlg7Hyg" target="_81YIAJlNEeONmus6kPA09g">
+    <children xmi:type="notation:Node" xmi:id="_RfshMJreEeOKW6JSlg7Hyg" type="4011">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_RfshMZreEeOKW6JSlg7Hyg" x="-40" y="-12"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_RftvUJreEeOKW6JSlg7Hyg" type="4012">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_RftvUZreEeOKW6JSlg7Hyg" x="10" y="10"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_RfqsAZreEeOKW6JSlg7Hyg" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_RfqsApreEeOKW6JSlg7Hyg" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
+    <element xmi:type="ecore:EReference" href="diagramaPseudocodigo.ecore#//ValorVector/campo"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_RfqsA5reEeOKW6JSlg7Hyg" points="[-21, 17, 94, -69]$[-113, 73, 2, -13]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_RfyAwJreEeOKW6JSlg7Hyg" id="(0.21764705882352942,0.6666666666666666)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Rfyn0JreEeOKW6JSlg7Hyg" id="(0.8218390804597702,0.27450980392156865)"/>
   </edges>
 </notation:Diagram>

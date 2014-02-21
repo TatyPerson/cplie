@@ -490,6 +490,15 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	SubrangoRegistro createSubrangoRegistro();
 
 	/**
+	 * Returns a new object of class '<em>Valor Vector</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Valor Vector</em>'.
+	 * @generated
+	 */
+	ValorVector createValorVector();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
