@@ -437,9 +437,9 @@ class MyDslGenerator implements IGenerator {
 	def toC(incremento inc)'''
 		«inc.nombre»«inc.ssigno»;
 		'''
-	def toC(unaria myUnaria)'''
-		!«myUnaria.variable.toC»
-	'''
+	def toC(unaria myUnaria) {
+		return "!" + myUnaria.variable.toC;
+	}
 	
 	def toC(Leer l)'''
 		cin >> «l.variable.nombre»;
