@@ -349,6 +349,11 @@ class MyDslGenerator implements IGenerator {
 		return concat;
 	}
 	
+	def toC(ValorVector myValor) {
+		var concat = new String;
+		concat = myValor.nombre_vector.toString + '[' + myValor.elemento.toString + ']';
+	}
+	
 	def toC(CampoRegistro myCampo) {
 		//Este método esta escrito con otra sintaxis diferente porque me generaba un salto de línea innecesario
 		return myCampo.nombre_campo;
@@ -406,8 +411,13 @@ class MyDslGenerator implements IGenerator {
 			prueba.toC
 		}
 		else if(myVal.eClass.name.equals("ValorRegistro")) {
-			var ValorComplejo prueba = new ValorComplejoImpl
-			prueba = myVal as ValorComplejo
+			var ValorRegistro prueba = new ValorRegistroImpl
+			prueba = myVal as ValorRegistro
+			prueba.toC
+		}
+		else if(myVal.eClass.name.equals("ValorVector")) {
+			var ValorVector prueba = new ValorVectorImpl
+			prueba = myVal as ValorVector
 			prueba.toC
 		}
 	}

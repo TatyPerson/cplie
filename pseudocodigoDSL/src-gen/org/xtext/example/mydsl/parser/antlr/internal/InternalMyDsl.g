@@ -971,9 +971,9 @@ ruleValorComplejo returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-
+(
     { 
-        newCompositeNode(grammarAccess.getValorComplejoAccess().getValorRegistroParserRuleCall()); 
+        newCompositeNode(grammarAccess.getValorComplejoAccess().getValorRegistroParserRuleCall_0()); 
     }
     this_ValorRegistro_0=ruleValorRegistro
     { 
@@ -981,6 +981,16 @@ ruleValorComplejo returns [EObject current=null]
         afterParserOrEnumRuleCall();
     }
 
+    |
+    { 
+        newCompositeNode(grammarAccess.getValorComplejoAccess().getValorVectorParserRuleCall_1()); 
+    }
+    this_ValorVector_1=ruleValorVector
+    { 
+        $current = $this_ValorVector_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
 ;
 
 
@@ -1064,6 +1074,71 @@ ruleValorRegistro returns [EObject current=null]
 
 )
 ))*))
+;
+
+
+
+
+
+// Entry rule entryRuleValorVector
+entryRuleValorVector returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getValorVectorRule()); }
+	 iv_ruleValorVector=ruleValorVector 
+	 { $current=$iv_ruleValorVector.current; } 
+	 EOF 
+;
+
+// Rule ValorVector
+ruleValorVector returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getValorVectorAccess().getNombre_vectorEStringParserRuleCall_0_0()); 
+	    }
+		lv_nombre_vector_0_0=ruleEString		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getValorVectorRule());
+	        }
+       		set(
+       			$current, 
+       			"nombre_vector",
+        		lv_nombre_vector_0_0, 
+        		"EString");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_1='[' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getValorVectorAccess().getLeftSquareBracketKeyword_1());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getValorVectorAccess().getElementoEIntParserRuleCall_2_0()); 
+	    }
+		lv_elemento_2_0=ruleEInt		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getValorVectorRule());
+	        }
+       		set(
+       			$current, 
+       			"elemento",
+        		lv_elemento_2_0, 
+        		"EInt");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_3=']' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getValorVectorAccess().getRightSquareBracketKeyword_3());
+    }
+)
 ;
 
 

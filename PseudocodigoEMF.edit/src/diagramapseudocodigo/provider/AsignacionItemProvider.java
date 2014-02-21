@@ -231,6 +231,11 @@ public class AsignacionItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.ASIGNACION__OPERADOR,
 				 DiagramapseudocodigoFactory.eINSTANCE.createValorRegistro()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.ASIGNACION__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorVector()));
 	}
 
 }

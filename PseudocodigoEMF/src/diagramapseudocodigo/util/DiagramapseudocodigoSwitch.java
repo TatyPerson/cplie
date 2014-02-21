@@ -468,6 +468,16 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DiagramapseudocodigoPackage.VALOR_VECTOR: {
+				ValorVector valorVector = (ValorVector)theEObject;
+				T result = caseValorVector(valorVector);
+				if (result == null) result = caseValorComplejo(valorVector);
+				if (result == null) result = caseOperador(valorVector);
+				if (result == null) result = caseSentencias(valorVector);
+				if (result == null) result = casevalor(valorVector);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1324,6 +1334,21 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSubrangoRegistro(SubrangoRegistro object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Valor Vector</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Valor Vector</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseValorVector(ValorVector object) {
 		return null;
 	}
 

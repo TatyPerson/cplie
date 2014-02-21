@@ -2625,6 +2625,61 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int SUBRANGO_REGISTRO_OPERATION_COUNT = SUBRANGO_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.ValorVectorImpl <em>Valor Vector</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.ValorVectorImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getValorVector()
+	 * @generated
+	 */
+	int VALOR_VECTOR = 57;
+
+	/**
+	 * The feature id for the '<em><b>Nombre vector</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALOR_VECTOR__NOMBRE_VECTOR = VALOR_COMPLEJO_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Campo</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALOR_VECTOR__CAMPO = VALOR_COMPLEJO_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Elemento</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALOR_VECTOR__ELEMENTO = VALOR_COMPLEJO_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Valor Vector</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALOR_VECTOR_FEATURE_COUNT = VALOR_COMPLEJO_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Valor Vector</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALOR_VECTOR_OPERATION_COUNT = VALOR_COMPLEJO_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoVariable <em>Tipo Variable</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2632,7 +2687,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoVariable()
 	 * @generated
 	 */
-	int TIPO_VARIABLE = 57;
+	int TIPO_VARIABLE = 58;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.signo <em>signo</em>}' enum.
@@ -2642,7 +2697,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getsigno()
 	 * @generated
 	 */
-	int SIGNO = 58;
+	int SIGNO = 59;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.booleano <em>booleano</em>}' enum.
@@ -2652,7 +2707,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getbooleano()
 	 * @generated
 	 */
-	int BOOLEANO = 59;
+	int BOOLEANO = 60;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.inc <em>inc</em>}' enum.
@@ -2662,7 +2717,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getinc()
 	 * @generated
 	 */
-	int INC = 60;
+	int INC = 61;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoPaso <em>Tipo Paso</em>}' enum.
@@ -2672,7 +2727,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoPaso()
 	 * @generated
 	 */
-	int TIPO_PASO = 61;
+	int TIPO_PASO = 62;
 
 
 	/**
@@ -2683,7 +2738,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getNombreInterna()
 	 * @generated
 	 */
-	int NOMBRE_INTERNA = 62;
+	int NOMBRE_INTERNA = 63;
 
 
 	/**
@@ -4137,6 +4192,49 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EClass getSubrangoRegistro();
 
 	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.ValorVector <em>Valor Vector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Valor Vector</em>'.
+	 * @see diagramapseudocodigo.ValorVector
+	 * @generated
+	 */
+	EClass getValorVector();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.ValorVector#getNombre_vector <em>Nombre vector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Nombre vector</em>'.
+	 * @see diagramapseudocodigo.ValorVector#getNombre_vector()
+	 * @see #getValorVector()
+	 * @generated
+	 */
+	EAttribute getValorVector_Nombre_vector();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.ValorVector#getCampo <em>Campo</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Campo</em>'.
+	 * @see diagramapseudocodigo.ValorVector#getCampo()
+	 * @see #getValorVector()
+	 * @generated
+	 */
+	EReference getValorVector_Campo();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.ValorVector#getElemento <em>Elemento</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Elemento</em>'.
+	 * @see diagramapseudocodigo.ValorVector#getElemento()
+	 * @see #getValorVector()
+	 * @generated
+	 */
+	EAttribute getValorVector_Elemento();
+
+	/**
 	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Vector#getNombre <em>Nombre</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5471,6 +5569,40 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EClass SUBRANGO_REGISTRO = eINSTANCE.getSubrangoRegistro();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.ValorVectorImpl <em>Valor Vector</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.ValorVectorImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getValorVector()
+		 * @generated
+		 */
+		EClass VALOR_VECTOR = eINSTANCE.getValorVector();
+
+		/**
+		 * The meta object literal for the '<em><b>Nombre vector</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VALOR_VECTOR__NOMBRE_VECTOR = eINSTANCE.getValorVector_Nombre_vector();
+
+		/**
+		 * The meta object literal for the '<em><b>Campo</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALOR_VECTOR__CAMPO = eINSTANCE.getValorVector_Campo();
+
+		/**
+		 * The meta object literal for the '<em><b>Elemento</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VALOR_VECTOR__ELEMENTO = eINSTANCE.getValorVector_Elemento();
 
 		/**
 		 * The meta object literal for the '<em><b>Nombre</b></em>' attribute feature.

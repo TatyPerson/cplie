@@ -236,6 +236,11 @@ public class unariaItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.UNARIA__VARIABLE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createValorRegistro()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.UNARIA__VARIABLE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorVector()));
 	}
 
 }

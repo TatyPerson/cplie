@@ -109,6 +109,7 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 			case DiagramapseudocodigoPackage.ASIGNACION_COMPLEJA: return createAsignacionCompleja();
 			case DiagramapseudocodigoPackage.SUBRANGO_NUMERICO: return createSubrangoNumerico();
 			case DiagramapseudocodigoPackage.SUBRANGO_REGISTRO: return createSubrangoRegistro();
+			case DiagramapseudocodigoPackage.VALOR_VECTOR: return createValorVector();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -682,6 +683,16 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	public SubrangoRegistro createSubrangoRegistro() {
 		SubrangoRegistroImpl subrangoRegistro = new SubrangoRegistroImpl();
 		return subrangoRegistro;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ValorVector createValorVector() {
+		ValorVectorImpl valorVector = new ValorVectorImpl();
+		return valorVector;
 	}
 
 	/**
