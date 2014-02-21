@@ -17,7 +17,7 @@ import com.google.common.collect.Lists;
 
 public class MyDslProjectCreator extends org.eclipse.xtext.ui.wizard.AbstractPluginProjectCreator {
 
-	protected static final String DSL_GENERATOR_PROJECT_NAME = "pseudocodigoDSL.generator";
+	protected static final String DSL_GENERATOR_PROJECT_NAME = "pseudocodigoDSL";
 
 	protected static final String SRC_ROOT = "src";
 	protected static final String SRC_GEN_ROOT = "src-gen";
