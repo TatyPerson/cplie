@@ -2680,6 +2680,61 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int VALOR_VECTOR_OPERATION_COUNT = VALOR_COMPLEJO_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.ValorMatrizImpl <em>Valor Matriz</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.ValorMatrizImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getValorMatriz()
+	 * @generated
+	 */
+	int VALOR_MATRIZ = 58;
+
+	/**
+	 * The feature id for the '<em><b>Nombre matriz</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALOR_MATRIZ__NOMBRE_MATRIZ = VALOR_COMPLEJO_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Elemento i</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALOR_MATRIZ__ELEMENTO_I = VALOR_COMPLEJO_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Elemento j</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALOR_MATRIZ__ELEMENTO_J = VALOR_COMPLEJO_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Valor Matriz</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALOR_MATRIZ_FEATURE_COUNT = VALOR_COMPLEJO_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Valor Matriz</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALOR_MATRIZ_OPERATION_COUNT = VALOR_COMPLEJO_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoVariable <em>Tipo Variable</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2687,7 +2742,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoVariable()
 	 * @generated
 	 */
-	int TIPO_VARIABLE = 58;
+	int TIPO_VARIABLE = 59;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.signo <em>signo</em>}' enum.
@@ -2697,7 +2752,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getsigno()
 	 * @generated
 	 */
-	int SIGNO = 59;
+	int SIGNO = 60;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.booleano <em>booleano</em>}' enum.
@@ -2707,7 +2762,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getbooleano()
 	 * @generated
 	 */
-	int BOOLEANO = 60;
+	int BOOLEANO = 61;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.inc <em>inc</em>}' enum.
@@ -2717,7 +2772,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getinc()
 	 * @generated
 	 */
-	int INC = 61;
+	int INC = 62;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoPaso <em>Tipo Paso</em>}' enum.
@@ -2727,7 +2782,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoPaso()
 	 * @generated
 	 */
-	int TIPO_PASO = 62;
+	int TIPO_PASO = 63;
 
 
 	/**
@@ -2738,7 +2793,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getNombreInterna()
 	 * @generated
 	 */
-	int NOMBRE_INTERNA = 63;
+	int NOMBRE_INTERNA = 64;
 
 
 	/**
@@ -4235,6 +4290,49 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EAttribute getValorVector_Elemento();
 
 	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.ValorMatriz <em>Valor Matriz</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Valor Matriz</em>'.
+	 * @see diagramapseudocodigo.ValorMatriz
+	 * @generated
+	 */
+	EClass getValorMatriz();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.ValorMatriz#getNombre_matriz <em>Nombre matriz</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Nombre matriz</em>'.
+	 * @see diagramapseudocodigo.ValorMatriz#getNombre_matriz()
+	 * @see #getValorMatriz()
+	 * @generated
+	 */
+	EAttribute getValorMatriz_Nombre_matriz();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.ValorMatriz#getElemento_i <em>Elemento i</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Elemento i</em>'.
+	 * @see diagramapseudocodigo.ValorMatriz#getElemento_i()
+	 * @see #getValorMatriz()
+	 * @generated
+	 */
+	EAttribute getValorMatriz_Elemento_i();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.ValorMatriz#getElemento_j <em>Elemento j</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Elemento j</em>'.
+	 * @see diagramapseudocodigo.ValorMatriz#getElemento_j()
+	 * @see #getValorMatriz()
+	 * @generated
+	 */
+	EAttribute getValorMatriz_Elemento_j();
+
+	/**
 	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Vector#getNombre <em>Nombre</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5603,6 +5701,40 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute VALOR_VECTOR__ELEMENTO = eINSTANCE.getValorVector_Elemento();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.ValorMatrizImpl <em>Valor Matriz</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.ValorMatrizImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getValorMatriz()
+		 * @generated
+		 */
+		EClass VALOR_MATRIZ = eINSTANCE.getValorMatriz();
+
+		/**
+		 * The meta object literal for the '<em><b>Nombre matriz</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VALOR_MATRIZ__NOMBRE_MATRIZ = eINSTANCE.getValorMatriz_Nombre_matriz();
+
+		/**
+		 * The meta object literal for the '<em><b>Elemento i</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VALOR_MATRIZ__ELEMENTO_I = eINSTANCE.getValorMatriz_Elemento_i();
+
+		/**
+		 * The meta object literal for the '<em><b>Elemento j</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VALOR_MATRIZ__ELEMENTO_J = eINSTANCE.getValorMatriz_Elemento_j();
 
 		/**
 		 * The meta object literal for the '<em><b>Nombre</b></em>' attribute feature.

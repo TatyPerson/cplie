@@ -1266,6 +1266,34 @@
     <element xmi:type="ecore:EClass" href="diagramaPseudocodigo.ecore#//ValorVector"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8kM-sprdEeOKW6JSlg7Hyg" x="1160" y="655"/>
   </children>
+  <children xmi:type="notation:Node" xmi:id="_u4jfUJrjEeOKW6JSlg7Hyg" type="1001">
+    <children xmi:type="notation:Node" xmi:id="_u4ktcJrjEeOKW6JSlg7Hyg" type="4001"/>
+    <children xmi:type="notation:Node" xmi:id="_u4ktcZrjEeOKW6JSlg7Hyg" type="5001">
+      <children xmi:type="notation:Node" xmi:id="_dGRUAJrkEeOKW6JSlg7Hyg" type="2001">
+        <element xmi:type="ecore:EAttribute" href="diagramaPseudocodigo.ecore#//ValorMatriz/nombre_matriz"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_dGRUAZrkEeOKW6JSlg7Hyg"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_1XIIcJrnEeOKW6JSlg7Hyg" type="2001">
+        <element xmi:type="ecore:EAttribute" href="diagramaPseudocodigo.ecore#//ValorMatriz/elemento_i"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_1XIIcZrnEeOKW6JSlg7Hyg"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_4r4dwJrnEeOKW6JSlg7Hyg" type="2001">
+        <element xmi:type="ecore:EAttribute" href="diagramaPseudocodigo.ecore#//ValorMatriz/elemento_j"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_4r4dwZrnEeOKW6JSlg7Hyg"/>
+      </children>
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_u4ktcprjEeOKW6JSlg7Hyg"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_u4ktc5rjEeOKW6JSlg7Hyg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_u4ktdJrjEeOKW6JSlg7Hyg"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_u4lUgJrjEeOKW6JSlg7Hyg" type="5002">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_u4lUgZrjEeOKW6JSlg7Hyg"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_u4lUgprjEeOKW6JSlg7Hyg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_u4lUg5rjEeOKW6JSlg7Hyg"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_u4jfUZrjEeOKW6JSlg7Hyg" fontColor="4210752" fontName="Segoe UI" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+    <element xmi:type="ecore:EClass" href="diagramaPseudocodigo.ecore#//ValorMatriz"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_u4jfUprjEeOKW6JSlg7Hyg" x="1365" y="655"/>
+  </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_QcvfAUj6EeK5F-3H-froxA"/>
   <element xmi:type="ecore:EPackage" href="diagramaPseudocodigo.ecore#/"/>
   <edges xmi:type="notation:Edge" xmi:id="_YrSNwEj6EeK5F-3H-froxA" type="3002" source="_Su5H0Ej6EeK5F-3H-froxA" target="_VjzfcEj6EeK5F-3H-froxA">

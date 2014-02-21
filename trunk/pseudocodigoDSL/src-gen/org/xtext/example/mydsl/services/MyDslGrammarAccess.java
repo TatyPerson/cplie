@@ -483,12 +483,13 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cValorRegistroParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cValorVectorParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cValorMatrizParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//ValorComplejo:
-		//	ValorRegistro | ValorVector;
+		//	ValorRegistro | ValorVector | ValorMatriz;
 		public ParserRule getRule() { return rule; }
 
-		//ValorRegistro | ValorVector
+		//ValorRegistro | ValorVector | ValorMatriz
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ValorRegistro
@@ -496,6 +497,61 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//ValorVector
 		public RuleCall getValorVectorParserRuleCall_1() { return cValorVectorParserRuleCall_1; }
+
+		//ValorMatriz
+		public RuleCall getValorMatrizParserRuleCall_2() { return cValorMatrizParserRuleCall_2; }
+	}
+
+	public class ValorMatrizElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ValorMatriz");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNombre_matrizAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNombre_matrizEStringParserRuleCall_0_0 = (RuleCall)cNombre_matrizAssignment_0.eContents().get(0);
+		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cElemento_iAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cElemento_iEIntParserRuleCall_2_0 = (RuleCall)cElemento_iAssignment_2.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cLeftSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cElemento_jAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cElemento_jEIntParserRuleCall_5_0 = (RuleCall)cElemento_jAssignment_5.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		
+		//ValorMatriz:
+		//	nombre_matriz=EString "[" elemento_i=EInt "]" "[" elemento_j=EInt "]";
+		public ParserRule getRule() { return rule; }
+
+		//nombre_matriz=EString "[" elemento_i=EInt "]" "[" elemento_j=EInt "]"
+		public Group getGroup() { return cGroup; }
+
+		//nombre_matriz=EString
+		public Assignment getNombre_matrizAssignment_0() { return cNombre_matrizAssignment_0; }
+
+		//EString
+		public RuleCall getNombre_matrizEStringParserRuleCall_0_0() { return cNombre_matrizEStringParserRuleCall_0_0; }
+
+		//"["
+		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
+
+		//elemento_i=EInt
+		public Assignment getElemento_iAssignment_2() { return cElemento_iAssignment_2; }
+
+		//EInt
+		public RuleCall getElemento_iEIntParserRuleCall_2_0() { return cElemento_iEIntParserRuleCall_2_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
+
+		//"["
+		public Keyword getLeftSquareBracketKeyword_4() { return cLeftSquareBracketKeyword_4; }
+
+		//elemento_j=EInt
+		public Assignment getElemento_jAssignment_5() { return cElemento_jAssignment_5; }
+
+		//EInt
+		public RuleCall getElemento_jEIntParserRuleCall_5_0() { return cElemento_jEIntParserRuleCall_5_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_6() { return cRightSquareBracketKeyword_6; }
 	}
 
 	public class ValorRegistroElements extends AbstractParserRuleElementFinder {
@@ -559,12 +615,16 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cElementoAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cElementoEIntParserRuleCall_2_0 = (RuleCall)cElementoAssignment_2.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cFullStopKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cCampoAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cCampoCampoRegistroParserRuleCall_4_1_0 = (RuleCall)cCampoAssignment_4_1.eContents().get(0);
 		
 		//ValorVector:
-		//	nombre_vector=EString "[" elemento=EInt "]";
+		//	nombre_vector=EString "[" elemento=EInt "]" ("." campo+=CampoRegistro)?;
 		public ParserRule getRule() { return rule; }
 
-		//nombre_vector=EString "[" elemento=EInt "]"
+		//nombre_vector=EString "[" elemento=EInt "]" ("." campo+=CampoRegistro)?
 		public Group getGroup() { return cGroup; }
 
 		//nombre_vector=EString
@@ -584,6 +644,18 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"]"
 		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
+
+		//("." campo+=CampoRegistro)?
+		public Group getGroup_4() { return cGroup_4; }
+
+		//"."
+		public Keyword getFullStopKeyword_4_0() { return cFullStopKeyword_4_0; }
+
+		//campo+=CampoRegistro
+		public Assignment getCampoAssignment_4_1() { return cCampoAssignment_4_1; }
+
+		//CampoRegistro
+		public RuleCall getCampoCampoRegistroParserRuleCall_4_1_0() { return cCampoCampoRegistroParserRuleCall_4_1_0; }
 	}
 
 	public class CampoRegistroElements extends AbstractParserRuleElementFinder {
@@ -2709,6 +2781,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private CaracterElements pCaracter;
 	private ValorElements pValor;
 	private ValorComplejoElements pValorComplejo;
+	private ValorMatrizElements pValorMatriz;
 	private ValorRegistroElements pValorRegistro;
 	private ValorVectorElements pValorVector;
 	private CampoRegistroElements pCampoRegistro;
@@ -2929,13 +3002,23 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ValorComplejo:
-	//	ValorRegistro | ValorVector;
+	//	ValorRegistro | ValorVector | ValorMatriz;
 	public ValorComplejoElements getValorComplejoAccess() {
 		return (pValorComplejo != null) ? pValorComplejo : (pValorComplejo = new ValorComplejoElements());
 	}
 	
 	public ParserRule getValorComplejoRule() {
 		return getValorComplejoAccess().getRule();
+	}
+
+	//ValorMatriz:
+	//	nombre_matriz=EString "[" elemento_i=EInt "]" "[" elemento_j=EInt "]";
+	public ValorMatrizElements getValorMatrizAccess() {
+		return (pValorMatriz != null) ? pValorMatriz : (pValorMatriz = new ValorMatrizElements());
+	}
+	
+	public ParserRule getValorMatrizRule() {
+		return getValorMatrizAccess().getRule();
 	}
 
 	//ValorRegistro:
@@ -2949,7 +3032,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ValorVector:
-	//	nombre_vector=EString "[" elemento=EInt "]";
+	//	nombre_vector=EString "[" elemento=EInt "]" ("." campo+=CampoRegistro)?;
 	public ValorVectorElements getValorVectorAccess() {
 		return (pValorVector != null) ? pValorVector : (pValorVector = new ValorVectorElements());
 	}

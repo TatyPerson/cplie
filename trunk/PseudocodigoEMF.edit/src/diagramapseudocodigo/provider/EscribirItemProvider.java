@@ -188,6 +188,11 @@ public class EscribirItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.ESCRIBIR__OPERADOR,
 				 DiagramapseudocodigoFactory.eINSTANCE.createValorVector()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.ESCRIBIR__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorMatriz()));
 	}
 
 }

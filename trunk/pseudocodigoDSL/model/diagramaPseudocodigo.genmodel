@@ -243,5 +243,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference diagramaPseudocodigo.ecore#//ValorVector/campo"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//ValorVector/elemento"/>
     </genClasses>
+    <genClasses ecoreClass="diagramaPseudocodigo.ecore#//ValorMatriz">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//ValorMatriz/nombre_matriz"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -1291,6 +1291,29 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.ValorMatriz} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ValorMatrizItemProvider valorMatrizItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.ValorMatriz}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createValorMatrizAdapter() {
+		if (valorMatrizItemProvider == null) {
+			valorMatrizItemProvider = new ValorMatrizItemProvider(this);
+		}
+
+		return valorMatrizItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1442,6 +1465,7 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 		if (subrangoNumericoItemProvider != null) subrangoNumericoItemProvider.dispose();
 		if (subrangoRegistroItemProvider != null) subrangoRegistroItemProvider.dispose();
 		if (valorVectorItemProvider != null) valorVectorItemProvider.dispose();
+		if (valorMatrizItemProvider != null) valorMatrizItemProvider.dispose();
 	}
 
 }

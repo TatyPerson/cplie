@@ -49,6 +49,7 @@ import diagramapseudocodigo.TipoPaso;
 import diagramapseudocodigo.TipoVariable;
 import diagramapseudocodigo.ValorBooleano;
 import diagramapseudocodigo.ValorComplejo;
+import diagramapseudocodigo.ValorMatriz;
 import diagramapseudocodigo.ValorRegistro;
 import diagramapseudocodigo.ValorVector;
 import diagramapseudocodigo.Variable;
@@ -487,6 +488,13 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * @generated
 	 */
 	private EClass valorVectorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass valorMatrizEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1865,6 +1873,42 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getValorMatriz() {
+		return valorMatrizEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getValorMatriz_Nombre_matriz() {
+		return (EAttribute)valorMatrizEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getValorMatriz_Elemento_i() {
+		return (EAttribute)valorMatrizEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getValorMatriz_Elemento_j() {
+		return (EAttribute)valorMatrizEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getVector_Nombre() {
 		return (EAttribute)vectorEClass.getEStructuralFeatures().get(2);
 	}
@@ -2181,6 +2225,11 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		createEReference(valorVectorEClass, VALOR_VECTOR__CAMPO);
 		createEAttribute(valorVectorEClass, VALOR_VECTOR__ELEMENTO);
 
+		valorMatrizEClass = createEClass(VALOR_MATRIZ);
+		createEAttribute(valorMatrizEClass, VALOR_MATRIZ__NOMBRE_MATRIZ);
+		createEAttribute(valorMatrizEClass, VALOR_MATRIZ__ELEMENTO_I);
+		createEAttribute(valorMatrizEClass, VALOR_MATRIZ__ELEMENTO_J);
+
 		// Create enums
 		tipoVariableEEnum = createEEnum(TIPO_VARIABLE);
 		signoEEnum = createEEnum(SIGNO);
@@ -2260,6 +2309,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		subrangoNumericoEClass.getESuperTypes().add(this.getSubrango());
 		subrangoRegistroEClass.getESuperTypes().add(this.getSubrango());
 		valorVectorEClass.getESuperTypes().add(this.getValorComplejo());
+		valorMatrizEClass.getESuperTypes().add(this.getValorComplejo());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(codigoEClass, Codigo.class, "Codigo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2464,6 +2514,11 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		initEAttribute(getValorVector_Nombre_vector(), ecorePackage.getEString(), "nombre_vector", null, 1, 1, ValorVector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getValorVector_Campo(), this.getCampoRegistro(), null, "campo", null, 0, -1, ValorVector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getValorVector_Elemento(), ecorePackage.getEInt(), "elemento", null, 1, 1, ValorVector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(valorMatrizEClass, ValorMatriz.class, "ValorMatriz", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getValorMatriz_Nombre_matriz(), ecorePackage.getEString(), "nombre_matriz", null, 1, 1, ValorMatriz.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getValorMatriz_Elemento_i(), ecorePackage.getEInt(), "elemento_i", null, 1, 1, ValorMatriz.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getValorMatriz_Elemento_j(), ecorePackage.getEInt(), "elemento_j", null, 1, 1, ValorMatriz.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(tipoVariableEEnum, TipoVariable.class, "TipoVariable");
