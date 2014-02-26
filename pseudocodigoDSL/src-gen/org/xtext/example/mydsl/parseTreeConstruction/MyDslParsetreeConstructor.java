@@ -5923,11 +5923,11 @@ protected class Inicio_Fin_inicioKeyword_5 extends KeywordToken  {
 /************ begin Rule DeclaracionVariable ****************
  *
  * DeclaracionVariable:
- * 	tipo=TipoVariable+ ":" tieneIDs+=Variable ("," tieneIDs+=Variable)*;
+ * 	tipo=TipoVariable+ ":" variable+=Variable ("," variable+=Variable)*;
  *
  **/
 
-// tipo=TipoVariable+ ":" tieneIDs+=Variable ("," tieneIDs+=Variable)*
+// tipo=TipoVariable+ ":" variable+=Variable ("," variable+=Variable)*
 protected class DeclaracionVariable_Group extends GroupToken {
 	
 	public DeclaracionVariable_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5943,7 +5943,7 @@ protected class DeclaracionVariable_Group extends GroupToken {
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
 			case 0: return new DeclaracionVariable_Group_3(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new DeclaracionVariable_TieneIDsAssignment_2(lastRuleCallOrigin, this, 1, inst);
+			case 1: return new DeclaracionVariable_VariableAssignment_2(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
@@ -6013,16 +6013,16 @@ protected class DeclaracionVariable_ColonKeyword_1 extends KeywordToken  {
 
 }
 
-// tieneIDs+=Variable
-protected class DeclaracionVariable_TieneIDsAssignment_2 extends AssignmentToken  {
+// variable+=Variable
+protected class DeclaracionVariable_VariableAssignment_2 extends AssignmentToken  {
 	
-	public DeclaracionVariable_TieneIDsAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public DeclaracionVariable_VariableAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getDeclaracionVariableAccess().getTieneIDsAssignment_2();
+		return grammarAccess.getDeclaracionVariableAccess().getVariableAssignment_2();
 	}
 
     @Override
@@ -6035,13 +6035,13 @@ protected class DeclaracionVariable_TieneIDsAssignment_2 extends AssignmentToken
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("tieneIDs",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("tieneIDs");
+		if((value = eObjectConsumer.getConsumable("variable",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("variable");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getVariableRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getDeclaracionVariableAccess().getTieneIDsVariableParserRuleCall_2_0(); 
+				element = grammarAccess.getDeclaracionVariableAccess().getVariableVariableParserRuleCall_2_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -6059,7 +6059,7 @@ protected class DeclaracionVariable_TieneIDsAssignment_2 extends AssignmentToken
 	}	
 }
 
-// ("," tieneIDs+=Variable)*
+// ("," variable+=Variable)*
 protected class DeclaracionVariable_Group_3 extends GroupToken {
 	
 	public DeclaracionVariable_Group_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -6074,7 +6074,7 @@ protected class DeclaracionVariable_Group_3 extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new DeclaracionVariable_TieneIDsAssignment_3_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new DeclaracionVariable_VariableAssignment_3_1(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -6097,23 +6097,23 @@ protected class DeclaracionVariable_CommaKeyword_3_0 extends KeywordToken  {
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
 			case 0: return new DeclaracionVariable_Group_3(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new DeclaracionVariable_TieneIDsAssignment_2(lastRuleCallOrigin, this, 1, inst);
+			case 1: return new DeclaracionVariable_VariableAssignment_2(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
 
 }
 
-// tieneIDs+=Variable
-protected class DeclaracionVariable_TieneIDsAssignment_3_1 extends AssignmentToken  {
+// variable+=Variable
+protected class DeclaracionVariable_VariableAssignment_3_1 extends AssignmentToken  {
 	
-	public DeclaracionVariable_TieneIDsAssignment_3_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public DeclaracionVariable_VariableAssignment_3_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getDeclaracionVariableAccess().getTieneIDsAssignment_3_1();
+		return grammarAccess.getDeclaracionVariableAccess().getVariableAssignment_3_1();
 	}
 
     @Override
@@ -6126,13 +6126,13 @@ protected class DeclaracionVariable_TieneIDsAssignment_3_1 extends AssignmentTok
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("tieneIDs",false)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("tieneIDs");
+		if((value = eObjectConsumer.getConsumable("variable",false)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("variable");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getVariableRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getDeclaracionVariableAccess().getTieneIDsVariableParserRuleCall_3_1_0(); 
+				element = grammarAccess.getDeclaracionVariableAccess().getVariableVariableParserRuleCall_3_1_0(); 
 				consumed = obj;
 				return param;
 			}

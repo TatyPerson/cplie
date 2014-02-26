@@ -5838,9 +5838,9 @@ rule__DeclaracionVariable__Group__2__Impl
     }
 :
 (
-{ before(grammarAccess.getDeclaracionVariableAccess().getTieneIDsAssignment_2()); }
-(rule__DeclaracionVariable__TieneIDsAssignment_2)
-{ after(grammarAccess.getDeclaracionVariableAccess().getTieneIDsAssignment_2()); }
+{ before(grammarAccess.getDeclaracionVariableAccess().getVariableAssignment_2()); }
+(rule__DeclaracionVariable__VariableAssignment_2)
+{ after(grammarAccess.getDeclaracionVariableAccess().getVariableAssignment_2()); }
 )
 
 ;
@@ -5933,9 +5933,9 @@ rule__DeclaracionVariable__Group_3__1__Impl
     }
 :
 (
-{ before(grammarAccess.getDeclaracionVariableAccess().getTieneIDsAssignment_3_1()); }
-(rule__DeclaracionVariable__TieneIDsAssignment_3_1)
-{ after(grammarAccess.getDeclaracionVariableAccess().getTieneIDsAssignment_3_1()); }
+{ before(grammarAccess.getDeclaracionVariableAccess().getVariableAssignment_3_1()); }
+(rule__DeclaracionVariable__VariableAssignment_3_1)
+{ after(grammarAccess.getDeclaracionVariableAccess().getVariableAssignment_3_1()); }
 )
 
 ;
@@ -11916,14 +11916,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__DeclaracionVariable__TieneIDsAssignment_2
+rule__DeclaracionVariable__VariableAssignment_2
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getDeclaracionVariableAccess().getTieneIDsVariableParserRuleCall_2_0()); }
-	ruleVariable{ after(grammarAccess.getDeclaracionVariableAccess().getTieneIDsVariableParserRuleCall_2_0()); }
+{ before(grammarAccess.getDeclaracionVariableAccess().getVariableVariableParserRuleCall_2_0()); }
+	ruleVariable{ after(grammarAccess.getDeclaracionVariableAccess().getVariableVariableParserRuleCall_2_0()); }
 )
 
 ;
@@ -11931,14 +11931,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__DeclaracionVariable__TieneIDsAssignment_3_1
+rule__DeclaracionVariable__VariableAssignment_3_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getDeclaracionVariableAccess().getTieneIDsVariableParserRuleCall_3_1_0()); }
-	ruleVariable{ after(grammarAccess.getDeclaracionVariableAccess().getTieneIDsVariableParserRuleCall_3_1_0()); }
+{ before(grammarAccess.getDeclaracionVariableAccess().getVariableVariableParserRuleCall_3_1_0()); }
+	ruleVariable{ after(grammarAccess.getDeclaracionVariableAccess().getVariableVariableParserRuleCall_3_1_0()); }
 )
 
 ;

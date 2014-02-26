@@ -247,6 +247,29 @@
         <persistent value="true"/>
     </extension>
 
+    <!-- marker definitions for org.xtext.example.mydsl.MyDsl -->
+    <extension
+            id="mydsl.check.fast"
+            name="MyDsl Problem"
+            point="org.eclipse.core.resources.markers">
+        <super type="org.eclipse.xtext.ui.check.fast"/>
+        <persistent value="true"/>
+    </extension>
+    <extension
+            id="mydsl.check.normal"
+            name="MyDsl Problem"
+            point="org.eclipse.core.resources.markers">
+        <super type="org.eclipse.xtext.ui.check.normal"/>
+        <persistent value="true"/>
+    </extension>
+    <extension
+            id="mydsl.check.expensive"
+            name="MyDsl Problem"
+            point="org.eclipse.core.resources.markers">
+        <super type="org.eclipse.xtext.ui.check.expensive"/>
+        <persistent value="true"/>
+    </extension>
+
 	<!-- Quick Outline -->
 	<extension
 		point="org.eclipse.ui.handlers">

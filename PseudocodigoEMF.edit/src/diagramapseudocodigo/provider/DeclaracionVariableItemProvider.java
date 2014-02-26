@@ -96,7 +96,7 @@ public class DeclaracionVariableItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.DECLARACION_VARIABLE__TIENE_IDS);
+			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.DECLARACION_VARIABLE__VARIABLE);
 		}
 		return childrenFeatures;
 	}
@@ -155,7 +155,7 @@ public class DeclaracionVariableItemProvider
 			case DiagramapseudocodigoPackage.DECLARACION_VARIABLE__TIPO:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case DiagramapseudocodigoPackage.DECLARACION_VARIABLE__TIENE_IDS:
+			case DiagramapseudocodigoPackage.DECLARACION_VARIABLE__VARIABLE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -175,7 +175,7 @@ public class DeclaracionVariableItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.DECLARACION_VARIABLE__TIENE_IDS,
+				(DiagramapseudocodigoPackage.Literals.DECLARACION_VARIABLE__VARIABLE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createVariable()));
 	}
 

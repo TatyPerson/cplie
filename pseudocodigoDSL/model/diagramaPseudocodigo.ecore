@@ -23,8 +23,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="Sentencias" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="DeclaracionVariable" eSuperTypes="#//Declaracion">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tipo" lowerBound="1" eType="#//TipoVariable"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="tieneIDs" lowerBound="1"
-        upperBound="-1" eType="#//Variable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" upperBound="-1"
+        eType="#//Variable" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TipoVariable">
     <eLiterals name="entero"/>

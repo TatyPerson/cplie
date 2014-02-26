@@ -2236,16 +2236,16 @@ ruleDeclaracionVariable returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDeclaracionVariableAccess().getTieneIDsVariableParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getDeclaracionVariableAccess().getVariableVariableParserRuleCall_2_0()); 
 	    }
-		lv_tieneIDs_2_0=ruleVariable		{
+		lv_variable_2_0=ruleVariable		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDeclaracionVariableRule());
 	        }
        		add(
        			$current, 
-       			"tieneIDs",
-        		lv_tieneIDs_2_0, 
+       			"variable",
+        		lv_variable_2_0, 
         		"Variable");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -2258,16 +2258,16 @@ ruleDeclaracionVariable returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDeclaracionVariableAccess().getTieneIDsVariableParserRuleCall_3_1_0()); 
+	        newCompositeNode(grammarAccess.getDeclaracionVariableAccess().getVariableVariableParserRuleCall_3_1_0()); 
 	    }
-		lv_tieneIDs_4_0=ruleVariable		{
+		lv_variable_4_0=ruleVariable		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDeclaracionVariableRule());
 	        }
        		add(
        			$current, 
-       			"tieneIDs",
-        		lv_tieneIDs_4_0, 
+       			"variable",
+        		lv_variable_4_0, 
         		"Variable");
 	        afterParserOrEnumRuleCall();
 	    }
