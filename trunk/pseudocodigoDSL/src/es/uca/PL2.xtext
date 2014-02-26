@@ -38,8 +38,7 @@ Internas returns Internas:
 	')';
 
 NombreInterna returns NombreInterna:
-	'cos' | 'cuadrado' | 'exp' | 'ln' | 'log' | 'sen' | 'sqrt' | 'longitud' | 'concatena'
-;
+	'cos' | 'cuadrado' | 'exp' | 'ln' | 'log' | 'sen' | 'sqrt' | 'longitud' | 'concatena';
 
 
 Operador returns Operador:
@@ -117,7 +116,7 @@ EString returns ecore::EString:
 
 DeclaracionVariable returns DeclaracionVariable:
 	tipo=TipoVariable + ':'
-	tieneIDs+=Variable ( ',' tieneIDs+=Variable)*;
+	variable+=Variable ( ',' variable+=Variable)*;
 	
 DeclaracionPropia returns DeclaracionPropia:
 	tipo=EString + ':'

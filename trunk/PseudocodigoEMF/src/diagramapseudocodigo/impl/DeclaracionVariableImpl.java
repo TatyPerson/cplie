@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link diagramapseudocodigo.impl.DeclaracionVariableImpl#getTipo <em>Tipo</em>}</li>
- *   <li>{@link diagramapseudocodigo.impl.DeclaracionVariableImpl#getTieneIDs <em>Tiene IDs</em>}</li>
+ *   <li>{@link diagramapseudocodigo.impl.DeclaracionVariableImpl#getVariable <em>Variable</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,14 +52,14 @@ public class DeclaracionVariableImpl extends DeclaracionImpl implements Declarac
 	protected TipoVariable tipo = TIPO_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getTieneIDs() <em>Tiene IDs</em>}' containment reference list.
+	 * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTieneIDs()
+	 * @see #getVariable()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Variable> tieneIDs;
+	protected EList<Variable> variable;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -106,11 +106,11 @@ public class DeclaracionVariableImpl extends DeclaracionImpl implements Declarac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Variable> getTieneIDs() {
-		if (tieneIDs == null) {
-			tieneIDs = new EObjectContainmentEList<Variable>(Variable.class, this, DiagramapseudocodigoPackage.DECLARACION_VARIABLE__TIENE_IDS);
+	public EList<Variable> getVariable() {
+		if (variable == null) {
+			variable = new EObjectContainmentEList<Variable>(Variable.class, this, DiagramapseudocodigoPackage.DECLARACION_VARIABLE__VARIABLE);
 		}
-		return tieneIDs;
+		return variable;
 	}
 
 	/**
@@ -121,8 +121,8 @@ public class DeclaracionVariableImpl extends DeclaracionImpl implements Declarac
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DiagramapseudocodigoPackage.DECLARACION_VARIABLE__TIENE_IDS:
-				return ((InternalEList<?>)getTieneIDs()).basicRemove(otherEnd, msgs);
+			case DiagramapseudocodigoPackage.DECLARACION_VARIABLE__VARIABLE:
+				return ((InternalEList<?>)getVariable()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -137,8 +137,8 @@ public class DeclaracionVariableImpl extends DeclaracionImpl implements Declarac
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.DECLARACION_VARIABLE__TIPO:
 				return getTipo();
-			case DiagramapseudocodigoPackage.DECLARACION_VARIABLE__TIENE_IDS:
-				return getTieneIDs();
+			case DiagramapseudocodigoPackage.DECLARACION_VARIABLE__VARIABLE:
+				return getVariable();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -155,9 +155,9 @@ public class DeclaracionVariableImpl extends DeclaracionImpl implements Declarac
 			case DiagramapseudocodigoPackage.DECLARACION_VARIABLE__TIPO:
 				setTipo((TipoVariable)newValue);
 				return;
-			case DiagramapseudocodigoPackage.DECLARACION_VARIABLE__TIENE_IDS:
-				getTieneIDs().clear();
-				getTieneIDs().addAll((Collection<? extends Variable>)newValue);
+			case DiagramapseudocodigoPackage.DECLARACION_VARIABLE__VARIABLE:
+				getVariable().clear();
+				getVariable().addAll((Collection<? extends Variable>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -174,8 +174,8 @@ public class DeclaracionVariableImpl extends DeclaracionImpl implements Declarac
 			case DiagramapseudocodigoPackage.DECLARACION_VARIABLE__TIPO:
 				setTipo(TIPO_EDEFAULT);
 				return;
-			case DiagramapseudocodigoPackage.DECLARACION_VARIABLE__TIENE_IDS:
-				getTieneIDs().clear();
+			case DiagramapseudocodigoPackage.DECLARACION_VARIABLE__VARIABLE:
+				getVariable().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -191,8 +191,8 @@ public class DeclaracionVariableImpl extends DeclaracionImpl implements Declarac
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.DECLARACION_VARIABLE__TIPO:
 				return tipo != TIPO_EDEFAULT;
-			case DiagramapseudocodigoPackage.DECLARACION_VARIABLE__TIENE_IDS:
-				return tieneIDs != null && !tieneIDs.isEmpty();
+			case DiagramapseudocodigoPackage.DECLARACION_VARIABLE__VARIABLE:
+				return variable != null && !variable.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

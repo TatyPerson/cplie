@@ -245,6 +245,8 @@
     </genClasses>
     <genClasses ecoreClass="diagramaPseudocodigo.ecore#//ValorMatriz">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//ValorMatriz/nombre_matriz"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//ValorMatriz/elemento_i"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute diagramaPseudocodigo.ecore#//ValorMatriz/elemento_j"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

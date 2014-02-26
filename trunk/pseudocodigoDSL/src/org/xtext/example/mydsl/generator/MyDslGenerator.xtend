@@ -305,7 +305,7 @@ class MyDslGenerator implements IGenerator {
 	}
 	
 	def toC(DeclaracionVariable myDec)'''
-		«myDec.tipo.tipoVariable» «pintarVariables(myDec.tieneIDs)»
+		«myDec.tipo.tipoVariable» «pintarVariables(myDec.variable)»
 	'''
 	
 	def toC(DeclaracionPropia myDec)'''

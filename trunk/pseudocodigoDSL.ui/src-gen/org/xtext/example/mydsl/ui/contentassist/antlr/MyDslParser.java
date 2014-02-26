@@ -178,8 +178,8 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getInicioAccess().getTieneAssignment_4_0(), "rule__Inicio__TieneAssignment_4_0");
 					put(grammarAccess.getInicioAccess().getTieneAssignment_4_1(), "rule__Inicio__TieneAssignment_4_1");
 					put(grammarAccess.getDeclaracionVariableAccess().getTipoAssignment_0(), "rule__DeclaracionVariable__TipoAssignment_0");
-					put(grammarAccess.getDeclaracionVariableAccess().getTieneIDsAssignment_2(), "rule__DeclaracionVariable__TieneIDsAssignment_2");
-					put(grammarAccess.getDeclaracionVariableAccess().getTieneIDsAssignment_3_1(), "rule__DeclaracionVariable__TieneIDsAssignment_3_1");
+					put(grammarAccess.getDeclaracionVariableAccess().getVariableAssignment_2(), "rule__DeclaracionVariable__VariableAssignment_2");
+					put(grammarAccess.getDeclaracionVariableAccess().getVariableAssignment_3_1(), "rule__DeclaracionVariable__VariableAssignment_3_1");
 					put(grammarAccess.getDeclaracionPropiaAccess().getTipoAssignment_0(), "rule__DeclaracionPropia__TipoAssignment_0");
 					put(grammarAccess.getDeclaracionPropiaAccess().getVariableAssignment_2(), "rule__DeclaracionPropia__VariableAssignment_2");
 					put(grammarAccess.getDeclaracionPropiaAccess().getVariableAssignment_3_1(), "rule__DeclaracionPropia__VariableAssignment_3_1");

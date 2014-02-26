@@ -251,13 +251,13 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int DECLARACION_VARIABLE__TIPO = DECLARACION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Tiene IDs</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Variable</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECLARACION_VARIABLE__TIENE_IDS = DECLARACION_FEATURE_COUNT + 1;
+	int DECLARACION_VARIABLE__VARIABLE = DECLARACION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Declaracion Variable</em>' class.
@@ -2925,15 +2925,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EAttribute getDeclaracionVariable_Tipo();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.DeclaracionVariable#getTieneIDs <em>Tiene IDs</em>}'.
+	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.DeclaracionVariable#getVariable <em>Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Tiene IDs</em>'.
-	 * @see diagramapseudocodigo.DeclaracionVariable#getTieneIDs()
+	 * @return the meta object for the containment reference list '<em>Variable</em>'.
+	 * @see diagramapseudocodigo.DeclaracionVariable#getVariable()
 	 * @see #getDeclaracionVariable()
 	 * @generated
 	 */
-	EReference getDeclaracionVariable_TieneIDs();
+	EReference getDeclaracionVariable_Variable();
 
 	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.LlamadaFuncion <em>Llamada Funcion</em>}'.
@@ -4563,12 +4563,12 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EAttribute DECLARACION_VARIABLE__TIPO = eINSTANCE.getDeclaracionVariable_Tipo();
 
 		/**
-		 * The meta object literal for the '<em><b>Tiene IDs</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Variable</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DECLARACION_VARIABLE__TIENE_IDS = eINSTANCE.getDeclaracionVariable_TieneIDs();
+		EReference DECLARACION_VARIABLE__VARIABLE = eINSTANCE.getDeclaracionVariable_Variable();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.LlamadaFuncionImpl <em>Llamada Funcion</em>}' class.

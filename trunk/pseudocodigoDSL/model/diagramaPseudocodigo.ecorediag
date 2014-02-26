@@ -1335,7 +1335,7 @@
     </children>
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_By3_sUkHEeK5F-3H-froxA" lineColor="4210752"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_By3_skkHEeK5F-3H-froxA" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
-    <element xmi:type="ecore:EReference" href="diagramaPseudocodigo.ecore#//DeclaracionVariable/tieneIDs"/>
+    <element xmi:type="ecore:EReference" href="diagramaPseudocodigo.ecore#//DeclaracionVariable/variable"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_By3_s0kHEeK5F-3H-froxA" points="[-16, 25, 104, -159]$[-98, 151, 22, -33]"/>
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_wDCsYEnAEeKigZTQInVLIw" type="3003" source="_sPZXgEkDEeK5F-3H-froxA" target="_vDD2EEnAEeKigZTQInVLIw">

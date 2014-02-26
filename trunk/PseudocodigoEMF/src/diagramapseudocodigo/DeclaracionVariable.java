@@ -13,7 +13,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link diagramapseudocodigo.DeclaracionVariable#getTipo <em>Tipo</em>}</li>
- *   <li>{@link diagramapseudocodigo.DeclaracionVariable#getTieneIDs <em>Tiene IDs</em>}</li>
+ *   <li>{@link diagramapseudocodigo.DeclaracionVariable#getVariable <em>Variable</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,19 +52,19 @@ public interface DeclaracionVariable extends Declaracion {
 	void setTipo(TipoVariable value);
 
 	/**
-	 * Returns the value of the '<em><b>Tiene IDs</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Variable</b></em>' containment reference list.
 	 * The list contents are of type {@link diagramapseudocodigo.Variable}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Tiene IDs</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Variable</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Tiene IDs</em>' containment reference list.
-	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getDeclaracionVariable_TieneIDs()
-	 * @model containment="true" required="true"
+	 * @return the value of the '<em>Variable</em>' containment reference list.
+	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getDeclaracionVariable_Variable()
+	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Variable> getTieneIDs();
+	EList<Variable> getVariable();
 
 } // DeclaracionVariable

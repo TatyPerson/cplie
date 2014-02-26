@@ -712,7 +712,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDeclaracionVariable_TieneIDs() {
+	public EReference getDeclaracionVariable_Variable() {
 		return (EReference)declaracionVariableEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -2037,7 +2037,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 
 		declaracionVariableEClass = createEClass(DECLARACION_VARIABLE);
 		createEAttribute(declaracionVariableEClass, DECLARACION_VARIABLE__TIPO);
-		createEReference(declaracionVariableEClass, DECLARACION_VARIABLE__TIENE_IDS);
+		createEReference(declaracionVariableEClass, DECLARACION_VARIABLE__VARIABLE);
 
 		llamadaFuncionEClass = createEClass(LLAMADA_FUNCION);
 		createEAttribute(llamadaFuncionEClass, LLAMADA_FUNCION__NOMBRE);
@@ -2327,7 +2327,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 
 		initEClass(declaracionVariableEClass, DeclaracionVariable.class, "DeclaracionVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDeclaracionVariable_Tipo(), this.getTipoVariable(), "tipo", null, 1, 1, DeclaracionVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDeclaracionVariable_TieneIDs(), this.getVariable(), null, "tieneIDs", null, 1, -1, DeclaracionVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDeclaracionVariable_Variable(), this.getVariable(), null, "variable", null, 0, -1, DeclaracionVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(llamadaFuncionEClass, LlamadaFuncion.class, "LlamadaFuncion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLlamadaFuncion_Nombre(), ecorePackage.getEString(), "nombre", null, 1, 1, LlamadaFuncion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

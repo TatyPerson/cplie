@@ -1178,18 +1178,18 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cTipoAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cTipoTipoVariableParserRuleCall_0_0 = (RuleCall)cTipoAssignment_0.eContents().get(0);
 		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cTieneIDsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cTieneIDsVariableParserRuleCall_2_0 = (RuleCall)cTieneIDsAssignment_2.eContents().get(0);
+		private final Assignment cVariableAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cVariableVariableParserRuleCall_2_0 = (RuleCall)cVariableAssignment_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Keyword cCommaKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cTieneIDsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cTieneIDsVariableParserRuleCall_3_1_0 = (RuleCall)cTieneIDsAssignment_3_1.eContents().get(0);
+		private final Assignment cVariableAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cVariableVariableParserRuleCall_3_1_0 = (RuleCall)cVariableAssignment_3_1.eContents().get(0);
 		
 		//DeclaracionVariable:
-		//	tipo=TipoVariable+ ":" tieneIDs+=Variable ("," tieneIDs+=Variable)*;
+		//	tipo=TipoVariable+ ":" variable+=Variable ("," variable+=Variable)*;
 		public ParserRule getRule() { return rule; }
 
-		//tipo=TipoVariable+ ":" tieneIDs+=Variable ("," tieneIDs+=Variable)*
+		//tipo=TipoVariable+ ":" variable+=Variable ("," variable+=Variable)*
 		public Group getGroup() { return cGroup; }
 
 		//tipo=TipoVariable+
@@ -1201,23 +1201,23 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//":"
 		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
 
-		//tieneIDs+=Variable
-		public Assignment getTieneIDsAssignment_2() { return cTieneIDsAssignment_2; }
+		//variable+=Variable
+		public Assignment getVariableAssignment_2() { return cVariableAssignment_2; }
 
 		//Variable
-		public RuleCall getTieneIDsVariableParserRuleCall_2_0() { return cTieneIDsVariableParserRuleCall_2_0; }
+		public RuleCall getVariableVariableParserRuleCall_2_0() { return cVariableVariableParserRuleCall_2_0; }
 
-		//("," tieneIDs+=Variable)*
+		//("," variable+=Variable)*
 		public Group getGroup_3() { return cGroup_3; }
 
 		//","
 		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
 
-		//tieneIDs+=Variable
-		public Assignment getTieneIDsAssignment_3_1() { return cTieneIDsAssignment_3_1; }
+		//variable+=Variable
+		public Assignment getVariableAssignment_3_1() { return cVariableAssignment_3_1; }
 
 		//Variable
-		public RuleCall getTieneIDsVariableParserRuleCall_3_1_0() { return cTieneIDsVariableParserRuleCall_3_1_0; }
+		public RuleCall getVariableVariableParserRuleCall_3_1_0() { return cVariableVariableParserRuleCall_3_1_0; }
 	}
 
 	public class DeclaracionPropiaElements extends AbstractParserRuleElementFinder {
@@ -3183,7 +3183,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DeclaracionVariable:
-	//	tipo=TipoVariable+ ":" tieneIDs+=Variable ("," tieneIDs+=Variable)*;
+	//	tipo=TipoVariable+ ":" variable+=Variable ("," variable+=Variable)*;
 	public DeclaracionVariableElements getDeclaracionVariableAccess() {
 		return (pDeclaracionVariable != null) ? pDeclaracionVariable : (pDeclaracionVariable = new DeclaracionVariableElements());
 	}
