@@ -106,6 +106,19 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					}
 				}
 			}
+			else {
+				DeclaracionPropia dec = (DeclaracionPropia) d;
+				for(Variable v: dec.getVariable()) {
+					if(!variables.contains(v.getNombre())) {
+						//Si no esta repetida la registramos
+						variables.add(v.getNombre());
+					}
+					else {
+						//Si esta repetida lanzamos el error
+						error("No pueden existir dos variables con el mismo nombre dentro de la misma función o procedimiento", DiagramapseudocodigoPackage.Literals.SUBPROCESO__NOMBRE);	
+					}
+				}
+			}
 		}
 	}
 
