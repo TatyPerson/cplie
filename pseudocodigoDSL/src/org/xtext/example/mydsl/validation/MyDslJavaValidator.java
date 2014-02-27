@@ -16,11 +16,31 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 //	}
 	
 	@Check
+	//Función que se encarga de comprobar si el limite inferior de un subrango es siempre inferior al superior.
 	public void checkSubrango(Subrango s) {
 		if(s instanceof SubrangoNumerico) {
 			SubrangoNumerico sn = (SubrangoNumerico) s;
 			if(sn.getLimite_inf() > sn.getLimite_sup()) {
 				error("El limite inferior del subrango no puede ser mayor que el superior.",DiagramapseudocodigoPackage.Literals.SUBRANGO__NOMBRE);
+			}
+		}
+	}
+	
+	@Check
+	public void checkCasos(segun s) {
+		int caso = 0;
+		List<Integer> numeros = new ArrayList<Integer>();
+		for(Caso c: s.getCaso()) {
+			Operador op = c.getOperador();
+			caso = caso + 1;
+			if(op instanceof NumeroEntero) {
+				NumeroEntero e = (NumeroEntero) op;
+				if(!numeros.contains(e.getValor())) {
+					numeros.add(e.getValor());
+				}
+				else {
+					error("No pueden exitir dos valores identificadores de los casos de la estructura segun_sea repetidos.", DiagramapseudocodigoPackage.Literals.SEGUN__CASO, caso-1);
+				}
 			}
 		}
 	}
