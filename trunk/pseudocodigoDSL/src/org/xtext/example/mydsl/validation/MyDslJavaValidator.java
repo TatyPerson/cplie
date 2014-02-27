@@ -66,6 +66,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	@Check
+	//Función que se encarga de comprobar que no existan dos variables declaradas en un registro con el mismo nombre
 	public void checkRegistro(Registro r) {
 		List<String> variables = new ArrayList<String>();
 		for(DeclaracionVariable d: r.getVariable()) {
@@ -77,6 +78,32 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				else {
 					//Si esta repetida lanzamos el error
 					error("No se pueden declarar dos variables con el mismo nombre dentro de la declaración de un registro", DiagramapseudocodigoPackage.Literals.REGISTRO__NOMBRE);
+				}
+			}
+		}
+	}
+	
+	@Check
+	//Función que se encarga de comprobar que no existan dos variables con el mismo nombre dentro de un subproceso
+	public void checkDeclaraciones(Subproceso s) {
+		List<String> variables = new ArrayList<String>();
+		//Registramos los parámetros que ya son válidados por otra función y se presuponen correctos sin repeticiones
+		for(ParametroFuncion p: s.getParametrofuncion()) {
+			variables.add(p.getVariable().getNombre());
+		}
+		for(Declaracion d: s.getDeclaracion()) {
+			//Si la actual se ha instanciado como una subclase de tipo DeclaracionVariable
+			if(d instanceof DeclaracionVariable) {
+				DeclaracionVariable dec = (DeclaracionVariable) d;
+				for(Variable v: dec.getVariable()) {
+					if(!variables.contains(v.getNombre())) {
+						//Si no esta repetida la registramos
+						variables.add(v.getNombre());
+					}
+					else {
+						//Si esta repetida lanzamos el error
+						error("No pueden existir dos variables con el mismo nombre dentro de la misma función o procedimiento", DiagramapseudocodigoPackage.Literals.SUBPROCESO__NOMBRE);
+					}
 				}
 			}
 		}
