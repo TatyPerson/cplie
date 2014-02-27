@@ -27,6 +27,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	@Check
+	//Función que se encarga de comprobar que no existen casos repetidos en la estructura segun_sea
 	public void checkCasos(segun s) {
 		int caso = 0;
 		List<Integer> numeros = new ArrayList<Integer>();
