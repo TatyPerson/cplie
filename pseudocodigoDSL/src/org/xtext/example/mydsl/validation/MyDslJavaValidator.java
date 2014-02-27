@@ -37,15 +37,34 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			if(op instanceof NumeroEntero) {
 				NumeroEntero e = (NumeroEntero) op;
 				if(!numeros.contains(e.getValor())) {
+					//Si no esta repetido lo registramos
 					numeros.add(e.getValor());
 				}
 				else {
+					//Si esta repetido lanzamos el error
 					error("No pueden exitir dos valores identificadores de los casos de la estructura segun_sea repetidos.", DiagramapseudocodigoPackage.Literals.SEGUN__CASO, caso-1);
 				}
 			}
 		}
 	}
-
+	
+	
+	@Check
+	//Función que se encarga de comprobar que no existan dos parámetros en un subproceso con el mismo nombre
+	public void checkParametros(Subproceso s) {
+		List<String> parametros = new ArrayList<String>();
+		for(ParametroFuncion p: s.getParametrofuncion()) {
+			if(!parametros.contains(p.getVariable().getNombre())) {
+				//Si no esta repetida la registramos
+				parametros.add(p.getVariable().getNombre());
+			}
+			else {
+				//Si esta repetida lanzamos el error
+				error("No pueden existir dos parámetros con el mismo nombre en la misma función o procedimiento", DiagramapseudocodigoPackage.Literals.SUBPROCESO__NOMBRE);
+			}
+		}
+	}
+	
 	@Check
 	public void checkVariableNoRepetida(Inicio inicio) {
 		//Preparamos las listas de los tipos de declaracion
