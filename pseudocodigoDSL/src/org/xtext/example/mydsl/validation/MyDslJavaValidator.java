@@ -66,6 +66,24 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	@Check
+	public void checkRegistro(Registro r) {
+		List<String> variables = new ArrayList<String>();
+		for(DeclaracionVariable d: r.getVariable()) {
+			for(Variable v: d.getVariable()) {
+				if(!variables.contains(v.getNombre())) {
+					//Si no esta repetida la registramos
+					variables.add(v.getNombre());
+				}
+				else {
+					//Si esta repetida lanzamos el error
+					error("No se pueden declarar dos variables con el mismo nombre dentro de la declaración de un registro", DiagramapseudocodigoPackage.Literals.REGISTRO__NOMBRE);
+				}
+			}
+		}
+	}
+
+	
+	@Check
 	public void checkVariableNoRepetida(Inicio inicio) {
 		//Preparamos las listas de los tipos de declaracion
 		List<DeclaracionVariable> listaVariables = new ArrayList<DeclaracionVariable>();
