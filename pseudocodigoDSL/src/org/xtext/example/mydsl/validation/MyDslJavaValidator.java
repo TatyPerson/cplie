@@ -107,6 +107,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				}
 			}
 			else {
+				//Si la actual se ha instanciado como una subclase de tipo DeclaracionPropia
 				DeclaracionPropia dec = (DeclaracionPropia) d;
 				for(Variable v: dec.getVariable()) {
 					if(!variables.contains(v.getNombre())) {
@@ -121,7 +122,45 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			}
 		}
 	}
-
+	
+	
+	@Check
+	public void checkDeclaraciones(Inicio i) {
+		int cont = 0;
+		List<String> variables = new ArrayList<String>();
+		for(Declaracion d: i.getDeclaracion()) {
+			if(d instanceof DeclaracionVariable) {
+				//Si la actual se ha instanciado como una subclase de tipo DeclaracionVariable
+				DeclaracionVariable dec = (DeclaracionVariable) d;
+				for(Variable v: dec.getVariable()) {
+					if(!variables.contains(v.getNombre())) {
+						//Si no esta repetida la registramos
+						variables.add(v.getNombre());
+						cont++;
+					}
+					else {
+						//Si esta repetida lanzamos el error
+						error("No pueden existir dos variables con el mismo nombre dentro del mismo programa principal", DiagramapseudocodigoPackage.Literals.INICIO__DECLARACION, cont);
+					}
+				}
+			}
+			else {
+				//Si la actual se ha instanciado como una subclase del tipo DeclaracionPropia
+				DeclaracionPropia dec = (DeclaracionPropia) d;
+				for(Variable v: dec.getVariable()) {
+					if(!variables.contains(v.getNombre())) {
+						//Si no esta repetida la registramos
+						variables.add(v.getNombre());
+						cont++;
+					}
+					else {
+						//Si esta repetida lanzamos el error
+						error("No pueden existir dos variables con el mismo nombre dentro del mismo programa principal", DiagramapseudocodigoPackage.Literals.INICIO__DECLARACION, cont);
+					}
+				}
+			}
+		}
+	}
 	
 	@Check
 	public void checkVariableNoRepetida(Inicio inicio) {
