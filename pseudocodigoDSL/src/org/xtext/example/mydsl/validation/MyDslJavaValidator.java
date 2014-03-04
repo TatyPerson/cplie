@@ -125,6 +125,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	
 	
 	@Check
+	//Función que se encarga de comprobar que no existan dos variables con el mismo nombre dentro de un programa principal
 	public void checkDeclaraciones(Inicio i) {
 		int cont = 0;
 		List<String> variables = new ArrayList<String>();
@@ -162,92 +163,44 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		}
 	}
 	
-	@Check
-	public void checkVariableNoRepetida(Inicio inicio) {
-		//Preparamos las listas de los tipos de declaracion
-		List<DeclaracionVariable> listaVariables = new ArrayList<DeclaracionVariable>();
-		List<DeclaracionPropia> listaPropias = new ArrayList<DeclaracionPropia>();
-		crearListasDeclaraciones(inicio, listaVariables, listaPropias);
-		//Comprobamos si hay repeticiones en alguna de las combinaciones
-		//1) Repeticiones entre variables de dos declaraciones distintas del mismo tipo
-		for(DeclaracionVariable d1: listaVariables) {
-			for(DeclaracionVariable d2: listaVariables) {
-				/*
-				if(d1.equals(d2)) {
-					//Comprobamos si en el mismo hay repeticiones
-					List<Variable> lv1 = d1.getVariable();
-					List<Variable> lv2 = d2.getVariable();
-					int elto = 0;
-					for(Variable v1: lv1) {
-						lv2.remove(elto); //Eliminamos el primero
-						for(Variable v2: lv2) {
-							if(v1.getNombre() == v2.getNombre()) {
-								error("El nombre de la variable no puede estar repetido.", DiagramapseudocodigoPackage.Literals.INICIO__DECLARACION);
-							}
-						}
-						elto++;
-					}
-				}
-				else {
-				*/
-				
-					variableRepetida(d1.getVariable(),d2.getVariable());
-				/*
-				}
-				*/
-			}
-		}
-		
-	}
 	
-	private void crearListasDeclaraciones(Inicio inicio, List<DeclaracionVariable> lv, List<DeclaracionPropia> lp) {
-		for(Declaracion d: inicio.getDeclaracion()) {
+	@Check
+	private void checkSegun(Inicio i) {
+		//Registramos todas las variables declaradas dando por hecho que son correctas ya que hay otra función encargada de comprobarlo
+		List<String> variables = new ArrayList<String>();
+		for(Declaracion d: i.getDeclaracion()) {
 			if(d instanceof DeclaracionVariable) {
-				lv.add((DeclaracionVariable) d); //Casting por problema con el código generado en el EMF
+				DeclaracionVariable dec = (DeclaracionVariable) d;
+				for(Variable v: dec.getVariable()) {
+					variables.add(v.getNombre());
+				}
 			}
 			else {
-				lp.add((DeclaracionPropia) d);
-			}
-		}
-	}
-	
-	private void variableRepetida(List<Variable> lv1, List<Variable> lv2) {
-		int repeticiones = 0;
-		for(Variable v1: lv1) {
-			for(Variable v2: lv2) {
-				if(v1.getNombre() == v2.getNombre()) {
-					System.out.println("El nombre de la variable v1 es: "+v1.getNombre());
-					System.out.println("El nombre de la variable v2 es: "+v2.getNombre());
-					repeticiones = repeticiones + 1;
-					System.out.println("El numero de repeticiones es: "+repeticiones);
+				DeclaracionPropia dec = (DeclaracionPropia) d;
+				for(Variable v: dec.getVariable()) {
+					variables.add(v.getNombre());
 				}
 			}
-			if(repeticiones > 1) { //Hay otra más a parte de ella misma
-				error("El nombre de la variable no puede estar repetido.", DiagramapseudocodigoPackage.Literals.INICIO__DECLARACION);
+		}
+		//Despues de tener todas las variables declaradas comprobamos si la que se usa en el según esta entre ellas
+		int cont = 0;
+		segun se = null;
+		for(Sentencias s: i.getTiene()) {
+			if(s instanceof segun) {
+				se = (segun) s;
+				cont = i.getTiene().indexOf(s);
+			}
+		}
+		if(se != null) {
+			VariableID v = (VariableID) se.getValor(); //Siempre es una variable
+			if(!variables.contains(v.getNombre())) {
+				error("La variable utilizada como parámetro en el segun_sea debe haber sido previamente declarada", DiagramapseudocodigoPackage.Literals.INICIO__TIENE,cont);
 			}
 		}
 	}
 	
-	/*
-	@Check
-	public void checkSwitch(Codigo codigo) {
-		for(Sentencias sent: codigo.getTiene().getTiene()) {
-			if(sent instanceof segun) {
-				//Si es un segun hacemos un casting y se lo pasamos a la función que se encargará de validarlo
-				//Además le pasamos a la parte del código a la que corresponde este segun
-				checkSwitchInter((segun)sent, codigo.getTiene());
-				return;
-			}
-		}
-	}
 	
-	@Check
-	public void checkInicio(Codigo codigo) {
-		if(codigo.getTiene() == null) {
-			error("Todos los programas deben tener un \"inicio\".", DiagramapseudocodigoPackage.Literals.CODIGO__NOMBRE);
-			return;
-		}
-	}
+/*
 	
 	private void checkSwitchInter(segun s, Inicio ini) {
 		if(s.getValor() instanceof Caracter) {
@@ -273,6 +226,6 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		}
 	}
 	
-	*/
+*/
 
 }
