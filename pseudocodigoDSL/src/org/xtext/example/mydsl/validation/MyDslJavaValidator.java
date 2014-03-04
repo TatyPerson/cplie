@@ -17,7 +17,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	
 	@Check
 	//Función que se encarga de comprobar si el limite inferior de un subrango es siempre inferior al superior.
-	public void checkSubrango(Subrango s) {
+	protected void checkSubrango(Subrango s) {
 		if(s instanceof SubrangoNumerico) {
 			SubrangoNumerico sn = (SubrangoNumerico) s;
 			if(sn.getLimite_inf() > sn.getLimite_sup()) {
@@ -28,7 +28,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	
 	@Check
 	//Función que se encarga de comprobar que no existen casos repetidos en la estructura segun_sea
-	public void checkCasos(segun s) {
+	protected void checkCasos(segun s) {
 		int caso = 0;
 		List<Integer> numeros = new ArrayList<Integer>();
 		for(Caso c: s.getCaso()) {
@@ -51,7 +51,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	
 	@Check
 	//Función que se encarga de comprobar que no existan dos parámetros en un subproceso con el mismo nombre
-	public void checkParametros(Subproceso s) {
+	protected void checkParametros(Subproceso s) {
 		List<String> parametros = new ArrayList<String>();
 		for(ParametroFuncion p: s.getParametrofuncion()) {
 			if(!parametros.contains(p.getVariable().getNombre())) {
@@ -67,7 +67,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	
 	@Check
 	//Función que se encarga de comprobar que no existan dos variables declaradas en un registro con el mismo nombre
-	public void checkRegistro(Registro r) {
+	protected void checkRegistro(Registro r) {
 		List<String> variables = new ArrayList<String>();
 		for(DeclaracionVariable d: r.getVariable()) {
 			for(Variable v: d.getVariable()) {
@@ -85,7 +85,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	
 	@Check
 	//Función que se encarga de comprobar que no existan dos variables con el mismo nombre dentro de un subproceso
-	public void checkDeclaraciones(Subproceso s) {
+	protected void checkDeclaraciones(Subproceso s) {
 		List<String> variables = new ArrayList<String>();
 		//Registramos los parámetros que ya son válidados por otra función y se presuponen correctos sin repeticiones
 		for(ParametroFuncion p: s.getParametrofuncion()) {
@@ -126,7 +126,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	
 	@Check
 	//Función que se encarga de comprobar que no existan dos variables con el mismo nombre dentro de un programa principal
-	public void checkDeclaraciones(Inicio i) {
+	protected void checkDeclaraciones(Inicio i) {
 		int cont = 0;
 		List<String> variables = new ArrayList<String>();
 		for(Declaracion d: i.getDeclaracion()) {
@@ -165,7 +165,8 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	
 	
 	@Check
-	private void checkSegun(Inicio i) {
+	//Función que comprueba en el programa principal que la variable utilizada en el segun_sea haya sido declarada con anterioridad
+	protected void checkSegun(Inicio i) {
 		//Registramos todas las variables declaradas dando por hecho que son correctas ya que hay otra función encargada de comprobarlo
 		List<String> variables = new ArrayList<String>();
 		for(Declaracion d: i.getDeclaracion()) {
@@ -199,33 +200,76 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		}
 	}
 	
-	
-/*
-	
-	private void checkSwitchInter(segun s, Inicio ini) {
-		if(s.getValor() instanceof Caracter) {
-			boolean esta = false;
-			Caracter c = (Caracter)s.getValor();
-			//Recorremos todas las variables que tiene declaradas el bloque
-			for(Declaracion d: ini.getDeclaracion()) {
-				if(d instanceof DeclaracionVariable) {
-					DeclaracionVariable dv = (DeclaracionVariable)d;
-					for(Variable var: dv.getTieneIDs()) {
-						//Habría que añadir que el tipo fuera el mismo
-						if(var.getNombre() == c.getContenido()) {
-							esta = true;
-							//Si hay una declarada que se llama así OK.
-						}
-					}
+	@Check
+	//Función que comprueba en las funciones que la variable utilizada en el segun_sea haya sido declarada con anterioridad
+	protected void checkSegun(Funcion f) {
+		//Registramos todas las variables declaradas dando por hecho que son correctas ya que hay otra función encargada de comprobarlo
+		List<String> variables = new ArrayList<String>();
+		for(Declaracion d: f.getDeclaracion()) {
+			if(d instanceof DeclaracionVariable) {
+				DeclaracionVariable dec = (DeclaracionVariable) d;
+				for(Variable v: dec.getVariable()) {
+					variables.add(v.getNombre());
 				}
 			}
-			if(!esta) { //Si no esta la variable declarada
-				error("La variable utilizada como parámetro principal del segun_sea debe haber sido anteriormente declarada",DiagramapseudocodigoPackage.Literals.SEGUN__CASO);
-				return;
+			else {
+				DeclaracionPropia dec = (DeclaracionPropia) d;
+				for(Variable v: dec.getVariable()) {
+					variables.add(v.getNombre());
+				}
+			}
+		}
+		//Despues de tener todas las variables declaradas comprobamos si la que se usa en el según esta entre ellas
+		int cont = 0;
+		segun se = null;
+		for(Sentencias s: f.getSentencias()) {
+			if(s instanceof segun) {
+				se = (segun) s;
+				cont = f.getSentencias().indexOf(s);
+			}
+		}
+		if(se != null) {
+			VariableID v = (VariableID) se.getValor(); //Siempre es una variable
+			if(!variables.contains(v.getNombre())) {
+				error("La variable utilizada como parámetro en el segun_sea debe haber sido previamente declarada", DiagramapseudocodigoPackage.Literals.SUBPROCESO__SENTENCIAS,cont);
 			}
 		}
 	}
 	
-*/
+	@Check
+	//Función que comprueba en los procedimientos que la variable utilizada en el segun_sea haya sido declarada con anterioridad
+	protected void checkSegun(Procedimiento p) {
+		//Registramos todas las variables declaradas dando por hecho que son correctas ya que hay otra función encargada de comprobarlo
+		List<String> variables = new ArrayList<String>();
+		for(Declaracion d: p.getDeclaracion()) {
+			if(d instanceof DeclaracionVariable) {
+				DeclaracionVariable dec = (DeclaracionVariable) d;
+				for(Variable v: dec.getVariable()) {
+					variables.add(v.getNombre());
+				}
+			}
+			else {
+				DeclaracionPropia dec = (DeclaracionPropia) d;
+				for(Variable v: dec.getVariable()) {
+					variables.add(v.getNombre());
+				}
+			}
+		}
+		//Despues de tener todas las variables declaradas comprobamos si la que se usa en el según esta entre ellas
+		int cont = 0;
+		segun se = null;
+		for(Sentencias s: p.getSentencias()) {
+			if(s instanceof segun) {
+				se = (segun) s;
+				cont = p.getSentencias().indexOf(s);
+			}
+		}
+		if(se != null) {
+			VariableID v = (VariableID) se.getValor(); //Siempre es una variable
+			if(!variables.contains(v.getNombre())) {
+				error("La variable utilizada como parámetro en el segun_sea debe haber sido previamente declarada", DiagramapseudocodigoPackage.Literals.SUBPROCESO__SENTENCIAS,cont);
+			}
+		}
+	}
 
 }
