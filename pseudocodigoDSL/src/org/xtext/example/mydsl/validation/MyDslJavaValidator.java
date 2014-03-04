@@ -168,21 +168,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	//Función que comprueba en el programa principal que la variable utilizada en el segun_sea haya sido declarada con anterioridad
 	protected void checkSegun(Inicio i) {
 		//Registramos todas las variables declaradas dando por hecho que son correctas ya que hay otra función encargada de comprobarlo
-		List<String> variables = new ArrayList<String>();
-		for(Declaracion d: i.getDeclaracion()) {
-			if(d instanceof DeclaracionVariable) {
-				DeclaracionVariable dec = (DeclaracionVariable) d;
-				for(Variable v: dec.getVariable()) {
-					variables.add(v.getNombre());
-				}
-			}
-			else {
-				DeclaracionPropia dec = (DeclaracionPropia) d;
-				for(Variable v: dec.getVariable()) {
-					variables.add(v.getNombre());
-				}
-			}
-		}
+		List<String> variables = registrarVariables(i.getDeclaracion());
 		//Despues de tener todas las variables declaradas comprobamos si la que se usa en el según esta entre ellas
 		int cont = 0;
 		segun se = null;
@@ -204,21 +190,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	//Función que comprueba en las funciones que la variable utilizada en el segun_sea haya sido declarada con anterioridad
 	protected void checkSegun(Funcion f) {
 		//Registramos todas las variables declaradas dando por hecho que son correctas ya que hay otra función encargada de comprobarlo
-		List<String> variables = new ArrayList<String>();
-		for(Declaracion d: f.getDeclaracion()) {
-			if(d instanceof DeclaracionVariable) {
-				DeclaracionVariable dec = (DeclaracionVariable) d;
-				for(Variable v: dec.getVariable()) {
-					variables.add(v.getNombre());
-				}
-			}
-			else {
-				DeclaracionPropia dec = (DeclaracionPropia) d;
-				for(Variable v: dec.getVariable()) {
-					variables.add(v.getNombre());
-				}
-			}
-		}
+		List<String> variables = registrarVariables(f.getDeclaracion());
 		//Despues de tener todas las variables declaradas comprobamos si la que se usa en el según esta entre ellas
 		int cont = 0;
 		segun se = null;
@@ -240,21 +212,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	//Función que comprueba en los procedimientos que la variable utilizada en el segun_sea haya sido declarada con anterioridad
 	protected void checkSegun(Procedimiento p) {
 		//Registramos todas las variables declaradas dando por hecho que son correctas ya que hay otra función encargada de comprobarlo
-		List<String> variables = new ArrayList<String>();
-		for(Declaracion d: p.getDeclaracion()) {
-			if(d instanceof DeclaracionVariable) {
-				DeclaracionVariable dec = (DeclaracionVariable) d;
-				for(Variable v: dec.getVariable()) {
-					variables.add(v.getNombre());
-				}
-			}
-			else {
-				DeclaracionPropia dec = (DeclaracionPropia) d;
-				for(Variable v: dec.getVariable()) {
-					variables.add(v.getNombre());
-				}
-			}
-		}
+		List<String> variables = registrarVariables(p.getDeclaracion());
 		//Despues de tener todas las variables declaradas comprobamos si la que se usa en el según esta entre ellas
 		int cont = 0;
 		segun se = null;
@@ -270,6 +228,32 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				error("La variable utilizada como parámetro en el segun_sea debe haber sido previamente declarada", DiagramapseudocodigoPackage.Literals.SUBPROCESO__SENTENCIAS,cont);
 			}
 		}
+	}
+	
+	@Check
+	protected void checkTipoSegun(Inicio i) {
+		//Primero seleccionamos el tipo de la variable de entrada del segun_sea (damos por hecho que esta declarada porque hay otra función que lo comprueba)
+		List<String> variables = registrarVariables(i.getDeclaracion());
+		
+	}
+	
+	private List<String> registrarVariables(List<Declaracion> declaraciones) {
+		List<String> variables = new ArrayList<String>();
+		for(Declaracion d: declaraciones) {
+			if(d instanceof DeclaracionVariable) {
+				DeclaracionVariable dec = (DeclaracionVariable) d;
+				for(Variable v: dec.getVariable()) {
+					variables.add(v.getNombre());
+				}
+			}
+			else {
+				DeclaracionPropia dec = (DeclaracionPropia) d;
+				for(Variable v: dec.getVariable()) {
+					variables.add(v.getNombre());
+				}
+			}
+		}
+		return variables;
 	}
 
 }
