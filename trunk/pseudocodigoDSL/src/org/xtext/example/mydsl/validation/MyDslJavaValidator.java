@@ -232,9 +232,87 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	
 	@Check
 	protected void checkTipoSegun(Inicio i) {
-		//Primero seleccionamos el tipo de la variable de entrada del segun_sea (damos por hecho que esta declarada porque hay otra función que lo comprueba)
-		List<String> variables = registrarVariables(i.getDeclaracion());
+		//Primero Ahora buscamos la variable y averiguamos su tipo
+		segun se = null;
+		for(Sentencias s: i.getTiene()) {
+			if(s instanceof segun) {
+				se = (segun) s;
+			}
+		}
+		String nombre = null;
+		if(se != null) {
+			//Siempre es una variable
+			VariableID v = (VariableID) se.getValor();
+			nombre = v.getNombre();
+			
+			//Después seleccionamos el tipo de la variable de entrada del segun_sea (damos por hecho que esta declarada porque hay otra función que lo comprueba)
+			
+			DeclaracionVariable parametro = null;
+			
+			for(Declaracion d: i.getDeclaracion()) {
+				if(d instanceof DeclaracionVariable) {
+					DeclaracionVariable dec = (DeclaracionVariable) d;
+					for(Variable var: dec.getVariable()) {
+						if(var.getNombre() == nombre) {
+							parametro = dec;
+						}
+					}
+				}
+			}
+			int cont = 0;
+			boolean valido = true;
+			
+			if(parametro.getTipo() == TipoVariable.getByName("entero")) {
+				//Comprobamos que las variables de los casos sean todas del mismo tipo
+				for(Caso c: se.getCaso()) {
+					if(!(c.getOperador() instanceof NumeroEntero)) {
+						valido = false;
+					}
+					cont++;
+				}
+			}
+			
+			if(!valido) {
+				warning("Todos los parámetros del segun_caso deben ser del mismo tipo que el parámetro de entrada del segun_caso", DiagramapseudocodigoPackage.Literals.SEGUN__CASO,cont);
+			}
+		}
 		
+	}
+	
+	@Check
+	protected void checkConstantes(Codigo c) {
+		List<String> constantes = new ArrayList<String>();
+		for(Constantes cons: c.getConstantes()) {
+			constantes.add(cons.getVariable().getNombre());
+		}
+		int cont = 0;
+		for(TipoComplejo t: c.getTipocomplejo()) {
+			cont++;
+			if(t instanceof Vector) {
+				Vector v = (Vector) t;
+				if(v.getValor() instanceof VariableID) {
+					VariableID var = (VariableID) v.getValor();
+					if(!constantes.contains(var.getNombre())) {
+						error("La constante debe estar definida", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, cont-1);
+					}
+				}
+			}
+			if(t instanceof Matriz) {
+				Matriz m = (Matriz) t;
+				if(m.getValor().get(0) instanceof VariableID) {
+					VariableID var = (VariableID) m.getValor().get(0);
+					if(!constantes.contains(var.getNombre())) {
+						error("La constante debe estar definida", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, cont-1);
+					}
+				}
+				if(m.getValor().size() > 1 && m.getValor().get(1) instanceof VariableID) {
+					VariableID var = (VariableID) m.getValor().get(1);
+					if(!constantes.contains(var.getNombre())) {
+						error("La constante debe estar definida", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, cont-1);
+					}
+				}
+			}
+		}
 	}
 	
 	private List<String> registrarVariables(List<Declaracion> declaraciones) {
