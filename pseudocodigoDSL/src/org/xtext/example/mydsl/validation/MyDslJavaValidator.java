@@ -280,6 +280,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	@Check
+	//Función que compueba que las constantes utilizadas para definir los tamaños de los vectores y matrices han sido declaradas con anterioridad
 	protected void checkConstantes(Codigo c) {
 		List<String> constantes = new ArrayList<String>();
 		for(Constantes cons: c.getConstantes()) {
