@@ -29,11 +29,9 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	@Check
 	//Función que se encarga de comprobar que no existen casos repetidos en la estructura segun_sea
 	protected void checkCasos(segun s) {
-		int caso = 0;
 		List<Integer> numeros = new ArrayList<Integer>();
 		for(Caso c: s.getCaso()) {
 			Operador op = c.getOperador();
-			caso = caso + 1;
 			if(op instanceof NumeroEntero) {
 				NumeroEntero e = (NumeroEntero) op;
 				if(!numeros.contains(e.getValor())) {
@@ -42,7 +40,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				}
 				else {
 					//Si esta repetido lanzamos el error
-					error("No pueden exitir dos valores identificadores de los casos de la estructura segun_sea repetidos.", DiagramapseudocodigoPackage.Literals.SEGUN__CASO, caso-1);
+					error("No pueden exitir dos valores identificadores de los casos de la estructura segun_sea repetidos.", DiagramapseudocodigoPackage.Literals.SEGUN__CASO, s.getCaso().indexOf(c));
 				}
 			}
 		}
@@ -127,7 +125,6 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	@Check
 	//Función que se encarga de comprobar que no existan dos variables con el mismo nombre dentro de un programa principal
 	protected void checkDeclaraciones(Inicio i) {
-		int cont = 0;
 		List<String> variables = new ArrayList<String>();
 		for(Declaracion d: i.getDeclaracion()) {
 			if(d instanceof DeclaracionVariable) {
@@ -137,11 +134,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					if(!variables.contains(v.getNombre())) {
 						//Si no esta repetida la registramos
 						variables.add(v.getNombre());
-						cont++;
 					}
 					else {
 						//Si esta repetida lanzamos el error
-						error("No pueden existir dos variables con el mismo nombre dentro del mismo programa principal", DiagramapseudocodigoPackage.Literals.INICIO__DECLARACION, cont);
+						error("No pueden existir dos variables con el mismo nombre dentro del mismo programa principal", DiagramapseudocodigoPackage.Literals.INICIO__DECLARACION, i.getDeclaracion().indexOf(d));
 					}
 				}
 			}
@@ -152,11 +148,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					if(!variables.contains(v.getNombre())) {
 						//Si no esta repetida la registramos
 						variables.add(v.getNombre());
-						cont++;
 					}
 					else {
 						//Si esta repetida lanzamos el error
-						error("No pueden existir dos variables con el mismo nombre dentro del mismo programa principal", DiagramapseudocodigoPackage.Literals.INICIO__DECLARACION, cont);
+						error("No pueden existir dos variables con el mismo nombre dentro del mismo programa principal", DiagramapseudocodigoPackage.Literals.INICIO__DECLARACION, i.getDeclaracion().indexOf(d));
 					}
 				}
 			}
@@ -170,18 +165,13 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		//Registramos todas las variables declaradas dando por hecho que son correctas ya que hay otra función encargada de comprobarlo
 		List<String> variables = registrarVariables(i.getDeclaracion());
 		//Despues de tener todas las variables declaradas comprobamos si la que se usa en el según esta entre ellas
-		int cont = 0;
-		segun se = null;
 		for(Sentencias s: i.getTiene()) {
 			if(s instanceof segun) {
-				se = (segun) s;
-				cont = i.getTiene().indexOf(s);
-			}
-		}
-		if(se != null) {
-			VariableID v = (VariableID) se.getValor(); //Siempre es una variable
-			if(!variables.contains(v.getNombre())) {
-				error("La variable utilizada como parámetro en el segun_sea debe haber sido previamente declarada", DiagramapseudocodigoPackage.Literals.INICIO__TIENE,cont);
+				segun se = (segun) s;
+				VariableID v = (VariableID) se.getValor(); //Siempre es una variable
+				if(!variables.contains(v.getNombre())) {
+					error("La variable utilizada como parámetro en el segun_sea debe haber sido previamente declarada", DiagramapseudocodigoPackage.Literals.INICIO__TIENE, i.getTiene().indexOf(s));
+				}
 			}
 		}
 	}
@@ -192,18 +182,13 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		//Registramos todas las variables declaradas dando por hecho que son correctas ya que hay otra función encargada de comprobarlo
 		List<String> variables = registrarVariables(f.getDeclaracion());
 		//Despues de tener todas las variables declaradas comprobamos si la que se usa en el según esta entre ellas
-		int cont = 0;
-		segun se = null;
 		for(Sentencias s: f.getSentencias()) {
 			if(s instanceof segun) {
-				se = (segun) s;
-				cont = f.getSentencias().indexOf(s);
-			}
-		}
-		if(se != null) {
-			VariableID v = (VariableID) se.getValor(); //Siempre es una variable
-			if(!variables.contains(v.getNombre())) {
-				error("La variable utilizada como parámetro en el segun_sea debe haber sido previamente declarada", DiagramapseudocodigoPackage.Literals.SUBPROCESO__SENTENCIAS,cont);
+				segun se = (segun) s;
+				VariableID v = (VariableID) se.getValor(); //Siempre es una variable
+				if(!variables.contains(v.getNombre())) {
+					error("La variable utilizada como parámetro en el segun_sea debe haber sido previamente declarada", DiagramapseudocodigoPackage.Literals.SUBPROCESO__SENTENCIAS, f.getSentencias().indexOf(s));
+				}
 			}
 		}
 	}
@@ -214,18 +199,13 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		//Registramos todas las variables declaradas dando por hecho que son correctas ya que hay otra función encargada de comprobarlo
 		List<String> variables = registrarVariables(p.getDeclaracion());
 		//Despues de tener todas las variables declaradas comprobamos si la que se usa en el según esta entre ellas
-		int cont = 0;
-		segun se = null;
 		for(Sentencias s: p.getSentencias()) {
 			if(s instanceof segun) {
-				se = (segun) s;
-				cont = p.getSentencias().indexOf(s);
-			}
-		}
-		if(se != null) {
-			VariableID v = (VariableID) se.getValor(); //Siempre es una variable
-			if(!variables.contains(v.getNombre())) {
-				error("La variable utilizada como parámetro en el segun_sea debe haber sido previamente declarada", DiagramapseudocodigoPackage.Literals.SUBPROCESO__SENTENCIAS,cont);
+				segun se = (segun) s;
+				VariableID v = (VariableID) se.getValor(); //Siempre es una variable
+				if(!variables.contains(v.getNombre())) {
+					error("La variable utilizada como parámetro en el segun_sea debe haber sido previamente declarada", DiagramapseudocodigoPackage.Literals.SUBPROCESO__SENTENCIAS, p.getSentencias().indexOf(s));
+				}
 			}
 		}
 	}
@@ -286,15 +266,13 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		for(Constantes cons: c.getConstantes()) {
 			constantes.add(cons.getVariable().getNombre());
 		}
-		int cont = 0;
 		for(TipoComplejo t: c.getTipocomplejo()) {
-			cont++;
 			if(t instanceof Vector) {
 				Vector v = (Vector) t;
 				if(v.getValor() instanceof VariableID) {
 					VariableID var = (VariableID) v.getValor();
 					if(!constantes.contains(var.getNombre())) {
-						error("La constante debe estar definida", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, cont-1);
+						error("La constante debe estar definida", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, c.getTipocomplejo().indexOf(t));
 					}
 				}
 			}
@@ -303,15 +281,31 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				if(m.getValor().get(0) instanceof VariableID) {
 					VariableID var = (VariableID) m.getValor().get(0);
 					if(!constantes.contains(var.getNombre())) {
-						error("La constante debe estar definida", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, cont-1);
+						error("La constante debe estar definida", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, c.getTipocomplejo().indexOf(t));
 					}
 				}
 				if(m.getValor().size() > 1 && m.getValor().get(1) instanceof VariableID) {
 					VariableID var = (VariableID) m.getValor().get(1);
 					if(!constantes.contains(var.getNombre())) {
-						error("La constante debe estar definida", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, cont-1);
+						error("La constante debe estar definida", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, c.getTipocomplejo().indexOf(t));
 					}
 				}
+			}
+		}
+	}
+	
+	@Check
+	//Función que comprueba que no existen dos constantes con el mismo nombre
+	protected void checkConstantesRepetidas(Codigo c) {
+		List<String> constantes = new ArrayList<String>();
+		for(Constantes cons: c.getConstantes()) {
+			if(constantes.contains(cons.getVariable().getNombre())) {
+				//Si ya ha sido registrada lanzamos el error
+				error("No pueden existir dos constantes con el mismo nombre", DiagramapseudocodigoPackage.Literals.CODIGO__CONSTANTES, c.getConstantes().indexOf(cons));
+			}
+			else {
+				//Si no ha sido registrada la registramos
+				constantes.add(cons.getVariable().getNombre());
 			}
 		}
 	}
