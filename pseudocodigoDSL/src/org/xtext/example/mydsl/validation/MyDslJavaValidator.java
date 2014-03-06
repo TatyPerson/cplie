@@ -15,6 +15,8 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 //		}
 //	}
 	
+	private static List<String> tipos;
+	
 	@Check
 	//Función que se encarga de comprobar si el limite inferior de un subrango es siempre inferior al superior.
 	protected void checkSubrango(Subrango s) {
@@ -306,6 +308,56 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			else {
 				//Si no ha sido registrada la registramos
 				constantes.add(cons.getVariable().getNombre());
+			}
+		}
+	}
+	
+	@Check
+	protected void checkDeclaracionesTiposComplejos(Codigo c) {
+		//Registramos los nombres de todos los tipos complejos suponiendo que no estan repetidos ya que hay otra función que lo comprueba
+		for(TipoComplejo com: c.getTipocomplejo()) {
+			if(com instanceof Vector) {
+				Vector v = (Vector) com;
+				tipos.add(v.getNombre());
+			}
+			else if(com instanceof Matriz) {
+				Matriz m = (Matriz) com;
+				tipos.add(m.getNombre());
+			}
+			else if(com instanceof Registro) {
+				Registro r = (Registro) com;
+				tipos.add(r.getNombre());
+			}
+			else if(com instanceof Enumerado) {
+				Enumerado e = (Enumerado) com;
+				tipos.add(e.getNombre());
+			}
+			else if(com instanceof Archivo) {
+				Archivo a = (Archivo) com;
+				tipos.add(a.getNombre());
+			}
+			else {
+				Subrango s = (Subrango) com;
+				tipos.add(s.getNombre());
+			}
+		}
+		//Comprobamos que todas las declaraciones de variables complejas en el programa principal y en los subprocesos son de tipos existentes
+		
+		checkDeclaracionesTiposComplejosAux(tipos, c.getTiene().getDeclaracion());
+		
+		for(Subproceso s: c.getFuncion()) {
+			checkDeclaracionesTiposComplejosAux(tipos, s.getDeclaracion());
+		}
+	}
+	
+	private void checkDeclaracionesTiposComplejosAux(List<String> tipos, List<Declaracion> declaraciones) {
+		for(Declaracion d: declaraciones) {
+			if(d instanceof DeclaracionPropia) {
+				DeclaracionPropia dec = (DeclaracionPropia) d;
+				if(!tipos.contains(dec.getTipo())) {
+					//Si el tipo no existe entonces lanzamos el error
+					error("El tipo debe estar declarado con anterioridad", DiagramapseudocodigoPackage.Literals.CODIGO__TIENE, declaraciones.indexOf(d));
+				}
 			}
 		}
 	}
