@@ -15,7 +15,6 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 //		}
 //	}
 	
-	private static List<String> tipos;
 	
 	@Check
 	//Función que se encarga de comprobar si el limite inferior de un subrango es siempre inferior al superior.
@@ -314,6 +313,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	
 	@Check
 	protected void checkDeclaracionesTiposComplejos(Codigo c) {
+		List<String >tipos = new ArrayList<String>();
 		//Registramos los nombres de todos los tipos complejos suponiendo que no estan repetidos ya que hay otra función que lo comprueba
 		for(TipoComplejo com: c.getTipocomplejo()) {
 			if(com instanceof Vector) {
@@ -341,22 +341,30 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				tipos.add(s.getNombre());
 			}
 		}
+		
+		for(String s: tipos) {
+			System.out.println(s + " ");
+		}
 		//Comprobamos que todas las declaraciones de variables complejas en el programa principal y en los subprocesos son de tipos existentes
 		
-		checkDeclaracionesTiposComplejosAux(tipos, c.getTiene().getDeclaracion());
-		
-		for(Subproceso s: c.getFuncion()) {
-			checkDeclaracionesTiposComplejosAux(tipos, s.getDeclaracion());
-		}
-	}
-	
-	private void checkDeclaracionesTiposComplejosAux(List<String> tipos, List<Declaracion> declaraciones) {
-		for(Declaracion d: declaraciones) {
+		for(Declaracion d: c.getTiene().getDeclaracion()) {
 			if(d instanceof DeclaracionPropia) {
 				DeclaracionPropia dec = (DeclaracionPropia) d;
 				if(!tipos.contains(dec.getTipo())) {
 					//Si el tipo no existe entonces lanzamos el error
-					error("El tipo debe estar declarado con anterioridad", DiagramapseudocodigoPackage.Literals.CODIGO__TIENE, declaraciones.indexOf(d));
+					error("El tipo debe estar previamente definido", DiagramapseudocodigoPackage.Literals.CODIGO__TIENE);
+				}
+			}
+		}
+		
+		for(Subproceso s: c.getFuncion()) {
+			for(Declaracion d: s.getDeclaracion()) {
+				if(d instanceof DeclaracionPropia) {
+					DeclaracionPropia dec = (DeclaracionPropia) d;
+					if(!tipos.contains(dec.getTipo())) {
+						//Si el tipo no existe entonces lanzamos el error
+						error("El tipo debe estar previamente definido", DiagramapseudocodigoPackage.Literals.CODIGO__FUNCION, c.getFuncion().indexOf(s));
+					}
 				}
 			}
 		}
