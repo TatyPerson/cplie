@@ -519,6 +519,35 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		}
 	}
 	
+	@Check
+	protected void checkLlamadaFuncion(Codigo c) {
+		List<String> funciones = new ArrayList<String>();
+		
+		for(Subproceso s: c.getFuncion()) {
+			funciones.add(s.getNombre());
+		}
+		
+		for(Sentencias s: c.getTiene().getTiene()) {
+			if(s instanceof LlamadaFuncion) {
+				LlamadaFuncion l = (LlamadaFuncion) s;
+				if(!funciones.contains(l.getNombre())) {
+					error("La función debe haber sido previamente declarada", l, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+				}
+			}
+		}
+		
+		for(Subproceso s: c.getFuncion()) {
+			for(Sentencias sn: s.getSentencias()) {
+				if(sn instanceof LlamadaFuncion) {
+					LlamadaFuncion l = (LlamadaFuncion) sn;
+					if(!funciones.contains(l.getNombre())) {
+						error("La función debe haber sido previamente declarada", l, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+					}
+				}
+			}
+		}
+	}
+	
 	private List<String> registrarTipos(List<TipoComplejo> tipoComplejo) {
 		List<String> tipos = new ArrayList<String>();
 		
