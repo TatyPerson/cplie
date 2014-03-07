@@ -341,10 +341,6 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				tipos.add(s.getNombre());
 			}
 		}
-		
-		for(String s: tipos) {
-			System.out.println(s + " ");
-		}
 		//Comprobamos que todas las declaraciones de variables complejas en el programa principal y en los subprocesos son de tipos existentes
 		
 		for(Declaracion d: c.getTiene().getDeclaracion()) {
@@ -352,7 +348,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				DeclaracionPropia dec = (DeclaracionPropia) d;
 				if(!tipos.contains(dec.getTipo())) {
 					//Si el tipo no existe entonces lanzamos el error
-					error("El tipo debe estar previamente definido", DiagramapseudocodigoPackage.Literals.CODIGO__TIENE);
+					error("El tipo de la variable debe estar previamente definido", c.getTiene(), DiagramapseudocodigoPackage.Literals.INICIO__DECLARACION, c.getTiene().getDeclaracion().indexOf(d));
 				}
 			}
 		}
@@ -363,7 +359,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					DeclaracionPropia dec = (DeclaracionPropia) d;
 					if(!tipos.contains(dec.getTipo())) {
 						//Si el tipo no existe entonces lanzamos el error
-						error("El tipo debe estar previamente definido", DiagramapseudocodigoPackage.Literals.CODIGO__FUNCION, c.getFuncion().indexOf(s));
+						error("El tipo de la variable debe estar previamente definido", s, DiagramapseudocodigoPackage.Literals.SUBPROCESO__DECLARACION, s.getDeclaracion().indexOf(d));
 					}
 				}
 			}
