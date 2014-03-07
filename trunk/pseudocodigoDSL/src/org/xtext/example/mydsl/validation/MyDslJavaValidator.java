@@ -1,7 +1,9 @@
 package org.xtext.example.mydsl.validation;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.xtext.validation.Check;
 
@@ -343,6 +345,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	@Check
+	//Función que comprueba que no hay dos tipos complejos diferentes con el mismo nombre
 	protected void checkTipos(Codigo c) {
 		List<String> tipos = new ArrayList<String>();
 		
@@ -412,6 +415,30 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					//Si existe lanzamos el error
 					error("El nombre del tipo debe ser único", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, c.getTipocomplejo().indexOf(com));
 				}
+			}
+		}
+	}
+	
+	@Check
+	//Función que comprueba que no haya declaradas dos funciones con el mismo nombre y mismo número de parámetros
+	protected void checkFunciones(Codigo c) {
+		List<String> nombres = new ArrayList<String>();
+		List<ArrayList<Integer>> parametros = new ArrayList<ArrayList<Integer>>();
+		for(Subproceso s: c.getFuncion()) {
+			//Comprobamos que no haya otro subproceso con el mismo nombre y el mismo número de parámetros
+			if(!nombres.contains(s.getNombre())) {
+				//Si todavia no hay ninguna que se llame así, la registramos
+				nombres.add(s.getNombre());
+				parametros.add(new ArrayList<Integer>());
+				parametros.get(nombres.indexOf(s.getNombre())).add(s.getParametrofuncion().size());
+			}
+			else if(nombres.contains(s.getNombre()) && !parametros.get(nombres.indexOf(s.getNombre())).contains(s.getParametrofuncion().size())) {
+				//Si el nombre existe y no tiene el mismo número de parámetros lo registramos
+				parametros.get(nombres.indexOf(s.getNombre())).add(s.getParametrofuncion().size());
+				
+			}
+			else {
+				error("No puede existir dos subprocesos con el mismo nombre y mismo número de parámetros", s, DiagramapseudocodigoPackage.Literals.SUBPROCESO__NOMBRE, c.getFuncion().indexOf(s));
 			}
 		}
 	}
