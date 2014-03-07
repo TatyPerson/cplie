@@ -443,6 +443,43 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		}
 	}
 	
+	@Check
+	protected void checkVariablesUsadas(Inicio i) {
+		List<String> variables = registrarVariables(i.getDeclaracion());
+		
+		for(Sentencias s: i.getTiene()) {
+			if(s instanceof LlamadaFuncion) {
+				LlamadaFuncion f = (LlamadaFuncion) s;
+				for(Operador o: f.getOperador()) {
+					if(o instanceof VariableID) {
+						VariableID v = (VariableID) o;
+						if(!variables.contains(v.getNombre())) {
+							error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+						}
+					}
+				}
+			}
+			else if(s instanceof Leer) {
+				Leer l = (Leer) s;
+				if(!variables.contains(l.getVariable().getNombre())) {
+					error("La variable debe haber sido previamente definida", l.getVariable(), DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+				}
+			}
+			
+			else if(s instanceof Escribir) {
+				Escribir e = (Escribir) s;
+				for(Operador o: e.getOperador()) {
+					if(o instanceof VariableID) {
+						VariableID v = (VariableID) o;
+						if(!variables.contains(v.getNombre())) {
+							error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+						}
+					}
+				}
+			}
+		}
+	}
+	
 	private List<String> registrarTipos(List<TipoComplejo> tipoComplejo) {
 		List<String> tipos = new ArrayList<String>();
 		
