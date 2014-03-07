@@ -522,6 +522,20 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	@Check
 	protected void checkLlamadaFuncion(Codigo c) {
 		List<String> funciones = new ArrayList<String>();
+		List<ArrayList<Integer>> parametros = new ArrayList<ArrayList<Integer>>();
+		for(Subproceso s: c.getFuncion()) {
+			//Se presupone que no hay ninguna repetida porque ya existe una función que se encarga de ello
+			if(!funciones.contains(s.getNombre())) {
+				//Si todavia no hay ninguna que se llame así, la registramos
+				funciones.add(s.getNombre());
+				parametros.add(new ArrayList<Integer>());
+				parametros.get(funciones.indexOf(s.getNombre())).add(s.getParametrofuncion().size());
+			}
+			else {
+				//Si el nombre existe y no tiene el mismo número de parámetros lo registramos
+				parametros.get(funciones.indexOf(s.getNombre())).add(s.getParametrofuncion().size());
+			}
+		}
 		
 		for(Subproceso s: c.getFuncion()) {
 			funciones.add(s.getNombre());
@@ -532,6 +546,9 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				LlamadaFuncion l = (LlamadaFuncion) s;
 				if(!funciones.contains(l.getNombre())) {
 					error("La función debe haber sido previamente declarada", l, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+				}
+				else if(!parametros.get(funciones.indexOf(l.getNombre())).contains(l.getOperador().size())) {
+					error("El número de parámetros de la función no es el esperado", l, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
 				}
 			}
 		}
