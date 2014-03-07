@@ -312,10 +312,114 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	@Check
+	//Función que comprueba que el tipo de una variable ha sido definido con anterioridad
 	protected void checkDeclaracionesTiposComplejos(Codigo c) {
-		List<String >tipos = new ArrayList<String>();
 		//Registramos los nombres de todos los tipos complejos suponiendo que no estan repetidos ya que hay otra función que lo comprueba
+		List<String >tipos = registrarTipos(c.getTipocomplejo());
+		
+		//Comprobamos que todas las declaraciones de variables complejas en el programa principal y en los subprocesos son de tipos existentes
+		
+		for(Declaracion d: c.getTiene().getDeclaracion()) {
+			if(d instanceof DeclaracionPropia) {
+				DeclaracionPropia dec = (DeclaracionPropia) d;
+				if(!tipos.contains(dec.getTipo())) {
+					//Si el tipo no existe entonces lanzamos el error
+					error("El tipo de la variable debe estar previamente definido", c.getTiene(), DiagramapseudocodigoPackage.Literals.INICIO__DECLARACION, c.getTiene().getDeclaracion().indexOf(d));
+				}
+			}
+		}
+		
+		for(Subproceso s: c.getFuncion()) {
+			for(Declaracion d: s.getDeclaracion()) {
+				if(d instanceof DeclaracionPropia) {
+					DeclaracionPropia dec = (DeclaracionPropia) d;
+					if(!tipos.contains(dec.getTipo())) {
+						//Si el tipo no existe entonces lanzamos el error
+						error("El tipo de la variable debe estar previamente definido", s, DiagramapseudocodigoPackage.Literals.SUBPROCESO__DECLARACION, s.getDeclaracion().indexOf(d));
+					}
+				}
+			}
+		}
+	}
+	
+	@Check
+	protected void checkTipos(Codigo c) {
+		List<String> tipos = new ArrayList<String>();
+		
 		for(TipoComplejo com: c.getTipocomplejo()) {
+			if(com instanceof Vector) {
+				Vector v = (Vector) com;
+				if(!tipos.contains(v.getNombre())) {
+					//Si no existe lo registramos
+					tipos.add(v.getNombre());
+				}
+				else {
+					//Si existe lanzamos el error
+					error("El nombre del tipo debe ser único", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, c.getTipocomplejo().indexOf(com));
+				}
+			}
+			else if(com instanceof Matriz) {
+				Matriz m = (Matriz) com;
+				if(!tipos.contains(m.getNombre())) {
+					//Si no existe lo registramos
+					tipos.add(m.getNombre());
+				}
+				else {
+					//Si existe lanzamos el error
+					error("El nombre del tipo debe ser único", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, c.getTipocomplejo().indexOf(com));
+				}
+			}
+			else if(com instanceof Registro) {
+				Registro r = (Registro) com;
+				if(!tipos.contains(r.getNombre())) {
+					//Si no existe lo registramos
+					tipos.add(r.getNombre());
+				}
+				else {
+					//Si existe lanzamos el error
+					error("El nombre del tipo debe ser único", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, c.getTipocomplejo().indexOf(com));
+				}
+			}
+			else if(com instanceof Enumerado) {
+				Enumerado e = (Enumerado) com;
+				if(!tipos.contains(e.getNombre())) {
+					//Si no existe lo registramos
+					tipos.add(e.getNombre());
+				}
+				else {
+					//Si existe lanzamos el error
+					error("El nombre del tipo debe ser único", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, c.getTipocomplejo().indexOf(com));
+				}
+			}
+			else if(com instanceof Archivo) {
+				Archivo a = (Archivo) com;
+				if(!tipos.contains(a.getNombre())) {
+					//Si no existe lo registramos
+					tipos.add(a.getNombre());
+				}
+				else {
+					//Si existe lanzamos el error
+					error("El nombre del tipo debe ser único", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, c.getTipocomplejo().indexOf(com));
+				}
+			}
+			else {
+				Subrango s = (Subrango) com;
+				if(!tipos.contains(s.getNombre())) {
+					//Si no existe lo registramos
+					tipos.add(s.getNombre());
+				}
+				else {
+					//Si existe lanzamos el error
+					error("El nombre del tipo debe ser único", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, c.getTipocomplejo().indexOf(com));
+				}
+			}
+		}
+	}
+	
+	private List<String> registrarTipos(List<TipoComplejo> tipoComplejo) {
+		List<String> tipos = new ArrayList<String>();
+		
+		for(TipoComplejo com: tipoComplejo) {
 			if(com instanceof Vector) {
 				Vector v = (Vector) com;
 				tipos.add(v.getNombre());
@@ -341,29 +445,8 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				tipos.add(s.getNombre());
 			}
 		}
-		//Comprobamos que todas las declaraciones de variables complejas en el programa principal y en los subprocesos son de tipos existentes
 		
-		for(Declaracion d: c.getTiene().getDeclaracion()) {
-			if(d instanceof DeclaracionPropia) {
-				DeclaracionPropia dec = (DeclaracionPropia) d;
-				if(!tipos.contains(dec.getTipo())) {
-					//Si el tipo no existe entonces lanzamos el error
-					error("El tipo de la variable debe estar previamente definido", c.getTiene(), DiagramapseudocodigoPackage.Literals.INICIO__DECLARACION, c.getTiene().getDeclaracion().indexOf(d));
-				}
-			}
-		}
-		
-		for(Subproceso s: c.getFuncion()) {
-			for(Declaracion d: s.getDeclaracion()) {
-				if(d instanceof DeclaracionPropia) {
-					DeclaracionPropia dec = (DeclaracionPropia) d;
-					if(!tipos.contains(dec.getTipo())) {
-						//Si el tipo no existe entonces lanzamos el error
-						error("El tipo de la variable debe estar previamente definido", s, DiagramapseudocodigoPackage.Literals.SUBPROCESO__DECLARACION, s.getDeclaracion().indexOf(d));
-					}
-				}
-			}
-		}
+		return tipos;
 	}
 	
 	private List<String> registrarVariables(List<Declaracion> declaraciones) {
