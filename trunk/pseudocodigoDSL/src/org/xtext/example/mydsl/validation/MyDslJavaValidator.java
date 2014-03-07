@@ -76,7 +76,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				}
 				else {
 					//Si esta repetida lanzamos el error
-					error("No se pueden declarar dos variables con el mismo nombre dentro de la declaración de un registro", DiagramapseudocodigoPackage.Literals.REGISTRO__NOMBRE);
+					error("No se pueden declarar dos variables con el mismo nombre dentro de la declaración de un registro", DiagramapseudocodigoPackage.Literals.REGISTRO__VARIABLE, r.getVariable().indexOf(d));
 				}
 			}
 		}
