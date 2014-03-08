@@ -19,7 +19,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	
 	
 	@Check
-	//FunciÛn que se encarga de comprobar si el limite inferior de un subrango es siempre inferior al superior.
+	//Funci√≥n que se encarga de comprobar si el limite inferior de un subrango es siempre inferior al superior.
 	protected void checkSubrango(Subrango s) {
 		if(s instanceof SubrangoNumerico) {
 			SubrangoNumerico sn = (SubrangoNumerico) s;
@@ -30,7 +30,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	@Check
-	//FunciÛn que se encarga de comprobar que no existen casos repetidos en la estructura segun_sea
+	//Funci√≥n que se encarga de comprobar que no existen casos repetidos en la estructura segun_sea
 	protected void checkCasos(segun s) {
 		List<Integer> numeros = new ArrayList<Integer>();
 		for(Caso c: s.getCaso()) {
@@ -51,7 +51,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	
 	
 	@Check
-	//FunciÛn que se encarga de comprobar que no existan dos par·metros en un subproceso con el mismo nombre
+	//Funci√≥n que se encarga de comprobar que no existan dos par√°metros en un subproceso con el mismo nombre
 	protected void checkParametros(Subproceso s) {
 		List<String> parametros = new ArrayList<String>();
 		for(ParametroFuncion p: s.getParametrofuncion()) {
@@ -61,13 +61,13 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			}
 			else {
 				//Si esta repetida lanzamos el error
-				error("No pueden existir dos par·metros con el mismo nombre en la misma funciÛn o procedimiento", DiagramapseudocodigoPackage.Literals.SUBPROCESO__NOMBRE);
+				error("No pueden existir dos par√°metros con el mismo nombre en la misma funci√≥n o procedimiento", DiagramapseudocodigoPackage.Literals.SUBPROCESO__NOMBRE);
 			}
 		}
 	}
 	
 	@Check
-	//FunciÛn que se encarga de comprobar que no existan dos variables declaradas en un registro con el mismo nombre
+	//Funci√≥n que se encarga de comprobar que no existan dos variables declaradas en un registro con el mismo nombre
 	protected void checkRegistro(Registro r) {
 		List<String> variables = new ArrayList<String>();
 		for(DeclaracionVariable d: r.getVariable()) {
@@ -78,17 +78,17 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				}
 				else {
 					//Si esta repetida lanzamos el error
-					error("No se pueden declarar dos variables con el mismo nombre dentro de la declaraciÛn de un registro", DiagramapseudocodigoPackage.Literals.REGISTRO__VARIABLE, r.getVariable().indexOf(d));
+					error("No se pueden declarar dos variables con el mismo nombre dentro de la declaraci√≥n de un registro", DiagramapseudocodigoPackage.Literals.REGISTRO__VARIABLE, r.getVariable().indexOf(d));
 				}
 			}
 		}
 	}
 	
 	@Check
-	//FunciÛn que se encarga de comprobar que no existan dos variables con el mismo nombre dentro de un subproceso
+	//Funci√≥n que se encarga de comprobar que no existan dos variables con el mismo nombre dentro de un subproceso
 	protected void checkDeclaraciones(Subproceso s) {
 		List<String> variables = new ArrayList<String>();
-		//Registramos los par·metros que ya son v·lidados por otra funciÛn y se presuponen correctos sin repeticiones
+		//Registramos los par√°metros que ya son v√°lidados por otra funci√≥n y se presuponen correctos sin repeticiones
 		for(ParametroFuncion p: s.getParametrofuncion()) {
 			variables.add(p.getVariable().getNombre());
 		}
@@ -103,7 +103,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					}
 					else {
 						//Si esta repetida lanzamos el error
-						error("No pueden existir dos variables con el mismo nombre dentro de la misma funciÛn o procedimiento", DiagramapseudocodigoPackage.Literals.SUBPROCESO__NOMBRE);
+						error("No pueden existir dos variables con el mismo nombre dentro de la misma funci√≥n o procedimiento", DiagramapseudocodigoPackage.Literals.SUBPROCESO__NOMBRE);
 					}
 				}
 			}
@@ -117,7 +117,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					}
 					else {
 						//Si esta repetida lanzamos el error
-						error("No pueden existir dos variables con el mismo nombre dentro de la misma funciÛn o procedimiento", DiagramapseudocodigoPackage.Literals.SUBPROCESO__NOMBRE);	
+						error("No pueden existir dos variables con el mismo nombre dentro de la misma funci√≥n o procedimiento", DiagramapseudocodigoPackage.Literals.SUBPROCESO__NOMBRE);	
 					}
 				}
 			}
@@ -126,7 +126,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	
 	
 	@Check
-	//FunciÛn que se encarga de comprobar que no existan dos variables con el mismo nombre dentro de un programa principal
+	//Funci√≥n que se encarga de comprobar que no existan dos variables con el mismo nombre dentro de un programa principal
 	protected void checkDeclaraciones(Inicio i) {
 		List<String> variables = new ArrayList<String>();
 		for(Declaracion d: i.getDeclaracion()) {
@@ -163,51 +163,51 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	
 	
 	@Check
-	//FunciÛn que comprueba en el programa principal que la variable utilizada en el segun_sea haya sido declarada con anterioridad
+	//Funci√≥n que comprueba en el programa principal que la variable utilizada en el segun_sea haya sido declarada con anterioridad
 	protected void checkSegun(Inicio i) {
-		//Registramos todas las variables declaradas dando por hecho que son correctas ya que hay otra funciÛn encargada de comprobarlo
+		//Registramos todas las variables declaradas dando por hecho que son correctas ya que hay otra funci√≥n encargada de comprobarlo
 		List<String> variables = registrarVariables(i.getDeclaracion());
-		//Despues de tener todas las variables declaradas comprobamos si la que se usa en el seg˙n esta entre ellas
+		//Despues de tener todas las variables declaradas comprobamos si la que se usa en el seg√∫n esta entre ellas
 		for(Sentencias s: i.getTiene()) {
 			if(s instanceof segun) {
 				segun se = (segun) s;
 				VariableID v = (VariableID) se.getValor(); //Siempre es una variable
 				if(!variables.contains(v.getNombre())) {
-					error("La variable utilizada como par·metro en el segun_sea debe haber sido previamente declarada", DiagramapseudocodigoPackage.Literals.INICIO__TIENE, i.getTiene().indexOf(s));
+					error("La variable utilizada como par√°metro en el segun_sea debe haber sido previamente declarada", DiagramapseudocodigoPackage.Literals.INICIO__TIENE, i.getTiene().indexOf(s));
 				}
 			}
 		}
 	}
 	
 	@Check
-	//FunciÛn que comprueba en las funciones que la variable utilizada en el segun_sea haya sido declarada con anterioridad
+	//Funci√≥n que comprueba en las funciones que la variable utilizada en el segun_sea haya sido declarada con anterioridad
 	protected void checkSegun(Funcion f) {
-		//Registramos todas las variables declaradas dando por hecho que son correctas ya que hay otra funciÛn encargada de comprobarlo
+		//Registramos todas las variables declaradas dando por hecho que son correctas ya que hay otra funci√≥n encargada de comprobarlo
 		List<String> variables = registrarVariables(f.getDeclaracion());
-		//Despues de tener todas las variables declaradas comprobamos si la que se usa en el seg˙n esta entre ellas
+		//Despues de tener todas las variables declaradas comprobamos si la que se usa en el seg√∫n esta entre ellas
 		for(Sentencias s: f.getSentencias()) {
 			if(s instanceof segun) {
 				segun se = (segun) s;
 				VariableID v = (VariableID) se.getValor(); //Siempre es una variable
 				if(!variables.contains(v.getNombre())) {
-					error("La variable utilizada como par·metro en el segun_sea debe haber sido previamente declarada", DiagramapseudocodigoPackage.Literals.SUBPROCESO__SENTENCIAS, f.getSentencias().indexOf(s));
+					error("La variable utilizada como par√°metro en el segun_sea debe haber sido previamente declarada", DiagramapseudocodigoPackage.Literals.SUBPROCESO__SENTENCIAS, f.getSentencias().indexOf(s));
 				}
 			}
 		}
 	}
 	
 	@Check
-	//FunciÛn que comprueba en los procedimientos que la variable utilizada en el segun_sea haya sido declarada con anterioridad
+	//Funci√≥n que comprueba en los procedimientos que la variable utilizada en el segun_sea haya sido declarada con anterioridad
 	protected void checkSegun(Procedimiento p) {
-		//Registramos todas las variables declaradas dando por hecho que son correctas ya que hay otra funciÛn encargada de comprobarlo
+		//Registramos todas las variables declaradas dando por hecho que son correctas ya que hay otra funci√≥n encargada de comprobarlo
 		List<String> variables = registrarVariables(p.getDeclaracion());
-		//Despues de tener todas las variables declaradas comprobamos si la que se usa en el seg˙n esta entre ellas
+		//Despues de tener todas las variables declaradas comprobamos si la que se usa en el seg√∫n esta entre ellas
 		for(Sentencias s: p.getSentencias()) {
 			if(s instanceof segun) {
 				segun se = (segun) s;
 				VariableID v = (VariableID) se.getValor(); //Siempre es una variable
 				if(!variables.contains(v.getNombre())) {
-					error("La variable utilizada como par·metro en el segun_sea debe haber sido previamente declarada", DiagramapseudocodigoPackage.Literals.SUBPROCESO__SENTENCIAS, p.getSentencias().indexOf(s));
+					error("La variable utilizada como par√°metro en el segun_sea debe haber sido previamente declarada", DiagramapseudocodigoPackage.Literals.SUBPROCESO__SENTENCIAS, p.getSentencias().indexOf(s));
 				}
 			}
 		}
@@ -228,7 +228,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			VariableID v = (VariableID) se.getValor();
 			nombre = v.getNombre();
 			
-			//DespuÈs seleccionamos el tipo de la variable de entrada del segun_sea (damos por hecho que esta declarada porque hay otra funciÛn que lo comprueba)
+			//Despu√©s seleccionamos el tipo de la variable de entrada del segun_sea (damos por hecho que esta declarada porque hay otra funci√≥n que lo comprueba)
 			
 			DeclaracionVariable parametro = null;
 			
@@ -256,14 +256,14 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			}
 			
 			if(!valido) {
-				warning("Todos los par·metros del segun_caso deben ser del mismo tipo que el par·metro de entrada del segun_caso", DiagramapseudocodigoPackage.Literals.SEGUN__CASO,cont);
+				warning("Todos los par√°metros del segun_caso deben ser del mismo tipo que el par√°metro de entrada del segun_caso", DiagramapseudocodigoPackage.Literals.SEGUN__CASO,cont);
 			}
 		}
 		
 	}
 	
 	@Check
-	//FunciÛn que compueba que las constantes utilizadas para definir los tamaÒos de los vectores y matrices han sido declaradas con anterioridad
+	//Funci√≥n que compueba que las constantes utilizadas para definir los tama√±os de los vectores y matrices han sido declaradas con anterioridad
 	protected void checkConstantes(Codigo c) {
 		List<String> constantes = new ArrayList<String>();
 		for(Constantes cons: c.getConstantes()) {
@@ -298,7 +298,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	@Check
-	//FunciÛn que comprueba que no existen dos constantes con el mismo nombre
+	//Funci√≥n que comprueba que no existen dos constantes con el mismo nombre
 	protected void checkConstantesRepetidas(Codigo c) {
 		List<String> constantes = new ArrayList<String>();
 		for(Constantes cons: c.getConstantes()) {
@@ -314,9 +314,9 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	@Check
-	//FunciÛn que comprueba que el tipo de una variable ha sido definido con anterioridad
+	//Funci√≥n que comprueba que el tipo de una variable ha sido definido con anterioridad
 	protected void checkDeclaracionesTiposComplejos(Codigo c) {
-		//Registramos los nombres de todos los tipos complejos suponiendo que no estan repetidos ya que hay otra funciÛn que lo comprueba
+		//Registramos los nombres de todos los tipos complejos suponiendo que no estan repetidos ya que hay otra funciÔøΩn que lo comprueba
 		List<String >tipos = registrarTipos(c.getTipocomplejo());
 		
 		//Comprobamos que todas las declaraciones de variables complejas en el programa principal y en los subprocesos son de tipos existentes
@@ -345,7 +345,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	@Check
-	//FunciÛn que comprueba que no hay dos tipos complejos diferentes con el mismo nombre
+	//Funci√≥n que comprueba que no hay dos tipos complejos diferentes con el mismo nombre
 	protected void checkTipos(Codigo c) {
 		List<String> tipos = new ArrayList<String>();
 		
@@ -358,7 +358,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				}
 				else {
 					//Si existe lanzamos el error
-					error("El nombre del tipo debe ser ˙nico", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, c.getTipocomplejo().indexOf(com));
+					error("El nombre del tipo debe ser √∫nico", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, c.getTipocomplejo().indexOf(com));
 				}
 			}
 			else if(com instanceof Matriz) {
@@ -369,7 +369,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				}
 				else {
 					//Si existe lanzamos el error
-					error("El nombre del tipo debe ser ˙nico", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, c.getTipocomplejo().indexOf(com));
+					error("El nombre del tipo debe ser √∫nico", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, c.getTipocomplejo().indexOf(com));
 				}
 			}
 			else if(com instanceof Registro) {
@@ -380,7 +380,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				}
 				else {
 					//Si existe lanzamos el error
-					error("El nombre del tipo debe ser ˙nico", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, c.getTipocomplejo().indexOf(com));
+					error("El nombre del tipo debe ser √∫nico", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, c.getTipocomplejo().indexOf(com));
 				}
 			}
 			else if(com instanceof Enumerado) {
@@ -391,7 +391,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				}
 				else {
 					//Si existe lanzamos el error
-					error("El nombre del tipo debe ser ˙nico", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, c.getTipocomplejo().indexOf(com));
+					error("El nombre del tipo debe ser √∫nico", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, c.getTipocomplejo().indexOf(com));
 				}
 			}
 			else if(com instanceof Archivo) {
@@ -402,7 +402,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				}
 				else {
 					//Si existe lanzamos el error
-					error("El nombre del tipo debe ser ˙nico", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, c.getTipocomplejo().indexOf(com));
+					error("El nombre del tipo debe ser √∫nico", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, c.getTipocomplejo().indexOf(com));
 				}
 			}
 			else {
@@ -413,38 +413,38 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				}
 				else {
 					//Si existe lanzamos el error
-					error("El nombre del tipo debe ser ˙nico", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, c.getTipocomplejo().indexOf(com));
+					error("El nombre del tipo debe ser √∫nico", DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO, c.getTipocomplejo().indexOf(com));
 				}
 			}
 		}
 	}
 	
 	@Check
-	//FunciÛn que comprueba que no haya declaradas dos funciones con el mismo nombre y mismo n˙mero de par·metros
+	//Funci√≥n que comprueba que no haya declaradas dos funciones con el mismo nombre y mismo n√∫mero de par√°metros
 	protected void checkFunciones(Codigo c) {
 		List<String> nombres = new ArrayList<String>();
 		List<ArrayList<Integer>> parametros = new ArrayList<ArrayList<Integer>>();
 		for(Subproceso s: c.getFuncion()) {
-			//Comprobamos que no haya otro subproceso con el mismo nombre y el mismo n˙mero de par·metros
+			//Comprobamos que no haya otro subproceso con el mismo nombre y el mismo n√∫mero de par√°metros
 			if(!nombres.contains(s.getNombre())) {
-				//Si todavia no hay ninguna que se llame asÌ, la registramos
+				//Si todavia no hay ninguna que se llame as√≠, la registramos
 				nombres.add(s.getNombre());
 				parametros.add(new ArrayList<Integer>());
 				parametros.get(nombres.indexOf(s.getNombre())).add(s.getParametrofuncion().size());
 			}
 			else if(nombres.contains(s.getNombre()) && !parametros.get(nombres.indexOf(s.getNombre())).contains(s.getParametrofuncion().size())) {
-				//Si el nombre existe y no tiene el mismo n˙mero de par·metros lo registramos
+				//Si el nombre existe y no tiene el mismo n√∫mero de par√°metros lo registramos
 				parametros.get(nombres.indexOf(s.getNombre())).add(s.getParametrofuncion().size());
 				
 			}
 			else {
-				error("No puede existir dos subprocesos con el mismo nombre y mismo n˙mero de par·metros", s, DiagramapseudocodigoPackage.Literals.SUBPROCESO__NOMBRE, c.getFuncion().indexOf(s));
+				error("No puede existir dos subprocesos con el mismo nombre y mismo n√∫mero de par√°metros", s, DiagramapseudocodigoPackage.Literals.SUBPROCESO__NOMBRE, c.getFuncion().indexOf(s));
 			}
 		}
 	}
 	
 	@Check
-	//FunciÛn que comprueba que una variable deba estar definida antes de usarse
+	//Funci√≥n que comprueba que una variable deba estar definida antes de usarse
 	protected void checkVariablesUsadas(Inicio i) {
 		List<String> variables = registrarVariables(i.getDeclaracion());
 		
@@ -524,15 +524,15 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		List<String> funciones = new ArrayList<String>();
 		List<ArrayList<Integer>> parametros = new ArrayList<ArrayList<Integer>>();
 		for(Subproceso s: c.getFuncion()) {
-			//Se presupone que no hay ninguna repetida porque ya existe una funciÛn que se encarga de ello
+			//Se presupone que no hay ninguna repetida porque ya existe una funci√≥n que se encarga de ello
 			if(!funciones.contains(s.getNombre())) {
-				//Si todavia no hay ninguna que se llame asÌ, la registramos
+				//Si todavia no hay ninguna que se llame as√≠, la registramos
 				funciones.add(s.getNombre());
 				parametros.add(new ArrayList<Integer>());
 				parametros.get(funciones.indexOf(s.getNombre())).add(s.getParametrofuncion().size());
 			}
 			else {
-				//Si el nombre existe y no tiene el mismo n˙mero de par·metros lo registramos
+				//Si el nombre existe y no tiene el mismo n√∫mero de par√°metros lo registramos
 				parametros.get(funciones.indexOf(s.getNombre())).add(s.getParametrofuncion().size());
 			}
 		}
@@ -545,10 +545,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			if(s instanceof LlamadaFuncion) {
 				LlamadaFuncion l = (LlamadaFuncion) s;
 				if(!funciones.contains(l.getNombre())) {
-					error("La funciÛn debe haber sido previamente declarada", l, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+					error("La funci√≥n debe haber sido previamente declarada", l, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
 				}
 				else if(!parametros.get(funciones.indexOf(l.getNombre())).contains(l.getOperador().size())) {
-					error("El n˙mero de par·metros de la funciÛn no es el esperado", l, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+					error("El n√∫mero de par√°metros de la funci√≥n no es el esperado", l, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
 				}
 			}
 		}
@@ -558,7 +558,58 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				if(sn instanceof LlamadaFuncion) {
 					LlamadaFuncion l = (LlamadaFuncion) sn;
 					if(!funciones.contains(l.getNombre())) {
-						error("La funciÛn debe haber sido previamente declarada", l, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+						error("La funci√≥n debe haber sido previamente declarada", l, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+					}
+				}
+			}
+		}
+	}
+	
+	@Check
+	protected void checkFuncion(Subproceso s) {
+		if(s instanceof Funcion) {
+			Funcion f = (Funcion) s;
+			String tipoDevuelve = f.getTipo().getName();
+			if(f.getDevuelve().getDevuelve() instanceof VariableID) {
+				VariableID v = (VariableID) f.getDevuelve().getDevuelve();
+				String nombreVar = v.getNombre();
+				//Buscamos las variables en las declaraciones y en los parametros para averiguar de que tipo es
+				Map<String,String> variables = new HashMap<String,String>();
+				//Registramos las declaraciones
+				for(Declaracion d: f.getDeclaracion()) {
+					if(d instanceof DeclaracionVariable) {
+						DeclaracionVariable dec = (DeclaracionVariable) d;
+						//Registramos todas las variables declaradas y sus respectivos tipos
+						//Nota: No se comprueba si est√°n repetidas porque ya hay una funci√≥n que se encarga de ello.
+						for(Variable var: dec.getVariable()) {
+							variables.put(var.getNombre(), dec.getTipo().getName());
+						}
+					}
+					else if(d instanceof DeclaracionPropia) {
+						DeclaracionPropia dec = (DeclaracionPropia) d;
+						//Registramos todas las variables declaradas y sus respectivos tipos
+						//Nota: No se comprueba si est√°n repetidas porque ya hay una funci√≥n que se encarga de ello.
+						for(Variable var: dec.getVariable()) {
+							variables.put(var.getNombre(), dec.getTipo());
+						}
+					}
+				}
+				//Registramos los par√°metros
+				for(ParametroFuncion p: f.getParametrofuncion()) {
+					//Registramos todos los par√°metros declarados y sus respectivos tipos
+					variables.put(p.getVariable().getNombre(), p.getTipo().getName());
+				}
+				
+				//Comprobamos que la variable que se quiere devolver este definida y sea del tipo correcto.
+				if(!variables.containsKey(nombreVar)) {
+					error("La variable no ha sido definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+				}
+				else if(variables.get(nombreVar) != tipoDevuelve) {
+					if(variables.get(nombreVar) == "entero" && tipoDevuelve == "real") {
+						warning("El tipo de devoluci√≥n no es el indicado, puede haber p√©rdida de precisi√≥n", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+					}
+					else if(variables.get(nombreVar) != "real" || tipoDevuelve != "entero") {
+						error("El tipo de devoluci√≥n no es el indicado, los tipos son incompatibles", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 					}
 				}
 			}
