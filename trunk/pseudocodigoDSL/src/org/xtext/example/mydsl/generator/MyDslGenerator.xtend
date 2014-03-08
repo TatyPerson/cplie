@@ -11,640 +11,592 @@ import diagramapseudocodigo.impl.*
 import org.eclipse.emf.common.util.EMap
 
 class MyDslGenerator implements IGenerator {
-	
+
 	@Inject extension IQualifiedNameProvider
-	
+
 	//EMap<String, TipoVariable> tablaSimbolos;
-			
 	override void doGenerate(Resource resource, IFileSystemAccess myCFile) {
+
 		//TODO implement me
-		for(myPseudo: resource.allContents.toIterable.filter(typeof(Codigo))) {
-			myCFile.generateFile("salida.cpp",myPseudo.toC)
+		for (myPseudo : resource.allContents.toIterable.filter(typeof(Codigo))) {
+			myCFile.generateFile("salida.cpp", myPseudo.toC)
 		}
 	}
-		
-	def toC(Codigo myCodigo)'''
-	#include <iostream>
-	#include <string>
-	#include <cmath>
-	
-	using namespace std;
-	
-	«FOR myConstante:myCodigo.constantes»
-		«myConstante.toC»
-	«ENDFOR»
-	«FOR myComplejo:myCodigo.tipocomplejo»
-		«myComplejo.toC»
-	«ENDFOR»
 
-	«FOR funcion:myCodigo.funcion»
-		«funcion.toC»
+	def toC(Codigo myCodigo) '''
+		#include <iostream>
+		#include <string>
+		#include <cmath>
 		
-	«ENDFOR»
-	«myCodigo.tiene.toC»
+		using namespace std;
+		
+		ï¿½FOR myConstante:myCodigo.constantesï¿½
+			ï¿½myConstante.toCï¿½
+		ï¿½ENDFORï¿½
+		ï¿½FOR myComplejo:myCodigo.tipocomplejoï¿½
+			ï¿½myComplejo.toCï¿½
+		ï¿½ENDFORï¿½
+		
+		ï¿½FOR funcion:myCodigo.funcionï¿½
+			ï¿½funcion.toCï¿½
+			
+		ï¿½ENDFORï¿½
+		ï¿½myCodigo.tiene.toCï¿½
 	'''
-	
-	def toC(TipoComplejo myComplejo){
-		if(myComplejo.eClass.name.equals("Vector")){
+
+	def toC(TipoComplejo myComplejo) {
+		if (myComplejo.eClass.name.equals("Vector")) {
 			var Vector prueba = new VectorImpl
 			prueba = myComplejo as Vector
 			prueba.toC
-		}
-		else if(myComplejo.eClass.name.equals("Matriz")){
+		} else if (myComplejo.eClass.name.equals("Matriz")) {
 			var Matriz prueba = new MatrizImpl
 			prueba = myComplejo as Matriz
 			prueba.toC
-		}
-		else if(myComplejo.eClass.name.equals("Registro")){
+		} else if (myComplejo.eClass.name.equals("Registro")) {
 			var Registro prueba = new RegistroImpl
 			prueba = myComplejo as Registro
 			prueba.toC
-		}
-		else if(myComplejo.eClass.name.equals("Archivo")){
+		} else if (myComplejo.eClass.name.equals("Archivo")) {
 			var Archivo prueba = new ArchivoImpl
 			prueba = myComplejo as Archivo
 			prueba.toC
-		}
-		else if(myComplejo.eClass.name.equals("Enumerado")){
+		} else if (myComplejo.eClass.name.equals("Enumerado")) {
 			var Enumerado prueba = new EnumeradoImpl
 			prueba = myComplejo as Enumerado
 			prueba.toC
-		}
-		else if(myComplejo.eClass.name.equals("SubrangoNumerico")){
+		} else if (myComplejo.eClass.name.equals("SubrangoNumerico")) {
 			var SubrangoNumerico prueba = new SubrangoNumericoImpl
 			prueba = myComplejo as SubrangoNumerico
 			prueba.toC
 		}
 	}
-	
+
 	def toC(Tipo myTipo) {
-		if(myTipo.eClass.name.equals("TipoDefinido")){
+		if (myTipo.eClass.name.equals("TipoDefinido")) {
 			var TipoDefinido prueba = new TipoDefinidoImpl
 			prueba = myTipo as TipoDefinido
 			prueba.toC
-		}
-		else if(myTipo.eClass.name.equals("TipoExistente")){
+		} else if (myTipo.eClass.name.equals("TipoExistente")) {
 			var TipoExistente prueba = new TipoExistenteImpl
 			prueba = myTipo as TipoExistente
 			prueba.toC
 		}
 	}
-	
+
 	def toC(TipoExistente myTipo) {
 		return tipoVariable(myTipo.tipo)
 	}
-	
+
 	def toC(TipoDefinido myTipo) {
 		return myTipo.tipo
 	}
-	
-	def toC(Constantes myConstante)'''
-		#define «myConstante.variable.nombre»  «myConstante.valor.toC»
+
+	def toC(Constantes myConstante) '''
+		#define ï¿½myConstante.variable.nombreï¿½  ï¿½myConstante.valor.toCï¿½
 	'''
-	
-	
-	def toC(Vector myVector)'''
-		typedef «myVector.tipo.toC» «myVector.nombre»[«myVector.valor.toC»];
+
+	def toC(Vector myVector) '''
+		typedef ï¿½myVector.tipo.toCï¿½ ï¿½myVector.nombreï¿½[ï¿½myVector.valor.toCï¿½];
 	'''
-	
-	def toC(Matriz myMatriz)'''
-		typedef «myMatriz.tipo.toC» «myMatriz.nombre»[«myMatriz.valor.get(0).toC»][«myMatriz.valor.get(1).toC»];
+
+	def toC(Matriz myMatriz) '''
+		typedef ï¿½myMatriz.tipo.toCï¿½ ï¿½myMatriz.nombreï¿½[ï¿½myMatriz.valor.get(0).toCï¿½][ï¿½myMatriz.valor.get(1).toCï¿½];
 	'''
-	
-	def toC(Registro myRegistro)'''
+
+	def toC(Registro myRegistro) '''
 		typedef struct {
-			«FOR myVariable:myRegistro.variable»
-				«myVariable.toC»
-			«ENDFOR»
-		} «myRegistro.nombre»;
+			ï¿½FOR myVariable:myRegistro.variableï¿½
+				ï¿½myVariable.toCï¿½
+			ï¿½ENDFORï¿½
+		} ï¿½myRegistro.nombreï¿½;
 	'''
-	
-	def toC(Archivo myArchivo)'''
-		typedef FILE *«myArchivo.nombre»;
+
+	def toC(Archivo myArchivo) '''
+		typedef FILE *ï¿½myArchivo.nombreï¿½;
 	'''
-	
-	def toC(Enumerado myEnumerado)'''
-		typedef enum {«FOR myVariable:myEnumerado.valor»«IF myVariable == myEnumerado.valor.get(myEnumerado.valor.size()-1)»«myVariable.toC»«ELSE»«myVariable.toC», «ENDIF»«ENDFOR»} «myEnumerado.nombre»;
+
+	def toC(Enumerado myEnumerado) '''
+		typedef enum {ï¿½FOR myVariable:myEnumerado.valorï¿½ï¿½IF myVariable == myEnumerado.valor.get(myEnumerado.valor.size()-1)ï¿½ï¿½myVariable.toCï¿½ï¿½ELSEï¿½ï¿½myVariable.toCï¿½, ï¿½ENDIFï¿½ï¿½ENDFORï¿½} ï¿½myEnumerado.nombreï¿½;
 	'''
-	
+
 	def toC(SubrangoNumerico mySubrango) '''
-		typedef enum {«generaSubrango(mySubrango.limite_inf,mySubrango.limite_sup)»} «mySubrango.nombre»;
-		'''
-		
+		typedef enum {Â«generaSubrango(mySubrango.limite_inf,mySubrango.limite_sup)Â»} Â«mySubrango.nombreÂ»;
+	'''
+
 	def generaSubrango(int limite_inf, int limite_sup) {
 		var concat = new String
 		var i = limite_inf
-		while(i < limite_sup) {
+		while (i < limite_sup) {
 			concat = concat + i + ", "
-			i = i+1
+			i = i + 1
 		}
 		concat = concat + i;
 		return concat;
 	}
-	
-	def toC(Inicio myInicio)'''
+
+	def toC(Inicio myInicio) '''
 		int main(){
-			«FOR myVariable:myInicio.declaracion»
-				«myVariable.toC»
-			«ENDFOR»
-			«FOR mySentencia:myInicio.tiene»
-				«mySentencia.toC»
+			ï¿½FOR myVariable:myInicio.declaracionï¿½
+				ï¿½myVariable.toCï¿½
+			ï¿½ENDFORï¿½
+			ï¿½FOR mySentencia:myInicio.tieneï¿½
+				ï¿½mySentencia.toCï¿½
 				
-			«ENDFOR»
+			ï¿½ENDFORï¿½
 		}
 	'''
-	
-	def toC(Subproceso subp){
-		if(subp.eClass.name.equals("Funcion")){
+
+	def toC(Subproceso subp) {
+		if (subp.eClass.name.equals("Funcion")) {
 			var Funcion prueba = new FuncionImpl
 			prueba = subp as Funcion
 			prueba.toC
-		}
-		else if(subp.eClass.name.equals("Procedimiento")){
+		} else if (subp.eClass.name.equals("Procedimiento")) {
 			var Procedimiento prueba = new ProcedimientoImpl
 			prueba = subp as Procedimiento
 			prueba.toC
 		}
 	}
-	
-	def tipoVariable(TipoVariable tipo){
+
+	def tipoVariable(TipoVariable tipo) {
 		if(tipo == TipoVariable::ENTERO) return "int";
 		if(tipo == TipoVariable::CARACTER) return "char";
 		if(tipo == TipoVariable::REAL) return "float";
 		if(tipo == TipoVariable::LOGICO) return "bool";
-		if(tipo == TipoVariable::CADENA) return "string";		
+		if(tipo == TipoVariable::CADENA) return "string";
 	}
-	
-	def toC(EList<ParametroFuncion> parametros){
+
+	def toC(EList<ParametroFuncion> parametros) {
 		var total = "";
 		var actual = 1;
-		for(p:parametros){
-			if(actual != 1)
+		for (p : parametros) {
+			if (actual != 1)
 				total = total + ", "
-			if(p.paso == TipoPaso::ENTRADA){
+			if (p.paso == TipoPaso::ENTRADA) {
 				total = total + "const " + p.tipo.tipoVariable + " " + p.variable.nombre;
-			}
-			else if(p.paso == TipoPaso::ENTRADA_SALIDA){
+			} else if (p.paso == TipoPaso::ENTRADA_SALIDA) {
 				total = total + p.tipo.tipoVariable + "* " + p.variable.nombre;
-			}
-			else {
+			} else {
 				total = total + p.tipo.tipoVariable + "* " + p.variable.nombre;
 			}
 			actual = actual + 1;
 		}
 		return total;
 	}
-	
-	def toC(Funcion myFun)'''
-		«myFun.tipo.tipoVariable» «myFun.nombre»(«myFun.parametrofuncion.toC»){
-			«FOR myVariable:myFun.declaracion»
-				«myVariable.toC»
-			«ENDFOR»
-			«FOR mySentencia:myFun.sentencias»
-				«mySentencia.toC»
-			«ENDFOR»
-			«IF myFun.devuelve != null» 
-			«myFun.devuelve.toC»
-			«ENDIF»
+
+	def toC(Funcion myFun) '''
+		ï¿½myFun.tipo.tipoVariableï¿½ ï¿½myFun.nombreï¿½(ï¿½myFun.parametrofuncion.toCï¿½){
+			ï¿½FOR myVariable:myFun.declaracionï¿½
+				ï¿½myVariable.toCï¿½
+			ï¿½ENDFORï¿½
+			ï¿½FOR mySentencia:myFun.sentenciasï¿½
+				ï¿½mySentencia.toCï¿½
+			ï¿½ENDFORï¿½
+			ï¿½IF myFun.devuelve != nullï¿½ 
+			ï¿½myFun.devuelve.toCï¿½
+			ï¿½ENDIFï¿½
 		}
 	'''
-	
-	def toC(Procedimiento myFun)'''
-		void «myFun.nombre»(«myFun.parametrofuncion.toC»){
-			«FOR myVariable:myFun.declaracion»
-				«myVariable.toC»
-			«ENDFOR»
-			«FOR mySentencia:myFun.sentencias»
-				«mySentencia.toC»
-			«ENDFOR»
+
+	def toC(Procedimiento myFun) '''
+		void ï¿½myFun.nombreï¿½(ï¿½myFun.parametrofuncion.toCï¿½){
+			ï¿½FOR myVariable:myFun.declaracionï¿½
+				ï¿½myVariable.toCï¿½
+			ï¿½ENDFORï¿½
+			ï¿½FOR mySentencia:myFun.sentenciasï¿½
+				ï¿½mySentencia.toCï¿½
+			ï¿½ENDFORï¿½
 		}
 	'''
-	
-	def toC(Sentencias mySent){
-		if(mySent.eClass.name.equals("AsignacionNormal")){
+
+	def toC(Sentencias mySent) {
+		if (mySent.eClass.name.equals("AsignacionNormal")) {
 			var AsignacionNormal prueba = new AsignacionNormalImpl
 			prueba = mySent as AsignacionNormal
 			prueba.toC
-		}
-		else if(mySent.eClass.name.equals("AsignacionCompleja")){
+		} else if (mySent.eClass.name.equals("AsignacionCompleja")) {
 			var AsignacionCompleja prueba = new AsignacionComplejaImpl
 			prueba = mySent as AsignacionCompleja
 			prueba.toC
-		}
-		else if(mySent.eClass.name.equals("LlamadaFuncion")){
+		} else if (mySent.eClass.name.equals("LlamadaFuncion")) {
 			var LlamadaFuncion prueba = new LlamadaFuncionImpl
 			prueba = mySent as LlamadaFuncion
 			prueba.toC(true)
-		}
-		else if(mySent.eClass.name.equals("Si")){
+		} else if (mySent.eClass.name.equals("Si")) {
 			var Si prueba = new SiImpl
 			prueba = mySent as Si
 			prueba.toC
-		}
-		else if(mySent.eClass.name.equals("segun")){
+		} else if (mySent.eClass.name.equals("segun")) {
 			var segun prueba = new segunImpl
 			prueba = mySent as segun
 			prueba.toC
-		}
-		else if(mySent.eClass.name.equals("Caso")){
+		} else if (mySent.eClass.name.equals("Caso")) {
 			var Caso prueba = new CasoImpl
 			prueba = mySent as Caso
 			prueba.toC
-		}
-		else if(mySent.eClass.name.equals("mientras")){
+		} else if (mySent.eClass.name.equals("mientras")) {
 			var mientras prueba = new mientrasImpl
 			prueba = mySent as mientras
 			prueba.toC
-		}
-		else if(mySent.eClass.name.equals("repetir")){
+		} else if (mySent.eClass.name.equals("repetir")) {
 			var repetir prueba = new repetirImpl
 			prueba = mySent as repetir
 			prueba.toC
-		}
-		else if(mySent.eClass.name.equals("desde")){
+		} else if (mySent.eClass.name.equals("desde")) {
 			var desde prueba = new desdeImpl
 			prueba = mySent as desde
 			prueba.toC
-		}
-		else if(mySent.eClass.name.equals("incremento")){
+		} else if (mySent.eClass.name.equals("incremento")) {
 			var incremento prueba = new incrementoImpl
 			prueba = mySent as incremento
 			prueba.toC
-		}
-		else if(mySent.eClass.name.equals("Leer")){
+		} else if (mySent.eClass.name.equals("Leer")) {
 			var Leer prueba = new LeerImpl
 			prueba = mySent as Leer
 			prueba.toC
-		}
-		else if(mySent.eClass.name.equals("Escribir")){
+		} else if (mySent.eClass.name.equals("Escribir")) {
 			var Escribir prueba = new EscribirImpl
 			prueba = mySent as Escribir
 			prueba.toC
 		}
 	}
-	
-	def pintarVariables(EList<Variable> v)'''
-	«v.get(0).nombre»«FOR matri:v.get(0).mat»«matri.toString»«ENDFOR»«FOR id:v»«IF id.nombre != v.get(0).nombre», «id.nombre»«FOR matri2:id.mat»«matri2.toString»«ENDFOR»«ENDIF»«ENDFOR»;	
+
+	def pintarVariables(EList<Variable> v) '''
+		ï¿½v.get(0).nombreï¿½ï¿½FOR matri:v.get(0).matï¿½ï¿½matri.toStringï¿½ï¿½ENDFORï¿½ï¿½FOR id:vï¿½ï¿½IF id.nombre != v.get(0).nombreï¿½, ï¿½id.nombreï¿½ï¿½FOR matri2:id.matï¿½ï¿½matri2.toStringï¿½ï¿½ENDFORï¿½ï¿½ENDIFï¿½ï¿½ENDFORï¿½;	
 	'''
-	
-	// «myDec.tieneIDs.get(0).nombre»«FOR id:myDec.tieneIDs»«IF id.nombre != myDec.tieneIDs.get(0).nombre», «id.nombre»«ENDIF»«ENDFOR»;
-	
-	
-	def toC(Declaracion myDec){
-		if(myDec.eClass.name.equals("DeclaracionVariable")){
+
+	// ï¿½myDec.tieneIDs.get(0).nombreï¿½ï¿½FOR id:myDec.tieneIDsï¿½ï¿½IF id.nombre != myDec.tieneIDs.get(0).nombreï¿½, ï¿½id.nombreï¿½ï¿½ENDIFï¿½ï¿½ENDFORï¿½;
+	def toC(Declaracion myDec) {
+		if (myDec.eClass.name.equals("DeclaracionVariable")) {
 			var DeclaracionVariable prueba = new DeclaracionVariableImpl
 			prueba = myDec as DeclaracionVariable
 			prueba.toC
-		}
-		else if(myDec.eClass.name.equals("DeclaracionPropia")){
+		} else if (myDec.eClass.name.equals("DeclaracionPropia")) {
 			var DeclaracionPropia prueba = new DeclaracionPropiaImpl
 			prueba = myDec as DeclaracionPropia
 			prueba.toC
 		}
-	
+
 	}
-	
-	def toC(DeclaracionVariable myDec)'''
-		«myDec.tipo.tipoVariable» «pintarVariables(myDec.variable)»
+
+	def toC(DeclaracionVariable myDec) '''
+		ï¿½myDec.tipo.tipoVariableï¿½ ï¿½pintarVariables(myDec.variable)ï¿½
 	'''
-	
-	def toC(DeclaracionPropia myDec)'''
-		«myDec.tipo» «pintarVariables(myDec.variable)»
+
+	def toC(DeclaracionPropia myDec) '''
+		ï¿½myDec.tipoï¿½ ï¿½pintarVariables(myDec.variable)ï¿½
 	'''
 
 	def toC(Asignacion myAsig) {
-		if(myAsig.eClass.name.equals("AsignacionNormal")){
+		if (myAsig.eClass.name.equals("AsignacionNormal")) {
 			var AsignacionNormal prueba = new AsignacionNormalImpl
 			prueba = myAsig as AsignacionNormal
 			prueba.toC
-		}
-		else if(myAsig.eClass.name.equals("AsignacionCompleja")){
+		} else if (myAsig.eClass.name.equals("AsignacionCompleja")) {
 			var AsignacionCompleja prueba = new AsignacionComplejaImpl
 			prueba = myAsig as AsignacionCompleja
 			prueba.toC
 		}
 	}
-	
-	def toC(AsignacionNormal asig)'''
-	«asig.lvalue»«FOR matri:asig.mat»«matri.toString»«ENDFOR» = «asig.operador.toC»;'''
-	
-	def toC(AsignacionCompleja asig)'''
-	«asig.complejo.toC.toString»«FOR matri:asig.mat»«matri.toString»«ENDFOR» = «asig.operador.toC.toString»;'''
-	
+
+	def toC(AsignacionNormal asig) '''
+	ï¿½asig.lvalueï¿½ï¿½FOR matri:asig.matï¿½ï¿½matri.toStringï¿½ï¿½ENDFORï¿½ = ï¿½asig.operador.toCï¿½;'''
+
+	def toC(AsignacionCompleja asig) '''
+	ï¿½asig.complejo.toC.toStringï¿½ï¿½FOR matri:asig.matï¿½ï¿½matri.toStringï¿½ï¿½ENDFORï¿½ = ï¿½asig.operador.toC.toStringï¿½;'''
+
 	def toC(ValorComplejo myComplejo) {
-		if(myComplejo.eClass.name.equals("ValorRegistro")){
+		if (myComplejo.eClass.name.equals("ValorRegistro")) {
 			var ValorRegistro prueba = new ValorRegistroImpl
 			prueba = myComplejo as ValorRegistro
 			prueba.toC
 		}
 	}
-	
+
 	def toC(ValorRegistro myValor) {
-		//Este método esta escrito con otra sintaxis diferente porque me generaba un salto de línea innecesario
+
+		//Este mï¿½todo esta escrito con otra sintaxis diferente porque me generaba un salto de lï¿½nea innecesario
 		var concat = new String;
 		concat = myValor.nombre_registro.toString + '.'
-		for(myVariable:myValor.campo) {
+		for (myVariable : myValor.campo) {
 			concat = concat + myVariable.toC.toString;
 		}
 		return concat;
 	}
-	
+
 	def toC(ValorVector myValor) {
 		var concat = new String;
 		concat = myValor.nombre_vector.toString + '[' + myValor.elemento.toString + ']';
 	}
-	
+
 	def toC(CampoRegistro myCampo) {
-		//Este método esta escrito con otra sintaxis diferente porque me generaba un salto de línea innecesario
+
+		//Este mï¿½todo esta escrito con otra sintaxis diferente porque me generaba un salto de lï¿½nea innecesario
 		return myCampo.nombre_campo;
 	}
-	
+
 	def toC(ValorMatriz myValor) {
 		var concat = new String;
-		concat = myValor.nombre_matriz.toString + '[' + myValor.elemento_i.toString + '][' + myValor.elemento_j.toString + ']';
+		concat = myValor.nombre_matriz.toString + '[' + myValor.elemento_i.toString + '][' + myValor.elemento_j.toString +
+			']';
 		return concat;
 	}
-	
-	
-	def toC(valor myVal){
-		if(myVal.eClass.name.equals("NumeroEntero")){
+
+	def toC(valor myVal) {
+		if (myVal.eClass.name.equals("NumeroEntero")) {
 			var NumeroEntero prueba = new NumeroEnteroImpl
 			prueba = myVal as NumeroEntero
 			prueba.toC
-		}
-		else if(myVal.eClass.name.equals("NumeroDecimal")){
+		} else if (myVal.eClass.name.equals("NumeroDecimal")) {
 			var NumeroDecimal prueba = new NumeroDecimalImpl
 			prueba = myVal as NumeroDecimal
 			prueba.toC
-		}
-		else if(myVal.eClass.name.equals("ValorBooleano")){
+		} else if (myVal.eClass.name.equals("ValorBooleano")) {
 			var ValorBooleano prueba = new ValorBooleanoImpl
 			prueba = myVal as ValorBooleano
 			prueba.toC
-		}
-		else if(myVal.eClass.name.equals("ConstCadena")){
+		} else if (myVal.eClass.name.equals("ConstCadena")) {
 			var ConstCadena prueba = new ConstCadenaImpl
 			prueba = myVal as ConstCadena
 			prueba.toC
-		}else if(myVal.eClass.name.equals("Caracter")){
+		} else if (myVal.eClass.name.equals("Caracter")) {
 			var Caracter prueba = new CaracterImpl
 			prueba = myVal as Caracter
 			prueba.toC
-		}
-		else if(myVal.eClass.name.equals("VariableID")){
+		} else if (myVal.eClass.name.equals("VariableID")) {
 			var VariableID prueba = new VariableIDImpl
 			prueba = myVal as VariableID
 			prueba.toC
-		}
-		else if(myVal.eClass.name.equals("LlamadaFuncion")){
+		} else if (myVal.eClass.name.equals("LlamadaFuncion")) {
 			var LlamadaFuncion prueba = new LlamadaFuncionImpl
 			prueba = myVal as LlamadaFuncion
 			prueba.toC(false)
-		}
-		else if(myVal.eClass.name.equals("operacion")){
+		} else if (myVal.eClass.name.equals("operacion")) {
 			var operacion prueba = new operacionImpl
 			prueba = myVal as operacion
 			prueba.toC
-		}
-		else if(myVal.eClass.name.equals("Internas")) {
+		} else if (myVal.eClass.name.equals("Internas")) {
 			var Internas prueba = new InternasImpl
 			prueba = myVal as Internas
 			prueba.toC
-		}	
-		else if(myVal.eClass.name.equals("unaria")) {
+		} else if (myVal.eClass.name.equals("unaria")) {
 			var unaria prueba = new unariaImpl
 			prueba = myVal as unaria
 			prueba.toC
-		}
-		else if(myVal.eClass.name.equals("ValorRegistro")) {
+		} else if (myVal.eClass.name.equals("ValorRegistro")) {
 			var ValorRegistro prueba = new ValorRegistroImpl
 			prueba = myVal as ValorRegistro
 			prueba.toC
-		}
-		else if(myVal.eClass.name.equals("ValorVector")) {
+		} else if (myVal.eClass.name.equals("ValorVector")) {
 			var ValorVector prueba = new ValorVectorImpl
 			prueba = myVal as ValorVector
 			prueba.toC
-		}
-		else if(myVal.eClass.name.equals("ValorMatriz")) {
+		} else if (myVal.eClass.name.equals("ValorMatriz")) {
 			var ValorMatriz prueba = new ValorMatrizImpl
 			prueba = myVal as ValorMatriz
 			prueba.toC
 		}
 	}
-	
-	def toC(NumeroEntero numero){
+
+	def toC(NumeroEntero numero) {
 		return numero.valor.toString
 	}
-	
-	
-	def toC(NumeroDecimal numero){
+
+	def toC(NumeroDecimal numero) {
 		return numero.valor.toString
 	}
-	
-	def toC(ValorBooleano valBool){
-		if(valBool.valor == booleano::VERDADERO)
+
+	def toC(ValorBooleano valBool) {
+		if (valBool.valor == booleano::VERDADERO)
 			return "true"
 		else
 			return "false"
 	}
-	
-	def toC(ConstCadena cadena){
+
+	def toC(ConstCadena cadena) {
 		print(cadena.contenido)
 	}
-	
-	def toC(Caracter caract){
+
+	def toC(Caracter caract) {
 		print(caract.contenido)
 	}
-	
-	def toC(VariableID variable)'''
-		«variable.nombre»«FOR matri:variable.mat»«matri.toString»«ENDFOR»'''
-	
-	def toC(incremento inc)'''
-		«inc.nombre»«inc.ssigno»;
-		'''
+
+	def toC(VariableID variable) '''
+	ï¿½variable.nombreï¿½ï¿½FOR matri:variable.matï¿½ï¿½matri.toStringï¿½ï¿½ENDFORï¿½'''
+
+	def toC(incremento inc) '''
+		ï¿½inc.nombreï¿½ï¿½inc.ssignoï¿½;
+	'''
+
 	def toC(unaria myUnaria) {
 		return "!" + myUnaria.variable.toC;
 	}
-	
-	def toC(Leer l)'''
-		cin >> «l.variable.nombre»;
+
+	def toC(Leer l) '''
+		cin >> ï¿½l.variable.nombreï¿½;
 	'''
-	
+
 	def toC(Internas i) {
-		if(i.nombre == NombreInterna::COS) {
-			'''cos(«i.operador.get(0).toC»)'''
+		if (i.nombre == NombreInterna::COS) {
+			'''cos(ï¿½i.operador.get(0).toCï¿½)'''
+		} else if (i.nombre == NombreInterna::SEN) {
+			'''sin(ï¿½i.operador.get(0).toCï¿½)'''
+		} else if (i.nombre == NombreInterna::CUADRADO) {
+			'''pow(ï¿½i.operador.get(0).toCï¿½,ï¿½2.0ï¿½)'''
+		} else if (i.nombre == NombreInterna::EXP) {
+			'''exp2(ï¿½i.operador.get(0).toCï¿½)'''
+		} else if (i.nombre == NombreInterna::LN) {
+			'''log(ï¿½i.operador.get(0).toCï¿½)'''
+		} else if (i.nombre == NombreInterna::LOG) {
+			'''log10(ï¿½i.operador.get(0).toCï¿½)'''
+		} else if (i.nombre == NombreInterna::SQRT) {
+			'''sqrt(ï¿½i.operador.get(0).toCï¿½)'''
+		} else if (i.nombre == NombreInterna::LONGITUD) {
+			'''strlen(ï¿½i.operador.get(0).toCï¿½)'''
+		} else if (i.nombre == NombreInterna::CONCATENA) {
+			'''strcat(ï¿½i.operador.get(0).toCï¿½,ï¿½i.operador.get(1).toCï¿½)'''
 		}
-		else if(i.nombre == NombreInterna::SEN) {
-			'''sin(«i.operador.get(0).toC»)'''
-		}
-		else if(i.nombre == NombreInterna::CUADRADO) {
-			'''pow(«i.operador.get(0).toC»,«2.0»)'''
-		}
-		else if(i.nombre == NombreInterna::EXP) {
-			'''exp2(«i.operador.get(0).toC»)'''
-		}
-		else if(i.nombre == NombreInterna::LN) {
-			'''log(«i.operador.get(0).toC»)'''
-		}
-		else if(i.nombre == NombreInterna::LOG) {
-			'''log10(«i.operador.get(0).toC»)'''
-		}
-		else if(i.nombre == NombreInterna::SQRT) {
-			'''sqrt(«i.operador.get(0).toC»)'''
-		}
-		else if(i.nombre == NombreInterna::LONGITUD) {
-			'''strlen(«i.operador.get(0).toC»)'''
-		}
-		else if(i.nombre == NombreInterna::CONCATENA) {
-			'''strcat(«i.operador.get(0).toC»,«i.operador.get(1).toC»)'''
-		}
-	}		
-	
-	def coutOperadores(EList<Operador> operadores){
+	}
+
+	def coutOperadores(EList<Operador> operadores) {
 		var resultado = "";
-		for(o:operadores){
+		for (o : operadores) {
 			resultado = resultado + " << " + o.toC;
 		}
 		return resultado;
 	}
-	
-	def toC(Escribir a)'''
-		cout«a.operador.coutOperadores» << endl;
+
+	def toC(Escribir a) '''
+		coutï¿½a.operador.coutOperadoresï¿½ << endl;
 	'''
-	
-	def generaParametros(EList<Operador> operadores){
+
+	def generaParametros(EList<Operador> operadores) {
 		var total = "";
 		var actual = 1;
-		for(o:operadores){
-			if(actual != 1)
+		for (o : operadores) {
+			if (actual != 1)
 				total = total + ", "
 			total = total + o.toC;
 			actual = actual + 1;
 		}
-		return total;		
+		return total;
 	}
-	
-	def toC(LlamadaFuncion fun, boolean a)'''«fun.nombre»(«fun.operador.generaParametros»)«IF a»;«ENDIF»'''
-	
-	def toC(Operador op){
-		if(op.eClass.name.equals("NumeroEntero")){
+
+	def toC(LlamadaFuncion fun, boolean a) '''ï¿½fun.nombreï¿½(ï¿½fun.operador.generaParametrosï¿½)ï¿½IF aï¿½;ï¿½ENDIFï¿½'''
+
+	def toC(Operador op) {
+		if (op.eClass.name.equals("NumeroEntero")) {
 			var NumeroEntero prueba = new NumeroEnteroImpl
 			prueba = op as NumeroEntero
 			prueba.toC
-		}
-		else if(op.eClass.name.equals("NumeroDecimal")){
+		} else if (op.eClass.name.equals("NumeroDecimal")) {
 			var NumeroDecimal prueba = new NumeroDecimalImpl
 			prueba = op as NumeroDecimal
 			prueba.toC
-		}
-		else if(op.eClass.name.equals("ValorBooleano")){
+		} else if (op.eClass.name.equals("ValorBooleano")) {
 			var ValorBooleano prueba = new ValorBooleanoImpl
 			prueba = op as ValorBooleano
 			prueba.toC
-		}
-		else if(op.eClass.name.equals("ConstCadena")){
+		} else if (op.eClass.name.equals("ConstCadena")) {
 			var ConstCadena prueba = new ConstCadenaImpl
 			prueba = op as ConstCadena
 			prueba.toC
-		}	
-		else if(op.eClass.name.equals("Caracter")){
+		} else if (op.eClass.name.equals("Caracter")) {
 			var Caracter prueba = new CaracterImpl
 			prueba = op as Caracter
 			prueba.toC
-		}	
-		else if(op.eClass.name.equals("VariableID")){
+		} else if (op.eClass.name.equals("VariableID")) {
 			var VariableID prueba = new VariableIDImpl
 			prueba = op as VariableID
 			prueba.toC
-		}	
-	}
-	
-	def toC(operacion op)'''(«op.op_izq.oper_izq.toC» «IF op.signo_op.toString == 'y'»&&«ELSE»«IF op.signo_op.toString == 'o'»||«ELSE»«op.signo_op»«ENDIF»«ENDIF» «op.op_der.oper_der.toC»)'''
-	
-	def toC(Si mySi)'''
-		if(«mySi.valor.toC»){
-			«FOR sent:mySi.sentencias»
-				
-				«sent.toC»
-			«ENDFOR»
-			«IF mySi.devuelve != null» 
-			«mySi.devuelve.toC»
-			«ENDIF»	
 		}
-		«IF mySi.sino != null» 
-		«mySi.sino.toC»
-		«ENDIF»
-	'''
-	
-	def toC(Caso myCaso)'''
-		case «myCaso.operador.toC»:
-			«FOR sent:myCaso.sentencias»
-				«sent.toC»
-			«ENDFOR»
-			«IF myCaso.devuelve != null» 
-			«myCaso.devuelve.toC»
-			«ENDIF»
-		break;
-	'''
-	
-	def toC(segun mySegun)'''
-	switch(«mySegun.valor.toC»){
-		«FOR cas:mySegun.caso»
-			«cas.toC» 
-		«ENDFOR»
-		default:
-			«FOR sent:mySegun.sentencias»
-				«sent.toC»
-			«ENDFOR»
-			«IF mySegun.devuelve != null» 
-			«mySegun.devuelve.toC»
-			«ENDIF»
-		break;
 	}
+
+	def toC(operacion op) '''(ï¿½op.op_izq.oper_izq.toCï¿½ ï¿½IF op.signo_op.toString == 'y'ï¿½&&ï¿½ELSEï¿½ï¿½IF op.signo_op.toString == 'o'ï¿½||ï¿½ELSEï¿½ï¿½op.signo_opï¿½ï¿½ENDIFï¿½ï¿½ENDIFï¿½ ï¿½op.op_der.oper_der.toCï¿½)'''
+
+	def toC(Si mySi) '''
+		if(ï¿½mySi.valor.toCï¿½){
+			ï¿½FOR sent:mySi.sentenciasï¿½
+				
+				ï¿½sent.toCï¿½
+			ï¿½ENDFORï¿½
+			ï¿½IF mySi.devuelve != nullï¿½ 
+			ï¿½mySi.devuelve.toCï¿½
+			ï¿½ENDIFï¿½	
+		}
+		ï¿½IF mySi.sino != nullï¿½ 
+		ï¿½mySi.sino.toCï¿½
+		ï¿½ENDIFï¿½
 	'''
-	
-	def toC(Devolver myDevuelve)'''
-		return «myDevuelve.devuelve.toC»;
+
+	def toC(Caso myCaso) '''
+		case ï¿½myCaso.operador.toCï¿½:
+			ï¿½FOR sent:myCaso.sentenciasï¿½
+				ï¿½sent.toCï¿½
+			ï¿½ENDFORï¿½
+			ï¿½IF myCaso.devuelve != nullï¿½ 
+			ï¿½myCaso.devuelve.toCï¿½
+			ï¿½ENDIFï¿½
+		break;
 	'''
-	
-	def toC(Sino mySino)'''
+
+	def toC(segun mySegun) '''
+		switch(ï¿½mySegun.valor.toCï¿½){
+			ï¿½FOR cas:mySegun.casoï¿½
+				ï¿½cas.toCï¿½ 
+			ï¿½ENDFORï¿½
+			default:
+				ï¿½FOR sent:mySegun.sentenciasï¿½
+					ï¿½sent.toCï¿½
+				ï¿½ENDFORï¿½
+				ï¿½IF mySegun.devuelve != nullï¿½ 
+				ï¿½mySegun.devuelve.toCï¿½
+				ï¿½ENDIFï¿½
+			break;
+		}
+	'''
+
+	def toC(Devolver myDevuelve) '''
+		return ï¿½myDevuelve.devuelve.toCï¿½;
+	'''
+
+	def toC(Sino mySino) '''
 		else{
-			«FOR sent:mySino.sentencias»
+			ï¿½FOR sent:mySino.sentenciasï¿½
 				
-				«sent.toC»
-			«ENDFOR»
-			«IF mySino.devuelve != null» 
-			«mySino.devuelve.toC»
-			«ENDIF»	
+				ï¿½sent.toCï¿½
+			ï¿½ENDFORï¿½
+			ï¿½IF mySino.devuelve != nullï¿½ 
+			ï¿½mySino.devuelve.toCï¿½
+			ï¿½ENDIFï¿½	
 		}
 	'''
-	
-	def toC(mientras m)'''
-		while(«m.valor.toC»){
-			«FOR sent:m.sentencias»
+
+	def toC(mientras m) '''
+		while(ï¿½m.valor.toCï¿½){
+			ï¿½FOR sent:m.sentenciasï¿½
 				
-				«sent.toC»
-			«ENDFOR»
+				ï¿½sent.toCï¿½
+			ï¿½ENDFORï¿½
 		}
 	'''
-	
-	def toC(desde d)'''
-		for(«d.asignacion.toC» «d.asignacion.lvalue.toString» <= «d.valor.toC»; «d.asignacion.lvalue.toString»++){
-			«FOR sent:d.sentencias»
+
+	def toC(desde d) '''
+		for(ï¿½d.asignacion.toCï¿½ ï¿½d.asignacion.lvalue.toStringï¿½ <= ï¿½d.valor.toCï¿½; ï¿½d.asignacion.lvalue.toStringï¿½++){
+			ï¿½FOR sent:d.sentenciasï¿½
 				
-				«sent.toC»
-			«ENDFOR»
+				ï¿½sent.toCï¿½
+			ï¿½ENDFORï¿½
 		}
 	'''
-	
-	def toC(repetir m)'''
+
+	def toC(repetir m) '''
 		do{
-			«FOR sent:m.sentencias»
+			ï¿½FOR sent:m.sentenciasï¿½
 				
-				«sent.toC»
-			«ENDFOR»
-		}while(!«m.valor.toC»);
+				ï¿½sent.toCï¿½
+			ï¿½ENDFORï¿½
+		}while(!ï¿½m.valor.toCï¿½);
 	'''
 }
-
