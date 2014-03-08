@@ -43,5 +43,5 @@ var modelPath = "src/"
 Workflow {
         component = @Generator auto-inject {}
         }
-«ENDFILE«
+«ENDFILE»
 «ENDDEFINE»
