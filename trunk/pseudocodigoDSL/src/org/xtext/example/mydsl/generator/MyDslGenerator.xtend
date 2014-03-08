@@ -30,18 +30,18 @@ class MyDslGenerator implements IGenerator {
 		
 		using namespace std;
 		
-		�FOR myConstante:myCodigo.constantes�
-			�myConstante.toC�
-		�ENDFOR�
-		�FOR myComplejo:myCodigo.tipocomplejo�
-			�myComplejo.toC�
-		�ENDFOR�
+		«FOR myConstante:myCodigo.constantes»
+			«myConstante.toC»
+		«ENDFOR»
+		«FOR myComplejo:myCodigo.tipocomplejo»
+			«myComplejo.toC»
+		«ENDFOR»
 		
-		�FOR funcion:myCodigo.funcion�
-			�funcion.toC�
+		«FOR funcion:myCodigo.funcion»
+			«funcion.toC»
 			
-		�ENDFOR�
-		�myCodigo.tiene.toC�
+		«ENDFOR»
+		«myCodigo.tiene.toC»
 	'''
 
 	def toC(TipoComplejo myComplejo) {
@@ -93,31 +93,31 @@ class MyDslGenerator implements IGenerator {
 	}
 
 	def toC(Constantes myConstante) '''
-		#define �myConstante.variable.nombre�  �myConstante.valor.toC�
+		#define «myConstante.variable.nombre»  «myConstante.valor.toC»
 	'''
 
 	def toC(Vector myVector) '''
-		typedef �myVector.tipo.toC� �myVector.nombre�[�myVector.valor.toC�];
+		typedef «myVector.tipo.toC» «myVector.nombre»[«myVector.valor.toC»];
 	'''
 
 	def toC(Matriz myMatriz) '''
-		typedef �myMatriz.tipo.toC� �myMatriz.nombre�[�myMatriz.valor.get(0).toC�][�myMatriz.valor.get(1).toC�];
+		typedef «myMatriz.tipo.toC» «myMatriz.nombre»[«myMatriz.valor.get(0).toC»][«myMatriz.valor.get(1).toC»];
 	'''
 
 	def toC(Registro myRegistro) '''
 		typedef struct {
-			�FOR myVariable:myRegistro.variable�
-				�myVariable.toC�
-			�ENDFOR�
-		} �myRegistro.nombre�;
+			«FOR myVariable:myRegistro.variable»
+				«myVariable.toC»
+			«ENDFOR»
+		} «myRegistro.nombre»;
 	'''
 
 	def toC(Archivo myArchivo) '''
-		typedef FILE *�myArchivo.nombre�;
+		typedef FILE *«myArchivo.nombre»;
 	'''
 
 	def toC(Enumerado myEnumerado) '''
-		typedef enum {�FOR myVariable:myEnumerado.valor��IF myVariable == myEnumerado.valor.get(myEnumerado.valor.size()-1)��myVariable.toC��ELSE��myVariable.toC�, �ENDIF��ENDFOR�} �myEnumerado.nombre�;
+		typedef enum {«FOR myVariable:myEnumerado.valor»«IF myVariable == myEnumerado.valor.get(myEnumerado.valor.size()-1)»«myVariable.toC»«ELSE»«myVariable.toC», «ENDIF»«ENDFOR»} «myEnumerado.nombre»;
 	'''
 
 	def toC(SubrangoNumerico mySubrango) '''
@@ -137,13 +137,13 @@ class MyDslGenerator implements IGenerator {
 
 	def toC(Inicio myInicio) '''
 		int main(){
-			�FOR myVariable:myInicio.declaracion�
-				�myVariable.toC�
-			�ENDFOR�
-			�FOR mySentencia:myInicio.tiene�
-				�mySentencia.toC�
+			«FOR myVariable:myInicio.declaracion»
+				«myVariable.toC»
+			«ENDFOR»
+			«FOR mySentencia:myInicio.tiene»
+				«mySentencia.toC»
 				
-			�ENDFOR�
+			«ENDFOR»
 		}
 	'''
 
@@ -186,27 +186,27 @@ class MyDslGenerator implements IGenerator {
 	}
 
 	def toC(Funcion myFun) '''
-		�myFun.tipo.tipoVariable� �myFun.nombre�(�myFun.parametrofuncion.toC�){
-			�FOR myVariable:myFun.declaracion�
-				�myVariable.toC�
-			�ENDFOR�
-			�FOR mySentencia:myFun.sentencias�
-				�mySentencia.toC�
-			�ENDFOR�
-			�IF myFun.devuelve != null� 
-			�myFun.devuelve.toC�
-			�ENDIF�
+		«myFun.tipo.tipoVariable» «myFun.nombre»(«myFun.parametrofuncion.toC»){
+			«FOR myVariable:myFun.declaracion»
+				«myVariable.toC»
+			«ENDFOR»
+			«FOR mySentencia:myFun.sentencias»
+				«mySentencia.toC»
+			«ENDFOR»
+			«IF myFun.devuelve != null» 
+			«myFun.devuelve.toC»
+			«ENDIF»
 		}
 	'''
 
 	def toC(Procedimiento myFun) '''
-		void �myFun.nombre�(�myFun.parametrofuncion.toC�){
-			�FOR myVariable:myFun.declaracion�
-				�myVariable.toC�
-			�ENDFOR�
-			�FOR mySentencia:myFun.sentencias�
-				�mySentencia.toC�
-			�ENDFOR�
+		void «myFun.nombre»(«myFun.parametrofuncion.toC»){
+			«FOR myVariable:myFun.declaracion»
+				«myVariable.toC»
+			«ENDFOR»
+			«FOR mySentencia:myFun.sentencias»
+				«mySentencia.toC»
+			«ENDFOR»
 		}
 	'''
 
@@ -263,10 +263,10 @@ class MyDslGenerator implements IGenerator {
 	}
 
 	def pintarVariables(EList<Variable> v) '''
-		�v.get(0).nombre��FOR matri:v.get(0).mat��matri.toString��ENDFOR��FOR id:v��IF id.nombre != v.get(0).nombre�, �id.nombre��FOR matri2:id.mat��matri2.toString��ENDFOR��ENDIF��ENDFOR�;	
+		«v.get(0).nombre»«FOR matri:v.get(0).mat»«matri.toString»«ENDFOR»«FOR id:v»«IF id.nombre != v.get(0).nombre», «id.nombre»«FOR matri2:id.mat»«matri2.toString»«ENDFOR»«ENDIF»«ENDFOR»;	
 	'''
 
-	// �myDec.tieneIDs.get(0).nombre��FOR id:myDec.tieneIDs��IF id.nombre != myDec.tieneIDs.get(0).nombre�, �id.nombre��ENDIF��ENDFOR�;
+	// «myDec.tieneIDs.get(0).nombre»«FOR id:myDec.tieneIDs»«IF id.nombre != myDec.tieneIDs.get(0).nombre», «id.nombre»«ENDIF»«ENDFOR»;
 	def toC(Declaracion myDec) {
 		if (myDec.eClass.name.equals("DeclaracionVariable")) {
 			var DeclaracionVariable prueba = new DeclaracionVariableImpl
@@ -281,11 +281,11 @@ class MyDslGenerator implements IGenerator {
 	}
 
 	def toC(DeclaracionVariable myDec) '''
-		�myDec.tipo.tipoVariable� �pintarVariables(myDec.variable)�
+		«myDec.tipo.tipoVariable» «pintarVariables(myDec.variable)»
 	'''
 
 	def toC(DeclaracionPropia myDec) '''
-		�myDec.tipo� �pintarVariables(myDec.variable)�
+		«myDec.tipo» «pintarVariables(myDec.variable)»
 	'''
 
 	def toC(Asignacion myAsig) {
@@ -301,10 +301,10 @@ class MyDslGenerator implements IGenerator {
 	}
 
 	def toC(AsignacionNormal asig) '''
-	�asig.lvalue��FOR matri:asig.mat��matri.toString��ENDFOR� = �asig.operador.toC�;'''
+	«asig.lvalue»«FOR matri:asig.mat»«matri.toString»«ENDFOR» = «asig.operador.toC»;'''
 
 	def toC(AsignacionCompleja asig) '''
-	�asig.complejo.toC.toString��FOR matri:asig.mat��matri.toString��ENDFOR� = �asig.operador.toC.toString�;'''
+	«asig.complejo.toC.toString»«FOR matri:asig.mat»«matri.toString»«ENDFOR» = «asig.operador.toC.toString»;'''
 
 	def toC(ValorComplejo myComplejo) {
 		if (myComplejo.eClass.name.equals("ValorRegistro")) {
@@ -316,7 +316,7 @@ class MyDslGenerator implements IGenerator {
 
 	def toC(ValorRegistro myValor) {
 
-		//Este m�todo esta escrito con otra sintaxis diferente porque me generaba un salto de l�nea innecesario
+		//Este metodo esta escrito con otra sintaxis diferente porque me generaba un salto de linea innecesario
 		var concat = new String;
 		concat = myValor.nombre_registro.toString + '.'
 		for (myVariable : myValor.campo) {
@@ -332,7 +332,7 @@ class MyDslGenerator implements IGenerator {
 
 	def toC(CampoRegistro myCampo) {
 
-		//Este m�todo esta escrito con otra sintaxis diferente porque me generaba un salto de l�nea innecesario
+		//Este metodo esta escrito con otra sintaxis diferente porque me generaba un salto de linea innecesario
 		return myCampo.nombre_campo;
 	}
 
@@ -423,10 +423,10 @@ class MyDslGenerator implements IGenerator {
 	}
 
 	def toC(VariableID variable) '''
-	�variable.nombre��FOR matri:variable.mat��matri.toString��ENDFOR�'''
+	«variable.nombre»«FOR matri:variable.mat»«matri.toString»«ENDFOR»'''
 
 	def toC(incremento inc) '''
-		�inc.nombre��inc.ssigno�;
+		«inc.nombre»«inc.ssigno»;
 	'''
 
 	def toC(unaria myUnaria) {
@@ -434,28 +434,28 @@ class MyDslGenerator implements IGenerator {
 	}
 
 	def toC(Leer l) '''
-		cin >> �l.variable.nombre�;
+		cin >> «l.variable.nombre»;
 	'''
 
 	def toC(Internas i) {
 		if (i.nombre == NombreInterna::COS) {
-			'''cos(�i.operador.get(0).toC�)'''
+			'''cos(«i.operador.get(0).toC»)'''
 		} else if (i.nombre == NombreInterna::SEN) {
-			'''sin(�i.operador.get(0).toC�)'''
+			'''sin(«i.operador.get(0).toC»)'''
 		} else if (i.nombre == NombreInterna::CUADRADO) {
-			'''pow(�i.operador.get(0).toC�,�2.0�)'''
+			'''pow(«i.operador.get(0).toC»,«2.0»)'''
 		} else if (i.nombre == NombreInterna::EXP) {
-			'''exp2(�i.operador.get(0).toC�)'''
+			'''exp2(«i.operador.get(0).toC»)'''
 		} else if (i.nombre == NombreInterna::LN) {
-			'''log(�i.operador.get(0).toC�)'''
+			'''log(«i.operador.get(0).toC»)'''
 		} else if (i.nombre == NombreInterna::LOG) {
-			'''log10(�i.operador.get(0).toC�)'''
+			'''log10(«i.operador.get(0).toC»)'''
 		} else if (i.nombre == NombreInterna::SQRT) {
-			'''sqrt(�i.operador.get(0).toC�)'''
+			'''sqrt(«i.operador.get(0).toC»)'''
 		} else if (i.nombre == NombreInterna::LONGITUD) {
-			'''strlen(�i.operador.get(0).toC�)'''
+			'''strlen(«i.operador.get(0).toC»)'''
 		} else if (i.nombre == NombreInterna::CONCATENA) {
-			'''strcat(�i.operador.get(0).toC�,�i.operador.get(1).toC�)'''
+			'''strcat(«i.operador.get(0).toC»,«i.operador.get(1).toC»)'''
 		}
 	}
 
@@ -468,7 +468,7 @@ class MyDslGenerator implements IGenerator {
 	}
 
 	def toC(Escribir a) '''
-		cout�a.operador.coutOperadores� << endl;
+		cout«a.operador.coutOperadores» << endl;
 	'''
 
 	def generaParametros(EList<Operador> operadores) {
@@ -483,7 +483,7 @@ class MyDslGenerator implements IGenerator {
 		return total;
 	}
 
-	def toC(LlamadaFuncion fun, boolean a) '''�fun.nombre�(�fun.operador.generaParametros�)�IF a�;�ENDIF�'''
+	def toC(LlamadaFuncion fun, boolean a) '''«fun.nombre»(«fun.operador.generaParametros»)«IF a»;«ENDIF»'''
 
 	def toC(Operador op) {
 		if (op.eClass.name.equals("NumeroEntero")) {
@@ -513,90 +513,90 @@ class MyDslGenerator implements IGenerator {
 		}
 	}
 
-	def toC(operacion op) '''(�op.op_izq.oper_izq.toC� �IF op.signo_op.toString == 'y'�&&�ELSE��IF op.signo_op.toString == 'o'�||�ELSE��op.signo_op��ENDIF��ENDIF� �op.op_der.oper_der.toC�)'''
+	def toC(operacion op) '''(«op.op_izq.oper_izq.toC» «IF op.signo_op.toString == 'y'»&&«ELSE»«IF op.signo_op.toString == 'o'»||«ELSE»«op.signo_op»«ENDIF»«ENDIF» «op.op_der.oper_der.toC»)'''
 
 	def toC(Si mySi) '''
-		if(�mySi.valor.toC�){
-			�FOR sent:mySi.sentencias�
+		if(«mySi.valor.toC»){
+			«FOR sent:mySi.sentencias»
 				
-				�sent.toC�
-			�ENDFOR�
-			�IF mySi.devuelve != null� 
-			�mySi.devuelve.toC�
-			�ENDIF�	
+				«sent.toC»
+			«ENDFOR»
+			«IF mySi.devuelve != null» 
+			«mySi.devuelve.toC»
+			«ENDIF»	
 		}
-		�IF mySi.sino != null� 
-		�mySi.sino.toC�
-		�ENDIF�
+		«IF mySi.sino != null» 
+		«mySi.sino.toC»
+		«ENDIF»
 	'''
 
 	def toC(Caso myCaso) '''
-		case �myCaso.operador.toC�:
-			�FOR sent:myCaso.sentencias�
-				�sent.toC�
-			�ENDFOR�
-			�IF myCaso.devuelve != null� 
-			�myCaso.devuelve.toC�
-			�ENDIF�
+		case «myCaso.operador.toC»:
+			«FOR sent:myCaso.sentencias»
+				«sent.toC»
+			«ENDFOR»
+			«IF myCaso.devuelve != null» 
+			«myCaso.devuelve.toC»
+			«ENDIF»
 		break;
 	'''
 
 	def toC(segun mySegun) '''
-		switch(�mySegun.valor.toC�){
-			�FOR cas:mySegun.caso�
-				�cas.toC� 
-			�ENDFOR�
+		switch(«mySegun.valor.toC»){
+			«FOR cas:mySegun.caso»
+				«cas.toC» 
+			«ENDFOR»
 			default:
-				�FOR sent:mySegun.sentencias�
-					�sent.toC�
-				�ENDFOR�
-				�IF mySegun.devuelve != null� 
-				�mySegun.devuelve.toC�
-				�ENDIF�
+				«FOR sent:mySegun.sentencias»
+					«sent.toC»
+				«ENDFOR»
+				«IF mySegun.devuelve != null» 
+				«mySegun.devuelve.toC»
+				«ENDIF»
 			break;
 		}
 	'''
 
 	def toC(Devolver myDevuelve) '''
-		return �myDevuelve.devuelve.toC�;
+		return «myDevuelve.devuelve.toC»;
 	'''
 
 	def toC(Sino mySino) '''
 		else{
-			�FOR sent:mySino.sentencias�
+			«FOR sent:mySino.sentencias»
 				
-				�sent.toC�
-			�ENDFOR�
-			�IF mySino.devuelve != null� 
-			�mySino.devuelve.toC�
-			�ENDIF�	
+				«sent.toC»
+			«ENDFOR»
+			«IF mySino.devuelve != null» 
+			«mySino.devuelve.toC»
+			«ENDIF»	
 		}
 	'''
 
 	def toC(mientras m) '''
-		while(�m.valor.toC�){
-			�FOR sent:m.sentencias�
+		while(«m.valor.toC»){
+			«FOR sent:m.sentencias»
 				
-				�sent.toC�
-			�ENDFOR�
+				«sent.toC»
+			«ENDFOR»
 		}
 	'''
 
 	def toC(desde d) '''
-		for(�d.asignacion.toC� �d.asignacion.lvalue.toString� <= �d.valor.toC�; �d.asignacion.lvalue.toString�++){
-			�FOR sent:d.sentencias�
+		for(«d.asignacion.toC» «d.asignacion.lvalue.toString» <= «d.valor.toC»; «d.asignacion.lvalue.toString»++){
+			«FOR sent:d.sentencias»
 				
-				�sent.toC�
-			�ENDFOR�
+				«sent.toC»
+			«ENDFOR»
 		}
 	'''
 
 	def toC(repetir m) '''
 		do{
-			�FOR sent:m.sentencias�
+			«FOR sent:m.sentencias»
 				
-				�sent.toC�
-			�ENDFOR�
-		}while(!�m.valor.toC�);
+				«sent.toC»
+			«ENDFOR»
+		}while(!«m.valor.toC»);
 	'''
 }
