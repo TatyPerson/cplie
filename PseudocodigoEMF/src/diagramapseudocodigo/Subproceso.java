@@ -69,7 +69,7 @@ public interface Subproceso extends EObject {
 	 * @return the value of the '<em>Nombre</em>' attribute.
 	 * @see #setNombre(String)
 	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getSubproceso_Nombre()
-	 * @model id="true" required="true"
+	 * @model required="true"
 	 * @generated
 	 */
 	String getNombre();

@@ -566,6 +566,11 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	@Check
+	protected void checkTipoParametros(Subproceso s) {
+		
+	}
+	
+	@Check
 	//Función que comprueba que el tipo de devolución de una función sea compatible o igual al tipo realmente devuelto
 	protected void checkFuncion(Subproceso s) {
 		if(s instanceof Funcion) {
