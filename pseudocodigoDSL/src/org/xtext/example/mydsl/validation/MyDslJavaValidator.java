@@ -8,7 +8,10 @@ import java.util.Map;
 import org.eclipse.xtext.validation.Check;
 
 import diagramapseudocodigo.*;
+
+import org.xtext.example.mydsl.validation.MyDslJavaValidatorAux;
 public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
+	MyDslJavaValidatorAux funciones = new MyDslJavaValidatorAux();
 
 //	@Check
 //	public void checkGreetingStartsWithCapital(Greeting greeting) {
@@ -166,7 +169,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	//Función que comprueba en el programa principal que la variable utilizada en el segun_sea haya sido declarada con anterioridad
 	protected void checkSegun(Inicio i) {
 		//Registramos todas las variables declaradas dando por hecho que son correctas ya que hay otra función encargada de comprobarlo
-		List<String> variables = registrarVariables(i.getDeclaracion());
+		List<String> variables = funciones.registrarVariables(i.getDeclaracion());
 		//Despues de tener todas las variables declaradas comprobamos si la que se usa en el según esta entre ellas
 		for(Sentencias s: i.getTiene()) {
 			if(s instanceof segun) {
@@ -183,7 +186,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	//Función que comprueba en las funciones que la variable utilizada en el segun_sea haya sido declarada con anterioridad
 	protected void checkSegun(Funcion f) {
 		//Registramos todas las variables declaradas dando por hecho que son correctas ya que hay otra función encargada de comprobarlo
-		List<String> variables = registrarVariables(f.getDeclaracion());
+		List<String> variables = funciones.registrarVariables(f.getDeclaracion());
 		//Despues de tener todas las variables declaradas comprobamos si la que se usa en el según esta entre ellas
 		for(Sentencias s: f.getSentencias()) {
 			if(s instanceof segun) {
@@ -200,7 +203,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	//Función que comprueba en los procedimientos que la variable utilizada en el segun_sea haya sido declarada con anterioridad
 	protected void checkSegun(Procedimiento p) {
 		//Registramos todas las variables declaradas dando por hecho que son correctas ya que hay otra función encargada de comprobarlo
-		List<String> variables = registrarVariables(p.getDeclaracion());
+		List<String> variables = funciones.registrarVariables(p.getDeclaracion());
 		//Despues de tener todas las variables declaradas comprobamos si la que se usa en el según esta entre ellas
 		for(Sentencias s: p.getSentencias()) {
 			if(s instanceof segun) {
@@ -317,7 +320,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	//Función que comprueba que el tipo de una variable ha sido definido con anterioridad
 	protected void checkDeclaracionesTiposComplejos(Codigo c) {
 		//Registramos los nombres de todos los tipos complejos suponiendo que no estan repetidos ya que hay otra funci�n que lo comprueba
-		List<String >tipos = registrarTipos(c.getTipocomplejo());
+		List<String >tipos = funciones.registrarTipos(c.getTipocomplejo());
 		
 		//Comprobamos que todas las declaraciones de variables complejas en el programa principal y en los subprocesos son de tipos existentes
 		
@@ -446,7 +449,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	@Check
 	//Función que comprueba que una variable deba estar definida antes de usarse
 	protected void checkVariablesUsadas(Inicio i) {
-		List<String> variables = registrarVariables(i.getDeclaracion());
+		List<String> variables = funciones.registrarVariables(i.getDeclaracion());
 		
 		for(Sentencias s: i.getTiene()) {
 			if(s instanceof LlamadaFuncion) {
@@ -566,9 +569,106 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	@Check
-	protected void checkTipoParametros(Subproceso s) {
+	//Función que comprueba que las funciones que se llaman dentro del programa principal se llamen con parámetros del tipo adecuado
+	protected void checkTipoParametrosInicio(Codigo c) {
+		//Registramos los tipos de parámetros necesarios para todos los subprocesos
+		List<String> tipos = new ArrayList<String>();
+		String nombre;
+		int parametros;
+		for(Subproceso s: c.getFuncion()) {
+			nombre = s.getNombre();
+			parametros = s.getParametrofuncion().size();
+			for(ParametroFuncion p: s.getParametrofuncion()) {
+				//Registramos los tipos que requiere la función en su cabecera
+				tipos.add(p.getTipo().getName());
+			}
+			//Buscamos realmente que tipos le esta pasando el usuario en la llamada (en inicio)
+			//Recogemos todas las variables que hay declaradas con sus respectivos tipos para buscar luego las necesarias (no hay repetidas)
+			Map<String,String> variablesDeclaradas = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
+			List<String> nombresVariables = new ArrayList<String>();
+			for(Sentencias sen: c.getTiene().getTiene()) {
+				if(sen instanceof LlamadaFuncion) {
+					LlamadaFuncion f = (LlamadaFuncion) sen;
+					if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
+						for(Operador o: f.getOperador()) {
+							if(o instanceof VariableID) {
+								VariableID v = (VariableID) o;
+								nombresVariables.add(v.getNombre());	
+							}
+						}
+						boolean correcto = true; 
+						String salida = "";
+						for(String n: nombresVariables) {
+							if(variablesDeclaradas.get(n) != tipos.get(nombresVariables.indexOf(n))) {
+								correcto = false;
+							}
+							if(nombresVariables.indexOf(n) < nombresVariables.size()-1) {
+								salida += tipos.get(nombresVariables.indexOf(n)) + ", ";
+							}
+						}
+						salida += tipos.get(nombresVariables.size()-1);
+						if(!correcto) {
+							error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salida+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+						}
+					}
+				}
+			}
+		}
 		
 	}
+	
+	
+	@Check
+	//Función que comprueba que las funciones que se llaman dentro de los subprocesos se llamen con parámetros del tipo adecuado
+	protected void checkTipoParametrosSubprocesos(Codigo c) {
+		//Registramos los tipos de parámetros necesarios para todos los subprocesos
+		List<String> tipos = new ArrayList<String>();
+		String nombre;
+		int parametros;
+		for(Subproceso s: c.getFuncion()) {
+			nombre = s.getNombre();
+			parametros = s.getParametrofuncion().size();
+			for(ParametroFuncion p: s.getParametrofuncion()) {
+				//Registramos los tipos que requiere la función en su cabecera
+				tipos.add(p.getTipo().getName());
+			}
+			//Buscamos realmente que tipos le esta pasando el usuario en la llamada (en los subprocesos)
+			//Recogemos todas las variables que hay declaradas con sus respectivos tipos para buscar luego las necesarias (no hay repetidas)
+			Map<String,String> variablesDeclaradas = funciones.registrarVariablesTipadas(s.getDeclaracion());
+			List<String> nombresVariables = new ArrayList<String>();
+			for(Subproceso s2: c.getFuncion()) {
+				for(Sentencias sen: s2.getSentencias()) {
+					if(sen instanceof LlamadaFuncion) {
+						LlamadaFuncion f = (LlamadaFuncion) sen;
+						if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
+							for(Operador o: f.getOperador()) {
+								if(o instanceof VariableID) {
+									VariableID v = (VariableID) o;
+									nombresVariables.add(v.getNombre());	
+								}
+							}
+							boolean correcto = true; 
+							String salida = "";
+							for(String n: nombresVariables) {
+								if(variablesDeclaradas.get(n) != tipos.get(nombresVariables.indexOf(n))) {
+									correcto = false;
+								}
+								if(nombresVariables.indexOf(n) < nombresVariables.size()-1) {
+									salida += tipos.get(nombresVariables.indexOf(n)) + ", ";
+								}
+							}
+							salida += tipos.get(nombresVariables.size()-1);
+							if(!correcto) {
+								error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salida+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+							}
+						}
+					}
+				}
+			}
+		}
+		
+	}
+	
 	
 	@Check
 	//Función que comprueba que el tipo de devolución de una función sea compatible o igual al tipo realmente devuelto
@@ -580,26 +680,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				VariableID v = (VariableID) f.getDevuelve().getDevuelve();
 				String nombreVar = v.getNombre();
 				//Buscamos las variables en las declaraciones y en los parametros para averiguar de que tipo es
-				Map<String,String> variables = new HashMap<String,String>();
-				//Registramos las declaraciones
-				for(Declaracion d: f.getDeclaracion()) {
-					if(d instanceof DeclaracionVariable) {
-						DeclaracionVariable dec = (DeclaracionVariable) d;
-						//Registramos todas las variables declaradas y sus respectivos tipos
-						//Nota: No se comprueba si están repetidas porque ya hay una función que se encarga de ello.
-						for(Variable var: dec.getVariable()) {
-							variables.put(var.getNombre(), dec.getTipo().getName());
-						}
-					}
-					else if(d instanceof DeclaracionPropia) {
-						DeclaracionPropia dec = (DeclaracionPropia) d;
-						//Registramos todas las variables declaradas y sus respectivos tipos
-						//Nota: No se comprueba si están repetidas porque ya hay una función que se encarga de ello.
-						for(Variable var: dec.getVariable()) {
-							variables.put(var.getNombre(), dec.getTipo());
-						}
-					}
-				}
+				Map<String,String> variables = funciones.registrarVariablesTipadas(f.getDeclaracion());
 				//Registramos los parámetros
 				for(ParametroFuncion p: f.getParametrofuncion()) {
 					//Registramos todos los parámetros declarados y sus respectivos tipos
@@ -620,58 +701,6 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				}
 			}
 		}
-	}
-	
-	private List<String> registrarTipos(List<TipoComplejo> tipoComplejo) {
-		List<String> tipos = new ArrayList<String>();
-		
-		for(TipoComplejo com: tipoComplejo) {
-			if(com instanceof Vector) {
-				Vector v = (Vector) com;
-				tipos.add(v.getNombre());
-			}
-			else if(com instanceof Matriz) {
-				Matriz m = (Matriz) com;
-				tipos.add(m.getNombre());
-			}
-			else if(com instanceof Registro) {
-				Registro r = (Registro) com;
-				tipos.add(r.getNombre());
-			}
-			else if(com instanceof Enumerado) {
-				Enumerado e = (Enumerado) com;
-				tipos.add(e.getNombre());
-			}
-			else if(com instanceof Archivo) {
-				Archivo a = (Archivo) com;
-				tipos.add(a.getNombre());
-			}
-			else {
-				Subrango s = (Subrango) com;
-				tipos.add(s.getNombre());
-			}
-		}
-		
-		return tipos;
-	}
-	
-	private List<String> registrarVariables(List<Declaracion> declaraciones) {
-		List<String> variables = new ArrayList<String>();
-		for(Declaracion d: declaraciones) {
-			if(d instanceof DeclaracionVariable) {
-				DeclaracionVariable dec = (DeclaracionVariable) d;
-				for(Variable v: dec.getVariable()) {
-					variables.add(v.getNombre());
-				}
-			}
-			else {
-				DeclaracionPropia dec = (DeclaracionPropia) d;
-				for(Variable v: dec.getVariable()) {
-					variables.add(v.getNombre());
-				}
-			}
-		}
-		return variables;
 	}
 
 }
