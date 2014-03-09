@@ -566,6 +566,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	@Check
+	//Función que comprueba que el tipo de devolución de una función sea compatible o igual al tipo realmente devuelto
 	protected void checkFuncion(Subproceso s) {
 		if(s instanceof Funcion) {
 			Funcion f = (Funcion) s;
@@ -605,10 +606,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					error("La variable no ha sido definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 				}
 				else if(variables.get(nombreVar) != tipoDevuelve) {
-					if(variables.get(nombreVar) == "entero" && tipoDevuelve == "real") {
+					if(variables.get(nombreVar) == "real" && tipoDevuelve == "entero") {
 						warning("El tipo de devolución no es el indicado, puede haber pérdida de precisión", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 					}
-					else if(variables.get(nombreVar) != "real" || tipoDevuelve != "entero") {
+					else if(variables.get(nombreVar) != "entero" || tipoDevuelve != "real") {
 						error("El tipo de devolución no es el indicado, los tipos son incompatibles", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 					}
 				}
