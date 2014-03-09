@@ -523,6 +523,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	@Check
+	//Función que comprueba que las funciones que se llamen hayan sido declaradas previamente y se les pase el número de parámetros oportuno
 	protected void checkLlamadaFuncion(Codigo c) {
 		List<String> funciones = new ArrayList<String>();
 		List<ArrayList<Integer>> parametros = new ArrayList<ArrayList<Integer>>();
@@ -562,6 +563,9 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					LlamadaFuncion l = (LlamadaFuncion) sn;
 					if(!funciones.contains(l.getNombre())) {
 						error("La función debe haber sido previamente declarada", l, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+					}
+					else if(!parametros.get(funciones.indexOf(l.getNombre())).contains(l.getOperador().size())) {
+						error("El número de parámetros de la función no es el esperado", l, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
 					}
 				}
 			}
