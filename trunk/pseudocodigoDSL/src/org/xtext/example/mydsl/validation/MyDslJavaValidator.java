@@ -523,6 +523,87 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	@Check
+	//Función que comprueba que una variable deba estar definida antes de usarse
+	protected void checkVariablesUsadas(Subproceso s) {
+		List<String> variables = funciones.registrarVariables(s.getDeclaracion());
+		
+		//Como son subprocesos también se añaden a la lista los parámetros
+		for(ParametroFuncion p: s.getParametrofuncion()) {
+			variables.add(p.getVariable().getNombre());
+		}
+		
+		for(Sentencias sen: s.getSentencias()) {
+			if(sen instanceof LlamadaFuncion) {
+				LlamadaFuncion f = (LlamadaFuncion) sen;
+				for(Operador o: f.getOperador()) {
+					if(o instanceof VariableID) {
+						VariableID v = (VariableID) o;
+						if(!variables.contains(v.getNombre())) {
+							error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+						}
+					}
+				}
+			}
+			else if(sen instanceof Leer) {
+				Leer l = (Leer) sen;
+				if(!variables.contains(l.getVariable().getNombre())) {
+					error("La variable debe haber sido previamente definida", l.getVariable(), DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+				}
+			}
+			
+			else if(sen instanceof Escribir) {
+				Escribir e = (Escribir) sen;
+				for(Operador o: e.getOperador()) {
+					if(o instanceof VariableID) {
+						VariableID v = (VariableID) o;
+						if(!variables.contains(v.getNombre())) {
+							error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+						}
+					}
+				}
+			}
+			
+			else if(sen instanceof incremento) {
+				incremento ic = (incremento) sen;
+				if(!variables.contains(ic.getNombre())) {
+					error("La variable debe haber sido previamente definida", ic, DiagramapseudocodigoPackage.Literals.INCREMENTO__NOMBRE);
+				}
+			}
+			
+			else if(sen instanceof Asignacion) {
+				Asignacion a = (Asignacion) sen;
+				if(a instanceof AsignacionNormal) {
+					AsignacionNormal as = (AsignacionNormal) a;
+					if(!variables.contains(as.getLvalue())) {
+						error("La variable debe haber sido previamente definida", as, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+					}
+					if(as.getOperador() instanceof VariableID) {
+						VariableID v = (VariableID) as.getOperador();
+						if(!variables.contains(v.getNombre())) {
+							error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+						}
+					}
+					if(as.getOperador() instanceof operacion) {
+						operacion o = (operacion) as.getOperador();
+						if(o.getOp_der().getOper_der() instanceof VariableID) {
+							VariableID v = (VariableID) o.getOp_der().getOper_der();
+							if(!variables.contains(v.getNombre())) {
+								error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+							}
+						}
+						if(o.getOp_izq().getOper_izq() instanceof VariableID) {
+							VariableID v = (VariableID) o.getOp_izq().getOper_izq();
+							if(!variables.contains(v.getNombre())) {
+								error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	@Check
 	//Función que comprueba que las funciones que se llamen hayan sido declaradas previamente y se les pase el número de parámetros oportuno
 	protected void checkLlamadaFuncion(Codigo c) {
 		List<String> funciones = new ArrayList<String>();
@@ -713,6 +794,47 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					}
 					else if(variables.get(nombreVar) != "entero" || tipoDevuelve != "real") {
 						error("El tipo de devolución no es el indicado, los tipos son incompatibles", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+					}
+				}
+			}
+		}
+	}
+	
+	@Check
+	protected void checkAsignacionLlamada(Codigo c) {
+		String nombre = "";
+		String tipoDevuelve = "";
+		int parametros;
+		for(Subproceso s: c.getFuncion()) {
+			if(s instanceof Funcion) {
+				Funcion f = (Funcion) s;
+				nombre = f.getNombre();
+				tipoDevuelve = f.getTipo().getName();
+				parametros = f.getParametrofuncion().size();
+				
+				//Recogemos todas las variables que hay declaradas con sus respectivos tipos para buscar luego las necesarias (no hay repetidas)
+				Map<String,String> variablesDeclaradas = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
+				
+				//Buscamos en el programa principal
+				for(Sentencias sen: c.getTiene().getTiene()) {
+					if(sen instanceof Asignacion) {
+						Asignacion a = (Asignacion) sen;
+						if(a instanceof AsignacionNormal) {
+							AsignacionNormal an = (AsignacionNormal) a;
+							if(an.getOperador() instanceof LlamadaFuncion) {
+								LlamadaFuncion fun = (LlamadaFuncion) an.getOperador();
+								if(fun.getNombre().equals(nombre) && fun.getOperador().size() == parametros) {
+									if(variablesDeclaradas.get(an.getLvalue()) != tipoDevuelve) {
+										if(variablesDeclaradas.get(an.getLvalue()) == "entero" && tipoDevuelve == "real") {
+											warning("Posible pérdida de precisión por conversión (de real a entero)", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+										}
+										else if(variablesDeclaradas.get(an.getLvalue()) != "real" || tipoDevuelve != "entero") {
+											error("Conversión imposible (de "+tipoDevuelve+" a "+variablesDeclaradas.get(an.getLvalue())+")", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+										}
+									}
+								}
+							}
+						}
 					}
 				}
 			}
