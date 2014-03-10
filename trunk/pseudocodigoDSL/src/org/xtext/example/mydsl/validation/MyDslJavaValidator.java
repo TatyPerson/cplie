@@ -574,7 +574,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	
 	@Check
 	//Función que comprueba que las funciones que se llaman dentro del programa principal se llamen con parámetros del tipo adecuado
-	protected void checkTipoParametrosInicio(Codigo c) {
+	protected void checkParametrosLlamadaInicio(Codigo c) {
 		//Registramos los tipos de parámetros necesarios para todos los subprocesos
 		List<String> tipos = new ArrayList<String>();
 		String nombre;
@@ -601,18 +601,22 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							}
 						}
 						boolean correcto = true; 
-						String salida = "";
+						String salidaBuena = "";
+						String salidaMala = "";
 						for(String n: nombresVariables) {
+							System.out.println("Si " +variablesDeclaradas.get(n)+ " != " +tipos.get(nombresVariables.indexOf(n)));
 							if(variablesDeclaradas.get(n) != tipos.get(nombresVariables.indexOf(n))) {
 								correcto = false;
 							}
 							if(nombresVariables.indexOf(n) < nombresVariables.size()-1) {
-								salida += tipos.get(nombresVariables.indexOf(n)) + ", ";
+								salidaBuena += tipos.get(nombresVariables.indexOf(n)) + ", ";
+								salidaMala += variablesDeclaradas.get(n) + ", ";
 							}
 						}
-						salida += tipos.get(nombresVariables.size()-1);
+						salidaBuena += tipos.get(nombresVariables.size()-1);
+						salidaMala += variablesDeclaradas.get(nombresVariables.get(nombresVariables.size()-1));
 						if(!correcto) {
-							error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salida+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+							error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
 						}
 					}
 				}
@@ -624,7 +628,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	
 	@Check
 	//Función que comprueba que las funciones que se llaman dentro de los subprocesos se llamen con parámetros del tipo adecuado
-	protected void checkTipoParametrosSubprocesos(Codigo c) {
+	protected void checkParametrosLlamadaSubproceso(Codigo c) {
 		//Registramos los tipos de parámetros necesarios para todos los subprocesos
 		List<String> tipos = new ArrayList<String>();
 		String nombre;
@@ -636,11 +640,15 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				//Registramos los tipos que requiere la función en su cabecera
 				tipos.add(p.getTipo().getName());
 			}
-			//Buscamos realmente que tipos le esta pasando el usuario en la llamada (en los subprocesos)
-			//Recogemos todas las variables que hay declaradas con sus respectivos tipos para buscar luego las necesarias (no hay repetidas)
-			Map<String,String> variablesDeclaradas = funciones.registrarVariablesTipadas(s.getDeclaracion());
-			List<String> nombresVariables = new ArrayList<String>();
 			for(Subproceso s2: c.getFuncion()) {
+				//Buscamos realmente que tipos le esta pasando el usuario en la llamada (en los subprocesos)
+				//Recogemos todas las variables que hay declaradas con sus respectivos tipos para buscar luego las necesarias (no hay repetidas)
+				Map<String,String> variablesDeclaradas = funciones.registrarVariablesTipadas(s2.getDeclaracion());
+				//Como estamos en el caso de los subprocesos debemos registrar los parámetros también
+				for(ParametroFuncion p: s2.getParametrofuncion()) {
+					variablesDeclaradas.put(p.getVariable().getNombre(), p.getTipo().getName());
+				}
+				List<String> nombresVariables = new ArrayList<String>();
 				for(Sentencias sen: s2.getSentencias()) {
 					if(sen instanceof LlamadaFuncion) {
 						LlamadaFuncion f = (LlamadaFuncion) sen;
@@ -652,18 +660,22 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								}
 							}
 							boolean correcto = true; 
-							String salida = "";
+							String salidaBuena = "";
+							String salidaMala = "";
 							for(String n: nombresVariables) {
+								System.out.println("Si " +variablesDeclaradas.get(n)+ " != " +tipos.get(nombresVariables.indexOf(n)));
 								if(variablesDeclaradas.get(n) != tipos.get(nombresVariables.indexOf(n))) {
 									correcto = false;
 								}
 								if(nombresVariables.indexOf(n) < nombresVariables.size()-1) {
-									salida += tipos.get(nombresVariables.indexOf(n)) + ", ";
+									salidaBuena += tipos.get(nombresVariables.indexOf(n)) + ", ";
+									salidaMala += variablesDeclaradas.get(n) + ", ";
 								}
 							}
-							salida += tipos.get(nombresVariables.size()-1);
+							salidaBuena += tipos.get(nombresVariables.size()-1);
+							salidaMala += variablesDeclaradas.get(nombresVariables.get(nombresVariables.size()-1));
 							if(!correcto) {
-								error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salida+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+								error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
 							}
 						}
 					}
