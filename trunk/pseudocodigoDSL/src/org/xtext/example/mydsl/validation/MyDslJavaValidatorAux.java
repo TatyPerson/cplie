@@ -15,6 +15,7 @@ import diagramapseudocodigo.Inicio;
 import diagramapseudocodigo.LlamadaFuncion;
 import diagramapseudocodigo.Matriz;
 import diagramapseudocodigo.Operador;
+import diagramapseudocodigo.ParametroFuncion;
 import diagramapseudocodigo.Registro;
 import diagramapseudocodigo.Sentencias;
 import diagramapseudocodigo.Subrango;
@@ -144,5 +145,46 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 			}
 		}
 		return parametros;
+	}
+	
+	protected String getCadenaTiposCorrectos(List<String> nombres, List<String> tipos) {
+		String salidaCorrecta = "";
+		for(String n: nombres) {
+			if(nombres.indexOf(n) < nombres.size()-1) {
+				salidaCorrecta += tipos.get(nombres.indexOf(n)) + ", ";
+			}
+		}
+		salidaCorrecta += tipos.get(nombres.size()-1);
+		return salidaCorrecta;
+	}
+	
+	protected String getCadenaTiposIncorrectos(List<String> nombres, Map<String,String> variablesDeclaradas) {
+		String salidaIncorrecta = "";
+		for(String n: nombres) {
+			if(nombres.indexOf(n) < nombres.size()-1) {
+				salidaIncorrecta += variablesDeclaradas.get(n) + ", ";
+			}
+		}
+		salidaIncorrecta += variablesDeclaradas.get(nombres.get(nombres.size()-1));
+		return salidaIncorrecta;
+	}
+	
+	protected boolean comprobarCorreccionTiposLlamada(List<String> nombres, Map<String,String> variablesDeclaradas, List<String> tipos) {
+		boolean tiposCorrectos = true;
+		for(String n: nombres) {
+			if(variablesDeclaradas.get(n) != tipos.get(nombres.indexOf(n))) {
+				tiposCorrectos = false;
+			}
+		}
+		return tiposCorrectos;
+	}
+	
+	protected List<String> getTiposCabecera(List<ParametroFuncion> parametros) {
+		List<String> tipos = new ArrayList<String>();
+		for(ParametroFuncion p: parametros) {
+			//Registramos los tipos que requiere la función en su cabecera
+			tipos.add(p.getTipo().getName());
+		}
+		return tipos;
 	}
 }
