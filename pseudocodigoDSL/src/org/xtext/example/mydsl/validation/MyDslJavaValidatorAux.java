@@ -134,4 +134,15 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		}
 		return variables;
 	}
+	
+	protected List<String> registrarParametros(List<Operador> operadores) {
+		List<String> parametros = new ArrayList<String>();
+		for(Operador o: operadores) {
+			if(o instanceof VariableID) {
+				VariableID v = (VariableID) o;
+				parametros.add(v.getNombre());	
+			}
+		}
+		return parametros;
+	}
 }
