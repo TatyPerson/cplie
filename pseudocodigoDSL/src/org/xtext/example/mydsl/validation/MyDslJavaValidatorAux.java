@@ -149,10 +149,8 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 	
 	protected String getCadenaTiposCorrectos(List<String> nombres, List<String> tipos) {
 		String salidaCorrecta = "";
-		for(String n: nombres) {
-			if(nombres.indexOf(n) < nombres.size()-1) {
-				salidaCorrecta += tipos.get(nombres.indexOf(n)) + ", ";
-			}
+		for(int i=0; i < nombres.size()-1; i++) {
+			salidaCorrecta += tipos.get(nombres.indexOf(nombres.get(i))) + ", ";
 		}
 		salidaCorrecta += tipos.get(nombres.size()-1);
 		return salidaCorrecta;
@@ -160,10 +158,8 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 	
 	protected String getCadenaTiposIncorrectos(List<String> nombres, Map<String,String> variablesDeclaradas) {
 		String salidaIncorrecta = "";
-		for(String n: nombres) {
-			if(nombres.indexOf(n) < nombres.size()-1) {
-				salidaIncorrecta += variablesDeclaradas.get(n) + ", ";
-			}
+		for(int i=0; i < nombres.size()-1; i++) {
+			salidaIncorrecta += variablesDeclaradas.get(nombres.get(i)) + ", ";
 		}
 		salidaIncorrecta += variablesDeclaradas.get(nombres.get(nombres.size()-1));
 		return salidaIncorrecta;

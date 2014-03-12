@@ -678,7 +678,8 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				else if(sen instanceof Asignacion) {
 					Asignacion a = (Asignacion) sen;
 					if(a instanceof AsignacionNormal) {
-						if(a.getOperador() instanceof LlamadaFuncion) {
+						AsignacionNormal an = (AsignacionNormal) a;
+						if(an.getOperador() instanceof LlamadaFuncion) {
 							LlamadaFuncion f = (LlamadaFuncion) a.getOperador();
 							System.out.println("Si " +f.getNombre()+ ".equals("+nombre+")"+f.getOperador().size()+" = " +parametros);
 							if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
@@ -704,6 +705,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		//Registramos los tipos de parámetros necesarios para todos los subprocesos
 		for(Subproceso s: c.getFuncion()) {
 			List<String> tipos = funciones.getTiposCabecera(s.getParametrofuncion());
+			System.out.println("Las tipos necesarios identificados son:");
+			for(String n: tipos) {
+				System.out.println("- " +n);
+			}
 			String nombre = s.getNombre();
 			int parametros = s.getParametrofuncion().size();
 			
@@ -718,8 +723,13 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					if(sen instanceof LlamadaFuncion) {
 						LlamadaFuncion f = (LlamadaFuncion) sen;
 						//Buscamos realmente que tipos le esta pasando el usuario en la llamada (en los subprocesos)
+						System.out.println("-(LlamadaNormal)Si " +f.getNombre()+ ".equals("+nombre+")"+f.getOperador().size()+" = " +parametros);
 						if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
 							List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
+							System.out.println("-(LlamadaNormal)Los nombres de las variables utilizados en la llamada son:");
+							for(String n2: nombresVariables) {
+								System.out.println("- "+n2);
+							}
 							String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
 							String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
 							if(!funciones.comprobarCorreccionTiposLlamada(nombresVariables, variablesDeclaradas, tipos)) {
@@ -730,11 +740,16 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					else if(sen instanceof Asignacion) {
 						Asignacion a = (Asignacion) sen;
 						if(a instanceof AsignacionNormal) {
-							if(a.getOperador() instanceof LlamadaFuncion) {
+							AsignacionNormal an = (AsignacionNormal) a;
+							if(an.getOperador() instanceof LlamadaFuncion) {
 								LlamadaFuncion f = (LlamadaFuncion) a.getOperador();
-								System.out.println("Si " +f.getNombre()+ ".equals("+nombre+")"+f.getOperador().size()+" = " +parametros);
+								System.out.println("-(Asignacion)Si " +f.getNombre()+ ".equals("+nombre+")"+f.getOperador().size()+" = " +parametros);
 								if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
 									List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
+									System.out.println("-(Asignacion)Los nombres de las variables utilizados en la llamada son:");
+									for(String n2: nombresVariables) {
+										System.out.println("- "+n2);
+									}
 									String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
 									String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
 									if(!funciones.comprobarCorreccionTiposLlamada(nombresVariables, variablesDeclaradas, tipos)) {
@@ -785,6 +800,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	@Check
+	//Función que comprueba que el tipo devuelto por una función sea compatible con el tipo de la variable al que se le asigna dicho valor
 	protected void checkAsignacionLlamada(Codigo c) {
 		String nombre = "";
 		String tipoDevuelve = "";
