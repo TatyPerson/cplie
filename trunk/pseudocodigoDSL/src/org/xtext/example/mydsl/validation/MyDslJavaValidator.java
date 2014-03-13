@@ -636,6 +636,21 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					error("El número de parámetros de la función no es el esperado", l, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
 				}
 			}
+			else if(s instanceof Asignacion) {
+				Asignacion a = (Asignacion) s;
+				if(a instanceof AsignacionNormal) {
+					AsignacionNormal an = (AsignacionNormal) a;
+					if(an.getOperador() instanceof LlamadaFuncion) {
+						LlamadaFuncion f = (LlamadaFuncion) an.getOperador();
+						if(!funciones.contains(f.getNombre())) {
+							error("La función debe haber sido previamente declarada", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+						}
+						else if(!parametros.get(funciones.indexOf(f.getNombre())).contains(f.getOperador().size())) {
+							error("El número de parámetros de la función no es el esperado", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+						}
+					}
+				}
+			}
 		}
 		
 		for(Subproceso s: c.getFuncion()) {
