@@ -783,7 +783,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	
 	@Check
 	//Función que comprueba que el tipo de devolución de una función sea compatible o igual al tipo realmente devuelto
-	protected void checkFuncion(Subproceso s) {
+	protected void checkTipoDevolucionFuncion(Subproceso s) {
 		if(s instanceof Funcion) {
 			Funcion f = (Funcion) s;
 			String tipoDevuelve = f.getTipo().getName();
@@ -816,7 +816,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	
 	@Check
 	//Función que comprueba que el tipo devuelto por una función sea compatible con el tipo de la variable al que se le asigna dicho valor
-	protected void checkAsignacionLlamada(Codigo c) {
+	protected void checkAsignacionLlamadaInicio(Codigo c) {
 		String nombre = "";
 		String tipoDevuelve = "";
 		int parametros;
@@ -850,6 +850,52 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								}
 							}
 						}
+					}
+					
+				}
+			}
+		}	
+	}
+		
+	@Check
+	//Función que comprueba que el tipo devuelto por una función sea compatible con el tipo de la variable al que se le asigna dicho valor
+	protected void checkAsignacionLlamadaSubproceso(Codigo c) {
+		String nombre = "";
+		String tipoDevuelve = "";
+		int parametros;
+		for(Subproceso s: c.getFuncion()) {
+			if(s instanceof Funcion) {
+				Funcion f = (Funcion) s;
+				nombre = f.getNombre();
+				tipoDevuelve = f.getTipo().getName();
+				parametros = f.getParametrofuncion().size();
+				
+				for(Subproceso s2: c.getFuncion()) {
+					//Recogemos todas las variables que hay declaradas con sus respectivos tipos para buscar luego las necesarias (no hay repetidas)
+					Map<String,String> variablesDeclaradas = funciones.registrarVariablesTipadas(s2.getDeclaracion());
+					
+					//Buscamos en el programa principal
+					for(Sentencias sen: s2.getSentencias()) {
+						if(sen instanceof Asignacion) {
+							Asignacion a = (Asignacion) sen;
+							if(a instanceof AsignacionNormal) {
+								AsignacionNormal an = (AsignacionNormal) a;
+								if(an.getOperador() instanceof LlamadaFuncion) {
+									LlamadaFuncion fun = (LlamadaFuncion) an.getOperador();
+									if(fun.getNombre().equals(nombre) && fun.getOperador().size() == parametros) {
+										if(variablesDeclaradas.get(an.getLvalue()) != tipoDevuelve) {
+											if(variablesDeclaradas.get(an.getLvalue()) == "entero" && tipoDevuelve == "real") {
+												warning("Posible pérdida de precisión por conversión (de real a entero)", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+											}
+											else if(variablesDeclaradas.get(an.getLvalue()) != "real" || tipoDevuelve != "entero") {
+												error("Conversión imposible (de "+tipoDevuelve+" a "+variablesDeclaradas.get(an.getLvalue())+")", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+											}
+										}
+									}
+								}
+							}
+						}
+						
 					}
 				}
 			}
