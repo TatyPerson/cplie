@@ -665,7 +665,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					}
 				}
 				else if(sn instanceof Asignacion) {
-					Asignacion a = (Asignacion) s;
+					Asignacion a = (Asignacion) sn;
 					if(a instanceof AsignacionNormal) {
 						AsignacionNormal an = (AsignacionNormal) a;
 						if(an.getOperador() instanceof LlamadaFuncion) {
