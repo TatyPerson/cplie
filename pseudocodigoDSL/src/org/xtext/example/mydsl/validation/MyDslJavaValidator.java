@@ -106,7 +106,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					}
 					else {
 						//Si esta repetida lanzamos el error
-						error("No pueden existir dos variables con el mismo nombre dentro de la misma función o procedimiento", DiagramapseudocodigoPackage.Literals.SUBPROCESO__NOMBRE);
+						error("No pueden existir dos variables con el mismo nombre dentro de la misma función o procedimiento", v,  DiagramapseudocodigoPackage.Literals.VARIABLE__NOMBRE);
 					}
 				}
 			}
@@ -120,7 +120,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					}
 					else {
 						//Si esta repetida lanzamos el error
-						error("No pueden existir dos variables con el mismo nombre dentro de la misma función o procedimiento", DiagramapseudocodigoPackage.Literals.SUBPROCESO__NOMBRE);	
+						error("No pueden existir dos variables con el mismo nombre dentro de la misma función o procedimiento", v, DiagramapseudocodigoPackage.Literals.VARIABLE__NOMBRE);	
 					}
 				}
 			}
@@ -143,7 +143,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					}
 					else {
 						//Si esta repetida lanzamos el error
-						error("No pueden existir dos variables con el mismo nombre dentro del mismo programa principal", DiagramapseudocodigoPackage.Literals.INICIO__DECLARACION, i.getDeclaracion().indexOf(d));
+						error("No pueden existir dos variables con el mismo nombre dentro del mismo programa principal", v, DiagramapseudocodigoPackage.Literals.VARIABLE__NOMBRE);
 					}
 				}
 			}
@@ -157,7 +157,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					}
 					else {
 						//Si esta repetida lanzamos el error
-						error("No pueden existir dos variables con el mismo nombre dentro del mismo programa principal", DiagramapseudocodigoPackage.Literals.INICIO__DECLARACION, i.getDeclaracion().indexOf(d));
+						error("No pueden existir dos variables con el mismo nombre dentro del mismo programa principal", v,  DiagramapseudocodigoPackage.Literals.VARIABLE__NOMBRE);
 					}
 				}
 			}
@@ -664,6 +664,21 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						error("El número de parámetros de la función no es el esperado", l, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
 					}
 				}
+				else if(sn instanceof Asignacion) {
+					Asignacion a = (Asignacion) s;
+					if(a instanceof AsignacionNormal) {
+						AsignacionNormal an = (AsignacionNormal) a;
+						if(an.getOperador() instanceof LlamadaFuncion) {
+							LlamadaFuncion f = (LlamadaFuncion) an.getOperador();
+							if(!funciones.contains(f.getNombre())) {
+								error("La función debe haber sido previamente declarada", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+							}
+							else if(!parametros.get(funciones.indexOf(f.getNombre())).contains(f.getOperador().size())) {
+								error("El número de parámetros de la función no es el esperado", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+							}
+						}
+					}
+				}
 			}
 		}
 	}
@@ -696,7 +711,6 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						AsignacionNormal an = (AsignacionNormal) a;
 						if(an.getOperador() instanceof LlamadaFuncion) {
 							LlamadaFuncion f = (LlamadaFuncion) a.getOperador();
-							System.out.println("Si " +f.getNombre()+ ".equals("+nombre+")"+f.getOperador().size()+" = " +parametros);
 							if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
 								List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
 								String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
@@ -738,13 +752,8 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					if(sen instanceof LlamadaFuncion) {
 						LlamadaFuncion f = (LlamadaFuncion) sen;
 						//Buscamos realmente que tipos le esta pasando el usuario en la llamada (en los subprocesos)
-						System.out.println("-(LlamadaNormal)Si " +f.getNombre()+ ".equals("+nombre+")"+f.getOperador().size()+" = " +parametros);
 						if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
 							List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
-							System.out.println("-(LlamadaNormal)Los nombres de las variables utilizados en la llamada son:");
-							for(String n2: nombresVariables) {
-								System.out.println("- "+n2);
-							}
 							String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
 							String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
 							if(!funciones.comprobarCorreccionTiposLlamada(nombresVariables, variablesDeclaradas, tipos)) {
@@ -758,13 +767,8 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							AsignacionNormal an = (AsignacionNormal) a;
 							if(an.getOperador() instanceof LlamadaFuncion) {
 								LlamadaFuncion f = (LlamadaFuncion) a.getOperador();
-								System.out.println("-(Asignacion)Si " +f.getNombre()+ ".equals("+nombre+")"+f.getOperador().size()+" = " +parametros);
 								if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
 									List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
-									System.out.println("-(Asignacion)Los nombres de las variables utilizados en la llamada son:");
-									for(String n2: nombresVariables) {
-										System.out.println("- "+n2);
-									}
 									String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
 									String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
 									if(!funciones.comprobarCorreccionTiposLlamada(nombresVariables, variablesDeclaradas, tipos)) {
