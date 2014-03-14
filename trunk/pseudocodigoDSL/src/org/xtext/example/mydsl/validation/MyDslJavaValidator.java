@@ -910,11 +910,130 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								}
 							}
 						}
-						
 					}
 				}
 			}
 		}
+	}
+	
+	@Check
+	//Función que comprueba que un campo utilizado de un registro pertenezca realmente a ese tipo de registro
+	protected void checkVariablesRegistroInicio(Codigo c) {
+		//Preparamos todos los campos clasificados por el nombre del registro (utilizado como identificador)
+		Map<String,ArrayList<String>> registros = new HashMap<String,ArrayList<String>>();
+		for(TipoComplejo t: c.getTipocomplejo()) {
+			if(t instanceof Registro) {
+				Registro r = (Registro) t;
+				ArrayList<String> campos = new ArrayList<String>();
+				for(DeclaracionVariable d: r.getVariable()) {
+					for(Variable v: d.getVariable()) {
+						campos.add(v.getNombre());
+					}
+				}
+				registros.put(r.getNombre(), campos);
+			}
+		}
+		
+		Map<String,String> variablesTipadas = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
+		
+		for(Sentencias s: c.getTiene().getTiene()) {
+			if(s instanceof AsignacionCompleja) {
+				AsignacionCompleja a = (AsignacionCompleja) s;
+				if(a.getComplejo() instanceof ValorRegistro) {
+					ValorRegistro r = (ValorRegistro) a.getComplejo();
+					for(CampoRegistro campo: r.getCampo()) {
+						if(!registros.get(variablesTipadas.get(r.getNombre_registro())).contains(campo.getNombre_campo())) {
+							error("El campo especificado no pertenece al Registro de tipo "+variablesTipadas.get(r.getNombre_registro())+" definido", campo, DiagramapseudocodigoPackage.Literals.CAMPO_REGISTRO__NOMBRE_CAMPO);
+						}	
+					}
+				}
+				if(a.getOperador() instanceof ValorRegistro) {
+					ValorRegistro r = (ValorRegistro) a.getOperador();
+					for(CampoRegistro campo: r.getCampo()) {
+						if(!registros.get(variablesTipadas.get(r.getNombre_registro())).contains(campo.getNombre_campo())) {
+							error("El campo especificado no pertenece al Registro de tipo "+variablesTipadas.get(r.getNombre_registro())+" definido", campo, DiagramapseudocodigoPackage.Literals.CAMPO_REGISTRO__NOMBRE_CAMPO);
+						}	
+					}
+				}
+			}
+			else if(s instanceof AsignacionNormal) {
+				AsignacionNormal a = (AsignacionNormal) s;
+				if(a.getOperador() instanceof LlamadaFuncion) {
+					LlamadaFuncion f = (LlamadaFuncion) a.getOperador();
+					for(Operador o: f.getOperador()) {
+						if(o instanceof ValorRegistro) {
+							ValorRegistro r = (ValorRegistro) o;
+							for(CampoRegistro campo: r.getCampo()) {
+								if(!registros.get(variablesTipadas.get(r.getNombre_registro())).contains(campo.getNombre_campo())) {
+									error("El campo especificado no pertenece al Registro de tipo "+variablesTipadas.get(r.getNombre_registro())+" definido", campo, DiagramapseudocodigoPackage.Literals.CAMPO_REGISTRO__NOMBRE_CAMPO);
+								}	
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	@Check
+	//Función que comprueba que un campo utilizado de un registro pertenezca realmente a ese tipo de registro
+	protected void checkVariablesRegistroSubproceso(Codigo c) {
+		//Preparamos todos los campos clasificados por el nombre del registro (utilizado como identificador)
+		Map<String,ArrayList<String>> registros = new HashMap<String,ArrayList<String>>();
+			for(TipoComplejo t: c.getTipocomplejo()) {
+				if(t instanceof Registro) {
+					Registro r = (Registro) t;
+					ArrayList<String> campos = new ArrayList<String>();
+					for(DeclaracionVariable d: r.getVariable()) {
+						for(Variable v: d.getVariable()) {
+							campos.add(v.getNombre());
+						}
+					}
+					registros.put(r.getNombre(), campos);
+				}
+			}
+			
+			for(Subproceso sub: c.getFuncion()) {
+				Map<String,String> variablesTipadas = funciones.registrarVariablesTipadas(sub.getDeclaracion());
+				
+				for(Sentencias s: sub.getSentencias()) {
+					if(s instanceof AsignacionCompleja) {
+						AsignacionCompleja a = (AsignacionCompleja) s;
+						if(a.getComplejo() instanceof ValorRegistro) {
+							ValorRegistro r = (ValorRegistro) a.getComplejo();
+							for(CampoRegistro campo: r.getCampo()) {
+								if(!registros.get(variablesTipadas.get(r.getNombre_registro())).contains(campo.getNombre_campo())) {
+									error("El campo especificado no pertenece al Registro de tipo "+variablesTipadas.get(r.getNombre_registro())+" definido", campo, DiagramapseudocodigoPackage.Literals.CAMPO_REGISTRO__NOMBRE_CAMPO);
+								}	
+							}
+						}
+						if(a.getOperador() instanceof ValorRegistro) {
+							ValorRegistro r = (ValorRegistro) a.getOperador();
+							for(CampoRegistro campo: r.getCampo()) {
+								if(!registros.get(variablesTipadas.get(r.getNombre_registro())).contains(campo.getNombre_campo())) {
+									error("El campo especificado no pertenece al Registro de tipo "+variablesTipadas.get(r.getNombre_registro())+" definido", campo, DiagramapseudocodigoPackage.Literals.CAMPO_REGISTRO__NOMBRE_CAMPO);
+								}	
+							}
+						}
+					}
+					else if(s instanceof AsignacionNormal) {
+						AsignacionNormal a = (AsignacionNormal) s;
+						if(a.getOperador() instanceof LlamadaFuncion) {
+							LlamadaFuncion f = (LlamadaFuncion) a.getOperador();
+							for(Operador o: f.getOperador()) {
+								if(o instanceof ValorRegistro) {
+									ValorRegistro r = (ValorRegistro) o;
+									for(CampoRegistro campo: r.getCampo()) {
+										if(!registros.get(variablesTipadas.get(r.getNombre_registro())).contains(campo.getNombre_campo())) {
+											error("El campo especificado no pertenece al Registro de tipo "+variablesTipadas.get(r.getNombre_registro())+" definido", campo, DiagramapseudocodigoPackage.Literals.CAMPO_REGISTRO__NOMBRE_CAMPO);
+										}	
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 	}
 
 }
