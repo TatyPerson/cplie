@@ -1049,5 +1049,37 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				}
 			}
 	}
+	
+	@Check
+	protected void checkAsignacionesInicio(Codigo c) {
+		//Registramos todas las variables declaradas con sus respectivos tipos
+		Map<String,String> variables = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
+		
+		for(Sentencias s: c.getTiene().getTiene()) {
+			if(s instanceof Asignacion) {
+				Asignacion a = (Asignacion) s;
+				if(a instanceof AsignacionNormal) {
+					AsignacionNormal an = (AsignacionNormal) a;
+					if(variables.get(an.getLvalue()) == "entero" && !(an.getOperador() instanceof NumeroEntero)) {
+						if(an.getOperador() instanceof NumeroDecimal) {
+							warning("Posible pérdida de precisión al asignar un real a un entero", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+						}
+						else {
+							error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+						}
+					}
+					else if(variables.get(an.getLvalue()) == "logico" && !(an.getOperador() instanceof ValorBooleano)) {
+						error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+					}
+					else if(variables.get(an.getLvalue()) == "cadena" && !(an.getOperador() instanceof ConstCadena)) {
+						error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+					}
+					else if(variables.get(an.getLvalue()) == "caracter" && !(an.getOperador() instanceof Caracter)) {
+						error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+					}
+				}
+			}
+		}
+	}
 
 }
