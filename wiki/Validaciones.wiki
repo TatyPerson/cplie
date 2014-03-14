@@ -1,0 +1,1 @@
+En este apartado se recogen las validaciones que se han añadido al programa.
