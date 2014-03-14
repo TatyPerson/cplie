@@ -53,15 +53,10 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		//Recogemos todas las variables que hay declaradas con sus respectivos tipos para buscar luego las necesarias (no hay repetidas)
 		Map<String,String> variablesDeclaradas = registrarVariablesTipadas(i.getDeclaracion());
 		List<String> nombresVariables = new ArrayList<String>();
-		System.out.println("Hola estoy aqui!");
 		for(Sentencias s: i.getTiene()) {
 			if(s instanceof LlamadaFuncion) {
 				LlamadaFuncion f = (LlamadaFuncion) s;
-				System.out.println("Soy una Llamada a función!");
-				System.out.println("Si " +f.getNombre() + " == " +nombre+ " && " +f.getOperador().size()+ " == " +parametros);
 				if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
-					System.out.println("Nombre: " +nombre);
-					System.out.println("Parametros: "+parametros);
 					for(Operador o: f.getOperador()) {
 						if(o instanceof VariableID) {
 							VariableID v = (VariableID) o;
@@ -74,9 +69,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 							correcto = false;
 						}
 					}
-					System.out.println("jojojo");
 					if(!correcto) {
-						System.out.println("jijiji");
 						error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
 					}
 				}
@@ -168,7 +161,6 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 	protected boolean comprobarCorreccionTiposLlamada(List<String> nombres, Map<String,String> variablesDeclaradas, List<String> tipos) {
 		boolean tiposCorrectos = true;
 		for(String n: nombres) {
-			System.out.println("Si "+variablesDeclaradas.get(n)+ " != "+ tipos.get(nombres.indexOf(n)));
 			if(variablesDeclaradas.get(n) != tipos.get(nombres.indexOf(n))) {
 				tiposCorrectos = false;
 			}

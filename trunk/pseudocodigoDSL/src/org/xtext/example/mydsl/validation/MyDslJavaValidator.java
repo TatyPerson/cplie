@@ -519,7 +519,6 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					}
 				}
 				else if(a instanceof AsignacionCompleja) {
-					System.out.println("Estoy aqui");
 					AsignacionCompleja ac = (AsignacionCompleja) a;
 					if(ac.getComplejo() instanceof ValorRegistro) {
 						ValorRegistro r = (ValorRegistro) ac.getComplejo();
@@ -617,6 +616,15 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 									error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 								}
 							}
+						}
+					}
+				}
+				else if(a instanceof AsignacionCompleja) {
+					AsignacionCompleja ac = (AsignacionCompleja) a;
+					if(ac.getComplejo() instanceof ValorRegistro) {
+						ValorRegistro r = (ValorRegistro) ac.getComplejo();
+						if(!variables.contains(r.getNombre_registro())) {
+							error("La variable debe haber sido previamente definida", r, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
 						}
 					}
 				}
