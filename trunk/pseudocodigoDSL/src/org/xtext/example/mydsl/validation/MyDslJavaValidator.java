@@ -518,6 +518,16 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						}
 					}
 				}
+				else if(a instanceof AsignacionCompleja) {
+					System.out.println("Estoy aqui");
+					AsignacionCompleja ac = (AsignacionCompleja) a;
+					if(ac.getComplejo() instanceof ValorRegistro) {
+						ValorRegistro r = (ValorRegistro) ac.getComplejo();
+						if(!variables.contains(r.getNombre_registro())) {
+							error("La variable debe haber sido previamente definida", r, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
+						}
+					}
+				}
 			}
 		}
 	}
@@ -745,10 +755,6 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		//Registramos los tipos de parámetros necesarios para todos los subprocesos
 		for(Subproceso s: c.getFuncion()) {
 			List<String> tipos = funciones.getTiposCabecera(s.getParametrofuncion());
-			System.out.println("Las tipos necesarios identificados son:");
-			for(String n: tipos) {
-				System.out.println("- " +n);
-			}
 			String nombre = s.getNombre();
 			int parametros = s.getParametrofuncion().size();
 			
