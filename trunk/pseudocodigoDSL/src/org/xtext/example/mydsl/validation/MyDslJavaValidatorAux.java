@@ -14,6 +14,8 @@ import diagramapseudocodigo.Enumerado;
 import diagramapseudocodigo.Inicio;
 import diagramapseudocodigo.LlamadaFuncion;
 import diagramapseudocodigo.Matriz;
+import diagramapseudocodigo.NumeroDecimal;
+import diagramapseudocodigo.NumeroEntero;
 import diagramapseudocodigo.Operador;
 import diagramapseudocodigo.ParametroFuncion;
 import diagramapseudocodigo.Registro;
@@ -23,6 +25,8 @@ import diagramapseudocodigo.TipoComplejo;
 import diagramapseudocodigo.Variable;
 import diagramapseudocodigo.VariableID;
 import diagramapseudocodigo.Vector;
+import diagramapseudocodigo.operacion;
+import diagramapseudocodigo.valor;
 
 public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 	
@@ -175,5 +179,59 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 			tipos.add(p.getTipo().getName());
 		}
 		return tipos;
+	}
+	
+	protected List<valor> registrarValoresOperacion(operacion o) {
+		List<valor> valores = new ArrayList<valor>();
+		if(!(o.getOp_der().getOper_der() instanceof operacion)) {
+			valor v = (valor) o.getOp_der().getOper_der();
+			valores.add(v);
+		}
+		if(!(o.getOp_izq().getOper_izq() instanceof operacion)) {
+			valor v = (valor) o.getOp_izq().getOper_izq();
+			valores.add(v);
+		}
+		else {
+			registrarValoresOperacionRec((operacion)o.getOp_der().getOper_der(), valores);
+			registrarValoresOperacionRec((operacion)o.getOp_izq().getOper_izq(), valores);
+			
+		}
+		return valores;
+	}
+	
+	protected void registrarValoresOperacionRec(operacion o, List<valor> valores) {
+		if(!(o.getOp_der().getOper_der() instanceof operacion)) {
+			valor v = (valor) o.getOp_der().getOper_der();
+			valores.add(v);
+		}
+		if(!(o.getOp_izq().getOper_izq() instanceof operacion)) {
+			valor v = (valor) o.getOp_izq().getOper_izq();
+			valores.add(v);
+		}
+		else {
+			registrarValoresOperacionRec((operacion)o.getOp_der().getOper_der(), valores);
+			registrarValoresOperacionRec((operacion)o.getOp_izq().getOper_izq(), valores);
+			
+		}
+	}
+	
+	protected int asignacionEntero(List<valor> valores) {
+		List<valor> valoresProblem = new ArrayList<valor>();
+		for(valor v: valores) {
+			if(!(v instanceof NumeroEntero)) {
+				valoresProblem.add(v);
+			}
+		}
+		if(valoresProblem.size() == 0) {
+			return 1;
+		}
+		else {
+			for(valor v: valoresProblem) {
+				if(!(v instanceof NumeroDecimal)) {
+					return 3;
+				}
+			}
+			return 2;
+		}
 	}
 }
