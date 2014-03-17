@@ -1064,7 +1064,26 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						if(an.getOperador() instanceof NumeroDecimal) {
 							warning("Posible pérdida de precisión al asignar un real a un entero", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 						}
-						else {
+						else if(an.getOperador() instanceof operacion) {
+							System.out.println("Soy una op!");
+							operacion o = (operacion) an.getOperador();
+							List<valor> valores = funciones.registrarValoresOperacion(o);
+							switch(funciones.asignacionEntero(valores)) {
+								case 1:
+									System.out.println("Todos entero, sin problemas..");
+									break;
+								case 2: 
+									warning("Posible pérdida de precisión al asignar un real a un entero", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+									break;
+								case 3:
+									error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+									break;
+								default:
+									System.out.println("Algo raro pasa..");
+									break;
+							}
+						}
+					else {
 							error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 						}
 					}
