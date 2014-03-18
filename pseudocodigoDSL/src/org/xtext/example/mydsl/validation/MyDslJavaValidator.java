@@ -526,6 +526,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							error("La variable debe haber sido previamente definida", r, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
 						}
 					}
+					if(ac.getOperador() instanceof VariableID) {
+						VariableID v = (VariableID) ac.getOperador();
+						if(!variables.contains(v.getNombre())) {
+							error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+						}
+					}
 				}
 			}
 		}
@@ -985,6 +991,14 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						}
 					}
 				}
+				if(a.getOperador() instanceof ValorRegistro) {
+					ValorRegistro r = (ValorRegistro) a.getOperador();
+					for(CampoRegistro campo: r.getCampo()) {
+						if(!registros.get(variablesTipadas.get(r.getNombre_registro())).contains(campo.getNombre_campo())) {
+							error("El campo especificado no pertenece al Registro de tipo "+variablesTipadas.get(r.getNombre_registro())+" definido", campo, DiagramapseudocodigoPackage.Literals.CAMPO_REGISTRO__NOMBRE_CAMPO);
+						}	
+					}
+				}
 			}
 		}
 	}
@@ -1071,6 +1085,15 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 									break;
 							}
 						}
+						else if(an.getOperador() instanceof VariableID) {
+							VariableID v = (VariableID) an.getOperador();
+							if(variables.get(v.getNombre()) != "entero" && variables.get(v.getNombre()) != "real") {
+								error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+							}
+							else if(variables.get(v.getNombre()) == "real") {
+								warning("Posible pérdida de precisión al asignar un real a un entero", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+							}
+						}
 						else {
 							error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 						}
@@ -1103,6 +1126,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								}
 							}
 						}
+						else if(an.getOperador() instanceof VariableID) {
+							VariableID v = (VariableID) an.getOperador();
+							if(variables.get(v.getNombre()) != "logico") {
+								error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+							}
+						}
 						else {
 							error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 						}
@@ -1121,6 +1150,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 										break;
 									default:
 										break;
+								}
+							}
+							else if(an.getOperador() instanceof VariableID) {
+								VariableID v = (VariableID) an.getOperador();
+								if(variables.get(v.getNombre()) != "real" && variables.get(v.getNombre()) != "entero") {
+									error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 								}
 							}
 							else {
@@ -1143,6 +1178,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 									break;
 							}
 						}
+						else if(an.getOperador() instanceof VariableID) {
+							VariableID v = (VariableID) an.getOperador();
+							if(variables.get(v.getNombre()) != "cadena") {
+								error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+							}
+						}
 						else {
 							error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 						}
@@ -1161,6 +1202,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 									break;
 								default:
 									break;
+							}
+						}
+						else if(an.getOperador() instanceof VariableID) {
+							VariableID v = (VariableID) an.getOperador();
+							if(variables.get(v.getNombre()) != "caracter") {
+								error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 							}
 						}
 						else {
@@ -1189,9 +1236,9 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	@Check
 	protected void checkAsignacionesSubproceso(Codigo c) {
 		for(Subproceso s: c.getFuncion()) {
+			//Registramos todas las variables declaradas con sus respectivos tipos
+			Map<String,String> variables = funciones.registrarVariablesTipadas(s.getDeclaracion());
 			for(Sentencias sen: s.getSentencias()) {
-				//Registramos todas las variables declaradas con sus respectivos tipos
-				Map<String,String> variables = funciones.registrarVariablesTipadas(s.getDeclaracion());
 				if(sen instanceof Asignacion) {
 					Asignacion a = (Asignacion) sen;
 					if(a instanceof AsignacionNormal) {
@@ -1204,8 +1251,164 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			
 	}
 	
+	private void checkAsignacionesVariablesRegistroAux(AsignacionCompleja a, Map<String,String> variables, Map<String,HashMap<String,String>> registros) {
+		if(a.getComplejo() instanceof ValorRegistro) {
+			ValorRegistro r = (ValorRegistro) a.getComplejo();
+			for(CampoRegistro campo: r.getCampo()) {
+				if(registros.get(variables.get(r.getNombre_registro())).get(campo.getNombre_campo()) == "entero" && !(a.getOperador() instanceof NumeroEntero)) {
+					if(a.getOperador() instanceof NumeroDecimal) {
+						warning("Posible pérdida de precisión al asignar un real a un entero", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
+					}
+					else if(a.getOperador() instanceof operacion) {
+						operacion o = (operacion) a.getOperador();
+						List<valor> valores = funciones.registrarValoresOperacion(o);
+						switch(funciones.asignacionEntero(valores,variables)) {
+							case 1:
+								break;
+							case 2: 
+								warning("Posible pérdida de precisión al asignar un real a un entero", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
+								break;
+							case 3:
+								error("El tipo de asignación es incompatible", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
+								break;
+							default:
+								break;
+						}
+					}
+					else if(a.getOperador() instanceof VariableID) {
+						VariableID v = (VariableID) a.getOperador();
+						if(variables.get(v.getNombre()) != "entero" && variables.get(v.getNombre()) != "real") {
+							error("El tipo de asignación es incompatible", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
+						}
+						else if(variables.get(v.getNombre()) == "real") {
+							warning("Posible pérdida de precisión al asignar un real a un entero", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
+						}
+					}
+					else {
+						error("El tipo de asignación es incompatible", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
+					}
+				}
+				else if(registros.get(variables.get(r.getNombre_registro())).get(campo.getNombre_campo()) == "real" && !(a.getOperador() instanceof NumeroDecimal) && !(a.getOperador() instanceof NumeroEntero)) {
+					if(a.getOperador() instanceof operacion) {
+						operacion o = (operacion) a.getOperador();
+						List<valor> valores = funciones.registrarValoresOperacion(o);
+						switch(funciones.asignacionReal(valores,variables)) {
+							case 1:
+								break;
+							case 2: 
+								break;
+							case 3:
+								error("El tipo de asignación es incompatible", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
+								break;
+							default:
+								break;
+						}
+					}
+					else if(a.getOperador() instanceof VariableID) {
+						VariableID v = (VariableID) a.getOperador();
+						if(variables.get(v.getNombre()) != "real" && variables.get(v.getNombre()) != "entero") {
+							error("El tipo de asignación es incompatible", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
+						}
+					}
+					else {
+						error("El tipo de asignación es incompatible", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
+					}
+				}
+				else if(registros.get(variables.get(r.getNombre_registro())).get(campo.getNombre_campo()) == "logico" && !(a.getOperador() instanceof ValorBooleano)) {
+					if(a.getOperador() instanceof operacion) {
+						operacion o = (operacion) a.getOperador();
+						List<valor> valores = funciones.registrarValoresOperacion(o);
+						switch(funciones.asignacionLogico(valores,variables)) {
+							case 1:
+								break;
+							case 2: 
+								break;
+							case 3:
+								error("El tipo de asignación es incompatible", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
+								break;
+							default:
+								break;
+						}
+					}
+					else if(a.getOperador() instanceof unaria) {
+						unaria u = (unaria) a.getOperador();
+						if(!(u.getVariable() instanceof ValorBooleano) && (!(u.getVariable() instanceof VariableID))) {
+							error("El tipo de asignación es incompatible", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
+						}
+						else if(u.getVariable() instanceof VariableID) {
+							VariableID var = (VariableID) u.getVariable();
+							if(variables.get(var.getNombre()) != "logico") {
+								error("El tipo de asignación es incompatible", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
+							}
+						}
+					}
+					else if(a.getOperador() instanceof VariableID) {
+						VariableID v = (VariableID) a.getOperador();
+						if(variables.get(v.getNombre()) != "logico") {
+							error("El tipo de asignación es incompatible", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
+						}
+					}
+					else {
+						error("El tipo de asignación es incompatible", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
+					}
+				}
+				else if(registros.get(variables.get(r.getNombre_registro())).get(campo.getNombre_campo()) == "cadena" && !(a.getOperador() instanceof ConstCadena)) {
+					if(a.getOperador() instanceof operacion) {
+						operacion o = (operacion) a.getOperador();
+						List<valor> valores = funciones.registrarValoresOperacion(o);
+						switch(funciones.asignacionCadena(valores,variables)) {
+							case 1:
+								break;
+							case 2: 
+								break;
+							case 3:
+								error("El tipo de asignación es incompatible", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
+								break;
+							default:
+								break;
+						}
+					}
+					else if(a.getOperador() instanceof VariableID) {
+						VariableID v = (VariableID) a.getOperador();
+						if(variables.get(v.getNombre()) != "cadena") {
+							error("El tipo de asignación es incompatible", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
+						}
+					}
+					else {
+						error("El tipo de asignación es incompatible", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
+					}
+				}
+				else if(registros.get(variables.get(r.getNombre_registro())).get(campo.getNombre_campo()) == "caracter" && !(a.getOperador() instanceof Caracter)) {
+					if(a.getOperador() instanceof operacion) {
+						operacion o = (operacion) a.getOperador();
+						List<valor> valores = funciones.registrarValoresOperacion(o);
+						switch(funciones.asignacionCaracter(valores,variables)) {
+							case 1:
+								break;
+							case 2: 
+								break;
+							case 3:
+								error("El tipo de asignación es incompatible", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
+								break;
+							default:
+								break;
+						}
+					}
+					else if(a.getOperador() instanceof VariableID) {
+						VariableID v = (VariableID) a.getOperador();
+						if(variables.get(v.getNombre()) != "caracter") {
+							error("El tipo de asignación es incompatible", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
+						}
+					}
+					else {
+						error("El tipo de asignación es incompatible", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
+					}
+				}
+			}
+		}
+	}
+	
 	@Check
-		
 	protected void checkAsignacionVariablesRegistroInicio(Codigo c) {
 		//Preparamos todos los campos clasificados por el nombre del registro (utilizado como identificador)
 		Map<String,HashMap<String,String>> registros = new HashMap<String,HashMap<String,String>>();
@@ -1222,21 +1425,48 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			}
 		}
 			
-		Map<String,String> variablesTipadas = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
+		Map<String,String> variables = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
 			
 		for(Sentencias s: c.getTiene().getTiene()) {
 			if(s instanceof AsignacionCompleja) {
 				AsignacionCompleja a = (AsignacionCompleja) s;
-				if(a.getComplejo() instanceof ValorRegistro) {
-					ValorRegistro r = (ValorRegistro) a.getComplejo();
-					for(CampoRegistro campo: r.getCampo()) {
-						if(registros.get(r.getNombre_registro()).get(campo.getNombre_campo()) == "entero") {
-							
-						}
-					}
-				}
+				checkAsignacionesVariablesRegistroAux(a,variables,registros);
 			}
 		}
+	}
+	
+	@Check
+	protected void checkAsignacionesVariablesRegistroSubproceso(Codigo c) {
+		//Preparamos todos los campos clasificados por el nombre del registro (utilizado como identificador)
+		Map<String,HashMap<String,String>> registros = new HashMap<String,HashMap<String,String>>();
+		for(TipoComplejo t: c.getTipocomplejo()) {
+			if(t instanceof Registro) {
+				Registro r = (Registro) t;
+				HashMap<String,String> campos = new HashMap<String,String>();
+				for(DeclaracionVariable d: r.getVariable()) {
+					for(Variable v: d.getVariable()) {
+						campos.put(v.getNombre(), d.getTipo().getName());
+					}
+				}
+				registros.put(r.getNombre(), campos);
+			}
+		}
+		
+		for(Subproceso s: c.getFuncion()) {
+			Map<String,String> variables = funciones.registrarVariablesTipadas(s.getDeclaracion());
+			
+			for(Sentencias sen: s.getSentencias()) {
+				if(sen instanceof Asignacion) {
+					Asignacion a = (Asignacion) sen;
+					if(a instanceof AsignacionCompleja) {
+						AsignacionCompleja ac = (AsignacionCompleja) a;
+						checkAsignacionesVariablesRegistroAux(ac,variables,registros);
+					}
+				}
+
+			}
+		}
+			
 	}
 
 }
