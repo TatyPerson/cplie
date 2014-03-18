@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import diagramapseudocodigo.Archivo;
+import diagramapseudocodigo.Caracter;
+import diagramapseudocodigo.ConstCadena;
 import diagramapseudocodigo.Declaracion;
 import diagramapseudocodigo.DeclaracionPropia;
 import diagramapseudocodigo.DeclaracionVariable;
@@ -22,6 +24,7 @@ import diagramapseudocodigo.Registro;
 import diagramapseudocodigo.Sentencias;
 import diagramapseudocodigo.Subrango;
 import diagramapseudocodigo.TipoComplejo;
+import diagramapseudocodigo.ValorBooleano;
 import diagramapseudocodigo.Variable;
 import diagramapseudocodigo.VariableID;
 import diagramapseudocodigo.Vector;
@@ -215,7 +218,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		}
 	}
 	
-	protected int asignacionEntero(List<valor> valores) {
+	protected int asignacionEntero(List<valor> valores, Map<String,String> variables) {
 		List<valor> valoresProblem = new ArrayList<valor>();
 		for(valor v: valores) {
 			if(!(v instanceof NumeroEntero)) {
@@ -226,12 +229,138 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 			return 1;
 		}
 		else {
+			int check = 1;
 			for(valor v: valoresProblem) {
-				if(!(v instanceof NumeroDecimal)) {
+				if(v instanceof NumeroDecimal) {
+					check = 2;
+				}
+				else if(v instanceof VariableID) {
+					//La buscamos y miramos su tipo
+					VariableID var = (VariableID) v;
+					if(variables.get(var.getNombre()) != "entero" && variables.get(var.getNombre()) != "real") {
+						return 3;
+					}
+					else if(variables.get(var.getNombre()) == "real") {
+						check = 2;
+					}
+				}
+				else {
 					return 3;
 				}
 			}
-			return 2;
+			return check;
+		}
+	}
+	
+	protected int asignacionLogico(List<valor> valores, Map<String,String> variables) {
+		List<valor> valoresProblem = new ArrayList<valor>();
+		for(valor v: valores) {
+			if(!(v instanceof ValorBooleano)) {
+				valoresProblem.add(v);
+			}
+		}
+		if(valoresProblem.size() == 0) {
+			return 1;
+		}
+		else {
+			int check = 1;
+			for(valor v: valoresProblem) {
+				if(v instanceof VariableID) {
+					//La buscamos y miramos su tipo
+					VariableID var = (VariableID) v;
+					if(variables.get(var.getNombre()) != "logico") {
+						return 3;
+					}
+				}
+				else {
+					return 3;
+				}
+			}
+			return check;
+		}
+	}
+	
+	protected int asignacionReal(List<valor> valores, Map<String,String> variables) {
+		List<valor> valoresProblem = new ArrayList<valor>();
+		for(valor v: valores) {
+			if(!(v instanceof NumeroDecimal) && !(v instanceof NumeroEntero)) {
+				valoresProblem.add(v);
+			}
+		}
+		if(valoresProblem.size() == 0) {
+			return 1;
+		}
+		else {
+			int check = 1;
+			for(valor v: valoresProblem) {
+				if(v instanceof VariableID) {
+					//La buscamos y miramos su tipo
+					VariableID var = (VariableID) v;
+					if(variables.get(var.getNombre()) != "entero" && variables.get(var.getNombre()) != "real") {
+						return 3;
+					}
+				}
+				else {
+					return 3;
+				}
+			}
+			return check;
+		}
+	}
+	
+	protected int asignacionCadena(List<valor> valores, Map<String,String> variables) {
+		List<valor> valoresProblem = new ArrayList<valor>();
+		for(valor v: valores) {
+			if(!(v instanceof ConstCadena)) {
+				valoresProblem.add(v);
+			}
+		}
+		if(valoresProblem.size() == 0) {
+			return 1;
+		}
+		else {
+			int check = 1;
+			for(valor v: valoresProblem) {
+				if(v instanceof VariableID) {
+					//La buscamos y miramos su tipo
+					VariableID var = (VariableID) v;
+					if(variables.get(var.getNombre()) != "cadena") {
+						return 3;
+					}
+				}
+				else {
+					return 3;
+				}
+			}
+			return check;
+		}
+	}
+	
+	protected int asignacionCaracter(List<valor> valores, Map<String,String> variables) {
+		List<valor> valoresProblem = new ArrayList<valor>();
+		for(valor v: valores) {
+			if(!(v instanceof Caracter)) {
+				valoresProblem.add(v);
+			}
+		}
+		if(valoresProblem.size() == 0) {
+			return 1;
+		}
+		else {
+			int check = 1;
+			for(valor v: valoresProblem) {
+				if(v instanceof VariableID) {
+					//La buscamos y miramos su tipo
+					VariableID var = (VariableID) v;
+					if(variables.get(var.getNombre()) != "caracter") {
+						return 3;
+					}
+				}
+				else {
+					return 3;
+				}
+			}
+			return check;
 		}
 	}
 }
