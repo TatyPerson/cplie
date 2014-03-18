@@ -1065,12 +1065,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							warning("Posible pérdida de precisión al asignar un real a un entero", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 						}
 						else if(an.getOperador() instanceof operacion) {
-							System.out.println("Soy una op!");
 							operacion o = (operacion) an.getOperador();
 							List<valor> valores = funciones.registrarValoresOperacion(o);
-							switch(funciones.asignacionEntero(valores)) {
+							switch(funciones.asignacionEntero(valores,variables)) {
 								case 1:
-									System.out.println("Todos entero, sin problemas..");
 									break;
 								case 2: 
 									warning("Posible pérdida de precisión al asignar un real a un entero", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
@@ -1079,22 +1077,104 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 									error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 									break;
 								default:
-									System.out.println("Algo raro pasa..");
 									break;
 							}
 						}
-					else {
+						else {
 							error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 						}
 					}
 					else if(variables.get(an.getLvalue()) == "logico" && !(an.getOperador() instanceof ValorBooleano)) {
-						error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+						if(an.getOperador() instanceof operacion) {
+							operacion o = (operacion) an.getOperador();
+							List<valor> valores = funciones.registrarValoresOperacion(o);
+							switch(funciones.asignacionLogico(valores,variables)) {
+								case 1:
+									break;
+								case 2: 
+									break;
+								case 3:
+									error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+									break;
+								default:
+									break;
+							}
+						}
+						else if(an.getOperador() instanceof unaria) {
+							unaria u = (unaria) an.getOperador();
+							if(!(u.getVariable() instanceof ValorBooleano) && (!(u.getVariable() instanceof VariableID))) {
+								error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+							}
+							else if(u.getVariable() instanceof VariableID) {
+								VariableID var = (VariableID) u.getVariable();
+								if(variables.get(var.getNombre()) != "logico") {
+									error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+								}
+							}
+						}
+						else {
+							error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+						}
+					}
+					else if(variables.get(an.getLvalue()) == "real" && !(an.getOperador() instanceof ValorBooleano) && !(an.getOperador() instanceof NumeroDecimal)) {
+							if(an.getOperador() instanceof operacion) {
+								operacion o = (operacion) an.getOperador();
+								List<valor> valores = funciones.registrarValoresOperacion(o);
+								switch(funciones.asignacionReal(valores,variables)) {
+									case 1:
+										break;
+									case 2: 
+										break;
+									case 3:
+										error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+										break;
+									default:
+										break;
+								}
+							}
+							else {
+								error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+							}
 					}
 					else if(variables.get(an.getLvalue()) == "cadena" && !(an.getOperador() instanceof ConstCadena)) {
-						error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+						if(an.getOperador() instanceof operacion) {
+							operacion o = (operacion) an.getOperador();
+							List<valor> valores = funciones.registrarValoresOperacion(o);
+							switch(funciones.asignacionCadena(valores,variables)) {
+								case 1:
+									break;
+								case 2: 
+									break;
+								case 3:
+									error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+									break;
+								default:
+									break;
+							}
+						}
+						else {
+							error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+						}
 					}
 					else if(variables.get(an.getLvalue()) == "caracter" && !(an.getOperador() instanceof Caracter)) {
-						error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+						if(an.getOperador() instanceof operacion) {
+							operacion o = (operacion) an.getOperador();
+							List<valor> valores = funciones.registrarValoresOperacion(o);
+							switch(funciones.asignacionCaracter(valores,variables)) {
+								case 1:
+									break;
+								case 2: 
+									break;
+								case 3:
+									error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+									break;
+								default:
+									break;
+							}
+						}
+						else {
+							error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+						}
 					}
 				}
 			}
