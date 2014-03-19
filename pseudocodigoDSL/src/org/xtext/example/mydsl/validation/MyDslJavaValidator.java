@@ -1064,7 +1064,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			}
 	}
 	//Función auxiliar para evitar la repetición de código (DRY)
-	private void checkAsignacionesAux(AsignacionNormal an, Map<String,String> variables) {
+	private void checkAsignacionesAux(AsignacionNormal an, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros) {
 					if(variables.get(an.getLvalue()) == "entero" && !(an.getOperador() instanceof NumeroEntero)) {
 						if(an.getOperador() instanceof NumeroDecimal) {
 							warning("Posible pérdida de precisión al asignar un real a un entero", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
@@ -1072,7 +1072,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						else if(an.getOperador() instanceof operacion) {
 							operacion o = (operacion) an.getOperador();
 							List<valor> valores = funciones.registrarValoresOperacion(o);
-							switch(funciones.asignacionEntero(valores,variables)) {
+							switch(funciones.asignacionEntero(valores, variables, registros, nombresRegistros)) {
 								case 1:
 									break;
 								case 2: 
@@ -1094,6 +1094,20 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								warning("Posible pérdida de precisión al asignar un real a un entero", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 							}
 						}
+						else if(an.getOperador() instanceof ValorRegistro) {
+							ValorRegistro vr = (ValorRegistro) an.getOperador();
+							//Buscamos el registro del que proviene esa variable
+							for(String nombre: nombresRegistros) {
+								if(nombre.equals(variables.get(vr.getNombre_registro()))) {
+									if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "entero" && registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "real") {
+										error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+									}
+									else if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) == "real") {
+										warning("Posible pérdida de precisión al asignar un real a un entero", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+									}
+								}
+							}
+						}
 						else {
 							error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 						}
@@ -1102,7 +1116,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						if(an.getOperador() instanceof operacion) {
 							operacion o = (operacion) an.getOperador();
 							List<valor> valores = funciones.registrarValoresOperacion(o);
-							switch(funciones.asignacionLogico(valores,variables)) {
+							switch(funciones.asignacionLogico(valores, variables, registros, nombresRegistros)) {
 								case 1:
 									break;
 								case 2: 
@@ -1132,30 +1146,52 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 							}
 						}
+						else if(an.getOperador() instanceof ValorRegistro) {
+							ValorRegistro vr = (ValorRegistro) an.getOperador();
+							//Buscamos el registro del que proviene esa variable
+							for(String nombre: nombresRegistros) {
+								if(nombre.equals(variables.get(vr.getNombre_registro()))) {
+									if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "logico") {
+										error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+									}
+								}
+							}
+						}
 						else {
 							error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 						}
 					}
-					else if(variables.get(an.getLvalue()) == "real" && !(an.getOperador() instanceof ValorBooleano) && !(an.getOperador() instanceof NumeroDecimal)) {
-							if(an.getOperador() instanceof operacion) {
-								operacion o = (operacion) an.getOperador();
-								List<valor> valores = funciones.registrarValoresOperacion(o);
-								switch(funciones.asignacionReal(valores,variables)) {
-									case 1:
-										break;
-									case 2: 
-										break;
-									case 3:
-										error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
-										break;
-									default:
-										break;
-								}
+					else if(variables.get(an.getLvalue()) == "real" && !(an.getOperador() instanceof NumeroEntero) && !(an.getOperador() instanceof NumeroDecimal)) {
+						if(an.getOperador() instanceof operacion) {
+							operacion o = (operacion) an.getOperador();
+							List<valor> valores = funciones.registrarValoresOperacion(o);
+							switch(funciones.asignacionReal(valores, variables, registros, nombresRegistros)) {
+								case 1:
+									break;
+								case 2: 
+									break;
+								case 3:
+									error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+									break;
+								default:
+									break;
+							}
 							}
 							else if(an.getOperador() instanceof VariableID) {
 								VariableID v = (VariableID) an.getOperador();
 								if(variables.get(v.getNombre()) != "real" && variables.get(v.getNombre()) != "entero") {
 									error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+								}
+							}
+							else if(an.getOperador() instanceof ValorRegistro) {
+								ValorRegistro vr = (ValorRegistro) an.getOperador();
+								//Buscamos el registro del que proviene esa variable
+								for(String nombre: nombresRegistros) {
+									if(nombre.equals(variables.get(vr.getNombre_registro()))) {
+										if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "entero" && registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "real") {
+											error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+										}
+									}
 								}
 							}
 							else {
@@ -1166,7 +1202,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						if(an.getOperador() instanceof operacion) {
 							operacion o = (operacion) an.getOperador();
 							List<valor> valores = funciones.registrarValoresOperacion(o);
-							switch(funciones.asignacionCadena(valores,variables)) {
+							switch(funciones.asignacionCadena(valores, variables, registros, nombresRegistros)) {
 								case 1:
 									break;
 								case 2: 
@@ -1184,6 +1220,17 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 							}
 						}
+						else if(an.getOperador() instanceof ValorRegistro) {
+							ValorRegistro vr = (ValorRegistro) an.getOperador();
+							//Buscamos el registro del que proviene esa variable
+							for(String nombre: nombresRegistros) {
+								if(nombre.equals(variables.get(vr.getNombre_registro()))) {
+									if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "cadena") {
+										error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+									}
+								}
+							}
+						}
 						else {
 							error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 						}
@@ -1192,7 +1239,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						if(an.getOperador() instanceof operacion) {
 							operacion o = (operacion) an.getOperador();
 							List<valor> valores = funciones.registrarValoresOperacion(o);
-							switch(funciones.asignacionCaracter(valores,variables)) {
+							switch(funciones.asignacionCaracter(valores, variables, registros, nombresRegistros)) {
 								case 1:
 									break;
 								case 2: 
@@ -1210,6 +1257,17 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 							}
 						}
+						else if(an.getOperador() instanceof ValorRegistro) {
+							ValorRegistro vr = (ValorRegistro) an.getOperador();
+							//Buscamos el registro del que proviene esa variable
+							for(String nombre: nombresRegistros) {
+								if(nombre.equals(variables.get(vr.getNombre_registro()))) {
+									if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "caracter") {
+										error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+									}
+								}
+							}
+						}
 						else {
 							error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 						}
@@ -1218,6 +1276,22 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	
 	@Check
 	protected void checkAsignacionesInicio(Codigo c) {
+		//Preparamos las variables de tipo registro para permitir asignación
+		Map<String,HashMap<String,String>> registros = new HashMap<String,HashMap<String,String>>();
+		List<String> nombresRegistros = new ArrayList<String>();
+		for(TipoComplejo t: c.getTipocomplejo()) {
+			if(t instanceof Registro) {
+				Registro r = (Registro) t;
+				HashMap<String,String> campos = new HashMap<String,String>();
+				for(DeclaracionVariable d: r.getVariable()) {
+					for(Variable v: d.getVariable()) {
+						campos.put(v.getNombre(), d.getTipo().getName());
+					}
+				}
+				registros.put(r.getNombre(), campos);
+				nombresRegistros.add(r.getNombre());
+			}
+		}
 		//Registramos todas las variables declaradas con sus respectivos tipos
 		Map<String,String> variables = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
 		
@@ -1226,7 +1300,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				Asignacion a = (Asignacion) s;
 				if(a instanceof AsignacionNormal) {
 					AsignacionNormal an = (AsignacionNormal) a;
-					checkAsignacionesAux(an, variables);
+					checkAsignacionesAux(an, variables, registros, nombresRegistros);
 				}
 			}
 		}
@@ -1235,6 +1309,22 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	
 	@Check
 	protected void checkAsignacionesSubproceso(Codigo c) {
+		//Preparamos las variables de tipo registro para permitir asignación
+		Map<String,HashMap<String,String>> registros = new HashMap<String,HashMap<String,String>>();
+		List<String> nombresRegistros = new ArrayList<String>();
+		for(TipoComplejo t: c.getTipocomplejo()) {
+			if(t instanceof Registro) {
+				Registro r = (Registro) t;
+				HashMap<String,String> campos = new HashMap<String,String>();
+				for(DeclaracionVariable d: r.getVariable()) {
+					for(Variable v: d.getVariable()) {
+						campos.put(v.getNombre(), d.getTipo().getName());
+					}
+				}
+				registros.put(r.getNombre(), campos);
+				nombresRegistros.add(r.getNombre());
+			}
+		}
 		for(Subproceso s: c.getFuncion()) {
 			//Registramos todas las variables declaradas con sus respectivos tipos
 			Map<String,String> variables = funciones.registrarVariablesTipadas(s.getDeclaracion());
@@ -1243,7 +1333,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					Asignacion a = (Asignacion) sen;
 					if(a instanceof AsignacionNormal) {
 						AsignacionNormal an = (AsignacionNormal) a;
-						checkAsignacionesAux(an, variables);
+						checkAsignacionesAux(an, variables, registros, nombresRegistros);
 					}
 				}
 			}
@@ -1262,14 +1352,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					else if(a.getOperador() instanceof operacion) {
 						operacion o = (operacion) a.getOperador();
 						List<valor> valores = funciones.registrarValoresOperacion(o);
-						int prioridad = 0;
-						if(funciones.asignacionEntero(valores, variables) > funciones.asignacionEnteroRegistro(valores, variables, registros, nombresRegistros)) {
-							prioridad = funciones.asignacionEntero(valores, variables);
-						}
-						else {
-							prioridad = funciones.asignacionEnteroRegistro(valores, variables, registros, nombresRegistros);
-						}
-						switch(prioridad) {
+						switch(funciones.asignacionEntero(valores, variables, registros, nombresRegistros)) {
 							case 1:
 								break;
 							case 2: 
@@ -1313,14 +1396,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					if(a.getOperador() instanceof operacion) {
 						operacion o = (operacion) a.getOperador();
 						List<valor> valores = funciones.registrarValoresOperacion(o);
-						int prioridad = 0;
-						if(funciones.asignacionReal(valores, variables) > funciones.asignacionRealRegistro(valores, variables, registros, nombresRegistros)) {
-							prioridad = funciones.asignacionReal(valores, variables);
-						}
-						else {
-							prioridad = funciones.asignacionRealRegistro(valores, variables, registros, nombresRegistros);
-						}
-						switch(prioridad) {
+						switch(funciones.asignacionReal(valores, variables, registros, nombresRegistros)) {
 							case 1:
 								break;
 							case 2: 
@@ -1357,14 +1433,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					if(a.getOperador() instanceof operacion) {
 						operacion o = (operacion) a.getOperador();
 						List<valor> valores = funciones.registrarValoresOperacion(o);
-						int prioridad = 0;
-						if(funciones.asignacionLogico(valores, variables) > funciones.asignacionLogicoRegistro(valores, variables, registros, nombresRegistros)) {
-							prioridad = funciones.asignacionLogico(valores, variables);
-						}
-						else {
-							prioridad = funciones.asignacionLogicoRegistro(valores, variables, registros, nombresRegistros);
-						}
-						switch(prioridad) {
+						switch(funciones.asignacionLogico(valores, variables, registros, nombresRegistros)) {
 							case 1:
 								break;
 							case 2: 
@@ -1413,14 +1482,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					if(a.getOperador() instanceof operacion) {
 						operacion o = (operacion) a.getOperador();
 						List<valor> valores = funciones.registrarValoresOperacion(o);
-						int prioridad = 0;
-						if(funciones.asignacionCadena(valores, variables) > funciones.asignacionCadenaRegistro(valores, variables, registros, nombresRegistros)) {
-							prioridad = funciones.asignacionCadena(valores, variables);
-						}
-						else {
-							prioridad = funciones.asignacionCadenaRegistro(valores, variables, registros, nombresRegistros);
-						}
-						switch(prioridad) {
+						switch(funciones.asignacionCadena(valores, variables, registros, nombresRegistros)) {
 							case 1:
 								break;
 							case 2: 
@@ -1457,14 +1519,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					if(a.getOperador() instanceof operacion) {
 						operacion o = (operacion) a.getOperador();
 						List<valor> valores = funciones.registrarValoresOperacion(o);
-						int prioridad = 0;
-						if(funciones.asignacionCaracter(valores, variables) > funciones.asignacionCaracterRegistro(valores, variables, registros, nombresRegistros)) {
-							prioridad = funciones.asignacionEntero(valores, variables);
-						}
-						else {
-							prioridad = funciones.asignacionCaracterRegistro(valores, variables, registros, nombresRegistros);
-						}
-						switch(prioridad) {
+						switch(funciones.asignacionCaracter(valores, variables, registros, nombresRegistros)) {
 							case 1:
 								break;
 							case 2: 

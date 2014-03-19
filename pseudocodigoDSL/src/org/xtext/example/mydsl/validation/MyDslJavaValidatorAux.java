@@ -219,7 +219,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		}
 	}
 	
-	protected int asignacionEntero(List<valor> valores, Map<String,String> variables) {
+	protected int asignacionEntero(List<valor> valores, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros) {
 		List<valor> valoresProblem = new ArrayList<valor>();
 		for(valor v: valores) {
 			if(!(v instanceof NumeroEntero)) {
@@ -244,8 +244,22 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 					else if(variables.get(var.getNombre()) == "real") {
 						check = 2;
 					}
+					else if(v instanceof ValorRegistro) {
+						//Lo buscamos y miramos su tipo
+						ValorRegistro vr = (ValorRegistro) v;
+						for(String nombre: nombresRegistros) {
+							if(nombre.equals(variables.get(vr.getNombre_registro()))) {
+								if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "entero" && registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "real") {
+									return 3;
+								}
+								else if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) == "real") {
+									check = 2;
+								}
+							}
+						}
+					}
 				}
-				else if(!(v instanceof ValorRegistro)) {
+				else {
 					return 3;
 				}
 			}
@@ -253,39 +267,8 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		}
 	}
 	
-	protected int asignacionEnteroRegistro(List<valor> valores, Map<String,String> variables,  Map<String,HashMap<String,String>> registros, List<String> nombresRegistros) {
-		List<valor> valoresProblem = new ArrayList<valor>();
-		for(valor v: valores) {
-			if(!(v instanceof NumeroEntero)) {
-				valoresProblem.add(v);
-			}
-		}
-		if(valoresProblem.size() == 0) {
-			return 1;
-		}
-		else {
-			int check = 1;
-			for(valor v: valoresProblem) {
-				if(v instanceof ValorRegistro) {
-					//Lo buscamos y miramos su tipo
-					ValorRegistro vr = (ValorRegistro) v;
-					for(String nombre: nombresRegistros) {
-						if(nombre.equals(variables.get(vr.getNombre_registro()))) {
-							if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "entero" && registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "real") {
-								return 3;
-							}
-							else if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) == "real") {
-								check = 2;
-							}
-						}
-					}
-				}
-			}
-			return check;
-		}
-	}
 	
-	protected int asignacionLogico(List<valor> valores, Map<String,String> variables) {
+	protected int asignacionLogico(List<valor> valores, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros) {
 		List<valor> valoresProblem = new ArrayList<valor>();
 		for(valor v: valores) {
 			if(!(v instanceof ValorBooleano)) {
@@ -305,28 +288,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 						return 3;
 					}
 				}
-				else if(!(v instanceof ValorRegistro)) {
-					return 3;
-				}
-			}
-			return check;
-		}
-	}
-	
-	protected int asignacionLogicoRegistro(List<valor> valores, Map<String,String> variables,  Map<String,HashMap<String,String>> registros, List<String> nombresRegistros) {
-		List<valor> valoresProblem = new ArrayList<valor>();
-		for(valor v: valores) {
-			if(!(v instanceof ValorBooleano)) {
-				valoresProblem.add(v);
-			}
-		}
-		if(valoresProblem.size() == 0) {
-			return 1;
-		}
-		else {
-			int check = 1;
-			for(valor v: valoresProblem) {
-				if(v instanceof ValorRegistro) {
+				else if(v instanceof ValorRegistro) {
 					//Lo buscamos y miramos su tipo
 					ValorRegistro vr = (ValorRegistro) v;
 					for(String nombre: nombresRegistros) {
@@ -337,12 +299,15 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 						}
 					}
 				}
+				else {
+					return 3;
+				}
 			}
 			return check;
 		}
 	}
 	
-	protected int asignacionReal(List<valor> valores, Map<String,String> variables) {
+	protected int asignacionReal(List<valor> valores, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros) {
 		List<valor> valoresProblem = new ArrayList<valor>();
 		for(valor v: valores) {
 			if(!(v instanceof NumeroDecimal) && !(v instanceof NumeroEntero)) {
@@ -362,28 +327,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 						return 3;
 					}
 				}
-				else if(!(v instanceof ValorRegistro)) {
-					return 3;
-				}
-			}
-			return check;
-		}
-	}
-	
-	protected int asignacionRealRegistro(List<valor> valores, Map<String,String> variables,  Map<String,HashMap<String,String>> registros, List<String> nombresRegistros) {
-		List<valor> valoresProblem = new ArrayList<valor>();
-		for(valor v: valores) {
-			if(!(v instanceof NumeroDecimal) && !(v instanceof NumeroEntero)) {
-				valoresProblem.add(v);
-			}
-		}
-		if(valoresProblem.size() == 0) {
-			return 1;
-		}
-		else {
-			int check = 1;
-			for(valor v: valoresProblem) {
-				if(v instanceof ValorRegistro) {
+				else if(v instanceof ValorRegistro) {
 					//Lo buscamos y miramos su tipo
 					ValorRegistro vr = (ValorRegistro) v;
 					for(String nombre: nombresRegistros) {
@@ -394,12 +338,16 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 						}
 					}
 				}
+				else {
+					return 3;
+				}
 			}
 			return check;
 		}
 	}
 	
-	protected int asignacionCadena(List<valor> valores, Map<String,String> variables) {
+	
+	protected int asignacionCadena(List<valor> valores, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros) {
 		List<valor> valoresProblem = new ArrayList<valor>();
 		for(valor v: valores) {
 			if(!(v instanceof ConstCadena)) {
@@ -419,27 +367,6 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 						return 3;
 					}
 				}
-				else if(!(v instanceof ValorRegistro)) {
-					return 3;
-				}
-			}
-			return check;
-		}
-	}
-	
-	protected int asignacionCadenaRegistro(List<valor> valores, Map<String,String> variables,  Map<String,HashMap<String,String>> registros, List<String> nombresRegistros) {
-		List<valor> valoresProblem = new ArrayList<valor>();
-		for(valor v: valores) {
-			if(!(v instanceof ConstCadena)) {
-				valoresProblem.add(v);
-			}
-		}
-		if(valoresProblem.size() == 0) {
-			return 1;
-		}
-		else {
-			int check = 1;
-			for(valor v: valoresProblem) {
 				if(v instanceof ValorRegistro) {
 					//Lo buscamos y miramos su tipo
 					ValorRegistro vr = (ValorRegistro) v;
@@ -451,12 +378,15 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 						}
 					}
 				}
+				else {
+					return 3;
+				}
 			}
 			return check;
 		}
 	}
 	
-	protected int asignacionCaracter(List<valor> valores, Map<String,String> variables) {
+	protected int asignacionCaracter(List<valor> valores, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros) {
 		List<valor> valoresProblem = new ArrayList<valor>();
 		for(valor v: valores) {
 			if(!(v instanceof Caracter)) {
@@ -476,37 +406,19 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 						return 3;
 					}
 				}
-				else if(!(v instanceof ValorRegistro)) {
-					return 3;
-				}
-			}
-			return check;
-		}
-	}
-	
-	protected int asignacionCaracterRegistro(List<valor> valores, Map<String,String> variables,  Map<String,HashMap<String,String>> registros, List<String> nombresRegistros) {
-		List<valor> valoresProblem = new ArrayList<valor>();
-		for(valor v: valores) {
-			if(!(v instanceof Caracter)) {
-				valoresProblem.add(v);
-			}
-		}
-		if(valoresProblem.size() == 0) {
-			return 1;
-		}
-		else {
-			int check = 1;
-			for(valor v: valoresProblem) {
-				if(v instanceof ValorRegistro) {
+				else if(v instanceof ValorRegistro) {
 					//Lo buscamos y miramos su tipo
 					ValorRegistro vr = (ValorRegistro) v;
 					for(String nombre: nombresRegistros) {
 						if(nombre.equals(variables.get(vr.getNombre_registro()))) {
-							if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "logico") {
+							if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "caracter") {
 								return 3;
 							}
 						}
 					}
+				}
+				else {
+					return 3;
 				}
 			}
 			return check;
