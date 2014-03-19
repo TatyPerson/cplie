@@ -25,6 +25,7 @@ import diagramapseudocodigo.Sentencias;
 import diagramapseudocodigo.Subrango;
 import diagramapseudocodigo.TipoComplejo;
 import diagramapseudocodigo.ValorBooleano;
+import diagramapseudocodigo.ValorRegistro;
 import diagramapseudocodigo.Variable;
 import diagramapseudocodigo.VariableID;
 import diagramapseudocodigo.Vector;
@@ -244,8 +245,40 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 						check = 2;
 					}
 				}
-				else {
+				else if(!(v instanceof ValorRegistro)) {
 					return 3;
+				}
+			}
+			return check;
+		}
+	}
+	
+	protected int asignacionEnteroRegistro(List<valor> valores, Map<String,String> variables,  Map<String,HashMap<String,String>> registros, List<String> nombresRegistros) {
+		List<valor> valoresProblem = new ArrayList<valor>();
+		for(valor v: valores) {
+			if(!(v instanceof NumeroEntero)) {
+				valoresProblem.add(v);
+			}
+		}
+		if(valoresProblem.size() == 0) {
+			return 1;
+		}
+		else {
+			int check = 1;
+			for(valor v: valoresProblem) {
+				if(v instanceof ValorRegistro) {
+					//Lo buscamos y miramos su tipo
+					ValorRegistro vr = (ValorRegistro) v;
+					for(String nombre: nombresRegistros) {
+						if(nombre.equals(variables.get(vr.getNombre_registro()))) {
+							if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "entero" && registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "real") {
+								return 3;
+							}
+							else if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) == "real") {
+								check = 2;
+							}
+						}
+					}
 				}
 			}
 			return check;
@@ -272,7 +305,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 						return 3;
 					}
 				}
-				else {
+				else if(!(v instanceof ValorRegistro)) {
 					return 3;
 				}
 			}

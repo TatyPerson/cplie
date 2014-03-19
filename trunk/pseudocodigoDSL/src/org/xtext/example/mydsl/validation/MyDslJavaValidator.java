@@ -1251,7 +1251,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			
 	}
 	
-	private void checkAsignacionesVariablesRegistroAux(AsignacionCompleja a, Map<String,String> variables, Map<String,HashMap<String,String>> registros) {
+	private void checkAsignacionesVariablesRegistroAux(AsignacionCompleja a, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros) {
 		if(a.getComplejo() instanceof ValorRegistro) {
 			ValorRegistro r = (ValorRegistro) a.getComplejo();
 			for(CampoRegistro campo: r.getCampo()) {
@@ -1262,7 +1262,14 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					else if(a.getOperador() instanceof operacion) {
 						operacion o = (operacion) a.getOperador();
 						List<valor> valores = funciones.registrarValoresOperacion(o);
-						switch(funciones.asignacionEntero(valores,variables)) {
+						int prioridad = 0;
+						if(funciones.asignacionEntero(valores, variables) > funciones.asignacionEnteroRegistro(valores, variables, registros, nombresRegistros)) {
+							prioridad = funciones.asignacionEntero(valores, variables);
+						}
+						else {
+							prioridad = funciones.asignacionEnteroRegistro(valores, variables, registros, nombresRegistros);
+						}
+						switch(prioridad) {
 							case 1:
 								break;
 							case 2: 
@@ -1282,6 +1289,20 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						}
 						else if(variables.get(v.getNombre()) == "real") {
 							warning("Posible pérdida de precisión al asignar un real a un entero", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
+						}
+					}
+					else if(a.getOperador() instanceof ValorRegistro) {
+						ValorRegistro vr = (ValorRegistro) a.getOperador();
+						//Buscamos el registro del que proviene esa variable
+						for(String nombre: nombresRegistros) {
+							if(nombre.equals(variables.get(vr.getNombre_registro()))) {
+								if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "entero" && registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "real") {
+									error("El tipo de asignación es incompatible", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
+								}
+								else if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) == "real") {
+									warning("Posible pérdida de precisión al asignar un real a un entero", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
+								}
+							}
 						}
 					}
 					else {
@@ -1412,6 +1433,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	protected void checkAsignacionVariablesRegistroInicio(Codigo c) {
 		//Preparamos todos los campos clasificados por el nombre del registro (utilizado como identificador)
 		Map<String,HashMap<String,String>> registros = new HashMap<String,HashMap<String,String>>();
+		List<String> nombresRegistros = new ArrayList<String>();
 		for(TipoComplejo t: c.getTipocomplejo()) {
 			if(t instanceof Registro) {
 				Registro r = (Registro) t;
@@ -1422,6 +1444,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					}
 				}
 				registros.put(r.getNombre(), campos);
+				nombresRegistros.add(r.getNombre());
 			}
 		}
 			
@@ -1430,7 +1453,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		for(Sentencias s: c.getTiene().getTiene()) {
 			if(s instanceof AsignacionCompleja) {
 				AsignacionCompleja a = (AsignacionCompleja) s;
-				checkAsignacionesVariablesRegistroAux(a,variables,registros);
+				checkAsignacionesVariablesRegistroAux(a,variables,registros, nombresRegistros);
 			}
 		}
 	}
@@ -1439,6 +1462,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	protected void checkAsignacionesVariablesRegistroSubproceso(Codigo c) {
 		//Preparamos todos los campos clasificados por el nombre del registro (utilizado como identificador)
 		Map<String,HashMap<String,String>> registros = new HashMap<String,HashMap<String,String>>();
+		List<String> nombresRegistros = new ArrayList<String>();
 		for(TipoComplejo t: c.getTipocomplejo()) {
 			if(t instanceof Registro) {
 				Registro r = (Registro) t;
@@ -1449,6 +1473,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					}
 				}
 				registros.put(r.getNombre(), campos);
+				nombresRegistros.add(r.getNombre());
 			}
 		}
 		
@@ -1466,7 +1491,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					Asignacion a = (Asignacion) sen;
 					if(a instanceof AsignacionCompleja) {
 						AsignacionCompleja ac = (AsignacionCompleja) a;
-						checkAsignacionesVariablesRegistroAux(ac,variables,registros);
+						checkAsignacionesVariablesRegistroAux(ac,variables,registros,nombresRegistros);
 					}
 				}
 
