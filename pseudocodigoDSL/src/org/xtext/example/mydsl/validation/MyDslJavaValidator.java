@@ -1455,6 +1455,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		for(Subproceso s: c.getFuncion()) {
 			Map<String,String> variables = funciones.registrarVariablesTipadas(s.getDeclaracion());
 			
+			//Como son funciones también debemos contar con sus parámetros
+			
+			for(ParametroFuncion p: s.getParametrofuncion()) {
+				variables.put(p.getVariable().getNombre(), p.getTipo().getName());
+			}
+			
 			for(Sentencias sen: s.getSentencias()) {
 				if(sen instanceof Asignacion) {
 					Asignacion a = (Asignacion) sen;
