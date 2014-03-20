@@ -2519,9 +2519,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		public ParserRule getRule() { return rule; }
 
 		//tipo=TipoVariable "funcion" nombre=EString "(" (parametrofuncion+=ParametroFuncion (","
-		//parametrofuncion+=ParametroFuncion)*)? ")" "const"? "tipo"? "var" (declaracion+=Declaracion
-		//declaracion+=Declaracion*)? "inicio" (sentencias+=Sentencias sentencias+=Sentencias*)? devuelve=Devolver?
-		//"fin_funcion"
+		//parametrofuncion+=ParametroFuncion)*)? ")" "const"? "tipo"? "var" (declaracion+=Declaracion declaracion+=Declaracion*)?
+		//"inicio" (sentencias+=Sentencias sentencias+=Sentencias*)? devuelve=Devolver? "fin_funcion"
 		public Group getGroup() { return cGroup; }
 
 		//tipo=TipoVariable
@@ -2650,8 +2649,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFin_procedimientoKeyword_11 = (Keyword)cGroup.eContents().get(11);
 		
 		//Procedimiento:
-		//	"procedimiento" nombre=EString "(" (parametrofuncion+=ParametroFuncion ("," parametrofuncion+=ParametroFuncion)*)?
-		//	")" "const"? "tipo"? "var" (declaracion+=Declaracion declaracion+=Declaracion*)? "inicio" (sentencias+=Sentencias
+		//	"procedimiento" nombre=EString "(" (parametrofuncion+=ParametroFuncion ("," parametrofuncion+=ParametroFuncion)*)? ")"
+		//	"const"? "tipo"? "var" (declaracion+=Declaracion declaracion+=Declaracion*)? "inicio" (sentencias+=Sentencias
 		//	sentencias+=Sentencias*)? "fin_procedimiento";
 		public ParserRule getRule() { return rule; }
 
@@ -3556,8 +3555,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Procedimiento:
-	//	"procedimiento" nombre=EString "(" (parametrofuncion+=ParametroFuncion ("," parametrofuncion+=ParametroFuncion)*)?
-	//	")" "const"? "tipo"? "var" (declaracion+=Declaracion declaracion+=Declaracion*)? "inicio" (sentencias+=Sentencias
+	//	"procedimiento" nombre=EString "(" (parametrofuncion+=ParametroFuncion ("," parametrofuncion+=ParametroFuncion)*)? ")"
+	//	"const"? "tipo"? "var" (declaracion+=Declaracion declaracion+=Declaracion*)? "inicio" (sentencias+=Sentencias
 	//	sentencias+=Sentencias*)? "fin_procedimiento";
 	public ProcedimientoElements getProcedimientoAccess() {
 		return (pProcedimiento != null) ? pProcedimiento : (pProcedimiento = new ProcedimientoElements());

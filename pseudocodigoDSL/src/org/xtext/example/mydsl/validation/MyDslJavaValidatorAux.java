@@ -244,17 +244,17 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 					else if(variables.get(var.getNombre()) == "real") {
 						check = 2;
 					}
-					else if(v instanceof ValorRegistro) {
-						//Lo buscamos y miramos su tipo
-						ValorRegistro vr = (ValorRegistro) v;
-						for(String nombre: nombresRegistros) {
-							if(nombre.equals(variables.get(vr.getNombre_registro()))) {
-								if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "entero" && registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "real") {
-									return 3;
-								}
-								else if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) == "real") {
-									check = 2;
-								}
+				}
+				else if(v instanceof ValorRegistro) {
+					//Lo buscamos y miramos su tipo
+					ValorRegistro vr = (ValorRegistro) v;
+					for(String nombre: nombresRegistros) {
+						if(nombre.equals(variables.get(vr.getNombre_registro()))) {
+							if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "entero" && registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "real") {
+								return 3;
+							}
+							else if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) == "real") {
+								check = 2;
 							}
 						}
 					}
@@ -367,7 +367,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 						return 3;
 					}
 				}
-				if(v instanceof ValorRegistro) {
+				else if(v instanceof ValorRegistro) {
 					//Lo buscamos y miramos su tipo
 					ValorRegistro vr = (ValorRegistro) v;
 					for(String nombre: nombresRegistros) {
