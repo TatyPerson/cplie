@@ -1275,6 +1275,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	@Check
+	//Función que valida que el tipo de dato que se quiere asignar sea compatible con el tipo de la variable (asignación normal)
 	protected void checkAsignacionesInicio(Codigo c) {
 		//Preparamos las variables de tipo registro para permitir asignación
 		Map<String,HashMap<String,String>> registros = new HashMap<String,HashMap<String,String>>();
@@ -1308,6 +1309,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	
 	
 	@Check
+	//Función que valida que el tipo de dato que se quiere asignar sea compatible con el tipo de la variable (asignación normal)
 	protected void checkAsignacionesSubproceso(Codigo c) {
 		//Preparamos las variables de tipo registro para permitir asignación
 		Map<String,HashMap<String,String>> registros = new HashMap<String,HashMap<String,String>>();
@@ -1341,6 +1343,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			
 	}
 	
+	//Función auxiliar para cumplir el principio DRY.
 	private void checkAsignacionesVariablesRegistroAux(AsignacionCompleja a, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros) {
 		if(a.getComplejo() instanceof ValorRegistro) {
 			ValorRegistro r = (ValorRegistro) a.getComplejo();
@@ -1557,6 +1560,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	@Check
+	//Función que valida que el tipo de dato que se quiere asignar sea compatible con el tipo de la variable (asignación compleja)
 	protected void checkAsignacionVariablesRegistroInicio(Codigo c) {
 		//Preparamos todos los campos clasificados por el nombre del registro (utilizado como identificador)
 		Map<String,HashMap<String,String>> registros = new HashMap<String,HashMap<String,String>>();
@@ -1586,6 +1590,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	@Check
+	//Función que valida que el tipo de dato que se quiere asignar sea compatible con el tipo de la variable (asignación compleja)
 	protected void checkAsignacionesVariablesRegistroSubproceso(Codigo c) {
 		//Preparamos todos los campos clasificados por el nombre del registro (utilizado como identificador)
 		Map<String,HashMap<String,String>> registros = new HashMap<String,HashMap<String,String>>();
@@ -1625,6 +1630,41 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			}
 		}
 			
+	}
+	
+	@Check
+	protected void checkVariableUsadaRegistro(Codigo c) {
+		//Recogemos todos los registros, con los nombres nos vale porque ya tenemos una función que se encarga de
+		//validar si un campo es o no de un determinado registro
+		List<String> nombresRegistros = new ArrayList<String>();
+		for(TipoComplejo t: c.getTipocomplejo()) {
+			if(t instanceof Registro) {
+				Registro r = (Registro) t;
+				nombresRegistros.add(r.getNombre());
+			}
+		}
+		
+		//Ahora comprobamos que ni en el programa principal ni en los subprocesos se utilice una variable declarada
+		//como si fuese un registro sin serlo.
+		
+		//1) En el programa principal:
+		
+		Map<String,String> variables = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
+		
+		for(Sentencias s: c.getTiene().getTiene()) {
+			if(s instanceof AsignacionNormal) {
+				AsignacionNormal a = (AsignacionNormal) s;
+				if(a.getOperador() instanceof ValorRegistro) {
+					ValorRegistro r = (ValorRegistro) a.getOperador();
+					if(variables.get(r.getNombre_registro()) == "entero" || variables.get(r.getNombre_registro()) == "real" || variables.get(r.getNombre_registro()) == "logico" || variables.get(r.getNombre_registro()) == "cadena" || variables.get(r.getNombre_registro()) == "caracter") {
+						error("La variable "+r.getNombre_registro()+" no pertenece al tipo registro", r, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
+					}
+				}
+			}
+		}
+		
+		
+		
 	}
 
 }
