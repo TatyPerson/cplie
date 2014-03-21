@@ -1656,9 +1656,27 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				AsignacionNormal a = (AsignacionNormal) s;
 				if(a.getOperador() instanceof ValorRegistro) {
 					ValorRegistro r = (ValorRegistro) a.getOperador();
-					if(variables.get(r.getNombre_registro()) == "entero" || variables.get(r.getNombre_registro()) == "real" || variables.get(r.getNombre_registro()) == "logico" || variables.get(r.getNombre_registro()) == "cadena" || variables.get(r.getNombre_registro()) == "caracter") {
+					if(funciones.esTipoComplejo(variables.get(r.getNombre_registro()))) {
 						error("La variable "+r.getNombre_registro()+" no pertenece al tipo registro", r, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
 					}
+				}
+			}
+			else if(s instanceof AsignacionCompleja) {
+				AsignacionCompleja a = (AsignacionCompleja) s;
+				if(a.getComplejo() instanceof ValorRegistro) {
+					ValorRegistro r = (ValorRegistro) a.getComplejo();
+					if(funciones.esTipoComplejo(variables.get(r.getNombre_registro()))) {
+						error("La variable "+r.getNombre_registro()+" no pertenece al tipo registro", r, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
+					}
+				}
+				if(a.getOperador() instanceof ValorRegistro) {
+					ValorRegistro r = (ValorRegistro) a.getOperador();
+					if(funciones.esTipoComplejo(variables.get(r.getNombre_registro()))) {
+						error("La variable "+r.getNombre_registro()+" no pertenece al tipo registro", r, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
+					}
+				}
+				else if(a.getOperador() instanceof operacion) {
+					operacion o = (operacion) a.getOperador();
 				}
 			}
 		}

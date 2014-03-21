@@ -424,4 +424,8 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 			return check;
 		}
 	}
+	
+	protected boolean esTipoComplejo(String tipo) {
+		return tipo == "entero" || tipo == "real" || tipo == "logico" || tipo == "cadena" || tipo == "caracter";
+	}
 }
