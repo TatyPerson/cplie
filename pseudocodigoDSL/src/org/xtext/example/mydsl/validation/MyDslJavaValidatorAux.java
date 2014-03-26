@@ -425,7 +425,19 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		}
 	}
 	
-	protected boolean esTipoComplejo(String tipo) {
-		return tipo == "entero" || tipo == "real" || tipo == "logico" || tipo == "cadena" || tipo == "caracter";
+	protected List<ValorRegistro> todasRegistrosExistentes(List<valor> valores, Map<String,String> variables, List<String> nombresRegistros) {
+		List<ValorRegistro> valoresRegistro = new ArrayList<ValorRegistro>();
+		for(valor v: valores) {
+			if(v instanceof ValorRegistro) {
+				//Buscamos si el tipo con el que se declaró es uno de tipo registro
+				ValorRegistro vr = (ValorRegistro) v;
+				if(!nombresRegistros.contains(variables.get(vr.getNombre_registro()))) {
+					//Si no lo contiene es que el tipo de la variable no era un registro
+					valoresRegistro.add(vr);
+				}
+			}
+		}
+		//Devolvemos todas las variables que se estan usando como registro y no lo son
+		return valoresRegistro;
 	}
 }

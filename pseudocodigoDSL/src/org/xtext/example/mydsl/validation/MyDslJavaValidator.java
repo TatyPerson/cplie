@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.eclipse.xtext.validation.Check;
 
 import diagramapseudocodigo.*;
@@ -1632,6 +1631,61 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			
 	}
 	
+	private void checkVariblesUsadasRegistroAux(List<Sentencias> sentencias, Map<String,String> variables, List<String> nombresRegistros) {
+		
+		for(Sentencias s: sentencias) {
+			if(s instanceof AsignacionNormal) {
+				AsignacionNormal a = (AsignacionNormal) s;
+				if(a.getOperador() instanceof ValorRegistro) {
+					ValorRegistro r = (ValorRegistro) a.getOperador();
+					if(!nombresRegistros.contains(variables.get(r.getNombre_registro()))) {
+						//Si no lo contiene es que el tipo de la variable no era un registro
+						error("La variable "+r.getNombre_registro()+" no pertenece al tipo registro", r, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
+					}
+				}
+				else if(a.getOperador() instanceof operacion) {
+					operacion o = (operacion) a.getOperador();
+					//Si es una operación debemos comprobar la lista de operadores completa
+					List<valor> valores = funciones.registrarValoresOperacion(o);
+					List<ValorRegistro> valoresRegistro = funciones.todasRegistrosExistentes(valores, variables, nombresRegistros);
+					if(valoresRegistro.size() != 0) {
+						for(ValorRegistro vr: valoresRegistro) {
+							error("La variable "+vr.getNombre_registro()+" no pertenece al tipo registro", vr, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
+						}
+					}
+				}
+			}
+			else if(s instanceof AsignacionCompleja) {
+				AsignacionCompleja a = (AsignacionCompleja) s;
+				if(a.getComplejo() instanceof ValorRegistro) {
+					ValorRegistro r = (ValorRegistro) a.getComplejo();
+					if(!nombresRegistros.contains(variables.get(r.getNombre_registro()))) {
+						//Si no lo contiene es que el tipo de la variable no era un registro
+						error("La variable "+r.getNombre_registro()+" no pertenece al tipo registro", r, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
+					}
+				}
+				if(a.getOperador() instanceof ValorRegistro) {
+					ValorRegistro r = (ValorRegistro) a.getOperador();
+					if(!nombresRegistros.contains(variables.get(r.getNombre_registro()))) {
+						//Si no lo contiene es que el tipo de la variable no era un registro
+						error("La variable "+r.getNombre_registro()+" no pertenece al tipo registro", r, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
+					}
+				}
+				else if(a.getOperador() instanceof operacion) {
+					operacion o = (operacion) a.getOperador();
+					//Si es una operación debemos comprobar la lista de operadores completa
+					List<valor> valores = funciones.registrarValoresOperacion(o);
+					List<ValorRegistro> valoresRegistro = funciones.todasRegistrosExistentes(valores, variables, nombresRegistros);
+					if(valoresRegistro.size() != 0) {
+						for(ValorRegistro vr: valoresRegistro) {
+							error("La variable "+vr.getNombre_registro()+" no pertenece al tipo registro", vr, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
+						}
+					}
+				}
+			}
+		}
+	}
+	
 	@Check
 	protected void checkVariableUsadaRegistro(Codigo c) {
 		//Recogemos todos los registros, con los nombres nos vale porque ya tenemos una función que se encarga de
@@ -1651,37 +1705,14 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		
 		Map<String,String> variables = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
 		
-		for(Sentencias s: c.getTiene().getTiene()) {
-			if(s instanceof AsignacionNormal) {
-				AsignacionNormal a = (AsignacionNormal) s;
-				if(a.getOperador() instanceof ValorRegistro) {
-					ValorRegistro r = (ValorRegistro) a.getOperador();
-					if(funciones.esTipoComplejo(variables.get(r.getNombre_registro()))) {
-						error("La variable "+r.getNombre_registro()+" no pertenece al tipo registro", r, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
-					}
-				}
-			}
-			else if(s instanceof AsignacionCompleja) {
-				AsignacionCompleja a = (AsignacionCompleja) s;
-				if(a.getComplejo() instanceof ValorRegistro) {
-					ValorRegistro r = (ValorRegistro) a.getComplejo();
-					if(funciones.esTipoComplejo(variables.get(r.getNombre_registro()))) {
-						error("La variable "+r.getNombre_registro()+" no pertenece al tipo registro", r, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
-					}
-				}
-				if(a.getOperador() instanceof ValorRegistro) {
-					ValorRegistro r = (ValorRegistro) a.getOperador();
-					if(funciones.esTipoComplejo(variables.get(r.getNombre_registro()))) {
-						error("La variable "+r.getNombre_registro()+" no pertenece al tipo registro", r, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
-					}
-				}
-				else if(a.getOperador() instanceof operacion) {
-					operacion o = (operacion) a.getOperador();
-				}
-			}
+		checkVariblesUsadasRegistroAux(c.getTiene().getTiene(), variables, nombresRegistros);
+		
+		//2) En los subprocesos:
+		
+		for(Subproceso s: c.getFuncion()) {
+			variables = funciones.registrarVariablesTipadas(s.getDeclaracion());
+			checkVariblesUsadasRegistroAux(s.getSentencias(), variables, nombresRegistros);
 		}
-		
-		
 		
 	}
 
