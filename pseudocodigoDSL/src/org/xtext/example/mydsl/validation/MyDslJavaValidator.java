@@ -501,17 +501,18 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 						}
 					}
-					if(as.getOperador() instanceof operacion) {
+					else if(as.getOperador() instanceof operacion) {
 						operacion o = (operacion) as.getOperador();
-						if(o.getOp_der().getOper_der() instanceof VariableID) {
-							VariableID v = (VariableID) o.getOp_der().getOper_der();
-							if(!variables.contains(v.getNombre())) {
-								error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+						List<valor> valores = funciones.registrarValoresOperacion(o);
+						List<ValorRegistro> variablesRegistroNoDeclaradas = funciones.variablesRegistroDeclaradas(valores, variables);
+						if(variablesRegistroNoDeclaradas.size() != 0) {
+							for(ValorRegistro vr: variablesRegistroNoDeclaradas) {
+								error("La variable debe haber sido previamente definida", vr, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
 							}
 						}
-						if(o.getOp_izq().getOper_izq() instanceof VariableID) {
-							VariableID v = (VariableID) o.getOp_izq().getOper_izq();
-							if(!variables.contains(v.getNombre())) {
+						List<VariableID> variablesNoDeclaradas = funciones.variablesDeclaradas(valores, variables);
+						if(variablesNoDeclaradas.size() != 0) {
+							for(VariableID v: variablesNoDeclaradas) {
 								error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 							}
 						}
@@ -529,6 +530,22 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						VariableID v = (VariableID) ac.getOperador();
 						if(!variables.contains(v.getNombre())) {
 							error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+						}
+					}
+					else if(ac.getOperador() instanceof operacion) {
+						operacion o = (operacion) ac.getOperador();
+						List<valor> valores = funciones.registrarValoresOperacion(o);
+						List<ValorRegistro> variablesRegistroNoDeclaradas = funciones.variablesRegistroDeclaradas(valores, variables);
+						if(variablesRegistroNoDeclaradas.size() != 0) {
+							for(ValorRegistro vr: variablesRegistroNoDeclaradas) {
+								error("La variable debe haber sido previamente definida", vr, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
+							}
+						}
+						List<VariableID> variablesNoDeclaradas = funciones.variablesDeclaradas(valores, variables);
+						if(variablesNoDeclaradas.size() != 0) {
+							for(VariableID v: variablesNoDeclaradas) {
+								error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+							}
 						}
 					}
 				}
@@ -1647,7 +1664,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					operacion o = (operacion) a.getOperador();
 					//Si es una operación debemos comprobar la lista de operadores completa
 					List<valor> valores = funciones.registrarValoresOperacion(o);
-					List<ValorRegistro> valoresRegistro = funciones.todasRegistrosExistentes(valores, variables, nombresRegistros);
+					List<ValorRegistro> valoresRegistro = funciones.variablesRegistroExistentes(valores, variables, nombresRegistros);
 					if(valoresRegistro.size() != 0) {
 						for(ValorRegistro vr: valoresRegistro) {
 							error("La variable "+vr.getNombre_registro()+" no pertenece al tipo registro", vr, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
@@ -1675,7 +1692,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					operacion o = (operacion) a.getOperador();
 					//Si es una operación debemos comprobar la lista de operadores completa
 					List<valor> valores = funciones.registrarValoresOperacion(o);
-					List<ValorRegistro> valoresRegistro = funciones.todasRegistrosExistentes(valores, variables, nombresRegistros);
+					List<ValorRegistro> valoresRegistro = funciones.variablesRegistroExistentes(valores, variables, nombresRegistros);
 					if(valoresRegistro.size() != 0) {
 						for(ValorRegistro vr: valoresRegistro) {
 							error("La variable "+vr.getNombre_registro()+" no pertenece al tipo registro", vr, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);

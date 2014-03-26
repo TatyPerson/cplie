@@ -238,7 +238,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 				else if(v instanceof VariableID) {
 					//La buscamos y miramos su tipo
 					VariableID var = (VariableID) v;
-					if(variables.get(var.getNombre()) != "entero" && variables.get(var.getNombre()) != "real") {
+					if(variables.get(var.getNombre()) != "entero" && variables.get(var.getNombre()) != "real" && variables.containsKey(var.getNombre())) {
 						return 3;
 					}
 					else if(variables.get(var.getNombre()) == "real") {
@@ -284,7 +284,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 				if(v instanceof VariableID) {
 					//La buscamos y miramos su tipo
 					VariableID var = (VariableID) v;
-					if(variables.get(var.getNombre()) != "logico") {
+					if(variables.get(var.getNombre()) != "logico" && variables.containsKey(var.getNombre())) {
 						return 3;
 					}
 				}
@@ -323,7 +323,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 				if(v instanceof VariableID) {
 					//La buscamos y miramos su tipo
 					VariableID var = (VariableID) v;
-					if(variables.get(var.getNombre()) != "entero" && variables.get(var.getNombre()) != "real") {
+					if(variables.get(var.getNombre()) != "entero" && variables.get(var.getNombre()) != "real" && variables.containsKey(var.getNombre())) {
 						return 3;
 					}
 				}
@@ -363,7 +363,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 				if(v instanceof VariableID) {
 					//La buscamos y miramos su tipo
 					VariableID var = (VariableID) v;
-					if(variables.get(var.getNombre()) != "cadena") {
+					if(variables.get(var.getNombre()) != "cadena" && variables.containsKey(var.getNombre())) {
 						return 3;
 					}
 				}
@@ -402,7 +402,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 				if(v instanceof VariableID) {
 					//La buscamos y miramos su tipo
 					VariableID var = (VariableID) v;
-					if(variables.get(var.getNombre()) != "caracter") {
+					if(variables.get(var.getNombre()) != "caracter" && variables.containsKey(var.getNombre())) {
 						return 3;
 					}
 				}
@@ -425,19 +425,48 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		}
 	}
 	
-	protected List<ValorRegistro> todasRegistrosExistentes(List<valor> valores, Map<String,String> variables, List<String> nombresRegistros) {
+	protected List<ValorRegistro> variablesRegistroExistentes(List<valor> valores, Map<String,String> variables, List<String> nombresRegistros) {
 		List<ValorRegistro> valoresRegistro = new ArrayList<ValorRegistro>();
 		for(valor v: valores) {
 			if(v instanceof ValorRegistro) {
 				//Buscamos si el tipo con el que se declaró es uno de tipo registro
 				ValorRegistro vr = (ValorRegistro) v;
-				if(!nombresRegistros.contains(variables.get(vr.getNombre_registro()))) {
-					//Si no lo contiene es que el tipo de la variable no era un registro
+				if(!nombresRegistros.contains(variables.get(vr.getNombre_registro())) && variables.containsKey(vr.getNombre_registro())) {
+					//No lo contiene (no es un tipo registro) y además esta definida
 					valoresRegistro.add(vr);
 				}
 			}
 		}
 		//Devolvemos todas las variables que se estan usando como registro y no lo son
 		return valoresRegistro;
+	}
+	
+	protected List<ValorRegistro> variablesRegistroDeclaradas(List<valor> valores, List<String> variables) {
+		List<ValorRegistro> variablesNoDeclaradas = new ArrayList<ValorRegistro>();
+		for(valor v: valores) {
+			if(v instanceof ValorRegistro) {
+				//Buscamos si ha sido definida (si el tipo es de tipo registro lo omitimos porque ya hay otra función
+				//que se encarga de ello
+				ValorRegistro vr = (ValorRegistro) v;
+				if(!variables.contains(vr.getNombre_registro())) {
+					variablesNoDeclaradas.add(vr);
+				}
+			}
+		}
+		return variablesNoDeclaradas;
+	}
+	
+	protected List<VariableID> variablesDeclaradas(List<valor> valores, List<String> variables) {
+		List<VariableID> variablesNoDeclaradas = new ArrayList<VariableID>();
+		for(valor v: valores) {
+			if(v instanceof VariableID) {
+				//Comprobamos si la variable ha sido definida
+				VariableID var = (VariableID) v;
+				if(!variables.contains(var.getNombre())) {
+					variablesNoDeclaradas.add(var);
+				}
+			}
+		}
+		return variablesNoDeclaradas;
 	}
 }
