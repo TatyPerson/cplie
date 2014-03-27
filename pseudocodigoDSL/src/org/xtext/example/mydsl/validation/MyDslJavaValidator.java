@@ -445,125 +445,8 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		}
 	}
 	
-	@Check
-	//Función que comprueba que una variable deba estar definida antes de usarse
-	protected void checkVariablesUsadas(Inicio i) {
-		List<String> variables = funciones.registrarVariables(i.getDeclaracion());
-		
-		for(Sentencias s: i.getTiene()) {
-			if(s instanceof LlamadaFuncion) {
-				LlamadaFuncion f = (LlamadaFuncion) s;
-				for(Operador o: f.getOperador()) {
-					if(o instanceof VariableID) {
-						VariableID v = (VariableID) o;
-						if(!variables.contains(v.getNombre())) {
-							error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
-						}
-					}
-				}
-			}
-			else if(s instanceof Leer) {
-				Leer l = (Leer) s;
-				if(!variables.contains(l.getVariable().getNombre())) {
-					error("La variable debe haber sido previamente definida", l.getVariable(), DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
-				}
-			}
-			
-			else if(s instanceof Escribir) {
-				Escribir e = (Escribir) s;
-				for(Operador o: e.getOperador()) {
-					if(o instanceof VariableID) {
-						VariableID v = (VariableID) o;
-						if(!variables.contains(v.getNombre())) {
-							error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
-						}
-					}
-				}
-			}
-			
-			else if(s instanceof incremento) {
-				incremento ic = (incremento) s;
-				if(!variables.contains(ic.getNombre())) {
-					error("La variable debe haber sido previamente definida", ic, DiagramapseudocodigoPackage.Literals.INCREMENTO__NOMBRE);
-				}
-			}
-			
-			else if(s instanceof Asignacion) {
-				Asignacion a = (Asignacion) s;
-				if(a instanceof AsignacionNormal) {
-					AsignacionNormal as = (AsignacionNormal) a;
-					if(!variables.contains(as.getLvalue())) {
-						error("La variable debe haber sido previamente definida", as, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
-					}
-					if(as.getOperador() instanceof VariableID) {
-						VariableID v = (VariableID) as.getOperador();
-						if(!variables.contains(v.getNombre())) {
-							error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
-						}
-					}
-					else if(as.getOperador() instanceof operacion) {
-						operacion o = (operacion) as.getOperador();
-						List<valor> valores = funciones.registrarValoresOperacion(o);
-						List<ValorRegistro> variablesRegistroNoDeclaradas = funciones.variablesRegistroDeclaradas(valores, variables);
-						if(variablesRegistroNoDeclaradas.size() != 0) {
-							for(ValorRegistro vr: variablesRegistroNoDeclaradas) {
-								error("La variable debe haber sido previamente definida", vr, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
-							}
-						}
-						List<VariableID> variablesNoDeclaradas = funciones.variablesDeclaradas(valores, variables);
-						if(variablesNoDeclaradas.size() != 0) {
-							for(VariableID v: variablesNoDeclaradas) {
-								error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
-							}
-						}
-					}
-				}
-				else if(a instanceof AsignacionCompleja) {
-					AsignacionCompleja ac = (AsignacionCompleja) a;
-					if(ac.getComplejo() instanceof ValorRegistro) {
-						ValorRegistro r = (ValorRegistro) ac.getComplejo();
-						if(!variables.contains(r.getNombre_registro())) {
-							error("La variable debe haber sido previamente definida", r, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
-						}
-					}
-					if(ac.getOperador() instanceof VariableID) {
-						VariableID v = (VariableID) ac.getOperador();
-						if(!variables.contains(v.getNombre())) {
-							error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
-						}
-					}
-					else if(ac.getOperador() instanceof operacion) {
-						operacion o = (operacion) ac.getOperador();
-						List<valor> valores = funciones.registrarValoresOperacion(o);
-						List<ValorRegistro> variablesRegistroNoDeclaradas = funciones.variablesRegistroDeclaradas(valores, variables);
-						if(variablesRegistroNoDeclaradas.size() != 0) {
-							for(ValorRegistro vr: variablesRegistroNoDeclaradas) {
-								error("La variable debe haber sido previamente definida", vr, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
-							}
-						}
-						List<VariableID> variablesNoDeclaradas = funciones.variablesDeclaradas(valores, variables);
-						if(variablesNoDeclaradas.size() != 0) {
-							for(VariableID v: variablesNoDeclaradas) {
-								error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-	
-	@Check
-	//Función que comprueba que una variable deba estar definida antes de usarse
-	protected void checkVariablesUsadas(Subproceso s) {
-		List<String> variables = funciones.registrarVariables(s.getDeclaracion());
-		
-		//Como son subprocesos también se añaden a la lista los parámetros
-		for(ParametroFuncion p: s.getParametrofuncion()) {
-			variables.add(p.getVariable().getNombre());
-		}
-		
-		for(Sentencias sen: s.getSentencias()) {
+	private void checkVariablesUsadasAux(List<Sentencias> sentencias, List<String> variables) {
+		for(Sentencias sen: sentencias) {
 			if(sen instanceof LlamadaFuncion) {
 				LlamadaFuncion f = (LlamadaFuncion) sen;
 				for(Operador o: f.getOperador()) {
@@ -616,15 +499,17 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					}
 					else if(as.getOperador() instanceof operacion) {
 						operacion o = (operacion) as.getOperador();
-						if(o.getOp_der().getOper_der() instanceof VariableID) {
-							VariableID v = (VariableID) o.getOp_der().getOper_der();
-							if(!variables.contains(v.getNombre())) {
-								error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+						List<valor> valores = funciones.registrarValoresOperacion(o);
+						
+						List<ValorRegistro> variablesRegistroNoDeclaradas = funciones.variablesRegistroDeclaradas(valores, variables);
+						if(variablesRegistroNoDeclaradas.size() != 0) {
+							for(ValorRegistro vr: variablesRegistroNoDeclaradas) {
+								error("La variable debe haber sido previamente definida", vr, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
 							}
 						}
-						if(o.getOp_izq().getOper_izq() instanceof VariableID) {
-							VariableID v = (VariableID) o.getOp_izq().getOper_izq();
-							if(!variables.contains(v.getNombre())) {
+						List<VariableID> variablesNoDeclaradas = funciones.variablesDeclaradas(valores, variables);
+						if(variablesNoDeclaradas.size() != 0) {
+							for(VariableID v: variablesNoDeclaradas) {
 								error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 							}
 						}
@@ -649,9 +534,52 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							error("La variable debe haber sido previamente definida", r, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
 						}
 					}
+					if(ac.getOperador() instanceof VariableID) {
+						VariableID v = (VariableID) ac.getOperador();
+						if(!variables.contains(v.getNombre())) {
+							error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+						}
+					}
+					else if(ac.getOperador() instanceof operacion) {
+						operacion o = (operacion) ac.getOperador();
+						List<valor> valores = funciones.registrarValoresOperacion(o);
+						List<ValorRegistro> variablesRegistroNoDeclaradas = funciones.variablesRegistroDeclaradas(valores, variables);
+						if(variablesRegistroNoDeclaradas.size() != 0) {
+							for(ValorRegistro vr: variablesRegistroNoDeclaradas) {
+								error("La variable debe haber sido previamente definida", vr, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
+							}
+						}
+						List<VariableID> variablesNoDeclaradas = funciones.variablesDeclaradas(valores, variables);
+						if(variablesNoDeclaradas.size() != 0) {
+							for(VariableID v: variablesNoDeclaradas) {
+								error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+							}
+						}
+					}
 				}
 			}
 		}
+	}
+	
+	@Check
+	//Función que comprueba que una variable deba estar definida antes de usarse
+	protected void checkVariablesUsadas(Inicio i) {
+		List<String> variables = funciones.registrarVariables(i.getDeclaracion());
+		
+		checkVariablesUsadasAux(i.getTiene(), variables);
+	}
+	
+	@Check
+	//Función que comprueba que una variable deba estar definida antes de usarse
+	protected void checkVariablesUsadas(Subproceso s) {
+		List<String> variables = funciones.registrarVariables(s.getDeclaracion());
+		
+		//Como son subprocesos también se añaden a la lista los parámetros
+		for(ParametroFuncion p: s.getParametrofuncion()) {
+			variables.add(p.getVariable().getNombre());
+		}
+		
+		checkVariablesUsadasAux(s.getSentencias(), variables);
 	}
 	
 	@Check
@@ -771,11 +699,58 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								}
 							}
 						}
+						else if(an.getOperador() instanceof operacion) {
+							operacion o = (operacion) an.getOperador();
+							List<valor> valores = funciones.registrarValoresOperacion(o);
+							for(valor v: valores) {
+								if(v instanceof LlamadaFuncion) {
+									LlamadaFuncion f = (LlamadaFuncion) v;
+									if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
+										List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
+										String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
+										String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
+										if(!funciones.comprobarCorreccionTiposLlamada(nombresVariables, variablesDeclaradas, tipos)) {
+											error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+										}
+									}
+								}
+							}
+						}
+					}
+					else if(a instanceof AsignacionCompleja) {
+						AsignacionCompleja ac = (AsignacionCompleja) a;
+						if(ac.getOperador() instanceof LlamadaFuncion) {
+							LlamadaFuncion f = (LlamadaFuncion) a.getOperador();
+							if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
+								List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
+								String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
+								String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
+								if(!funciones.comprobarCorreccionTiposLlamada(nombresVariables, variablesDeclaradas, tipos)) {
+									error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+								}
+							}
+						}
+						else if(ac.getOperador() instanceof operacion) {
+							operacion o = (operacion) ac.getOperador();
+							List<valor> valores = funciones.registrarValoresOperacion(o);
+							for(valor v: valores) {
+								if(v instanceof LlamadaFuncion) {
+									LlamadaFuncion f = (LlamadaFuncion) v;
+									if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
+										List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
+										String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
+										String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
+										if(!funciones.comprobarCorreccionTiposLlamada(nombresVariables, variablesDeclaradas, tipos)) {
+											error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+										}
+									}
+								}
+							}
+						}
 					}
 				}
 			}
 		}
-		
 	}
 	
 	
@@ -820,6 +795,54 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 									String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
 									if(!funciones.comprobarCorreccionTiposLlamada(nombresVariables, variablesDeclaradas, tipos)) {
 										error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+									}
+								}
+							}
+							else if(an.getOperador() instanceof operacion) {
+								operacion o = (operacion) an.getOperador();
+								List<valor> valores = funciones.registrarValoresOperacion(o);
+								for(valor v: valores) {
+									if(v instanceof LlamadaFuncion) {
+										LlamadaFuncion f = (LlamadaFuncion) v;
+										if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
+											List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
+											String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
+											String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
+											if(!funciones.comprobarCorreccionTiposLlamada(nombresVariables, variablesDeclaradas, tipos)) {
+												error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+											}
+										}
+									}
+								}
+							}
+						}
+						else if(a instanceof AsignacionCompleja) {
+							AsignacionCompleja ac = (AsignacionCompleja) a;
+							if(ac.getOperador() instanceof LlamadaFuncion) {
+								LlamadaFuncion f = (LlamadaFuncion) a.getOperador();
+								if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
+									List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
+									String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
+									String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
+									if(!funciones.comprobarCorreccionTiposLlamada(nombresVariables, variablesDeclaradas, tipos)) {
+										error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+									}
+								}
+							}
+							else if(ac.getOperador() instanceof operacion) {
+								operacion o = (operacion) ac.getOperador();
+								List<valor> valores = funciones.registrarValoresOperacion(o);
+								for(valor v: valores) {
+									if(v instanceof LlamadaFuncion) {
+										LlamadaFuncion f = (LlamadaFuncion) v;
+										if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
+											List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
+											String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
+											String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
+											if(!funciones.comprobarCorreccionTiposLlamada(nombresVariables, variablesDeclaradas, tipos)) {
+												error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+											}
+										}
 									}
 								}
 							}
