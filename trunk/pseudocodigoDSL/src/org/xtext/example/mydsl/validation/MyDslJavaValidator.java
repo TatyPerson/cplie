@@ -556,6 +556,17 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							}
 						}
 					}
+					else if(ac.getOperador() instanceof LlamadaFuncion) {
+						LlamadaFuncion f = (LlamadaFuncion) ac.getOperador();
+						for(Operador o: f.getOperador()) {
+							if(o instanceof VariableID) {
+								VariableID v = (VariableID) o;
+								if(!variables.contains(v.getNombre())) {
+									error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+								}
+							}
+						}
+					}
 				}
 			}
 		}
