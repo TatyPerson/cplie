@@ -169,7 +169,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 	protected boolean comprobarCorreccionTiposLlamada(List<String> nombres, Map<String,String> variablesDeclaradas, List<String> tipos) {
 		boolean tiposCorrectos = true;
 		for(String n: nombres) {
-			if(variablesDeclaradas.get(n) != tipos.get(nombres.indexOf(n))) {
+			if(variablesDeclaradas.get(n) != tipos.get(nombres.indexOf(n)) && variablesDeclaradas.containsKey(n)) {
 				tiposCorrectos = false;
 			}
 		}
