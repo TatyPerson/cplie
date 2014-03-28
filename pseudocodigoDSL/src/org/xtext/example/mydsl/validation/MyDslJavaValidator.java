@@ -1137,10 +1137,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						}
 						else if(an.getOperador() instanceof VariableID) {
 							VariableID v = (VariableID) an.getOperador();
-							if(variables.get(v.getNombre()) != "entero" && variables.get(v.getNombre()) != "real") {
+							if(variables.get(v.getNombre()) != "entero" && variables.get(v.getNombre()) != "real" && variables.containsKey(v.getNombre())) {
 								error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 							}
-							else if(variables.get(v.getNombre()) == "real") {
+							else if(variables.get(v.getNombre()) == "real" && variables.containsKey(v.getNombre())) {
 								warning("Posible pérdida de precisión al asignar un real a un entero", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 							}
 						}
@@ -1185,14 +1185,14 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							}
 							else if(u.getVariable() instanceof VariableID) {
 								VariableID var = (VariableID) u.getVariable();
-								if(variables.get(var.getNombre()) != "logico") {
+								if(variables.get(var.getNombre()) != "logico" && variables.containsKey(var.getNombre())) {
 									error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 								}
 							}
 						}
 						else if(an.getOperador() instanceof VariableID) {
 							VariableID v = (VariableID) an.getOperador();
-							if(variables.get(v.getNombre()) != "logico") {
+							if(variables.get(v.getNombre()) != "logico" && variables.containsKey(v.getNombre())) {
 								error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 							}
 						}
@@ -1229,7 +1229,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							}
 							else if(an.getOperador() instanceof VariableID) {
 								VariableID v = (VariableID) an.getOperador();
-								if(variables.get(v.getNombre()) != "real" && variables.get(v.getNombre()) != "entero") {
+								if(variables.get(v.getNombre()) != "real" && variables.get(v.getNombre()) != "entero" && variables.containsKey(v.getNombre())) {
 									error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 								}
 							}
@@ -1266,7 +1266,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						}
 						else if(an.getOperador() instanceof VariableID) {
 							VariableID v = (VariableID) an.getOperador();
-							if(variables.get(v.getNombre()) != "cadena") {
+							if(variables.get(v.getNombre()) != "cadena" && variables.containsKey(v.getNombre())) {
 								error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 							}
 						}
@@ -1303,7 +1303,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						}
 						else if(an.getOperador() instanceof VariableID) {
 							VariableID v = (VariableID) an.getOperador();
-							if(variables.get(v.getNombre()) != "caracter") {
+							if(variables.get(v.getNombre()) != "caracter" && variables.containsKey(v.getNombre())) {
 								error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 							}
 						}
