@@ -491,13 +491,13 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					if(!variables.contains(as.getLvalue())) {
 						error("La variable debe haber sido previamente definida", as, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 					}
-					else if(as.getOperador() instanceof VariableID) {
+					if(as.getOperador() instanceof VariableID) {
 						VariableID v = (VariableID) as.getOperador();
 						if(!variables.contains(v.getNombre())) {
 							error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 						}
 					}
-					else if(as.getOperador() instanceof operacion) {
+					if(as.getOperador() instanceof operacion) {
 						operacion o = (operacion) as.getOperador();
 						List<valor> valores = funciones.registrarValoresOperacion(o);
 						
@@ -514,7 +514,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							}
 						}
 					}
-					else if(as.getOperador() instanceof LlamadaFuncion) {
+					if(as.getOperador() instanceof LlamadaFuncion) {
 						LlamadaFuncion f = (LlamadaFuncion) as.getOperador();
 						for(Operador o: f.getOperador()) {
 							if(o instanceof VariableID) {
@@ -540,7 +540,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 						}
 					}
-					else if(ac.getOperador() instanceof operacion) {
+					if(ac.getOperador() instanceof operacion) {
 						operacion o = (operacion) ac.getOperador();
 						List<valor> valores = funciones.registrarValoresOperacion(o);
 						List<ValorRegistro> variablesRegistroNoDeclaradas = funciones.variablesRegistroDeclaradas(valores, variables);
@@ -556,7 +556,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							}
 						}
 					}
-					else if(ac.getOperador() instanceof LlamadaFuncion) {
+					if(ac.getOperador() instanceof LlamadaFuncion) {
 						LlamadaFuncion f = (LlamadaFuncion) ac.getOperador();
 						for(Operador o: f.getOperador()) {
 							if(o instanceof VariableID) {
