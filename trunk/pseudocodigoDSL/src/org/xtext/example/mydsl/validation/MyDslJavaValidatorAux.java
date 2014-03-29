@@ -466,6 +466,18 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 					variablesNoDeclaradas.add(var);
 				}
 			}
+			else if(v instanceof LlamadaFuncion) {
+				//Comprobamos si alguno de los parámetros es una variable no definida
+				LlamadaFuncion f = (LlamadaFuncion) v;
+				for(Operador o: f.getOperador()) {
+					if(o instanceof VariableID) {
+						VariableID var = (VariableID) o;
+						if(!variables.contains(var.getNombre())) {
+							variablesNoDeclaradas.add(var);
+						}
+					}
+				}
+			}
 		}
 		return variablesNoDeclaradas;
 	}
