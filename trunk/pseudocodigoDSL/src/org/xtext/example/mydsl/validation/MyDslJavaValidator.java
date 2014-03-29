@@ -488,6 +488,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				Asignacion a = (Asignacion) sen;
 				if(a instanceof AsignacionNormal) {
 					AsignacionNormal as = (AsignacionNormal) a;
+					
 					if(!variables.contains(as.getLvalue())) {
 						error("La variable debe haber sido previamente definida", as, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 					}
@@ -495,6 +496,15 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						VariableID v = (VariableID) as.getOperador();
 						if(!variables.contains(v.getNombre())) {
 							error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+						}
+					}
+					if(as.getOperador() instanceof unaria) {
+						unaria u = (unaria) as.getOperador();
+						if(u.getVariable() instanceof VariableID) {
+							VariableID v = (VariableID) u.getVariable();
+							if(!variables.contains(v.getNombre())) {
+								error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+							}
 						}
 					}
 					if(as.getOperador() instanceof operacion) {
@@ -538,6 +548,15 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						VariableID v = (VariableID) ac.getOperador();
 						if(!variables.contains(v.getNombre())) {
 							error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+						}
+					}
+					if(ac.getOperador() instanceof unaria) {
+						unaria u = (unaria) ac.getOperador();
+						if(u.getVariable() instanceof VariableID) {
+							VariableID v = (VariableID) u.getVariable();
+							if(!variables.contains(v.getNombre())) {
+								error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+							}
 						}
 					}
 					if(ac.getOperador() instanceof operacion) {
