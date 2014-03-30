@@ -919,93 +919,6 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	@Check
-	//Función que comprueba que el tipo devuelto por una función sea compatible con el tipo de la variable al que se le asigna dicho valor
-	protected void checkAsignacionLlamadaInicio(Codigo c) {
-		String nombre = "";
-		String tipoDevuelve = "";
-		int parametros;
-		for(Subproceso s: c.getFuncion()) {
-			if(s instanceof Funcion) {
-				Funcion f = (Funcion) s;
-				nombre = f.getNombre();
-				tipoDevuelve = f.getTipo().getName();
-				parametros = f.getParametrofuncion().size();
-				
-				//Recogemos todas las variables que hay declaradas con sus respectivos tipos para buscar luego las necesarias (no hay repetidas)
-				Map<String,String> variablesDeclaradas = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
-				
-				//Buscamos en el programa principal
-				for(Sentencias sen: c.getTiene().getTiene()) {
-					if(sen instanceof Asignacion) {
-						Asignacion a = (Asignacion) sen;
-						if(a instanceof AsignacionNormal) {
-							AsignacionNormal an = (AsignacionNormal) a;
-							if(an.getOperador() instanceof LlamadaFuncion) {
-								LlamadaFuncion fun = (LlamadaFuncion) an.getOperador();
-								if(fun.getNombre().equals(nombre) && fun.getOperador().size() == parametros) {
-									if(variablesDeclaradas.get(an.getLvalue()) != tipoDevuelve) {
-										if(variablesDeclaradas.get(an.getLvalue()) == "entero" && tipoDevuelve == "real") {
-											warning("Posible pérdida de precisión por conversión (de real a entero)", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
-										}
-										else if(variablesDeclaradas.get(an.getLvalue()) != "real" || tipoDevuelve != "entero") {
-											error("Conversión imposible (de "+tipoDevuelve+" a "+variablesDeclaradas.get(an.getLvalue())+")", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
-										}
-									}
-								}
-							}
-						}
-					}
-					
-				}
-			}
-		}	
-	}
-		
-	@Check
-	//Función que comprueba que el tipo devuelto por una función sea compatible con el tipo de la variable al que se le asigna dicho valor
-	protected void checkAsignacionLlamadaSubproceso(Codigo c) {
-		String nombre = "";
-		String tipoDevuelve = "";
-		int parametros;
-		for(Subproceso s: c.getFuncion()) {
-			if(s instanceof Funcion) {
-				Funcion f = (Funcion) s;
-				nombre = f.getNombre();
-				tipoDevuelve = f.getTipo().getName();
-				parametros = f.getParametrofuncion().size();
-				
-				for(Subproceso s2: c.getFuncion()) {
-					//Recogemos todas las variables que hay declaradas con sus respectivos tipos para buscar luego las necesarias (no hay repetidas)
-					Map<String,String> variablesDeclaradas = funciones.registrarVariablesTipadas(s2.getDeclaracion());
-					
-					//Buscamos en el programa principal
-					for(Sentencias sen: s2.getSentencias()) {
-						if(sen instanceof Asignacion) {
-							Asignacion a = (Asignacion) sen;
-							if(a instanceof AsignacionNormal) {
-								AsignacionNormal an = (AsignacionNormal) a;
-								if(an.getOperador() instanceof LlamadaFuncion) {
-									LlamadaFuncion fun = (LlamadaFuncion) an.getOperador();
-									if(fun.getNombre().equals(nombre) && fun.getOperador().size() == parametros) {
-										if(variablesDeclaradas.get(an.getLvalue()) != tipoDevuelve) {
-											if(variablesDeclaradas.get(an.getLvalue()) == "entero" && tipoDevuelve == "real") {
-												warning("Posible pérdida de precisión por conversión (de real a entero)", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
-											}
-											else if(variablesDeclaradas.get(an.getLvalue()) != "real" || tipoDevuelve != "entero") {
-												error("Conversión imposible (de "+tipoDevuelve+" a "+variablesDeclaradas.get(an.getLvalue())+")", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-	
-	@Check
 	//Función que comprueba que un campo utilizado de un registro pertenezca realmente a ese tipo de registro
 	protected void checkVariablesRegistroInicio(Codigo c) {
 		//Preparamos todos los campos clasificados por el nombre del registro (utilizado como identificador)
@@ -1133,7 +1046,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			}
 	}
 	//Función auxiliar para evitar la repetición de código (DRY)
-	private void checkAsignacionesAux(AsignacionNormal an, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros) {
+	private void checkAsignacionesAux(AsignacionNormal an, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,HashMap<Integer,String>> funcionesTipadas) {
 					if(variables.get(an.getLvalue()) == "entero" && !(an.getOperador() instanceof NumeroEntero)) {
 						if(an.getOperador() instanceof NumeroDecimal) {
 							warning("Posible pérdida de precisión al asignar un real a un entero", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
@@ -1141,7 +1054,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						else if(an.getOperador() instanceof operacion) {
 							operacion o = (operacion) an.getOperador();
 							List<valor> valores = funciones.registrarValoresOperacion(o);
-							switch(funciones.asignacionEntero(valores, variables, registros, nombresRegistros)) {
+							switch(funciones.asignacionEntero(valores, variables, registros, nombresRegistros, funcionesTipadas)) {
 								case 1:
 									break;
 								case 2: 
@@ -1152,6 +1065,15 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 									break;
 								default:
 									break;
+							}
+						}
+						else if(an.getOperador() instanceof LlamadaFuncion) {
+							LlamadaFuncion f = (LlamadaFuncion) an.getOperador();
+							if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "entero" && funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "real" && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+								error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+							}
+							else if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) == "real" && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+								warning("Posible pérdida de precisión al asignar un real a un entero", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 							}
 						}
 						else if(an.getOperador() instanceof VariableID) {
@@ -1185,7 +1107,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						if(an.getOperador() instanceof operacion) {
 							operacion o = (operacion) an.getOperador();
 							List<valor> valores = funciones.registrarValoresOperacion(o);
-							switch(funciones.asignacionLogico(valores, variables, registros, nombresRegistros)) {
+							switch(funciones.asignacionLogico(valores, variables, registros, nombresRegistros, funcionesTipadas)) {
 								case 1:
 									break;
 								case 2: 
@@ -1195,6 +1117,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 									break;
 								default:
 									break;
+							}
+						}
+						else if(an.getOperador() instanceof LlamadaFuncion) {
+							LlamadaFuncion f = (LlamadaFuncion) an.getOperador();
+							if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "logico" && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+								error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 							}
 						}
 						else if(an.getOperador() instanceof unaria) {
@@ -1234,7 +1162,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						if(an.getOperador() instanceof operacion) {
 							operacion o = (operacion) an.getOperador();
 							List<valor> valores = funciones.registrarValoresOperacion(o);
-							switch(funciones.asignacionReal(valores, variables, registros, nombresRegistros)) {
+							switch(funciones.asignacionReal(valores, variables, registros, nombresRegistros, funcionesTipadas)) {
 								case 1:
 									break;
 								case 2: 
@@ -1245,33 +1173,39 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								default:
 									break;
 							}
+						}
+						else if(an.getOperador() instanceof LlamadaFuncion) {
+							LlamadaFuncion f = (LlamadaFuncion) an.getOperador();
+							if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "real" && funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "entero" && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+								error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 							}
-							else if(an.getOperador() instanceof VariableID) {
-								VariableID v = (VariableID) an.getOperador();
-								if(variables.get(v.getNombre()) != "real" && variables.get(v.getNombre()) != "entero" && variables.containsKey(v.getNombre())) {
-									error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
-								}
+						}
+						else if(an.getOperador() instanceof VariableID) {
+							VariableID v = (VariableID) an.getOperador();
+							if(variables.get(v.getNombre()) != "real" && variables.get(v.getNombre()) != "entero" && variables.containsKey(v.getNombre())) {
+								error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 							}
-							else if(an.getOperador() instanceof ValorRegistro) {
-								ValorRegistro vr = (ValorRegistro) an.getOperador();
-								//Buscamos el registro del que proviene esa variable
-								for(String nombre: nombresRegistros) {
-									if(nombre.equals(variables.get(vr.getNombre_registro()))) {
-										if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "entero" && registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "real") {
-											error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
-										}
+						}
+						else if(an.getOperador() instanceof ValorRegistro) {
+							ValorRegistro vr = (ValorRegistro) an.getOperador();
+							//Buscamos el registro del que proviene esa variable
+							for(String nombre: nombresRegistros) {
+								if(nombre.equals(variables.get(vr.getNombre_registro()))) {
+									if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "entero" && registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "real") {
+										error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 									}
 								}
 							}
-							else {
-								error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
-							}
+						}
+						else {
+							error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+						}
 					}
 					else if(variables.get(an.getLvalue()) == "cadena" && !(an.getOperador() instanceof ConstCadena)) {
 						if(an.getOperador() instanceof operacion) {
 							operacion o = (operacion) an.getOperador();
 							List<valor> valores = funciones.registrarValoresOperacion(o);
-							switch(funciones.asignacionCadena(valores, variables, registros, nombresRegistros)) {
+							switch(funciones.asignacionCadena(valores, variables, registros, nombresRegistros, funcionesTipadas)) {
 								case 1:
 									break;
 								case 2: 
@@ -1281,6 +1215,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 									break;
 								default:
 									break;
+							}
+						}
+						else if(an.getOperador() instanceof LlamadaFuncion) {
+							LlamadaFuncion f = (LlamadaFuncion) an.getOperador();
+							if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "cadena" && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+								error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 							}
 						}
 						else if(an.getOperador() instanceof VariableID) {
@@ -1308,7 +1248,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						if(an.getOperador() instanceof operacion) {
 							operacion o = (operacion) an.getOperador();
 							List<valor> valores = funciones.registrarValoresOperacion(o);
-							switch(funciones.asignacionCaracter(valores, variables, registros, nombresRegistros)) {
+							switch(funciones.asignacionCaracter(valores, variables, registros, nombresRegistros, funcionesTipadas)) {
 								case 1:
 									break;
 								case 2: 
@@ -1318,6 +1258,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 									break;
 								default:
 									break;
+							}
+						}
+						else if(an.getOperador() instanceof LlamadaFuncion) {
+							LlamadaFuncion f = (LlamadaFuncion) an.getOperador();
+							if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "caracter" && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+								error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 							}
 						}
 						else if(an.getOperador() instanceof VariableID) {
@@ -1365,12 +1311,32 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		//Registramos todas las variables declaradas con sus respectivos tipos
 		Map<String,String> variables = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
 		
+		//Registramos todas las funciones que están definidas
+		Map<String,HashMap<Integer,String>> funcionesTipadas = new HashMap<String,HashMap<Integer,String>>();
+		
+		for(Subproceso s: c.getFuncion()) {
+			if(s instanceof Funcion) {
+				Funcion f = (Funcion) s;
+				//Como hay otra función que se encarga de que no esten repetidos obviamos la comprobación
+				HashMap<Integer,String> aux = new HashMap<Integer,String>();
+				for(Subproceso s2: c.getFuncion()) {
+					if(s2 instanceof Funcion) {
+						Funcion f2 = (Funcion) s2;
+						if(f.getNombre().equals(f2.getNombre())) {
+							aux.put(f2.getParametrofuncion().size(), f2.getTipo().getName());
+						}
+					}
+				}
+				funcionesTipadas.put(f.getNombre(), aux);
+			}
+		}
+		
 		for(Sentencias s: c.getTiene().getTiene()) {
 			if(s instanceof Asignacion) {
 				Asignacion a = (Asignacion) s;
 				if(a instanceof AsignacionNormal) {
 					AsignacionNormal an = (AsignacionNormal) a;
-					checkAsignacionesAux(an, variables, registros, nombresRegistros);
+					checkAsignacionesAux(an, variables, registros, nombresRegistros, funcionesTipadas);
 				}
 			}
 		}
@@ -1396,15 +1362,43 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				nombresRegistros.add(r.getNombre());
 			}
 		}
+		
+		//Registramos todas las funciones que están definidas
+		Map<String,HashMap<Integer,String>> funcionesTipadas = new HashMap<String,HashMap<Integer,String>>();
+				
+		for(Subproceso s: c.getFuncion()) {
+			if(s instanceof Funcion) {
+				Funcion f = (Funcion) s;
+				//Como hay otra función que se encarga de que no esten repetidos obviamos la comprobación
+				HashMap<Integer,String> aux = new HashMap<Integer,String>();
+				for(Subproceso s2: c.getFuncion()) {
+					if(s2 instanceof Funcion) {
+						Funcion f2 = (Funcion) s2;
+						if(f.getNombre().equals(f2.getNombre())) {
+							aux.put(f2.getParametrofuncion().size(), f2.getTipo().getName());
+						}
+					}
+				}
+				funcionesTipadas.put(f.getNombre(), aux);
+			}
+		}
+		
 		for(Subproceso s: c.getFuncion()) {
 			//Registramos todas las variables declaradas con sus respectivos tipos
 			Map<String,String> variables = funciones.registrarVariablesTipadas(s.getDeclaracion());
+			
+			//Como es una función también debemos registrar los parámetros
+			
+			for(ParametroFuncion p: s.getParametrofuncion()) {
+				variables.put(p.getVariable().getNombre(), p.getTipo().getName());
+			}
+			
 			for(Sentencias sen: s.getSentencias()) {
 				if(sen instanceof Asignacion) {
 					Asignacion a = (Asignacion) sen;
 					if(a instanceof AsignacionNormal) {
 						AsignacionNormal an = (AsignacionNormal) a;
-						checkAsignacionesAux(an, variables, registros, nombresRegistros);
+						checkAsignacionesAux(an, variables, registros, nombresRegistros, funcionesTipadas);
 					}
 				}
 			}
@@ -1413,7 +1407,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	//Función auxiliar para cumplir el principio DRY.
-	private void checkAsignacionesVariablesRegistroAux(AsignacionCompleja a, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros) {
+	private void checkAsignacionesVariablesRegistroAux(AsignacionCompleja a, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,HashMap<Integer,String>> funcionesTipadas) {
 		if(a.getComplejo() instanceof ValorRegistro) {
 			ValorRegistro r = (ValorRegistro) a.getComplejo();
 			for(CampoRegistro campo: r.getCampo()) {
@@ -1424,7 +1418,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					else if(a.getOperador() instanceof operacion) {
 						operacion o = (operacion) a.getOperador();
 						List<valor> valores = funciones.registrarValoresOperacion(o);
-						switch(funciones.asignacionEntero(valores, variables, registros, nombresRegistros)) {
+						switch(funciones.asignacionEntero(valores, variables, registros, nombresRegistros, funcionesTipadas)) {
 							case 1:
 								break;
 							case 2: 
@@ -1435,6 +1429,15 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								break;
 							default:
 								break;
+						}
+					}
+					else if(a.getOperador() instanceof LlamadaFuncion) {
+						LlamadaFuncion f = (LlamadaFuncion) a.getOperador();
+						if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "entero" && funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "real" && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+							error("El tipo de asignación es incompatible", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
+						}
+						else if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) == "real" && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+							warning("Posible pérdida de precisión al asignar un real a un entero", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
 						}
 					}
 					else if(a.getOperador() instanceof VariableID) {
@@ -1468,7 +1471,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					if(a.getOperador() instanceof operacion) {
 						operacion o = (operacion) a.getOperador();
 						List<valor> valores = funciones.registrarValoresOperacion(o);
-						switch(funciones.asignacionReal(valores, variables, registros, nombresRegistros)) {
+						switch(funciones.asignacionReal(valores, variables, registros, nombresRegistros, funcionesTipadas)) {
 							case 1:
 								break;
 							case 2: 
@@ -1478,6 +1481,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								break;
 							default:
 								break;
+						}
+					}
+					else if(a.getOperador() instanceof LlamadaFuncion) {
+						LlamadaFuncion f = (LlamadaFuncion) a.getOperador();
+						if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "real" && funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "entero" && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+							error("El tipo de asignación es incompatible", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
 						}
 					}
 					else if(a.getOperador() instanceof VariableID) {
@@ -1505,7 +1514,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					if(a.getOperador() instanceof operacion) {
 						operacion o = (operacion) a.getOperador();
 						List<valor> valores = funciones.registrarValoresOperacion(o);
-						switch(funciones.asignacionLogico(valores, variables, registros, nombresRegistros)) {
+						switch(funciones.asignacionLogico(valores, variables, registros, nombresRegistros, funcionesTipadas)) {
 							case 1:
 								break;
 							case 2: 
@@ -1515,6 +1524,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								break;
 							default:
 								break;
+						}
+					}
+					else if(a.getOperador() instanceof LlamadaFuncion) {
+						LlamadaFuncion f = (LlamadaFuncion) a.getOperador();
+						if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "logico" && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+							error("El tipo de asignación es incompatible", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
 						}
 					}
 					else if(a.getOperador() instanceof unaria) {
@@ -1554,7 +1569,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					if(a.getOperador() instanceof operacion) {
 						operacion o = (operacion) a.getOperador();
 						List<valor> valores = funciones.registrarValoresOperacion(o);
-						switch(funciones.asignacionCadena(valores, variables, registros, nombresRegistros)) {
+						switch(funciones.asignacionCadena(valores, variables, registros, nombresRegistros, funcionesTipadas)) {
 							case 1:
 								break;
 							case 2: 
@@ -1564,6 +1579,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								break;
 							default:
 								break;
+						}
+					}
+					else if(a.getOperador() instanceof LlamadaFuncion) {
+						LlamadaFuncion f = (LlamadaFuncion) a.getOperador();
+						if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "cadena" && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+							error("El tipo de asignación es incompatible", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
 						}
 					}
 					else if(a.getOperador() instanceof VariableID) {
@@ -1591,7 +1612,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					if(a.getOperador() instanceof operacion) {
 						operacion o = (operacion) a.getOperador();
 						List<valor> valores = funciones.registrarValoresOperacion(o);
-						switch(funciones.asignacionCaracter(valores, variables, registros, nombresRegistros)) {
+						switch(funciones.asignacionCaracter(valores, variables, registros, nombresRegistros, funcionesTipadas)) {
 							case 1:
 								break;
 							case 2: 
@@ -1601,6 +1622,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								break;
 							default:
 								break;
+						}
+					}
+					else if(a.getOperador() instanceof LlamadaFuncion) {
+						LlamadaFuncion f = (LlamadaFuncion) a.getOperador();
+						if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "caracter" && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+							error("El tipo de asignación es incompatible", a, DiagramapseudocodigoPackage.Literals.ASIGNACION_COMPLEJA__COMPLEJO);
 						}
 					}
 					else if(a.getOperador() instanceof VariableID) {
@@ -1649,11 +1676,31 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		}
 			
 		Map<String,String> variables = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
+		
+		//Registramos todas las funciones que están definidas
+		Map<String,HashMap<Integer,String>> funcionesTipadas = new HashMap<String,HashMap<Integer,String>>();
+				
+		for(Subproceso s: c.getFuncion()) {
+			if(s instanceof Funcion) {
+				Funcion f = (Funcion) s;
+				//Como hay otra función que se encarga de que no esten repetidos obviamos la comprobación
+				HashMap<Integer,String> aux = new HashMap<Integer,String>();
+				for(Subproceso s2: c.getFuncion()) {
+					if(s2 instanceof Funcion) {
+						Funcion f2 = (Funcion) s2;
+						if(f.getNombre().equals(f2.getNombre())) {
+							aux.put(f2.getParametrofuncion().size(), f2.getTipo().getName());
+						}
+					}
+				}
+				funcionesTipadas.put(f.getNombre(), aux);
+			}
+		}
 			
 		for(Sentencias s: c.getTiene().getTiene()) {
 			if(s instanceof AsignacionCompleja) {
 				AsignacionCompleja a = (AsignacionCompleja) s;
-				checkAsignacionesVariablesRegistroAux(a,variables,registros, nombresRegistros);
+				checkAsignacionesVariablesRegistroAux(a,variables,registros, nombresRegistros, funcionesTipadas);
 			}
 		}
 	}
@@ -1678,6 +1725,26 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			}
 		}
 		
+		//Registramos todas las funciones que están definidas
+		Map<String,HashMap<Integer,String>> funcionesTipadas = new HashMap<String,HashMap<Integer,String>>();
+				
+		for(Subproceso s: c.getFuncion()) {
+			if(s instanceof Funcion) {
+				Funcion f = (Funcion) s;
+				//Como hay otra función que se encarga de que no esten repetidos obviamos la comprobación
+				HashMap<Integer,String> aux = new HashMap<Integer,String>();
+				for(Subproceso s2: c.getFuncion()) {
+					if(s2 instanceof Funcion) {
+						Funcion f2 = (Funcion) s2;
+						if(f.getNombre().equals(f2.getNombre())) {
+							aux.put(f2.getParametrofuncion().size(), f2.getTipo().getName());
+						}
+					}
+				}
+				funcionesTipadas.put(f.getNombre(), aux);
+			}
+		}
+		
 		for(Subproceso s: c.getFuncion()) {
 			Map<String,String> variables = funciones.registrarVariablesTipadas(s.getDeclaracion());
 			
@@ -1692,7 +1759,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					Asignacion a = (Asignacion) sen;
 					if(a instanceof AsignacionCompleja) {
 						AsignacionCompleja ac = (AsignacionCompleja) a;
-						checkAsignacionesVariablesRegistroAux(ac,variables,registros,nombresRegistros);
+						checkAsignacionesVariablesRegistroAux(ac,variables,registros,nombresRegistros, funcionesTipadas);
 					}
 				}
 

@@ -219,7 +219,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		}
 	}
 	
-	protected int asignacionEntero(List<valor> valores, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros) {
+	protected int asignacionEntero(List<valor> valores, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,HashMap<Integer,String>> funcionesTipadas) {
 		List<valor> valoresProblem = new ArrayList<valor>();
 		for(valor v: valores) {
 			if(!(v instanceof NumeroEntero)) {
@@ -259,6 +259,15 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 						}
 					}
 				}
+				else if(v instanceof LlamadaFuncion) {
+					LlamadaFuncion f = (LlamadaFuncion) v;
+					if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "entero" && funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "real" && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+						return 3;
+					}
+					else if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) == "real" &&  funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+						check = 2;
+					}
+				}
 				else {
 					return 3;
 				}
@@ -268,7 +277,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 	}
 	
 	
-	protected int asignacionLogico(List<valor> valores, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros) {
+	protected int asignacionLogico(List<valor> valores, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,HashMap<Integer,String>> funcionesTipadas) {
 		List<valor> valoresProblem = new ArrayList<valor>();
 		for(valor v: valores) {
 			if(!(v instanceof ValorBooleano)) {
@@ -299,6 +308,12 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 						}
 					}
 				}
+				else if(v instanceof LlamadaFuncion) {
+					LlamadaFuncion f = (LlamadaFuncion) v;
+					if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "logico" && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+						return 3;
+					}
+				}
 				else {
 					return 3;
 				}
@@ -307,7 +322,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		}
 	}
 	
-	protected int asignacionReal(List<valor> valores, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros) {
+	protected int asignacionReal(List<valor> valores, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,HashMap<Integer,String>> funcionesTipadas) {
 		List<valor> valoresProblem = new ArrayList<valor>();
 		for(valor v: valores) {
 			if(!(v instanceof NumeroDecimal) && !(v instanceof NumeroEntero)) {
@@ -338,6 +353,12 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 						}
 					}
 				}
+				else if(v instanceof LlamadaFuncion) {
+					LlamadaFuncion f = (LlamadaFuncion) v;
+					if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "entero" && funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "real" && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+						return 3;
+					}
+				}
 				else {
 					return 3;
 				}
@@ -347,7 +368,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 	}
 	
 	
-	protected int asignacionCadena(List<valor> valores, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros) {
+	protected int asignacionCadena(List<valor> valores, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,HashMap<Integer,String>> funcionesTipadas) {
 		List<valor> valoresProblem = new ArrayList<valor>();
 		for(valor v: valores) {
 			if(!(v instanceof ConstCadena)) {
@@ -378,6 +399,12 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 						}
 					}
 				}
+				else if(v instanceof LlamadaFuncion) {
+					LlamadaFuncion f = (LlamadaFuncion) v;
+					if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "cadena" && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+						return 3;
+					}
+				}
 				else {
 					return 3;
 				}
@@ -386,7 +413,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		}
 	}
 	
-	protected int asignacionCaracter(List<valor> valores, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros) {
+	protected int asignacionCaracter(List<valor> valores, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,HashMap<Integer,String>> funcionesTipadas) {
 		List<valor> valoresProblem = new ArrayList<valor>();
 		for(valor v: valores) {
 			if(!(v instanceof Caracter)) {
@@ -415,6 +442,12 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 								return 3;
 							}
 						}
+					}
+				}
+				else if(v instanceof LlamadaFuncion) {
+					LlamadaFuncion f = (LlamadaFuncion) v;
+					if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "caracter" && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+						return 3;
 					}
 				}
 				else {
