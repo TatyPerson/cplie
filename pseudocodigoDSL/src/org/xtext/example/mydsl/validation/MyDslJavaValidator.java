@@ -544,6 +544,9 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							error("La variable debe haber sido previamente definida", r, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
 						}
 					}
+					if(ac.getComplejo() instanceof ValorVector) {
+						ValorVector v = (ValorVector) ac.getComplejo();
+					}
 					if(ac.getOperador() instanceof VariableID) {
 						VariableID v = (VariableID) ac.getOperador();
 						if(!variables.contains(v.getNombre())) {
