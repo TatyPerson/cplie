@@ -327,7 +327,7 @@ class MyDslGenerator implements IGenerator {
 
 	def toC(ValorVector myValor) {
 		var concat = new String;
-		concat = myValor.nombre_vector.toString + '[' + myValor.elemento.toString + ']';
+		concat = myValor.nombre_vector.toString + '[' + myValor.indice.toString + ']';
 	}
 
 	def toC(CampoRegistro myCampo) {
@@ -338,7 +338,7 @@ class MyDslGenerator implements IGenerator {
 
 	def toC(ValorMatriz myValor) {
 		var concat = new String;
-		concat = myValor.nombre_matriz.toString + '[' + myValor.elemento_i.toString + '][' + myValor.elemento_j.toString +
+		concat = myValor.nombre_matriz.toString + '[' + myValor.indices.get(0).toString + '][' + myValor.indices.get(1).toString +
 			']';
 		return concat;
 	}

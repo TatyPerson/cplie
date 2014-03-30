@@ -4,6 +4,7 @@ package diagramapseudocodigo.impl;
 
 import diagramapseudocodigo.CampoRegistro;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
+import diagramapseudocodigo.Operador;
 import diagramapseudocodigo.ValorVector;
 
 import java.util.Collection;
@@ -30,7 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link diagramapseudocodigo.impl.ValorVectorImpl#getNombre_vector <em>Nombre vector</em>}</li>
  *   <li>{@link diagramapseudocodigo.impl.ValorVectorImpl#getCampo <em>Campo</em>}</li>
- *   <li>{@link diagramapseudocodigo.impl.ValorVectorImpl#getElemento <em>Elemento</em>}</li>
+ *   <li>{@link diagramapseudocodigo.impl.ValorVectorImpl#getIndice <em>Indice</em>}</li>
  * </ul>
  * </p>
  *
@@ -68,24 +69,14 @@ public class ValorVectorImpl extends ValorComplejoImpl implements ValorVector {
 	protected EList<CampoRegistro> campo;
 
 	/**
-	 * The default value of the '{@link #getElemento() <em>Elemento</em>}' attribute.
+	 * The cached value of the '{@link #getIndice() <em>Indice</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getElemento()
+	 * @see #getIndice()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int ELEMENTO_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getElemento() <em>Elemento</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getElemento()
-	 * @generated
-	 * @ordered
-	 */
-	protected int elemento = ELEMENTO_EDEFAULT;
+	protected Operador indice;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -144,8 +135,8 @@ public class ValorVectorImpl extends ValorComplejoImpl implements ValorVector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getElemento() {
-		return elemento;
+	public Operador getIndice() {
+		return indice;
 	}
 
 	/**
@@ -153,11 +144,33 @@ public class ValorVectorImpl extends ValorComplejoImpl implements ValorVector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setElemento(int newElemento) {
-		int oldElemento = elemento;
-		elemento = newElemento;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.VALOR_VECTOR__ELEMENTO, oldElemento, elemento));
+	public NotificationChain basicSetIndice(Operador newIndice, NotificationChain msgs) {
+		Operador oldIndice = indice;
+		indice = newIndice;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.VALOR_VECTOR__INDICE, oldIndice, newIndice);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIndice(Operador newIndice) {
+		if (newIndice != indice) {
+			NotificationChain msgs = null;
+			if (indice != null)
+				msgs = ((InternalEObject)indice).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DiagramapseudocodigoPackage.VALOR_VECTOR__INDICE, null, msgs);
+			if (newIndice != null)
+				msgs = ((InternalEObject)newIndice).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DiagramapseudocodigoPackage.VALOR_VECTOR__INDICE, null, msgs);
+			msgs = basicSetIndice(newIndice, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.VALOR_VECTOR__INDICE, newIndice, newIndice));
 	}
 
 	/**
@@ -170,6 +183,8 @@ public class ValorVectorImpl extends ValorComplejoImpl implements ValorVector {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.VALOR_VECTOR__CAMPO:
 				return ((InternalEList<?>)getCampo()).basicRemove(otherEnd, msgs);
+			case DiagramapseudocodigoPackage.VALOR_VECTOR__INDICE:
+				return basicSetIndice(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -186,8 +201,8 @@ public class ValorVectorImpl extends ValorComplejoImpl implements ValorVector {
 				return getNombre_vector();
 			case DiagramapseudocodigoPackage.VALOR_VECTOR__CAMPO:
 				return getCampo();
-			case DiagramapseudocodigoPackage.VALOR_VECTOR__ELEMENTO:
-				return getElemento();
+			case DiagramapseudocodigoPackage.VALOR_VECTOR__INDICE:
+				return getIndice();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -208,8 +223,8 @@ public class ValorVectorImpl extends ValorComplejoImpl implements ValorVector {
 				getCampo().clear();
 				getCampo().addAll((Collection<? extends CampoRegistro>)newValue);
 				return;
-			case DiagramapseudocodigoPackage.VALOR_VECTOR__ELEMENTO:
-				setElemento((Integer)newValue);
+			case DiagramapseudocodigoPackage.VALOR_VECTOR__INDICE:
+				setIndice((Operador)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -229,8 +244,8 @@ public class ValorVectorImpl extends ValorComplejoImpl implements ValorVector {
 			case DiagramapseudocodigoPackage.VALOR_VECTOR__CAMPO:
 				getCampo().clear();
 				return;
-			case DiagramapseudocodigoPackage.VALOR_VECTOR__ELEMENTO:
-				setElemento(ELEMENTO_EDEFAULT);
+			case DiagramapseudocodigoPackage.VALOR_VECTOR__INDICE:
+				setIndice((Operador)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -248,8 +263,8 @@ public class ValorVectorImpl extends ValorComplejoImpl implements ValorVector {
 				return NOMBRE_VECTOR_EDEFAULT == null ? nombre_vector != null : !NOMBRE_VECTOR_EDEFAULT.equals(nombre_vector);
 			case DiagramapseudocodigoPackage.VALOR_VECTOR__CAMPO:
 				return campo != null && !campo.isEmpty();
-			case DiagramapseudocodigoPackage.VALOR_VECTOR__ELEMENTO:
-				return elemento != ELEMENTO_EDEFAULT;
+			case DiagramapseudocodigoPackage.VALOR_VECTOR__INDICE:
+				return indice != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -266,8 +281,6 @@ public class ValorVectorImpl extends ValorComplejoImpl implements ValorVector {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (nombre_vector: ");
 		result.append(nombre_vector);
-		result.append(", elemento: ");
-		result.append(elemento);
 		result.append(')');
 		return result.toString();
 	}

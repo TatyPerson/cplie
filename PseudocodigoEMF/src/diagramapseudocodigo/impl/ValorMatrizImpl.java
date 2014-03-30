@@ -3,13 +3,20 @@
 package diagramapseudocodigo.impl;
 
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
+import diagramapseudocodigo.Operador;
 import diagramapseudocodigo.ValorMatriz;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,8 +26,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link diagramapseudocodigo.impl.ValorMatrizImpl#getNombre_matriz <em>Nombre matriz</em>}</li>
- *   <li>{@link diagramapseudocodigo.impl.ValorMatrizImpl#getElemento_i <em>Elemento i</em>}</li>
- *   <li>{@link diagramapseudocodigo.impl.ValorMatrizImpl#getElemento_j <em>Elemento j</em>}</li>
+ *   <li>{@link diagramapseudocodigo.impl.ValorMatrizImpl#getIndices <em>Indices</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,44 +54,14 @@ public class ValorMatrizImpl extends ValorComplejoImpl implements ValorMatriz {
 	protected String nombre_matriz = NOMBRE_MATRIZ_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getElemento_i() <em>Elemento i</em>}' attribute.
+	 * The cached value of the '{@link #getIndices() <em>Indices</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getElemento_i()
+	 * @see #getIndices()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int ELEMENTO_I_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getElemento_i() <em>Elemento i</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getElemento_i()
-	 * @generated
-	 * @ordered
-	 */
-	protected int elemento_i = ELEMENTO_I_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getElemento_j() <em>Elemento j</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getElemento_j()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int ELEMENTO_J_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getElemento_j() <em>Elemento j</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getElemento_j()
-	 * @generated
-	 * @ordered
-	 */
-	protected int elemento_j = ELEMENTO_J_EDEFAULT;
+	protected EList<Operador> indices;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -132,8 +108,11 @@ public class ValorMatrizImpl extends ValorComplejoImpl implements ValorMatriz {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getElemento_i() {
-		return elemento_i;
+	public EList<Operador> getIndices() {
+		if (indices == null) {
+			indices = new EObjectContainmentEList<Operador>(Operador.class, this, DiagramapseudocodigoPackage.VALOR_MATRIZ__INDICES);
+		}
+		return indices;
 	}
 
 	/**
@@ -141,32 +120,13 @@ public class ValorMatrizImpl extends ValorComplejoImpl implements ValorMatriz {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setElemento_i(int newElemento_i) {
-		int oldElemento_i = elemento_i;
-		elemento_i = newElemento_i;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.VALOR_MATRIZ__ELEMENTO_I, oldElemento_i, elemento_i));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int getElemento_j() {
-		return elemento_j;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setElemento_j(int newElemento_j) {
-		int oldElemento_j = elemento_j;
-		elemento_j = newElemento_j;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.VALOR_MATRIZ__ELEMENTO_J, oldElemento_j, elemento_j));
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DiagramapseudocodigoPackage.VALOR_MATRIZ__INDICES:
+				return ((InternalEList<?>)getIndices()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -179,10 +139,8 @@ public class ValorMatrizImpl extends ValorComplejoImpl implements ValorMatriz {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.VALOR_MATRIZ__NOMBRE_MATRIZ:
 				return getNombre_matriz();
-			case DiagramapseudocodigoPackage.VALOR_MATRIZ__ELEMENTO_I:
-				return getElemento_i();
-			case DiagramapseudocodigoPackage.VALOR_MATRIZ__ELEMENTO_J:
-				return getElemento_j();
+			case DiagramapseudocodigoPackage.VALOR_MATRIZ__INDICES:
+				return getIndices();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -192,17 +150,16 @@ public class ValorMatrizImpl extends ValorComplejoImpl implements ValorMatriz {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.VALOR_MATRIZ__NOMBRE_MATRIZ:
 				setNombre_matriz((String)newValue);
 				return;
-			case DiagramapseudocodigoPackage.VALOR_MATRIZ__ELEMENTO_I:
-				setElemento_i((Integer)newValue);
-				return;
-			case DiagramapseudocodigoPackage.VALOR_MATRIZ__ELEMENTO_J:
-				setElemento_j((Integer)newValue);
+			case DiagramapseudocodigoPackage.VALOR_MATRIZ__INDICES:
+				getIndices().clear();
+				getIndices().addAll((Collection<? extends Operador>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -219,11 +176,8 @@ public class ValorMatrizImpl extends ValorComplejoImpl implements ValorMatriz {
 			case DiagramapseudocodigoPackage.VALOR_MATRIZ__NOMBRE_MATRIZ:
 				setNombre_matriz(NOMBRE_MATRIZ_EDEFAULT);
 				return;
-			case DiagramapseudocodigoPackage.VALOR_MATRIZ__ELEMENTO_I:
-				setElemento_i(ELEMENTO_I_EDEFAULT);
-				return;
-			case DiagramapseudocodigoPackage.VALOR_MATRIZ__ELEMENTO_J:
-				setElemento_j(ELEMENTO_J_EDEFAULT);
+			case DiagramapseudocodigoPackage.VALOR_MATRIZ__INDICES:
+				getIndices().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -239,10 +193,8 @@ public class ValorMatrizImpl extends ValorComplejoImpl implements ValorMatriz {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.VALOR_MATRIZ__NOMBRE_MATRIZ:
 				return NOMBRE_MATRIZ_EDEFAULT == null ? nombre_matriz != null : !NOMBRE_MATRIZ_EDEFAULT.equals(nombre_matriz);
-			case DiagramapseudocodigoPackage.VALOR_MATRIZ__ELEMENTO_I:
-				return elemento_i != ELEMENTO_I_EDEFAULT;
-			case DiagramapseudocodigoPackage.VALOR_MATRIZ__ELEMENTO_J:
-				return elemento_j != ELEMENTO_J_EDEFAULT;
+			case DiagramapseudocodigoPackage.VALOR_MATRIZ__INDICES:
+				return indices != null && !indices.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -259,10 +211,6 @@ public class ValorMatrizImpl extends ValorComplejoImpl implements ValorMatriz {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (nombre_matriz: ");
 		result.append(nombre_matriz);
-		result.append(", elemento_i: ");
-		result.append(elemento_i);
-		result.append(", elemento_j: ");
-		result.append(elemento_j);
 		result.append(')');
 		return result.toString();
 	}

@@ -2,6 +2,8 @@
  */
 package diagramapseudocodigo;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -12,8 +14,7 @@ package diagramapseudocodigo;
  * The following features are supported:
  * <ul>
  *   <li>{@link diagramapseudocodigo.ValorMatriz#getNombre_matriz <em>Nombre matriz</em>}</li>
- *   <li>{@link diagramapseudocodigo.ValorMatriz#getElemento_i <em>Elemento i</em>}</li>
- *   <li>{@link diagramapseudocodigo.ValorMatriz#getElemento_j <em>Elemento j</em>}</li>
+ *   <li>{@link diagramapseudocodigo.ValorMatriz#getIndices <em>Indices</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,55 +50,19 @@ public interface ValorMatriz extends ValorComplejo {
 	void setNombre_matriz(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Elemento i</b></em>' attribute.
+	 * Returns the value of the '<em><b>Indices</b></em>' containment reference list.
+	 * The list contents are of type {@link diagramapseudocodigo.Operador}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Elemento i</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Indices</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Elemento i</em>' attribute.
-	 * @see #setElemento_i(int)
-	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getValorMatriz_Elemento_i()
-	 * @model required="true"
+	 * @return the value of the '<em>Indices</em>' containment reference list.
+	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getValorMatriz_Indices()
+	 * @model containment="true" lower="2" upper="2"
 	 * @generated
 	 */
-	int getElemento_i();
-
-	/**
-	 * Sets the value of the '{@link diagramapseudocodigo.ValorMatriz#getElemento_i <em>Elemento i</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Elemento i</em>' attribute.
-	 * @see #getElemento_i()
-	 * @generated
-	 */
-	void setElemento_i(int value);
-
-	/**
-	 * Returns the value of the '<em><b>Elemento j</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Elemento j</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Elemento j</em>' attribute.
-	 * @see #setElemento_j(int)
-	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getValorMatriz_Elemento_j()
-	 * @model required="true"
-	 * @generated
-	 */
-	int getElemento_j();
-
-	/**
-	 * Sets the value of the '{@link diagramapseudocodigo.ValorMatriz#getElemento_j <em>Elemento j</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Elemento j</em>' attribute.
-	 * @see #getElemento_j()
-	 * @generated
-	 */
-	void setElemento_j(int value);
+	EList<Operador> getIndices();
 
 } // ValorMatriz
