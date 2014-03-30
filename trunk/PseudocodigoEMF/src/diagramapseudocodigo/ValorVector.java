@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link diagramapseudocodigo.ValorVector#getNombre_vector <em>Nombre vector</em>}</li>
  *   <li>{@link diagramapseudocodigo.ValorVector#getCampo <em>Campo</em>}</li>
- *   <li>{@link diagramapseudocodigo.ValorVector#getElemento <em>Elemento</em>}</li>
+ *   <li>{@link diagramapseudocodigo.ValorVector#getIndice <em>Indice</em>}</li>
  * </ul>
  * </p>
  *
@@ -66,29 +66,29 @@ public interface ValorVector extends ValorComplejo {
 	EList<CampoRegistro> getCampo();
 
 	/**
-	 * Returns the value of the '<em><b>Elemento</b></em>' attribute.
+	 * Returns the value of the '<em><b>Indice</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Elemento</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Indice</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Elemento</em>' attribute.
-	 * @see #setElemento(int)
-	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getValorVector_Elemento()
-	 * @model required="true"
+	 * @return the value of the '<em>Indice</em>' containment reference.
+	 * @see #setIndice(Operador)
+	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getValorVector_Indice()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	int getElemento();
+	Operador getIndice();
 
 	/**
-	 * Sets the value of the '{@link diagramapseudocodigo.ValorVector#getElemento <em>Elemento</em>}' attribute.
+	 * Sets the value of the '{@link diagramapseudocodigo.ValorVector#getIndice <em>Indice</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Elemento</em>' attribute.
-	 * @see #getElemento()
+	 * @param value the new value of the '<em>Indice</em>' containment reference.
+	 * @see #getIndice()
 	 * @generated
 	 */
-	void setElemento(int value);
+	void setIndice(Operador value);
 
 } // ValorVector

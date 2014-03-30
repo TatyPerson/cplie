@@ -2653,13 +2653,13 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int VALOR_VECTOR__CAMPO = VALOR_COMPLEJO_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Elemento</b></em>' attribute.
+	 * The feature id for the '<em><b>Indice</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALOR_VECTOR__ELEMENTO = VALOR_COMPLEJO_FEATURE_COUNT + 2;
+	int VALOR_VECTOR__INDICE = VALOR_COMPLEJO_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Valor Vector</em>' class.
@@ -2699,22 +2699,13 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int VALOR_MATRIZ__NOMBRE_MATRIZ = VALOR_COMPLEJO_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Elemento i</b></em>' attribute.
+	 * The feature id for the '<em><b>Indices</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALOR_MATRIZ__ELEMENTO_I = VALOR_COMPLEJO_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Elemento j</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALOR_MATRIZ__ELEMENTO_J = VALOR_COMPLEJO_FEATURE_COUNT + 2;
+	int VALOR_MATRIZ__INDICES = VALOR_COMPLEJO_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Valor Matriz</em>' class.
@@ -2723,7 +2714,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALOR_MATRIZ_FEATURE_COUNT = VALOR_COMPLEJO_FEATURE_COUNT + 3;
+	int VALOR_MATRIZ_FEATURE_COUNT = VALOR_COMPLEJO_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Valor Matriz</em>' class.
@@ -4279,15 +4270,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EReference getValorVector_Campo();
 
 	/**
-	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.ValorVector#getElemento <em>Elemento</em>}'.
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.ValorVector#getIndice <em>Indice</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Elemento</em>'.
-	 * @see diagramapseudocodigo.ValorVector#getElemento()
+	 * @return the meta object for the containment reference '<em>Indice</em>'.
+	 * @see diagramapseudocodigo.ValorVector#getIndice()
 	 * @see #getValorVector()
 	 * @generated
 	 */
-	EAttribute getValorVector_Elemento();
+	EReference getValorVector_Indice();
 
 	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.ValorMatriz <em>Valor Matriz</em>}'.
@@ -4311,26 +4302,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EAttribute getValorMatriz_Nombre_matriz();
 
 	/**
-	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.ValorMatriz#getElemento_i <em>Elemento i</em>}'.
+	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.ValorMatriz#getIndices <em>Indices</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Elemento i</em>'.
-	 * @see diagramapseudocodigo.ValorMatriz#getElemento_i()
+	 * @return the meta object for the containment reference list '<em>Indices</em>'.
+	 * @see diagramapseudocodigo.ValorMatriz#getIndices()
 	 * @see #getValorMatriz()
 	 * @generated
 	 */
-	EAttribute getValorMatriz_Elemento_i();
-
-	/**
-	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.ValorMatriz#getElemento_j <em>Elemento j</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Elemento j</em>'.
-	 * @see diagramapseudocodigo.ValorMatriz#getElemento_j()
-	 * @see #getValorMatriz()
-	 * @generated
-	 */
-	EAttribute getValorMatriz_Elemento_j();
+	EReference getValorMatriz_Indices();
 
 	/**
 	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Vector#getNombre <em>Nombre</em>}'.
@@ -5695,12 +5675,12 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EReference VALOR_VECTOR__CAMPO = eINSTANCE.getValorVector_Campo();
 
 		/**
-		 * The meta object literal for the '<em><b>Elemento</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Indice</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute VALOR_VECTOR__ELEMENTO = eINSTANCE.getValorVector_Elemento();
+		EReference VALOR_VECTOR__INDICE = eINSTANCE.getValorVector_Indice();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.ValorMatrizImpl <em>Valor Matriz</em>}' class.
@@ -5721,20 +5701,12 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EAttribute VALOR_MATRIZ__NOMBRE_MATRIZ = eINSTANCE.getValorMatriz_Nombre_matriz();
 
 		/**
-		 * The meta object literal for the '<em><b>Elemento i</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Indices</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute VALOR_MATRIZ__ELEMENTO_I = eINSTANCE.getValorMatriz_Elemento_i();
-
-		/**
-		 * The meta object literal for the '<em><b>Elemento j</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute VALOR_MATRIZ__ELEMENTO_J = eINSTANCE.getValorMatriz_Elemento_j();
+		EReference VALOR_MATRIZ__INDICES = eINSTANCE.getValorMatriz_Indices();
 
 		/**
 		 * The meta object literal for the '<em><b>Nombre</b></em>' attribute feature.

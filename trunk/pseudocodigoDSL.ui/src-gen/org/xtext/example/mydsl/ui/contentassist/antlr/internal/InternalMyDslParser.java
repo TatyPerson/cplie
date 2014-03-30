@@ -35592,8 +35592,8 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
     static final String DFA3_eofS =
         "\13\uffff\2\20\4\uffff\3\20\4\uffff\3\20";
     static final String DFA3_minS =
-        "\1\4\2\10\3\uffff\1\4\1\6\3\uffff\2\4\1\6\1\67\1\4\1\uffff\3\4\1"+
-        "\6\1\4\1\6\1\67\3\4";
+        "\1\4\2\10\3\uffff\1\4\1\6\3\uffff\2\4\1\6\1\67\1\4\1\uffff\3\4"+
+        "\1\6\1\4\1\6\1\67\3\4";
     static final String DFA3_maxS =
         "\1\130\2\71\3\uffff\1\5\1\41\3\uffff\2\140\1\6\1\67\1\6\1\uffff"+
         "\3\140\1\41\2\6\1\67\3\140";
@@ -35699,8 +35699,8 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
     static final String DFA8_specialS =
         "\30\uffff}>";
     static final String[] DFA8_transitionS = {
-            "\1\1\1\2\1\5\1\11\1\uffff\1\3\4\uffff\11\12\7\uffff\2\10\1\uffff"+
-            "\1\4\21\uffff\1\7\4\uffff\1\6",
+            "\1\1\1\2\1\5\1\11\1\uffff\1\3\4\uffff\11\12\7\uffff\2\10\1"+
+            "\uffff\1\4\21\uffff\1\7\4\uffff\1\6",
             "\6\13\15\uffff\5\13\2\uffff\16\13\6\uffff\1\13\1\16\2\13\1"+
             "\15\1\uffff\1\14\3\uffff\1\13\3\uffff\1\13\5\uffff\1\13\1\uffff"+
             "\1\13\1\uffff\23\13\1\uffff\3\13",
@@ -35843,8 +35843,8 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
     static final String DFA55_specialS =
         "\6\uffff}>";
     static final String[] DFA55_transitionS = {
-            "\1\1\1\2\2\4\1\uffff\1\4\24\uffff\2\4\1\uffff\1\4\26\uffff\1"+
-            "\4\22\uffff\3\3\2\uffff\1\3\2\uffff\1\3\1\uffff\1\3\2\uffff"+
+            "\1\1\1\2\2\4\1\uffff\1\4\24\uffff\2\4\1\uffff\1\4\26\uffff"+
+            "\1\4\22\uffff\3\3\2\uffff\1\3\2\uffff\1\3\1\uffff\1\3\2\uffff"+
             "\1\3\1\4\2\uffff\1\4",
             "\1\5\43\uffff\3\3\4\uffff\1\3\2\uffff\1\3\1\uffff\2\3\12\uffff"+
             "\1\4",
@@ -35901,8 +35901,8 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
     static final String DFA57_specialS =
         "\6\uffff}>";
     static final String[] DFA57_transitionS = {
-            "\1\2\1\3\2\1\1\uffff\1\1\24\uffff\2\1\1\uffff\1\1\26\uffff\1"+
-            "\1\22\uffff\3\4\2\uffff\1\4\2\uffff\1\4\1\uffff\1\4\2\uffff"+
+            "\1\2\1\3\2\1\1\uffff\1\1\24\uffff\2\1\1\uffff\1\1\26\uffff"+
+            "\1\1\22\uffff\3\4\2\uffff\1\4\2\uffff\1\4\1\uffff\1\4\2\uffff"+
             "\1\4\1\1\2\uffff\1\1",
             "",
             "\1\5\43\uffff\3\4\4\uffff\1\4\2\uffff\1\4\1\uffff\2\4\12\uffff"+
