@@ -306,15 +306,13 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="campo" upperBound="-1"
         eType="#//CampoRegistro" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="elemento" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="indice" lowerBound="1"
+        eType="#//Operador" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ValorMatriz" eSuperTypes="#//ValorComplejo">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre_matriz" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="elemento_i" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="elemento_j" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="indices" lowerBound="2"
+        upperBound="2" eType="#//Operador" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

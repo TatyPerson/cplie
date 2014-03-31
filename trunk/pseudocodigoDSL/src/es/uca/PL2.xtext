@@ -55,13 +55,14 @@ ValorComplejo returns ValorComplejo:
 	ValorRegistro | ValorVector | ValorMatriz;
 	
 ValorMatriz returns ValorMatriz:
-	nombre_matriz=EString '['elemento_i=EInt']''['elemento_j=EInt']';
+	nombre_matriz=EString'['indices+=Operador']['indices+=Operador']';
 
 ValorRegistro returns ValorRegistro:
 	nombre_registro=EString '.' (campo+=CampoRegistro ('.' campo+=CampoRegistro)* );
 	
 ValorVector returns ValorVector:
-	nombre_vector=EString '['elemento=EInt']' ('.' (campo+=CampoRegistro) )?;
+	nombre_vector=EString'['indice=Operador']';
+	//('.' (campo+=CampoRegistro) )?
 	
 CampoRegistro returns CampoRegistro:
 	nombre_campo=EString;
@@ -79,10 +80,10 @@ Constantes returns Constantes:
 	variable=Variable '=' valor=valor;
 
 Vector returns Vector:
-	'vector' ' [' valor=valor '] ' 'de ' tipo=Tipo ' : ' nombre=EString;
+	'vector' ' ['valor=valor'] ' 'de ' tipo=Tipo ' : ' nombre=EString;
 
 Matriz returns Matriz:
-	'matriz' ' [' valor+=valor '][' valor+=valor '] ' 'de ' tipo=Tipo ' : ' nombre=EString;
+	'matriz' ' ['valor+=valor']['valor+=valor'] ' 'de ' tipo=Tipo ' : ' nombre=EString;
 	
 
 Registro returns Registro:

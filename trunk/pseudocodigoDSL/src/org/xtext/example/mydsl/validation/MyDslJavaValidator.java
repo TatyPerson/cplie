@@ -546,6 +546,13 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					}
 					if(ac.getComplejo() instanceof ValorVector) {
 						ValorVector v = (ValorVector) ac.getComplejo();
+						System.out.println("Soy un vector");
+						if(v.getIndice() instanceof VariableID) {
+							VariableID var = (VariableID) v.getIndice();
+							if(!variables.contains(var.getNombre())) {
+								error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+							}
+						}
 					}
 					if(ac.getOperador() instanceof VariableID) {
 						VariableID v = (VariableID) ac.getOperador();
@@ -1101,6 +1108,22 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 									}
 								}
 							}
+						}
+						else if(an.getOperador() instanceof ValorVector) {
+							ValorVector v = (ValorVector) an.getOperador();
+							if(v.getIndice() instanceof VariableID) {
+								VariableID var = (VariableID) v;
+								if(variables.get(var.getNombre()) != "entero" && variables.get(var.getNombre()) != "real" && variables.containsKey(var.getNombre())) {
+									error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+								}
+								else if(variables.get(var.getNombre()) == "real" && variables.containsKey(var.getNombre())) {
+									warning("Posible pérdida de precisión al asignar un real a un entero", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+								}
+							}
+						}
+						else if(an.getOperador() instanceof ValorMatriz) {
+							ValorMatriz m = (ValorMatriz) an.getOperador();
+							System.out.println("Hola soy una matriz");
 						}
 						else {
 							error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);

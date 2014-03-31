@@ -1046,50 +1046,46 @@ ruleValorMatriz returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getValorMatrizAccess().getElemento_iEIntParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getValorMatrizAccess().getIndicesOperadorParserRuleCall_2_0()); 
 	    }
-		lv_elemento_i_2_0=ruleEInt		{
+		lv_indices_2_0=ruleOperador		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getValorMatrizRule());
 	        }
-       		set(
+       		add(
        			$current, 
-       			"elemento_i",
-        		lv_elemento_i_2_0, 
-        		"EInt");
+       			"indices",
+        		lv_indices_2_0, 
+        		"Operador");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_3=']' 
+)	otherlv_3='][' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getValorMatrizAccess().getRightSquareBracketKeyword_3());
-    }
-	otherlv_4='[' 
-    {
-    	newLeafNode(otherlv_4, grammarAccess.getValorMatrizAccess().getLeftSquareBracketKeyword_4());
+    	newLeafNode(otherlv_3, grammarAccess.getValorMatrizAccess().getRightSquareBracketLeftSquareBracketKeyword_3());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getValorMatrizAccess().getElemento_jEIntParserRuleCall_5_0()); 
+	        newCompositeNode(grammarAccess.getValorMatrizAccess().getIndicesOperadorParserRuleCall_4_0()); 
 	    }
-		lv_elemento_j_5_0=ruleEInt		{
+		lv_indices_4_0=ruleOperador		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getValorMatrizRule());
 	        }
-       		set(
+       		add(
        			$current, 
-       			"elemento_j",
-        		lv_elemento_j_5_0, 
-        		"EInt");
+       			"indices",
+        		lv_indices_4_0, 
+        		"Operador");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_6=']' 
+)	otherlv_5=']' 
     {
-    	newLeafNode(otherlv_6, grammarAccess.getValorMatrizAccess().getRightSquareBracketKeyword_6());
+    	newLeafNode(otherlv_5, grammarAccess.getValorMatrizAccess().getRightSquareBracketKeyword_5());
     }
 )
 ;
@@ -1220,17 +1216,17 @@ ruleValorVector returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getValorVectorAccess().getElementoEIntParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getValorVectorAccess().getIndiceOperadorParserRuleCall_2_0()); 
 	    }
-		lv_elemento_2_0=ruleEInt		{
+		lv_indice_2_0=ruleOperador		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getValorVectorRule());
 	        }
        		set(
        			$current, 
-       			"elemento",
-        		lv_elemento_2_0, 
-        		"EInt");
+       			"indice",
+        		lv_indice_2_0, 
+        		"Operador");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1239,29 +1235,7 @@ ruleValorVector returns [EObject current=null]
     {
     	newLeafNode(otherlv_3, grammarAccess.getValorVectorAccess().getRightSquareBracketKeyword_3());
     }
-(	otherlv_4='.' 
-    {
-    	newLeafNode(otherlv_4, grammarAccess.getValorVectorAccess().getFullStopKeyword_4_0());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getValorVectorAccess().getCampoCampoRegistroParserRuleCall_4_1_0()); 
-	    }
-		lv_campo_5_0=ruleCampoRegistro		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getValorVectorRule());
-	        }
-       		add(
-       			$current, 
-       			"campo",
-        		lv_campo_5_0, 
-        		"CampoRegistro");
-	        afterParserOrEnumRuleCall();
-	    }
-
 )
-))?)
 ;
 
 
