@@ -607,17 +607,16 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNombre_vectorAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNombre_vectorEStringParserRuleCall_0_0 = (RuleCall)cNombre_vectorAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cLeftSquareBracketKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cIndiceAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cIndiceOperadorParserRuleCall_1_1_0 = (RuleCall)cIndiceAssignment_1_1.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
+		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cIndiceAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cIndiceOperadorParserRuleCall_2_0 = (RuleCall)cIndiceAssignment_2.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//ValorVector:
-		//	nombre_vector=EString ("[" indice=Operador "]");
+		//	nombre_vector=EString "[" indice=Operador "]";
 		public ParserRule getRule() { return rule; }
 
-		//nombre_vector=EString ("[" indice=Operador "]")
+		//nombre_vector=EString "[" indice=Operador "]"
 		public Group getGroup() { return cGroup; }
 
 		//nombre_vector=EString
@@ -626,20 +625,17 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//EString
 		public RuleCall getNombre_vectorEStringParserRuleCall_0_0() { return cNombre_vectorEStringParserRuleCall_0_0; }
 
-		//"[" indice=Operador "]"
-		public Group getGroup_1() { return cGroup_1; }
-
 		//"["
-		public Keyword getLeftSquareBracketKeyword_1_0() { return cLeftSquareBracketKeyword_1_0; }
+		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
 
 		//indice=Operador
-		public Assignment getIndiceAssignment_1_1() { return cIndiceAssignment_1_1; }
+		public Assignment getIndiceAssignment_2() { return cIndiceAssignment_2; }
 
 		//Operador
-		public RuleCall getIndiceOperadorParserRuleCall_1_1_0() { return cIndiceOperadorParserRuleCall_1_1_0; }
+		public RuleCall getIndiceOperadorParserRuleCall_2_0() { return cIndiceOperadorParserRuleCall_2_0; }
 
 		//"]"
-		public Keyword getRightSquareBracketKeyword_1_2() { return cRightSquareBracketKeyword_1_2; }
+		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
 	}
 
 	public class CampoRegistroElements extends AbstractParserRuleElementFinder {
@@ -3016,7 +3012,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ValorVector:
-	//	nombre_vector=EString ("[" indice=Operador "]");
+	//	nombre_vector=EString "[" indice=Operador "]";
 	public ValorVectorElements getValorVectorAccess() {
 		return (pValorVector != null) ? pValorVector : (pValorVector = new ValorVectorElements());
 	}

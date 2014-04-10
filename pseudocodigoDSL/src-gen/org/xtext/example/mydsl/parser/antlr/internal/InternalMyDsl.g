@@ -1209,14 +1209,14 @@ ruleValorVector returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_1='[' 
+)	otherlv_1='[' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getValorVectorAccess().getLeftSquareBracketKeyword_1_0());
+    	newLeafNode(otherlv_1, grammarAccess.getValorVectorAccess().getLeftSquareBracketKeyword_1());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getValorVectorAccess().getIndiceOperadorParserRuleCall_1_1_0()); 
+	        newCompositeNode(grammarAccess.getValorVectorAccess().getIndiceOperadorParserRuleCall_2_0()); 
 	    }
 		lv_indice_2_0=ruleOperador		{
 	        if ($current==null) {
@@ -1233,9 +1233,9 @@ ruleValorVector returns [EObject current=null]
 )
 )	otherlv_3=']' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getValorVectorAccess().getRightSquareBracketKeyword_1_2());
+    	newLeafNode(otherlv_3, grammarAccess.getValorVectorAccess().getRightSquareBracketKeyword_3());
     }
-))
+)
 ;
 
 
