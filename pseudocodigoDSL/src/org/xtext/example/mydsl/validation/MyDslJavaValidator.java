@@ -1320,6 +1320,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	protected void checkAsignacionesInicio(Codigo c) {
 		//Preparamos las variables de tipo registro para permitir asignación
 		Map<String,HashMap<String,String>> registros = new HashMap<String,HashMap<String,String>>();
+		Map<String,String> vectores = new HashMap<String,String>();
 		List<String> nombresRegistros = new ArrayList<String>();
 		for(TipoComplejo t: c.getTipocomplejo()) {
 			if(t instanceof Registro) {
@@ -1332,6 +1333,18 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				}
 				registros.put(r.getNombre(), campos);
 				nombresRegistros.add(r.getNombre());
+			}
+			if(t instanceof Vector) {
+				Vector v = (Vector) t;
+				if(v.getTipo() instanceof TipoExistente) {
+					TipoExistente tipo = (TipoExistente) v.getTipo();
+					vectores.put(v.getNombre(), tipo.getTipo().getName());
+				}
+				else if(v.getTipo() instanceof TipoDefinido) {
+					TipoDefinido tipo = (TipoDefinido) v.getTipo();
+					vectores.put(v.getNombre(), tipo.getTipo());
+				}
+				
 			}
 		}
 		//Registramos todas las variables declaradas con sus respectivos tipos

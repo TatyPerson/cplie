@@ -55,13 +55,13 @@ ValorComplejo returns ValorComplejo:
 	ValorRegistro | ValorVector | ValorMatriz;
 	
 ValorMatriz returns ValorMatriz:
-	nombre_matriz=EString'['indices+=Operador']['indices+=Operador']';
+	(nombre_matriz=EString)'['(indices+=Operador)']['(indices+=Operador)']';
 
 ValorRegistro returns ValorRegistro:
 	nombre_registro=EString '.' (campo+=CampoRegistro ('.' campo+=CampoRegistro)* );
 	
 ValorVector returns ValorVector:
-	nombre_vector=EString'['indice=Operador']';
+	(nombre_vector=EString)'['indice=Operador']';
 	//('.' (campo+=CampoRegistro) )?
 	
 CampoRegistro returns CampoRegistro:
