@@ -26,6 +26,7 @@ import diagramapseudocodigo.Subrango;
 import diagramapseudocodigo.TipoComplejo;
 import diagramapseudocodigo.ValorBooleano;
 import diagramapseudocodigo.ValorRegistro;
+import diagramapseudocodigo.ValorVector;
 import diagramapseudocodigo.Variable;
 import diagramapseudocodigo.VariableID;
 import diagramapseudocodigo.Vector;
@@ -219,7 +220,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		}
 	}
 	
-	protected int asignacionEntero(List<valor> valores, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,HashMap<Integer,String>> funcionesTipadas) {
+	protected int asignacionEntero(List<valor> valores, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,HashMap<Integer,String>> funcionesTipadas, Map<String,String> vectores) {
 		List<valor> valoresProblem = new ArrayList<valor>();
 		for(valor v: valores) {
 			if(!(v instanceof NumeroEntero)) {
@@ -265,6 +266,15 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 						return 3;
 					}
 					else if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) == "real" &&  funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+						check = 2;
+					}
+				}
+				else if(v instanceof ValorVector) {
+					ValorVector vector = (ValorVector) v;
+					if(vectores.get(variables.get(vector.getNombre_vector())) != "entero" && vectores.get(variables.get(vector.getNombre_vector())) != "real") {
+						return 3;
+					}
+					else if(vectores.get(variables.get(vector.getNombre_vector())) == "real") {
 						check = 2;
 					}
 				}

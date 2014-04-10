@@ -3362,11 +3362,11 @@ protected class ValorRegistro_CampoAssignment_2_1_1 extends AssignmentToken  {
 /************ begin Rule ValorVector ****************
  *
  * ValorVector:
- * 	nombre_vector=EString ("[" indice=Operador "]");
+ * 	nombre_vector=EString "[" indice=Operador "]";
  *
  **/
 
-// nombre_vector=EString ("[" indice=Operador "]")
+// nombre_vector=EString "[" indice=Operador "]"
 protected class ValorVector_Group extends GroupToken {
 	
 	public ValorVector_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3381,7 +3381,7 @@ protected class ValorVector_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new ValorVector_Group_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new ValorVector_RightSquareBracketKeyword_3(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -3428,38 +3428,16 @@ protected class ValorVector_Nombre_vectorAssignment_0 extends AssignmentToken  {
 
 }
 
-// "[" indice=Operador "]"
-protected class ValorVector_Group_1 extends GroupToken {
-	
-	public ValorVector_Group_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Group getGrammarElement() {
-		return grammarAccess.getValorVectorAccess().getGroup_1();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new ValorVector_RightSquareBracketKeyword_1_2(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-}
-
 // "["
-protected class ValorVector_LeftSquareBracketKeyword_1_0 extends KeywordToken  {
+protected class ValorVector_LeftSquareBracketKeyword_1 extends KeywordToken  {
 	
-	public ValorVector_LeftSquareBracketKeyword_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public ValorVector_LeftSquareBracketKeyword_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getValorVectorAccess().getLeftSquareBracketKeyword_1_0();
+		return grammarAccess.getValorVectorAccess().getLeftSquareBracketKeyword_1();
 	}
 
     @Override
@@ -3473,15 +3451,15 @@ protected class ValorVector_LeftSquareBracketKeyword_1_0 extends KeywordToken  {
 }
 
 // indice=Operador
-protected class ValorVector_IndiceAssignment_1_1 extends AssignmentToken  {
+protected class ValorVector_IndiceAssignment_2 extends AssignmentToken  {
 	
-	public ValorVector_IndiceAssignment_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public ValorVector_IndiceAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getValorVectorAccess().getIndiceAssignment_1_1();
+		return grammarAccess.getValorVectorAccess().getIndiceAssignment_2();
 	}
 
     @Override
@@ -3500,7 +3478,7 @@ protected class ValorVector_IndiceAssignment_1_1 extends AssignmentToken  {
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getOperadorRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getValorVectorAccess().getIndiceOperadorParserRuleCall_1_1_0(); 
+				element = grammarAccess.getValorVectorAccess().getIndiceOperadorParserRuleCall_2_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -3512,34 +3490,33 @@ protected class ValorVector_IndiceAssignment_1_1 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new ValorVector_LeftSquareBracketKeyword_1_0(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new ValorVector_LeftSquareBracketKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
 
 // "]"
-protected class ValorVector_RightSquareBracketKeyword_1_2 extends KeywordToken  {
+protected class ValorVector_RightSquareBracketKeyword_3 extends KeywordToken  {
 	
-	public ValorVector_RightSquareBracketKeyword_1_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public ValorVector_RightSquareBracketKeyword_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getValorVectorAccess().getRightSquareBracketKeyword_1_2();
+		return grammarAccess.getValorVectorAccess().getRightSquareBracketKeyword_3();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new ValorVector_IndiceAssignment_1_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new ValorVector_IndiceAssignment_2(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
 
 }
-
 
 
 /************ end Rule ValorVector ****************/

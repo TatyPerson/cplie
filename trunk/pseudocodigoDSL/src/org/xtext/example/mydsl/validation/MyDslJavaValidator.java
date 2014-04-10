@@ -1056,7 +1056,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			}
 	}
 	//Función auxiliar para evitar la repetición de código (DRY)
-	private void checkAsignacionesAux(AsignacionNormal an, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,HashMap<Integer,String>> funcionesTipadas) {
+	private void checkAsignacionesAux(AsignacionNormal an, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,HashMap<Integer,String>> funcionesTipadas, Map<String,String> vectores) {
 					if(variables.get(an.getLvalue()) == "entero" && !(an.getOperador() instanceof NumeroEntero)) {
 						if(an.getOperador() instanceof NumeroDecimal) {
 							warning("Posible pérdida de precisión al asignar un real a un entero", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
@@ -1064,7 +1064,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						else if(an.getOperador() instanceof operacion) {
 							operacion o = (operacion) an.getOperador();
 							List<valor> valores = funciones.registrarValoresOperacion(o);
-							switch(funciones.asignacionEntero(valores, variables, registros, nombresRegistros, funcionesTipadas)) {
+							switch(funciones.asignacionEntero(valores, variables, registros, nombresRegistros, funcionesTipadas, vectores)) {
 								case 1:
 									break;
 								case 2: 
@@ -1111,14 +1111,11 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						}
 						else if(an.getOperador() instanceof ValorVector) {
 							ValorVector v = (ValorVector) an.getOperador();
-							if(v.getIndice() instanceof VariableID) {
-								VariableID var = (VariableID) v;
-								if(variables.get(var.getNombre()) != "entero" && variables.get(var.getNombre()) != "real" && variables.containsKey(var.getNombre())) {
-									error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
-								}
-								else if(variables.get(var.getNombre()) == "real" && variables.containsKey(var.getNombre())) {
-									warning("Posible pérdida de precisión al asignar un real a un entero", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
-								}
+							if(vectores.get(variables.get(v.getNombre_vector())) != "entero" && vectores.get(variables.get(v.getNombre_vector())) != "real") {
+								error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+							}
+							else if(vectores.get(variables.get(v.getNombre_vector())) == "real") {
+								warning("Posible pérdida de precisión al asignar un real a un entero", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 							}
 						}
 						else if(an.getOperador() instanceof ValorMatriz) {
@@ -1334,7 +1331,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				registros.put(r.getNombre(), campos);
 				nombresRegistros.add(r.getNombre());
 			}
-			if(t instanceof Vector) {
+			else if(t instanceof Vector) {
 				Vector v = (Vector) t;
 				if(v.getTipo() instanceof TipoExistente) {
 					TipoExistente tipo = (TipoExistente) v.getTipo();
@@ -1375,7 +1372,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				Asignacion a = (Asignacion) s;
 				if(a instanceof AsignacionNormal) {
 					AsignacionNormal an = (AsignacionNormal) a;
-					checkAsignacionesAux(an, variables, registros, nombresRegistros, funcionesTipadas);
+					checkAsignacionesAux(an, variables, registros, nombresRegistros, funcionesTipadas, vectores);
 				}
 			}
 		}
@@ -1387,6 +1384,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	protected void checkAsignacionesSubproceso(Codigo c) {
 		//Preparamos las variables de tipo registro para permitir asignación
 		Map<String,HashMap<String,String>> registros = new HashMap<String,HashMap<String,String>>();
+		Map<String,String> vectores = new HashMap<String,String>();
 		List<String> nombresRegistros = new ArrayList<String>();
 		for(TipoComplejo t: c.getTipocomplejo()) {
 			if(t instanceof Registro) {
@@ -1399,6 +1397,18 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				}
 				registros.put(r.getNombre(), campos);
 				nombresRegistros.add(r.getNombre());
+			}
+			else if(t instanceof Vector) {
+				Vector v = (Vector) t;
+				if(v.getTipo() instanceof TipoExistente) {
+					TipoExistente tipo = (TipoExistente) v.getTipo();
+					vectores.put(v.getNombre(), tipo.getTipo().getName());
+				}
+				else if(v.getTipo() instanceof TipoDefinido) {
+					TipoDefinido tipo = (TipoDefinido) v.getTipo();
+					vectores.put(v.getNombre(), tipo.getTipo());
+				}
+				
 			}
 		}
 		
@@ -1437,7 +1447,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					Asignacion a = (Asignacion) sen;
 					if(a instanceof AsignacionNormal) {
 						AsignacionNormal an = (AsignacionNormal) a;
-						checkAsignacionesAux(an, variables, registros, nombresRegistros, funcionesTipadas);
+						checkAsignacionesAux(an, variables, registros, nombresRegistros, funcionesTipadas, vectores);
 					}
 				}
 			}
@@ -1446,7 +1456,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	//Función auxiliar para cumplir el principio DRY.
-	private void checkAsignacionesVariablesRegistroAux(AsignacionCompleja a, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,HashMap<Integer,String>> funcionesTipadas) {
+	private void checkAsignacionesVariablesRegistroAux(AsignacionCompleja a, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,HashMap<Integer,String>> funcionesTipadas, Map<String,String> vectores) {
 		if(a.getComplejo() instanceof ValorRegistro) {
 			ValorRegistro r = (ValorRegistro) a.getComplejo();
 			for(CampoRegistro campo: r.getCampo()) {
@@ -1457,7 +1467,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					else if(a.getOperador() instanceof operacion) {
 						operacion o = (operacion) a.getOperador();
 						List<valor> valores = funciones.registrarValoresOperacion(o);
-						switch(funciones.asignacionEntero(valores, variables, registros, nombresRegistros, funcionesTipadas)) {
+						switch(funciones.asignacionEntero(valores, variables, registros, nombresRegistros, funcionesTipadas, vectores)) {
 							case 1:
 								break;
 							case 2: 
@@ -1700,6 +1710,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		//Preparamos todos los campos clasificados por el nombre del registro (utilizado como identificador)
 		Map<String,HashMap<String,String>> registros = new HashMap<String,HashMap<String,String>>();
 		List<String> nombresRegistros = new ArrayList<String>();
+		Map<String,String> vectores = new HashMap<String,String>();
 		for(TipoComplejo t: c.getTipocomplejo()) {
 			if(t instanceof Registro) {
 				Registro r = (Registro) t;
@@ -1711,6 +1722,18 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				}
 				registros.put(r.getNombre(), campos);
 				nombresRegistros.add(r.getNombre());
+			}
+			else if(t instanceof Vector) {
+				Vector v = (Vector) t;
+				if(v.getTipo() instanceof TipoExistente) {
+					TipoExistente tipo = (TipoExistente) v.getTipo();
+					vectores.put(v.getNombre(), tipo.getTipo().getName());
+				}
+				else if(v.getTipo() instanceof TipoDefinido) {
+					TipoDefinido tipo = (TipoDefinido) v.getTipo();
+					vectores.put(v.getNombre(), tipo.getTipo());
+				}
+				
 			}
 		}
 			
@@ -1739,7 +1762,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		for(Sentencias s: c.getTiene().getTiene()) {
 			if(s instanceof AsignacionCompleja) {
 				AsignacionCompleja a = (AsignacionCompleja) s;
-				checkAsignacionesVariablesRegistroAux(a,variables,registros, nombresRegistros, funcionesTipadas);
+				checkAsignacionesVariablesRegistroAux(a,variables,registros, nombresRegistros, funcionesTipadas, vectores);
 			}
 		}
 	}
@@ -1750,6 +1773,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		//Preparamos todos los campos clasificados por el nombre del registro (utilizado como identificador)
 		Map<String,HashMap<String,String>> registros = new HashMap<String,HashMap<String,String>>();
 		List<String> nombresRegistros = new ArrayList<String>();
+		Map<String,String> vectores = new HashMap<String,String>();
 		for(TipoComplejo t: c.getTipocomplejo()) {
 			if(t instanceof Registro) {
 				Registro r = (Registro) t;
@@ -1761,6 +1785,18 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				}
 				registros.put(r.getNombre(), campos);
 				nombresRegistros.add(r.getNombre());
+			}
+			else if(t instanceof Vector) {
+				Vector v = (Vector) t;
+				if(v.getTipo() instanceof TipoExistente) {
+					TipoExistente tipo = (TipoExistente) v.getTipo();
+					vectores.put(v.getNombre(), tipo.getTipo().getName());
+				}
+				else if(v.getTipo() instanceof TipoDefinido) {
+					TipoDefinido tipo = (TipoDefinido) v.getTipo();
+					vectores.put(v.getNombre(), tipo.getTipo());
+				}
+				
 			}
 		}
 		
@@ -1798,7 +1834,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					Asignacion a = (Asignacion) sen;
 					if(a instanceof AsignacionCompleja) {
 						AsignacionCompleja ac = (AsignacionCompleja) a;
-						checkAsignacionesVariablesRegistroAux(ac,variables,registros,nombresRegistros, funcionesTipadas);
+						checkAsignacionesVariablesRegistroAux(ac,variables,registros,nombresRegistros, funcionesTipadas, vectores);
 					}
 				}
 
