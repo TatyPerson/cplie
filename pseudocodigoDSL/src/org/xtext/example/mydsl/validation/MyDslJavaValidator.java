@@ -1177,6 +1177,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								}
 							}
 						}
+						else if(an.getOperador() instanceof ValorVector) {
+							ValorVector v = (ValorVector) an.getOperador();
+							if(vectores.get(variables.get(v.getNombre_vector())) != "logico") {
+								error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+							}
+						}
 						else {
 							error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 						}
@@ -1218,6 +1224,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 										error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 									}
 								}
+							}
+						}
+						else if(an.getOperador() instanceof ValorVector) {
+							ValorVector v = (ValorVector) an.getOperador();
+							if(vectores.get(variables.get(v.getNombre_vector())) != "entero" && vectores.get(variables.get(v.getNombre_vector())) != "real") {
+								error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 							}
 						}
 						else {
@@ -1263,6 +1275,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								}
 							}
 						}
+						else if(an.getOperador() instanceof ValorVector) {
+							ValorVector v = (ValorVector) an.getOperador();
+							if(vectores.get(variables.get(v.getNombre_vector())) != "cadena") {
+								error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+							}
+						}
 						else {
 							error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 						}
@@ -1304,6 +1322,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 										error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 									}
 								}
+							}
+						}
+						else if(an.getOperador() instanceof ValorVector) {
+							ValorVector v = (ValorVector) an.getOperador();
+							if(vectores.get(variables.get(v.getNombre_vector())) != "caracter") {
+								error("El tipo de asignación es incompatible", an, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
 							}
 						}
 						else {
