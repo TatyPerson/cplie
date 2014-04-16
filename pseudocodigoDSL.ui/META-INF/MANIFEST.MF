@@ -2,7 +2,7 @@ Manifest-Version: 2.0
 Bundle-ManifestVersion: 2
 Bundle-Name: pseudocodigoDSL.ui
 Bundle-Vendor: Universidad de Cadiz (UCA)
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.0.0
 Bundle-SymbolicName: pseudocodigoDSL.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: pseudocodigoDSL;visibility:=reexport,
