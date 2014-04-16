@@ -1085,11 +1085,17 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						else if(operador instanceof operacion) {
 							operacion o = (operacion) operador;
 							List<valor> valores = funciones.registrarValoresOperacion(o);
-							if(funciones.asignacionEntero(valores, variables, registros, nombresRegistros, funcionesTipadas, vectores) == 2) {
-								errorAsignacion(a, "Posible pérdida de precisión al asignar un real a un entero", false);
-							}
-							else if(funciones.asignacionEntero(valores, variables, registros, nombresRegistros, funcionesTipadas, vectores) == 3) {
+							//Primero buscamos las dificultades en la operación
+							List<valor> valoresProblem = funciones.buscarProblemasOperacion("entero", valores);
+							//Preparamos los tipos validos
+							ArrayList<String> tiposValidos = new ArrayList<String>();
+							tiposValidos.add(0, "entero"); 
+							tiposValidos.add(1, "real");
+							if(funciones.asignacionOperacionVariable(valoresProblem, variables, tiposValidos) == 3 || funciones.asignacionOperacionFuncion(valoresProblem, variables, tiposValidos, funcionesTipadas) == 3 || funciones.asignacionOperacionRegistro(valoresProblem, variables, tiposValidos, registros, nombresRegistros) == 3 || funciones.asignacionOperacionVector(valoresProblem, variables, tiposValidos, vectores) == 3) {
 								errorAsignacion(a, "El tipo de asignación es incompatible", true);
+							}
+							else if(funciones.asignacionOperacionVariable(valoresProblem, variables, tiposValidos) == 2 || funciones.asignacionOperacionFuncion(valoresProblem, variables, tiposValidos, funcionesTipadas) == 2 || funciones.asignacionOperacionRegistro(valoresProblem, variables, tiposValidos, registros, nombresRegistros) == 2 || funciones.asignacionOperacionVector(valoresProblem, variables, tiposValidos, vectores) == 2) {
+								errorAsignacion(a, "Posible pérdida de precisión al asignar un real a un entero", false);
 							}
 						}
 						else if(operador instanceof LlamadaFuncion) {
@@ -1146,7 +1152,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						if(operador instanceof operacion) {
 							operacion o = (operacion) operador;
 							List<valor> valores = funciones.registrarValoresOperacion(o);
-							if(funciones.asignacionLogico(valores, variables, registros, nombresRegistros, funcionesTipadas) == 3) {
+							//Primero buscamos las dificultades en la operación
+							List<valor> valoresProblem = funciones.buscarProblemasOperacion("logico", valores);
+							//Preparamos los tipos validos
+							ArrayList<String> tiposValidos = new ArrayList<String>();
+							tiposValidos.add(0, "logico"); 
+							if(funciones.asignacionOperacionVariable(valoresProblem, variables, tiposValidos) == 3 || funciones.asignacionOperacionFuncion(valoresProblem, variables, tiposValidos, funcionesTipadas) == 3 || funciones.asignacionOperacionRegistro(valoresProblem, variables, tiposValidos, registros, nombresRegistros) == 3 || funciones.asignacionOperacionVector(valoresProblem, variables, tiposValidos, vectores) == 3) {
 								errorAsignacion(a, "El tipo de asignación es incompatible", true);
 							}
 						}
@@ -1199,7 +1210,13 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						if(operador instanceof operacion) {
 							operacion o = (operacion) operador;
 							List<valor> valores = funciones.registrarValoresOperacion(o);
-							if(funciones.asignacionReal(valores, variables, registros, nombresRegistros, funcionesTipadas) == 3) {
+							//Primero buscamos las dificultades en la operación
+							List<valor> valoresProblem = funciones.buscarProblemasOperacion("real", valores);
+							//Preparamos los tipos validos
+							ArrayList<String> tiposValidos = new ArrayList<String>();
+							tiposValidos.add(0, "real"); 
+							tiposValidos.add(1, "entero");
+							if(funciones.asignacionOperacionVariable(valoresProblem, variables, tiposValidos) == 3 || funciones.asignacionOperacionFuncion(valoresProblem, variables, tiposValidos, funcionesTipadas) == 3 || funciones.asignacionOperacionRegistro(valoresProblem, variables, tiposValidos, registros, nombresRegistros) == 3 || funciones.asignacionOperacionVector(valoresProblem, variables, tiposValidos, vectores) == 3) {
 								errorAsignacion(a, "El tipo de asignación es incompatible", true);
 							}
 						}
@@ -1240,7 +1257,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						if(operador instanceof operacion) {
 							operacion o = (operacion) operador;
 							List<valor> valores = funciones.registrarValoresOperacion(o);
-							if(funciones.asignacionCadena(valores, variables, registros, nombresRegistros, funcionesTipadas) == 3) {
+							//Primero buscamos las dificultades en la operación
+							List<valor> valoresProblem = funciones.buscarProblemasOperacion("cadena", valores);
+							//Preparamos los tipos validos
+							ArrayList<String> tiposValidos = new ArrayList<String>();
+							tiposValidos.add(0, "cadena"); 
+							if(funciones.asignacionOperacionVariable(valoresProblem, variables, tiposValidos) == 3 || funciones.asignacionOperacionFuncion(valoresProblem, variables, tiposValidos, funcionesTipadas) == 3 || funciones.asignacionOperacionRegistro(valoresProblem, variables, tiposValidos, registros, nombresRegistros) == 3 || funciones.asignacionOperacionVector(valoresProblem, variables, tiposValidos, vectores) == 3) {
 								errorAsignacion(a, "El tipo de asignación es incompatible", true);
 							}
 						}
@@ -1281,7 +1303,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						if(operador instanceof operacion) {
 							operacion o = (operacion) operador;
 							List<valor> valores = funciones.registrarValoresOperacion(o);
-							if(funciones.asignacionCaracter(valores, variables, registros, nombresRegistros, funcionesTipadas) == 3) {
+							//Primero buscamos las dificultades en la operación
+							List<valor> valoresProblem = funciones.buscarProblemasOperacion("caracter", valores);
+							//Preparamos los tipos validos
+							ArrayList<String> tiposValidos = new ArrayList<String>();
+							tiposValidos.add(0, "caracter"); 
+							if(funciones.asignacionOperacionVariable(valoresProblem, variables, tiposValidos) == 3 || funciones.asignacionOperacionFuncion(valoresProblem, variables, tiposValidos, funcionesTipadas) == 3 || funciones.asignacionOperacionRegistro(valoresProblem, variables, tiposValidos, registros, nombresRegistros) == 3 || funciones.asignacionOperacionVector(valoresProblem, variables, tiposValidos, vectores) == 3) {
 								errorAsignacion(a, "El tipo de asignación es incompatible", true);
 							}
 						}

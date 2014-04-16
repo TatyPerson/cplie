@@ -220,252 +220,167 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		}
 	}
 	
-	protected int asignacionEntero(List<valor> valores, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,HashMap<Integer,String>> funcionesTipadas, Map<String,String> vectores) {
+	protected List<valor> buscarProblemasOperacion(String tipo, List<valor> valores) {
 		List<valor> valoresProblem = new ArrayList<valor>();
-		for(valor v: valores) {
-			if(!(v instanceof NumeroEntero)) {
-				valoresProblem.add(v);
+		if(tipo == "entero") {
+			for(valor v: valores) {
+				if(!(v instanceof NumeroEntero)) {
+					valoresProblem.add(v);
+				}
 			}
 		}
-		if(valoresProblem.size() == 0) {
-			return 1;
+		else if(tipo == "real") {
+			for(valor v: valores) {
+				if(!(v instanceof NumeroDecimal) && !(v instanceof NumeroEntero)) {
+					valoresProblem.add(v);
+				}
+			}
 		}
-		else {
-			int check = 1;
+		else if(tipo == "logico") {
+			for(valor v: valores) {
+				if(!(v instanceof ValorBooleano)) {
+					valoresProblem.add(v);
+				}
+			}
+		}
+		else if(tipo == "cadena") {
+			for(valor v: valores) {
+				if(!(v instanceof ConstCadena)) {
+					valoresProblem.add(v);
+				}
+			}
+		}
+		else if(tipo == "caracter") {
+			for(valor v: valores) {
+				if(!(v instanceof Caracter)) {
+					valoresProblem.add(v);
+				}
+			}
+		}
+		
+		return valoresProblem;
+		
+	}
+	
+	protected int asignacionOperacionVariable(List<valor> valoresProblem, Map<String,String> variables, List<String> tiposValidos) {
+		int check = 1;
 			for(valor v: valoresProblem) {
-				if(v instanceof NumeroDecimal) {
+				if(v instanceof NumeroDecimal && tiposValidos.get(0) == "entero") {
 					check = 2;
 				}
 				else if(v instanceof VariableID) {
-					//La buscamos y miramos su tipo
 					VariableID var = (VariableID) v;
-					if(variables.get(var.getNombre()) != "entero" && variables.get(var.getNombre()) != "real" && variables.containsKey(var.getNombre())) {
-						return 3;
+					if(tiposValidos.get(0) == "entero") {
+						if(variables.get(var.getNombre()) != tiposValidos.get(0) && variables.get(var.getNombre()) != tiposValidos.get(1) && variables.containsKey(var.getNombre())) {
+							return 3;
+						}
+						else if(variables.get(var.getNombre()) == tiposValidos.get(1)) {
+							check = 2;
+						}
 					}
-					else if(variables.get(var.getNombre()) == "real") {
-						check = 2;
+					else if(tiposValidos.get(0) == "real") {
+						if(variables.get(var.getNombre()) != tiposValidos.get(0) && variables.get(var.getNombre()) != tiposValidos.get(1) && variables.containsKey(var.getNombre())) {
+							return 3;
+						}
 					}
+					else {
+						if(variables.get(var.getNombre()) != tiposValidos.get(0) && variables.containsKey(var.getNombre())) {
+							return 3;
+						}
+					}
+
 				}
-				else if(v instanceof ValorRegistro) {
-					//Lo buscamos y miramos su tipo
-					ValorRegistro vr = (ValorRegistro) v;
-					for(String nombre: nombresRegistros) {
-						if(nombre.equals(variables.get(vr.getNombre_registro()))) {
-							if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "entero" && registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "real") {
+			}
+		return check;
+	}
+	
+	protected int asignacionOperacionRegistro(List<valor> valoresProblem, Map<String,String> variables, List<String> tiposValidos, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros) {
+		int check = 1;
+		for(valor v: valoresProblem) {
+			if(v instanceof ValorRegistro) {
+				//Lo buscamos y miramos su tipo
+				ValorRegistro vr = (ValorRegistro) v;
+				for(String nombre: nombresRegistros) {
+					if(nombre.equals(variables.get(vr.getNombre_registro()))) {
+						if(tiposValidos.get(0) == "entero") {
+							if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != tiposValidos.get(0) && registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != tiposValidos.get(1)) {
 								return 3;
 							}
-							else if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) == "real") {
+							else if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) == tiposValidos.get(1)) {
 								check = 2;
 							}
 						}
+						else if(tiposValidos.get(0) == "real") {
+							if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != tiposValidos.get(0) && registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != tiposValidos.get(1)) {
+								return 3;
+							}
+						}
+						else {
+							if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != tiposValidos.get(0)) {
+								return 3;
+							}
+						}
 					}
 				}
-				else if(v instanceof LlamadaFuncion) {
-					LlamadaFuncion f = (LlamadaFuncion) v;
-					if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "entero" && funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "real" && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+			}
+		}
+		return check;
+	}
+	
+	protected int asignacionOperacionFuncion(List<valor> valoresProblem, Map<String,String> variables, List<String> tiposValidos, Map<String,HashMap<Integer,String>> funcionesTipadas) {
+		int check = 1;
+		for(valor v: valoresProblem) {
+			if(v instanceof LlamadaFuncion) {
+				LlamadaFuncion f = (LlamadaFuncion) v;
+				if(tiposValidos.get(0) == "entero") {
+					if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != tiposValidos.get(0) && funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != tiposValidos.get(1) && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
 						return 3;
 					}
-					else if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) == "real" &&  funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+					else if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) == tiposValidos.get(1) &&  funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
 						check = 2;
 					}
 				}
-				else if(v instanceof ValorVector) {
-					ValorVector vector = (ValorVector) v;
-					if(vectores.get(variables.get(vector.getNombre_vector())) != "entero" && vectores.get(variables.get(vector.getNombre_vector())) != "real") {
+				else if(tiposValidos.get(0) == "real") {
+					if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != tiposValidos.get(0) && funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != tiposValidos.get(1) && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
 						return 3;
 					}
-					else if(vectores.get(variables.get(vector.getNombre_vector())) == "real") {
+				}
+				else {
+					if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != tiposValidos.get(0) && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+						return 3;
+					}
+				}
+			}
+		}
+		return check;
+	}
+	
+	protected int asignacionOperacionVector(List<valor> valoresProblem, Map<String,String> variables, List<String> tiposValidos, Map<String,String> vectores) {
+		int check = 1;
+		for(valor v: valoresProblem) {
+			if(v instanceof ValorVector) {
+				ValorVector vector = (ValorVector) v;
+				if(tiposValidos.get(0) == "entero") {
+					if(vectores.get(variables.get(vector.getNombre_vector())) != tiposValidos.get(0) && vectores.get(variables.get(vector.getNombre_vector())) != tiposValidos.get(1)) {
+						return 3;
+					}
+					else if(vectores.get(variables.get(vector.getNombre_vector())) == tiposValidos.get(1)) {
 						check = 2;
 					}
 				}
-				else {
-					return 3;
-				}
-			}
-			return check;
-		}
-	}
-	
-	
-	protected int asignacionLogico(List<valor> valores, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,HashMap<Integer,String>> funcionesTipadas) {
-		List<valor> valoresProblem = new ArrayList<valor>();
-		for(valor v: valores) {
-			if(!(v instanceof ValorBooleano)) {
-				valoresProblem.add(v);
-			}
-		}
-		if(valoresProblem.size() == 0) {
-			return 1;
-		}
-		else {
-			int check = 1;
-			for(valor v: valoresProblem) {
-				if(v instanceof VariableID) {
-					//La buscamos y miramos su tipo
-					VariableID var = (VariableID) v;
-					if(variables.get(var.getNombre()) != "logico" && variables.containsKey(var.getNombre())) {
-						return 3;
-					}
-				}
-				else if(v instanceof ValorRegistro) {
-					//Lo buscamos y miramos su tipo
-					ValorRegistro vr = (ValorRegistro) v;
-					for(String nombre: nombresRegistros) {
-						if(nombre.equals(variables.get(vr.getNombre_registro()))) {
-							if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "logico") {
-								return 3;
-							}
-						}
-					}
-				}
-				else if(v instanceof LlamadaFuncion) {
-					LlamadaFuncion f = (LlamadaFuncion) v;
-					if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "logico" && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+				else if(tiposValidos.get(0) == "real") {
+					if(vectores.get(variables.get(vector.getNombre_vector())) != tiposValidos.get(0) && vectores.get(variables.get(vector.getNombre_vector())) != tiposValidos.get(1)) {
 						return 3;
 					}
 				}
 				else {
-					return 3;
-				}
-			}
-			return check;
-		}
-	}
-	
-	protected int asignacionReal(List<valor> valores, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,HashMap<Integer,String>> funcionesTipadas) {
-		List<valor> valoresProblem = new ArrayList<valor>();
-		for(valor v: valores) {
-			if(!(v instanceof NumeroDecimal) && !(v instanceof NumeroEntero)) {
-				valoresProblem.add(v);
-			}
-		}
-		if(valoresProblem.size() == 0) {
-			return 1;
-		}
-		else {
-			int check = 1;
-			for(valor v: valoresProblem) {
-				if(v instanceof VariableID) {
-					//La buscamos y miramos su tipo
-					VariableID var = (VariableID) v;
-					if(variables.get(var.getNombre()) != "entero" && variables.get(var.getNombre()) != "real" && variables.containsKey(var.getNombre())) {
+					if(vectores.get(variables.get(vector.getNombre_vector())) != tiposValidos.get(0)) {
 						return 3;
 					}
 				}
-				else if(v instanceof ValorRegistro) {
-					//Lo buscamos y miramos su tipo
-					ValorRegistro vr = (ValorRegistro) v;
-					for(String nombre: nombresRegistros) {
-						if(nombre.equals(variables.get(vr.getNombre_registro()))) {
-							if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "entero" && registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "real") {
-								return 3;
-							}
-						}
-					}
-				}
-				else if(v instanceof LlamadaFuncion) {
-					LlamadaFuncion f = (LlamadaFuncion) v;
-					if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "entero" && funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "real" && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
-						return 3;
-					}
-				}
-				else {
-					return 3;
-				}
-			}
-			return check;
-		}
-	}
-	
-	
-	protected int asignacionCadena(List<valor> valores, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,HashMap<Integer,String>> funcionesTipadas) {
-		List<valor> valoresProblem = new ArrayList<valor>();
-		for(valor v: valores) {
-			if(!(v instanceof ConstCadena)) {
-				valoresProblem.add(v);
 			}
 		}
-		if(valoresProblem.size() == 0) {
-			return 1;
-		}
-		else {
-			int check = 1;
-			for(valor v: valoresProblem) {
-				if(v instanceof VariableID) {
-					//La buscamos y miramos su tipo
-					VariableID var = (VariableID) v;
-					if(variables.get(var.getNombre()) != "cadena" && variables.containsKey(var.getNombre())) {
-						return 3;
-					}
-				}
-				else if(v instanceof ValorRegistro) {
-					//Lo buscamos y miramos su tipo
-					ValorRegistro vr = (ValorRegistro) v;
-					for(String nombre: nombresRegistros) {
-						if(nombre.equals(variables.get(vr.getNombre_registro()))) {
-							if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "cadena") {
-								return 3;
-							}
-						}
-					}
-				}
-				else if(v instanceof LlamadaFuncion) {
-					LlamadaFuncion f = (LlamadaFuncion) v;
-					if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "cadena" && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
-						return 3;
-					}
-				}
-				else {
-					return 3;
-				}
-			}
-			return check;
-		}
-	}
-	
-	protected int asignacionCaracter(List<valor> valores, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,HashMap<Integer,String>> funcionesTipadas) {
-		List<valor> valoresProblem = new ArrayList<valor>();
-		for(valor v: valores) {
-			if(!(v instanceof Caracter)) {
-				valoresProblem.add(v);
-			}
-		}
-		if(valoresProblem.size() == 0) {
-			return 1;
-		}
-		else {
-			int check = 1;
-			for(valor v: valoresProblem) {
-				if(v instanceof VariableID) {
-					//La buscamos y miramos su tipo
-					VariableID var = (VariableID) v;
-					if(variables.get(var.getNombre()) != "caracter" && variables.containsKey(var.getNombre())) {
-						return 3;
-					}
-				}
-				else if(v instanceof ValorRegistro) {
-					//Lo buscamos y miramos su tipo
-					ValorRegistro vr = (ValorRegistro) v;
-					for(String nombre: nombresRegistros) {
-						if(nombre.equals(variables.get(vr.getNombre_registro()))) {
-							if(registros.get(nombre).get(vr.getCampo().get(0).getNombre_campo()) != "caracter") {
-								return 3;
-							}
-						}
-					}
-				}
-				else if(v instanceof LlamadaFuncion) {
-					LlamadaFuncion f = (LlamadaFuncion) v;
-					if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != "caracter" && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
-						return 3;
-					}
-				}
-				else {
-					return 3;
-				}
-			}
-			return check;
-		}
+		return check;
 	}
 	
 	protected List<ValorRegistro> variablesRegistroExistentes(List<valor> valores, Map<String,String> variables, List<String> nombresRegistros) {
