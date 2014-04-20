@@ -13,6 +13,8 @@
         eType="#//Constantes" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tipocomplejo" upperBound="-1"
         eType="#//TipoComplejo" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="comentarios" upperBound="-1"
+        eType="#//Comentario" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Inicio">
     <eStructuralFeatures xsi:type="ecore:EReference" name="tiene" upperBound="-1"
@@ -314,5 +316,9 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="indices" lowerBound="2"
         upperBound="2" eType="#//Operador" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Comentario">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mensaje" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>
