@@ -87,6 +87,9 @@ class MyDslGenerator implements IGenerator {
 	def toC(TipoExistente myTipo) {
 		return tipoVariable(myTipo.tipo)
 	}
+	
+	def toC(Comentario myComentario)
+		'''//«myComentario.mensaje»'''
 
 	def toC(TipoDefinido myTipo) {
 		return myTipo.tipo
