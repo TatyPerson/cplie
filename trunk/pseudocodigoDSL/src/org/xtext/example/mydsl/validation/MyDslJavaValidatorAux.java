@@ -424,7 +424,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 			if(v instanceof ValorRegistro) {
 				//Buscamos si el tipo con el que se declaró es uno de tipo registro
 				ValorRegistro vr = (ValorRegistro) v;
-				if(!nombresRegistros.contains(variables.get(vr.getNombre_registro()))) {
+				if(!nombresRegistros.contains(variables.get(vr.getNombre_registro())) && variables.containsKey(vr.getNombre_registro())) {
 					valoresRegistro.add(vr);
 				}
 			}
@@ -439,7 +439,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 			if(v instanceof ValorVector) {
 				//Buscamos si el tipo con el que se declaró es uno de tipo registro
 				ValorVector vv = (ValorVector) v;
-				if(!nombresVectores.contains(variables.get(vv.getNombre_vector()))) {
+				if(!nombresVectores.contains(variables.get(vv.getNombre_vector())) && variables.containsKey(vv.getNombre_vector())) {
 					valoresVector.add(vv);
 				}
 			}
@@ -454,7 +454,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 			if(v instanceof ValorMatriz) {
 				//Buscamos si el tipo con el que se declaró es uno de tipo registro
 				ValorMatriz vm = (ValorMatriz) v;
-				if(!nombresMatrices.contains(variables.get(vm.getNombre_matriz()))) {
+				if(!nombresMatrices.contains(variables.get(vm.getNombre_matriz())) && variables.containsKey(vm.getNombre_matriz())) {
 					valoresMatriz.add(vm);
 				}
 			}

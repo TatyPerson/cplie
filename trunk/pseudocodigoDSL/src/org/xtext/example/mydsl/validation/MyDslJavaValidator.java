@@ -584,6 +584,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					if(ac.getOperador() instanceof operacion) {
 						operacion o = (operacion) ac.getOperador();
 						List<valor> valores = funciones.registrarValoresOperacion(o);
+						
 						List<ValorRegistro> variablesRegistroNoDeclaradas = funciones.variablesRegistroDeclaradas(valores, variables);
 						if(variablesRegistroNoDeclaradas.size() != 0) {
 							for(ValorRegistro vr: variablesRegistroNoDeclaradas) {
@@ -594,6 +595,18 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						if(variablesNoDeclaradas.size() != 0) {
 							for(VariableID v: variablesNoDeclaradas) {
 								error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+							}
+						}
+						List<ValorVector> variablesVectorNoDeclaradas = funciones.variablesVectorDeclaradas(valores, variables);
+						if(variablesVectorNoDeclaradas.size() != 0) {
+							for(ValorVector v: variablesVectorNoDeclaradas) {
+								error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+							}
+						}
+						List<ValorMatriz> variablesMatrizNoDeclaradas = funciones.variablesMatrizDeclaradas(valores, variables);
+						if(variablesMatrizNoDeclaradas.size() != 0) {
+							for(ValorMatriz m: variablesMatrizNoDeclaradas) {
+								error("La variable debe haber sido previamente definida", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
 							}
 						}
 					}
