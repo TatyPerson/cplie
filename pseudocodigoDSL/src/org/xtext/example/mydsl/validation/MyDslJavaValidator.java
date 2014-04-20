@@ -523,6 +523,18 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 							}
 						}
+						List<ValorVector> variablesVectorNoDeclaradas = funciones.variablesVectorDeclaradas(valores, variables);
+						if(variablesVectorNoDeclaradas.size() != 0) {
+							for(ValorVector v: variablesVectorNoDeclaradas) {
+								error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+							}
+						}
+						List<ValorMatriz> variablesMatrizNoDeclaradas = funciones.variablesMatrizDeclaradas(valores, variables);
+						if(variablesMatrizNoDeclaradas.size() != 0) {
+							for(ValorMatriz m: variablesMatrizNoDeclaradas) {
+								error("La variable debe haber sido previamente definida", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
+							}
+						}
 					}
 					if(as.getOperador() instanceof LlamadaFuncion) {
 						LlamadaFuncion f = (LlamadaFuncion) as.getOperador();
@@ -1077,7 +1089,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	//Función auxiliar para evitar la repetición de código (DRY)
-	private void checkAsignacionesAux(Asignacion a, String tipo, valor operador, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,HashMap<Integer,String>> funcionesTipadas, Map<String,String> vectores) {
+	private void checkAsignacionesAux(Asignacion a, String tipo, valor operador, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,HashMap<Integer,String>> funcionesTipadas, Map<String,String> vectores, Map<String,String> matrices) {
 					if(tipo == "entero" && !(operador instanceof NumeroEntero)) {
 						if(operador instanceof NumeroDecimal) {
 							errorAsignacion(a, "Posible pérdida de precisión al asignar un real a un entero", false);
@@ -1091,10 +1103,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							ArrayList<String> tiposValidos = new ArrayList<String>();
 							tiposValidos.add(0, "entero"); 
 							tiposValidos.add(1, "real");
-							if(funciones.asignacionOperacionVariable(valoresProblem, variables, tiposValidos) == 3 || funciones.asignacionOperacionFuncion(valoresProblem, variables, tiposValidos, funcionesTipadas) == 3 || funciones.asignacionOperacionRegistro(valoresProblem, variables, tiposValidos, registros, nombresRegistros) == 3 || funciones.asignacionOperacionVector(valoresProblem, variables, tiposValidos, vectores) == 3) {
+							if(funciones.asignacionOperacionVariable(valoresProblem, variables, tiposValidos) == 3 || funciones.asignacionOperacionFuncion(valoresProblem, variables, tiposValidos, funcionesTipadas) == 3 || funciones.asignacionOperacionRegistro(valoresProblem, variables, tiposValidos, registros, nombresRegistros) == 3 || funciones.asignacionOperacionVector(valoresProblem, variables, tiposValidos, vectores) == 3 || funciones.asignacionOperacionMatriz(valoresProblem, variables, tiposValidos, matrices) == 3) {
 								errorAsignacion(a, "El tipo de asignación es incompatible", true);
 							}
-							else if(funciones.asignacionOperacionVariable(valoresProblem, variables, tiposValidos) == 2 || funciones.asignacionOperacionFuncion(valoresProblem, variables, tiposValidos, funcionesTipadas) == 2 || funciones.asignacionOperacionRegistro(valoresProblem, variables, tiposValidos, registros, nombresRegistros) == 2 || funciones.asignacionOperacionVector(valoresProblem, variables, tiposValidos, vectores) == 2) {
+							else if(funciones.asignacionOperacionVariable(valoresProblem, variables, tiposValidos) == 2 || funciones.asignacionOperacionFuncion(valoresProblem, variables, tiposValidos, funcionesTipadas) == 2 || funciones.asignacionOperacionRegistro(valoresProblem, variables, tiposValidos, registros, nombresRegistros) == 2 || funciones.asignacionOperacionVector(valoresProblem, variables, tiposValidos, vectores) == 2 || funciones.asignacionOperacionMatriz(valoresProblem, variables, tiposValidos, matrices) == 2) {
 								errorAsignacion(a, "Posible pérdida de precisión al asignar un real a un entero", false);
 							}
 						}
@@ -1142,8 +1154,14 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						}
 						else if(operador instanceof ValorMatriz) {
 							ValorMatriz m = (ValorMatriz) operador;
-							System.out.println("Hola soy una matriz");
+							if(matrices.get(variables.get(m.getNombre_matriz())) != "entero" && matrices.get(variables.get(m.getNombre_matriz())) != "real") {
+								errorAsignacion(a, "El tipo de asignación es incompatible", true);
+							}
+							else {
+								errorAsignacion(a, "Posible pérdida de precisión al asignar un real a un entero", false);
+							}
 						}
+						
 						else {
 							errorAsignacion(a, "El tipo de asignación es incompatible", true);
 						}
@@ -1157,7 +1175,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							//Preparamos los tipos validos
 							ArrayList<String> tiposValidos = new ArrayList<String>();
 							tiposValidos.add(0, "logico"); 
-							if(funciones.asignacionOperacionVariable(valoresProblem, variables, tiposValidos) == 3 || funciones.asignacionOperacionFuncion(valoresProblem, variables, tiposValidos, funcionesTipadas) == 3 || funciones.asignacionOperacionRegistro(valoresProblem, variables, tiposValidos, registros, nombresRegistros) == 3 || funciones.asignacionOperacionVector(valoresProblem, variables, tiposValidos, vectores) == 3) {
+							if(funciones.asignacionOperacionVariable(valoresProblem, variables, tiposValidos) == 3 || funciones.asignacionOperacionFuncion(valoresProblem, variables, tiposValidos, funcionesTipadas) == 3 || funciones.asignacionOperacionRegistro(valoresProblem, variables, tiposValidos, registros, nombresRegistros) == 3 || funciones.asignacionOperacionVector(valoresProblem, variables, tiposValidos, vectores) == 3 || funciones.asignacionOperacionMatriz(valoresProblem, variables, tiposValidos, matrices) == 3) {
 								errorAsignacion(a, "El tipo de asignación es incompatible", true);
 							}
 						}
@@ -1202,6 +1220,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								errorAsignacion(a, "El tipo de asignación es incompatible", true);
 							}
 						}
+						else if(operador instanceof ValorMatriz) {
+							ValorMatriz m = (ValorMatriz) operador;
+							if(matrices.get(variables.get(m.getNombre_matriz())) != "logico") {
+								errorAsignacion(a, "El tipo de asignación es incompatible", true);
+							}
+						}
 						else {
 							errorAsignacion(a, "El tipo de asignación es incompatible", true);
 						}
@@ -1216,7 +1240,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							ArrayList<String> tiposValidos = new ArrayList<String>();
 							tiposValidos.add(0, "real"); 
 							tiposValidos.add(1, "entero");
-							if(funciones.asignacionOperacionVariable(valoresProblem, variables, tiposValidos) == 3 || funciones.asignacionOperacionFuncion(valoresProblem, variables, tiposValidos, funcionesTipadas) == 3 || funciones.asignacionOperacionRegistro(valoresProblem, variables, tiposValidos, registros, nombresRegistros) == 3 || funciones.asignacionOperacionVector(valoresProblem, variables, tiposValidos, vectores) == 3) {
+							if(funciones.asignacionOperacionVariable(valoresProblem, variables, tiposValidos) == 3 || funciones.asignacionOperacionFuncion(valoresProblem, variables, tiposValidos, funcionesTipadas) == 3 || funciones.asignacionOperacionRegistro(valoresProblem, variables, tiposValidos, registros, nombresRegistros) == 3 || funciones.asignacionOperacionVector(valoresProblem, variables, tiposValidos, vectores) == 3 || funciones.asignacionOperacionMatriz(valoresProblem, variables, tiposValidos, matrices) == 3) {
 								errorAsignacion(a, "El tipo de asignación es incompatible", true);
 							}
 						}
@@ -1249,6 +1273,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								errorAsignacion(a, "El tipo de asignación es incompatible", true);
 							}
 						}
+						else if(operador instanceof ValorMatriz) {
+							ValorMatriz m = (ValorMatriz) operador;
+							if(matrices.get(variables.get(m.getNombre_matriz())) != "entero" && matrices.get(variables.get(m.getNombre_matriz())) != "real") {
+								errorAsignacion(a, "El tipo de asignación es incompatible", true);
+							}
+						}
 						else {
 							errorAsignacion(a, "El tipo de asignación es incompatible", true);
 						}
@@ -1262,7 +1292,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							//Preparamos los tipos validos
 							ArrayList<String> tiposValidos = new ArrayList<String>();
 							tiposValidos.add(0, "cadena"); 
-							if(funciones.asignacionOperacionVariable(valoresProblem, variables, tiposValidos) == 3 || funciones.asignacionOperacionFuncion(valoresProblem, variables, tiposValidos, funcionesTipadas) == 3 || funciones.asignacionOperacionRegistro(valoresProblem, variables, tiposValidos, registros, nombresRegistros) == 3 || funciones.asignacionOperacionVector(valoresProblem, variables, tiposValidos, vectores) == 3) {
+							if(funciones.asignacionOperacionVariable(valoresProblem, variables, tiposValidos) == 3 || funciones.asignacionOperacionFuncion(valoresProblem, variables, tiposValidos, funcionesTipadas) == 3 || funciones.asignacionOperacionRegistro(valoresProblem, variables, tiposValidos, registros, nombresRegistros) == 3 || funciones.asignacionOperacionVector(valoresProblem, variables, tiposValidos, vectores) == 3 || funciones.asignacionOperacionMatriz(valoresProblem, variables, tiposValidos, matrices) == 3) {
 								errorAsignacion(a, "El tipo de asignación es incompatible", true);
 							}
 						}
@@ -1295,6 +1325,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								errorAsignacion(a, "El tipo de asignación es incompatible", true);
 							}
 						}
+						else if(operador instanceof ValorMatriz) {
+							ValorMatriz m = (ValorMatriz) operador;
+							if(matrices.get(variables.get(m.getNombre_matriz())) != "cadena") {
+								errorAsignacion(a, "El tipo de asignación es incompatible", true);
+							}
+						}
 						else {
 							errorAsignacion(a,"El tipo de asignación es incompatible", true);
 						}
@@ -1308,7 +1344,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							//Preparamos los tipos validos
 							ArrayList<String> tiposValidos = new ArrayList<String>();
 							tiposValidos.add(0, "caracter"); 
-							if(funciones.asignacionOperacionVariable(valoresProblem, variables, tiposValidos) == 3 || funciones.asignacionOperacionFuncion(valoresProblem, variables, tiposValidos, funcionesTipadas) == 3 || funciones.asignacionOperacionRegistro(valoresProblem, variables, tiposValidos, registros, nombresRegistros) == 3 || funciones.asignacionOperacionVector(valoresProblem, variables, tiposValidos, vectores) == 3) {
+							if(funciones.asignacionOperacionVariable(valoresProblem, variables, tiposValidos) == 3 || funciones.asignacionOperacionFuncion(valoresProblem, variables, tiposValidos, funcionesTipadas) == 3 || funciones.asignacionOperacionRegistro(valoresProblem, variables, tiposValidos, registros, nombresRegistros) == 3 || funciones.asignacionOperacionVector(valoresProblem, variables, tiposValidos, vectores) == 3 || funciones.asignacionOperacionMatriz(valoresProblem, variables, tiposValidos, matrices) == 3) {
 								errorAsignacion(a, "El tipo de asignación es incompatible", true);
 							}
 						}
@@ -1341,6 +1377,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								errorAsignacion(a, "El tipo de asignación es incompatible", true);
 							}
 						}
+						else if(operador instanceof ValorMatriz) {
+							ValorMatriz m = (ValorMatriz) operador;
+							if(matrices.get(variables.get(m.getNombre_matriz())) != "caracter") {
+								errorAsignacion(a, "El tipo de asignación es incompatible", true);
+							}
+						}
 						else {
 							errorAsignacion(a, "El tipo de asignación es incompatible", true);
 						}
@@ -1354,53 +1396,17 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		Map<String,HashMap<String,String>> registros = new HashMap<String,HashMap<String,String>>();
 		Map<String,String> vectores = new HashMap<String,String>();
 		List<String> nombresRegistros = new ArrayList<String>();
-		for(TipoComplejo t: c.getTipocomplejo()) {
-			if(t instanceof Registro) {
-				Registro r = (Registro) t;
-				HashMap<String,String> campos = new HashMap<String,String>();
-				for(DeclaracionVariable d: r.getVariable()) {
-					for(Variable v: d.getVariable()) {
-						campos.put(v.getNombre(), d.getTipo().getName());
-					}
-				}
-				registros.put(r.getNombre(), campos);
-				nombresRegistros.add(r.getNombre());
-			}
-			else if(t instanceof Vector) {
-				Vector v = (Vector) t;
-				if(v.getTipo() instanceof TipoExistente) {
-					TipoExistente tipo = (TipoExistente) v.getTipo();
-					vectores.put(v.getNombre(), tipo.getTipo().getName());
-				}
-				else if(v.getTipo() instanceof TipoDefinido) {
-					TipoDefinido tipo = (TipoDefinido) v.getTipo();
-					vectores.put(v.getNombre(), tipo.getTipo());
-				}
-				
-			}
-		}
+		Map<String,String> matrices = new HashMap<String,String>();
+		
+		funciones.prepararColeccionesTiposComplejos(c.getTipocomplejo(), registros, nombresRegistros, vectores, matrices);
+		
 		//Registramos todas las variables declaradas con sus respectivos tipos
 		Map<String,String> variables = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
 		
 		//Registramos todas las funciones que están definidas
 		Map<String,HashMap<Integer,String>> funcionesTipadas = new HashMap<String,HashMap<Integer,String>>();
 		
-		for(Subproceso s: c.getFuncion()) {
-			if(s instanceof Funcion) {
-				Funcion f = (Funcion) s;
-				//Como hay otra función que se encarga de que no esten repetidos obviamos la comprobación
-				HashMap<Integer,String> aux = new HashMap<Integer,String>();
-				for(Subproceso s2: c.getFuncion()) {
-					if(s2 instanceof Funcion) {
-						Funcion f2 = (Funcion) s2;
-						if(f.getNombre().equals(f2.getNombre())) {
-							aux.put(f2.getParametrofuncion().size(), f2.getTipo().getName());
-						}
-					}
-				}
-				funcionesTipadas.put(f.getNombre(), aux);
-			}
-		}
+		funciones.prepararColeccionFunciones(c.getFuncion(), funcionesTipadas);
 		
 		for(Sentencias s: c.getTiene().getTiene()) {
 			if(s instanceof Asignacion) {
@@ -1408,7 +1414,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				if(a instanceof AsignacionNormal) {
 					AsignacionNormal an = (AsignacionNormal) a;
 					String tipo = variables.get(an.getLvalue());
-					checkAsignacionesAux(a, tipo, an.getOperador(), variables, registros, nombresRegistros,funcionesTipadas, vectores);
+					checkAsignacionesAux(a, tipo, an.getOperador(), variables, registros, nombresRegistros,funcionesTipadas, vectores, matrices);
 				}
 				else if(a instanceof AsignacionCompleja) {
 					AsignacionCompleja ac = (AsignacionCompleja) a;
@@ -1416,7 +1422,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						ValorRegistro r = (ValorRegistro) ac.getComplejo();
 						for(CampoRegistro campo: r.getCampo()) {
 							String tipo = registros.get(variables.get(r.getNombre_registro())).get(campo.getNombre_campo());
-							checkAsignacionesAux(a, tipo, ac.getOperador(), variables, registros, nombresRegistros, funcionesTipadas, vectores);
+							checkAsignacionesAux(a, tipo, ac.getOperador(), variables, registros, nombresRegistros, funcionesTipadas, vectores, matrices);
 						}
 					}
 				}
@@ -1432,51 +1438,14 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		Map<String,HashMap<String,String>> registros = new HashMap<String,HashMap<String,String>>();
 		Map<String,String> vectores = new HashMap<String,String>();
 		List<String> nombresRegistros = new ArrayList<String>();
-		for(TipoComplejo t: c.getTipocomplejo()) {
-			if(t instanceof Registro) {
-				Registro r = (Registro) t;
-				HashMap<String,String> campos = new HashMap<String,String>();
-				for(DeclaracionVariable d: r.getVariable()) {
-					for(Variable v: d.getVariable()) {
-						campos.put(v.getNombre(), d.getTipo().getName());
-					}
-				}
-				registros.put(r.getNombre(), campos);
-				nombresRegistros.add(r.getNombre());
-			}
-			else if(t instanceof Vector) {
-				Vector v = (Vector) t;
-				if(v.getTipo() instanceof TipoExistente) {
-					TipoExistente tipo = (TipoExistente) v.getTipo();
-					vectores.put(v.getNombre(), tipo.getTipo().getName());
-				}
-				else if(v.getTipo() instanceof TipoDefinido) {
-					TipoDefinido tipo = (TipoDefinido) v.getTipo();
-					vectores.put(v.getNombre(), tipo.getTipo());
-				}
-				
-			}
-		}
+		Map<String,String> matrices = new HashMap<String,String>();
+		
+		funciones.prepararColeccionesTiposComplejos(c.getTipocomplejo(), registros, nombresRegistros, vectores, matrices);
 		
 		//Registramos todas las funciones que están definidas
 		Map<String,HashMap<Integer,String>> funcionesTipadas = new HashMap<String,HashMap<Integer,String>>();
-				
-		for(Subproceso s: c.getFuncion()) {
-			if(s instanceof Funcion) {
-				Funcion f = (Funcion) s;
-				//Como hay otra función que se encarga de que no esten repetidos obviamos la comprobación
-				HashMap<Integer,String> aux = new HashMap<Integer,String>();
-				for(Subproceso s2: c.getFuncion()) {
-					if(s2 instanceof Funcion) {
-						Funcion f2 = (Funcion) s2;
-						if(f.getNombre().equals(f2.getNombre())) {
-							aux.put(f2.getParametrofuncion().size(), f2.getTipo().getName());
-						}
-					}
-				}
-				funcionesTipadas.put(f.getNombre(), aux);
-			}
-		}
+		
+		funciones.prepararColeccionFunciones(c.getFuncion(), funcionesTipadas);
 		
 		for(Subproceso s: c.getFuncion()) {
 			//Registramos todas las variables declaradas con sus respectivos tipos
@@ -1494,7 +1463,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					if(a instanceof AsignacionNormal) {
 						AsignacionNormal an = (AsignacionNormal) a;
 						String tipo = variables.get(an.getLvalue());
-						checkAsignacionesAux(a, tipo, an.getOperador(), variables, registros, nombresRegistros,funcionesTipadas, vectores);
+						checkAsignacionesAux(a, tipo, an.getOperador(), variables, registros, nombresRegistros,funcionesTipadas, vectores, matrices);
 					}
 					else if(a instanceof AsignacionCompleja) {
 						AsignacionCompleja ac = (AsignacionCompleja) a;
@@ -1502,7 +1471,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							ValorRegistro r = (ValorRegistro) ac.getComplejo();
 							for(CampoRegistro campo: r.getCampo()) {
 								String tipo = registros.get(variables.get(r.getNombre_registro())).get(campo.getNombre_campo());
-								checkAsignacionesAux(a, tipo, ac.getOperador(), variables, registros, nombresRegistros, funcionesTipadas, vectores);
+								checkAsignacionesAux(a, tipo, ac.getOperador(), variables, registros, nombresRegistros, funcionesTipadas, vectores, matrices);
 							}
 						}
 					}
@@ -1512,7 +1481,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			
 	}
 	
-	private void checkVariblesUsadasRegistroAux(List<Sentencias> sentencias, Map<String,String> variables, List<String> nombresRegistros) {
+	private void checkVariblesUsadasTiposComplejosAux(List<Sentencias> sentencias, Map<String,String> variables, List<String> nombresRegistros, List<String> nombresVectores, List<String> nombresMatrices) {
 		
 		for(Sentencias s: sentencias) {
 			if(s instanceof AsignacionNormal) {
@@ -1524,15 +1493,33 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						error("La variable "+r.getNombre_registro()+" no pertenece al tipo registro", r, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
 					}
 				}
+				else if(a.getOperador() instanceof ValorVector) {
+					ValorVector v = (ValorVector) a.getOperador();
+					if(!nombresVectores.contains(variables.get(v.getNombre_vector()))) {
+						error("La variable "+v.getNombre_vector()+" no pertenece al tipo vector", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+					}
+				}
+				else if(a.getOperador() instanceof ValorMatriz) {
+					ValorMatriz m = (ValorMatriz) a.getOperador();
+					if(!nombresMatrices.contains(variables.get(m.getNombre_matriz()))) {
+						error("La variable "+m.getNombre_matriz()+" no pertenece al tipo matriz", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
+					}
+				}
 				else if(a.getOperador() instanceof operacion) {
 					operacion o = (operacion) a.getOperador();
 					//Si es una operación debemos comprobar la lista de operadores completa
 					List<valor> valores = funciones.registrarValoresOperacion(o);
 					List<ValorRegistro> valoresRegistro = funciones.variablesRegistroExistentes(valores, variables, nombresRegistros);
-					if(valoresRegistro.size() != 0) {
-						for(ValorRegistro vr: valoresRegistro) {
-							error("La variable "+vr.getNombre_registro()+" no pertenece al tipo registro", vr, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
-						}
+					for(ValorRegistro vr: valoresRegistro) {
+						error("La variable "+vr.getNombre_registro()+" no pertenece al tipo registro", vr, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
+					}
+					List<ValorVector> valoresVector = funciones.variablesVectorExistentes(valores, variables, nombresVectores);
+					for(ValorVector vv: valoresVector) {
+						error("La variable "+vv.getNombre_vector()+" no pertenece al tipo vector", vv, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+					}
+					List<ValorMatriz> valoresMatriz = funciones.variablesMatrizExistentes(valores, variables, nombresMatrices);
+					for(ValorMatriz vm: valoresMatriz) {
+						error("La variable "+vm.getNombre_matriz()+" no pertenece al tipo matriz", vm, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
 					}
 				}
 			}
@@ -1545,6 +1532,18 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						error("La variable "+r.getNombre_registro()+" no pertenece al tipo registro", r, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
 					}
 				}
+				else if(a.getComplejo() instanceof ValorVector) {
+					ValorVector v = (ValorVector) a.getComplejo();
+					if(!nombresVectores.contains(variables.get(v.getNombre_vector()))) {
+						error("La variable "+v.getNombre_vector()+" no pertenece al tipo vector", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+					}
+				}
+				else if(a.getComplejo() instanceof ValorMatriz) {
+					ValorMatriz m = (ValorMatriz) a.getComplejo();
+					if(!nombresMatrices.contains(variables.get(m.getNombre_matriz()))) {
+						error("La variable "+m.getNombre_matriz()+" no pertenece al tipo matriz", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
+					}
+				}
 				if(a.getOperador() instanceof ValorRegistro) {
 					ValorRegistro r = (ValorRegistro) a.getOperador();
 					if(!nombresRegistros.contains(variables.get(r.getNombre_registro()))) {
@@ -1552,15 +1551,33 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						error("La variable "+r.getNombre_registro()+" no pertenece al tipo registro", r, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
 					}
 				}
+				else if(a.getOperador() instanceof ValorVector) {
+					ValorVector v = (ValorVector) a.getOperador();
+					if(!nombresVectores.contains(variables.get(v.getNombre_vector()))) {
+						error("La variable "+v.getNombre_vector()+" no pertenece al tipo vector", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+					}
+				}
+				else if(a.getOperador() instanceof ValorMatriz) {
+					ValorMatriz m = (ValorMatriz) a.getOperador();
+					if(!nombresMatrices.contains(variables.get(m.getNombre_matriz()))) {
+						error("La variable "+m.getNombre_matriz()+" no pertenece al tipo matriz", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
+					}
+				}
 				else if(a.getOperador() instanceof operacion) {
 					operacion o = (operacion) a.getOperador();
 					//Si es una operación debemos comprobar la lista de operadores completa
 					List<valor> valores = funciones.registrarValoresOperacion(o);
 					List<ValorRegistro> valoresRegistro = funciones.variablesRegistroExistentes(valores, variables, nombresRegistros);
-					if(valoresRegistro.size() != 0) {
-						for(ValorRegistro vr: valoresRegistro) {
-							error("La variable "+vr.getNombre_registro()+" no pertenece al tipo registro", vr, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
-						}
+					for(ValorRegistro vr: valoresRegistro) {
+						error("La variable "+vr.getNombre_registro()+" no pertenece al tipo registro", vr, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
+					}
+					List<ValorVector> valoresVector = funciones.variablesVectorExistentes(valores, variables, nombresVectores);
+					for(ValorVector vv: valoresVector) {
+						error("La variable "+vv.getNombre_vector()+" no pertenece al tipo vector", vv, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+					}
+					List<ValorMatriz> valoresMatriz = funciones.variablesMatrizExistentes(valores, variables, nombresMatrices);
+					for(ValorMatriz vm: valoresMatriz) {
+						error("La variable "+vm.getNombre_matriz()+" no pertenece al tipo matriz", vm, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
 					}
 				}
 			}
@@ -1568,14 +1585,24 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	@Check
-	protected void checkVariableUsadaRegistro(Codigo c) {
+	protected void checkVariableUsadaTipoComplejo(Codigo c) {
 		//Recogemos todos los registros, con los nombres nos vale porque ya tenemos una función que se encarga de
 		//validar si un campo es o no de un determinado registro
 		List<String> nombresRegistros = new ArrayList<String>();
+		List<String> nombresVectores = new ArrayList<String>();
+		List<String> nombresMatrices = new ArrayList<String>();
 		for(TipoComplejo t: c.getTipocomplejo()) {
 			if(t instanceof Registro) {
 				Registro r = (Registro) t;
 				nombresRegistros.add(r.getNombre());
+			}
+			else if(t instanceof Vector) {
+				Vector v = (Vector) t;
+				nombresVectores.add(v.getNombre());
+			}
+			else if(t instanceof Matriz) {
+				Matriz m = (Matriz) t;
+				nombresMatrices.add(m.getNombre());
 			}
 		}
 		
@@ -1586,13 +1613,13 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		
 		Map<String,String> variables = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
 		
-		checkVariblesUsadasRegistroAux(c.getTiene().getTiene(), variables, nombresRegistros);
+		checkVariblesUsadasTiposComplejosAux(c.getTiene().getTiene(), variables, nombresRegistros, nombresVectores, nombresMatrices);
 		
 		//2) En los subprocesos:
 		
 		for(Subproceso s: c.getFuncion()) {
 			variables = funciones.registrarVariablesTipadas(s.getDeclaracion());
-			checkVariblesUsadasRegistroAux(s.getSentencias(), variables, nombresRegistros);
+			checkVariblesUsadasTiposComplejosAux(s.getSentencias(), variables, nombresRegistros, nombresVectores, nombresMatrices);
 		}
 		
 	}
