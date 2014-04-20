@@ -4,7 +4,7 @@ import org.eclipse.emf.mwe.utils.*
 import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
-var grammarURI = "classpath:/es/uca/PL2.xtext"
+var grammarURI = "classpath:/es/uca/Gramatica.xtext"
 var file.extensions = "p"
 var projectName = "pseudocodigoDSL"
 var runtimeProject = "../${projectName}"

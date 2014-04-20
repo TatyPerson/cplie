@@ -12,22 +12,23 @@ import org.eclipse.xtext.util.Pair;
  * This class contains custom formatting description.
  * 
  * see : http://www.eclipse.org/Xtext/documentation/latest/xtext.html#formatting
- * on how and when to use it 
+ * on how and when to use it
  * 
- * Also see {@link org.eclipse.xtext.xtext.XtextFormattingTokenSerializer} as an example
+ * Also see {@link org.eclipse.xtext.xtext.XtextFormattingTokenSerializer} as an
+ * example
  */
 public class MyDslFormatter extends AbstractDeclarativeFormatter {
-	
+
 	@Override
 	protected void configureFormatting(FormattingConfig c) {
 		org.xtext.example.mydsl.services.MyDslGrammarAccess f = (org.xtext.example.mydsl.services.MyDslGrammarAccess) getGrammarAccess();
-		for(Pair<Keyword, Keyword> pair: f.findKeywordPairs("{", "}")) {
+		for (Pair<Keyword, Keyword> pair : f.findKeywordPairs("{", "}")) {
 			c.setIndentation(pair.getFirst(), pair.getSecond());
 			c.setLinewrap(1).after(pair.getFirst());
 			c.setLinewrap(1).before(pair.getSecond());
 			c.setLinewrap(1).after(pair.getSecond());
 		}
-		for(Keyword comma: f.findKeywords(",")) {
+		for (Keyword comma : f.findKeywords(",")) {
 			c.setNoLinewrap().before(comma);
 			c.setNoSpace().before(comma);
 			c.setLinewrap().after(comma);

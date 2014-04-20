@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.EList;
+
 import diagramapseudocodigo.Archivo;
 import diagramapseudocodigo.Caracter;
 import diagramapseudocodigo.ConstCadena;
@@ -13,6 +15,7 @@ import diagramapseudocodigo.DeclaracionPropia;
 import diagramapseudocodigo.DeclaracionVariable;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Enumerado;
+import diagramapseudocodigo.Funcion;
 import diagramapseudocodigo.Inicio;
 import diagramapseudocodigo.LlamadaFuncion;
 import diagramapseudocodigo.Matriz;
@@ -22,9 +25,13 @@ import diagramapseudocodigo.Operador;
 import diagramapseudocodigo.ParametroFuncion;
 import diagramapseudocodigo.Registro;
 import diagramapseudocodigo.Sentencias;
+import diagramapseudocodigo.Subproceso;
 import diagramapseudocodigo.Subrango;
 import diagramapseudocodigo.TipoComplejo;
+import diagramapseudocodigo.TipoDefinido;
+import diagramapseudocodigo.TipoExistente;
 import diagramapseudocodigo.ValorBooleano;
+import diagramapseudocodigo.ValorMatriz;
 import diagramapseudocodigo.ValorRegistro;
 import diagramapseudocodigo.ValorVector;
 import diagramapseudocodigo.Variable;
@@ -361,7 +368,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 			if(v instanceof ValorVector) {
 				ValorVector vector = (ValorVector) v;
 				if(tiposValidos.get(0) == "entero") {
-					if(vectores.get(variables.get(vector.getNombre_vector())) != tiposValidos.get(0) && vectores.get(variables.get(vector.getNombre_vector())) != tiposValidos.get(1)) {
+					if(vectores.get(variables.get(vector.getNombre_vector())) != tiposValidos.get(0) && vectores.get(variables.get(vector.getNombre_vector())) != tiposValidos.get(1) && vectores.containsKey(variables.get(vector.getNombre_vector()))) {
 						return 3;
 					}
 					else if(vectores.get(variables.get(vector.getNombre_vector())) == tiposValidos.get(1)) {
@@ -369,12 +376,40 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 					}
 				}
 				else if(tiposValidos.get(0) == "real") {
-					if(vectores.get(variables.get(vector.getNombre_vector())) != tiposValidos.get(0) && vectores.get(variables.get(vector.getNombre_vector())) != tiposValidos.get(1)) {
+					if(vectores.get(variables.get(vector.getNombre_vector())) != tiposValidos.get(0) && vectores.get(variables.get(vector.getNombre_vector())) != tiposValidos.get(1) && vectores.containsKey(variables.get(vector.getNombre_vector()))) {
 						return 3;
 					}
 				}
 				else {
-					if(vectores.get(variables.get(vector.getNombre_vector())) != tiposValidos.get(0)) {
+					if(vectores.get(variables.get(vector.getNombre_vector())) != tiposValidos.get(0) && vectores.containsKey(variables.get(vector.getNombre_vector()))) {
+						return 3;
+					}
+				}
+			}
+		}
+		return check;
+	}
+	
+	protected int asignacionOperacionMatriz(List<valor> valoresProblem, Map<String,String> variables, List<String> tiposValidos, Map<String,String> matrices) {
+		int check = 1;
+		for(valor v: valoresProblem) {
+			if(v instanceof ValorMatriz) {
+				ValorMatriz matriz = (ValorMatriz) v;
+				if(tiposValidos.get(0) == "entero") {
+					if(matrices.get(variables.get(matriz.getNombre_matriz())) != tiposValidos.get(0) && matrices.get(variables.get(matriz.getNombre_matriz())) != tiposValidos.get(1) && matrices.containsKey(variables.get(matriz.getNombre_matriz()))) {
+						return 3;
+					}
+					else if(matrices.get(variables.get(matriz.getNombre_matriz())) == tiposValidos.get(1)) {
+						check = 2;
+					}
+				}
+				else if(tiposValidos.get(0) == "real") {
+					if(matrices.get(variables.get(matriz.getNombre_matriz())) != tiposValidos.get(0) && matrices.get(variables.get(matriz.getNombre_matriz())) != tiposValidos.get(1) && matrices.containsKey(variables.get(matriz.getNombre_matriz()))) {
+						return 3;
+					}
+				}
+				else {
+					if(matrices.get(variables.get(matriz.getNombre_matriz())) != tiposValidos.get(0) && matrices.containsKey(variables.get(matriz.getNombre_matriz()))) {
 						return 3;
 					}
 				}
@@ -389,8 +424,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 			if(v instanceof ValorRegistro) {
 				//Buscamos si el tipo con el que se declaró es uno de tipo registro
 				ValorRegistro vr = (ValorRegistro) v;
-				if(!nombresRegistros.contains(variables.get(vr.getNombre_registro())) && variables.containsKey(vr.getNombre_registro())) {
-					//No lo contiene (no es un tipo registro) y además esta definida
+				if(!nombresRegistros.contains(variables.get(vr.getNombre_registro()))) {
 					valoresRegistro.add(vr);
 				}
 			}
@@ -399,15 +433,71 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		return valoresRegistro;
 	}
 	
+	protected List<ValorVector> variablesVectorExistentes(List<valor> valores, Map<String,String> variables, List<String> nombresVectores) {
+		List<ValorVector> valoresVector = new ArrayList<ValorVector>();
+		for(valor v: valores) {
+			if(v instanceof ValorVector) {
+				//Buscamos si el tipo con el que se declaró es uno de tipo registro
+				ValorVector vv = (ValorVector) v;
+				if(!nombresVectores.contains(variables.get(vv.getNombre_vector()))) {
+					valoresVector.add(vv);
+				}
+			}
+		}
+		//Devolvemos todas las variables que se estan usando como registro y no lo son
+		return valoresVector;
+	}
+	
+	protected List<ValorMatriz> variablesMatrizExistentes(List<valor> valores, Map<String,String> variables, List<String> nombresMatrices) {
+		List<ValorMatriz> valoresMatriz = new ArrayList<ValorMatriz>();
+		for(valor v: valores) {
+			if(v instanceof ValorMatriz) {
+				//Buscamos si el tipo con el que se declaró es uno de tipo registro
+				ValorMatriz vm = (ValorMatriz) v;
+				if(!nombresMatrices.contains(variables.get(vm.getNombre_matriz()))) {
+					valoresMatriz.add(vm);
+				}
+			}
+		}
+		//Devolvemos todas las variables que se estan usando como registro y no lo son
+		return valoresMatriz;
+	}
+	
 	protected List<ValorRegistro> variablesRegistroDeclaradas(List<valor> valores, List<String> variables) {
 		List<ValorRegistro> variablesNoDeclaradas = new ArrayList<ValorRegistro>();
 		for(valor v: valores) {
 			if(v instanceof ValorRegistro) {
-				//Buscamos si ha sido definida (si el tipo es de tipo registro lo omitimos porque ya hay otra función
+				//Buscamos si ha sido definida (la comprobación de si pertenece al tipo registro lo omitimos porque ya hay otra función
 				//que se encarga de ello
 				ValorRegistro vr = (ValorRegistro) v;
 				if(!variables.contains(vr.getNombre_registro())) {
 					variablesNoDeclaradas.add(vr);
+				}
+			}
+		}
+		return variablesNoDeclaradas;
+	}
+	
+	protected List<ValorVector> variablesVectorDeclaradas(List<valor> valores, List<String> variables) {
+		List<ValorVector> variablesNoDeclaradas = new ArrayList<ValorVector>();
+		for(valor v: valores) {
+			if(v instanceof ValorVector) {
+				ValorVector vv = (ValorVector) v;
+				if(!variables.contains(vv.getNombre_vector())) {
+					variablesNoDeclaradas.add(vv);
+				}
+			}
+		}
+		return variablesNoDeclaradas;
+	}
+	
+	protected List<ValorMatriz> variablesMatrizDeclaradas(List<valor> valores, List<String> variables) {
+		List<ValorMatriz> variablesNoDeclaradas = new ArrayList<ValorMatriz>();
+		for(valor v: valores) {
+			if(v instanceof ValorMatriz) {
+				ValorMatriz vm = (ValorMatriz) v;
+				if(!variables.contains(vm.getNombre_matriz())) {
+					variablesNoDeclaradas.add(vm);
 				}
 			}
 		}
@@ -439,4 +529,66 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		}
 		return variablesNoDeclaradas;
 	}
+	
+	protected void prepararColeccionesTiposComplejos(EList<TipoComplejo> complejos, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,String> vectores, Map<String,String> matrices) {
+		
+		for(TipoComplejo t: complejos) {
+			if(t instanceof Registro) {
+				Registro r = (Registro) t;
+				HashMap<String,String> campos = new HashMap<String,String>();
+				for(DeclaracionVariable d: r.getVariable()) {
+					for(Variable v: d.getVariable()) {
+						campos.put(v.getNombre(), d.getTipo().getName());
+					}
+				}
+				registros.put(r.getNombre(), campos);
+				nombresRegistros.add(r.getNombre());
+			}
+			else if(t instanceof Vector) {
+				Vector v = (Vector) t;
+				if(v.getTipo() instanceof TipoExistente) {
+					TipoExistente tipo = (TipoExistente) v.getTipo();
+					vectores.put(v.getNombre(), tipo.getTipo().getName());
+				}
+				else if(v.getTipo() instanceof TipoDefinido) {
+					TipoDefinido tipo = (TipoDefinido) v.getTipo();
+					vectores.put(v.getNombre(), tipo.getTipo());
+				}
+				
+			}
+			else if(t instanceof Matriz) {
+				Matriz m = (Matriz) t;
+				if(m.getTipo() instanceof TipoExistente) {
+					TipoExistente tipo = (TipoExistente) m.getTipo();
+					matrices.put(m.getNombre(), tipo.getTipo().getName());
+				}
+				else {
+					TipoDefinido tipo = (TipoDefinido) m.getTipo();
+					matrices.put(m.getNombre(), tipo.getTipo());
+				}
+			}
+		}
+	}
+	
+	protected void prepararColeccionFunciones(List<Subproceso> funciones, Map<String,HashMap<Integer,String>> funcionesTipadas) {
+		
+		for(Subproceso s: funciones) {
+			if(s instanceof Funcion) {
+				Funcion f = (Funcion) s;
+				//Como hay otra función que se encarga de que no esten repetidos obviamos la comprobación
+				HashMap<Integer,String> aux = new HashMap<Integer,String>();
+				for(Subproceso s2: funciones) {
+					if(s2 instanceof Funcion) {
+						Funcion f2 = (Funcion) s2;
+						if(f.getNombre().equals(f2.getNombre())) {
+							aux.put(f2.getParametrofuncion().size(), f2.getTipo().getName());
+						}
+					}
+				}
+				funcionesTipadas.put(f.getNombre(), aux);
+			}
+		}
+		
+	}
+	
 }
