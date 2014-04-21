@@ -106,6 +106,7 @@ public class CodigoItemProvider
 			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CODIGO__FUNCION);
 			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CODIGO__CONSTANTES);
 			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO);
+			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CODIGO__COMENTARIOS);
 		}
 		return childrenFeatures;
 	}
@@ -167,6 +168,7 @@ public class CodigoItemProvider
 			case DiagramapseudocodigoPackage.CODIGO__FUNCION:
 			case DiagramapseudocodigoPackage.CODIGO__CONSTANTES:
 			case DiagramapseudocodigoPackage.CODIGO__TIPOCOMPLEJO:
+			case DiagramapseudocodigoPackage.CODIGO__COMENTARIOS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -248,6 +250,11 @@ public class CodigoItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO,
 				 DiagramapseudocodigoFactory.eINSTANCE.createSubrangoRegistro()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CODIGO__COMENTARIOS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createComentario()));
 	}
 
 	/**
