@@ -51,7 +51,7 @@ public interface ValorMatriz extends ValorComplejo {
 
 	/**
 	 * Returns the value of the '<em><b>Indices</b></em>' containment reference list.
-	 * The list contents are of type {@link diagramapseudocodigo.Operador}.
+	 * The list contents are of type {@link diagramapseudocodigo.valor}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Indices</em>' containment reference list isn't clear,
@@ -63,6 +63,6 @@ public interface ValorMatriz extends ValorComplejo {
 	 * @model containment="true" lower="2" upper="2"
 	 * @generated
 	 */
-	EList<Operador> getIndices();
+	EList<valor> getIndices();
 
 } // ValorMatriz
