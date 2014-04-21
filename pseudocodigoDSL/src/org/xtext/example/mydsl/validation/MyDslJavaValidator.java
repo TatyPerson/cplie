@@ -727,6 +727,90 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		}
 	}
 	
+	//Función auxiliar para cumplir el principio DRY
+	private void checkParametrosLlamadaAux(List<Sentencias> sentencias, List<String> tipos, String nombre, int parametros, Map<String,String> variablesDeclaradas) {
+		for(Sentencias sen: sentencias) {
+			if(sen instanceof LlamadaFuncion) {
+				LlamadaFuncion f = (LlamadaFuncion) sen;
+				//Buscamos realmente que tipos le esta pasando el usuario en la llamada (en inicio)
+				if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
+					List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
+					String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
+					String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
+					//!funciones.comprobarCorreccionTiposLlamada(nombresVariables, variablesDeclaradas, tipos)
+					if(!salidaBuena.equals(salidaMala)) {
+						error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+					}
+				}
+			}
+			else if(sen instanceof Asignacion) {
+				Asignacion a = (Asignacion) sen;
+				if(a instanceof AsignacionNormal) {
+					AsignacionNormal an = (AsignacionNormal) a;
+					if(an.getOperador() instanceof LlamadaFuncion) {
+						LlamadaFuncion f = (LlamadaFuncion) a.getOperador();
+						if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
+							List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
+							String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
+							String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
+							if(!salidaBuena.equals(salidaMala)) {
+								error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+							}
+						}
+					}
+					else if(an.getOperador() instanceof operacion) {
+						operacion o = (operacion) an.getOperador();
+						List<valor> valores = funciones.registrarValoresOperacion(o);
+						for(valor v: valores) {
+							if(v instanceof LlamadaFuncion) {
+								LlamadaFuncion f = (LlamadaFuncion) v;
+								if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
+									List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
+									String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
+									String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
+									if(!salidaBuena.equals(salidaMala)) {
+										error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+									}
+								}
+							}
+						}
+					}
+				}
+				else if(a instanceof AsignacionCompleja) {
+					AsignacionCompleja ac = (AsignacionCompleja) a;
+					if(ac.getOperador() instanceof LlamadaFuncion) {
+						LlamadaFuncion f = (LlamadaFuncion) a.getOperador();
+						if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
+							List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
+							String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
+							String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
+							if(!salidaBuena.equals(salidaMala)) {
+								error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+							}
+						}
+					}
+					else if(ac.getOperador() instanceof operacion) {
+						operacion o = (operacion) ac.getOperador();
+						List<valor> valores = funciones.registrarValoresOperacion(o);
+						for(valor v: valores) {
+							if(v instanceof LlamadaFuncion) {
+								LlamadaFuncion f = (LlamadaFuncion) v;
+								if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
+									List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
+									String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
+									String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
+									if(!salidaBuena.equals(salidaMala)) {
+										error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
 	@Check
 	//Función que comprueba que las funciones que se llaman dentro del programa principal se llamen con parámetros del tipo adecuado
 	protected void checkParametrosLlamadaInicio(Codigo c) {
@@ -736,85 +820,8 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			int parametros = s.getParametrofuncion().size();
 			//Registramos todas las variables que hay declaradas con sus respectivos tipos para buscar luego las necesarias (no hay repetidas)
 			Map<String,String> variablesDeclaradas = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
-			for(Sentencias sen: c.getTiene().getTiene()) {
-				if(sen instanceof LlamadaFuncion) {
-					LlamadaFuncion f = (LlamadaFuncion) sen;
-					//Buscamos realmente que tipos le esta pasando el usuario en la llamada (en inicio)
-					if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
-						List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
-						String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
-						String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
-						if(!funciones.comprobarCorreccionTiposLlamada(nombresVariables, variablesDeclaradas, tipos)) {
-							error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
-						}
-					}
-				}
-				else if(sen instanceof Asignacion) {
-					Asignacion a = (Asignacion) sen;
-					if(a instanceof AsignacionNormal) {
-						AsignacionNormal an = (AsignacionNormal) a;
-						if(an.getOperador() instanceof LlamadaFuncion) {
-							LlamadaFuncion f = (LlamadaFuncion) a.getOperador();
-							if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
-								List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
-								String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
-								String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
-								if(!funciones.comprobarCorreccionTiposLlamada(nombresVariables, variablesDeclaradas, tipos)) {
-									error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
-								}
-							}
-						}
-						else if(an.getOperador() instanceof operacion) {
-							operacion o = (operacion) an.getOperador();
-							List<valor> valores = funciones.registrarValoresOperacion(o);
-							for(valor v: valores) {
-								if(v instanceof LlamadaFuncion) {
-									LlamadaFuncion f = (LlamadaFuncion) v;
-									if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
-										List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
-										String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
-										String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
-										if(!funciones.comprobarCorreccionTiposLlamada(nombresVariables, variablesDeclaradas, tipos)) {
-											error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
-										}
-									}
-								}
-							}
-						}
-					}
-					else if(a instanceof AsignacionCompleja) {
-						AsignacionCompleja ac = (AsignacionCompleja) a;
-						if(ac.getOperador() instanceof LlamadaFuncion) {
-							LlamadaFuncion f = (LlamadaFuncion) a.getOperador();
-							if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
-								List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
-								String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
-								String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
-								if(!funciones.comprobarCorreccionTiposLlamada(nombresVariables, variablesDeclaradas, tipos)) {
-									error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
-								}
-							}
-						}
-						else if(ac.getOperador() instanceof operacion) {
-							operacion o = (operacion) ac.getOperador();
-							List<valor> valores = funciones.registrarValoresOperacion(o);
-							for(valor v: valores) {
-								if(v instanceof LlamadaFuncion) {
-									LlamadaFuncion f = (LlamadaFuncion) v;
-									if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
-										List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
-										String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
-										String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
-										if(!funciones.comprobarCorreccionTiposLlamada(nombresVariables, variablesDeclaradas, tipos)) {
-											error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
+			
+			checkParametrosLlamadaAux(c.getTiene().getTiene(),tipos,nombre,parametros,variablesDeclaradas);
 		}
 	}
 	
@@ -834,88 +841,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				//Como estamos en el caso de los subprocesos debemos registrar los parámetros también
 				funciones.getTiposCabecera(s2.getParametrofuncion(), variablesDeclaradas);
 				
-				for(Sentencias sen: s2.getSentencias()) {
-					if(sen instanceof LlamadaFuncion) {
-						LlamadaFuncion f = (LlamadaFuncion) sen;
-						//Buscamos realmente que tipos le esta pasando el usuario en la llamada (en los subprocesos)
-						if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
-							List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
-							String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
-							String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
-							if(!funciones.comprobarCorreccionTiposLlamada(nombresVariables, variablesDeclaradas, tipos)) {
-								error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
-							}
-						}
-					}
-					else if(sen instanceof Asignacion) {
-						Asignacion a = (Asignacion) sen;
-						if(a instanceof AsignacionNormal) {
-							AsignacionNormal an = (AsignacionNormal) a;
-							if(an.getOperador() instanceof LlamadaFuncion) {
-								LlamadaFuncion f = (LlamadaFuncion) a.getOperador();
-								if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
-									List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
-									String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
-									String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
-									if(!funciones.comprobarCorreccionTiposLlamada(nombresVariables, variablesDeclaradas, tipos)) {
-										error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
-									}
-								}
-							}
-							else if(an.getOperador() instanceof operacion) {
-								operacion o = (operacion) an.getOperador();
-								List<valor> valores = funciones.registrarValoresOperacion(o);
-								for(valor v: valores) {
-									if(v instanceof LlamadaFuncion) {
-										LlamadaFuncion f = (LlamadaFuncion) v;
-										if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
-											List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
-											String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
-											String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
-											if(!funciones.comprobarCorreccionTiposLlamada(nombresVariables, variablesDeclaradas, tipos)) {
-												error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
-											}
-										}
-									}
-								}
-							}
-						}
-						else if(a instanceof AsignacionCompleja) {
-							AsignacionCompleja ac = (AsignacionCompleja) a;
-							if(ac.getOperador() instanceof LlamadaFuncion) {
-								LlamadaFuncion f = (LlamadaFuncion) a.getOperador();
-								if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
-									List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
-									String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
-									String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
-									if(!funciones.comprobarCorreccionTiposLlamada(nombresVariables, variablesDeclaradas, tipos)) {
-										error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
-									}
-								}
-							}
-							else if(ac.getOperador() instanceof operacion) {
-								operacion o = (operacion) ac.getOperador();
-								List<valor> valores = funciones.registrarValoresOperacion(o);
-								for(valor v: valores) {
-									if(v instanceof LlamadaFuncion) {
-										LlamadaFuncion f = (LlamadaFuncion) v;
-										if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
-											List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
-											String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
-											String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
-											if(!funciones.comprobarCorreccionTiposLlamada(nombresVariables, variablesDeclaradas, tipos)) {
-												error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
+				checkParametrosLlamadaAux(s2.getSentencias(),tipos,nombre,parametros,variablesDeclaradas);
+				
 			}
 		}
-		
 	}
 	
 	
