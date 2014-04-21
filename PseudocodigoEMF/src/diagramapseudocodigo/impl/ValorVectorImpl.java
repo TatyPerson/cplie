@@ -4,21 +4,15 @@ package diagramapseudocodigo.impl;
 
 import diagramapseudocodigo.CampoRegistro;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
-import diagramapseudocodigo.Operador;
 import diagramapseudocodigo.ValorVector;
-
+import diagramapseudocodigo.valor;
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -76,7 +70,7 @@ public class ValorVectorImpl extends ValorComplejoImpl implements ValorVector {
 	 * @generated
 	 * @ordered
 	 */
-	protected Operador indice;
+	protected valor indice;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -135,7 +129,7 @@ public class ValorVectorImpl extends ValorComplejoImpl implements ValorVector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operador getIndice() {
+	public valor getIndice() {
 		return indice;
 	}
 
@@ -144,8 +138,8 @@ public class ValorVectorImpl extends ValorComplejoImpl implements ValorVector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetIndice(Operador newIndice, NotificationChain msgs) {
-		Operador oldIndice = indice;
+	public NotificationChain basicSetIndice(valor newIndice, NotificationChain msgs) {
+		valor oldIndice = indice;
 		indice = newIndice;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.VALOR_VECTOR__INDICE, oldIndice, newIndice);
@@ -159,7 +153,7 @@ public class ValorVectorImpl extends ValorComplejoImpl implements ValorVector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIndice(Operador newIndice) {
+	public void setIndice(valor newIndice) {
 		if (newIndice != indice) {
 			NotificationChain msgs = null;
 			if (indice != null)
@@ -224,7 +218,7 @@ public class ValorVectorImpl extends ValorComplejoImpl implements ValorVector {
 				getCampo().addAll((Collection<? extends CampoRegistro>)newValue);
 				return;
 			case DiagramapseudocodigoPackage.VALOR_VECTOR__INDICE:
-				setIndice((Operador)newValue);
+				setIndice((valor)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -245,7 +239,7 @@ public class ValorVectorImpl extends ValorComplejoImpl implements ValorVector {
 				getCampo().clear();
 				return;
 			case DiagramapseudocodigoPackage.VALOR_VECTOR__INDICE:
-				setIndice((Operador)null);
+				setIndice((valor)null);
 				return;
 		}
 		super.eUnset(featureID);
