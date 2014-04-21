@@ -95,7 +95,6 @@ RULE_WS=12
 'de '=37
 'E/S'=96
 '>='=81
-'#'=16
 'cadena'=70
 'fin_inicio'=49
 '=='=85
@@ -113,6 +112,7 @@ RULE_WS=12
 'fin_procedimiento'=95
 '+'=76
 '.'=32
+'//'=16
 '++'=89
 'falso'=75
 'cuadrado'=21

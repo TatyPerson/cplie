@@ -508,6 +508,15 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	ValorMatriz createValorMatriz();
 
 	/**
+	 * Returns a new object of class '<em>Comentario</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Comentario</em>'.
+	 * @generated
+	 */
+	Comentario createComentario();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -3,6 +3,7 @@
 package diagramapseudocodigo.impl;
 
 import diagramapseudocodigo.Codigo;
+import diagramapseudocodigo.Comentario;
 import diagramapseudocodigo.Constantes;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Inicio;
@@ -31,6 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link diagramapseudocodigo.impl.CodigoImpl#getNombre <em>Nombre</em>}</li>
  *   <li>{@link diagramapseudocodigo.impl.CodigoImpl#getConstantes <em>Constantes</em>}</li>
  *   <li>{@link diagramapseudocodigo.impl.CodigoImpl#getTipocomplejo <em>Tipocomplejo</em>}</li>
+ *   <li>{@link diagramapseudocodigo.impl.CodigoImpl#getComentarios <em>Comentarios</em>}</li>
  * </ul>
  * </p>
  *
@@ -96,6 +98,16 @@ public class CodigoImpl extends MinimalEObjectImpl.Container implements Codigo {
 	 * @ordered
 	 */
 	protected EList<TipoComplejo> tipocomplejo;
+
+	/**
+	 * The cached value of the '{@link #getComentarios() <em>Comentarios</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getComentarios()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Comentario> comentarios;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -221,6 +233,18 @@ public class CodigoImpl extends MinimalEObjectImpl.Container implements Codigo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Comentario> getComentarios() {
+		if (comentarios == null) {
+			comentarios = new EObjectContainmentEList<Comentario>(Comentario.class, this, DiagramapseudocodigoPackage.CODIGO__COMENTARIOS);
+		}
+		return comentarios;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -232,6 +256,8 @@ public class CodigoImpl extends MinimalEObjectImpl.Container implements Codigo {
 				return ((InternalEList<?>)getConstantes()).basicRemove(otherEnd, msgs);
 			case DiagramapseudocodigoPackage.CODIGO__TIPOCOMPLEJO:
 				return ((InternalEList<?>)getTipocomplejo()).basicRemove(otherEnd, msgs);
+			case DiagramapseudocodigoPackage.CODIGO__COMENTARIOS:
+				return ((InternalEList<?>)getComentarios()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -254,6 +280,8 @@ public class CodigoImpl extends MinimalEObjectImpl.Container implements Codigo {
 				return getConstantes();
 			case DiagramapseudocodigoPackage.CODIGO__TIPOCOMPLEJO:
 				return getTipocomplejo();
+			case DiagramapseudocodigoPackage.CODIGO__COMENTARIOS:
+				return getComentarios();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -285,6 +313,10 @@ public class CodigoImpl extends MinimalEObjectImpl.Container implements Codigo {
 				getTipocomplejo().clear();
 				getTipocomplejo().addAll((Collection<? extends TipoComplejo>)newValue);
 				return;
+			case DiagramapseudocodigoPackage.CODIGO__COMENTARIOS:
+				getComentarios().clear();
+				getComentarios().addAll((Collection<? extends Comentario>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -312,6 +344,9 @@ public class CodigoImpl extends MinimalEObjectImpl.Container implements Codigo {
 			case DiagramapseudocodigoPackage.CODIGO__TIPOCOMPLEJO:
 				getTipocomplejo().clear();
 				return;
+			case DiagramapseudocodigoPackage.CODIGO__COMENTARIOS:
+				getComentarios().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -334,6 +369,8 @@ public class CodigoImpl extends MinimalEObjectImpl.Container implements Codigo {
 				return constantes != null && !constantes.isEmpty();
 			case DiagramapseudocodigoPackage.CODIGO__TIPOCOMPLEJO:
 				return tipocomplejo != null && !tipocomplejo.isEmpty();
+			case DiagramapseudocodigoPackage.CODIGO__COMENTARIOS:
+				return comentarios != null && !comentarios.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -751,11 +751,11 @@ protected class Codigo_TieneAssignment_4 extends AssignmentToken  {
 /************ begin Rule Comentario ****************
  *
  * Comentario:
- * 	"#" mensaje=EString;
+ * 	"//" mensaje=EString;
  *
  **/
 
-// "#" mensaje=EString
+// "//" mensaje=EString
 protected class Comentario_Group extends GroupToken {
 	
 	public Comentario_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -784,16 +784,16 @@ protected class Comentario_Group extends GroupToken {
 
 }
 
-// "#"
-protected class Comentario_NumberSignKeyword_0 extends KeywordToken  {
+// "//"
+protected class Comentario_SolidusSolidusKeyword_0 extends KeywordToken  {
 	
-	public Comentario_NumberSignKeyword_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Comentario_SolidusSolidusKeyword_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getComentarioAccess().getNumberSignKeyword_0();
+		return grammarAccess.getComentarioAccess().getSolidusSolidusKeyword_0();
 	}
 
     @Override
@@ -820,7 +820,7 @@ protected class Comentario_MensajeAssignment_1 extends AssignmentToken  {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Comentario_NumberSignKeyword_0(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Comentario_SolidusSolidusKeyword_0(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -1225,8 +1225,6 @@ protected class Subproceso_ProcedimientoParserRuleCall_1 extends RuleCallToken {
 
 /************ begin Rule Sentencias ****************
  *
- * //terminal ML_COMMENT : '/ *' (!'*') -> '* /' ;
- * //terminal SL_COMMENT : '//' !('\n'|'\r')* ('\r'? '\n')? ;
  * Sentencias:
  * 	LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque | ValorComplejo;
  *
