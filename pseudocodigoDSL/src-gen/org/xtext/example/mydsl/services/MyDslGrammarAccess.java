@@ -140,19 +140,19 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	public class ComentarioElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Comentario");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cNumberSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cSolidusSolidusKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cMensajeAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cMensajeEStringParserRuleCall_1_0 = (RuleCall)cMensajeAssignment_1.eContents().get(0);
 		
 		//Comentario:
-		//	"#" mensaje=EString;
+		//	"//" mensaje=EString;
 		public ParserRule getRule() { return rule; }
 
-		//"#" mensaje=EString
+		//"//" mensaje=EString
 		public Group getGroup() { return cGroup; }
 
-		//"#"
-		public Keyword getNumberSignKeyword_0() { return cNumberSignKeyword_0; }
+		//"//"
+		public Keyword getSolidusSolidusKeyword_0() { return cSolidusSolidusKeyword_0; }
 
 		//mensaje=EString
 		public Assignment getMensajeAssignment_1() { return cMensajeAssignment_1; }
@@ -228,8 +228,6 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBloqueParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		private final RuleCall cValorComplejoParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		
-		////terminal ML_COMMENT : '/ *' (!'*') -> '* /' ;
-		////terminal SL_COMMENT : '//' !('\n'|'\r')* ('\r'? '\n')? ;
 		//Sentencias:
 		//	LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque | ValorComplejo;
 		public ParserRule getRule() { return rule; }
@@ -2798,6 +2796,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private ComentarioElements pComentario;
 	private TipoComplejoElements pTipoComplejo;
 	private SubprocesoElements pSubproceso;
+	private TerminalRule tML_COMMENT;
+	private TerminalRule tSL_COMMENT;
 	private SentenciasElements pSentencias;
 	private BloqueElements pBloque;
 	private DeclaracionElements pDeclaracion;
@@ -2916,7 +2916,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Comentario:
-	//	"#" mensaje=EString;
+	//	"//" mensaje=EString;
 	public ComentarioElements getComentarioAccess() {
 		return (pComentario != null) ? pComentario : (pComentario = new ComentarioElements());
 	}
@@ -2945,8 +2945,18 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getSubprocesoAccess().getRule();
 	}
 
-	////terminal ML_COMMENT : '/ *' (!'*') -> '* /' ;
-	////terminal SL_COMMENT : '//' !('\n'|'\r')* ('\r'? '\n')? ;
+	//terminal ML_COMMENT:
+	//	"/ *" !"*"->"* /";
+	public TerminalRule getML_COMMENTRule() {
+		return (tML_COMMENT != null) ? tML_COMMENT : (tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ML_COMMENT"));
+	} 
+
+	//terminal SL_COMMENT:
+	//	"//" !("\n" | "\r")* ("\r"? "\n")?;
+	public TerminalRule getSL_COMMENTRule() {
+		return (tSL_COMMENT != null) ? tSL_COMMENT : (tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SL_COMMENT"));
+	} 
+
 	//Sentencias:
 	//	LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque | ValorComplejo;
 	public SentenciasElements getSentenciasAccess() {
@@ -3622,18 +3632,6 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	"n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
 	public TerminalRule getSTRINGRule() {
 		return gaTerminals.getSTRINGRule();
-	} 
-
-	//terminal ML_COMMENT:
-	//	"/ *"->"* /";
-	public TerminalRule getML_COMMENTRule() {
-		return gaTerminals.getML_COMMENTRule();
-	} 
-
-	//terminal SL_COMMENT:
-	//	"//" !("\n" | "\r")* ("\r"? "\n")?;
-	public TerminalRule getSL_COMMENTRule() {
-		return gaTerminals.getSL_COMMENTRule();
 	} 
 
 	//terminal WS:

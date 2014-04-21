@@ -304,6 +304,10 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 				return createValorMatrizAdapter();
 			}
 			@Override
+			public Adapter caseComentario(Comentario object) {
+				return createComentarioAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -1146,6 +1150,20 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createValorMatrizAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.Comentario <em>Comentario</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.Comentario
+	 * @generated
+	 */
+	public Adapter createComentarioAdapter() {
 		return null;
 	}
 

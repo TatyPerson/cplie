@@ -11,6 +11,7 @@ import diagramapseudocodigo.CampoRegistro;
 import diagramapseudocodigo.Caracter;
 import diagramapseudocodigo.Caso;
 import diagramapseudocodigo.Codigo;
+import diagramapseudocodigo.Comentario;
 import diagramapseudocodigo.ConstCadena;
 import diagramapseudocodigo.Constantes;
 import diagramapseudocodigo.Declaracion;
@@ -501,6 +502,13 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass comentarioEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum tipoVariableEEnum = null;
 
 	/**
@@ -651,6 +659,15 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 */
 	public EReference getCodigo_Tipocomplejo() {
 		return (EReference)codigoEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCodigo_Comentarios() {
+		return (EReference)codigoEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1900,6 +1917,24 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getComentario() {
+		return comentarioEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getComentario_Mensaje() {
+		return (EAttribute)comentarioEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getVector_Nombre() {
 		return (EAttribute)vectorEClass.getEStructuralFeatures().get(2);
 	}
@@ -2019,6 +2054,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		createEAttribute(codigoEClass, CODIGO__NOMBRE);
 		createEReference(codigoEClass, CODIGO__CONSTANTES);
 		createEReference(codigoEClass, CODIGO__TIPOCOMPLEJO);
+		createEReference(codigoEClass, CODIGO__COMENTARIOS);
 
 		inicioEClass = createEClass(INICIO);
 		createEReference(inicioEClass, INICIO__TIENE);
@@ -2220,6 +2256,9 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		createEAttribute(valorMatrizEClass, VALOR_MATRIZ__NOMBRE_MATRIZ);
 		createEReference(valorMatrizEClass, VALOR_MATRIZ__INDICES);
 
+		comentarioEClass = createEClass(COMENTARIO);
+		createEAttribute(comentarioEClass, COMENTARIO__MENSAJE);
+
 		// Create enums
 		tipoVariableEEnum = createEEnum(TIPO_VARIABLE);
 		signoEEnum = createEEnum(SIGNO);
@@ -2308,6 +2347,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		initEAttribute(getCodigo_Nombre(), ecorePackage.getEString(), "nombre", null, 0, 1, Codigo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCodigo_Constantes(), this.getConstantes(), null, "constantes", null, 0, -1, Codigo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCodigo_Tipocomplejo(), this.getTipoComplejo(), null, "tipocomplejo", null, 0, -1, Codigo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCodigo_Comentarios(), this.getComentario(), null, "comentarios", null, 0, -1, Codigo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(inicioEClass, Inicio.class, "Inicio", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInicio_Tiene(), this.getSentencias(), null, "tiene", null, 0, -1, Inicio.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2508,6 +2548,9 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		initEClass(valorMatrizEClass, ValorMatriz.class, "ValorMatriz", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getValorMatriz_Nombre_matriz(), ecorePackage.getEString(), "nombre_matriz", null, 1, 1, ValorMatriz.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getValorMatriz_Indices(), this.getOperador(), null, "indices", null, 2, 2, ValorMatriz.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(comentarioEClass, Comentario.class, "Comentario", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getComentario_Mensaje(), ecorePackage.getEString(), "mensaje", null, 1, 1, Comentario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(tipoVariableEEnum, TipoVariable.class, "TipoVariable");

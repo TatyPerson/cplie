@@ -29,7 +29,9 @@ class MyDslGenerator implements IGenerator {
 		#include <cmath>
 		
 		using namespace std;
-		
+		«FOR myComentario:myCodigo.comentarios»
+			«myComentario.toC»
+		«ENDFOR»
 		«FOR myConstante:myCodigo.constantes»
 			«myConstante.toC»
 		«ENDFOR»
@@ -89,7 +91,7 @@ class MyDslGenerator implements IGenerator {
 	}
 	
 	def toC(Comentario myComentario)
-		'''//«myComentario.mensaje»'''
+		'''«myComentario.mensaje»'''
 
 	def toC(TipoDefinido myTipo) {
 		return myTipo.tipo
@@ -315,6 +317,16 @@ class MyDslGenerator implements IGenerator {
 			prueba = myComplejo as ValorRegistro
 			prueba.toC
 		}
+		else if(myComplejo.eClass.name.equals("ValorVector")) {
+			var ValorVector prueba = new ValorVectorImpl
+			prueba = myComplejo as ValorVector
+			prueba.toC
+		}
+		else if(myComplejo.eClass.name.equals("ValorMatriz")) {
+			var ValorMatriz prueba = new ValorMatrizImpl
+			prueba = myComplejo as ValorMatriz
+			prueba.toC
+		}
 	}
 
 	def toC(ValorRegistro myValor) {
@@ -330,7 +342,8 @@ class MyDslGenerator implements IGenerator {
 
 	def toC(ValorVector myValor) {
 		var concat = new String;
-		concat = myValor.nombre_vector.toString + '[' + myValor.indice + ']';
+		concat = myValor.nombre_vector.toString + '[' + myValor.indice.toC + ']';
+		return concat;
 	}
 
 	def toC(CampoRegistro myCampo) {
@@ -341,7 +354,7 @@ class MyDslGenerator implements IGenerator {
 
 	def toC(ValorMatriz myValor) {
 		var concat = new String;
-		concat = myValor.nombre_matriz.toString + '[' + myValor.indices.get(0) + '][' + myValor.indices.get(1) + ']';
+		concat = myValor.nombre_matriz.toString + '[' + myValor.indices.get(0).toC + '][' + myValor.indices.get(1).toC + ']';
 		return concat;
 	}
 

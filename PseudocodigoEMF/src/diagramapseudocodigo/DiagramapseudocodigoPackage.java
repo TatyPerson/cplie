@@ -112,13 +112,22 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int CODIGO__TIPOCOMPLEJO = 4;
 
 	/**
+	 * The feature id for the '<em><b>Comentarios</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CODIGO__COMENTARIOS = 5;
+
+	/**
 	 * The number of structural features of the '<em>Codigo</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CODIGO_FEATURE_COUNT = 5;
+	int CODIGO_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Codigo</em>' class.
@@ -2726,6 +2735,43 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int VALOR_MATRIZ_OPERATION_COUNT = VALOR_COMPLEJO_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.ComentarioImpl <em>Comentario</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.ComentarioImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getComentario()
+	 * @generated
+	 */
+	int COMENTARIO = 59;
+
+	/**
+	 * The feature id for the '<em><b>Mensaje</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMENTARIO__MENSAJE = 0;
+
+	/**
+	 * The number of structural features of the '<em>Comentario</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMENTARIO_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Comentario</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMENTARIO_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoVariable <em>Tipo Variable</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2733,7 +2779,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoVariable()
 	 * @generated
 	 */
-	int TIPO_VARIABLE = 59;
+	int TIPO_VARIABLE = 60;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.signo <em>signo</em>}' enum.
@@ -2743,7 +2789,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getsigno()
 	 * @generated
 	 */
-	int SIGNO = 60;
+	int SIGNO = 61;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.booleano <em>booleano</em>}' enum.
@@ -2753,7 +2799,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getbooleano()
 	 * @generated
 	 */
-	int BOOLEANO = 61;
+	int BOOLEANO = 62;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.inc <em>inc</em>}' enum.
@@ -2763,7 +2809,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getinc()
 	 * @generated
 	 */
-	int INC = 62;
+	int INC = 63;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoPaso <em>Tipo Paso</em>}' enum.
@@ -2773,7 +2819,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoPaso()
 	 * @generated
 	 */
-	int TIPO_PASO = 63;
+	int TIPO_PASO = 64;
 
 
 	/**
@@ -2784,7 +2830,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getNombreInterna()
 	 * @generated
 	 */
-	int NOMBRE_INTERNA = 64;
+	int NOMBRE_INTERNA = 65;
 
 
 	/**
@@ -2851,6 +2897,17 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getCodigo_Tipocomplejo();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.Codigo#getComentarios <em>Comentarios</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Comentarios</em>'.
+	 * @see diagramapseudocodigo.Codigo#getComentarios()
+	 * @see #getCodigo()
+	 * @generated
+	 */
+	EReference getCodigo_Comentarios();
 
 	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.Inicio <em>Inicio</em>}'.
@@ -4313,6 +4370,27 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EReference getValorMatriz_Indices();
 
 	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.Comentario <em>Comentario</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Comentario</em>'.
+	 * @see diagramapseudocodigo.Comentario
+	 * @generated
+	 */
+	EClass getComentario();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Comentario#getMensaje <em>Mensaje</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mensaje</em>'.
+	 * @see diagramapseudocodigo.Comentario#getMensaje()
+	 * @see #getComentario()
+	 * @generated
+	 */
+	EAttribute getComentario_Mensaje();
+
+	/**
 	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Vector#getNombre <em>Nombre</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4487,6 +4565,14 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CODIGO__TIPOCOMPLEJO = eINSTANCE.getCodigo_Tipocomplejo();
+
+		/**
+		 * The meta object literal for the '<em><b>Comentarios</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CODIGO__COMENTARIOS = eINSTANCE.getCodigo_Comentarios();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.InicioImpl <em>Inicio</em>}' class.
@@ -5707,6 +5793,24 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EReference VALOR_MATRIZ__INDICES = eINSTANCE.getValorMatriz_Indices();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.ComentarioImpl <em>Comentario</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.ComentarioImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getComentario()
+		 * @generated
+		 */
+		EClass COMENTARIO = eINSTANCE.getComentario();
+
+		/**
+		 * The meta object literal for the '<em><b>Mensaje</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMENTARIO__MENSAJE = eINSTANCE.getComentario_Mensaje();
 
 		/**
 		 * The meta object literal for the '<em><b>Nombre</b></em>' attribute feature.

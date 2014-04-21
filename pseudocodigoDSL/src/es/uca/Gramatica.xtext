@@ -14,7 +14,7 @@ Codigo returns Codigo:
 	tiene=Inicio;
 
 Comentario returns Comentario:
-	'//' mensaje=EString;
+	'//'mensaje= EString;
 	
 TipoComplejo returns TipoComplejo:
 	Vector | Matriz | Registro | Archivo | Enumerado | Subrango;
