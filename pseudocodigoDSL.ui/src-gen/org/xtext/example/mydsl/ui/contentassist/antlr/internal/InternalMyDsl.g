@@ -12968,8 +12968,8 @@ rule__ParametroFuncion__TipoAssignment_1
     }
 :
 (
-{ before(grammarAccess.getParametroFuncionAccess().getTipoTipoVariableParserRuleCall_1_0()); }
-	ruleTipoVariable{ after(grammarAccess.getParametroFuncionAccess().getTipoTipoVariableParserRuleCall_1_0()); }
+{ before(grammarAccess.getParametroFuncionAccess().getTipoTipoParserRuleCall_1_0()); }
+	ruleTipo{ after(grammarAccess.getParametroFuncionAccess().getTipoTipoParserRuleCall_1_0()); }
 )
 
 ;

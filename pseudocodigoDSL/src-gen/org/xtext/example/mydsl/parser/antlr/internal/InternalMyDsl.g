@@ -4548,9 +4548,9 @@ ruleParametroFuncion returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getParametroFuncionAccess().getTipoTipoVariableParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getParametroFuncionAccess().getTipoTipoParserRuleCall_1_0()); 
 	    }
-		lv_tipo_1_0=ruleTipoVariable		{
+		lv_tipo_1_0=ruleTipo		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getParametroFuncionRule());
 	        }
@@ -4558,7 +4558,7 @@ ruleParametroFuncion returns [EObject current=null]
        			$current, 
        			"tipo",
         		lv_tipo_1_0, 
-        		"TipoVariable");
+        		"Tipo");
 	        afterParserOrEnumRuleCall();
 	    }
 

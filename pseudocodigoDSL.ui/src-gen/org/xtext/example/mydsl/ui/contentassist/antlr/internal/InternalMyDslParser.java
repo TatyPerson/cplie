@@ -26601,7 +26601,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
                 int alt74=2;
                 int LA74_0 = input.LA(1);
 
-                if ( ((LA74_0>=23 && LA74_0<=27)) ) {
+                if ( ((LA74_0>=RULE_STRING && LA74_0<=RULE_ID)||(LA74_0>=23 && LA74_0<=27)) ) {
                     alt74=1;
                 }
 
@@ -35048,25 +35048,25 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ParametroFuncion__TipoAssignment_1"
-    // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:12965:1: rule__ParametroFuncion__TipoAssignment_1 : ( ruleTipoVariable ) ;
+    // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:12965:1: rule__ParametroFuncion__TipoAssignment_1 : ( ruleTipo ) ;
     public final void rule__ParametroFuncion__TipoAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:12969:1: ( ( ruleTipoVariable ) )
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:12970:1: ( ruleTipoVariable )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:12969:1: ( ( ruleTipo ) )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:12970:1: ( ruleTipo )
             {
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:12970:1: ( ruleTipoVariable )
-            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:12971:1: ruleTipoVariable
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:12970:1: ( ruleTipo )
+            // ../pseudocodigoDSL.ui/src-gen/org/xtext/example/mydsl/ui/contentassist/antlr/internal/InternalMyDsl.g:12971:1: ruleTipo
             {
-             before(grammarAccess.getParametroFuncionAccess().getTipoTipoVariableParserRuleCall_1_0()); 
-            pushFollow(FollowSets001.FOLLOW_ruleTipoVariable_in_rule__ParametroFuncion__TipoAssignment_126350);
-            ruleTipoVariable();
+             before(grammarAccess.getParametroFuncionAccess().getTipoTipoParserRuleCall_1_0()); 
+            pushFollow(FollowSets001.FOLLOW_ruleTipo_in_rule__ParametroFuncion__TipoAssignment_126350);
+            ruleTipo();
 
             state._fsp--;
 
-             after(grammarAccess.getParametroFuncionAccess().getTipoTipoVariableParserRuleCall_1_0()); 
+             after(grammarAccess.getParametroFuncionAccess().getTipoTipoParserRuleCall_1_0()); 
 
             }
 
@@ -37145,13 +37145,13 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
         public static final BitSet FOLLOW_rule__Devolver__DevuelveAssignment_3_in_rule__Devolver__Group__3__Impl19813 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__Devolver__Group__4__Impl_in_rule__Devolver__Group__419843 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_53_in_rule__Devolver__Group__4__Impl19871 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ParametroFuncion__Group__0__Impl_in_rule__ParametroFuncion__Group__019912 = new BitSet(new long[]{0x000000000F800000L});
+        public static final BitSet FOLLOW_rule__ParametroFuncion__Group__0__Impl_in_rule__ParametroFuncion__Group__019912 = new BitSet(new long[]{0x000000000F800030L});
         public static final BitSet FOLLOW_rule__ParametroFuncion__Group__1_in_rule__ParametroFuncion__Group__019915 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__ParametroFuncion__PasoAssignment_0_in_rule__ParametroFuncion__Group__0__Impl19942 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__ParametroFuncion__Group__1__Impl_in_rule__ParametroFuncion__Group__119972 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
         public static final BitSet FOLLOW_rule__ParametroFuncion__Group__2_in_rule__ParametroFuncion__Group__119975 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ParametroFuncion__TipoAssignment_1_in_rule__ParametroFuncion__Group__1__Impl20004 = new BitSet(new long[]{0x000000000F800002L});
-        public static final BitSet FOLLOW_rule__ParametroFuncion__TipoAssignment_1_in_rule__ParametroFuncion__Group__1__Impl20016 = new BitSet(new long[]{0x000000000F800002L});
+        public static final BitSet FOLLOW_rule__ParametroFuncion__TipoAssignment_1_in_rule__ParametroFuncion__Group__1__Impl20004 = new BitSet(new long[]{0x000000000F800032L});
+        public static final BitSet FOLLOW_rule__ParametroFuncion__TipoAssignment_1_in_rule__ParametroFuncion__Group__1__Impl20016 = new BitSet(new long[]{0x000000000F800032L});
         public static final BitSet FOLLOW_rule__ParametroFuncion__Group__2__Impl_in_rule__ParametroFuncion__Group__220049 = new BitSet(new long[]{0x0000000000000030L});
         public static final BitSet FOLLOW_rule__ParametroFuncion__Group__3_in_rule__ParametroFuncion__Group__220052 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_69_in_rule__ParametroFuncion__Group__2__Impl20080 = new BitSet(new long[]{0x0000000000000002L});
@@ -37390,7 +37390,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
         public static final BitSet FOLLOW_ruleDevolver_in_rule__Sino__DevuelveAssignment_326257 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rulevalor_in_rule__Devolver__DevuelveAssignment_326288 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleTipoPaso_in_rule__ParametroFuncion__PasoAssignment_026319 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleTipoVariable_in_rule__ParametroFuncion__TipoAssignment_126350 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleTipo_in_rule__ParametroFuncion__TipoAssignment_126350 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleVariable_in_rule__ParametroFuncion__VariableAssignment_326381 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleTipoVariable_in_rule__Funcion__TipoAssignment_026412 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_ruleEString_in_rule__Funcion__NombreAssignment_226443 = new BitSet(new long[]{0x0000000000000002L});
