@@ -12,9 +12,9 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link diagramapseudocodigo.ParametroFuncion#getTipo <em>Tipo</em>}</li>
  *   <li>{@link diagramapseudocodigo.ParametroFuncion#getVariable <em>Variable</em>}</li>
  *   <li>{@link diagramapseudocodigo.ParametroFuncion#getPaso <em>Paso</em>}</li>
+ *   <li>{@link diagramapseudocodigo.ParametroFuncion#getTipo <em>Tipo</em>}</li>
  * </ul>
  * </p>
  *
@@ -24,33 +24,30 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ParametroFuncion extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Tipo</b></em>' attribute.
-	 * The literals are from the enumeration {@link diagramapseudocodigo.TipoVariable}.
+	 * Returns the value of the '<em><b>Tipo</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Tipo</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Tipo</em>' attribute.
-	 * @see diagramapseudocodigo.TipoVariable
-	 * @see #setTipo(TipoVariable)
+	 * @return the value of the '<em>Tipo</em>' containment reference.
+	 * @see #setTipo(Tipo)
 	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getParametroFuncion_Tipo()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	TipoVariable getTipo();
+	Tipo getTipo();
 
 	/**
-	 * Sets the value of the '{@link diagramapseudocodigo.ParametroFuncion#getTipo <em>Tipo</em>}' attribute.
+	 * Sets the value of the '{@link diagramapseudocodigo.ParametroFuncion#getTipo <em>Tipo</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Tipo</em>' attribute.
-	 * @see diagramapseudocodigo.TipoVariable
+	 * @param value the new value of the '<em>Tipo</em>' containment reference.
 	 * @see #getTipo()
 	 * @generated
 	 */
-	void setTipo(TipoVariable value);
+	void setTipo(Tipo value);
 
 	/**
 	 * Returns the value of the '<em><b>Variable</b></em>' containment reference.

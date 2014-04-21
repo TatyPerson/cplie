@@ -188,9 +188,30 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		List<String> tipos = new ArrayList<String>();
 		for(ParametroFuncion p: parametros) {
 			//Registramos los tipos que requiere la función en su cabecera
-			tipos.add(p.getTipo().getName());
+			if(p.getTipo() instanceof TipoExistente) {
+				TipoExistente tipo = (TipoExistente) p.getTipo();
+				tipos.add(tipo.getTipo().getName());
+			}
+			else {
+				TipoDefinido tipo = (TipoDefinido) p.getTipo();
+				tipos.add(tipo.getTipo());
+			}
 		}
 		return tipos;
+	}
+	
+	protected void getTiposCabecera(List<ParametroFuncion> parametros, Map<String,String> variablesDeclaradas) {
+		for(ParametroFuncion p: parametros) {
+			//Registramos los tipos que requiere la función en su cabecera
+			if(p.getTipo() instanceof TipoExistente) {
+				TipoExistente tipo = (TipoExistente) p.getTipo();
+				variablesDeclaradas.put(p.getVariable().getNombre(), tipo.getTipo().getName());
+			}
+			else {
+				TipoDefinido tipo = (TipoDefinido) p.getTipo();
+				variablesDeclaradas.put(p.getVariable().getNombre(), tipo.getTipo());
+			}
+		}
 	}
 	
 	protected List<valor> registrarValoresOperacion(operacion o) {

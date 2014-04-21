@@ -954,8 +954,8 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getParametroFuncion_Tipo() {
-		return (EAttribute)parametroFuncionEClass.getEStructuralFeatures().get(0);
+	public EReference getParametroFuncion_Tipo() {
+		return (EReference)parametroFuncionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -964,7 +964,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * @generated
 	 */
 	public EReference getParametroFuncion_Variable() {
-		return (EReference)parametroFuncionEClass.getEStructuralFeatures().get(1);
+		return (EReference)parametroFuncionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -973,7 +973,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * @generated
 	 */
 	public EAttribute getParametroFuncion_Paso() {
-		return (EAttribute)parametroFuncionEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)parametroFuncionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -2100,9 +2100,9 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		createEReference(funcionEClass, FUNCION__DEVUELVE);
 
 		parametroFuncionEClass = createEClass(PARAMETRO_FUNCION);
-		createEAttribute(parametroFuncionEClass, PARAMETRO_FUNCION__TIPO);
 		createEReference(parametroFuncionEClass, PARAMETRO_FUNCION__VARIABLE);
 		createEAttribute(parametroFuncionEClass, PARAMETRO_FUNCION__PASO);
+		createEReference(parametroFuncionEClass, PARAMETRO_FUNCION__TIPO);
 
 		leerEClass = createEClass(LEER);
 		createEReference(leerEClass, LEER__VARIABLE);
@@ -2393,9 +2393,9 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		initEReference(getFuncion_Devuelve(), this.getDevolver(), null, "devuelve", null, 0, 1, Funcion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(parametroFuncionEClass, ParametroFuncion.class, "ParametroFuncion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getParametroFuncion_Tipo(), this.getTipoVariable(), "tipo", null, 1, 1, ParametroFuncion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getParametroFuncion_Variable(), this.getVariable(), null, "variable", null, 1, 1, ParametroFuncion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getParametroFuncion_Paso(), this.getTipoPaso(), "paso", null, 1, 1, ParametroFuncion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getParametroFuncion_Tipo(), this.getTipo(), null, "tipo", null, 1, 1, ParametroFuncion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(leerEClass, Leer.class, "Leer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLeer_Variable(), this.getVariableID(), null, "variable", null, 1, 1, Leer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

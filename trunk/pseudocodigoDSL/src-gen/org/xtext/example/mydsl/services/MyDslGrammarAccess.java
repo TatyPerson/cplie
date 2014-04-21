@@ -2468,16 +2468,16 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cPasoAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cPasoTipoPasoParserRuleCall_0_0 = (RuleCall)cPasoAssignment_0.eContents().get(0);
 		private final Assignment cTipoAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cTipoTipoVariableParserRuleCall_1_0 = (RuleCall)cTipoAssignment_1.eContents().get(0);
+		private final RuleCall cTipoTipoParserRuleCall_1_0 = (RuleCall)cTipoAssignment_1.eContents().get(0);
 		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cVariableAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cVariableVariableParserRuleCall_3_0 = (RuleCall)cVariableAssignment_3.eContents().get(0);
 		
 		//ParametroFuncion:
-		//	paso=TipoPaso tipo=TipoVariable+ ":" variable=Variable;
+		//	paso=TipoPaso tipo=Tipo+ ":" variable=Variable;
 		public ParserRule getRule() { return rule; }
 
-		//paso=TipoPaso tipo=TipoVariable+ ":" variable=Variable
+		//paso=TipoPaso tipo=Tipo+ ":" variable=Variable
 		public Group getGroup() { return cGroup; }
 
 		//paso=TipoPaso
@@ -2486,11 +2486,11 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//TipoPaso
 		public RuleCall getPasoTipoPasoParserRuleCall_0_0() { return cPasoTipoPasoParserRuleCall_0_0; }
 
-		//tipo=TipoVariable+
+		//tipo=Tipo+
 		public Assignment getTipoAssignment_1() { return cTipoAssignment_1; }
 
-		//TipoVariable
-		public RuleCall getTipoTipoVariableParserRuleCall_1_0() { return cTipoTipoVariableParserRuleCall_1_0; }
+		//Tipo
+		public RuleCall getTipoTipoParserRuleCall_1_0() { return cTipoTipoParserRuleCall_1_0; }
 
 		//":"
 		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
@@ -3571,7 +3571,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ParametroFuncion:
-	//	paso=TipoPaso tipo=TipoVariable+ ":" variable=Variable;
+	//	paso=TipoPaso tipo=Tipo+ ":" variable=Variable;
 	public ParametroFuncionElements getParametroFuncionAccess() {
 		return (pParametroFuncion != null) ? pParametroFuncion : (pParametroFuncion = new ParametroFuncionElements());
 	}

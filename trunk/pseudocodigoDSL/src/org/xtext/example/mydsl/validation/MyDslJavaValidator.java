@@ -832,9 +832,8 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				//Registramos todas las variables que hay declaradas con sus respectivos tipos para buscar luego las necesarias (no hay repetidas)
 				Map<String,String> variablesDeclaradas = funciones.registrarVariablesTipadas(s2.getDeclaracion());
 				//Como estamos en el caso de los subprocesos debemos registrar los parámetros también
-				for(ParametroFuncion p: s2.getParametrofuncion()) {
-					variablesDeclaradas.put(p.getVariable().getNombre(), p.getTipo().getName());
-				}
+				funciones.getTiposCabecera(s2.getParametrofuncion(), variablesDeclaradas);
+				
 				for(Sentencias sen: s2.getSentencias()) {
 					if(sen instanceof LlamadaFuncion) {
 						LlamadaFuncion f = (LlamadaFuncion) sen;
@@ -932,10 +931,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				//Buscamos las variables en las declaraciones y en los parametros para averiguar de que tipo es
 				Map<String,String> variables = funciones.registrarVariablesTipadas(f.getDeclaracion());
 				//Registramos los parámetros
-				for(ParametroFuncion p: f.getParametrofuncion()) {
-					//Registramos todos los parámetros declarados y sus respectivos tipos
-					variables.put(p.getVariable().getNombre(), p.getTipo().getName());
-				}
+				funciones.getTiposCabecera(f.getParametrofuncion(), variables);
 				
 				//Comprobamos que la variable que se quiere devolver este definida y sea del tipo correcto.
 				if(!variables.containsKey(nombreVar)) {
@@ -1466,9 +1462,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			
 			//Como es una función también debemos registrar los parámetros
 			
-			for(ParametroFuncion p: s.getParametrofuncion()) {
-				variables.put(p.getVariable().getNombre(), p.getTipo().getName());
-			}
+			funciones.getTiposCabecera(s.getParametrofuncion(), variables);
 			
 			for(Sentencias sen: s.getSentencias()) {
 				if(sen instanceof Asignacion) {
@@ -1632,6 +1626,11 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		
 		for(Subproceso s: c.getFuncion()) {
 			variables = funciones.registrarVariablesTipadas(s.getDeclaracion());
+			
+			//Como son subprocesos también debemos registrar sus parámetros
+			
+			funciones.getTiposCabecera(s.getParametrofuncion(), variables);
+			
 			checkVariblesUsadasTiposComplejosAux(s.getSentencias(), variables, nombresRegistros, nombresVectores, nombresMatrices);
 		}
 		

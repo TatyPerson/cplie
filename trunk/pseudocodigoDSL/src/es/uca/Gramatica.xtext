@@ -278,7 +278,7 @@ inc returns inc:
 	
 ParametroFuncion returns ParametroFuncion:
 	paso=TipoPaso
-	tipo=TipoVariable + ":"
+	tipo=Tipo + ":"
 	variable=Variable;
 
 Funcion returns Funcion:

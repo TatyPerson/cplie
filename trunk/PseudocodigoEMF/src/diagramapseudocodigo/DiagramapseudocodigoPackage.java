@@ -822,22 +822,13 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int PARAMETRO_FUNCION = 14;
 
 	/**
-	 * The feature id for the '<em><b>Tipo</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETRO_FUNCION__TIPO = 0;
-
-	/**
 	 * The feature id for the '<em><b>Variable</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETRO_FUNCION__VARIABLE = 1;
+	int PARAMETRO_FUNCION__VARIABLE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Paso</b></em>' attribute.
@@ -846,7 +837,16 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETRO_FUNCION__PASO = 2;
+	int PARAMETRO_FUNCION__PASO = 1;
+
+	/**
+	 * The feature id for the '<em><b>Tipo</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETRO_FUNCION__TIPO = 2;
 
 	/**
 	 * The number of structural features of the '<em>Parametro Funcion</em>' class.
@@ -3237,15 +3237,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EClass getParametroFuncion();
 
 	/**
-	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.ParametroFuncion#getTipo <em>Tipo</em>}'.
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.ParametroFuncion#getTipo <em>Tipo</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Tipo</em>'.
+	 * @return the meta object for the containment reference '<em>Tipo</em>'.
 	 * @see diagramapseudocodigo.ParametroFuncion#getTipo()
 	 * @see #getParametroFuncion()
 	 * @generated
 	 */
-	EAttribute getParametroFuncion_Tipo();
+	EReference getParametroFuncion_Tipo();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.ParametroFuncion#getVariable <em>Variable</em>}'.
@@ -4851,12 +4851,12 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EClass PARAMETRO_FUNCION = eINSTANCE.getParametroFuncion();
 
 		/**
-		 * The meta object literal for the '<em><b>Tipo</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Tipo</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PARAMETRO_FUNCION__TIPO = eINSTANCE.getParametroFuncion_Tipo();
+		EReference PARAMETRO_FUNCION__TIPO = eINSTANCE.getParametroFuncion_Tipo();
 
 		/**
 		 * The meta object literal for the '<em><b>Variable</b></em>' containment reference feature.

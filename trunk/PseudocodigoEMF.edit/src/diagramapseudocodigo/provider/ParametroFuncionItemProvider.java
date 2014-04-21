@@ -6,18 +6,13 @@ package diagramapseudocodigo.provider;
 import diagramapseudocodigo.DiagramapseudocodigoFactory;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.ParametroFuncion;
-import diagramapseudocodigo.TipoVariable;
-
+import diagramapseudocodigo.TipoPaso;
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -64,8 +59,8 @@ public class ParametroFuncionItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTipoPropertyDescriptor(object);
 			addPasoPropertyDescriptor(object);
+			addTipoPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -87,7 +82,7 @@ public class ParametroFuncionItemProvider
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
 				 null,
 				 null));
 	}
@@ -163,7 +158,7 @@ public class ParametroFuncionItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		TipoVariable labelValue = ((ParametroFuncion)object).getTipo();
+		TipoPaso labelValue = ((ParametroFuncion)object).getPaso();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ParametroFuncion_type") :
@@ -182,8 +177,8 @@ public class ParametroFuncionItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ParametroFuncion.class)) {
-			case DiagramapseudocodigoPackage.PARAMETRO_FUNCION__TIPO:
 			case DiagramapseudocodigoPackage.PARAMETRO_FUNCION__PASO:
+			case DiagramapseudocodigoPackage.PARAMETRO_FUNCION__TIPO:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case DiagramapseudocodigoPackage.PARAMETRO_FUNCION__VARIABLE:

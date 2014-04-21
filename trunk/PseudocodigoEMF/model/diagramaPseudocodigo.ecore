@@ -75,10 +75,11 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParametroFuncion">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tipo" lowerBound="1" eType="#//TipoVariable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1"
         eType="#//Variable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="paso" lowerBound="1" eType="#//TipoPaso"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tipo" lowerBound="1" eType="#//Tipo"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Leer" eSuperTypes="#//Sentencias">
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1"
