@@ -1314,6 +1314,29 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.Comentario} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ComentarioItemProvider comentarioItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.Comentario}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createComentarioAdapter() {
+		if (comentarioItemProvider == null) {
+			comentarioItemProvider = new ComentarioItemProvider(this);
+		}
+
+		return comentarioItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1466,6 +1489,7 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 		if (subrangoRegistroItemProvider != null) subrangoRegistroItemProvider.dispose();
 		if (valorVectorItemProvider != null) valorVectorItemProvider.dispose();
 		if (valorMatrizItemProvider != null) valorMatrizItemProvider.dispose();
+		if (comentarioItemProvider != null) comentarioItemProvider.dispose();
 	}
 
 }
