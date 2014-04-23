@@ -72,15 +72,31 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	//Función que se encarga de comprobar que no existan dos variables declaradas en un registro con el mismo nombre
 	protected void checkRegistro(Registro r) {
 		List<String> variables = new ArrayList<String>();
-		for(DeclaracionVariable d: r.getVariable()) {
-			for(Variable v: d.getVariable()) {
-				if(!variables.contains(v.getNombre())) {
+		for(Declaracion d: r.getVariable()) {
+			if(d instanceof DeclaracionPropia) {
+				DeclaracionPropia dec = (DeclaracionPropia) d;
+				for(Variable v: dec.getVariable()) {
 					//Si no esta repetida la registramos
-					variables.add(v.getNombre());
-				}
-				else {
+					if(!variables.contains(v.getNombre())) {
+						variables.add(v.getNombre());
+					}
 					//Si esta repetida lanzamos el error
-					error("No se pueden declarar dos variables con el mismo nombre dentro de la declaración de un registro", DiagramapseudocodigoPackage.Literals.REGISTRO__VARIABLE, r.getVariable().indexOf(d));
+					else {
+						error("No se pueden declarar dos variables con el mismo nombre dentro de la declaración de un registro", DiagramapseudocodigoPackage.Literals.REGISTRO__VARIABLE, r.getVariable().indexOf(d));
+					}
+				}
+			}
+			else {
+				DeclaracionVariable dec = (DeclaracionVariable) d;
+				for(Variable v: dec.getVariable()) {
+					//Si no esta repetida la registramos
+					if(!variables.contains(v.getNombre())) {
+						variables.add(v.getNombre());
+					}
+					//Si esta repetida lanzamos el error
+					else {
+						error("No se pueden declarar dos variables con el mismo nombre dentro de la declaración de un registro", DiagramapseudocodigoPackage.Literals.REGISTRO__VARIABLE, r.getVariable().indexOf(d));
+					}
 				}
 			}
 		}
@@ -728,7 +744,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	//Función auxiliar para cumplir el principio DRY
-	private void checkParametrosLlamadaAux(List<Sentencias> sentencias, List<String> tipos, String nombre, int parametros, Map<String,String> variablesDeclaradas) {
+	private void checkParametrosLlamadaAux(List<Sentencias> sentencias, List<String> tipos, String nombre, int parametros, Map<String,String> variablesDeclaradas, Map<String,String> tiposVectoresMatrices, Map<String,HashMap<String,String>> tiposRegistros) {
 		for(Sentencias sen: sentencias) {
 			if(sen instanceof LlamadaFuncion) {
 				LlamadaFuncion f = (LlamadaFuncion) sen;
@@ -736,7 +752,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
 					List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
 					String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
-					String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
+					String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
 					//!funciones.comprobarCorreccionTiposLlamada(nombresVariables, variablesDeclaradas, tipos)
 					if(!salidaBuena.equals(salidaMala)) {
 						error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
@@ -752,7 +768,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
 							List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
 							String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
-							String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
+							String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
 							if(!salidaBuena.equals(salidaMala)) {
 								error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
 							}
@@ -767,7 +783,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
 									List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
 									String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
-									String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
+									String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
 									if(!salidaBuena.equals(salidaMala)) {
 										error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
 									}
@@ -783,7 +799,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
 							List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
 							String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
-							String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
+							String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
 							if(!salidaBuena.equals(salidaMala)) {
 								error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
 							}
@@ -798,7 +814,9 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
 									List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
 									String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
-									String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas);
+									String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
+									System.out.println("Salida buena: "+salidaBuena);
+									System.out.println("Salida mala: "+salidaMala);
 									if(!salidaBuena.equals(salidaMala)) {
 										error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
 									}
@@ -814,6 +832,11 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	@Check
 	//Función que comprueba que las funciones que se llaman dentro del programa principal se llamen con parámetros del tipo adecuado
 	protected void checkParametrosLlamadaInicio(Codigo c) {
+		//Recogemos los tipos nativos de los tipos complejos
+		Map<String,String> tiposVectoresMatrices = funciones.registrarTiposNativosdeComplejos(c.getTipocomplejo());
+		//Recogemos los tipos nativos de los registros	
+		Map<String,HashMap<String,String>> tiposRegistros = funciones.registrarTiposNativosRegistros(c.getTipocomplejo());
+		
 		for(Subproceso s: c.getFuncion()) {
 			List<String> tipos = funciones.getTiposCabecera(s.getParametrofuncion());
 			String nombre = s.getNombre();
@@ -821,7 +844,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			//Registramos todas las variables que hay declaradas con sus respectivos tipos para buscar luego las necesarias (no hay repetidas)
 			Map<String,String> variablesDeclaradas = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
 			
-			checkParametrosLlamadaAux(c.getTiene().getTiene(),tipos,nombre,parametros,variablesDeclaradas);
+			checkParametrosLlamadaAux(c.getTiene().getTiene(),tipos,nombre,parametros,variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
 		}
 	}
 	
@@ -829,6 +852,11 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	@Check
 	//Función que comprueba que las funciones que se llaman dentro de los subprocesos se llamen con parámetros del tipo adecuado
 	protected void checkParametrosLlamadaSubproceso(Codigo c) {
+		//Recogemos los tipos nativos de los tipos complejos
+		Map<String,String> tiposVectoresMatrices = funciones.registrarTiposNativosdeComplejos(c.getTipocomplejo());
+		//Recogemos los tipos nativos de los registros	
+		Map<String,HashMap<String,String>> tiposRegistros = funciones.registrarTiposNativosRegistros(c.getTipocomplejo());
+		
 		//Registramos los tipos de parámetros necesarios para todos los subprocesos
 		for(Subproceso s: c.getFuncion()) {
 			List<String> tipos = funciones.getTiposCabecera(s.getParametrofuncion());
@@ -841,7 +869,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				//Como estamos en el caso de los subprocesos debemos registrar los parámetros también
 				funciones.getTiposCabecera(s2.getParametrofuncion(), variablesDeclaradas);
 				
-				checkParametrosLlamadaAux(s2.getSentencias(),tipos,nombre,parametros,variablesDeclaradas);
+				checkParametrosLlamadaAux(s2.getSentencias(),tipos,nombre,parametros,variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
 				
 			}
 		}
@@ -882,17 +910,11 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	//Función que comprueba que un campo utilizado de un registro pertenezca realmente a ese tipo de registro
 	protected void checkVariablesRegistroInicio(Codigo c) {
 		//Preparamos todos los campos clasificados por el nombre del registro (utilizado como identificador)
-		Map<String,ArrayList<String>> registros = new HashMap<String,ArrayList<String>>();
+		Map<String,List<String>> registros = new HashMap<String,List<String>>();
 		for(TipoComplejo t: c.getTipocomplejo()) {
 			if(t instanceof Registro) {
 				Registro r = (Registro) t;
-				ArrayList<String> campos = new ArrayList<String>();
-				for(DeclaracionVariable d: r.getVariable()) {
-					for(Variable v: d.getVariable()) {
-						campos.add(v.getNombre());
-					}
-				}
-				registros.put(r.getNombre(), campos);
+				registros.put(r.getNombre(), funciones.registrarCamposRegistroSinTipo(r.getVariable()));
 			}
 		}
 		
@@ -949,17 +971,11 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	//Función que comprueba que un campo utilizado de un registro pertenezca realmente a ese tipo de registro
 	protected void checkVariablesRegistroSubproceso(Codigo c) {
 		//Preparamos todos los campos clasificados por el nombre del registro (utilizado como identificador)
-		Map<String,ArrayList<String>> registros = new HashMap<String,ArrayList<String>>();
+		Map<String,List<String>> registros = new HashMap<String,List<String>>();
 			for(TipoComplejo t: c.getTipocomplejo()) {
 				if(t instanceof Registro) {
 					Registro r = (Registro) t;
-					ArrayList<String> campos = new ArrayList<String>();
-					for(DeclaracionVariable d: r.getVariable()) {
-						for(Variable v: d.getVariable()) {
-							campos.add(v.getNombre());
-						}
-					}
-					registros.put(r.getNombre(), campos);
+					registros.put(r.getNombre(), funciones.registrarCamposRegistroSinTipo(r.getVariable()));
 				}
 			}
 			
@@ -1083,6 +1099,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						}
 						else if(operador instanceof ValorVector) {
 							ValorVector v = (ValorVector) operador;
+							System.out.println("Hola, soy un vector y mi nombre es "+v.getNombre_vector());
 							if(vectores.get(variables.get(v.getNombre_vector())) != "entero" && vectores.get(variables.get(v.getNombre_vector())) != "real") {
 								errorAsignacion(a, "El tipo de asignación es incompatible", true);
 							}

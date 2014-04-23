@@ -74,12 +74,12 @@ public interface ValorVector extends ValorComplejo {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Indice</em>' containment reference.
-	 * @see #setIndice(valor)
+	 * @see #setIndice(Operador)
 	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getValorVector_Indice()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	valor getIndice();
+	Operador getIndice();
 
 	/**
 	 * Sets the value of the '{@link diagramapseudocodigo.ValorVector#getIndice <em>Indice</em>}' containment reference.
@@ -89,6 +89,6 @@ public interface ValorVector extends ValorComplejo {
 	 * @see #getIndice()
 	 * @generated
 	 */
-	void setIndice(valor value);
+	void setIndice(Operador value);
 
 } // ValorVector

@@ -2,7 +2,7 @@
  */
 package diagramapseudocodigo.impl;
 
-import diagramapseudocodigo.DeclaracionVariable;
+import diagramapseudocodigo.Declaracion;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Registro;
 import java.util.Collection;
@@ -38,7 +38,7 @@ public class RegistroImpl extends TipoComplejoImpl implements Registro {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<DeclaracionVariable> variable;
+	protected EList<Declaracion> variable;
 
 	/**
 	 * The default value of the '{@link #getNombre() <em>Nombre</em>}' attribute.
@@ -84,9 +84,9 @@ public class RegistroImpl extends TipoComplejoImpl implements Registro {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DeclaracionVariable> getVariable() {
+	public EList<Declaracion> getVariable() {
 		if (variable == null) {
-			variable = new EObjectContainmentEList<DeclaracionVariable>(DeclaracionVariable.class, this, DiagramapseudocodigoPackage.REGISTRO__VARIABLE);
+			variable = new EObjectContainmentEList<Declaracion>(Declaracion.class, this, DiagramapseudocodigoPackage.REGISTRO__VARIABLE);
 		}
 		return variable;
 	}
@@ -153,7 +153,7 @@ public class RegistroImpl extends TipoComplejoImpl implements Registro {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.REGISTRO__VARIABLE:
 				getVariable().clear();
-				getVariable().addAll((Collection<? extends DeclaracionVariable>)newValue);
+				getVariable().addAll((Collection<? extends Declaracion>)newValue);
 				return;
 			case DiagramapseudocodigoPackage.REGISTRO__NOMBRE:
 				setNombre((String)newValue);

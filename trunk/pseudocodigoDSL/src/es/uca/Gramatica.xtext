@@ -46,7 +46,7 @@ NombreInterna returns NombreInterna:
 
 
 Operador returns Operador:
-	VariableID | ConstCadena | Caracter | NumeroEntero | NumeroDecimal | ValorBooleano;
+	VariableID | ConstCadena | Caracter | NumeroEntero | NumeroDecimal | ValorBooleano | ValorComplejo;
 
 Caracter returns Caracter:
 	contenido=CAR;
@@ -54,17 +54,18 @@ Caracter returns Caracter:
 valor returns valor:
 	LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter | Internas | unaria | ValorComplejo;
 
+
 ValorComplejo returns ValorComplejo:
 	ValorRegistro | ValorVector | ValorMatriz;
 	
 ValorMatriz returns ValorMatriz:
-	(nombre_matriz=EString)'['(indices+=Operador)']['(indices+=Operador)']';
+	(nombre_matriz=EString)'['(indices+=NumeroEntero | indices+=VariableID)']['(indices+=NumeroEntero | indices+=VariableID)']';
 
 ValorRegistro returns ValorRegistro:
 	nombre_registro=EString '.' (campo+=CampoRegistro ('.' campo+=CampoRegistro)* );
 	
 ValorVector returns ValorVector:
-	(nombre_vector=EString)'['indice=Operador']';
+	(nombre_vector=EString)'['(indice=NumeroEntero | indice=VariableID)']';
 	//('.' (campo+=CampoRegistro) )?
 	
 CampoRegistro returns CampoRegistro:
@@ -83,15 +84,15 @@ Constantes returns Constantes:
 	variable=Variable '=' valor=valor;
 
 Vector returns Vector:
-	'vector' ' ['valor=valor'] ' 'de ' tipo=Tipo ' : ' nombre=EString;
+	'vector' ' ['(valor=NumeroEntero | valor=VariableID)'] ' 'de '  tipo=Tipo ' : ' nombre=EString;
 
 Matriz returns Matriz:
-	'matriz' ' ['valor+=valor']['valor+=valor'] ' 'de ' tipo=Tipo ' : ' nombre=EString;
+	'matriz' ' ['(valor+=NumeroEntero | valor+=VariableID)']['(valor+=NumeroEntero | valor+=VariableID)'] ' 'de ' tipo=Tipo ' : ' nombre=EString;
 	
 
 Registro returns Registro:
 	'registro:' nombre=EString
-			(variable+=DeclaracionVariable (variable+=DeclaracionVariable)* )
+			(variable+=Declaracion (variable+=Declaracion)* )
 	'fin_registro';
 	
 Archivo returns Archivo:
@@ -119,11 +120,11 @@ EString returns ecore::EString:
 	STRING | ID;
 
 DeclaracionVariable returns DeclaracionVariable:
-	tipo=TipoVariable + ':'
+	tipo=TipoVariable ':'
 	variable+=Variable ( ',' variable+=Variable)*;
 	
 DeclaracionPropia returns DeclaracionPropia:
-	tipo=EString + ':'
+	tipo=EString ':'
 	variable+=Variable (',' variable+=Variable)*;
 
 LlamadaFuncion returns LlamadaFuncion:
@@ -278,7 +279,7 @@ inc returns inc:
 	
 ParametroFuncion returns ParametroFuncion:
 	paso=TipoPaso
-	tipo=Tipo + ":"
+	tipo=Tipo ":"
 	variable=Variable;
 
 Funcion returns Funcion:
