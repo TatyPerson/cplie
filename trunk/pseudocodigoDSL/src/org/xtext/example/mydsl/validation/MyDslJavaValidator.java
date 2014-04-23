@@ -1099,7 +1099,6 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						}
 						else if(operador instanceof ValorVector) {
 							ValorVector v = (ValorVector) operador;
-							System.out.println("Hola, soy un vector y mi nombre es "+v.getNombre_vector());
 							if(vectores.get(variables.get(v.getNombre_vector())) != "entero" && vectores.get(variables.get(v.getNombre_vector())) != "real") {
 								errorAsignacion(a, "El tipo de asignación es incompatible", true);
 							}
@@ -1434,6 +1433,30 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			
 	}
 	
+	private void comprobarParametrosTipoComplejoLlamada(List<Operador> operadores, List<String> nombresRegistros, List<String> nombresVectores, List<String> nombresMatrices, Map<String,String> variables) {
+		for(Operador op: operadores) {
+			if(op instanceof ValorVector) {
+				ValorVector vector = (ValorVector) op;
+				if(!nombresVectores.contains(variables.get(vector.getNombre_vector()))) {
+					error("La variable "+vector.getNombre_vector()+" no pertenece al tipo vector", vector, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+				}
+			}
+			else if(op instanceof ValorMatriz) {
+				ValorMatriz matriz = (ValorMatriz) op;
+				if(!nombresMatrices.contains(variables.get(matriz.getNombre_matriz()))) {
+					error("La variable "+matriz.getNombre_matriz()+" no pertenece al tipo matriz", matriz, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
+				}
+			}
+			else if(op instanceof ValorRegistro) {
+				ValorRegistro registro = (ValorRegistro) op;
+				if(!nombresRegistros.contains(variables.get(registro.getNombre_registro()))) {
+					//Si no lo contiene es que el tipo de la variable no era un registro
+					error("La variable "+registro.getNombre_registro()+" no pertenece al tipo registro", registro, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
+				}
+			}
+		}		
+	}
+	
 	private void checkVariblesUsadasTiposComplejosAux(List<Sentencias> sentencias, Map<String,String> variables, List<String> nombresRegistros, List<String> nombresVectores, List<String> nombresMatrices) {
 		
 		for(Sentencias s: sentencias) {
@@ -1458,6 +1481,11 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						error("La variable "+m.getNombre_matriz()+" no pertenece al tipo matriz", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
 					}
 				}
+				else if(a.getOperador() instanceof LlamadaFuncion) {
+					LlamadaFuncion l = (LlamadaFuncion) a.getOperador();
+					comprobarParametrosTipoComplejoLlamada(l.getOperador(), nombresRegistros, nombresVectores, nombresMatrices, variables);	
+				}
+				
 				else if(a.getOperador() instanceof operacion) {
 					operacion o = (operacion) a.getOperador();
 					//Si es una operación debemos comprobar la lista de operadores completa
@@ -1474,6 +1502,15 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					for(ValorMatriz vm: valoresMatriz) {
 						error("La variable "+vm.getNombre_matriz()+" no pertenece al tipo matriz", vm, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
 					}
+					//Comprobamos los parámetros de las funciones
+					
+					for(valor v: valores) {
+						if(v instanceof LlamadaFuncion) {
+							LlamadaFuncion l = (LlamadaFuncion) v;
+							comprobarParametrosTipoComplejoLlamada(l.getOperador(), nombresRegistros, nombresVectores, nombresMatrices, variables);
+						}
+					}
+					
 				}
 			}
 			else if(s instanceof AsignacionCompleja) {
@@ -1516,6 +1553,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						error("La variable "+m.getNombre_matriz()+" no pertenece al tipo matriz", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
 					}
 				}
+				else if(a.getOperador() instanceof LlamadaFuncion) {
+					LlamadaFuncion l = (LlamadaFuncion) a.getOperador();
+					comprobarParametrosTipoComplejoLlamada(l.getOperador(), nombresRegistros, nombresVectores, nombresMatrices, variables);	
+				}
 				else if(a.getOperador() instanceof operacion) {
 					operacion o = (operacion) a.getOperador();
 					//Si es una operación debemos comprobar la lista de operadores completa
@@ -1531,6 +1572,15 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					List<ValorMatriz> valoresMatriz = funciones.variablesMatrizExistentes(valores, variables, nombresMatrices);
 					for(ValorMatriz vm: valoresMatriz) {
 						error("La variable "+vm.getNombre_matriz()+" no pertenece al tipo matriz", vm, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
+					}
+					
+					//Comprobamos los parámetros de las funciones:
+					
+					for(valor v: valores) {
+						if(v instanceof LlamadaFuncion) {
+							LlamadaFuncion l = (LlamadaFuncion) v;
+							comprobarParametrosTipoComplejoLlamada(l.getOperador(), nombresRegistros, nombresVectores, nombresMatrices, variables);
+						}
 					}
 				}
 			}
