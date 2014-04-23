@@ -174,7 +174,17 @@ public class RegistroItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.REGISTRO__VARIABLE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createDeclaracion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.REGISTRO__VARIABLE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createDeclaracionVariable()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.REGISTRO__VARIABLE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createDeclaracionPropia()));
 	}
 
 }

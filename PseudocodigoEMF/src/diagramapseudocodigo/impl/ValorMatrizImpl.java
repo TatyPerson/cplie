@@ -3,8 +3,8 @@
 package diagramapseudocodigo.impl;
 
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
+import diagramapseudocodigo.Operador;
 import diagramapseudocodigo.ValorMatriz;
-import diagramapseudocodigo.valor;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -58,7 +58,7 @@ public class ValorMatrizImpl extends ValorComplejoImpl implements ValorMatriz {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<valor> indices;
+	protected EList<Operador> indices;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -105,9 +105,9 @@ public class ValorMatrizImpl extends ValorComplejoImpl implements ValorMatriz {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<valor> getIndices() {
+	public EList<Operador> getIndices() {
 		if (indices == null) {
-			indices = new EObjectContainmentEList<valor>(valor.class, this, DiagramapseudocodigoPackage.VALOR_MATRIZ__INDICES);
+			indices = new EObjectContainmentEList<Operador>(Operador.class, this, DiagramapseudocodigoPackage.VALOR_MATRIZ__INDICES);
 		}
 		return indices;
 	}
@@ -156,7 +156,7 @@ public class ValorMatrizImpl extends ValorComplejoImpl implements ValorMatriz {
 				return;
 			case DiagramapseudocodigoPackage.VALOR_MATRIZ__INDICES:
 				getIndices().clear();
-				getIndices().addAll((Collection<? extends valor>)newValue);
+				getIndices().addAll((Collection<? extends Operador>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

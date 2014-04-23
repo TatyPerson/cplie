@@ -27,6 +27,7 @@ import diagramapseudocodigo.Registro;
 import diagramapseudocodigo.Sentencias;
 import diagramapseudocodigo.Subproceso;
 import diagramapseudocodigo.Subrango;
+import diagramapseudocodigo.Tipo;
 import diagramapseudocodigo.TipoComplejo;
 import diagramapseudocodigo.TipoDefinido;
 import diagramapseudocodigo.TipoExistente;
@@ -152,6 +153,18 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 				VariableID v = (VariableID) o;
 				parametros.add(v.getNombre());	
 			}
+			else if(o instanceof ValorVector) {
+				ValorVector v = (ValorVector) o;
+				parametros.add(v.getNombre_vector());
+			}
+			else if(o instanceof ValorMatriz) {
+				ValorMatriz m = (ValorMatriz) o;
+				parametros.add(m.getNombre_matriz());
+			}
+			else if(o instanceof ValorRegistro) {
+				ValorRegistro r = (ValorRegistro) o;
+				parametros.add(r.getNombre_registro());
+			}
 		}
 		return parametros;
 	}
@@ -165,13 +178,70 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		return salidaCorrecta;
 	}
 	
-	protected String getCadenaTiposIncorrectos(List<String> nombres, Map<String,String> variablesDeclaradas) {
+	protected String getCadenaTiposIncorrectos(List<String> nombres, Map<String,String> variablesDeclaradas, Map<String,String> tiposVectoresMatrices, Map<String,HashMap<String,String>> tiposRegistros) {
 		String salidaIncorrecta = "";
 		for(int i=0; i < nombres.size()-1; i++) {
-			salidaIncorrecta += variablesDeclaradas.get(nombres.get(i)) + ", ";
+			if(tiposVectoresMatrices.containsKey(variablesDeclaradas.get(nombres.get(i)))) {
+				//Si lo contiene es un vector o una matriz
+				salidaIncorrecta += tiposVectoresMatrices.get(variablesDeclaradas.get(nombres.get(i))) + ", ";
+			}
+			else if(tiposRegistros.containsKey(variablesDeclaradas.get(nombres.get(i)))) {
+				//Si lo contiene es un registro
+				//salidaIncorrecta += tiposRegistros.get(variablesDeclaradas.get(nombres.get(i))).get()
+			}
+			else {
+				salidaIncorrecta += variablesDeclaradas.get(nombres.get(i)) + ", ";
+			}
 		}
-		salidaIncorrecta += variablesDeclaradas.get(nombres.get(nombres.size()-1));
+		if(tiposVectoresMatrices.containsKey(variablesDeclaradas.get(nombres.get(nombres.size()-1)))) {
+			//Si lo contiene es un vector o una matriz
+			salidaIncorrecta += tiposVectoresMatrices.get(variablesDeclaradas.get(nombres.get(nombres.size()-1)));
+		}
+		else if(tiposRegistros.containsKey(variablesDeclaradas.get(nombres.get(nombres.size()-1)))) {
+			//Si lo contiene es un registro
+			//salidaIncorrecta += tiposRegistros.get(variablesDeclaradas.get(nombres.get(i))).get()
+		}
+		else {
+			salidaIncorrecta += variablesDeclaradas.get(nombres.get(nombres.size()-1));
+		}
 		return salidaIncorrecta;
+	}
+	
+	protected String getTipoComplejo(Tipo tipo) {
+		if(tipo instanceof TipoExistente) {
+			TipoExistente t = (TipoExistente) tipo;
+			return t.getTipo().getName();
+		}
+		else {
+			TipoDefinido t = (TipoDefinido) tipo;
+			return t.getTipo();
+		}
+	}
+	
+	protected Map<String,String> registrarTiposNativosdeComplejos(List<TipoComplejo> complejos) {
+		Map<String,String> tiposNativos = new HashMap<String,String>();
+		for(TipoComplejo t: complejos) {
+			if(t instanceof Vector) {
+				Vector v = (Vector) t;
+				tiposNativos.put(v.getNombre(), getTipoComplejo(v.getTipo()));
+			}
+			else if(t instanceof Matriz) {
+				Matriz m = (Matriz) t;
+				tiposNativos.put(m.getNombre(), getTipoComplejo(m.getTipo()));
+			}
+		}
+		return tiposNativos;
+	}
+	
+	protected Map<String,HashMap<String,String>>registrarTiposNativosRegistros(List<TipoComplejo> complejos) {
+		Map<String,HashMap<String,String>> tiposNativos = new HashMap<String,HashMap<String,String>>();
+		for(TipoComplejo t: complejos) {
+			if(t instanceof Registro) {
+				Registro r = (Registro) t;
+				tiposNativos.put(r.getNombre(), registrarCamposRegistro(r.getVariable()));
+			}
+		}
+		return tiposNativos;
 	}
 	
 	protected boolean comprobarCorreccionTiposLlamada(List<String> nombres, Map<String,String> variablesDeclaradas, List<String> tipos) {
@@ -188,14 +258,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		List<String> tipos = new ArrayList<String>();
 		for(ParametroFuncion p: parametros) {
 			//Registramos los tipos que requiere la función en su cabecera
-			if(p.getTipo() instanceof TipoExistente) {
-				TipoExistente tipo = (TipoExistente) p.getTipo();
-				tipos.add(tipo.getTipo().getName());
-			}
-			else {
-				TipoDefinido tipo = (TipoDefinido) p.getTipo();
-				tipos.add(tipo.getTipo());
-			}
+			tipos.add(getTipoComplejo(p.getTipo()));
 		}
 		return tipos;
 	}
@@ -203,14 +266,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 	protected void getTiposCabecera(List<ParametroFuncion> parametros, Map<String,String> variablesDeclaradas) {
 		for(ParametroFuncion p: parametros) {
 			//Registramos los tipos que requiere la función en su cabecera
-			if(p.getTipo() instanceof TipoExistente) {
-				TipoExistente tipo = (TipoExistente) p.getTipo();
-				variablesDeclaradas.put(p.getVariable().getNombre(), tipo.getTipo().getName());
-			}
-			else {
-				TipoDefinido tipo = (TipoDefinido) p.getTipo();
-				variablesDeclaradas.put(p.getVariable().getNombre(), tipo.getTipo());
-			}
+			variablesDeclaradas.put(p.getVariable().getNombre(), getTipoComplejo(p.getTipo()));
 		}
 	}
 	
@@ -551,42 +607,60 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		return variablesNoDeclaradas;
 	}
 	
+	protected List<String> registrarCamposRegistroSinTipo(List<Declaracion> declaraciones) {
+		List<String> campos = new ArrayList<String>();
+		for(Declaracion d: declaraciones) {
+			if(d instanceof DeclaracionPropia) {
+				DeclaracionPropia dec = (DeclaracionPropia) d;
+				for(Variable v: dec.getVariable()) {
+					campos.add(v.getNombre());
+				}
+			}
+			else {
+				DeclaracionVariable dec = (DeclaracionVariable) d;
+				for(Variable v: dec.getVariable()) {
+					campos.add(v.getNombre());
+				}
+			}
+		}
+		return campos;
+	}
+	
+	protected HashMap<String,String> registrarCamposRegistro(List<Declaracion> declaraciones) {
+		HashMap<String,String> campos = new HashMap<String,String>();
+		for(Declaracion d: declaraciones) {
+			if(d instanceof DeclaracionPropia) {
+				DeclaracionPropia dec = (DeclaracionPropia) d;
+				for(Variable v: dec.getVariable()) {
+					campos.put(v.getNombre(), dec.getTipo());
+				}
+			}
+			else {
+				DeclaracionVariable dec = (DeclaracionVariable) d;
+				for(Variable v: dec.getVariable()) {
+					campos.put(v.getNombre(), dec.getTipo().getName());
+				}
+			}
+		}
+		return campos;
+	}
+	
 	protected void prepararColeccionesTiposComplejos(EList<TipoComplejo> complejos, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,String> vectores, Map<String,String> matrices) {
 		
 		for(TipoComplejo t: complejos) {
 			if(t instanceof Registro) {
 				Registro r = (Registro) t;
-				HashMap<String,String> campos = new HashMap<String,String>();
-				for(DeclaracionVariable d: r.getVariable()) {
-					for(Variable v: d.getVariable()) {
-						campos.put(v.getNombre(), d.getTipo().getName());
-					}
-				}
-				registros.put(r.getNombre(), campos);
+				registros.put(r.getNombre(), registrarCamposRegistro(r.getVariable()));
 				nombresRegistros.add(r.getNombre());
 			}
 			else if(t instanceof Vector) {
 				Vector v = (Vector) t;
-				if(v.getTipo() instanceof TipoExistente) {
-					TipoExistente tipo = (TipoExistente) v.getTipo();
-					vectores.put(v.getNombre(), tipo.getTipo().getName());
-				}
-				else if(v.getTipo() instanceof TipoDefinido) {
-					TipoDefinido tipo = (TipoDefinido) v.getTipo();
-					vectores.put(v.getNombre(), tipo.getTipo());
-				}
+				vectores.put(v.getNombre(), getTipoComplejo(v.getTipo()));
 				
 			}
 			else if(t instanceof Matriz) {
 				Matriz m = (Matriz) t;
-				if(m.getTipo() instanceof TipoExistente) {
-					TipoExistente tipo = (TipoExistente) m.getTipo();
-					matrices.put(m.getNombre(), tipo.getTipo().getName());
-				}
-				else {
-					TipoDefinido tipo = (TipoDefinido) m.getTipo();
-					matrices.put(m.getNombre(), tipo.getTipo());
-				}
+				matrices.put(m.getNombre(), getTipoComplejo(m.getTipo()));
 			}
 		}
 	}

@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
 public interface Registro extends TipoComplejo {
 	/**
 	 * Returns the value of the '<em><b>Variable</b></em>' containment reference list.
-	 * The list contents are of type {@link diagramapseudocodigo.DeclaracionVariable}.
+	 * The list contents are of type {@link diagramapseudocodigo.Declaracion}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Variable</em>' containment reference list isn't clear,
@@ -36,7 +36,7 @@ public interface Registro extends TipoComplejo {
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<DeclaracionVariable> getVariable();
+	EList<Declaracion> getVariable();
 
 	/**
 	 * Returns the value of the '<em><b>Nombre</b></em>' attribute.
