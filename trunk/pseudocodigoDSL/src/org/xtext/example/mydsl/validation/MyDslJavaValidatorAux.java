@@ -146,27 +146,29 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		return variables;
 	}
 	
-	protected List<String> registrarParametros(List<Operador> operadores) {
-		List<String> parametros = new ArrayList<String>();
+	protected void registrarParametros(List<Operador> operadores, List<String> nombresVariables, Map<String,String> nombresVariablesCampos) {
 		for(Operador o: operadores) {
 			if(o instanceof VariableID) {
 				VariableID v = (VariableID) o;
-				parametros.add(v.getNombre());	
+				nombresVariables.add(v.getNombre());	
 			}
 			else if(o instanceof ValorVector) {
 				ValorVector v = (ValorVector) o;
-				parametros.add(v.getNombre_vector());
+				nombresVariables.add(v.getNombre_vector());
 			}
 			else if(o instanceof ValorMatriz) {
 				ValorMatriz m = (ValorMatriz) o;
-				parametros.add(m.getNombre_matriz());
+				nombresVariables.add(m.getNombre_matriz());
 			}
 			else if(o instanceof ValorRegistro) {
 				ValorRegistro r = (ValorRegistro) o;
-				parametros.add(r.getNombre_registro());
+				System.out.println("Soy un valor de registro! y me llamo: "+r.getNombre_registro());
+				nombresVariables.add(r.getNombre_registro());
+				String campo = r.getCampo().get(r.getCampo().size()-1).getNombre_campo();
+				System.out.println("Campo: "+campo);
+				nombresVariablesCampos.put(r.getNombre_registro(), campo);
 			}
 		}
-		return parametros;
 	}
 	
 	protected String getCadenaTiposCorrectos(List<String> nombres, List<String> tipos) {
@@ -178,7 +180,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		return salidaCorrecta;
 	}
 	
-	protected String getCadenaTiposIncorrectos(List<String> nombres, Map<String,String> variablesDeclaradas, Map<String,String> tiposVectoresMatrices, Map<String,HashMap<String,String>> tiposRegistros) {
+	protected String getCadenaTiposIncorrectos(List<String> nombres, Map<String,String> variablesDeclaradas, Map<String,String> tiposVectoresMatrices, Map<String,HashMap<String,String>> tiposRegistros, Map<String,String> nombresVariablesCampos) {
 		String salidaIncorrecta = "";
 		for(int i=0; i < nombres.size()-1; i++) {
 			if(tiposVectoresMatrices.containsKey(variablesDeclaradas.get(nombres.get(i)))) {
@@ -187,7 +189,8 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 			}
 			else if(tiposRegistros.containsKey(variablesDeclaradas.get(nombres.get(i)))) {
 				//Si lo contiene es un registro
-				//salidaIncorrecta += tiposRegistros.get(variablesDeclaradas.get(nombres.get(i))).get()
+				//salidaIncorrecta += tiposRegistros.get(nombresVariablesCampos.get(nombres.get(i))).get(nombresVariablesCampos.get(variablesDeclaradas.get(nombres.get(i)))) + ", ";
+				salidaIncorrecta += nombresVariablesCampos.get(variablesDeclaradas.get(nombres.get(i))) + ", ";
 			}
 			else {
 				salidaIncorrecta += variablesDeclaradas.get(nombres.get(i)) + ", ";
@@ -198,10 +201,15 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 			salidaIncorrecta += tiposVectoresMatrices.get(variablesDeclaradas.get(nombres.get(nombres.size()-1)));
 		}
 		else if(tiposRegistros.containsKey(variablesDeclaradas.get(nombres.get(nombres.size()-1)))) {
+			System.out.println("Estoy entrando bien!");
 			//Si lo contiene es un registro
-			//salidaIncorrecta += tiposRegistros.get(variablesDeclaradas.get(nombres.get(i))).get()
+			//salidaIncorrecta += tiposRegistros.get(nombresVariablesCampos.get(nombres.get(nombres.size()-1))).get(nombresVariablesCampos.get(variablesDeclaradas.get(nombres.get(nombres.size()-1))));
+			//salidaIncorrecta += nombresVariablesCampos.get(variablesDeclaradas.get(nombres.get(nombres.size()-1)));
+			salidaIncorrecta += tiposRegistros.get(variablesDeclaradas.get(nombres.get(nombres.size()-1))).get(nombresVariablesCampos.get(variablesDeclaradas.get(nombres.get(nombres.size()-1))));
+
 		}
 		else {
+			System.out.println("Estoy entrando malamente..");
 			salidaIncorrecta += variablesDeclaradas.get(nombres.get(nombres.size()-1));
 		}
 		return salidaIncorrecta;
