@@ -162,10 +162,8 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 			}
 			else if(o instanceof ValorRegistro) {
 				ValorRegistro r = (ValorRegistro) o;
-				System.out.println("Soy un valor de registro! y me llamo: "+r.getNombre_registro());
 				nombresVariables.add(r.getNombre_registro());
 				String campo = r.getCampo().get(r.getCampo().size()-1).getNombre_campo();
-				System.out.println("Campo: "+campo);
 				nombresVariablesCampos.put(r.getNombre_registro(), campo);
 			}
 		}
@@ -180,37 +178,33 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		return salidaCorrecta;
 	}
 	
-	protected String getCadenaTiposIncorrectos(List<String> nombres, Map<String,String> variablesDeclaradas, Map<String,String> tiposVectoresMatrices, Map<String,HashMap<String,String>> tiposRegistros, Map<String,String> nombresVariablesCampos) {
+	protected String getCadenaTiposIncorrectos(List<String> nombresVariablesUsadas, Map<String,String> variablesDeclaradas, Map<String,String> tiposVectoresMatrices, Map<String,HashMap<String,String>> tiposRegistros, Map<String,String> nombresVariablesCampos) {
 		String salidaIncorrecta = "";
-		for(int i=0; i < nombres.size()-1; i++) {
-			if(tiposVectoresMatrices.containsKey(variablesDeclaradas.get(nombres.get(i)))) {
+		for(int i=0; i < nombresVariablesUsadas.size()-1; i++) {
+			if(tiposVectoresMatrices.containsKey(variablesDeclaradas.get(nombresVariablesUsadas.get(i)))) {
 				//Si lo contiene es un vector o una matriz
-				salidaIncorrecta += tiposVectoresMatrices.get(variablesDeclaradas.get(nombres.get(i))) + ", ";
+				salidaIncorrecta += tiposVectoresMatrices.get(variablesDeclaradas.get(nombresVariablesUsadas.get(i))) + ", ";
 			}
-			else if(tiposRegistros.containsKey(variablesDeclaradas.get(nombres.get(i)))) {
-				//Si lo contiene es un registro
-				//salidaIncorrecta += tiposRegistros.get(nombresVariablesCampos.get(nombres.get(i))).get(nombresVariablesCampos.get(variablesDeclaradas.get(nombres.get(i)))) + ", ";
-				salidaIncorrecta += nombresVariablesCampos.get(variablesDeclaradas.get(nombres.get(i))) + ", ";
+			else if(tiposRegistros.containsKey(variablesDeclaradas.get(nombresVariablesUsadas.get(i))) && nombresVariablesCampos.get(nombresVariablesUsadas.get(i)) != null) {
+				//Si lo contiene es un registro y si además tiene un campo es que es del tipo nombreRegistro.campo, por lo tanto debemos averiguar de que tipo es ese campo.
+				salidaIncorrecta += tiposRegistros.get(variablesDeclaradas.get(nombresVariablesUsadas.get(i))).get(nombresVariablesCampos.get(nombresVariablesUsadas.get(i))) + ", ";
+
 			}
 			else {
-				salidaIncorrecta += variablesDeclaradas.get(nombres.get(i)) + ", ";
+				salidaIncorrecta += variablesDeclaradas.get(nombresVariablesUsadas.get(i)) + ", ";
 			}
 		}
-		if(tiposVectoresMatrices.containsKey(variablesDeclaradas.get(nombres.get(nombres.size()-1)))) {
+		if(tiposVectoresMatrices.containsKey(variablesDeclaradas.get(nombresVariablesUsadas.get(nombresVariablesUsadas.size()-1)))) {
 			//Si lo contiene es un vector o una matriz
-			salidaIncorrecta += tiposVectoresMatrices.get(variablesDeclaradas.get(nombres.get(nombres.size()-1)));
+			salidaIncorrecta += tiposVectoresMatrices.get(variablesDeclaradas.get(nombresVariablesUsadas.get(nombresVariablesUsadas.size()-1)));
 		}
-		else if(tiposRegistros.containsKey(variablesDeclaradas.get(nombres.get(nombres.size()-1)))) {
-			System.out.println("Estoy entrando bien!");
+		else if(tiposRegistros.containsKey(variablesDeclaradas.get(nombresVariablesUsadas.get(nombresVariablesUsadas.size()-1))) && nombresVariablesCampos.get(nombresVariablesUsadas.get(nombresVariablesUsadas.size()-1)) != null) {
 			//Si lo contiene es un registro
-			//salidaIncorrecta += tiposRegistros.get(nombresVariablesCampos.get(nombres.get(nombres.size()-1))).get(nombresVariablesCampos.get(variablesDeclaradas.get(nombres.get(nombres.size()-1))));
-			//salidaIncorrecta += nombresVariablesCampos.get(variablesDeclaradas.get(nombres.get(nombres.size()-1)));
-			salidaIncorrecta += tiposRegistros.get(variablesDeclaradas.get(nombres.get(nombres.size()-1))).get(nombresVariablesCampos.get(variablesDeclaradas.get(nombres.get(nombres.size()-1))));
+			salidaIncorrecta += tiposRegistros.get(variablesDeclaradas.get(nombresVariablesUsadas.get(nombresVariablesUsadas.size()-1))).get(nombresVariablesCampos.get(nombresVariablesUsadas.get(nombresVariablesUsadas.size()-1)));
 
 		}
 		else {
-			System.out.println("Estoy entrando malamente..");
-			salidaIncorrecta += variablesDeclaradas.get(nombres.get(nombres.size()-1));
+			salidaIncorrecta += variablesDeclaradas.get(nombresVariablesUsadas.get(nombresVariablesUsadas.size()-1));
 		}
 		return salidaIncorrecta;
 	}
