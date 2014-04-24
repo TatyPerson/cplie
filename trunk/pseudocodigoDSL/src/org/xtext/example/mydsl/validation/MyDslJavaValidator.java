@@ -69,6 +69,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	@Check
+	//Función que se encarga de comprobar si un vector al que se accede a un campo es un vector de registro
+	protected void checkVectorRegistro(Codigo c) {
+		
+	}
+	
+	@Check
 	//Función que se encarga de comprobar que no existan dos variables declaradas en un registro con el mismo nombre
 	protected void checkRegistro(Registro r) {
 		List<String> variables = new ArrayList<String>();
