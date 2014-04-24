@@ -71,7 +71,130 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	@Check
 	//Función que se encarga de comprobar si un vector al que se accede a un campo es un vector de registro
 	protected void checkVectorRegistro(Codigo c) {
+		//Registramos todos los nombres de los registros existentes y registramos los vectores con sus respectivos tipos declarados
+		List<String> nombresRegistros = new ArrayList<String>();
+		Map<String,String> vectoresTipados = new HashMap<String,String>();
+		for(TipoComplejo t: c.getTipocomplejo()) {
+			if(t instanceof Registro) {
+				Registro r = (Registro) t;
+				nombresRegistros.add(r.getNombre());
+			}
+			else if(t instanceof Vector) {
+				Vector v = (Vector) t;
+				vectoresTipados.put(v.getNombre(), funciones.getTipoComplejo(v.getTipo()));
+			}
+		}
 		
+		//Despues comprobamos si todos los vectores que utilicen campos son de un tipo de registro
+		//En el programa de inicio:
+		
+		Map<String,String> variablesTipadas = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
+		
+		checkVectorRegistroAux(nombresRegistros,c.getTiene().getTiene(), variablesTipadas, vectoresTipados);
+		
+		//En los subprocesos:
+		
+		for(Subproceso s: c.getFuncion()) {
+			variablesTipadas = funciones.registrarVariablesTipadas(s.getDeclaracion());
+			checkVectorRegistroAux(nombresRegistros, s.getSentencias(), variablesTipadas, vectoresTipados);
+		}	
+	}
+	
+	private void checkVectorRegistroAux(List<String> nombresRegistros, List<Sentencias> sentencias, Map<String,String> variablesTipadas, Map<String,String> vectoresTipados) {
+		for(Sentencias s: sentencias) {
+			if(s instanceof AsignacionNormal) {
+				AsignacionNormal a = (AsignacionNormal) s;
+				if(a.getOperador() instanceof ValorVector) {
+					ValorVector v = (ValorVector) a.getOperador();
+					if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
+						error("El vector no pertenece al tipo registro", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+					}
+				}
+				else if(a.getOperador() instanceof operacion) {
+					operacion o = (operacion) a.getOperador();
+					List<valor> valores = funciones.registrarValoresOperacion(o);
+					for(valor val: valores) {
+						if(val instanceof ValorVector) {
+							ValorVector v = (ValorVector) val;
+							if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
+								error("El vector no pertenece al tipo registro", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+							}
+						}
+						else if(val instanceof LlamadaFuncion) {
+							LlamadaFuncion l = (LlamadaFuncion) val;
+							for(Operador op: l.getOperador()) {
+								if(op instanceof ValorVector) {
+									ValorVector v = (ValorVector) op;
+									if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
+										error("El vector no pertenece al tipo registro", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+									}
+								}
+							}
+						}
+					}
+				}
+				else if(a.getOperador() instanceof LlamadaFuncion) {
+					LlamadaFuncion l = (LlamadaFuncion) a.getOperador();
+					for(Operador op: l.getOperador()) {
+						if(op instanceof ValorVector) {
+							ValorVector v = (ValorVector) op;
+							if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
+								error("El vector no pertenece al tipo registro", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+							}
+						}
+					}
+				}
+			}
+			else if(s instanceof AsignacionCompleja) {
+				AsignacionCompleja a = (AsignacionCompleja) s;
+				if(a.getComplejo() instanceof ValorVector) {
+					ValorVector v = (ValorVector) a.getComplejo();
+					if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
+						error("El vector no pertenece al tipo registro", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+					}
+				}
+				if(a.getOperador() instanceof ValorVector) {
+					ValorVector v = (ValorVector) a.getOperador();
+					if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
+						error("El vector no pertenece al tipo registro", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+					}
+				}
+				else if(a.getOperador() instanceof operacion) {
+					operacion o = (operacion) a.getOperador();
+					List<valor> valores = funciones.registrarValoresOperacion(o);
+					for(valor val: valores) {
+						if(val instanceof ValorVector) {
+							ValorVector v = (ValorVector) val;
+							if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
+								error("El vector no pertenece al tipo registro", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+							}
+						}
+						else if(val instanceof LlamadaFuncion) {
+							LlamadaFuncion l = (LlamadaFuncion) val;
+							for(Operador op: l.getOperador()) {
+								if(op instanceof ValorVector) {
+									ValorVector v = (ValorVector) op;
+									if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
+										error("El vector no pertenece al tipo registro", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+									}
+								}
+							}
+						}
+					}
+				}
+				else if(a.getOperador() instanceof LlamadaFuncion) {
+					LlamadaFuncion l = (LlamadaFuncion) a.getOperador();
+					for(Operador op: l.getOperador()) {
+						if(op instanceof ValorVector) {
+							ValorVector v = (ValorVector) op;
+							if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
+								error("El vector no pertenece al tipo registro", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 	
 	@Check
