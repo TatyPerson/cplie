@@ -126,6 +126,36 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		}
 	}
 	
+	@Check
+	//Función que se encarga de comprobar si el tipo complejo asignado a un vector o a una matriz ha sido previamente definido
+	protected void checkTipoDefinidoVectorMatriz(Codigo c) {
+		//Registramos todos los nombres de los tipos complejos hasta ahora:
+		List<String> tipos = funciones.registrarTipos(c.getTipocomplejo());
+		
+		//Comprobamos que todos los tipos asignados a los vectores o a las matrices en su declaración sean tipos existentes
+		
+		for(TipoComplejo t: c.getTipocomplejo()) {
+			if(t instanceof Vector) {
+				Vector v = (Vector) t;
+				if(v.getTipo() instanceof TipoDefinido) {
+					TipoDefinido tipo = (TipoDefinido) v.getTipo();
+					if(!tipos.contains(tipo.getTipo())) {
+						error("El tipo de la variable debe estar previamente definido", v, DiagramapseudocodigoPackage.Literals.VECTOR__TIPO);
+					}
+				}
+			}
+			else if(t instanceof Matriz) {
+				Matriz m = (Matriz) t;
+				if(m.getTipo() instanceof TipoDefinido) {
+					TipoDefinido tipo = (TipoDefinido) m.getTipo();
+					if(!tipos.contains(tipo.getTipo())) {
+						error("El tipo de la variable debe estar previamente definido", m, DiagramapseudocodigoPackage.Literals.MATRIZ__TIPO);
+					}
+				}
+			}
+		}
+	}
+	
 	
 	@Check
 	//Función que se encarga de comprobar que no existan dos variables con el mismo nombre dentro de un subproceso
