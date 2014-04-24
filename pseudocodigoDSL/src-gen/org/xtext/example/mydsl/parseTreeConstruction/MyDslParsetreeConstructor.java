@@ -3763,11 +3763,11 @@ protected class ValorRegistro_CampoAssignment_2_1_1 extends AssignmentToken  {
 /************ begin Rule ValorVector ****************
  *
  * ValorVector:
- * 	nombre_vector=EString "[" (indice=NumeroEntero | indice=VariableID) "]";
+ * 	nombre_vector=EString "[" (indice=NumeroEntero | indice=VariableID) "]" ("." campo+=CampoRegistro)?;
  *
  **/
 
-// nombre_vector=EString "[" (indice=NumeroEntero | indice=VariableID) "]"
+// nombre_vector=EString "[" (indice=NumeroEntero | indice=VariableID) "]" ("." campo+=CampoRegistro)?
 protected class ValorVector_Group extends GroupToken {
 	
 	public ValorVector_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3782,7 +3782,8 @@ protected class ValorVector_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new ValorVector_RightSquareBracketKeyword_3(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new ValorVector_Group_4(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new ValorVector_RightSquareBracketKeyword_3(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
@@ -3989,13 +3990,103 @@ protected class ValorVector_RightSquareBracketKeyword_3 extends KeywordToken  {
 
 }
 
+// ("." campo+=CampoRegistro)?
+protected class ValorVector_Group_4 extends GroupToken {
+	
+	public ValorVector_Group_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getValorVectorAccess().getGroup_4();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new ValorVector_CampoAssignment_4_1(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// "."
+protected class ValorVector_FullStopKeyword_4_0 extends KeywordToken  {
+	
+	public ValorVector_FullStopKeyword_4_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getValorVectorAccess().getFullStopKeyword_4_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new ValorVector_RightSquareBracketKeyword_3(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// campo+=CampoRegistro
+protected class ValorVector_CampoAssignment_4_1 extends AssignmentToken  {
+	
+	public ValorVector_CampoAssignment_4_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getValorVectorAccess().getCampoAssignment_4_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new CampoRegistro_Nombre_campoAssignment(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("campo",false)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("campo");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getCampoRegistroRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getValorVectorAccess().getCampoCampoRegistroParserRuleCall_4_1_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new ValorVector_FullStopKeyword_4_0(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+
 
 /************ end Rule ValorVector ****************/
 
 
 /************ begin Rule CampoRegistro ****************
  *
- * //('.' (campo+=CampoRegistro) )?
  * CampoRegistro:
  * 	nombre_campo=EString;
  *

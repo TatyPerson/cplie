@@ -1381,7 +1381,29 @@ ruleValorVector returns [EObject current=null]
     {
     	newLeafNode(otherlv_4, grammarAccess.getValorVectorAccess().getRightSquareBracketKeyword_3());
     }
+(	otherlv_5='.' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getValorVectorAccess().getFullStopKeyword_4_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getValorVectorAccess().getCampoCampoRegistroParserRuleCall_4_1_0()); 
+	    }
+		lv_campo_6_0=ruleCampoRegistro		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getValorVectorRule());
+	        }
+       		add(
+       			$current, 
+       			"campo",
+        		lv_campo_6_0, 
+        		"CampoRegistro");
+	        afterParserOrEnumRuleCall();
+	    }
+
 )
+))?)
 ;
 
 
