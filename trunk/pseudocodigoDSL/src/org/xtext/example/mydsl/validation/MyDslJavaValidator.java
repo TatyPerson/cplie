@@ -70,10 +70,11 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	
 	@Check
 	//Función que se encarga de comprobar si un vector al que se accede a un campo es un vector de registro
-	protected void checkVectorRegistro(Codigo c) {
+	protected void checkValorVector(Codigo c) {
 		//Registramos todos los nombres de los registros existentes y registramos los vectores con sus respectivos tipos declarados
 		List<String> nombresRegistros = new ArrayList<String>();
 		Map<String,String> vectoresTipados = new HashMap<String,String>();
+		List<String> nombresVectores = new ArrayList<String>();
 		for(TipoComplejo t: c.getTipocomplejo()) {
 			if(t instanceof Registro) {
 				Registro r = (Registro) t;
@@ -82,6 +83,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			else if(t instanceof Vector) {
 				Vector v = (Vector) t;
 				vectoresTipados.put(v.getNombre(), funciones.getTipoComplejo(v.getTipo()));
+				nombresVectores.add(v.getNombre());
 			}
 		}
 		
@@ -90,23 +92,26 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		
 		Map<String,String> variablesTipadas = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
 		
-		checkVectorRegistroAux(nombresRegistros,c.getTiene().getTiene(), variablesTipadas, vectoresTipados);
+		checkValorVectorAux(nombresRegistros,c.getTiene().getTiene(), variablesTipadas, vectoresTipados, nombresVectores);
 		
 		//En los subprocesos:
 		
 		for(Subproceso s: c.getFuncion()) {
 			variablesTipadas = funciones.registrarVariablesTipadas(s.getDeclaracion());
-			checkVectorRegistroAux(nombresRegistros, s.getSentencias(), variablesTipadas, vectoresTipados);
+			checkValorVectorAux(nombresRegistros, s.getSentencias(), variablesTipadas, vectoresTipados, nombresVectores);
 		}	
 	}
 	
-	private void checkVectorRegistroAux(List<String> nombresRegistros, List<Sentencias> sentencias, Map<String,String> variablesTipadas, Map<String,String> vectoresTipados) {
+	private void checkValorVectorAux(List<String> nombresRegistros, List<Sentencias> sentencias, Map<String,String> variablesTipadas, Map<String,String> vectoresTipados, List<String> nombresVectores) {
 		for(Sentencias s: sentencias) {
 			if(s instanceof AsignacionNormal) {
 				AsignacionNormal a = (AsignacionNormal) s;
 				if(a.getOperador() instanceof ValorVector) {
 					ValorVector v = (ValorVector) a.getOperador();
-					if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
+					if(!nombresVectores.contains(variablesTipadas.get(v.getNombre_vector()))) {
+						error("La variable no pertenece al tipo vector", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+					}
+					else if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
 						error("El vector no pertenece al tipo registro", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
 					}
 				}
@@ -116,7 +121,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					for(valor val: valores) {
 						if(val instanceof ValorVector) {
 							ValorVector v = (ValorVector) val;
-							if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
+							if(!nombresVectores.contains(variablesTipadas.get(v.getNombre_vector()))) {
+								error("La variable no pertenece al tipo vector", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+							}
+							else if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
 								error("El vector no pertenece al tipo registro", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
 							}
 						}
@@ -125,7 +133,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							for(Operador op: l.getOperador()) {
 								if(op instanceof ValorVector) {
 									ValorVector v = (ValorVector) op;
-									if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
+									if(!nombresVectores.contains(variablesTipadas.get(v.getNombre_vector()))) {
+										error("La variable no pertenece al tipo vector", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+									}
+									else if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
 										error("El vector no pertenece al tipo registro", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
 									}
 								}
@@ -138,7 +149,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					for(Operador op: l.getOperador()) {
 						if(op instanceof ValorVector) {
 							ValorVector v = (ValorVector) op;
-							if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
+							if(!nombresVectores.contains(variablesTipadas.get(v.getNombre_vector()))) {
+								error("La variable no pertenece al tipo vector", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+							}
+							else if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
 								error("El vector no pertenece al tipo registro", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
 							}
 						}
@@ -149,13 +163,19 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				AsignacionCompleja a = (AsignacionCompleja) s;
 				if(a.getComplejo() instanceof ValorVector) {
 					ValorVector v = (ValorVector) a.getComplejo();
-					if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
+					if(!nombresVectores.contains(variablesTipadas.get(v.getNombre_vector()))) {
+						error("La variable no pertenece al tipo vector", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+					}
+					else if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
 						error("El vector no pertenece al tipo registro", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
 					}
 				}
 				if(a.getOperador() instanceof ValorVector) {
 					ValorVector v = (ValorVector) a.getOperador();
-					if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
+					if(!nombresVectores.contains(variablesTipadas.get(v.getNombre_vector()))) {
+						error("La variable no pertenece al tipo vector", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+					}
+					else if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
 						error("El vector no pertenece al tipo registro", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
 					}
 				}
@@ -165,7 +185,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					for(valor val: valores) {
 						if(val instanceof ValorVector) {
 							ValorVector v = (ValorVector) val;
-							if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
+							if(!nombresVectores.contains(variablesTipadas.get(v.getNombre_vector()))) {
+								error("La variable no pertenece al tipo vector", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+							}
+							else if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
 								error("El vector no pertenece al tipo registro", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
 							}
 						}
@@ -174,7 +197,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							for(Operador op: l.getOperador()) {
 								if(op instanceof ValorVector) {
 									ValorVector v = (ValorVector) op;
-									if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
+									if(!nombresVectores.contains(variablesTipadas.get(v.getNombre_vector()))) {
+										error("La variable no pertenece al tipo vector", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+									}
+									else if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
 										error("El vector no pertenece al tipo registro", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
 									}
 								}
@@ -187,7 +213,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					for(Operador op: l.getOperador()) {
 						if(op instanceof ValorVector) {
 							ValorVector v = (ValorVector) op;
-							if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
+							if(!nombresVectores.contains(variablesTipadas.get(v.getNombre_vector()))) {
+								error("La variable no pertenece al tipo vector", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+							}
+							else if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
 								error("El vector no pertenece al tipo registro", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
 							}
 						}
