@@ -4171,6 +4171,7 @@ rule__ValorVector__Group__3
     }
 :
 	rule__ValorVector__Group__3__Impl
+	rule__ValorVector__Group__4
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -4195,8 +4196,101 @@ finally {
 }
 
 
+rule__ValorVector__Group__4
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__ValorVector__Group__4__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ValorVector__Group__4__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getValorVectorAccess().getGroup_4()); }
+(rule__ValorVector__Group_4__0)?
+{ after(grammarAccess.getValorVectorAccess().getGroup_4()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
 
 
+
+
+
+
+
+
+
+
+
+
+rule__ValorVector__Group_4__0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__ValorVector__Group_4__0__Impl
+	rule__ValorVector__Group_4__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ValorVector__Group_4__0__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getValorVectorAccess().getFullStopKeyword_4_0()); }
+
+	'.' 
+
+{ after(grammarAccess.getValorVectorAccess().getFullStopKeyword_4_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__ValorVector__Group_4__1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__ValorVector__Group_4__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ValorVector__Group_4__1__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getValorVectorAccess().getCampoAssignment_4_1()); }
+(rule__ValorVector__CampoAssignment_4_1)
+{ after(grammarAccess.getValorVectorAccess().getCampoAssignment_4_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
 
 
 
@@ -11737,6 +11831,21 @@ rule__ValorVector__IndiceAssignment_2_1
 (
 { before(grammarAccess.getValorVectorAccess().getIndiceVariableIDParserRuleCall_2_1_0()); }
 	ruleVariableID{ after(grammarAccess.getValorVectorAccess().getIndiceVariableIDParserRuleCall_2_1_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ValorVector__CampoAssignment_4_1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getValorVectorAccess().getCampoCampoRegistroParserRuleCall_4_1_0()); }
+	ruleCampoRegistro{ after(grammarAccess.getValorVectorAccess().getCampoCampoRegistroParserRuleCall_4_1_0()); }
 )
 
 ;

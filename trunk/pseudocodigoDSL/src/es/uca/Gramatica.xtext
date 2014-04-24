@@ -65,8 +65,7 @@ ValorRegistro returns ValorRegistro:
 	nombre_registro=EString '.' (campo+=CampoRegistro ('.' campo+=CampoRegistro)* );
 	
 ValorVector returns ValorVector:
-	(nombre_vector=EString)'['(indice=NumeroEntero | indice=VariableID)']';
-	//('.' (campo+=CampoRegistro) )?
+	(nombre_vector=EString)'['(indice=NumeroEntero | indice=VariableID)']' ('.' (campo+=CampoRegistro) )?;
 	
 CampoRegistro returns CampoRegistro:
 	nombre_campo=EString;
