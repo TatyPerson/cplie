@@ -832,8 +832,6 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							funciones.registrarParametros(f.getOperador(), nombresVariables, nombresVariablesCampos);
 							String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
 							String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros, nombresVariablesCampos);
-							System.out.println("Salida buena: "+salidaBuena);
-							System.out.println("Salida mala: "+salidaMala);
 							if(!salidaBuena.equals(salidaMala)) {
 								error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
 							}
