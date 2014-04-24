@@ -103,6 +103,31 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	@Check
+	//Función que se encarga de comprobar que los tipos introducidos en los registros han sido definidos anteriormente
+	protected void checkDeclaracionesRegistroTiposComplejos(Codigo c) {
+		//Registramos los nombres de todos los tipos complejos suponiendo que no estan repetidos ya que hay otra función que lo comprueba
+		List<String >tipos = funciones.registrarTipos(c.getTipocomplejo());
+		
+		//Comprobamos que todas las declaraciones de variables complejas en todos los registros son de tipos existentes
+		
+		for(TipoComplejo t: c.getTipocomplejo()) {
+			if(t instanceof Registro) {
+				Registro r = (Registro) t;
+				for(Declaracion d: r.getVariable()) {
+					if(d instanceof DeclaracionPropia) {
+						//Solo nos interesa validar los tipos definidos por el usuario
+						DeclaracionPropia dec = (DeclaracionPropia) d;
+						if(!tipos.contains(dec.getTipo())) {
+							error("El tipo de la variable debe estar previamente definido", dec, DiagramapseudocodigoPackage.Literals.DECLARACION_PROPIA__VARIABLE);
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	
+	@Check
 	//Función que se encarga de comprobar que no existan dos variables con el mismo nombre dentro de un subproceso
 	protected void checkDeclaraciones(Subproceso s) {
 		List<String> variables = new ArrayList<String>();
@@ -748,11 +773,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		for(Sentencias sen: sentencias) {
 			if(sen instanceof LlamadaFuncion) {
 				LlamadaFuncion f = (LlamadaFuncion) sen;
-				//Buscamos realmente que tipos le esta pasando el usuario en la llamada (en inicio)
 				if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
-					List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
+					List<String> nombresVariables = new ArrayList<String>();
+					Map<String,String> nombresVariablesCampos = new HashMap<String,String>();
+					funciones.registrarParametros(f.getOperador(), nombresVariables, nombresVariablesCampos);
 					String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
-					String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
+					String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros, nombresVariablesCampos);
 					//!funciones.comprobarCorreccionTiposLlamada(nombresVariables, variablesDeclaradas, tipos)
 					if(!salidaBuena.equals(salidaMala)) {
 						error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
@@ -766,9 +792,11 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					if(an.getOperador() instanceof LlamadaFuncion) {
 						LlamadaFuncion f = (LlamadaFuncion) a.getOperador();
 						if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
-							List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
+							List<String> nombresVariables = new ArrayList<String>();
+							Map<String,String> nombresVariablesCampos = new HashMap<String,String>();
+							funciones.registrarParametros(f.getOperador(), nombresVariables, nombresVariablesCampos);
 							String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
-							String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
+							String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros, nombresVariablesCampos);
 							if(!salidaBuena.equals(salidaMala)) {
 								error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
 							}
@@ -781,9 +809,11 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							if(v instanceof LlamadaFuncion) {
 								LlamadaFuncion f = (LlamadaFuncion) v;
 								if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
-									List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
+									List<String> nombresVariables = new ArrayList<String>();
+									Map<String,String> nombresVariablesCampos = new HashMap<String,String>();
+									funciones.registrarParametros(f.getOperador(), nombresVariables, nombresVariablesCampos);
 									String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
-									String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
+									String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros, nombresVariablesCampos);
 									if(!salidaBuena.equals(salidaMala)) {
 										error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
 									}
@@ -797,9 +827,13 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					if(ac.getOperador() instanceof LlamadaFuncion) {
 						LlamadaFuncion f = (LlamadaFuncion) a.getOperador();
 						if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
-							List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
+							List<String> nombresVariables = new ArrayList<String>();
+							Map<String,String> nombresVariablesCampos = new HashMap<String,String>();
+							funciones.registrarParametros(f.getOperador(), nombresVariables, nombresVariablesCampos);
 							String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
-							String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
+							String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros, nombresVariablesCampos);
+							System.out.println("Salida buena: "+salidaBuena);
+							System.out.println("Salida mala: "+salidaMala);
 							if(!salidaBuena.equals(salidaMala)) {
 								error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
 							}
@@ -812,11 +846,11 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							if(v instanceof LlamadaFuncion) {
 								LlamadaFuncion f = (LlamadaFuncion) v;
 								if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
-									List<String> nombresVariables = funciones.registrarParametros(f.getOperador());
+									List<String> nombresVariables = new ArrayList<String>();
+									Map<String,String> nombresVariablesCampos = new HashMap<String,String>();
+									funciones.registrarParametros(f.getOperador(), nombresVariables, nombresVariablesCampos);
 									String salidaBuena = funciones.getCadenaTiposCorrectos(nombresVariables, tipos);
-									String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
-									System.out.println("Salida buena: "+salidaBuena);
-									System.out.println("Salida mala: "+salidaMala);
+									String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros, nombresVariablesCampos);
 									if(!salidaBuena.equals(salidaMala)) {
 										error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
 									}
