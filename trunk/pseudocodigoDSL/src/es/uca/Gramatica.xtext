@@ -59,7 +59,7 @@ ValorComplejo returns ValorComplejo:
 	ValorRegistro | ValorVector | ValorMatriz;
 	
 ValorMatriz returns ValorMatriz:
-	(nombre_matriz=EString)'['(indices+=NumeroEntero | indices+=VariableID)']['(indices+=NumeroEntero | indices+=VariableID)']';
+	(nombre_matriz=EString)'['(indices+=NumeroEntero | indices+=VariableID)']['(indices+=NumeroEntero | indices+=VariableID)']' ('.' (campo+=CampoRegistro) )?;
 
 ValorRegistro returns ValorRegistro:
 	nombre_registro=EString '.' (campo+=CampoRegistro ('.' campo+=CampoRegistro)* );

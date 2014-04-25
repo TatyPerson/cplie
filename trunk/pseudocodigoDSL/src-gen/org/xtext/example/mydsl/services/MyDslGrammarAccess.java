@@ -569,14 +569,18 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cIndicesAssignment_4_1 = (Assignment)cAlternatives_4.eContents().get(1);
 		private final RuleCall cIndicesVariableIDParserRuleCall_4_1_0 = (RuleCall)cIndicesAssignment_4_1.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Keyword cFullStopKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Assignment cCampoAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cCampoCampoRegistroParserRuleCall_6_1_0 = (RuleCall)cCampoAssignment_6_1.eContents().get(0);
 		
 		//ValorMatriz:
 		//	nombre_matriz=EString "[" (indices+=NumeroEntero | indices+=VariableID) "][" (indices+=NumeroEntero |
-		//	indices+=VariableID) "]";
+		//	indices+=VariableID) "]" ("." campo+=CampoRegistro)?;
 		public ParserRule getRule() { return rule; }
 
 		//nombre_matriz=EString "[" (indices+=NumeroEntero | indices+=VariableID) "][" (indices+=NumeroEntero |
-		//indices+=VariableID) "]"
+		//indices+=VariableID) "]" ("." campo+=CampoRegistro)?
 		public Group getGroup() { return cGroup; }
 
 		//nombre_matriz=EString
@@ -623,6 +627,18 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"]"
 		public Keyword getRightSquareBracketKeyword_5() { return cRightSquareBracketKeyword_5; }
+
+		//("." campo+=CampoRegistro)?
+		public Group getGroup_6() { return cGroup_6; }
+
+		//"."
+		public Keyword getFullStopKeyword_6_0() { return cFullStopKeyword_6_0; }
+
+		//campo+=CampoRegistro
+		public Assignment getCampoAssignment_6_1() { return cCampoAssignment_6_1; }
+
+		//CampoRegistro
+		public RuleCall getCampoCampoRegistroParserRuleCall_6_1_0() { return cCampoCampoRegistroParserRuleCall_6_1_0; }
 	}
 
 	public class ValorRegistroElements extends AbstractParserRuleElementFinder {
@@ -3145,7 +3161,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 	//ValorMatriz:
 	//	nombre_matriz=EString "[" (indices+=NumeroEntero | indices+=VariableID) "][" (indices+=NumeroEntero |
-	//	indices+=VariableID) "]";
+	//	indices+=VariableID) "]" ("." campo+=CampoRegistro)?;
 	public ValorMatrizElements getValorMatrizAccess() {
 		return (pValorMatriz != null) ? pValorMatriz : (pValorMatriz = new ValorMatrizElements());
 	}

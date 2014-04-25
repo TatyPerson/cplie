@@ -3134,12 +3134,12 @@ protected class ValorComplejo_ValorMatrizParserRuleCall_2 extends RuleCallToken 
  *
  * ValorMatriz:
  * 	nombre_matriz=EString "[" (indices+=NumeroEntero | indices+=VariableID) "][" (indices+=NumeroEntero |
- * 	indices+=VariableID) "]";
+ * 	indices+=VariableID) "]" ("." campo+=CampoRegistro)?;
  *
  **/
 
 // nombre_matriz=EString "[" (indices+=NumeroEntero | indices+=VariableID) "][" (indices+=NumeroEntero |
-// indices+=VariableID) "]"
+// indices+=VariableID) "]" ("." campo+=CampoRegistro)?
 protected class ValorMatriz_Group extends GroupToken {
 	
 	public ValorMatriz_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3154,7 +3154,8 @@ protected class ValorMatriz_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new ValorMatriz_RightSquareBracketKeyword_5(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new ValorMatriz_Group_6(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new ValorMatriz_RightSquareBracketKeyword_5(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
@@ -3498,6 +3499,97 @@ protected class ValorMatriz_RightSquareBracketKeyword_5 extends KeywordToken  {
 	}
 
 }
+
+// ("." campo+=CampoRegistro)?
+protected class ValorMatriz_Group_6 extends GroupToken {
+	
+	public ValorMatriz_Group_6(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getValorMatrizAccess().getGroup_6();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new ValorMatriz_CampoAssignment_6_1(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// "."
+protected class ValorMatriz_FullStopKeyword_6_0 extends KeywordToken  {
+	
+	public ValorMatriz_FullStopKeyword_6_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getValorMatrizAccess().getFullStopKeyword_6_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new ValorMatriz_RightSquareBracketKeyword_5(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// campo+=CampoRegistro
+protected class ValorMatriz_CampoAssignment_6_1 extends AssignmentToken  {
+	
+	public ValorMatriz_CampoAssignment_6_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getValorMatrizAccess().getCampoAssignment_6_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new CampoRegistro_Nombre_campoAssignment(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("campo",false)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("campo");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getCampoRegistroRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getValorMatrizAccess().getCampoCampoRegistroParserRuleCall_6_1_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new ValorMatriz_FullStopKeyword_6_0(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
 
 
 /************ end Rule ValorMatriz ****************/

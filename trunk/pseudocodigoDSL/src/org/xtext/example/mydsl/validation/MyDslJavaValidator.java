@@ -75,6 +75,8 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		List<String> nombresRegistros = new ArrayList<String>();
 		Map<String,String> vectoresTipados = new HashMap<String,String>();
 		List<String> nombresVectores = new ArrayList<String>();
+		Map<String,String> matricesTipadas = new HashMap<String,String>();
+		List<String> nombresMatrices = new ArrayList<String>();
 		for(TipoComplejo t: c.getTipocomplejo()) {
 			if(t instanceof Registro) {
 				Registro r = (Registro) t;
@@ -85,6 +87,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				vectoresTipados.put(v.getNombre(), funciones.getTipoComplejo(v.getTipo()));
 				nombresVectores.add(v.getNombre());
 			}
+			else if(t instanceof Matriz) {
+				Matriz m = (Matriz) t;
+				matricesTipadas.put(m.getNombre(), funciones.getTipoComplejo(m.getTipo()));
+				nombresMatrices.add(m.getNombre());
+				
+			}
 		}
 		
 		//Despues comprobamos si todos los vectores que utilicen campos son de un tipo de registro
@@ -93,12 +101,14 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		Map<String,String> variablesTipadas = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
 		
 		checkValorVectorAux(nombresRegistros,c.getTiene().getTiene(), variablesTipadas, vectoresTipados, nombresVectores);
+		checkValorMatrizAux(nombresRegistros,c.getTiene().getTiene(), variablesTipadas, matricesTipadas, nombresMatrices);
 		
 		//En los subprocesos:
 		
 		for(Subproceso s: c.getFuncion()) {
 			variablesTipadas = funciones.registrarVariablesTipadas(s.getDeclaracion());
 			checkValorVectorAux(nombresRegistros, s.getSentencias(), variablesTipadas, vectoresTipados, nombresVectores);
+			checkValorMatrizAux(nombresRegistros, s.getSentencias(), variablesTipadas, matricesTipadas, nombresMatrices);
 		}	
 	}
 	
@@ -218,6 +228,131 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							}
 							else if(v.getCampo().size() != 0 && !nombresRegistros.contains(vectoresTipados.get(variablesTipadas.get(v.getNombre_vector())))) {
 								error("El vector no pertenece al tipo registro", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	
+	private void checkValorMatrizAux(List<String> nombresRegistros, List<Sentencias> sentencias, Map<String,String> variablesTipadas, Map<String,String> matricesTipadas, List<String> nombresMatrices) {
+		for(Sentencias s: sentencias) {
+			if(s instanceof AsignacionNormal) {
+				AsignacionNormal a = (AsignacionNormal) s;
+				if(a.getOperador() instanceof ValorMatriz) {
+					ValorMatriz m = (ValorMatriz) a.getOperador();
+					if(!nombresMatrices.contains(variablesTipadas.get(m.getNombre_matriz()))) {
+						error("La variable no pertenece al tipo matriz", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
+					}
+					else if(m.getCampo().size() != 0 && !nombresRegistros.contains(matricesTipadas.get(variablesTipadas.get(m.getNombre_matriz())))) {
+						error("La matriz no pertenece al tipo registro", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
+					}
+				}
+				else if(a.getOperador() instanceof operacion) {
+					operacion o = (operacion) a.getOperador();
+					List<valor> valores = funciones.registrarValoresOperacion(o);
+					for(valor val: valores) {
+						if(val instanceof ValorMatriz) {
+							ValorMatriz m = (ValorMatriz) val;
+							if(!nombresMatrices.contains(variablesTipadas.get(m.getNombre_matriz()))) {
+								error("La variable no pertenece al tipo matriz", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
+							}
+							else if(m.getCampo().size() != 0 && !nombresRegistros.contains(matricesTipadas.get(variablesTipadas.get(m.getNombre_matriz())))) {
+								error("La matriz no pertenece al tipo registro", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
+							}
+						}
+						else if(val instanceof LlamadaFuncion) {
+							LlamadaFuncion l = (LlamadaFuncion) val;
+							for(Operador op: l.getOperador()) {
+								if(op instanceof ValorMatriz) {
+									ValorMatriz m = (ValorMatriz) op;
+									if(!nombresMatrices.contains(variablesTipadas.get(m.getNombre_matriz()))) {
+										error("La variable no pertenece al tipo matriz", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
+									}
+									else if(m.getCampo().size() != 0 && !nombresRegistros.contains(matricesTipadas.get(variablesTipadas.get(m.getNombre_matriz())))) {
+										error("La matriz no pertenece al tipo registro", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
+									}
+								}
+							}
+						}
+					}
+				}
+				else if(a.getOperador() instanceof LlamadaFuncion) {
+					LlamadaFuncion l = (LlamadaFuncion) a.getOperador();
+					for(Operador op: l.getOperador()) {
+						if(op instanceof ValorMatriz) {
+							ValorMatriz m = (ValorMatriz) op;
+							if(!nombresMatrices.contains(variablesTipadas.get(m.getNombre_matriz()))) {
+								error("La variable no pertenece al tipo matriz", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
+							}
+							else if(m.getCampo().size() != 0 && !nombresRegistros.contains(matricesTipadas.get(variablesTipadas.get(m.getNombre_matriz())))) {
+								error("La matriz no pertenece al tipo registro", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
+							}
+						}
+					}
+				}
+			}
+			else if(s instanceof AsignacionCompleja) {
+				AsignacionCompleja a = (AsignacionCompleja) s;
+				if(a.getComplejo() instanceof ValorMatriz) {
+					ValorMatriz m = (ValorMatriz) a.getComplejo();
+					if(!nombresMatrices.contains(variablesTipadas.get(m.getNombre_matriz()))) {
+						error("La variable no pertenece al tipo matriz", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
+					}
+					else if(m.getCampo().size() != 0 && !nombresRegistros.contains(matricesTipadas.get(variablesTipadas.get(m.getNombre_matriz())))) {
+						error("La matriz no pertenece al tipo registro", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
+					}
+				}
+				if(a.getOperador() instanceof ValorMatriz) {
+					ValorMatriz m = (ValorMatriz) a.getOperador();
+					if(!nombresMatrices.contains(variablesTipadas.get(m.getNombre_matriz()))) {
+						error("La variable no pertenece al tipo matriz", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
+					}
+					else if(m.getCampo().size() != 0 && !nombresRegistros.contains(matricesTipadas.get(variablesTipadas.get(m.getNombre_matriz())))) {
+						error("La matriz no pertenece al tipo registro", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
+					}
+				}
+				else if(a.getOperador() instanceof operacion) {
+					operacion o = (operacion) a.getOperador();
+					List<valor> valores = funciones.registrarValoresOperacion(o);
+					for(valor val: valores) {
+						if(val instanceof ValorMatriz) {
+							ValorMatriz m = (ValorMatriz) val;
+							if(!nombresMatrices.contains(variablesTipadas.get(m.getNombre_matriz()))) {
+								error("La variable no pertenece al tipo matriz", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
+							}
+							else if(m.getCampo().size() != 0 && !nombresRegistros.contains(matricesTipadas.get(variablesTipadas.get(m.getNombre_matriz())))) {
+								error("La matriz no pertenece al tipo registro", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
+							}
+						}
+						else if(val instanceof LlamadaFuncion) {
+							LlamadaFuncion l = (LlamadaFuncion) val;
+							for(Operador op: l.getOperador()) {
+								if(op instanceof ValorMatriz) {
+									ValorMatriz m = (ValorMatriz) op;
+									if(!nombresMatrices.contains(variablesTipadas.get(m.getNombre_matriz()))) {
+										error("La variable no pertenece al tipo matriz", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
+									}
+									else if(m.getCampo().size() != 0 && !nombresRegistros.contains(matricesTipadas.get(variablesTipadas.get(m.getNombre_matriz())))) {
+										error("La matriz no pertenece al tipo registro", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
+									}
+								}
+							}
+						}
+					}
+				}
+				else if(a.getOperador() instanceof LlamadaFuncion) {
+					LlamadaFuncion l = (LlamadaFuncion) a.getOperador();
+					for(Operador op: l.getOperador()) {
+						if(op instanceof ValorMatriz) {
+							ValorMatriz m = (ValorMatriz) op;
+							if(!nombresMatrices.contains(variablesTipadas.get(m.getNombre_matriz()))) {
+								error("La variable no pertenece al tipo matriz", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
+							}
+							else if(m.getCampo().size() != 0 && !nombresRegistros.contains(matricesTipadas.get(variablesTipadas.get(m.getNombre_matriz())))) {
+								error("La matriz no pertenece al tipo registro", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
 							}
 						}
 					}
