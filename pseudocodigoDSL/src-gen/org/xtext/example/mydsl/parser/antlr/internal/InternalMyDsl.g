@@ -1214,7 +1214,29 @@ ruleValorMatriz returns [EObject current=null]
     {
     	newLeafNode(otherlv_7, grammarAccess.getValorMatrizAccess().getRightSquareBracketKeyword_5());
     }
+(	otherlv_8='.' 
+    {
+    	newLeafNode(otherlv_8, grammarAccess.getValorMatrizAccess().getFullStopKeyword_6_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getValorMatrizAccess().getCampoCampoRegistroParserRuleCall_6_1_0()); 
+	    }
+		lv_campo_9_0=ruleCampoRegistro		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getValorMatrizRule());
+	        }
+       		add(
+       			$current, 
+       			"campo",
+        		lv_campo_9_0, 
+        		"CampoRegistro");
+	        afterParserOrEnumRuleCall();
+	    }
+
 )
+))?)
 ;
 
 

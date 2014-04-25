@@ -317,6 +317,8 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="indices" lowerBound="2"
         upperBound="2" eType="#//Operador" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="campo" upperBound="-1"
+        eType="#//CampoRegistro" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Comentario">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mensaje" lowerBound="1"
