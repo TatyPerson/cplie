@@ -2717,13 +2717,22 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int VALOR_MATRIZ__INDICES = VALOR_COMPLEJO_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Campo</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALOR_MATRIZ__CAMPO = VALOR_COMPLEJO_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Valor Matriz</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALOR_MATRIZ_FEATURE_COUNT = VALOR_COMPLEJO_FEATURE_COUNT + 2;
+	int VALOR_MATRIZ_FEATURE_COUNT = VALOR_COMPLEJO_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Valor Matriz</em>' class.
@@ -4370,6 +4379,17 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EReference getValorMatriz_Indices();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.ValorMatriz#getCampo <em>Campo</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Campo</em>'.
+	 * @see diagramapseudocodigo.ValorMatriz#getCampo()
+	 * @see #getValorMatriz()
+	 * @generated
+	 */
+	EReference getValorMatriz_Campo();
+
+	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.Comentario <em>Comentario</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5793,6 +5813,14 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EReference VALOR_MATRIZ__INDICES = eINSTANCE.getValorMatriz_Indices();
+
+		/**
+		 * The meta object literal for the '<em><b>Campo</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALOR_MATRIZ__CAMPO = eINSTANCE.getValorMatriz_Campo();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.ComentarioImpl <em>Comentario</em>}' class.

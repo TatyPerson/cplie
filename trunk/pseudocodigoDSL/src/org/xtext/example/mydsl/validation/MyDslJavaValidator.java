@@ -1398,7 +1398,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	//Función auxiliar para evitar la repetición de código (DRY)
-	private void checkAsignacionesAux(Asignacion a, String tipo, valor operador, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,HashMap<Integer,String>> funcionesTipadas, Map<String,String> vectores, Map<String,String> matrices) {
+	private void checkAsignacionesAux(Asignacion a, String tipo, valor operador, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,HashMap<Integer,String>> funcionesTipadas, Map<String,String> vectores, Map<String,String> matrices, Map<String,Map<String,String>> registrosCamposTipados) {
 					if(tipo == "entero" && !(operador instanceof NumeroEntero)) {
 						if(operador instanceof NumeroDecimal) {
 							errorAsignacion(a, "Posible pérdida de precisión al asignar un real a un entero", false);
@@ -1710,10 +1710,20 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		funciones.prepararColeccionesTiposComplejos(c.getTipocomplejo(), registros, nombresRegistros, vectores, matrices);
 		
 		//Registramos todas las variables declaradas con sus respectivos tipos
-		Map<String,String> variables = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
+		Map<String,String> variablesTipadas = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
 		
 		//Registramos todas las funciones que están definidas
 		Map<String,HashMap<Integer,String>> funcionesTipadas = new HashMap<String,HashMap<Integer,String>>();
+		
+		//Registramos todos los campos tipados de cada registro
+		Map<String, Map<String,String>> registrosCamposTipados = new HashMap<String,Map<String,String>>();
+		
+		for(TipoComplejo t: c.getTipocomplejo()) {
+			if(t instanceof Registro) {
+				Registro r = (Registro) t;
+				registrosCamposTipados.put(r.getNombre(), funciones.registrarCamposRegistro(r.getVariable()));
+			}
+		}
 		
 		funciones.prepararColeccionFunciones(c.getFuncion(), funcionesTipadas);
 		
@@ -1722,16 +1732,42 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				Asignacion a = (Asignacion) s;
 				if(a instanceof AsignacionNormal) {
 					AsignacionNormal an = (AsignacionNormal) a;
-					String tipo = variables.get(an.getLvalue());
-					checkAsignacionesAux(a, tipo, an.getOperador(), variables, registros, nombresRegistros,funcionesTipadas, vectores, matrices);
+					String tipo = variablesTipadas.get(an.getLvalue());
+					checkAsignacionesAux(a, tipo, an.getOperador(), variablesTipadas, registros, nombresRegistros,funcionesTipadas, vectores, matrices, registrosCamposTipados);
 				}
 				else if(a instanceof AsignacionCompleja) {
 					AsignacionCompleja ac = (AsignacionCompleja) a;
 					if(ac.getComplejo() instanceof ValorRegistro) {
 						ValorRegistro r = (ValorRegistro) ac.getComplejo();
 						for(CampoRegistro campo: r.getCampo()) {
-							String tipo = registros.get(variables.get(r.getNombre_registro())).get(campo.getNombre_campo());
-							checkAsignacionesAux(a, tipo, ac.getOperador(), variables, registros, nombresRegistros, funcionesTipadas, vectores, matrices);
+							String tipo = registros.get(variablesTipadas.get(r.getNombre_registro())).get(campo.getNombre_campo());
+							checkAsignacionesAux(a, tipo, ac.getOperador(), variablesTipadas, registros, nombresRegistros, funcionesTipadas, vectores, matrices, registrosCamposTipados);
+						}
+					}
+					else if(ac.getComplejo() instanceof ValorVector) {
+						ValorVector v = (ValorVector) ac.getComplejo();
+						if(v.getCampo().size() == 0) {
+							String tipo = variablesTipadas.get(v.getNombre_vector());
+							checkAsignacionesAux(a, tipo, ac.getOperador(), variablesTipadas, registros, nombresRegistros, funcionesTipadas, vectores, matrices, registrosCamposTipados);
+						}
+						else {
+							//Cogemos el último campo:
+							String campo = v.getCampo().get(v.getCampo().size()-1).getNombre_campo();
+							String tipo = registrosCamposTipados.get(vectores.get(variablesTipadas.get(v.getNombre_vector()))).get(campo);
+							checkAsignacionesAux(a, tipo, ac.getOperador(), variablesTipadas, registros, nombresRegistros, funcionesTipadas, vectores, matrices, registrosCamposTipados);
+						}
+					}
+					else if(ac.getComplejo() instanceof ValorMatriz) {
+						ValorMatriz m = (ValorMatriz) ac.getComplejo();
+						if(m.getCampo().size() == 0) {
+							String tipo = variablesTipadas.get(m.getNombre_matriz());
+							checkAsignacionesAux(a, tipo, ac.getOperador(), variablesTipadas, registros, nombresRegistros, funcionesTipadas, vectores, matrices, registrosCamposTipados);
+						}
+						else {
+							//Cogemos el último campo:
+							String campo = m.getCampo().get(m.getCampo().size()-1).getNombre_campo();
+							String tipo = registrosCamposTipados.get(matrices.get(variablesTipadas.get(m.getNombre_matriz()))).get(campo);
+							checkAsignacionesAux(a, tipo, ac.getOperador(), variablesTipadas, registros, nombresRegistros, funcionesTipadas, vectores, matrices, registrosCamposTipados);
 						}
 					}
 				}
@@ -1756,29 +1792,52 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		
 		funciones.prepararColeccionFunciones(c.getFuncion(), funcionesTipadas);
 		
+		//Registramos todos los campos tipados de cada registro
+		Map<String, Map<String,String>> registrosCamposTipados = new HashMap<String,Map<String,String>>();
+				
+		for(TipoComplejo t: c.getTipocomplejo()) {
+			if(t instanceof Registro) {
+				Registro r = (Registro) t;
+				registrosCamposTipados.put(r.getNombre(), funciones.registrarCamposRegistro(r.getVariable()));
+			}
+		}
+		
 		for(Subproceso s: c.getFuncion()) {
 			//Registramos todas las variables declaradas con sus respectivos tipos
-			Map<String,String> variables = funciones.registrarVariablesTipadas(s.getDeclaracion());
+			Map<String,String> variablesTipadas = funciones.registrarVariablesTipadas(s.getDeclaracion());
 			
 			//Como es una función también debemos registrar los parámetros
 			
-			funciones.getTiposCabecera(s.getParametrofuncion(), variables);
+			funciones.getTiposCabecera(s.getParametrofuncion(), variablesTipadas);
 			
 			for(Sentencias sen: s.getSentencias()) {
 				if(sen instanceof Asignacion) {
 					Asignacion a = (Asignacion) sen;
 					if(a instanceof AsignacionNormal) {
 						AsignacionNormal an = (AsignacionNormal) a;
-						String tipo = variables.get(an.getLvalue());
-						checkAsignacionesAux(a, tipo, an.getOperador(), variables, registros, nombresRegistros,funcionesTipadas, vectores, matrices);
+						String tipo = variablesTipadas.get(an.getLvalue());
+						checkAsignacionesAux(a, tipo, an.getOperador(), variablesTipadas, registros, nombresRegistros,funcionesTipadas, vectores, matrices, registrosCamposTipados);
 					}
 					else if(a instanceof AsignacionCompleja) {
 						AsignacionCompleja ac = (AsignacionCompleja) a;
 						if(ac.getComplejo() instanceof ValorRegistro) {
 							ValorRegistro r = (ValorRegistro) ac.getComplejo();
 							for(CampoRegistro campo: r.getCampo()) {
-								String tipo = registros.get(variables.get(r.getNombre_registro())).get(campo.getNombre_campo());
-								checkAsignacionesAux(a, tipo, ac.getOperador(), variables, registros, nombresRegistros, funcionesTipadas, vectores, matrices);
+								String tipo = registros.get(variablesTipadas.get(r.getNombre_registro())).get(campo.getNombre_campo());
+								checkAsignacionesAux(a, tipo, ac.getOperador(), variablesTipadas, registros, nombresRegistros, funcionesTipadas, vectores, matrices, registrosCamposTipados);
+							}
+						}
+						else if(ac.getComplejo() instanceof ValorVector) {
+							ValorVector v = (ValorVector) ac.getComplejo();
+							if(v.getCampo().size() == 0) {
+								String tipo = variablesTipadas.get(v.getNombre_vector());
+								checkAsignacionesAux(a, tipo, ac.getOperador(), variablesTipadas, registros, nombresRegistros, funcionesTipadas, vectores, matrices, registrosCamposTipados);
+							}
+							else {
+								//Cogemos el último campo
+								String campo = v.getCampo().get(v.getCampo().size()-1).getNombre_campo();
+								String tipo = registrosCamposTipados.get(vectores.get(variablesTipadas.get(v.getNombre_vector()))).get(campo);
+								checkAsignacionesAux(a, tipo, ac.getOperador(), variablesTipadas, registros, nombresRegistros, funcionesTipadas, vectores, matrices, registrosCamposTipados);
 							}
 						}
 					}

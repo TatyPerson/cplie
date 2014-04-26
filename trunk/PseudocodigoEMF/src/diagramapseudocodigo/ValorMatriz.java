@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link diagramapseudocodigo.ValorMatriz#getNombre_matriz <em>Nombre matriz</em>}</li>
  *   <li>{@link diagramapseudocodigo.ValorMatriz#getIndices <em>Indices</em>}</li>
+ *   <li>{@link diagramapseudocodigo.ValorMatriz#getCampo <em>Campo</em>}</li>
  * </ul>
  * </p>
  *
@@ -64,5 +65,21 @@ public interface ValorMatriz extends ValorComplejo {
 	 * @generated
 	 */
 	EList<Operador> getIndices();
+
+	/**
+	 * Returns the value of the '<em><b>Campo</b></em>' containment reference list.
+	 * The list contents are of type {@link diagramapseudocodigo.CampoRegistro}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Campo</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Campo</em>' containment reference list.
+	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getValorMatriz_Campo()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<CampoRegistro> getCampo();
 
 } // ValorMatriz
