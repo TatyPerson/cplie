@@ -73,6 +73,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getInternasAccess().getGroup_2(), "rule__Internas__Group_2__0");
 					put(grammarAccess.getInternasAccess().getGroup_2_1(), "rule__Internas__Group_2_1__0");
 					put(grammarAccess.getValorMatrizAccess().getGroup(), "rule__ValorMatriz__Group__0");
+					put(grammarAccess.getValorMatrizAccess().getGroup_6(), "rule__ValorMatriz__Group_6__0");
 					put(grammarAccess.getValorRegistroAccess().getGroup(), "rule__ValorRegistro__Group__0");
 					put(grammarAccess.getValorRegistroAccess().getGroup_2(), "rule__ValorRegistro__Group_2__0");
 					put(grammarAccess.getValorRegistroAccess().getGroup_2_1(), "rule__ValorRegistro__Group_2_1__0");
@@ -157,6 +158,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getValorMatrizAccess().getIndicesAssignment_2_1(), "rule__ValorMatriz__IndicesAssignment_2_1");
 					put(grammarAccess.getValorMatrizAccess().getIndicesAssignment_4_0(), "rule__ValorMatriz__IndicesAssignment_4_0");
 					put(grammarAccess.getValorMatrizAccess().getIndicesAssignment_4_1(), "rule__ValorMatriz__IndicesAssignment_4_1");
+					put(grammarAccess.getValorMatrizAccess().getCampoAssignment_6_1(), "rule__ValorMatriz__CampoAssignment_6_1");
 					put(grammarAccess.getValorRegistroAccess().getNombre_registroAssignment_0(), "rule__ValorRegistro__Nombre_registroAssignment_0");
 					put(grammarAccess.getValorRegistroAccess().getCampoAssignment_2_0(), "rule__ValorRegistro__CampoAssignment_2_0");
 					put(grammarAccess.getValorRegistroAccess().getCampoAssignment_2_1_1(), "rule__ValorRegistro__CampoAssignment_2_1_1");

@@ -348,11 +348,30 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		
 	}
 	
+	protected boolean esValorSimple(valor v) {
+		return !(v instanceof VariableID) && !(v instanceof LlamadaFuncion) && !(v instanceof ValorRegistro) && !(v instanceof ValorVector) && !(v instanceof ValorMatriz) && !(v instanceof operacion);
+	}
+	
 	protected int asignacionOperacionVariable(List<valor> valoresProblem, Map<String,String> variables, List<String> tiposValidos) {
 		int check = 1;
 			for(valor v: valoresProblem) {
-				if(v instanceof NumeroDecimal && tiposValidos.get(0) == "entero") {
+				if(v instanceof NumeroDecimal && tiposValidos.get(0) == "entero" && esValorSimple(v)) {
 					check = 2;
+				}
+				else if(!(v instanceof NumeroEntero) && !(v instanceof NumeroDecimal) && tiposValidos.get(0) == "entero" && esValorSimple(v)) {
+					return 3;
+				}
+				else if(!(v instanceof ValorBooleano) && tiposValidos.get(0) == "logico" && esValorSimple(v)) {
+					return 3;
+				}
+				else if(!(v instanceof ConstCadena) && tiposValidos.get(0) == "cadena" && esValorSimple(v)) {
+					return 3;
+				}
+				else if(!(v instanceof Caracter) && tiposValidos.get(0) == "caracter" && esValorSimple(v)) {
+					return 3;
+				}
+				else if(!(v instanceof NumeroEntero) && !(v instanceof NumeroDecimal) && tiposValidos.get(0) == "real" && esValorSimple(v)) {
+					return 3;
 				}
 				else if(v instanceof VariableID) {
 					VariableID var = (VariableID) v;

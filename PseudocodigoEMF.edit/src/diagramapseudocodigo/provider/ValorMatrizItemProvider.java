@@ -99,6 +99,7 @@ public class ValorMatrizItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__INDICES);
+			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__CAMPO);
 		}
 		return childrenFeatures;
 	}
@@ -157,6 +158,7 @@ public class ValorMatrizItemProvider
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case DiagramapseudocodigoPackage.VALOR_MATRIZ__INDICES:
+			case DiagramapseudocodigoPackage.VALOR_MATRIZ__CAMPO:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -223,6 +225,11 @@ public class ValorMatrizItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__INDICES,
 				 DiagramapseudocodigoFactory.eINSTANCE.createValorMatriz()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__CAMPO,
+				 DiagramapseudocodigoFactory.eINSTANCE.createCampoRegistro()));
 	}
 
 }

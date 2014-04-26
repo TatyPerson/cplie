@@ -2,6 +2,7 @@
  */
 package diagramapseudocodigo.impl;
 
+import diagramapseudocodigo.CampoRegistro;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Operador;
 import diagramapseudocodigo.ValorMatriz;
@@ -24,6 +25,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link diagramapseudocodigo.impl.ValorMatrizImpl#getNombre_matriz <em>Nombre matriz</em>}</li>
  *   <li>{@link diagramapseudocodigo.impl.ValorMatrizImpl#getIndices <em>Indices</em>}</li>
+ *   <li>{@link diagramapseudocodigo.impl.ValorMatrizImpl#getCampo <em>Campo</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,6 +61,16 @@ public class ValorMatrizImpl extends ValorComplejoImpl implements ValorMatriz {
 	 * @ordered
 	 */
 	protected EList<Operador> indices;
+
+	/**
+	 * The cached value of the '{@link #getCampo() <em>Campo</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCampo()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<CampoRegistro> campo;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -117,11 +129,25 @@ public class ValorMatrizImpl extends ValorComplejoImpl implements ValorMatriz {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<CampoRegistro> getCampo() {
+		if (campo == null) {
+			campo = new EObjectContainmentEList<CampoRegistro>(CampoRegistro.class, this, DiagramapseudocodigoPackage.VALOR_MATRIZ__CAMPO);
+		}
+		return campo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.VALOR_MATRIZ__INDICES:
 				return ((InternalEList<?>)getIndices()).basicRemove(otherEnd, msgs);
+			case DiagramapseudocodigoPackage.VALOR_MATRIZ__CAMPO:
+				return ((InternalEList<?>)getCampo()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -138,6 +164,8 @@ public class ValorMatrizImpl extends ValorComplejoImpl implements ValorMatriz {
 				return getNombre_matriz();
 			case DiagramapseudocodigoPackage.VALOR_MATRIZ__INDICES:
 				return getIndices();
+			case DiagramapseudocodigoPackage.VALOR_MATRIZ__CAMPO:
+				return getCampo();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -158,6 +186,10 @@ public class ValorMatrizImpl extends ValorComplejoImpl implements ValorMatriz {
 				getIndices().clear();
 				getIndices().addAll((Collection<? extends Operador>)newValue);
 				return;
+			case DiagramapseudocodigoPackage.VALOR_MATRIZ__CAMPO:
+				getCampo().clear();
+				getCampo().addAll((Collection<? extends CampoRegistro>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -176,6 +208,9 @@ public class ValorMatrizImpl extends ValorComplejoImpl implements ValorMatriz {
 			case DiagramapseudocodigoPackage.VALOR_MATRIZ__INDICES:
 				getIndices().clear();
 				return;
+			case DiagramapseudocodigoPackage.VALOR_MATRIZ__CAMPO:
+				getCampo().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -192,6 +227,8 @@ public class ValorMatrizImpl extends ValorComplejoImpl implements ValorMatriz {
 				return NOMBRE_MATRIZ_EDEFAULT == null ? nombre_matriz != null : !NOMBRE_MATRIZ_EDEFAULT.equals(nombre_matriz);
 			case DiagramapseudocodigoPackage.VALOR_MATRIZ__INDICES:
 				return indices != null && !indices.isEmpty();
+			case DiagramapseudocodigoPackage.VALOR_MATRIZ__CAMPO:
+				return campo != null && !campo.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

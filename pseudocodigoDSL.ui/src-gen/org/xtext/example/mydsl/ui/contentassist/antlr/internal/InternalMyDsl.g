@@ -3822,6 +3822,7 @@ rule__ValorMatriz__Group__5
     }
 :
 	rule__ValorMatriz__Group__5__Impl
+	rule__ValorMatriz__Group__6
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -3846,12 +3847,105 @@ finally {
 }
 
 
+rule__ValorMatriz__Group__6
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__ValorMatriz__Group__6__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ValorMatriz__Group__6__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getValorMatrizAccess().getGroup_6()); }
+(rule__ValorMatriz__Group_6__0)?
+{ after(grammarAccess.getValorMatrizAccess().getGroup_6()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+rule__ValorMatriz__Group_6__0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__ValorMatriz__Group_6__0__Impl
+	rule__ValorMatriz__Group_6__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ValorMatriz__Group_6__0__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getValorMatrizAccess().getFullStopKeyword_6_0()); }
+
+	'.' 
+
+{ after(grammarAccess.getValorMatrizAccess().getFullStopKeyword_6_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__ValorMatriz__Group_6__1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__ValorMatriz__Group_6__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ValorMatriz__Group_6__1__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getValorMatrizAccess().getCampoAssignment_6_1()); }
+(rule__ValorMatriz__CampoAssignment_6_1)
+{ after(grammarAccess.getValorMatrizAccess().getCampoAssignment_6_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
 
 
 
@@ -11741,6 +11835,21 @@ rule__ValorMatriz__IndicesAssignment_4_1
 (
 { before(grammarAccess.getValorMatrizAccess().getIndicesVariableIDParserRuleCall_4_1_0()); }
 	ruleVariableID{ after(grammarAccess.getValorMatrizAccess().getIndicesVariableIDParserRuleCall_4_1_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ValorMatriz__CampoAssignment_6_1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getValorMatrizAccess().getCampoCampoRegistroParserRuleCall_6_1_0()); }
+	ruleCampoRegistro{ after(grammarAccess.getValorMatrizAccess().getCampoCampoRegistroParserRuleCall_6_1_0()); }
 )
 
 ;
