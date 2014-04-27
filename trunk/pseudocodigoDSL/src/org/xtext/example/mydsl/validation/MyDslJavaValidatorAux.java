@@ -146,7 +146,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		return variables;
 	}
 	
-	protected void registrarParametros(List<Operador> operadores, List<String> nombresVariables, Map<String,String> nombresVariablesCampos) {
+	protected void registrarParametros(List<Operador> operadores, List<String> nombresVariables, Map<String,String> nombresVariablesCampos, List<String> tiposNativos) {
 		for(Operador o: operadores) {
 			if(o instanceof VariableID) {
 				VariableID v = (VariableID) o;
@@ -172,6 +172,79 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 				String campo = r.getCampo().get(r.getCampo().size()-1).getNombre_campo();
 				nombresVariablesCampos.put(r.getNombre_registro(), campo);
 			}
+			else if(o instanceof NumeroEntero) {
+				nombresVariables.add("tipoNativo");
+				tiposNativos.add("entero");
+			}
+			else if(o instanceof NumeroDecimal) {
+				nombresVariables.add("tipoNativo");
+				tiposNativos.add("real");
+			}
+			else if(o instanceof ValorBooleano) {
+				nombresVariables.add("tipoNativo");
+				tiposNativos.add("logico");
+			}
+			else if(o instanceof ConstCadena) {
+				nombresVariables.add("tipoNativo");
+				tiposNativos.add("cadena");
+			}
+			else if(o instanceof Caracter) {
+				nombresVariables.add("tipoNativo");
+				tiposNativos.add("caracter");
+			}
+			else if(o instanceof operacion) {
+				operacion op = (operacion) o;
+				List<valor> valores = registrarValoresOperacion(op);
+				for(valor v: valores) {
+					if(v instanceof Operador) {
+						Operador opAux = (Operador) v;
+						if(opAux instanceof VariableID) {
+							VariableID var = (VariableID) opAux;
+							nombresVariables.add(var.getNombre());	
+						}
+						else if(opAux instanceof ValorVector) {
+							ValorVector vector = (ValorVector) opAux;
+							nombresVariables.add(vector.getNombre_vector());
+							if(vector.getCampo().size() != 0) {
+								nombresVariablesCampos.put(vector.getNombre_vector(), vector.getCampo().get(vector.getCampo().size()-1).getNombre_campo());
+							}
+						}
+						else if(opAux instanceof ValorMatriz) {
+							ValorMatriz m = (ValorMatriz) opAux;
+							nombresVariables.add(m.getNombre_matriz());
+							if(m.getCampo().size() != 0) {
+								nombresVariablesCampos.put(m.getNombre_matriz(), m.getCampo().get(m.getCampo().size()-1).getNombre_campo());
+							}
+						}
+						else if(opAux instanceof ValorRegistro) {
+							ValorRegistro r = (ValorRegistro) opAux;
+							nombresVariables.add(r.getNombre_registro());
+							String campo = r.getCampo().get(r.getCampo().size()-1).getNombre_campo();
+							nombresVariablesCampos.put(r.getNombre_registro(), campo);
+						}
+						else if(opAux instanceof NumeroEntero) {
+							nombresVariables.add("tipoNativo");
+							tiposNativos.add("entero");
+						}
+						else if(opAux instanceof NumeroDecimal) {
+							nombresVariables.add("tipoNativo");
+							tiposNativos.add("real");
+						}
+						else if(opAux instanceof ValorBooleano) {
+							nombresVariables.add("tipoNativo");
+							tiposNativos.add("logico");
+						}
+						else if(opAux instanceof ConstCadena) {
+							nombresVariables.add("tipoNativo");
+							tiposNativos.add("cadena");
+						}
+						else if(opAux instanceof Caracter) {
+							nombresVariables.add("tipoNativo");
+							tiposNativos.add("caracter");
+						}
+					}
+				}
+			}
 		}
 	}
 	
@@ -184,10 +257,15 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		return salidaCorrecta;
 	}
 	
-	protected String getCadenaTiposIncorrectos(List<String> nombresVariablesUsadas, Map<String,String> variablesDeclaradas, Map<String,String> tiposVectoresMatrices, Map<String,HashMap<String,String>> tiposRegistros, Map<String,String> nombresVariablesCampos) {
+	protected String getCadenaTiposIncorrectos(List<String> nombresVariablesUsadas, Map<String,String> variablesDeclaradas, Map<String,String> tiposVectoresMatrices, Map<String,HashMap<String,String>> tiposRegistros, Map<String,String> nombresVariablesCampos, List<String> tiposNativos) {
 		String salidaIncorrecta = "";
+		int tiposNativosUsados = 0;
 		for(int i=0; i < nombresVariablesUsadas.size()-1; i++) {
-			if(tiposVectoresMatrices.containsKey(variablesDeclaradas.get(nombresVariablesUsadas.get(i)))) {
+			if(nombresVariablesUsadas.get(i) == "tipoNativo") {
+				salidaIncorrecta += tiposNativos.get(tiposNativosUsados) + ", ";
+				tiposNativosUsados++;
+			}
+			else if(tiposVectoresMatrices.containsKey(variablesDeclaradas.get(nombresVariablesUsadas.get(i)))) {
 				//Si lo contiene es un vector o una matriz
 				if(!nombresVariablesCampos.containsKey(nombresVariablesUsadas.get(i))) {
 					salidaIncorrecta += tiposVectoresMatrices.get(variablesDeclaradas.get(nombresVariablesUsadas.get(i))) + ", ";
@@ -206,7 +284,10 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 				salidaIncorrecta += variablesDeclaradas.get(nombresVariablesUsadas.get(i)) + ", ";
 			}
 		}
-		if(tiposVectoresMatrices.containsKey(variablesDeclaradas.get(nombresVariablesUsadas.get(nombresVariablesUsadas.size()-1)))) {
+		if(nombresVariablesUsadas.get(nombresVariablesUsadas.size()-1) == "tipoNativo") {
+			salidaIncorrecta += tiposNativos.get(tiposNativosUsados);
+		}
+		else if(tiposVectoresMatrices.containsKey(variablesDeclaradas.get(nombresVariablesUsadas.get(nombresVariablesUsadas.size()-1)))) {
 			//Si lo contiene es un vector o una matriz
 			if(!nombresVariablesCampos.containsKey(nombresVariablesUsadas.get(nombresVariablesUsadas.size()-1))) {
 				salidaIncorrecta += tiposVectoresMatrices.get(variablesDeclaradas.get(nombresVariablesUsadas.get(nombresVariablesUsadas.size()-1)));
