@@ -155,10 +155,16 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 			else if(o instanceof ValorVector) {
 				ValorVector v = (ValorVector) o;
 				nombresVariables.add(v.getNombre_vector());
+				if(v.getCampo().size() != 0) {
+					nombresVariablesCampos.put(v.getNombre_vector(), v.getCampo().get(v.getCampo().size()-1).getNombre_campo());
+				}
 			}
 			else if(o instanceof ValorMatriz) {
 				ValorMatriz m = (ValorMatriz) o;
 				nombresVariables.add(m.getNombre_matriz());
+				if(m.getCampo().size() != 0) {
+					nombresVariablesCampos.put(m.getNombre_matriz(), m.getCampo().get(m.getCampo().size()-1).getNombre_campo());
+				}
 			}
 			else if(o instanceof ValorRegistro) {
 				ValorRegistro r = (ValorRegistro) o;
@@ -183,7 +189,13 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		for(int i=0; i < nombresVariablesUsadas.size()-1; i++) {
 			if(tiposVectoresMatrices.containsKey(variablesDeclaradas.get(nombresVariablesUsadas.get(i)))) {
 				//Si lo contiene es un vector o una matriz
-				salidaIncorrecta += tiposVectoresMatrices.get(variablesDeclaradas.get(nombresVariablesUsadas.get(i))) + ", ";
+				if(!nombresVariablesCampos.containsKey(nombresVariablesUsadas.get(i))) {
+					salidaIncorrecta += tiposVectoresMatrices.get(variablesDeclaradas.get(nombresVariablesUsadas.get(i))) + ", ";
+				}
+				else {
+					//Cogemos el último campo:
+					salidaIncorrecta += tiposRegistros.get(tiposVectoresMatrices.get(variablesDeclaradas.get(i))).get(nombresVariablesCampos.get(nombresVariablesUsadas.get(i))) + ", ";
+				}
 			}
 			else if(tiposRegistros.containsKey(variablesDeclaradas.get(nombresVariablesUsadas.get(i))) && nombresVariablesCampos.get(nombresVariablesUsadas.get(i)) != null) {
 				//Si lo contiene es un registro y si además tiene un campo es que es del tipo nombreRegistro.campo, por lo tanto debemos averiguar de que tipo es ese campo.
@@ -196,7 +208,13 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		}
 		if(tiposVectoresMatrices.containsKey(variablesDeclaradas.get(nombresVariablesUsadas.get(nombresVariablesUsadas.size()-1)))) {
 			//Si lo contiene es un vector o una matriz
-			salidaIncorrecta += tiposVectoresMatrices.get(variablesDeclaradas.get(nombresVariablesUsadas.get(nombresVariablesUsadas.size()-1)));
+			if(!nombresVariablesCampos.containsKey(nombresVariablesUsadas.get(nombresVariablesUsadas.size()-1))) {
+				salidaIncorrecta += tiposVectoresMatrices.get(variablesDeclaradas.get(nombresVariablesUsadas.get(nombresVariablesUsadas.size()-1)));
+			}
+			else {
+				//Cogemos el último campo:
+				salidaIncorrecta += tiposRegistros.get(tiposVectoresMatrices.get(variablesDeclaradas.get(nombresVariablesUsadas.get(nombresVariablesUsadas.size()-1)))).get(nombresVariablesCampos.get(nombresVariablesUsadas.get(nombresVariablesUsadas.size()-1)));
+			}
 		}
 		else if(tiposRegistros.containsKey(variablesDeclaradas.get(nombresVariablesUsadas.get(nombresVariablesUsadas.size()-1))) && nombresVariablesCampos.get(nombresVariablesUsadas.get(nombresVariablesUsadas.size()-1)) != null) {
 			//Si lo contiene es un registro
