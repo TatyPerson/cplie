@@ -449,7 +449,7 @@ class MyDslGenerator implements IGenerator {
 	}
 
 	def toC(Leer l) '''
-		cin >> «l.variable.nombre»;
+		cin >> «l.variable.toC»;
 	'''
 
 	def toC(Internas i) {

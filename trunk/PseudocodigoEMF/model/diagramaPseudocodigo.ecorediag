@@ -1630,7 +1630,7 @@
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_BnhzY08-EeKesdEAF4Nu5g" points="[-19, -2, 92, -2]$[-73, -2, 38, -2]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BnjokE8-EeKesdEAF4Nu5g" id="(0.24509803921568626,0.4186046511627907)"/>
   </edges>
-  <edges xmi:type="notation:Edge" xmi:id="_E6jDUE8-EeKesdEAF4Nu5g" type="3002" source="_UIeBoEnxEeKrC-c2kupyLw" target="_sPZXgEkDEeK5F-3H-froxA">
+  <edges xmi:type="notation:Edge" xmi:id="_E6jDUE8-EeKesdEAF4Nu5g" type="3002" source="_UIeBoEnxEeKrC-c2kupyLw" target="_vDD2EEnAEeKigZTQInVLIw">
     <children xmi:type="notation:Node" xmi:id="_E6jqYE8-EeKesdEAF4Nu5g" type="4011">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_E6jqYU8-EeKesdEAF4Nu5g" x="-10" y="-10"/>
     </children>
@@ -1641,6 +1641,7 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_E6jDUk8-EeKesdEAF4Nu5g" fontColor="4210752" fontName="Times New Roman" fontHeight="12"/>
     <element xmi:type="ecore:EReference" href="diagramaPseudocodigo.ecore#//Leer/variable"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_E6jDU08-EeKesdEAF4Nu5g" points="[27, -16, -333, 205]$[411, -216, 51, 5]"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_p-NioM7gEeOrOeHl60OjWQ" id="(0.24509803921568626,0.7619047619047619)"/>
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_IhDGkE9XEeKIIujAPWB6Tg" type="3003" source="_G4-VgE9XEeKIIujAPWB6Tg" target="_AU6m4E88EeKesdEAF4Nu5g">
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_IhDGkU9XEeKIIujAPWB6Tg" routing="Rectilinear" lineColor="4210752"/>

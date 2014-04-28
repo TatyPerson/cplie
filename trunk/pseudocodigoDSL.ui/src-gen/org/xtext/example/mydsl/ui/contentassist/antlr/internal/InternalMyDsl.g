@@ -392,6 +392,34 @@ finally {
 
 
 
+// Entry rule entryRulevaloresLeer
+entryRulevaloresLeer 
+:
+{ before(grammarAccess.getValoresLeerRule()); }
+	 rulevaloresLeer
+{ after(grammarAccess.getValoresLeerRule()); } 
+	 EOF 
+;
+
+// Rule valoresLeer
+rulevaloresLeer
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getValoresLeerAccess().getAlternatives()); }
+(rule__ValoresLeer__Alternatives)
+{ after(grammarAccess.getValoresLeerAccess().getAlternatives()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
 // Entry rule entryRuleValorComplejo
 entryRuleValorComplejo 
 :
@@ -2318,6 +2346,40 @@ rule__Valor__Alternatives
 { before(grammarAccess.getValorAccess().getValorComplejoParserRuleCall_10()); }
 	ruleValorComplejo
 { after(grammarAccess.getValorAccess().getValorComplejoParserRuleCall_10()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ValoresLeer__Alternatives
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getValoresLeerAccess().getVariableIDParserRuleCall_0()); }
+	ruleVariableID
+{ after(grammarAccess.getValoresLeerAccess().getVariableIDParserRuleCall_0()); }
+)
+
+    |(
+{ before(grammarAccess.getValoresLeerAccess().getValorVectorParserRuleCall_1()); }
+	ruleValorVector
+{ after(grammarAccess.getValoresLeerAccess().getValorVectorParserRuleCall_1()); }
+)
+
+    |(
+{ before(grammarAccess.getValoresLeerAccess().getValorMatrizParserRuleCall_2()); }
+	ruleValorMatriz
+{ after(grammarAccess.getValoresLeerAccess().getValorMatrizParserRuleCall_2()); }
+)
+
+    |(
+{ before(grammarAccess.getValoresLeerAccess().getValorRegistroParserRuleCall_3()); }
+	ruleValorRegistro
+{ after(grammarAccess.getValoresLeerAccess().getValorRegistroParserRuleCall_3()); }
 )
 
 ;
@@ -12673,8 +12735,8 @@ rule__Leer__VariableAssignment_2
     }
 :
 (
-{ before(grammarAccess.getLeerAccess().getVariableVariableIDParserRuleCall_2_0()); }
-	ruleVariableID{ after(grammarAccess.getLeerAccess().getVariableVariableIDParserRuleCall_2_0()); }
+{ before(grammarAccess.getLeerAccess().getVariableValoresLeerParserRuleCall_2_0()); }
+	rulevaloresLeer{ after(grammarAccess.getLeerAccess().getVariableValoresLeerParserRuleCall_2_0()); }
 )
 
 ;
