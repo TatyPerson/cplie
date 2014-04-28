@@ -129,7 +129,7 @@ DeclaracionPropia returns DeclaracionPropia:
 LlamadaFuncion returns LlamadaFuncion:
 	nombre=EString
 	'('
-		(operador+=Operador ( "," operador+=Operador)* )?
+		(operador+=valor ( "," operador+=valor)* )?
 	')';
 
 Asignacion returns Asignacion:

@@ -7180,11 +7180,11 @@ protected class DeclaracionPropia_VariableAssignment_3_1 extends AssignmentToken
 /************ begin Rule LlamadaFuncion ****************
  *
  * LlamadaFuncion:
- * 	nombre=EString "(" (operador+=Operador ("," operador+=Operador)*)? ")";
+ * 	nombre=EString "(" (operador+=valor ("," operador+=valor)*)? ")";
  *
  **/
 
-// nombre=EString "(" (operador+=Operador ("," operador+=Operador)*)? ")"
+// nombre=EString "(" (operador+=valor ("," operador+=valor)*)? ")"
 protected class LlamadaFuncion_Group extends GroupToken {
 	
 	public LlamadaFuncion_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -7268,7 +7268,7 @@ protected class LlamadaFuncion_LeftParenthesisKeyword_1 extends KeywordToken  {
 
 }
 
-// (operador+=Operador ("," operador+=Operador)*)?
+// (operador+=valor ("," operador+=valor)*)?
 protected class LlamadaFuncion_Group_2 extends GroupToken {
 	
 	public LlamadaFuncion_Group_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -7291,7 +7291,7 @@ protected class LlamadaFuncion_Group_2 extends GroupToken {
 
 }
 
-// operador+=Operador
+// operador+=valor
 protected class LlamadaFuncion_OperadorAssignment_2_0 extends AssignmentToken  {
 	
 	public LlamadaFuncion_OperadorAssignment_2_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -7306,7 +7306,7 @@ protected class LlamadaFuncion_OperadorAssignment_2_0 extends AssignmentToken  {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Operador_Alternatives(this, this, 0, inst);
+			case 0: return new Valor_Alternatives(this, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -7317,9 +7317,9 @@ protected class LlamadaFuncion_OperadorAssignment_2_0 extends AssignmentToken  {
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("operador");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getOperadorRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getValorRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getLlamadaFuncionAccess().getOperadorOperadorParserRuleCall_2_0_0(); 
+				element = grammarAccess.getLlamadaFuncionAccess().getOperadorValorParserRuleCall_2_0_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -7337,7 +7337,7 @@ protected class LlamadaFuncion_OperadorAssignment_2_0 extends AssignmentToken  {
 	}	
 }
 
-// ("," operador+=Operador)*
+// ("," operador+=valor)*
 protected class LlamadaFuncion_Group_2_1 extends GroupToken {
 	
 	public LlamadaFuncion_Group_2_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -7382,7 +7382,7 @@ protected class LlamadaFuncion_CommaKeyword_2_1_0 extends KeywordToken  {
 
 }
 
-// operador+=Operador
+// operador+=valor
 protected class LlamadaFuncion_OperadorAssignment_2_1_1 extends AssignmentToken  {
 	
 	public LlamadaFuncion_OperadorAssignment_2_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -7397,7 +7397,7 @@ protected class LlamadaFuncion_OperadorAssignment_2_1_1 extends AssignmentToken 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Operador_Alternatives(this, this, 0, inst);
+			case 0: return new Valor_Alternatives(this, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -7408,9 +7408,9 @@ protected class LlamadaFuncion_OperadorAssignment_2_1_1 extends AssignmentToken 
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("operador");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getOperadorRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getValorRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getLlamadaFuncionAccess().getOperadorOperadorParserRuleCall_2_1_1_0(); 
+				element = grammarAccess.getLlamadaFuncionAccess().getOperadorValorParserRuleCall_2_1_1_0(); 
 				consumed = obj;
 				return param;
 			}

@@ -12523,8 +12523,8 @@ rule__LlamadaFuncion__OperadorAssignment_2_0
     }
 :
 (
-{ before(grammarAccess.getLlamadaFuncionAccess().getOperadorOperadorParserRuleCall_2_0_0()); }
-	ruleOperador{ after(grammarAccess.getLlamadaFuncionAccess().getOperadorOperadorParserRuleCall_2_0_0()); }
+{ before(grammarAccess.getLlamadaFuncionAccess().getOperadorValorParserRuleCall_2_0_0()); }
+	rulevalor{ after(grammarAccess.getLlamadaFuncionAccess().getOperadorValorParserRuleCall_2_0_0()); }
 )
 
 ;
@@ -12538,8 +12538,8 @@ rule__LlamadaFuncion__OperadorAssignment_2_1_1
     }
 :
 (
-{ before(grammarAccess.getLlamadaFuncionAccess().getOperadorOperadorParserRuleCall_2_1_1_0()); }
-	ruleOperador{ after(grammarAccess.getLlamadaFuncionAccess().getOperadorOperadorParserRuleCall_2_1_1_0()); }
+{ before(grammarAccess.getLlamadaFuncionAccess().getOperadorValorParserRuleCall_2_1_1_0()); }
+	rulevalor{ after(grammarAccess.getLlamadaFuncionAccess().getOperadorValorParserRuleCall_2_1_1_0()); }
 )
 
 ;

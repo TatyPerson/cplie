@@ -1349,7 +1349,7 @@
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_wDCsY0nAEeKigZTQInVLIw" points="[8, -21, -27, 46]$[-3, -59, -38, 8]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_wDFIoEnAEeKigZTQInVLIw" id="(0.7697841726618705,0.5686274509803921)"/>
   </edges>
-  <edges xmi:type="notation:Edge" xmi:id="_xFJpoEnAEeKigZTQInVLIw" type="3002" source="_XugtYEkDEeK5F-3H-froxA" target="_vDD2EEnAEeKigZTQInVLIw">
+  <edges xmi:type="notation:Edge" xmi:id="_xFJpoEnAEeKigZTQInVLIw" type="3002" source="_XugtYEkDEeK5F-3H-froxA" target="_nLR9ME3AEeKRbac-PLanKw">
     <children xmi:type="notation:Node" xmi:id="_xFKQsEnAEeKigZTQInVLIw" type="4011">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_xFKQsUnAEeKigZTQInVLIw" x="-10" y="-10"/>
     </children>
@@ -1360,6 +1360,7 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_xFJpoknAEeKigZTQInVLIw" fontColor="4210752" fontName="Times New Roman" fontHeight="12"/>
     <element xmi:type="ecore:EReference" href="diagramaPseudocodigo.ecore#//LlamadaFuncion/operador"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_xFJpo0nAEeKigZTQInVLIw" points="[52, 9, -123, -21]$[177, 15, 2, -15]"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_TZsgAM40EeOrOeHl60OjWQ" id="(0.13725490196078433,0.4523809523809524)"/>
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_5zGRMEnAEeKigZTQInVLIw" type="3003" source="_zsvW8EnAEeKigZTQInVLIw" target="_vDD2EEnAEeKigZTQInVLIw">
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_5zGRMUnAEeKigZTQInVLIw" routing="Rectilinear" lineColor="4210752"/>

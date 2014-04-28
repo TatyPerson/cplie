@@ -1413,18 +1413,18 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Assignment cOperadorAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
-		private final RuleCall cOperadorOperadorParserRuleCall_2_0_0 = (RuleCall)cOperadorAssignment_2_0.eContents().get(0);
+		private final RuleCall cOperadorValorParserRuleCall_2_0_0 = (RuleCall)cOperadorAssignment_2_0.eContents().get(0);
 		private final Group cGroup_2_1 = (Group)cGroup_2.eContents().get(1);
 		private final Keyword cCommaKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
 		private final Assignment cOperadorAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
-		private final RuleCall cOperadorOperadorParserRuleCall_2_1_1_0 = (RuleCall)cOperadorAssignment_2_1_1.eContents().get(0);
+		private final RuleCall cOperadorValorParserRuleCall_2_1_1_0 = (RuleCall)cOperadorAssignment_2_1_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//LlamadaFuncion:
-		//	nombre=EString "(" (operador+=Operador ("," operador+=Operador)*)? ")";
+		//	nombre=EString "(" (operador+=valor ("," operador+=valor)*)? ")";
 		public ParserRule getRule() { return rule; }
 
-		//nombre=EString "(" (operador+=Operador ("," operador+=Operador)*)? ")"
+		//nombre=EString "(" (operador+=valor ("," operador+=valor)*)? ")"
 		public Group getGroup() { return cGroup; }
 
 		//nombre=EString
@@ -1436,26 +1436,26 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"("
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 
-		//(operador+=Operador ("," operador+=Operador)*)?
+		//(operador+=valor ("," operador+=valor)*)?
 		public Group getGroup_2() { return cGroup_2; }
 
-		//operador+=Operador
+		//operador+=valor
 		public Assignment getOperadorAssignment_2_0() { return cOperadorAssignment_2_0; }
 
-		//Operador
-		public RuleCall getOperadorOperadorParserRuleCall_2_0_0() { return cOperadorOperadorParserRuleCall_2_0_0; }
+		//valor
+		public RuleCall getOperadorValorParserRuleCall_2_0_0() { return cOperadorValorParserRuleCall_2_0_0; }
 
-		//("," operador+=Operador)*
+		//("," operador+=valor)*
 		public Group getGroup_2_1() { return cGroup_2_1; }
 
 		//","
 		public Keyword getCommaKeyword_2_1_0() { return cCommaKeyword_2_1_0; }
 
-		//operador+=Operador
+		//operador+=valor
 		public Assignment getOperadorAssignment_2_1_1() { return cOperadorAssignment_2_1_1; }
 
-		//Operador
-		public RuleCall getOperadorOperadorParserRuleCall_2_1_1_0() { return cOperadorOperadorParserRuleCall_2_1_1_0; }
+		//valor
+		public RuleCall getOperadorValorParserRuleCall_2_1_1_0() { return cOperadorValorParserRuleCall_2_1_1_0; }
 
 		//")"
 		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
@@ -3353,7 +3353,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LlamadaFuncion:
-	//	nombre=EString "(" (operador+=Operador ("," operador+=Operador)*)? ")";
+	//	nombre=EString "(" (operador+=valor ("," operador+=valor)*)? ")";
 	public LlamadaFuncionElements getLlamadaFuncionAccess() {
 		return (pLlamadaFuncion != null) ? pLlamadaFuncion : (pLlamadaFuncion = new LlamadaFuncionElements());
 	}

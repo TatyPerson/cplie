@@ -74,10 +74,13 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 			if(s instanceof LlamadaFuncion) {
 				LlamadaFuncion f = (LlamadaFuncion) s;
 				if(f.getNombre().equals(nombre) && f.getOperador().size() == parametros) {
-					for(Operador o: f.getOperador()) {
-						if(o instanceof VariableID) {
-							VariableID v = (VariableID) o;
-							nombresVariables.add(v.getNombre());	
+					for(valor val: f.getOperador()) {
+						if(val instanceof Operador) {
+							Operador o = (Operador) val;
+							if(o instanceof VariableID) {
+								VariableID v = (VariableID) o;
+								nombresVariables.add(v.getNombre());	
+							}
 						}
 					}
 					boolean correcto = true; 
@@ -146,114 +149,160 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		return variables;
 	}
 	
-	protected void registrarParametros(List<Operador> operadores, List<String> nombresVariables, Map<String,String> nombresVariablesCampos, List<String> tiposNativos) {
-		for(Operador o: operadores) {
-			if(o instanceof VariableID) {
-				VariableID v = (VariableID) o;
-				nombresVariables.add(v.getNombre());	
-			}
-			else if(o instanceof ValorVector) {
-				ValorVector v = (ValorVector) o;
-				nombresVariables.add(v.getNombre_vector());
-				if(v.getCampo().size() != 0) {
-					nombresVariablesCampos.put(v.getNombre_vector(), v.getCampo().get(v.getCampo().size()-1).getNombre_campo());
+	private String prioridadTipoOperacion(String tipo1, String tipo2) {
+		String salida = "";
+		if(tipo1.equals("cadena")) {
+			salida = tipo1;
+		}
+		else if(tipo2.equals("cadena")) {
+			salida = tipo2;
+		}
+		else if(tipo1.equals("entero") && tipo2.equals("real")) {
+			salida = tipo1;
+		}
+		else if(tipo1.equals("real") && tipo2.equals("entero")) {
+			salida = tipo2;
+		}
+		else if(tipo1.equals("logico") && tipo2.equals("entero") || tipo2.equals("real")) {
+			salida = tipo2;
+		}
+		else if(tipo2.equals("logico") && tipo1.equals("entero") || tipo1.equals("real")) {
+			salida = tipo1;
+		}
+		else if(tipo1.equals("caracter") && tipo2.equals("entero") || tipo2.equals("real")) {
+			salida = tipo2;
+		}
+		else if(tipo1.equals("caracter") && tipo2.equals("entero") || tipo2.equals("real")) {
+			salida = tipo2;
+		}
+		return salida;
+	}
+	
+	private String getValorTotalOperacion(List<valor> valores, Map<String,String> variablesDeclaradas, Map<String,String> tiposVectoresMatrices, Map<String,HashMap<String,String>> tiposRegistros) {
+		List<String> tipos = new ArrayList<String>();
+		for(valor v: valores) {
+			if(v instanceof Operador) {
+				Operador op = (Operador) v;
+				if(op instanceof VariableID) {
+					//Si es una variable vamos a buscar de que tipo es
+					VariableID var = (VariableID) op;
+					tipos.add(variablesDeclaradas.get(var.getNombre()));
+						
 				}
-			}
-			else if(o instanceof ValorMatriz) {
-				ValorMatriz m = (ValorMatriz) o;
-				nombresVariables.add(m.getNombre_matriz());
-				if(m.getCampo().size() != 0) {
-					nombresVariablesCampos.put(m.getNombre_matriz(), m.getCampo().get(m.getCampo().size()-1).getNombre_campo());
-				}
-			}
-			else if(o instanceof ValorRegistro) {
-				ValorRegistro r = (ValorRegistro) o;
-				nombresVariables.add(r.getNombre_registro());
-				String campo = r.getCampo().get(r.getCampo().size()-1).getNombre_campo();
-				nombresVariablesCampos.put(r.getNombre_registro(), campo);
-			}
-			else if(o instanceof NumeroEntero) {
-				nombresVariables.add("tipoNativo");
-				tiposNativos.add("entero");
-			}
-			else if(o instanceof NumeroDecimal) {
-				nombresVariables.add("tipoNativo");
-				tiposNativos.add("real");
-			}
-			else if(o instanceof ValorBooleano) {
-				nombresVariables.add("tipoNativo");
-				tiposNativos.add("logico");
-			}
-			else if(o instanceof ConstCadena) {
-				nombresVariables.add("tipoNativo");
-				tiposNativos.add("cadena");
-			}
-			else if(o instanceof Caracter) {
-				nombresVariables.add("tipoNativo");
-				tiposNativos.add("caracter");
-			}
-			else if(o instanceof operacion) {
-				operacion op = (operacion) o;
-				List<valor> valores = registrarValoresOperacion(op);
-				for(valor v: valores) {
-					if(v instanceof Operador) {
-						Operador opAux = (Operador) v;
-						if(opAux instanceof VariableID) {
-							VariableID var = (VariableID) opAux;
-							nombresVariables.add(var.getNombre());	
-						}
-						else if(opAux instanceof ValorVector) {
-							ValorVector vector = (ValorVector) opAux;
-							nombresVariables.add(vector.getNombre_vector());
-							if(vector.getCampo().size() != 0) {
-								nombresVariablesCampos.put(vector.getNombre_vector(), vector.getCampo().get(vector.getCampo().size()-1).getNombre_campo());
-							}
-						}
-						else if(opAux instanceof ValorMatriz) {
-							ValorMatriz m = (ValorMatriz) opAux;
-							nombresVariables.add(m.getNombre_matriz());
-							if(m.getCampo().size() != 0) {
-								nombresVariablesCampos.put(m.getNombre_matriz(), m.getCampo().get(m.getCampo().size()-1).getNombre_campo());
-							}
-						}
-						else if(opAux instanceof ValorRegistro) {
-							ValorRegistro r = (ValorRegistro) opAux;
-							nombresVariables.add(r.getNombre_registro());
-							String campo = r.getCampo().get(r.getCampo().size()-1).getNombre_campo();
-							nombresVariablesCampos.put(r.getNombre_registro(), campo);
-						}
-						else if(opAux instanceof NumeroEntero) {
-							nombresVariables.add("tipoNativo");
-							tiposNativos.add("entero");
-						}
-						else if(opAux instanceof NumeroDecimal) {
-							nombresVariables.add("tipoNativo");
-							tiposNativos.add("real");
-						}
-						else if(opAux instanceof ValorBooleano) {
-							nombresVariables.add("tipoNativo");
-							tiposNativos.add("logico");
-						}
-						else if(opAux instanceof ConstCadena) {
-							nombresVariables.add("tipoNativo");
-							tiposNativos.add("cadena");
-						}
-						else if(opAux instanceof Caracter) {
-							nombresVariables.add("tipoNativo");
-							tiposNativos.add("caracter");
-						}
+				else if(op instanceof ValorVector) {
+					ValorVector vector = (ValorVector) op;
+					//Si es un vector vamos a ver de que tipo es
+					if(vector.getCampo().size() == 0) {
+						tipos.add(tiposVectoresMatrices.get(variablesDeclaradas.get(vector.getNombre_vector())));
+					}
+					else {
+						//Cogemos el último campo:
+						tipos.add(tiposRegistros.get(tiposVectoresMatrices.get(variablesDeclaradas.get(vector.getNombre_vector()))).get(vector.getCampo().get(vector.getCampo().size()-1)));
 					}
 				}
+				else if(op instanceof ValorMatriz) {
+					ValorMatriz matriz = (ValorMatriz) op;
+					//Si es una matriz vamos a ver de que tipo es
+					if(matriz.getCampo().size() == 0) {
+						tipos.add(tiposVectoresMatrices.get(variablesDeclaradas.get(matriz.getNombre_matriz())));
+					}
+					else {
+						//Cogemos el último campo:
+						tipos.add(tiposRegistros.get(tiposVectoresMatrices.get(variablesDeclaradas.get(matriz.getNombre_matriz()))).get(matriz.getCampo().get(matriz.getCampo().size()-1)));
+					}
+				}
+				else if(op instanceof ValorRegistro) {
+					ValorRegistro registro = (ValorRegistro) op;
+					//Si es un registro vemos de que tipo es:
+					tipos.add(tiposRegistros.get(variablesDeclaradas.get(registro.getNombre_registro())).get(registro.getCampo().get(registro.getCampo().size()-1).getNombre_campo()));
+
+				}
+				else if(op instanceof NumeroEntero) {
+					tipos.add("entero");
+				}
+				else if(op instanceof NumeroDecimal) {
+					tipos.add("real");
+				}
+				else if(op instanceof ValorBooleano) {
+					tipos.add("logico");
+				}
+				else if(op instanceof ConstCadena) {
+					tipos.add("cadena");
+				}
+				else if(op instanceof Caracter) {
+					tipos.add("caracter");
+				}
+			}
+		}
+		//Por ahora solo 2 operadores
+		return prioridadTipoOperacion(tipos.get(0), tipos.get(1));
+	}
+	
+	protected void registrarParametros(List<valor> valores, List<String> nombresVariables, Map<String,String> nombresVariablesCampos, List<String> tiposNativos, Map<String,String> variablesDeclaradas, Map<String,String> tiposVectoresMatrices, Map<String,HashMap<String,String>> tiposRegistros) {
+		for(valor val: valores) { 
+			if(val instanceof Operador) {
+				Operador o = (Operador) val;
+				if(o instanceof VariableID) {
+					VariableID v = (VariableID) o;
+					nombresVariables.add(v.getNombre());	
+				}
+				else if(o instanceof ValorVector) {
+					ValorVector v = (ValorVector) o;
+					nombresVariables.add(v.getNombre_vector());
+					if(v.getCampo().size() != 0) {
+						nombresVariablesCampos.put(v.getNombre_vector(), v.getCampo().get(v.getCampo().size()-1).getNombre_campo());
+					}
+				}
+				else if(o instanceof ValorMatriz) {
+					ValorMatriz m = (ValorMatriz) o;
+					nombresVariables.add(m.getNombre_matriz());
+					if(m.getCampo().size() != 0) {
+						nombresVariablesCampos.put(m.getNombre_matriz(), m.getCampo().get(m.getCampo().size()-1).getNombre_campo());
+					}
+				}
+				else if(o instanceof ValorRegistro) {
+					ValorRegistro r = (ValorRegistro) o;
+					nombresVariables.add(r.getNombre_registro());
+					String campo = r.getCampo().get(r.getCampo().size()-1).getNombre_campo();
+					nombresVariablesCampos.put(r.getNombre_registro(), campo);
+				}
+				else if(o instanceof NumeroEntero) {
+					nombresVariables.add("tipoNativo");
+					tiposNativos.add("entero");
+				}
+				else if(o instanceof NumeroDecimal) {
+					nombresVariables.add("tipoNativo");
+					tiposNativos.add("real");
+				}
+				else if(o instanceof ValorBooleano) {
+					nombresVariables.add("tipoNativo");
+					tiposNativos.add("logico");
+				}
+				else if(o instanceof ConstCadena) {
+					nombresVariables.add("tipoNativo");
+					tiposNativos.add("cadena");
+				}
+				else if(o instanceof Caracter) {
+					nombresVariables.add("tipoNativo");
+					tiposNativos.add("caracter");
+				}
+			}
+			else if(val instanceof operacion) {
+				operacion op = (operacion) val;
+				List<valor> valoresAux = registrarValoresOperacion(op);
+				String tipoOperacion = getValorTotalOperacion(valoresAux, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
+				nombresVariables.add("tipoNativo");
+				tiposNativos.add(tipoOperacion);
 			}
 		}
 	}
 	
-	protected String getCadenaTiposCorrectos(List<String> nombres, List<String> tipos) {
+	protected String getCadenaTiposCorrectos(List<String> tipos) {
 		String salidaCorrecta = "";
-		for(int i=0; i < nombres.size()-1; i++) {
-			salidaCorrecta += tipos.get(nombres.indexOf(nombres.get(i))) + ", ";
+		for(int i=0; i < tipos.size()-1; i++) {
+			salidaCorrecta += tipos.get(i) + ", ";
 		}
-		salidaCorrecta += tipos.get(nombres.size()-1);
+		salidaCorrecta += tipos.get(tipos.size()-1);
 		return salidaCorrecta;
 	}
 	
@@ -714,11 +763,14 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 			else if(v instanceof LlamadaFuncion) {
 				//Comprobamos si alguno de los parámetros es una variable no definida
 				LlamadaFuncion f = (LlamadaFuncion) v;
-				for(Operador o: f.getOperador()) {
-					if(o instanceof VariableID) {
-						VariableID var = (VariableID) o;
-						if(!variables.contains(var.getNombre())) {
-							variablesNoDeclaradas.add(var);
+				for(valor val: f.getOperador()) {
+					if(val instanceof Operador) {
+						Operador o = (Operador) val;
+						if(o instanceof VariableID) {
+							VariableID var = (VariableID) o;
+							if(!variables.contains(var.getNombre())) {
+								variablesNoDeclaradas.add(var);
+							}
 						}
 					}
 				}
