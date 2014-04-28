@@ -851,8 +851,11 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			}
 			else if(sen instanceof Leer) {
 				Leer l = (Leer) sen;
-				if(!variables.contains(l.getVariable().getNombre())) {
-					error("La variable debe haber sido previamente definida", l.getVariable(), DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+				if(l.getVariable() instanceof VariableID) {
+					VariableID v = (VariableID) l.getVariable();
+					if(!variables.contains(v.getNombre())) {
+						error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+					}
 				}
 			}
 			

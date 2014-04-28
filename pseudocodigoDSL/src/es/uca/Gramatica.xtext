@@ -54,6 +54,8 @@ Caracter returns Caracter:
 valor returns valor:
 	LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter | Internas | unaria | ValorComplejo;
 
+valoresLeer returns Operador:
+	VariableID | ValorVector | ValorMatriz | ValorRegistro;
 
 ValorComplejo returns ValorComplejo:
 	ValorRegistro | ValorVector | ValorMatriz;
@@ -156,7 +158,7 @@ Escribir returns Escribir:
 Leer returns Leer:
 	'leer'
 	'('
-		variable=VariableID
+		variable=valoresLeer
 	')';
 
 Si returns Si:

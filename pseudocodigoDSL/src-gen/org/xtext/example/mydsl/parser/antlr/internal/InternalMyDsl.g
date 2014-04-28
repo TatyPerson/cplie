@@ -1046,6 +1046,66 @@ rulevalor returns [EObject current=null]
 
 
 
+// Entry rule entryRulevaloresLeer
+entryRulevaloresLeer returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getValoresLeerRule()); }
+	 iv_rulevaloresLeer=rulevaloresLeer 
+	 { $current=$iv_rulevaloresLeer.current; } 
+	 EOF 
+;
+
+// Rule valoresLeer
+rulevaloresLeer returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+    { 
+        newCompositeNode(grammarAccess.getValoresLeerAccess().getVariableIDParserRuleCall_0()); 
+    }
+    this_VariableID_0=ruleVariableID
+    { 
+        $current = $this_VariableID_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getValoresLeerAccess().getValorVectorParserRuleCall_1()); 
+    }
+    this_ValorVector_1=ruleValorVector
+    { 
+        $current = $this_ValorVector_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getValoresLeerAccess().getValorMatrizParserRuleCall_2()); 
+    }
+    this_ValorMatriz_2=ruleValorMatriz
+    { 
+        $current = $this_ValorMatriz_2.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getValoresLeerAccess().getValorRegistroParserRuleCall_3()); 
+    }
+    this_ValorRegistro_3=ruleValorRegistro
+    { 
+        $current = $this_ValorRegistro_3.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
 // Entry rule entryRuleValorComplejo
 entryRuleValorComplejo returns [EObject current=null] 
 	:
@@ -2967,9 +3027,9 @@ ruleLeer returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getLeerAccess().getVariableVariableIDParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getLeerAccess().getVariableValoresLeerParserRuleCall_2_0()); 
 	    }
-		lv_variable_2_0=ruleVariableID		{
+		lv_variable_2_0=rulevaloresLeer		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getLeerRule());
 	        }
@@ -2977,7 +3037,7 @@ ruleLeer returns [EObject current=null]
        			$current, 
        			"variable",
         		lv_variable_2_0, 
-        		"VariableID");
+        		"valoresLeer");
 	        afterParserOrEnumRuleCall();
 	    }
 

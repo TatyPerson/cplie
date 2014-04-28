@@ -527,6 +527,34 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getValorComplejoParserRuleCall_10() { return cValorComplejoParserRuleCall_10; }
 	}
 
+	public class ValoresLeerElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "valoresLeer");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cVariableIDParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cValorVectorParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cValorMatrizParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cValorRegistroParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		
+		//valoresLeer returns Operador:
+		//	VariableID | ValorVector | ValorMatriz | ValorRegistro;
+		public ParserRule getRule() { return rule; }
+
+		//VariableID | ValorVector | ValorMatriz | ValorRegistro
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//VariableID
+		public RuleCall getVariableIDParserRuleCall_0() { return cVariableIDParserRuleCall_0; }
+
+		//ValorVector
+		public RuleCall getValorVectorParserRuleCall_1() { return cValorVectorParserRuleCall_1; }
+
+		//ValorMatriz
+		public RuleCall getValorMatrizParserRuleCall_2() { return cValorMatrizParserRuleCall_2; }
+
+		//ValorRegistro
+		public RuleCall getValorRegistroParserRuleCall_3() { return cValorRegistroParserRuleCall_3; }
+	}
+
 	public class ValorComplejoElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ValorComplejo");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -1615,14 +1643,14 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeerKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cVariableAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cVariableVariableIDParserRuleCall_2_0 = (RuleCall)cVariableAssignment_2.eContents().get(0);
+		private final RuleCall cVariableValoresLeerParserRuleCall_2_0 = (RuleCall)cVariableAssignment_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//Leer:
-		//	"leer" "(" variable=VariableID ")";
+		//	"leer" "(" variable=valoresLeer ")";
 		public ParserRule getRule() { return rule; }
 
-		//"leer" "(" variable=VariableID ")"
+		//"leer" "(" variable=valoresLeer ")"
 		public Group getGroup() { return cGroup; }
 
 		//"leer"
@@ -1631,11 +1659,11 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"("
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 
-		//variable=VariableID
+		//variable=valoresLeer
 		public Assignment getVariableAssignment_2() { return cVariableAssignment_2; }
 
-		//VariableID
-		public RuleCall getVariableVariableIDParserRuleCall_2_0() { return cVariableVariableIDParserRuleCall_2_0; }
+		//valoresLeer
+		public RuleCall getVariableValoresLeerParserRuleCall_2_0() { return cVariableValoresLeerParserRuleCall_2_0; }
 
 		//")"
 		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
@@ -2917,6 +2945,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private OperadorElements pOperador;
 	private CaracterElements pCaracter;
 	private ValorElements pValor;
+	private ValoresLeerElements pValoresLeer;
 	private ValorComplejoElements pValorComplejo;
 	private ValorMatrizElements pValorMatriz;
 	private ValorRegistroElements pValorRegistro;
@@ -3147,6 +3176,16 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getValorRule() {
 		return getValorAccess().getRule();
+	}
+
+	//valoresLeer returns Operador:
+	//	VariableID | ValorVector | ValorMatriz | ValorRegistro;
+	public ValoresLeerElements getValoresLeerAccess() {
+		return (pValoresLeer != null) ? pValoresLeer : (pValoresLeer = new ValoresLeerElements());
+	}
+	
+	public ParserRule getValoresLeerRule() {
+		return getValoresLeerAccess().getRule();
 	}
 
 	//ValorComplejo:
@@ -3403,7 +3442,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Leer:
-	//	"leer" "(" variable=VariableID ")";
+	//	"leer" "(" variable=valoresLeer ")";
 	public LeerElements getLeerAccess() {
 		return (pLeer != null) ? pLeer : (pLeer = new LeerElements());
 	}

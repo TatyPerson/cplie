@@ -29,12 +29,12 @@ public interface Leer extends Sentencias {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Variable</em>' containment reference.
-	 * @see #setVariable(VariableID)
+	 * @see #setVariable(Operador)
 	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getLeer_Variable()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	VariableID getVariable();
+	Operador getVariable();
 
 	/**
 	 * Sets the value of the '{@link diagramapseudocodigo.Leer#getVariable <em>Variable</em>}' containment reference.
@@ -44,6 +44,6 @@ public interface Leer extends Sentencias {
 	 * @see #getVariable()
 	 * @generated
 	 */
-	void setVariable(VariableID value);
+	void setVariable(Operador value);
 
 } // Leer
