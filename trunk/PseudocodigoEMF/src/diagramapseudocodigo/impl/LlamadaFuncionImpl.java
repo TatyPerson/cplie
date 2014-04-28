@@ -4,20 +4,14 @@ package diagramapseudocodigo.impl;
 
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.LlamadaFuncion;
-import diagramapseudocodigo.Operador;
-
+import diagramapseudocodigo.valor;
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -64,7 +58,7 @@ public class LlamadaFuncionImpl extends SentenciasImpl implements LlamadaFuncion
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Operador> operador;
+	protected EList<valor> operador;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -111,9 +105,9 @@ public class LlamadaFuncionImpl extends SentenciasImpl implements LlamadaFuncion
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Operador> getOperador() {
+	public EList<valor> getOperador() {
 		if (operador == null) {
-			operador = new EObjectContainmentEList<Operador>(Operador.class, this, DiagramapseudocodigoPackage.LLAMADA_FUNCION__OPERADOR);
+			operador = new EObjectContainmentEList<valor>(valor.class, this, DiagramapseudocodigoPackage.LLAMADA_FUNCION__OPERADOR);
 		}
 		return operador;
 	}
@@ -162,7 +156,7 @@ public class LlamadaFuncionImpl extends SentenciasImpl implements LlamadaFuncion
 				return;
 			case DiagramapseudocodigoPackage.LLAMADA_FUNCION__OPERADOR:
 				getOperador().clear();
-				getOperador().addAll((Collection<? extends Operador>)newValue);
+				getOperador().addAll((Collection<? extends valor>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

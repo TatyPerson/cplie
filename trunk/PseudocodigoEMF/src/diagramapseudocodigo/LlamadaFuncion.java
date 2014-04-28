@@ -50,7 +50,7 @@ public interface LlamadaFuncion extends Sentencias, valor {
 
 	/**
 	 * Returns the value of the '<em><b>Operador</b></em>' containment reference list.
-	 * The list contents are of type {@link diagramapseudocodigo.Operador}.
+	 * The list contents are of type {@link diagramapseudocodigo.valor}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Operador</em>' containment reference list isn't clear,
@@ -62,6 +62,6 @@ public interface LlamadaFuncion extends Sentencias, valor {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Operador> getOperador();
+	EList<valor> getOperador();
 
 } // LlamadaFuncion

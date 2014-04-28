@@ -486,10 +486,12 @@ class MyDslGenerator implements IGenerator {
 		cout«a.operador.coutOperadores» << endl;
 	'''
 
-	def generaParametros(EList<Operador> operadores) {
+	def generaParametros(EList<valor> valores) {
 		var total = "";
 		var actual = 1;
-		for (o : operadores) {
+		for (v : valores) {
+			var Operador o
+			o = v as Operador
 			if (actual != 1)
 				total = total + ", "
 			total = total + o.toC;

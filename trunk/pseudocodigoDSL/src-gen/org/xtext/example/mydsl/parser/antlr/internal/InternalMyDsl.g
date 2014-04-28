@@ -2623,9 +2623,9 @@ ruleLlamadaFuncion returns [EObject current=null]
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getLlamadaFuncionAccess().getOperadorOperadorParserRuleCall_2_0_0()); 
+	        newCompositeNode(grammarAccess.getLlamadaFuncionAccess().getOperadorValorParserRuleCall_2_0_0()); 
 	    }
-		lv_operador_2_0=ruleOperador		{
+		lv_operador_2_0=rulevalor		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getLlamadaFuncionRule());
 	        }
@@ -2633,7 +2633,7 @@ ruleLlamadaFuncion returns [EObject current=null]
        			$current, 
        			"operador",
         		lv_operador_2_0, 
-        		"Operador");
+        		"valor");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2645,9 +2645,9 @@ ruleLlamadaFuncion returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getLlamadaFuncionAccess().getOperadorOperadorParserRuleCall_2_1_1_0()); 
+	        newCompositeNode(grammarAccess.getLlamadaFuncionAccess().getOperadorValorParserRuleCall_2_1_1_0()); 
 	    }
-		lv_operador_4_0=ruleOperador		{
+		lv_operador_4_0=rulevalor		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getLlamadaFuncionRule());
 	        }
@@ -2655,7 +2655,7 @@ ruleLlamadaFuncion returns [EObject current=null]
        			$current, 
        			"operador",
         		lv_operador_4_0, 
-        		"Operador");
+        		"valor");
 	        afterParserOrEnumRuleCall();
 	    }
 

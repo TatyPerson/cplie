@@ -178,6 +178,11 @@ public class LlamadaFuncionItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createLlamadaFuncion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__OPERADOR,
 				 DiagramapseudocodigoFactory.eINSTANCE.createVariableID()));
 
 		newChildDescriptors.add
@@ -198,12 +203,27 @@ public class LlamadaFuncionItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createoperacion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__OPERADOR,
 				 DiagramapseudocodigoFactory.eINSTANCE.createValorBooleano()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__OPERADOR,
 				 DiagramapseudocodigoFactory.eINSTANCE.createCaracter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createInternas()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createunaria()));
 
 		newChildDescriptors.add
 			(createChildParameter
