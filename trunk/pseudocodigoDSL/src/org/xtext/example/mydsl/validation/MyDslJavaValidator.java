@@ -419,6 +419,52 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		}
 	}
 	
+	private void checkFuncionesAbrirCerrarFicheroAux(List<Sentencias> sentencias, List<String> nombresFicheros, Map<String,String> variablesDeclaradas) {
+		for(Sentencias s: sentencias) {
+			if(s instanceof FuncionFicheroAbrir) {
+				FuncionFicheroAbrir f = (FuncionFicheroAbrir) s;
+				if(f.getVariable().get(0) instanceof VariableID) {
+					VariableID v = (VariableID) f.getVariable().get(0);
+					if(!nombresFicheros.contains(variablesDeclaradas.get(v.getNombre()))) {
+						error("La variable debe pertenecer al tipo Archivo", f, DiagramapseudocodigoPackage.Literals.FUNCION_FICHERO_ABRIR__VARIABLE, 0);
+					}
+				}
+			}
+			else if(s instanceof FuncionFicheroCerrar) {
+				FuncionFicheroCerrar f = (FuncionFicheroCerrar) s;
+				if(f.getVariable() instanceof VariableID) {
+					VariableID v = (VariableID) f.getVariable();
+					if(!nombresFicheros.contains(variablesDeclaradas.get(v.getNombre()))) {
+						error("La variable debe pertenecer al tipo Archivo", f, DiagramapseudocodigoPackage.Literals.FUNCION_FICHERO_CERRAR__VARIABLE);
+					}
+				}
+			}
+		}
+	}
+	
+	@Check
+	//Función que se encarga de comprobar si la variable que se le pasa a las funciones "abrir" y "cerrar" es de tipo fichero
+	protected void checkFuncionesAbrirCerrarFichero(Codigo c) {
+		List<String> nombresFicheros = new ArrayList<String>();
+		for(TipoComplejo t: c.getTipocomplejo()) {
+			if(t instanceof Archivo) {
+				Archivo a = (Archivo) t;
+				nombresFicheros.add(a.getNombre());
+			}
+		}
+		
+		Map<String,String> variablesDeclaradas = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
+		
+		//Para el programa de inicio
+		checkFuncionesAbrirCerrarFicheroAux(c.getTiene().getTiene(), nombresFicheros, variablesDeclaradas);
+		
+		//Para los subprocesos
+		for(Subproceso s: c.getFuncion()) {
+			variablesDeclaradas = funciones.registrarVariablesTipadas(s.getDeclaracion());
+			checkFuncionesAbrirCerrarFicheroAux(s.getSentencias(), nombresFicheros, variablesDeclaradas);
+		}
+	}
+	
 	@Check
 	//Función que se encarga de comprobar que los tipos introducidos en los registros han sido definidos anteriormente
 	protected void checkDeclaracionesRegistroTiposComplejos(Codigo c) {
