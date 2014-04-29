@@ -128,6 +128,23 @@ class MyDslGenerator implements IGenerator {
 	def toC(SubrangoNumerico mySubrango) '''
 		typedef enum {«generaSubrango(mySubrango.limite_inf,mySubrango.limite_sup)»} «mySubrango.nombre»;
 	'''
+	
+	def obtenerModo(String modo) {
+		if(modo == "escritura") {
+			return "w";
+		}
+		else if(modo == "lectura") {
+			return "r";
+		}
+	}
+	
+	def toC(FuncionFicheroAbrir myFuncionFicheroAbrir) '''
+		«myFuncionFicheroAbrir.variable.get(0).toC» = fopen(«myFuncionFicheroAbrir.variable.get(1).toC»,"«obtenerModo(myFuncionFicheroAbrir.modo.getName)»")
+	'''
+	
+	def toC(FuncionFicheroCerrar myFuncionFicheroCerrar)'''
+		fclose(«myFuncionFicheroCerrar.variable.toC»)
+	'''
 
 	def generaSubrango(int limite_inf, int limite_sup) {
 		var concat = new String
@@ -264,7 +281,15 @@ class MyDslGenerator implements IGenerator {
 			var Escribir prueba = new EscribirImpl
 			prueba = mySent as Escribir
 			prueba.toC
-		}
+		} else if (mySent.eClass.name.equals("FuncionFicheroAbrir")) {
+			var FuncionFicheroAbrir prueba = new FuncionFicheroAbrirImpl
+			prueba = mySent as FuncionFicheroAbrir
+			prueba.toC
+		} else if (mySent.eClass.name.equals("FuncionFicheroCerrar")) {
+			var FuncionFicheroCerrar prueba = new FuncionFicheroCerrarImpl
+			prueba = mySent as FuncionFicheroCerrar
+			prueba.toC
+		}	
 	}
 
 	def pintarVariables(EList<Variable> v) '''
