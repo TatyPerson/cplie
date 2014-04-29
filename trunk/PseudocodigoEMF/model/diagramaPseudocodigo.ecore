@@ -324,4 +324,17 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mensaje" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ModoApertura">
+    <eLiterals name="escritura"/>
+    <eLiterals name="lectura" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FuncionFicheroAbrir" eSuperTypes="#//Sentencias">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modo" lowerBound="1" eType="#//ModoApertura"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="2"
+        upperBound="2" eType="#//Operador" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FuncionFicheroCerrar" eSuperTypes="#//Sentencias">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1"
+        eType="#//Operador" containment="true"/>
+  </eClassifiers>
 </ecore:EPackage>

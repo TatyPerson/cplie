@@ -2781,6 +2781,89 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int COMENTARIO_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.FuncionFicheroAbrirImpl <em>Funcion Fichero Abrir</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.FuncionFicheroAbrirImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getFuncionFicheroAbrir()
+	 * @generated
+	 */
+	int FUNCION_FICHERO_ABRIR = 60;
+
+	/**
+	 * The feature id for the '<em><b>Modo</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCION_FICHERO_ABRIR__MODO = SENTENCIAS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Variable</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCION_FICHERO_ABRIR__VARIABLE = SENTENCIAS_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Funcion Fichero Abrir</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCION_FICHERO_ABRIR_FEATURE_COUNT = SENTENCIAS_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Funcion Fichero Abrir</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCION_FICHERO_ABRIR_OPERATION_COUNT = SENTENCIAS_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.FuncionFicheroCerrarImpl <em>Funcion Fichero Cerrar</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.FuncionFicheroCerrarImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getFuncionFicheroCerrar()
+	 * @generated
+	 */
+	int FUNCION_FICHERO_CERRAR = 61;
+
+	/**
+	 * The feature id for the '<em><b>Variable</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCION_FICHERO_CERRAR__VARIABLE = SENTENCIAS_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Funcion Fichero Cerrar</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCION_FICHERO_CERRAR_FEATURE_COUNT = SENTENCIAS_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Funcion Fichero Cerrar</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCION_FICHERO_CERRAR_OPERATION_COUNT = SENTENCIAS_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoVariable <em>Tipo Variable</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2788,7 +2871,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoVariable()
 	 * @generated
 	 */
-	int TIPO_VARIABLE = 60;
+	int TIPO_VARIABLE = 62;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.signo <em>signo</em>}' enum.
@@ -2798,7 +2881,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getsigno()
 	 * @generated
 	 */
-	int SIGNO = 61;
+	int SIGNO = 63;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.booleano <em>booleano</em>}' enum.
@@ -2808,7 +2891,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getbooleano()
 	 * @generated
 	 */
-	int BOOLEANO = 62;
+	int BOOLEANO = 64;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.inc <em>inc</em>}' enum.
@@ -2818,7 +2901,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getinc()
 	 * @generated
 	 */
-	int INC = 63;
+	int INC = 65;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoPaso <em>Tipo Paso</em>}' enum.
@@ -2828,7 +2911,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoPaso()
 	 * @generated
 	 */
-	int TIPO_PASO = 64;
+	int TIPO_PASO = 66;
 
 
 	/**
@@ -2839,7 +2922,18 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getNombreInterna()
 	 * @generated
 	 */
-	int NOMBRE_INTERNA = 65;
+	int NOMBRE_INTERNA = 67;
+
+
+	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.ModoApertura <em>Modo Apertura</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.ModoApertura
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getModoApertura()
+	 * @generated
+	 */
+	int MODO_APERTURA = 68;
 
 
 	/**
@@ -4411,6 +4505,59 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EAttribute getComentario_Mensaje();
 
 	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.FuncionFicheroAbrir <em>Funcion Fichero Abrir</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Funcion Fichero Abrir</em>'.
+	 * @see diagramapseudocodigo.FuncionFicheroAbrir
+	 * @generated
+	 */
+	EClass getFuncionFicheroAbrir();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.FuncionFicheroAbrir#getModo <em>Modo</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Modo</em>'.
+	 * @see diagramapseudocodigo.FuncionFicheroAbrir#getModo()
+	 * @see #getFuncionFicheroAbrir()
+	 * @generated
+	 */
+	EAttribute getFuncionFicheroAbrir_Modo();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.FuncionFicheroAbrir#getVariable <em>Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Variable</em>'.
+	 * @see diagramapseudocodigo.FuncionFicheroAbrir#getVariable()
+	 * @see #getFuncionFicheroAbrir()
+	 * @generated
+	 */
+	EReference getFuncionFicheroAbrir_Variable();
+
+	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.FuncionFicheroCerrar <em>Funcion Fichero Cerrar</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Funcion Fichero Cerrar</em>'.
+	 * @see diagramapseudocodigo.FuncionFicheroCerrar
+	 * @generated
+	 */
+	EClass getFuncionFicheroCerrar();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.FuncionFicheroCerrar#getVariable <em>Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Variable</em>'.
+	 * @see diagramapseudocodigo.FuncionFicheroCerrar#getVariable()
+	 * @see #getFuncionFicheroCerrar()
+	 * @generated
+	 */
+	EReference getFuncionFicheroCerrar_Variable();
+
+	/**
 	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Vector#getNombre <em>Nombre</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4513,6 +4660,16 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getNombreInterna();
+
+	/**
+	 * Returns the meta object for enum '{@link diagramapseudocodigo.ModoApertura <em>Modo Apertura</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Modo Apertura</em>'.
+	 * @see diagramapseudocodigo.ModoApertura
+	 * @generated
+	 */
+	EEnum getModoApertura();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -5841,6 +5998,50 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EAttribute COMENTARIO__MENSAJE = eINSTANCE.getComentario_Mensaje();
 
 		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.FuncionFicheroAbrirImpl <em>Funcion Fichero Abrir</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.FuncionFicheroAbrirImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getFuncionFicheroAbrir()
+		 * @generated
+		 */
+		EClass FUNCION_FICHERO_ABRIR = eINSTANCE.getFuncionFicheroAbrir();
+
+		/**
+		 * The meta object literal for the '<em><b>Modo</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FUNCION_FICHERO_ABRIR__MODO = eINSTANCE.getFuncionFicheroAbrir_Modo();
+
+		/**
+		 * The meta object literal for the '<em><b>Variable</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FUNCION_FICHERO_ABRIR__VARIABLE = eINSTANCE.getFuncionFicheroAbrir_Variable();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.FuncionFicheroCerrarImpl <em>Funcion Fichero Cerrar</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.FuncionFicheroCerrarImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getFuncionFicheroCerrar()
+		 * @generated
+		 */
+		EClass FUNCION_FICHERO_CERRAR = eINSTANCE.getFuncionFicheroCerrar();
+
+		/**
+		 * The meta object literal for the '<em><b>Variable</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FUNCION_FICHERO_CERRAR__VARIABLE = eINSTANCE.getFuncionFicheroCerrar_Variable();
+
+		/**
 		 * The meta object literal for the '<em><b>Nombre</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5931,6 +6132,16 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum NOMBRE_INTERNA = eINSTANCE.getNombreInterna();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.ModoApertura <em>Modo Apertura</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.ModoApertura
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getModoApertura()
+		 * @generated
+		 */
+		EEnum MODO_APERTURA = eINSTANCE.getModoApertura();
 
 	}
 

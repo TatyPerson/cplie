@@ -517,6 +517,24 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	Comentario createComentario();
 
 	/**
+	 * Returns a new object of class '<em>Funcion Fichero Abrir</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Funcion Fichero Abrir</em>'.
+	 * @generated
+	 */
+	FuncionFicheroAbrir createFuncionFicheroAbrir();
+
+	/**
+	 * Returns a new object of class '<em>Funcion Fichero Cerrar</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Funcion Fichero Cerrar</em>'.
+	 * @generated
+	 */
+	FuncionFicheroCerrar createFuncionFicheroCerrar();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

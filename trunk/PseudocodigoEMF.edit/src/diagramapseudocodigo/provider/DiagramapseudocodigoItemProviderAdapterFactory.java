@@ -1337,6 +1337,52 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.FuncionFicheroAbrir} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FuncionFicheroAbrirItemProvider funcionFicheroAbrirItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.FuncionFicheroAbrir}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFuncionFicheroAbrirAdapter() {
+		if (funcionFicheroAbrirItemProvider == null) {
+			funcionFicheroAbrirItemProvider = new FuncionFicheroAbrirItemProvider(this);
+		}
+
+		return funcionFicheroAbrirItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.FuncionFicheroCerrar} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FuncionFicheroCerrarItemProvider funcionFicheroCerrarItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.FuncionFicheroCerrar}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFuncionFicheroCerrarAdapter() {
+		if (funcionFicheroCerrarItemProvider == null) {
+			funcionFicheroCerrarItemProvider = new FuncionFicheroCerrarItemProvider(this);
+		}
+
+		return funcionFicheroCerrarItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1490,6 +1536,8 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 		if (valorVectorItemProvider != null) valorVectorItemProvider.dispose();
 		if (valorMatrizItemProvider != null) valorMatrizItemProvider.dispose();
 		if (comentarioItemProvider != null) comentarioItemProvider.dispose();
+		if (funcionFicheroAbrirItemProvider != null) funcionFicheroAbrirItemProvider.dispose();
+		if (funcionFicheroCerrarItemProvider != null) funcionFicheroCerrarItemProvider.dispose();
 	}
 
 }

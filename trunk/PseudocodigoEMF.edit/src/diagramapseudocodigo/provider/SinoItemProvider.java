@@ -231,6 +231,16 @@ public class SinoItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.SINO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createFuncionFicheroAbrir()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.SINO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createFuncionFicheroCerrar()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.SINO__DEVUELVE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createDevolver()));
 	}

@@ -494,6 +494,20 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DiagramapseudocodigoPackage.FUNCION_FICHERO_ABRIR: {
+				FuncionFicheroAbrir funcionFicheroAbrir = (FuncionFicheroAbrir)theEObject;
+				T result = caseFuncionFicheroAbrir(funcionFicheroAbrir);
+				if (result == null) result = caseSentencias(funcionFicheroAbrir);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiagramapseudocodigoPackage.FUNCION_FICHERO_CERRAR: {
+				FuncionFicheroCerrar funcionFicheroCerrar = (FuncionFicheroCerrar)theEObject;
+				T result = caseFuncionFicheroCerrar(funcionFicheroCerrar);
+				if (result == null) result = caseSentencias(funcionFicheroCerrar);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1395,6 +1409,36 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseComentario(Comentario object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Funcion Fichero Abrir</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Funcion Fichero Abrir</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFuncionFicheroAbrir(FuncionFicheroAbrir object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Funcion Fichero Cerrar</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Funcion Fichero Cerrar</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFuncionFicheroCerrar(FuncionFicheroCerrar object) {
 		return null;
 	}
 

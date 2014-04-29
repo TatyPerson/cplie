@@ -308,6 +308,14 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 				return createComentarioAdapter();
 			}
 			@Override
+			public Adapter caseFuncionFicheroAbrir(FuncionFicheroAbrir object) {
+				return createFuncionFicheroAbrirAdapter();
+			}
+			@Override
+			public Adapter caseFuncionFicheroCerrar(FuncionFicheroCerrar object) {
+				return createFuncionFicheroCerrarAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -1164,6 +1172,34 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createComentarioAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.FuncionFicheroAbrir <em>Funcion Fichero Abrir</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.FuncionFicheroAbrir
+	 * @generated
+	 */
+	public Adapter createFuncionFicheroAbrirAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.FuncionFicheroCerrar <em>Funcion Fichero Cerrar</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.FuncionFicheroCerrar
+	 * @generated
+	 */
+	public Adapter createFuncionFicheroCerrarAdapter() {
 		return null;
 	}
 

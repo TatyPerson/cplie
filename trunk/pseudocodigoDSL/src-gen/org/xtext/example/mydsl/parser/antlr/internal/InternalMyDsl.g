@@ -500,6 +500,26 @@ ruleSentencias returns [EObject current=null]
         $current = $this_ValorComplejo_6.current; 
         afterParserOrEnumRuleCall();
     }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getSentenciasAccess().getFuncionFicheroAbrirParserRuleCall_7()); 
+    }
+    this_FuncionFicheroAbrir_7=ruleFuncionFicheroAbrir
+    { 
+        $current = $this_FuncionFicheroAbrir_7.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getSentenciasAccess().getFuncionFicheroCerrarParserRuleCall_8()); 
+    }
+    this_FuncionFicheroCerrar_8=ruleFuncionFicheroCerrar
+    { 
+        $current = $this_FuncionFicheroCerrar_8.current; 
+        afterParserOrEnumRuleCall();
+    }
 )
 ;
 
@@ -699,6 +719,224 @@ ruleInternas returns [EObject current=null]
     }
 )
 ;
+
+
+
+
+
+// Entry rule entryRuleFuncionFicheroAbrir
+entryRuleFuncionFicheroAbrir returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getFuncionFicheroAbrirRule()); }
+	 iv_ruleFuncionFicheroAbrir=ruleFuncionFicheroAbrir 
+	 { $current=$iv_ruleFuncionFicheroAbrir.current; } 
+	 EOF 
+;
+
+// Rule FuncionFicheroAbrir
+ruleFuncionFicheroAbrir returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='abrir' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getFuncionFicheroAbrirAccess().getAbrirKeyword_0());
+    }
+	otherlv_1='(' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getFuncionFicheroAbrirAccess().getLeftParenthesisKeyword_1());
+    }
+(((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getFuncionFicheroAbrirAccess().getVariableVariableIDParserRuleCall_2_0_0_0()); 
+	    }
+		lv_variable_2_0=ruleVariableID		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getFuncionFicheroAbrirRule());
+	        }
+       		add(
+       			$current, 
+       			"variable",
+        		lv_variable_2_0, 
+        		"VariableID");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_3=',' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getFuncionFicheroAbrirAccess().getCommaKeyword_2_0_1());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getFuncionFicheroAbrirAccess().getModoModoAperturaParserRuleCall_2_0_2_0()); 
+	    }
+		lv_modo_4_0=ruleModoApertura		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getFuncionFicheroAbrirRule());
+	        }
+       		set(
+       			$current, 
+       			"modo",
+        		lv_modo_4_0, 
+        		"ModoApertura");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_5=',' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getFuncionFicheroAbrirAccess().getCommaKeyword_2_0_3());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getFuncionFicheroAbrirAccess().getVariableVariableIDParserRuleCall_2_0_4_0()); 
+	    }
+		lv_variable_6_0=ruleVariableID		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getFuncionFicheroAbrirRule());
+	        }
+       		add(
+       			$current, 
+       			"variable",
+        		lv_variable_6_0, 
+        		"VariableID");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+    |(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getFuncionFicheroAbrirAccess().getVariableConstCadenaParserRuleCall_2_1_0()); 
+	    }
+		lv_variable_7_0=ruleConstCadena		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getFuncionFicheroAbrirRule());
+	        }
+       		add(
+       			$current, 
+       			"variable",
+        		lv_variable_7_0, 
+        		"ConstCadena");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)
+    |(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getFuncionFicheroAbrirAccess().getVariableCaracterParserRuleCall_2_2_0()); 
+	    }
+		lv_variable_8_0=ruleCaracter		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getFuncionFicheroAbrirRule());
+	        }
+       		add(
+       			$current, 
+       			"variable",
+        		lv_variable_8_0, 
+        		"Caracter");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))	otherlv_9=')' 
+    {
+    	newLeafNode(otherlv_9, grammarAccess.getFuncionFicheroAbrirAccess().getRightParenthesisKeyword_3());
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleFuncionFicheroCerrar
+entryRuleFuncionFicheroCerrar returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getFuncionFicheroCerrarRule()); }
+	 iv_ruleFuncionFicheroCerrar=ruleFuncionFicheroCerrar 
+	 { $current=$iv_ruleFuncionFicheroCerrar.current; } 
+	 EOF 
+;
+
+// Rule FuncionFicheroCerrar
+ruleFuncionFicheroCerrar returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='cerrar' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getFuncionFicheroCerrarAccess().getCerrarKeyword_0());
+    }
+	otherlv_1='(' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getFuncionFicheroCerrarAccess().getLeftParenthesisKeyword_1());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getFuncionFicheroCerrarAccess().getVariableVariableIDParserRuleCall_2_0()); 
+	    }
+		lv_variable_2_0=ruleVariableID		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getFuncionFicheroCerrarRule());
+	        }
+       		set(
+       			$current, 
+       			"variable",
+        		lv_variable_2_0, 
+        		"VariableID");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_3=')' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getFuncionFicheroCerrarAccess().getRightParenthesisKeyword_3());
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleModoApertura
+entryRuleModoApertura returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getModoAperturaRule()); } 
+	 iv_ruleModoApertura=ruleModoApertura 
+	 { $current=$iv_ruleModoApertura.current.getText(); }  
+	 EOF 
+;
+
+// Rule ModoApertura
+ruleModoApertura returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+	kw='escritura' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getModoAperturaAccess().getEscrituraKeyword_0()); 
+    }
+
+    |
+	kw='lectura' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getModoAperturaAccess().getLecturaKeyword_1()); 
+    }
+)
+    ;
 
 
 

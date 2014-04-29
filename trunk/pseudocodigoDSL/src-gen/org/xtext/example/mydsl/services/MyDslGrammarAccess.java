@@ -227,12 +227,16 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cIncrementoParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cBloqueParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		private final RuleCall cValorComplejoParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cFuncionFicheroAbrirParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		private final RuleCall cFuncionFicheroCerrarParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
 		
 		//Sentencias:
-		//	LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque | ValorComplejo;
+		//	LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque | ValorComplejo | FuncionFicheroAbrir |
+		//	FuncionFicheroCerrar;
 		public ParserRule getRule() { return rule; }
 
-		//LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque | ValorComplejo
+		//LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque | ValorComplejo | FuncionFicheroAbrir |
+		//FuncionFicheroCerrar
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//LlamadaFuncion
@@ -255,6 +259,12 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//ValorComplejo
 		public RuleCall getValorComplejoParserRuleCall_6() { return cValorComplejoParserRuleCall_6; }
+
+		//FuncionFicheroAbrir
+		public RuleCall getFuncionFicheroAbrirParserRuleCall_7() { return cFuncionFicheroAbrirParserRuleCall_7; }
+
+		//FuncionFicheroCerrar
+		public RuleCall getFuncionFicheroCerrarParserRuleCall_8() { return cFuncionFicheroCerrarParserRuleCall_8; }
 	}
 
 	public class BloqueElements extends AbstractParserRuleElementFinder {
@@ -363,6 +373,140 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//")"
 		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
+	}
+
+	public class FuncionFicheroAbrirElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FuncionFicheroAbrir");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cAbrirKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
+		private final Assignment cVariableAssignment_2_0_0 = (Assignment)cGroup_2_0.eContents().get(0);
+		private final RuleCall cVariableVariableIDParserRuleCall_2_0_0_0 = (RuleCall)cVariableAssignment_2_0_0.eContents().get(0);
+		private final Keyword cCommaKeyword_2_0_1 = (Keyword)cGroup_2_0.eContents().get(1);
+		private final Assignment cModoAssignment_2_0_2 = (Assignment)cGroup_2_0.eContents().get(2);
+		private final RuleCall cModoModoAperturaParserRuleCall_2_0_2_0 = (RuleCall)cModoAssignment_2_0_2.eContents().get(0);
+		private final Keyword cCommaKeyword_2_0_3 = (Keyword)cGroup_2_0.eContents().get(3);
+		private final Assignment cVariableAssignment_2_0_4 = (Assignment)cGroup_2_0.eContents().get(4);
+		private final RuleCall cVariableVariableIDParserRuleCall_2_0_4_0 = (RuleCall)cVariableAssignment_2_0_4.eContents().get(0);
+		private final Assignment cVariableAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final RuleCall cVariableConstCadenaParserRuleCall_2_1_0 = (RuleCall)cVariableAssignment_2_1.eContents().get(0);
+		private final Assignment cVariableAssignment_2_2 = (Assignment)cAlternatives_2.eContents().get(2);
+		private final RuleCall cVariableCaracterParserRuleCall_2_2_0 = (RuleCall)cVariableAssignment_2_2.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//FuncionFicheroAbrir:
+		//	"abrir" "(" (variable+=VariableID "," modo=ModoApertura "," variable+=VariableID | variable+=ConstCadena |
+		//	variable+=Caracter) ")";
+		public ParserRule getRule() { return rule; }
+
+		//"abrir" "(" (variable+=VariableID "," modo=ModoApertura "," variable+=VariableID | variable+=ConstCadena |
+		//variable+=Caracter) ")"
+		public Group getGroup() { return cGroup; }
+
+		//"abrir"
+		public Keyword getAbrirKeyword_0() { return cAbrirKeyword_0; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
+
+		//variable+=VariableID "," modo=ModoApertura "," variable+=VariableID | variable+=ConstCadena | variable+=Caracter
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+
+		//variable+=VariableID "," modo=ModoApertura "," variable+=VariableID
+		public Group getGroup_2_0() { return cGroup_2_0; }
+
+		//variable+=VariableID
+		public Assignment getVariableAssignment_2_0_0() { return cVariableAssignment_2_0_0; }
+
+		//VariableID
+		public RuleCall getVariableVariableIDParserRuleCall_2_0_0_0() { return cVariableVariableIDParserRuleCall_2_0_0_0; }
+
+		//","
+		public Keyword getCommaKeyword_2_0_1() { return cCommaKeyword_2_0_1; }
+
+		//modo=ModoApertura
+		public Assignment getModoAssignment_2_0_2() { return cModoAssignment_2_0_2; }
+
+		//ModoApertura
+		public RuleCall getModoModoAperturaParserRuleCall_2_0_2_0() { return cModoModoAperturaParserRuleCall_2_0_2_0; }
+
+		//","
+		public Keyword getCommaKeyword_2_0_3() { return cCommaKeyword_2_0_3; }
+
+		//variable+=VariableID
+		public Assignment getVariableAssignment_2_0_4() { return cVariableAssignment_2_0_4; }
+
+		//VariableID
+		public RuleCall getVariableVariableIDParserRuleCall_2_0_4_0() { return cVariableVariableIDParserRuleCall_2_0_4_0; }
+
+		//variable+=ConstCadena
+		public Assignment getVariableAssignment_2_1() { return cVariableAssignment_2_1; }
+
+		//ConstCadena
+		public RuleCall getVariableConstCadenaParserRuleCall_2_1_0() { return cVariableConstCadenaParserRuleCall_2_1_0; }
+
+		//variable+=Caracter
+		public Assignment getVariableAssignment_2_2() { return cVariableAssignment_2_2; }
+
+		//Caracter
+		public RuleCall getVariableCaracterParserRuleCall_2_2_0() { return cVariableCaracterParserRuleCall_2_2_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
+	}
+
+	public class FuncionFicheroCerrarElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FuncionFicheroCerrar");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cCerrarKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cVariableAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cVariableVariableIDParserRuleCall_2_0 = (RuleCall)cVariableAssignment_2.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//FuncionFicheroCerrar:
+		//	"cerrar" "(" variable=VariableID ")";
+		public ParserRule getRule() { return rule; }
+
+		//"cerrar" "(" variable=VariableID ")"
+		public Group getGroup() { return cGroup; }
+
+		//"cerrar"
+		public Keyword getCerrarKeyword_0() { return cCerrarKeyword_0; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
+
+		//variable=VariableID
+		public Assignment getVariableAssignment_2() { return cVariableAssignment_2; }
+
+		//VariableID
+		public RuleCall getVariableVariableIDParserRuleCall_2_0() { return cVariableVariableIDParserRuleCall_2_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
+	}
+
+	public class ModoAperturaElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ModoApertura");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cEscrituraKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cLecturaKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		
+		//ModoApertura:
+		//	"escritura" | "lectura";
+		public ParserRule getRule() { return rule; }
+
+		//"escritura" | "lectura"
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//"escritura"
+		public Keyword getEscrituraKeyword_0() { return cEscrituraKeyword_0; }
+
+		//"lectura"
+		public Keyword getLecturaKeyword_1() { return cLecturaKeyword_1; }
 	}
 
 	public class NombreInternaElements extends AbstractParserRuleElementFinder {
@@ -2941,6 +3085,9 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private BloqueElements pBloque;
 	private DeclaracionElements pDeclaracion;
 	private InternasElements pInternas;
+	private FuncionFicheroAbrirElements pFuncionFicheroAbrir;
+	private FuncionFicheroCerrarElements pFuncionFicheroCerrar;
+	private ModoAperturaElements pModoApertura;
 	private NombreInternaElements pNombreInterna;
 	private OperadorElements pOperador;
 	private CaracterElements pCaracter;
@@ -3098,7 +3245,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//Sentencias:
-	//	LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque | ValorComplejo;
+	//	LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque | ValorComplejo | FuncionFicheroAbrir |
+	//	FuncionFicheroCerrar;
 	public SentenciasElements getSentenciasAccess() {
 		return (pSentencias != null) ? pSentencias : (pSentencias = new SentenciasElements());
 	}
@@ -3135,6 +3283,37 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getInternasRule() {
 		return getInternasAccess().getRule();
+	}
+
+	//FuncionFicheroAbrir:
+	//	"abrir" "(" (variable+=VariableID "," modo=ModoApertura "," variable+=VariableID | variable+=ConstCadena |
+	//	variable+=Caracter) ")";
+	public FuncionFicheroAbrirElements getFuncionFicheroAbrirAccess() {
+		return (pFuncionFicheroAbrir != null) ? pFuncionFicheroAbrir : (pFuncionFicheroAbrir = new FuncionFicheroAbrirElements());
+	}
+	
+	public ParserRule getFuncionFicheroAbrirRule() {
+		return getFuncionFicheroAbrirAccess().getRule();
+	}
+
+	//FuncionFicheroCerrar:
+	//	"cerrar" "(" variable=VariableID ")";
+	public FuncionFicheroCerrarElements getFuncionFicheroCerrarAccess() {
+		return (pFuncionFicheroCerrar != null) ? pFuncionFicheroCerrar : (pFuncionFicheroCerrar = new FuncionFicheroCerrarElements());
+	}
+	
+	public ParserRule getFuncionFicheroCerrarRule() {
+		return getFuncionFicheroCerrarAccess().getRule();
+	}
+
+	//ModoApertura:
+	//	"escritura" | "lectura";
+	public ModoAperturaElements getModoAperturaAccess() {
+		return (pModoApertura != null) ? pModoApertura : (pModoApertura = new ModoAperturaElements());
+	}
+	
+	public ParserRule getModoAperturaRule() {
+		return getModoAperturaAccess().getRule();
 	}
 
 	//NombreInterna:
