@@ -380,29 +380,22 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cAbrirKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
-		private final Assignment cVariableAssignment_2_0_0 = (Assignment)cGroup_2_0.eContents().get(0);
-		private final RuleCall cVariableVariableIDParserRuleCall_2_0_0_0 = (RuleCall)cVariableAssignment_2_0_0.eContents().get(0);
-		private final Keyword cCommaKeyword_2_0_1 = (Keyword)cGroup_2_0.eContents().get(1);
-		private final Assignment cModoAssignment_2_0_2 = (Assignment)cGroup_2_0.eContents().get(2);
-		private final RuleCall cModoModoAperturaParserRuleCall_2_0_2_0 = (RuleCall)cModoAssignment_2_0_2.eContents().get(0);
-		private final Keyword cCommaKeyword_2_0_3 = (Keyword)cGroup_2_0.eContents().get(3);
-		private final Assignment cVariableAssignment_2_0_4 = (Assignment)cGroup_2_0.eContents().get(4);
-		private final RuleCall cVariableVariableIDParserRuleCall_2_0_4_0 = (RuleCall)cVariableAssignment_2_0_4.eContents().get(0);
-		private final Assignment cVariableAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
-		private final RuleCall cVariableConstCadenaParserRuleCall_2_1_0 = (RuleCall)cVariableAssignment_2_1.eContents().get(0);
-		private final Assignment cVariableAssignment_2_2 = (Assignment)cAlternatives_2.eContents().get(2);
-		private final RuleCall cVariableCaracterParserRuleCall_2_2_0 = (RuleCall)cVariableAssignment_2_2.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Assignment cVariableAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final RuleCall cVariableVariableIDParserRuleCall_2_0_0 = (RuleCall)cVariableAssignment_2_0.eContents().get(0);
+		private final Keyword cCommaKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
+		private final Assignment cModoAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
+		private final RuleCall cModoModoAperturaParserRuleCall_2_2_0 = (RuleCall)cModoAssignment_2_2.eContents().get(0);
+		private final Keyword cCommaKeyword_2_3 = (Keyword)cGroup_2.eContents().get(3);
+		private final Assignment cVariableAssignment_2_4 = (Assignment)cGroup_2.eContents().get(4);
+		private final RuleCall cVariableOperadorParserRuleCall_2_4_0 = (RuleCall)cVariableAssignment_2_4.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//FuncionFicheroAbrir:
-		//	"abrir" "(" (variable+=VariableID "," modo=ModoApertura "," variable+=VariableID | variable+=ConstCadena |
-		//	variable+=Caracter) ")";
+		//	"abrir" "(" (variable+=VariableID "," modo=ModoApertura "," variable+=Operador) ")";
 		public ParserRule getRule() { return rule; }
 
-		//"abrir" "(" (variable+=VariableID "," modo=ModoApertura "," variable+=VariableID | variable+=ConstCadena |
-		//variable+=Caracter) ")"
+		//"abrir" "(" (variable+=VariableID "," modo=ModoApertura "," variable+=Operador) ")"
 		public Group getGroup() { return cGroup; }
 
 		//"abrir"
@@ -411,47 +404,32 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"("
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 
-		//variable+=VariableID "," modo=ModoApertura "," variable+=VariableID | variable+=ConstCadena | variable+=Caracter
-		public Alternatives getAlternatives_2() { return cAlternatives_2; }
-
-		//variable+=VariableID "," modo=ModoApertura "," variable+=VariableID
-		public Group getGroup_2_0() { return cGroup_2_0; }
+		//variable+=VariableID "," modo=ModoApertura "," variable+=Operador
+		public Group getGroup_2() { return cGroup_2; }
 
 		//variable+=VariableID
-		public Assignment getVariableAssignment_2_0_0() { return cVariableAssignment_2_0_0; }
+		public Assignment getVariableAssignment_2_0() { return cVariableAssignment_2_0; }
 
 		//VariableID
-		public RuleCall getVariableVariableIDParserRuleCall_2_0_0_0() { return cVariableVariableIDParserRuleCall_2_0_0_0; }
+		public RuleCall getVariableVariableIDParserRuleCall_2_0_0() { return cVariableVariableIDParserRuleCall_2_0_0; }
 
 		//","
-		public Keyword getCommaKeyword_2_0_1() { return cCommaKeyword_2_0_1; }
+		public Keyword getCommaKeyword_2_1() { return cCommaKeyword_2_1; }
 
 		//modo=ModoApertura
-		public Assignment getModoAssignment_2_0_2() { return cModoAssignment_2_0_2; }
+		public Assignment getModoAssignment_2_2() { return cModoAssignment_2_2; }
 
 		//ModoApertura
-		public RuleCall getModoModoAperturaParserRuleCall_2_0_2_0() { return cModoModoAperturaParserRuleCall_2_0_2_0; }
+		public RuleCall getModoModoAperturaParserRuleCall_2_2_0() { return cModoModoAperturaParserRuleCall_2_2_0; }
 
 		//","
-		public Keyword getCommaKeyword_2_0_3() { return cCommaKeyword_2_0_3; }
+		public Keyword getCommaKeyword_2_3() { return cCommaKeyword_2_3; }
 
-		//variable+=VariableID
-		public Assignment getVariableAssignment_2_0_4() { return cVariableAssignment_2_0_4; }
+		//variable+=Operador
+		public Assignment getVariableAssignment_2_4() { return cVariableAssignment_2_4; }
 
-		//VariableID
-		public RuleCall getVariableVariableIDParserRuleCall_2_0_4_0() { return cVariableVariableIDParserRuleCall_2_0_4_0; }
-
-		//variable+=ConstCadena
-		public Assignment getVariableAssignment_2_1() { return cVariableAssignment_2_1; }
-
-		//ConstCadena
-		public RuleCall getVariableConstCadenaParserRuleCall_2_1_0() { return cVariableConstCadenaParserRuleCall_2_1_0; }
-
-		//variable+=Caracter
-		public Assignment getVariableAssignment_2_2() { return cVariableAssignment_2_2; }
-
-		//Caracter
-		public RuleCall getVariableCaracterParserRuleCall_2_2_0() { return cVariableCaracterParserRuleCall_2_2_0; }
+		//Operador
+		public RuleCall getVariableOperadorParserRuleCall_2_4_0() { return cVariableOperadorParserRuleCall_2_4_0; }
 
 		//")"
 		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
@@ -3286,8 +3264,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//FuncionFicheroAbrir:
-	//	"abrir" "(" (variable+=VariableID "," modo=ModoApertura "," variable+=VariableID | variable+=ConstCadena |
-	//	variable+=Caracter) ")";
+	//	"abrir" "(" (variable+=VariableID "," modo=ModoApertura "," variable+=Operador) ")";
 	public FuncionFicheroAbrirElements getFuncionFicheroAbrirAccess() {
 		return (pFuncionFicheroAbrir != null) ? pFuncionFicheroAbrir : (pFuncionFicheroAbrir = new FuncionFicheroAbrirElements());
 	}

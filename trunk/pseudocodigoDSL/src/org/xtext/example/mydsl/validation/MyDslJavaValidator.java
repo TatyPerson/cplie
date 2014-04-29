@@ -465,6 +465,37 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		}
 	}
 	
+	private void checkFuncionAbrirAux(List<Sentencias> sentencias, Map<String,String> variablesDeclaradas) {
+		for(Sentencias s: sentencias) {
+			if(s instanceof FuncionFicheroAbrir) {
+				FuncionFicheroAbrir f = (FuncionFicheroAbrir) s;
+				if(f.getVariable().size() == 2 && f.getVariable().get(1) instanceof VariableID) {
+					VariableID v = (VariableID) f.getVariable().get(1);
+					if(variablesDeclaradas.get(v.getNombre()) != "cadena" && variablesDeclaradas.get(v.getNombre()) != "caracter") {
+						error("La variable no es compatible, debe ser de tipo cadena o caracter", f, DiagramapseudocodigoPackage.Literals.FUNCION_FICHERO_ABRIR__VARIABLE, 1);
+					}
+				}
+				else if(!(f.getVariable().get(1) instanceof ConstCadena) && !(f.getVariable().get(1) instanceof Caracter)) {
+					error("La variable no es compatible, debe ser de tipo cadena o caracter", f, DiagramapseudocodigoPackage.Literals.FUNCION_FICHERO_ABRIR__VARIABLE, 1);
+				}
+			}
+		}
+	}
+	
+	@Check
+	//Función que se encarga de comprobar si la segunda variable es de tipo cadena o caracter en la función "abrir"
+	protected void checkFuncionAbrir(Codigo c) {
+		Map<String,String> variablesDeclaradas = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
+		
+		//En el programa principal
+		checkFuncionAbrirAux(c.getTiene().getTiene(), variablesDeclaradas);
+		
+		for(Subproceso s: c.getFuncion()) {
+			variablesDeclaradas = funciones.registrarVariablesTipadas(s.getDeclaracion());
+			checkFuncionAbrirAux(s.getSentencias(), variablesDeclaradas);
+		}
+	}
+	
 	@Check
 	//Función que se encarga de comprobar que los tipos introducidos en los registros han sido definidos anteriormente
 	protected void checkDeclaracionesRegistroTiposComplejos(Codigo c) {
@@ -1001,7 +1032,6 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					}
 					if(ac.getComplejo() instanceof ValorVector) {
 						ValorVector v = (ValorVector) ac.getComplejo();
-						System.out.println("Soy un vector");
 						if(v.getIndice() instanceof VariableID) {
 							VariableID var = (VariableID) v.getIndice();
 							if(!variables.contains(var.getNombre())) {

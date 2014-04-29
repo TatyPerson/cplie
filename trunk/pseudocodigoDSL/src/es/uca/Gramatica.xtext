@@ -44,7 +44,7 @@ Internas returns Internas:
 FuncionFicheroAbrir returns FuncionFicheroAbrir:
 	'abrir'
 	'('
-		(variable+=VariableID ',' modo=ModoApertura ',' variable+=VariableID | variable+=ConstCadena | variable+=Caracter)
+		(variable+=VariableID ',' modo=ModoApertura ',' variable+=Operador)
 	')'
 ;
 
