@@ -27,7 +27,7 @@ terminal ML_COMMENT : '/*' (!'*') -> '*/' ;
 terminal SL_COMMENT : '//' !('\n'|'\r')* ('\r'? '\n')? ;
 
 Sentencias returns Sentencias:
-	LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque | ValorComplejo;
+	LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque | ValorComplejo | FuncionFicheroAbrir | FuncionFicheroCerrar;
 
 Bloque returns Bloque:
 	Si | mientras | repetir | desde | segun;
@@ -40,6 +40,24 @@ Internas returns Internas:
 	'('
 		(operador+=Operador ( ',' operador+=Operador)* )
 	')';
+	
+FuncionFicheroAbrir returns FuncionFicheroAbrir:
+	'abrir'
+	'('
+		(variable+=VariableID ',' modo=ModoApertura ',' variable+=VariableID | variable+=ConstCadena | variable+=Caracter)
+	')'
+;
+
+FuncionFicheroCerrar returns FuncionFicheroCerrar:
+	'cerrar'
+	'('
+		(variable=VariableID)
+	')'
+;
+	
+ModoApertura returns ModoApertura:
+	'escritura' | 'lectura';
+
 
 NombreInterna returns NombreInterna:
 	'cos' | 'cuadrado' | 'exp' | 'ln' | 'log' | 'sen' | 'sqrt' | 'longitud' | 'concatena';

@@ -112,6 +112,8 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 			case DiagramapseudocodigoPackage.VALOR_VECTOR: return createValorVector();
 			case DiagramapseudocodigoPackage.VALOR_MATRIZ: return createValorMatriz();
 			case DiagramapseudocodigoPackage.COMENTARIO: return createComentario();
+			case DiagramapseudocodigoPackage.FUNCION_FICHERO_ABRIR: return createFuncionFicheroAbrir();
+			case DiagramapseudocodigoPackage.FUNCION_FICHERO_CERRAR: return createFuncionFicheroCerrar();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -137,6 +139,8 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 				return createTipoPasoFromString(eDataType, initialValue);
 			case DiagramapseudocodigoPackage.NOMBRE_INTERNA:
 				return createNombreInternaFromString(eDataType, initialValue);
+			case DiagramapseudocodigoPackage.MODO_APERTURA:
+				return createModoAperturaFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -162,6 +166,8 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 				return convertTipoPasoToString(eDataType, instanceValue);
 			case DiagramapseudocodigoPackage.NOMBRE_INTERNA:
 				return convertNombreInternaToString(eDataType, instanceValue);
+			case DiagramapseudocodigoPackage.MODO_APERTURA:
+				return convertModoAperturaToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -722,6 +728,26 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public FuncionFicheroAbrir createFuncionFicheroAbrir() {
+		FuncionFicheroAbrirImpl funcionFicheroAbrir = new FuncionFicheroAbrirImpl();
+		return funcionFicheroAbrir;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FuncionFicheroCerrar createFuncionFicheroCerrar() {
+		FuncionFicheroCerrarImpl funcionFicheroCerrar = new FuncionFicheroCerrarImpl();
+		return funcionFicheroCerrar;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public TipoVariable createTipoVariableFromString(EDataType eDataType, String initialValue) {
 		TipoVariable result = TipoVariable.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -834,6 +860,26 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	 * @generated
 	 */
 	public String convertNombreInternaToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModoApertura createModoAperturaFromString(EDataType eDataType, String initialValue) {
+		ModoApertura result = ModoApertura.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertModoAperturaToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

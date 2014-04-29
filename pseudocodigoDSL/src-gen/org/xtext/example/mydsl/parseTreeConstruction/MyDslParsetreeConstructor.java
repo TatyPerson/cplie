@@ -38,57 +38,59 @@ protected class ThisRootNode extends RootToken {
 			case 5: return new Bloque_Alternatives(this, this, 5, inst);
 			case 6: return new Declaracion_Alternatives(this, this, 6, inst);
 			case 7: return new Internas_Group(this, this, 7, inst);
-			case 8: return new Operador_Alternatives(this, this, 8, inst);
-			case 9: return new Caracter_ContenidoAssignment(this, this, 9, inst);
-			case 10: return new Valor_Alternatives(this, this, 10, inst);
-			case 11: return new ValoresLeer_Alternatives(this, this, 11, inst);
-			case 12: return new ValorComplejo_Alternatives(this, this, 12, inst);
-			case 13: return new ValorMatriz_Group(this, this, 13, inst);
-			case 14: return new ValorRegistro_Group(this, this, 14, inst);
-			case 15: return new ValorVector_Group(this, this, 15, inst);
-			case 16: return new CampoRegistro_Nombre_campoAssignment(this, this, 16, inst);
-			case 17: return new Tipo_Alternatives(this, this, 17, inst);
-			case 18: return new TipoDefinido_TipoAssignment(this, this, 18, inst);
-			case 19: return new TipoExistente_TipoAssignment(this, this, 19, inst);
-			case 20: return new Constantes_Group(this, this, 20, inst);
-			case 21: return new Vector_Group(this, this, 21, inst);
-			case 22: return new Matriz_Group(this, this, 22, inst);
-			case 23: return new Registro_Group(this, this, 23, inst);
-			case 24: return new Archivo_Group(this, this, 24, inst);
-			case 25: return new Enumerado_Group(this, this, 25, inst);
-			case 26: return new Subrango_SubrangoNumericoParserRuleCall(this, this, 26, inst);
-			case 27: return new SubrangoNumerico_Group(this, this, 27, inst);
-			case 28: return new Inicio_Group(this, this, 28, inst);
-			case 29: return new DeclaracionVariable_Group(this, this, 29, inst);
-			case 30: return new DeclaracionPropia_Group(this, this, 30, inst);
-			case 31: return new LlamadaFuncion_Group(this, this, 31, inst);
-			case 32: return new Asignacion_Alternatives(this, this, 32, inst);
-			case 33: return new AsignacionNormal_Group(this, this, 33, inst);
-			case 34: return new AsignacionCompleja_Group(this, this, 34, inst);
-			case 35: return new Escribir_Group(this, this, 35, inst);
-			case 36: return new Leer_Group(this, this, 36, inst);
-			case 37: return new Si_Group(this, this, 37, inst);
-			case 38: return new Mientras_Group(this, this, 38, inst);
-			case 39: return new Repetir_Group(this, this, 39, inst);
-			case 40: return new Desde_Group(this, this, 40, inst);
-			case 41: return new Caso_Group(this, this, 41, inst);
-			case 42: return new Segun_Group(this, this, 42, inst);
-			case 43: return new Incremento_Group(this, this, 43, inst);
-			case 44: return new Unaria_Group(this, this, 44, inst);
-			case 45: return new Variable_Group(this, this, 45, inst);
-			case 46: return new VariableID_Group(this, this, 46, inst);
-			case 47: return new ConstCadena_ContenidoAssignment(this, this, 47, inst);
-			case 48: return new NumeroEntero_ValorAssignment(this, this, 48, inst);
-			case 49: return new NumeroDecimal_ValorAssignment(this, this, 49, inst);
-			case 50: return new ValorBooleano_ValorAssignment(this, this, 50, inst);
-			case 51: return new Operacion_Group(this, this, 51, inst);
-			case 52: return new Operando_izq_Oper_izqAssignment(this, this, 52, inst);
-			case 53: return new Operando_der_Oper_derAssignment(this, this, 53, inst);
-			case 54: return new Sino_Group(this, this, 54, inst);
-			case 55: return new Devolver_Group(this, this, 55, inst);
-			case 56: return new ParametroFuncion_Group(this, this, 56, inst);
-			case 57: return new Funcion_Group(this, this, 57, inst);
-			case 58: return new Procedimiento_Group(this, this, 58, inst);
+			case 8: return new FuncionFicheroAbrir_Group(this, this, 8, inst);
+			case 9: return new FuncionFicheroCerrar_Group(this, this, 9, inst);
+			case 10: return new Operador_Alternatives(this, this, 10, inst);
+			case 11: return new Caracter_ContenidoAssignment(this, this, 11, inst);
+			case 12: return new Valor_Alternatives(this, this, 12, inst);
+			case 13: return new ValoresLeer_Alternatives(this, this, 13, inst);
+			case 14: return new ValorComplejo_Alternatives(this, this, 14, inst);
+			case 15: return new ValorMatriz_Group(this, this, 15, inst);
+			case 16: return new ValorRegistro_Group(this, this, 16, inst);
+			case 17: return new ValorVector_Group(this, this, 17, inst);
+			case 18: return new CampoRegistro_Nombre_campoAssignment(this, this, 18, inst);
+			case 19: return new Tipo_Alternatives(this, this, 19, inst);
+			case 20: return new TipoDefinido_TipoAssignment(this, this, 20, inst);
+			case 21: return new TipoExistente_TipoAssignment(this, this, 21, inst);
+			case 22: return new Constantes_Group(this, this, 22, inst);
+			case 23: return new Vector_Group(this, this, 23, inst);
+			case 24: return new Matriz_Group(this, this, 24, inst);
+			case 25: return new Registro_Group(this, this, 25, inst);
+			case 26: return new Archivo_Group(this, this, 26, inst);
+			case 27: return new Enumerado_Group(this, this, 27, inst);
+			case 28: return new Subrango_SubrangoNumericoParserRuleCall(this, this, 28, inst);
+			case 29: return new SubrangoNumerico_Group(this, this, 29, inst);
+			case 30: return new Inicio_Group(this, this, 30, inst);
+			case 31: return new DeclaracionVariable_Group(this, this, 31, inst);
+			case 32: return new DeclaracionPropia_Group(this, this, 32, inst);
+			case 33: return new LlamadaFuncion_Group(this, this, 33, inst);
+			case 34: return new Asignacion_Alternatives(this, this, 34, inst);
+			case 35: return new AsignacionNormal_Group(this, this, 35, inst);
+			case 36: return new AsignacionCompleja_Group(this, this, 36, inst);
+			case 37: return new Escribir_Group(this, this, 37, inst);
+			case 38: return new Leer_Group(this, this, 38, inst);
+			case 39: return new Si_Group(this, this, 39, inst);
+			case 40: return new Mientras_Group(this, this, 40, inst);
+			case 41: return new Repetir_Group(this, this, 41, inst);
+			case 42: return new Desde_Group(this, this, 42, inst);
+			case 43: return new Caso_Group(this, this, 43, inst);
+			case 44: return new Segun_Group(this, this, 44, inst);
+			case 45: return new Incremento_Group(this, this, 45, inst);
+			case 46: return new Unaria_Group(this, this, 46, inst);
+			case 47: return new Variable_Group(this, this, 47, inst);
+			case 48: return new VariableID_Group(this, this, 48, inst);
+			case 49: return new ConstCadena_ContenidoAssignment(this, this, 49, inst);
+			case 50: return new NumeroEntero_ValorAssignment(this, this, 50, inst);
+			case 51: return new NumeroDecimal_ValorAssignment(this, this, 51, inst);
+			case 52: return new ValorBooleano_ValorAssignment(this, this, 52, inst);
+			case 53: return new Operacion_Group(this, this, 53, inst);
+			case 54: return new Operando_izq_Oper_izqAssignment(this, this, 54, inst);
+			case 55: return new Operando_der_Oper_derAssignment(this, this, 55, inst);
+			case 56: return new Sino_Group(this, this, 56, inst);
+			case 57: return new Devolver_Group(this, this, 57, inst);
+			case 58: return new ParametroFuncion_Group(this, this, 58, inst);
+			case 59: return new Funcion_Group(this, this, 59, inst);
+			case 60: return new Procedimiento_Group(this, this, 60, inst);
 			default: return null;
 		}	
 	}	
@@ -1227,11 +1229,13 @@ protected class Subproceso_ProcedimientoParserRuleCall_1 extends RuleCallToken {
 /************ begin Rule Sentencias ****************
  *
  * Sentencias:
- * 	LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque | ValorComplejo;
+ * 	LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque | ValorComplejo | FuncionFicheroAbrir |
+ * 	FuncionFicheroCerrar;
  *
  **/
 
-// LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque | ValorComplejo
+// LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque | ValorComplejo | FuncionFicheroAbrir |
+// FuncionFicheroCerrar
 protected class Sentencias_Alternatives extends AlternativesToken {
 
 	public Sentencias_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1253,6 +1257,8 @@ protected class Sentencias_Alternatives extends AlternativesToken {
 			case 4: return new Sentencias_IncrementoParserRuleCall_4(lastRuleCallOrigin, this, 4, inst);
 			case 5: return new Sentencias_BloqueParserRuleCall_5(lastRuleCallOrigin, this, 5, inst);
 			case 6: return new Sentencias_ValorComplejoParserRuleCall_6(lastRuleCallOrigin, this, 6, inst);
+			case 7: return new Sentencias_FuncionFicheroAbrirParserRuleCall_7(lastRuleCallOrigin, this, 7, inst);
+			case 8: return new Sentencias_FuncionFicheroCerrarParserRuleCall_8(lastRuleCallOrigin, this, 8, inst);
 			default: return null;
 		}	
 	}
@@ -1262,6 +1268,8 @@ protected class Sentencias_Alternatives extends AlternativesToken {
 		if(getEObject().eClass() != grammarAccess.getAsignacionComplejaRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getAsignacionNormalRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getEscribirRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getFuncionFicheroAbrirRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getFuncionFicheroCerrarRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getLeerRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getLlamadaFuncionRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSiRule().getType().getClassifier() && 
@@ -1527,6 +1535,78 @@ protected class Sentencias_ValorComplejoParserRuleCall_6 extends RuleCallToken {
 		   getEObject().eClass() != grammarAccess.getValorVectorRule().getType().getClassifier())
 			return null;
 		if(checkForRecursion(ValorComplejo_Alternatives.class, eObjectConsumer)) return null;
+		return eObjectConsumer;
+	}
+	
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+// FuncionFicheroAbrir
+protected class Sentencias_FuncionFicheroAbrirParserRuleCall_7 extends RuleCallToken {
+	
+	public Sentencias_FuncionFicheroAbrirParserRuleCall_7(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getSentenciasAccess().getFuncionFicheroAbrirParserRuleCall_7();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new FuncionFicheroAbrir_Group(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getFuncionFicheroAbrirRule().getType().getClassifier())
+			return null;
+		if(checkForRecursion(FuncionFicheroAbrir_Group.class, eObjectConsumer)) return null;
+		return eObjectConsumer;
+	}
+	
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+// FuncionFicheroCerrar
+protected class Sentencias_FuncionFicheroCerrarParserRuleCall_8 extends RuleCallToken {
+	
+	public Sentencias_FuncionFicheroCerrarParserRuleCall_8(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getSentenciasAccess().getFuncionFicheroCerrarParserRuleCall_8();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new FuncionFicheroCerrar_Group(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getFuncionFicheroCerrarRule().getType().getClassifier())
+			return null;
+		if(checkForRecursion(FuncionFicheroCerrar_Group.class, eObjectConsumer)) return null;
 		return eObjectConsumer;
 	}
 	
@@ -2161,6 +2241,575 @@ protected class Internas_RightParenthesisKeyword_3 extends KeywordToken  {
 
 
 /************ end Rule Internas ****************/
+
+
+/************ begin Rule FuncionFicheroAbrir ****************
+ *
+ * FuncionFicheroAbrir:
+ * 	"abrir" "(" (variable+=VariableID "," modo=ModoApertura "," variable+=VariableID | variable+=ConstCadena |
+ * 	variable+=Caracter) ")";
+ *
+ **/
+
+// "abrir" "(" (variable+=VariableID "," modo=ModoApertura "," variable+=VariableID | variable+=ConstCadena |
+// variable+=Caracter) ")"
+protected class FuncionFicheroAbrir_Group extends GroupToken {
+	
+	public FuncionFicheroAbrir_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getFuncionFicheroAbrirAccess().getGroup();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new FuncionFicheroAbrir_RightParenthesisKeyword_3(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getFuncionFicheroAbrirRule().getType().getClassifier())
+			return null;
+		return eObjectConsumer;
+	}
+
+}
+
+// "abrir"
+protected class FuncionFicheroAbrir_AbrirKeyword_0 extends KeywordToken  {
+	
+	public FuncionFicheroAbrir_AbrirKeyword_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getFuncionFicheroAbrirAccess().getAbrirKeyword_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index, inst);
+		}	
+	}
+
+}
+
+// "("
+protected class FuncionFicheroAbrir_LeftParenthesisKeyword_1 extends KeywordToken  {
+	
+	public FuncionFicheroAbrir_LeftParenthesisKeyword_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getFuncionFicheroAbrirAccess().getLeftParenthesisKeyword_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new FuncionFicheroAbrir_AbrirKeyword_0(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// variable+=VariableID "," modo=ModoApertura "," variable+=VariableID | variable+=ConstCadena | variable+=Caracter
+protected class FuncionFicheroAbrir_Alternatives_2 extends AlternativesToken {
+
+	public FuncionFicheroAbrir_Alternatives_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Alternatives getGrammarElement() {
+		return grammarAccess.getFuncionFicheroAbrirAccess().getAlternatives_2();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new FuncionFicheroAbrir_Group_2_0(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new FuncionFicheroAbrir_VariableAssignment_2_1(lastRuleCallOrigin, this, 1, inst);
+			case 2: return new FuncionFicheroAbrir_VariableAssignment_2_2(lastRuleCallOrigin, this, 2, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// variable+=VariableID "," modo=ModoApertura "," variable+=VariableID
+protected class FuncionFicheroAbrir_Group_2_0 extends GroupToken {
+	
+	public FuncionFicheroAbrir_Group_2_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getFuncionFicheroAbrirAccess().getGroup_2_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new FuncionFicheroAbrir_VariableAssignment_2_0_4(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// variable+=VariableID
+protected class FuncionFicheroAbrir_VariableAssignment_2_0_0 extends AssignmentToken  {
+	
+	public FuncionFicheroAbrir_VariableAssignment_2_0_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getFuncionFicheroAbrirAccess().getVariableAssignment_2_0_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new VariableID_Group(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("variable",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("variable");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getVariableIDRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getFuncionFicheroAbrirAccess().getVariableVariableIDParserRuleCall_2_0_0_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new FuncionFicheroAbrir_LeftParenthesisKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+// ","
+protected class FuncionFicheroAbrir_CommaKeyword_2_0_1 extends KeywordToken  {
+	
+	public FuncionFicheroAbrir_CommaKeyword_2_0_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getFuncionFicheroAbrirAccess().getCommaKeyword_2_0_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new FuncionFicheroAbrir_VariableAssignment_2_0_0(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// modo=ModoApertura
+protected class FuncionFicheroAbrir_ModoAssignment_2_0_2 extends AssignmentToken  {
+	
+	public FuncionFicheroAbrir_ModoAssignment_2_0_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getFuncionFicheroAbrirAccess().getModoAssignment_2_0_2();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new FuncionFicheroAbrir_CommaKeyword_2_0_1(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("modo",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("modo");
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getFuncionFicheroAbrirAccess().getModoModoAperturaParserRuleCall_2_0_2_0(), value, null)) {
+			type = AssignmentType.DATATYPE_RULE_CALL;
+			element = grammarAccess.getFuncionFicheroAbrirAccess().getModoModoAperturaParserRuleCall_2_0_2_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+// ","
+protected class FuncionFicheroAbrir_CommaKeyword_2_0_3 extends KeywordToken  {
+	
+	public FuncionFicheroAbrir_CommaKeyword_2_0_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getFuncionFicheroAbrirAccess().getCommaKeyword_2_0_3();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new FuncionFicheroAbrir_ModoAssignment_2_0_2(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// variable+=VariableID
+protected class FuncionFicheroAbrir_VariableAssignment_2_0_4 extends AssignmentToken  {
+	
+	public FuncionFicheroAbrir_VariableAssignment_2_0_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getFuncionFicheroAbrirAccess().getVariableAssignment_2_0_4();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new VariableID_Group(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("variable",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("variable");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getVariableIDRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getFuncionFicheroAbrirAccess().getVariableVariableIDParserRuleCall_2_0_4_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new FuncionFicheroAbrir_CommaKeyword_2_0_3(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+
+// variable+=ConstCadena
+protected class FuncionFicheroAbrir_VariableAssignment_2_1 extends AssignmentToken  {
+	
+	public FuncionFicheroAbrir_VariableAssignment_2_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getFuncionFicheroAbrirAccess().getVariableAssignment_2_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new ConstCadena_ContenidoAssignment(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("variable",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("variable");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getConstCadenaRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getFuncionFicheroAbrirAccess().getVariableConstCadenaParserRuleCall_2_1_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new FuncionFicheroAbrir_LeftParenthesisKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+// variable+=Caracter
+protected class FuncionFicheroAbrir_VariableAssignment_2_2 extends AssignmentToken  {
+	
+	public FuncionFicheroAbrir_VariableAssignment_2_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getFuncionFicheroAbrirAccess().getVariableAssignment_2_2();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Caracter_ContenidoAssignment(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("variable",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("variable");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getCaracterRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getFuncionFicheroAbrirAccess().getVariableCaracterParserRuleCall_2_2_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new FuncionFicheroAbrir_LeftParenthesisKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+
+// ")"
+protected class FuncionFicheroAbrir_RightParenthesisKeyword_3 extends KeywordToken  {
+	
+	public FuncionFicheroAbrir_RightParenthesisKeyword_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getFuncionFicheroAbrirAccess().getRightParenthesisKeyword_3();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new FuncionFicheroAbrir_Alternatives_2(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+
+/************ end Rule FuncionFicheroAbrir ****************/
+
+
+/************ begin Rule FuncionFicheroCerrar ****************
+ *
+ * FuncionFicheroCerrar:
+ * 	"cerrar" "(" variable=VariableID ")";
+ *
+ **/
+
+// "cerrar" "(" variable=VariableID ")"
+protected class FuncionFicheroCerrar_Group extends GroupToken {
+	
+	public FuncionFicheroCerrar_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getFuncionFicheroCerrarAccess().getGroup();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new FuncionFicheroCerrar_RightParenthesisKeyword_3(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getFuncionFicheroCerrarRule().getType().getClassifier())
+			return null;
+		return eObjectConsumer;
+	}
+
+}
+
+// "cerrar"
+protected class FuncionFicheroCerrar_CerrarKeyword_0 extends KeywordToken  {
+	
+	public FuncionFicheroCerrar_CerrarKeyword_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getFuncionFicheroCerrarAccess().getCerrarKeyword_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index, inst);
+		}	
+	}
+
+}
+
+// "("
+protected class FuncionFicheroCerrar_LeftParenthesisKeyword_1 extends KeywordToken  {
+	
+	public FuncionFicheroCerrar_LeftParenthesisKeyword_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getFuncionFicheroCerrarAccess().getLeftParenthesisKeyword_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new FuncionFicheroCerrar_CerrarKeyword_0(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// variable=VariableID
+protected class FuncionFicheroCerrar_VariableAssignment_2 extends AssignmentToken  {
+	
+	public FuncionFicheroCerrar_VariableAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getFuncionFicheroCerrarAccess().getVariableAssignment_2();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new VariableID_Group(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("variable",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("variable");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getVariableIDRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getFuncionFicheroCerrarAccess().getVariableVariableIDParserRuleCall_2_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new FuncionFicheroCerrar_LeftParenthesisKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+// ")"
+protected class FuncionFicheroCerrar_RightParenthesisKeyword_3 extends KeywordToken  {
+	
+	public FuncionFicheroCerrar_RightParenthesisKeyword_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getFuncionFicheroCerrarAccess().getRightParenthesisKeyword_3();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new FuncionFicheroCerrar_VariableAssignment_2(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+
+/************ end Rule FuncionFicheroCerrar ****************/
+
 
 
 

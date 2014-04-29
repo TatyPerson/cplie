@@ -23,11 +23,14 @@ import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Enumerado;
 import diagramapseudocodigo.Escribir;
 import diagramapseudocodigo.Funcion;
+import diagramapseudocodigo.FuncionFicheroAbrir;
+import diagramapseudocodigo.FuncionFicheroCerrar;
 import diagramapseudocodigo.Inicio;
 import diagramapseudocodigo.Internas;
 import diagramapseudocodigo.Leer;
 import diagramapseudocodigo.LlamadaFuncion;
 import diagramapseudocodigo.Matriz;
+import diagramapseudocodigo.ModoApertura;
 import diagramapseudocodigo.NombreInterna;
 import diagramapseudocodigo.NumeroDecimal;
 import diagramapseudocodigo.NumeroEntero;
@@ -509,6 +512,20 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass funcionFicheroAbrirEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass funcionFicheroCerrarEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum tipoVariableEEnum = null;
 
 	/**
@@ -545,6 +562,13 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * @generated
 	 */
 	private EEnum nombreInternaEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum modoAperturaEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1944,6 +1968,51 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getFuncionFicheroAbrir() {
+		return funcionFicheroAbrirEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFuncionFicheroAbrir_Modo() {
+		return (EAttribute)funcionFicheroAbrirEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFuncionFicheroAbrir_Variable() {
+		return (EReference)funcionFicheroAbrirEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFuncionFicheroCerrar() {
+		return funcionFicheroCerrarEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFuncionFicheroCerrar_Variable() {
+		return (EReference)funcionFicheroCerrarEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getVector_Nombre() {
 		return (EAttribute)vectorEClass.getEStructuralFeatures().get(2);
 	}
@@ -2027,6 +2096,15 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 */
 	public EEnum getNombreInterna() {
 		return nombreInternaEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getModoApertura() {
+		return modoAperturaEEnum;
 	}
 
 	/**
@@ -2269,6 +2347,13 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		comentarioEClass = createEClass(COMENTARIO);
 		createEAttribute(comentarioEClass, COMENTARIO__MENSAJE);
 
+		funcionFicheroAbrirEClass = createEClass(FUNCION_FICHERO_ABRIR);
+		createEAttribute(funcionFicheroAbrirEClass, FUNCION_FICHERO_ABRIR__MODO);
+		createEReference(funcionFicheroAbrirEClass, FUNCION_FICHERO_ABRIR__VARIABLE);
+
+		funcionFicheroCerrarEClass = createEClass(FUNCION_FICHERO_CERRAR);
+		createEReference(funcionFicheroCerrarEClass, FUNCION_FICHERO_CERRAR__VARIABLE);
+
 		// Create enums
 		tipoVariableEEnum = createEEnum(TIPO_VARIABLE);
 		signoEEnum = createEEnum(SIGNO);
@@ -2276,6 +2361,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		incEEnum = createEEnum(INC);
 		tipoPasoEEnum = createEEnum(TIPO_PASO);
 		nombreInternaEEnum = createEEnum(NOMBRE_INTERNA);
+		modoAperturaEEnum = createEEnum(MODO_APERTURA);
 	}
 
 	/**
@@ -2349,6 +2435,8 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		subrangoRegistroEClass.getESuperTypes().add(this.getSubrango());
 		valorVectorEClass.getESuperTypes().add(this.getValorComplejo());
 		valorMatrizEClass.getESuperTypes().add(this.getValorComplejo());
+		funcionFicheroAbrirEClass.getESuperTypes().add(this.getSentencias());
+		funcionFicheroCerrarEClass.getESuperTypes().add(this.getSentencias());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(codigoEClass, Codigo.class, "Codigo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2563,6 +2651,13 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		initEClass(comentarioEClass, Comentario.class, "Comentario", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getComentario_Mensaje(), ecorePackage.getEString(), "mensaje", null, 1, 1, Comentario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(funcionFicheroAbrirEClass, FuncionFicheroAbrir.class, "FuncionFicheroAbrir", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFuncionFicheroAbrir_Modo(), this.getModoApertura(), "modo", null, 1, 1, FuncionFicheroAbrir.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFuncionFicheroAbrir_Variable(), this.getOperador(), null, "variable", null, 2, 2, FuncionFicheroAbrir.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(funcionFicheroCerrarEClass, FuncionFicheroCerrar.class, "FuncionFicheroCerrar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFuncionFicheroCerrar_Variable(), this.getOperador(), null, "variable", null, 1, 1, FuncionFicheroCerrar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(tipoVariableEEnum, TipoVariable.class, "TipoVariable");
 		addEEnumLiteral(tipoVariableEEnum, TipoVariable.ENTERO);
@@ -2609,6 +2704,10 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		addEEnumLiteral(nombreInternaEEnum, NombreInterna.SQRT);
 		addEEnumLiteral(nombreInternaEEnum, NombreInterna.LONGITUD);
 		addEEnumLiteral(nombreInternaEEnum, NombreInterna.CONCATENA);
+
+		initEEnum(modoAperturaEEnum, ModoApertura.class, "ModoApertura");
+		addEEnumLiteral(modoAperturaEEnum, ModoApertura.ESCRITURA);
+		addEEnumLiteral(modoAperturaEEnum, ModoApertura.LECTURA);
 
 		// Create resource
 		createResource(eNS_URI);
