@@ -14,7 +14,7 @@ Codigo returns Codigo:
 	tiene=Inicio;
 
 Comentario returns Comentario:
-	'//'mensaje= EString;
+	'//'mensaje= COMENT;
 	
 TipoComplejo returns TipoComplejo:
 	Vector | Matriz | Registro | Archivo | Enumerado | Subrango;
@@ -157,13 +157,13 @@ Asignacion returns Asignacion:
 	
 AsignacionNormal returns AsignacionNormal:
 	 lvalue=EString
-	 Mat+=MAT*
+//	 Mat+=MAT*
 	 '='
 	operador=valor;
 
 AsignacionCompleja returns AsignacionCompleja:
 	complejo=ValorComplejo
-	Mat+=MAT*
+//	Mat+=MAT*
 	 '='
 	operador=valor;
 
@@ -229,18 +229,19 @@ TipoVariable returns TipoVariable:
 	'entero' | 'caracter' | 'real' | 'logico' | 'cadena';
 	
 Variable returns Variable:
-	 nombre=EString
-	 Mat+=MAT*;
+	 nombre=EString;
+//	 Mat+=MAT*;
 
 VariableID returns VariableID:
-	nombre=EString
-	Mat+=MAT*;
+	nombre=EString;
+	//Mat+=MAT*;
 
 terminal CAD: '"' ('a'..'z'|'A'..'Z'|'_'|' '|'!'|'#'|'@'|'%'|'&'|'('|')'|'='|'?'|'\\'|'0'..'9')* '"';
 terminal CAR: "'" ('a'..'z'|'A'..'Z'|'_'|' '|'!'|'#'|'@'|'%'|'&'|'('|')'|'='|'?'|'\\'|'0'..'9') "'";
+terminal COMENT: '/*' ('a'..'z'|'A'..'Z'|'_'|' '|'!'|'#'|'@'|'%'|'&'|'('|')'|'='|'?'|'\\'|'0'..'9')* '*/';
 
-terminal MAT: 
-'[' ('a'..'z'|'A'..'Z'|'0'..'9')*('--'|'++')? ']' ;
+//terminal MAT: 
+//'[' ('a'..'z'|'A'..'Z'|'0'..'9')*('--'|'++')? ']' ;
 
 
 ConstCadena returns ConstCadena:

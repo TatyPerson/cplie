@@ -142,23 +142,23 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cSolidusSolidusKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cMensajeAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cMensajeEStringParserRuleCall_1_0 = (RuleCall)cMensajeAssignment_1.eContents().get(0);
+		private final RuleCall cMensajeCOMENTTerminalRuleCall_1_0 = (RuleCall)cMensajeAssignment_1.eContents().get(0);
 		
 		//Comentario:
-		//	"//" mensaje=EString;
+		//	"//" mensaje=COMENT;
 		public ParserRule getRule() { return rule; }
 
-		//"//" mensaje=EString
+		//"//" mensaje=COMENT
 		public Group getGroup() { return cGroup; }
 
 		//"//"
 		public Keyword getSolidusSolidusKeyword_0() { return cSolidusSolidusKeyword_0; }
 
-		//mensaje=EString
+		//mensaje=COMENT
 		public Assignment getMensajeAssignment_1() { return cMensajeAssignment_1; }
 
-		//EString
-		public RuleCall getMensajeEStringParserRuleCall_1_0() { return cMensajeEStringParserRuleCall_1_0; }
+		//COMENT
+		public RuleCall getMensajeCOMENTTerminalRuleCall_1_0() { return cMensajeCOMENTTerminalRuleCall_1_0; }
 	}
 
 	public class TipoComplejoElements extends AbstractParserRuleElementFinder {
@@ -1636,17 +1636,17 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cLvalueAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cLvalueEStringParserRuleCall_0_0 = (RuleCall)cLvalueAssignment_0.eContents().get(0);
-		private final Assignment cMatAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cMatMATTerminalRuleCall_1_0 = (RuleCall)cMatAssignment_1.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cOperadorAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cOperadorValorParserRuleCall_3_0 = (RuleCall)cOperadorAssignment_3.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cOperadorAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOperadorValorParserRuleCall_2_0 = (RuleCall)cOperadorAssignment_2.eContents().get(0);
 		
 		//AsignacionNormal:
-		//	lvalue=EString Mat+=MAT* "=" operador=valor;
+		//	lvalue=EString //	 Mat+=MAT*
+		//	"=" operador=valor;
 		public ParserRule getRule() { return rule; }
 
-		//lvalue=EString Mat+=MAT* "=" operador=valor
+		//lvalue=EString //	 Mat+=MAT*
+		//"=" operador=valor
 		public Group getGroup() { return cGroup; }
 
 		//lvalue=EString
@@ -1655,20 +1655,15 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//EString
 		public RuleCall getLvalueEStringParserRuleCall_0_0() { return cLvalueEStringParserRuleCall_0_0; }
 
-		//Mat+=MAT*
-		public Assignment getMatAssignment_1() { return cMatAssignment_1; }
-
-		//MAT
-		public RuleCall getMatMATTerminalRuleCall_1_0() { return cMatMATTerminalRuleCall_1_0; }
-
+		////	 Mat+=MAT*
 		//"="
-		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
 
 		//operador=valor
-		public Assignment getOperadorAssignment_3() { return cOperadorAssignment_3; }
+		public Assignment getOperadorAssignment_2() { return cOperadorAssignment_2; }
 
 		//valor
-		public RuleCall getOperadorValorParserRuleCall_3_0() { return cOperadorValorParserRuleCall_3_0; }
+		public RuleCall getOperadorValorParserRuleCall_2_0() { return cOperadorValorParserRuleCall_2_0; }
 	}
 
 	public class AsignacionComplejaElements extends AbstractParserRuleElementFinder {
@@ -1676,17 +1671,17 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cComplejoAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cComplejoValorComplejoParserRuleCall_0_0 = (RuleCall)cComplejoAssignment_0.eContents().get(0);
-		private final Assignment cMatAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cMatMATTerminalRuleCall_1_0 = (RuleCall)cMatAssignment_1.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cOperadorAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cOperadorValorParserRuleCall_3_0 = (RuleCall)cOperadorAssignment_3.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cOperadorAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOperadorValorParserRuleCall_2_0 = (RuleCall)cOperadorAssignment_2.eContents().get(0);
 		
 		//AsignacionCompleja:
-		//	complejo=ValorComplejo Mat+=MAT* "=" operador=valor;
+		//	complejo=ValorComplejo //	Mat+=MAT*
+		//	"=" operador=valor;
 		public ParserRule getRule() { return rule; }
 
-		//complejo=ValorComplejo Mat+=MAT* "=" operador=valor
+		//complejo=ValorComplejo //	Mat+=MAT*
+		//"=" operador=valor
 		public Group getGroup() { return cGroup; }
 
 		//complejo=ValorComplejo
@@ -1695,20 +1690,15 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//ValorComplejo
 		public RuleCall getComplejoValorComplejoParserRuleCall_0_0() { return cComplejoValorComplejoParserRuleCall_0_0; }
 
-		//Mat+=MAT*
-		public Assignment getMatAssignment_1() { return cMatAssignment_1; }
-
-		//MAT
-		public RuleCall getMatMATTerminalRuleCall_1_0() { return cMatMATTerminalRuleCall_1_0; }
-
+		////	Mat+=MAT*
 		//"="
-		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
 
 		//operador=valor
-		public Assignment getOperadorAssignment_3() { return cOperadorAssignment_3; }
+		public Assignment getOperadorAssignment_2() { return cOperadorAssignment_2; }
 
 		//valor
-		public RuleCall getOperadorValorParserRuleCall_3_0() { return cOperadorValorParserRuleCall_3_0; }
+		public RuleCall getOperadorValorParserRuleCall_2_0() { return cOperadorValorParserRuleCall_2_0; }
 	}
 
 	public class EscribirElements extends AbstractParserRuleElementFinder {
@@ -2269,58 +2259,35 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class VariableElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Variable");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNombreAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNombreEStringParserRuleCall_0_0 = (RuleCall)cNombreAssignment_0.eContents().get(0);
-		private final Assignment cMatAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cMatMATTerminalRuleCall_1_0 = (RuleCall)cMatAssignment_1.eContents().get(0);
+		private final Assignment cNombreAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cNombreEStringParserRuleCall_0 = (RuleCall)cNombreAssignment.eContents().get(0);
 		
 		//Variable:
-		//	nombre=EString Mat+=MAT*;
+		//	nombre=EString;
 		public ParserRule getRule() { return rule; }
 
-		//nombre=EString Mat+=MAT*
-		public Group getGroup() { return cGroup; }
-
 		//nombre=EString
-		public Assignment getNombreAssignment_0() { return cNombreAssignment_0; }
+		public Assignment getNombreAssignment() { return cNombreAssignment; }
 
 		//EString
-		public RuleCall getNombreEStringParserRuleCall_0_0() { return cNombreEStringParserRuleCall_0_0; }
-
-		//Mat+=MAT*
-		public Assignment getMatAssignment_1() { return cMatAssignment_1; }
-
-		//MAT
-		public RuleCall getMatMATTerminalRuleCall_1_0() { return cMatMATTerminalRuleCall_1_0; }
+		public RuleCall getNombreEStringParserRuleCall_0() { return cNombreEStringParserRuleCall_0; }
 	}
 
 	public class VariableIDElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "VariableID");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNombreAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNombreEStringParserRuleCall_0_0 = (RuleCall)cNombreAssignment_0.eContents().get(0);
-		private final Assignment cMatAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cMatMATTerminalRuleCall_1_0 = (RuleCall)cMatAssignment_1.eContents().get(0);
+		private final Assignment cNombreAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cNombreEStringParserRuleCall_0 = (RuleCall)cNombreAssignment.eContents().get(0);
 		
+		////	 Mat+=MAT*;
 		//VariableID:
-		//	nombre=EString Mat+=MAT*;
+		//	nombre=EString;
 		public ParserRule getRule() { return rule; }
 
-		//nombre=EString Mat+=MAT*
-		public Group getGroup() { return cGroup; }
-
 		//nombre=EString
-		public Assignment getNombreAssignment_0() { return cNombreAssignment_0; }
+		public Assignment getNombreAssignment() { return cNombreAssignment; }
 
 		//EString
-		public RuleCall getNombreEStringParserRuleCall_0_0() { return cNombreEStringParserRuleCall_0_0; }
-
-		//Mat+=MAT*
-		public Assignment getMatAssignment_1() { return cMatAssignment_1; }
-
-		//MAT
-		public RuleCall getMatMATTerminalRuleCall_1_0() { return cMatMATTerminalRuleCall_1_0; }
+		public RuleCall getNombreEStringParserRuleCall_0() { return cNombreEStringParserRuleCall_0; }
 	}
 
 	public class ConstCadenaElements extends AbstractParserRuleElementFinder {
@@ -2328,6 +2295,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cContenidoAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cContenidoCADTerminalRuleCall_0 = (RuleCall)cContenidoAssignment.eContents().get(0);
 		
+		////terminal MAT: 
+		////'[' ('a'..'z'|'A'..'Z'|'0'..'9')*('--'|'++')? ']' ;
 		//ConstCadena:
 		//	contenido=CAD;
 		public ParserRule getRule() { return rule; }
@@ -3110,7 +3079,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private VariableIDElements pVariableID;
 	private TerminalRule tCAD;
 	private TerminalRule tCAR;
-	private TerminalRule tMAT;
+	private TerminalRule tCOMENT;
 	private ConstCadenaElements pConstCadena;
 	private NumeroEnteroElements pNumeroEntero;
 	private NumeroDecimalElements pNumeroDecimal;
@@ -3181,7 +3150,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Comentario:
-	//	"//" mensaje=EString;
+	//	"//" mensaje=COMENT;
 	public ComentarioElements getComentarioAccess() {
 		return (pComentario != null) ? pComentario : (pComentario = new ComentarioElements());
 	}
@@ -3568,7 +3537,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AsignacionNormal:
-	//	lvalue=EString Mat+=MAT* "=" operador=valor;
+	//	lvalue=EString //	 Mat+=MAT*
+	//	"=" operador=valor;
 	public AsignacionNormalElements getAsignacionNormalAccess() {
 		return (pAsignacionNormal != null) ? pAsignacionNormal : (pAsignacionNormal = new AsignacionNormalElements());
 	}
@@ -3578,7 +3548,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AsignacionCompleja:
-	//	complejo=ValorComplejo Mat+=MAT* "=" operador=valor;
+	//	complejo=ValorComplejo //	Mat+=MAT*
+	//	"=" operador=valor;
 	public AsignacionComplejaElements getAsignacionComplejaAccess() {
 		return (pAsignacionCompleja != null) ? pAsignacionCompleja : (pAsignacionCompleja = new AsignacionComplejaElements());
 	}
@@ -3700,7 +3671,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Variable:
-	//	nombre=EString Mat+=MAT*;
+	//	nombre=EString;
 	public VariableElements getVariableAccess() {
 		return (pVariable != null) ? pVariable : (pVariable = new VariableElements());
 	}
@@ -3709,8 +3680,9 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getVariableAccess().getRule();
 	}
 
+	////	 Mat+=MAT*;
 	//VariableID:
-	//	nombre=EString Mat+=MAT*;
+	//	nombre=EString;
 	public VariableIDElements getVariableIDAccess() {
 		return (pVariableID != null) ? pVariableID : (pVariableID = new VariableIDElements());
 	}
@@ -3719,6 +3691,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getVariableIDAccess().getRule();
 	}
 
+	////Mat+=MAT*;
 	//terminal CAD:
 	//	"\"" ("a".."z" | "A".."Z" | "_" | " " | "!" | "#" | "@" | "%" | "&" | "(" | ")" | "=" | "?" | "\\" | "0".."9")* "\"";
 	public TerminalRule getCADRule() {
@@ -3731,12 +3704,14 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		return (tCAR != null) ? tCAR : (tCAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "CAR"));
 	} 
 
-	//terminal MAT:
-	//	"[" ("a".."z" | "A".."Z" | "0".."9")* ("--" | "++")? "]";
-	public TerminalRule getMATRule() {
-		return (tMAT != null) ? tMAT : (tMAT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "MAT"));
+	//terminal COMENT:
+	//	"/ *" ("a".."z" | "A".."Z" | "_" | " " | "!" | "#" | "@" | "%" | "&" | "(" | ")" | "=" | "?" | "\\" | "0".."9")* "* /";
+	public TerminalRule getCOMENTRule() {
+		return (tCOMENT != null) ? tCOMENT : (tCOMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "COMENT"));
 	} 
 
+	////terminal MAT: 
+	////'[' ('a'..'z'|'A'..'Z'|'0'..'9')*('--'|'++')? ']' ;
 	//ConstCadena:
 	//	contenido=CAD;
 	public ConstCadenaElements getConstCadenaAccess() {
