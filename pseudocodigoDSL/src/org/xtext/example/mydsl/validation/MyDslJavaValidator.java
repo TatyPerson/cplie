@@ -969,7 +969,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 						}
 					}
-					if(as.getOperador() instanceof unaria) {
+					else if(as.getOperador() instanceof unaria) {
 						unaria u = (unaria) as.getOperador();
 						if(u.getVariable() instanceof VariableID) {
 							VariableID v = (VariableID) u.getVariable();
@@ -978,7 +978,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							}
 						}
 					}
-					if(as.getOperador() instanceof operacion) {
+					else if(as.getOperador() instanceof operacion) {
 						operacion o = (operacion) as.getOperador();
 						List<valor> valores = funciones.registrarValoresOperacion(o);
 						
@@ -1006,8 +1006,65 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								error("La variable debe haber sido previamente definida", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
 							}
 						}
+						
+						for(valor v: valores) {
+							if(v instanceof ValorVector) {
+								ValorVector vector = (ValorVector) v;
+								if(vector.getIndice() instanceof VariableID) {
+									VariableID var = (VariableID) vector.getIndice();
+									if(!variables.contains(var.getNombre())) {
+										error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+									}
+								}
+							}
+							else if(v instanceof ValorMatriz) {
+								ValorMatriz m = (ValorMatriz) v;
+								for(Operador op: m.getIndices()) {
+									if(op instanceof VariableID) {
+										VariableID var = (VariableID) op;
+										if(!variables.contains(var.getNombre())) {
+											error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+										}
+									}
+								}
+							}
+							else if(v instanceof LlamadaFuncion) {
+								LlamadaFuncion f = (LlamadaFuncion) v;
+								for(valor val: f.getOperador()) {
+									if(val instanceof Operador) {
+										Operador op = (Operador) val;
+										if(op instanceof VariableID) {
+											VariableID var = (VariableID) op;
+											if(!variables.contains(var.getNombre())) {
+												error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+											}
+										}
+										else if(op instanceof ValorVector) {
+											ValorVector vector = (ValorVector) op;
+											if(vector.getIndice() instanceof VariableID) {
+												VariableID var = (VariableID) vector.getIndice();
+												if(!variables.contains(var.getNombre())) {
+													error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+												}
+											}
+										}
+										else if(op instanceof ValorMatriz) {
+											ValorMatriz m = (ValorMatriz) op;
+											for(Operador operador: m.getIndices()) {
+												if(operador instanceof VariableID) {
+													VariableID var = (VariableID) operador;
+													if(!variables.contains(var.getNombre())) {
+														error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+													}
+												}
+											}
+										}
+									}	
+								}
+							}
+						}
 					}
-					if(as.getOperador() instanceof LlamadaFuncion) {
+					else if(as.getOperador() instanceof LlamadaFuncion) {
 						LlamadaFuncion f = (LlamadaFuncion) as.getOperador();
 						for(valor v: f.getOperador()) {
 							if(v instanceof Operador) {
@@ -1017,6 +1074,46 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 									if(!variables.contains(var.getNombre())) {
 										error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 									}
+								}
+								else if(o instanceof ValorVector) {
+									ValorVector vector = (ValorVector) o;
+									if(vector.getIndice() instanceof VariableID) {
+										VariableID var = (VariableID) vector.getIndice();
+										if(!variables.contains(var.getNombre())) {
+											error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+										}
+									}
+								}
+								else if(o instanceof ValorMatriz) {
+									ValorMatriz m = (ValorMatriz) o;
+									for(Operador op: m.getIndices()) {
+										if(op instanceof VariableID) {
+											VariableID var = (VariableID) op;
+											if(!variables.contains(var.getNombre())) {
+												error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					else if(as.getOperador() instanceof ValorVector) {
+						ValorVector v = (ValorVector) as.getOperador();
+						if(v.getIndice() instanceof VariableID) {
+							VariableID var = (VariableID) v.getIndice();
+							if(!variables.contains(var.getNombre())) {
+								error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+							}
+						}
+					}
+					else if(as.getOperador() instanceof ValorMatriz) {
+						ValorMatriz m = (ValorMatriz) as.getOperador();
+						for(Operador op: m.getIndices()) {
+							if(op instanceof VariableID) {
+								VariableID var = (VariableID) op;
+								if(!variables.contains(var.getNombre())) {
+									error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 								}
 							}
 						}
@@ -1030,12 +1127,23 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							error("La variable debe haber sido previamente definida", r, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
 						}
 					}
-					if(ac.getComplejo() instanceof ValorVector) {
+					else if(ac.getComplejo() instanceof ValorVector) {
 						ValorVector v = (ValorVector) ac.getComplejo();
 						if(v.getIndice() instanceof VariableID) {
 							VariableID var = (VariableID) v.getIndice();
 							if(!variables.contains(var.getNombre())) {
 								error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+							}
+						}
+					}
+					else if(ac.getOperador() instanceof ValorMatriz) {
+						ValorMatriz m = (ValorMatriz) ac.getOperador();
+						for(Operador op: m.getIndices()) {
+							if(op instanceof VariableID) {
+								VariableID var = (VariableID) op;
+								if(!variables.contains(var.getNombre())) {
+									error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+								}
 							}
 						}
 					}
@@ -1045,7 +1153,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 						}
 					}
-					if(ac.getOperador() instanceof unaria) {
+					else if(ac.getOperador() instanceof unaria) {
 						unaria u = (unaria) ac.getOperador();
 						if(u.getVariable() instanceof VariableID) {
 							VariableID v = (VariableID) u.getVariable();
@@ -1054,7 +1162,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							}
 						}
 					}
-					if(ac.getOperador() instanceof operacion) {
+					else if(ac.getOperador() instanceof operacion) {
 						operacion o = (operacion) ac.getOperador();
 						List<valor> valores = funciones.registrarValoresOperacion(o);
 						
@@ -1082,8 +1190,65 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								error("La variable debe haber sido previamente definida", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
 							}
 						}
+						
+						for(valor v: valores) {
+							if(v instanceof ValorVector) {
+								ValorVector vector = (ValorVector) v;
+								if(vector.getIndice() instanceof VariableID) {
+									VariableID var = (VariableID) vector.getIndice();
+									if(!variables.contains(var.getNombre())) {
+										error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+									}
+								}
+							}
+							else if(v instanceof ValorMatriz) {
+								ValorMatriz m = (ValorMatriz) v;
+								for(Operador op: m.getIndices()) {
+									if(op instanceof VariableID) {
+										VariableID var = (VariableID) op;
+										if(!variables.contains(var.getNombre())) {
+											error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+										}
+									}
+								}
+							}
+							else if(v instanceof LlamadaFuncion) {
+								LlamadaFuncion f = (LlamadaFuncion) v;
+								for(valor val: f.getOperador()) {
+									if(val instanceof Operador) {
+										Operador op = (Operador) val;
+										if(op instanceof VariableID) {
+											VariableID var = (VariableID) op;
+											if(!variables.contains(var.getNombre())) {
+												error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+											}
+										}
+										else if(op instanceof ValorVector) {
+											ValorVector vector = (ValorVector) op;
+											if(vector.getIndice() instanceof VariableID) {
+												VariableID var = (VariableID) vector.getIndice();
+												if(!variables.contains(var.getNombre())) {
+													error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+												}
+											}
+										}
+										else if(op instanceof ValorMatriz) {
+											ValorMatriz m = (ValorMatriz) op;
+											for(Operador operador: m.getIndices()) {
+												if(operador instanceof VariableID) {
+													VariableID var = (VariableID) operador;
+													if(!variables.contains(var.getNombre())) {
+														error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+													}
+												}
+											}
+										}
+									}	
+								}
+							}
+						}
 					}
-					if(ac.getOperador() instanceof LlamadaFuncion) {
+					else if(ac.getOperador() instanceof LlamadaFuncion) {
 						LlamadaFuncion f = (LlamadaFuncion) ac.getOperador();
 						for(valor v: f.getOperador()) {
 							if(v instanceof Operador) {
@@ -1093,6 +1258,46 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 									if(!variables.contains(var.getNombre())) {
 										error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 									}
+								}
+								else if(o instanceof ValorVector) {
+									ValorVector vector = (ValorVector) o;
+									if(vector.getIndice() instanceof VariableID) {
+										VariableID var = (VariableID) vector.getIndice();
+										if(!variables.contains(var.getNombre())) {
+											error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+										}
+									}
+								}
+								else if(o instanceof ValorMatriz) {
+									ValorMatriz m = (ValorMatriz) o;
+									for(Operador op: m.getIndices()) {
+										if(op instanceof VariableID) {
+											VariableID var = (VariableID) op;
+											if(!variables.contains(var.getNombre())) {
+												error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+											}
+										}
+									}
+								}
+							}	
+						}
+					}
+					else if(ac.getOperador() instanceof ValorVector) {
+						ValorVector v = (ValorVector) ac.getOperador();
+						if(v.getIndice() instanceof VariableID) {
+							VariableID var = (VariableID) v.getIndice();
+							if(!variables.contains(var.getNombre())) {
+								error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+							}
+						}
+					}
+					else if(ac.getOperador() instanceof ValorMatriz) {
+						ValorMatriz m = (ValorMatriz) ac.getOperador();
+						for(Operador op: m.getIndices()) {
+							if(op instanceof VariableID) {
+								VariableID var = (VariableID) op;
+								if(!variables.contains(var.getNombre())) {
+									error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 								}
 							}
 						}
