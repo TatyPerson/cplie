@@ -1871,7 +1871,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					else if(ac.getComplejo() instanceof ValorVector) {
 						ValorVector v = (ValorVector) ac.getComplejo();
 						if(v.getCampo().size() == 0) {
-							String tipo = variablesTipadas.get(v.getNombre_vector());
+							String tipo = vectores.get(variablesTipadas.get(v.getNombre_vector()));
 							checkAsignacionesAux(a, tipo, ac.getOperador(), variablesTipadas, registros, nombresRegistros, funcionesTipadas, vectores, matrices, registrosCamposTipados);
 						}
 						else {
@@ -1884,7 +1884,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					else if(ac.getComplejo() instanceof ValorMatriz) {
 						ValorMatriz m = (ValorMatriz) ac.getComplejo();
 						if(m.getCampo().size() == 0) {
-							String tipo = variablesTipadas.get(m.getNombre_matriz());
+							String tipo = matrices.get(variablesTipadas.get(m.getNombre_matriz()));
 							checkAsignacionesAux(a, tipo, ac.getOperador(), variablesTipadas, registros, nombresRegistros, funcionesTipadas, vectores, matrices, registrosCamposTipados);
 						}
 						else {
