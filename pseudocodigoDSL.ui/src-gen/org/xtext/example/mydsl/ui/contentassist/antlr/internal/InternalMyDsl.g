@@ -8986,11 +8986,11 @@ rule__Caso__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getCasoAccess().getColonKeyword_1()); }
+{ before(grammarAccess.getCasoAccess().getColonSpaceKeyword_1()); }
 
-	':' 
+	': ' 
 
-{ after(grammarAccess.getCasoAccess().getColonKeyword_1()); }
+{ after(grammarAccess.getCasoAccess().getColonSpaceKeyword_1()); }
 )
 
 ;

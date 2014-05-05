@@ -2029,7 +2029,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cOperadorAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cOperadorOperadorParserRuleCall_0_0 = (RuleCall)cOperadorAssignment_0.eContents().get(0);
-		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cColonSpaceKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Assignment cSentenciasAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
 		private final RuleCall cSentenciasSentenciasParserRuleCall_2_0_0 = (RuleCall)cSentenciasAssignment_2_0.eContents().get(0);
@@ -2039,10 +2039,10 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDevuelveDevolverParserRuleCall_3_0 = (RuleCall)cDevuelveAssignment_3.eContents().get(0);
 		
 		//Caso:
-		//	operador=Operador ":" (sentencias+=Sentencias sentencias+=Sentencias*)? devuelve=Devolver?;
+		//	operador=Operador ": " (sentencias+=Sentencias sentencias+=Sentencias*)? devuelve=Devolver?;
 		public ParserRule getRule() { return rule; }
 
-		//operador=Operador ":" (sentencias+=Sentencias sentencias+=Sentencias*)? devuelve=Devolver?
+		//operador=Operador ": " (sentencias+=Sentencias sentencias+=Sentencias*)? devuelve=Devolver?
 		public Group getGroup() { return cGroup; }
 
 		//operador=Operador
@@ -2051,8 +2051,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//Operador
 		public RuleCall getOperadorOperadorParserRuleCall_0_0() { return cOperadorOperadorParserRuleCall_0_0; }
 
-		//":"
-		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
+		//": "
+		public Keyword getColonSpaceKeyword_1() { return cColonSpaceKeyword_1; }
 
 		//(sentencias+=Sentencias sentencias+=Sentencias*)?
 		public Group getGroup_2() { return cGroup_2; }
@@ -3629,7 +3629,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Caso:
-	//	operador=Operador ":" (sentencias+=Sentencias sentencias+=Sentencias*)? devuelve=Devolver?;
+	//	operador=Operador ": " (sentencias+=Sentencias sentencias+=Sentencias*)? devuelve=Devolver?;
 	public CasoElements getCasoAccess() {
 		return (pCaso != null) ? pCaso : (pCaso = new CasoElements());
 	}
