@@ -69,6 +69,57 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	@Check
+	//Función que se encarga de comprobar si la operación de la condición de la estructura "Si" es de tipo lógico
+	protected void checkCondicionesSi(Si si) {
+		if(si.getValor() instanceof  operacion) {
+			operacion op = (operacion) si.getValor();
+			List<signo> signos = funciones.registrarSignosOperacion(op);
+			//Insertamos el primero también
+			signos.add(op.getSigno_op());
+			//Comprobamos que todos los signos sean de tipo lógico
+			for(signo s: signos) {
+				if(s.getName() == "sum" || s.getName() == "res" || s.getName() == "mult" || s.getName() == "div") {
+					error("La expresión debe ser de tipo lógico", op, DiagramapseudocodigoPackage.Literals.OPERACION__SIGNO_OP);
+				}
+			}
+		}
+	}
+	
+	@Check
+	//Función que se encarga de comprobar si la operación de la condición de la estructura "Mientras" es de tipo lógico
+	protected void checkCondicionesMientras(mientras miMientras) {
+		if(miMientras.getValor() instanceof  operacion) {
+			operacion op = (operacion) miMientras.getValor();
+			List<signo> signos = funciones.registrarSignosOperacion(op);
+			//Insertamos el primero también
+			signos.add(op.getSigno_op());
+			//Comprobamos que todos los signos sean de tipo lógico
+			for(signo s: signos) {
+				if(s.getName() == "sum" || s.getName() == "res" || s.getName() == "mult" || s.getName() == "div") {
+					error("La expresión debe ser de tipo lógico", op, DiagramapseudocodigoPackage.Literals.OPERACION__SIGNO_OP);
+				}
+			}
+		}
+	}
+	
+	@Check
+	//Función que se encarga de comprobar si la operación de la condición de la estructura "Repetir" es de tipo lógico
+	protected void checkCondicionesRepetir(repetir miRepetir) {
+		if(miRepetir.getValor() instanceof  operacion) {
+			operacion op = (operacion) miRepetir.getValor();
+			List<signo> signos = funciones.registrarSignosOperacion(op);
+			//Insertamos el primero también
+			signos.add(op.getSigno_op());
+			//Comprobamos que todos los signos sean de tipo lógico
+			for(signo s: signos) {
+				if(s.getName() == "sum" || s.getName() == "res" || s.getName() == "mult" || s.getName() == "div") {
+					error("La expresión debe ser de tipo lógico", op, DiagramapseudocodigoPackage.Literals.OPERACION__SIGNO_OP);
+				}
+			}
+		}
+	}
+	
+	@Check
 	//Función que se encarga de comprobar si un vector al que se accede a un campo es un vector de registro
 	protected void checkValorVector(Codigo c) {
 		//Registramos todos los nombres de los registros existentes y registramos los vectores con sus respectivos tipos declarados

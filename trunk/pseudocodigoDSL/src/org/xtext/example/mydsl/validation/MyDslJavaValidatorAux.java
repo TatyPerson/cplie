@@ -39,6 +39,7 @@ import diagramapseudocodigo.Variable;
 import diagramapseudocodigo.VariableID;
 import diagramapseudocodigo.Vector;
 import diagramapseudocodigo.operacion;
+import diagramapseudocodigo.signo;
 import diagramapseudocodigo.valor;
 
 public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
@@ -450,6 +451,40 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		else {
 			registrarValoresOperacionRec((operacion)o.getOp_der().getOper_der(), valores);
 			registrarValoresOperacionRec((operacion)o.getOp_izq().getOper_izq(), valores);
+			
+		}
+	}
+	
+	protected List<signo> registrarSignosOperacion(operacion o) {
+		List<signo> signos = new ArrayList<signo>();
+		if(!(o.getOp_der().getOper_der() instanceof operacion)) {
+			signo s = (signo) o.getSigno_op();
+			signos.add(s);
+		}
+		if(!(o.getOp_izq().getOper_izq() instanceof operacion)) {
+			signo s = (signo) o.getSigno_op();
+			signos.add(s);
+		}
+		else {
+			registrarSignosOperacionRec((operacion)o.getOp_der().getOper_der(), signos);
+			registrarSignosOperacionRec((operacion)o.getOp_izq().getOper_izq(), signos);
+			
+		}
+		return signos;
+	}
+	
+	protected void registrarSignosOperacionRec(operacion o, List<signo> signos) {
+		if(!(o.getOp_der().getOper_der() instanceof operacion)) {
+			signo s = (signo) o.getSigno_op();
+			signos.add(s);
+		}
+		if(!(o.getOp_izq().getOper_izq() instanceof operacion)) {
+			signo s = (signo) o.getSigno_op();
+			signos.add(s);
+		}
+		else {
+			registrarSignosOperacionRec((operacion)o.getOp_der().getOper_der(), signos);
+			registrarSignosOperacionRec((operacion)o.getOp_izq().getOper_izq(), signos);
 			
 		}
 	}
