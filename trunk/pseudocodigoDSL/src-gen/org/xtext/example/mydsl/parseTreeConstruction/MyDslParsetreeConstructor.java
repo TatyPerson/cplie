@@ -10258,11 +10258,11 @@ protected class Desde_Fin_desdeKeyword_6 extends KeywordToken  {
 /************ begin Rule Caso ****************
  *
  * Caso:
- * 	operador=Operador ":" (sentencias+=Sentencias sentencias+=Sentencias*)? devuelve=Devolver?;
+ * 	operador=Operador ": " (sentencias+=Sentencias sentencias+=Sentencias*)? devuelve=Devolver?;
  *
  **/
 
-// operador=Operador ":" (sentencias+=Sentencias sentencias+=Sentencias*)? devuelve=Devolver?
+// operador=Operador ": " (sentencias+=Sentencias sentencias+=Sentencias*)? devuelve=Devolver?
 protected class Caso_Group extends GroupToken {
 	
 	public Caso_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10279,7 +10279,7 @@ protected class Caso_Group extends GroupToken {
 		switch(index) {
 			case 0: return new Caso_DevuelveAssignment_3(lastRuleCallOrigin, this, 0, inst);
 			case 1: return new Caso_Group_2(lastRuleCallOrigin, this, 1, inst);
-			case 2: return new Caso_ColonKeyword_1(lastRuleCallOrigin, this, 2, inst);
+			case 2: return new Caso_ColonSpaceKeyword_1(lastRuleCallOrigin, this, 2, inst);
 			default: return null;
 		}	
 	}
@@ -10338,16 +10338,16 @@ protected class Caso_OperadorAssignment_0 extends AssignmentToken  {
 	}	
 }
 
-// ":"
-protected class Caso_ColonKeyword_1 extends KeywordToken  {
+// ": "
+protected class Caso_ColonSpaceKeyword_1 extends KeywordToken  {
 	
-	public Caso_ColonKeyword_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Caso_ColonSpaceKeyword_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getCasoAccess().getColonKeyword_1();
+		return grammarAccess.getCasoAccess().getColonSpaceKeyword_1();
 	}
 
     @Override
@@ -10423,7 +10423,7 @@ protected class Caso_SentenciasAssignment_2_0 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new Caso_ColonKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new Caso_ColonSpaceKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
@@ -10518,7 +10518,7 @@ protected class Caso_DevuelveAssignment_3 extends AssignmentToken  {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
 			case 0: return new Caso_Group_2(lastRuleCallOrigin, next, actIndex, consumed);
-			case 1: return new Caso_ColonKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 1: return new Caso_ColonSpaceKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	

@@ -203,7 +203,7 @@ desde returns desde:
 	'fin_desde';
 	
 Caso returns Caso:
-	operador=Operador ':' (sentencias+=Sentencias ( sentencias+=Sentencias )* )?
+	operador=Operador ': ' (sentencias+=Sentencias ( sentencias+=Sentencias )* )?
 	(devuelve=Devolver)?
 ;
 	

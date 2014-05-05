@@ -6,6 +6,7 @@ package org.xtext.example.mydsl.formatting;
 import org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
 import org.eclipse.xtext.Keyword;
+import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.util.Pair;
 
 /**
@@ -29,10 +30,6 @@ public class MyDslFormatter extends AbstractDeclarativeFormatter {
             c.setSpace(" ").after(comma);
         }
         
-        c.setLinewrap(0, 1, 2).before(getGrammarAccess().getGrammar());
-        c.setLinewrap(0, 1, 2).before(getGrammarAccess().getGrammar());
-        c.setLinewrap(0, 1, 1).after(getGrammarAccess().getGrammar());
-        
         for(Keyword comentario: f.findKeywords("//")) {
         	c.setLinewrap(2).before(comentario);
         }
@@ -55,17 +52,14 @@ public class MyDslFormatter extends AbstractDeclarativeFormatter {
         
         //Para el formato de los archivos:
         
-        //c.setLinewrap(1).after(f.getArchivoRule());
         c.setLinewrap(1).before(f.getArchivoRule());
         
         //Para el formato de los vectores
         
-        //c.setLinewrap(1).after(f.getVectorRule());
         c.setLinewrap(1).before(f.getVectorRule());
         
         //Para el formato de los matrices
         
-        //c.setLinewrap(1).after(f.getMatrizRule());
         c.setLinewrap(1).before(f.getMatrizRule());
         
         for(Keyword var: f.findKeywords("var")) {
@@ -134,15 +128,81 @@ public class MyDslFormatter extends AbstractDeclarativeFormatter {
         	c.setLinewrap(2).after(keyFinDesde);
         }
         
+        for(Keyword keyConst: f.findKeywords("const")) {
+        	c.setIndentationIncrement().after(keyConst);
+        }
+        
+        for(Keyword keyTipo: f.findKeywords("tipo")) {
+        	c.setIndentationDecrement().before(keyTipo);
+        	c.setIndentationIncrement().after(keyTipo);
+        }
+        
+        c.setIndentationDecrement().before(f.getSubprocesoRule());
+        
+        
+        for(Keyword keyVar: f.findKeywords("var")) {
+        	c.setIndentationIncrement().before(keyVar);
+        	c.setIndentationIncrement().after(keyVar);
+        }
+        
+        for(Keyword keyInicio: f.findKeywords("inicio")) {
+        	c.setIndentationDecrement().before(keyInicio);
+        	c.setIndentationIncrement().after(keyInicio);
+        }
+        
+        for(Keyword keyFinFuncion: f.findKeywords("fin_funcion")) {
+        	c.setIndentationDecrement().before(keyFinFuncion);
+        	c.setIndentationDecrement().before(keyFinFuncion);
+        	c.setIndentationDecrement().after(keyFinFuncion);
+        }
+        
+        for(Keyword keyFinInicio: f.findKeywords("fin_inicio")) {
+        	c.setIndentationDecrement().before(keyFinInicio);
+        }
+        
+        for(Keyword keyHacerDesde: f.findKeywords("hacer")) {
+        	c.setLinewrap(1).after(keyHacerDesde);
+        	c.setIndentationIncrement().before(keyHacerDesde);
+        }
+        
+        for(Keyword keyFinDesde: f.findKeywords("fin_desde")) {
+        	c.setIndentationDecrement().before(keyFinDesde);
+        }
+        
+        for(Keyword keyEntoncesSi: f.findKeywords("entonces")) {
+        	c.setIndentationIncrement().before(keyEntoncesSi);
+        }
+        
+        for(Keyword keySinoSi: f.findKeywords("sino")) {
+        	c.setIndentationDecrement().before(keySinoSi);
+        	c.setIndentationIncrement().after(keySinoSi);
+        }
+        
+        for(Keyword keyFinSi: f.findKeywords("fin_si")) {
+        	c.setIndentationDecrement().before(keyFinSi);
+        }
+        
+        for(Keyword keyFinMientras: f.findKeywords("fin_mientras")) {
+        	c.setIndentationDecrement().before(keyFinMientras);
+        }
+        
+        for(Keyword keyRepetir: f.findKeywords("repetir")) {
+        	c.setIndentationIncrement().after(keyRepetir);
+        }
+        
+        for(Keyword keyHastaQueRepetir: f.findKeywords("hasta_que")) {
+        	c.setIndentationDecrement().before(keyHastaQueRepetir);
+        }
+        
+        for(Keyword keyFinSegun: f.findKeywords("fin_segun")) {
+        	c.setIndentationDecrement().before(keyFinSegun);
+        }
+        
         c.setLinewrap(2).before(f.getDesdeRule());
         
         c.setLinewrap(2).after(f.getTipoComplejoRule());
         
         c.setLinewrap(2).after(f.getSiRule());
         c.setLinewrap(2).before(f.getSiRule());
-        
-        c.setSpace("  ").before(f.getSiAccess().getSentenciasSentenciasParserRuleCall_3_0_0());
-        
-        c.setIndentation(f.getInicioAccess().getInicioKeyword_3(), f.getInicioAccess().getTieneAssignment_4_0());
 	}
 }
