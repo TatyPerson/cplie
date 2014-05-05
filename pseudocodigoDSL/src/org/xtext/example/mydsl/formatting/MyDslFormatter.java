@@ -29,8 +29,12 @@ public class MyDslFormatter extends AbstractDeclarativeFormatter {
             c.setSpace(" ").after(comma);
         }
         
+        c.setLinewrap(0, 1, 2).before(getGrammarAccess().getGrammar());
+        c.setLinewrap(0, 1, 2).before(getGrammarAccess().getGrammar());
+        c.setLinewrap(0, 1, 1).after(getGrammarAccess().getGrammar());
+        
         for(Keyword comentario: f.findKeywords("//")) {
-        	c.setLinewrap(1).before(comentario);
+        	c.setLinewrap(2).before(comentario);
         }
         
         for(Keyword dosPuntos: f.findKeywords(":")) {
@@ -80,10 +84,10 @@ public class MyDslFormatter extends AbstractDeclarativeFormatter {
         	c.setNoSpace().after(var);
         }
         
-        c.setLinewrap(1).after(f.getSentenciasRule());
+        c.setLinewrap(2).after(f.getSentenciasRule());
         
-        for(Keyword var: f.findKeywords("entonces")) {
-        	c.setLinewrap(2).after(var);
+        for(Keyword keyEntonces: f.findKeywords("entonces")) {
+        	c.setLinewrap(2).after(keyEntonces);
         }
         
         for(Keyword llave: f.findKeywords("[")) {
@@ -118,24 +122,24 @@ public class MyDslFormatter extends AbstractDeclarativeFormatter {
         }
         
         for(Keyword keyVar: f.findKeywords("var")) {
-        	c.setLinewrap(1).before(keyVar);
-        	c.setLinewrap(1).after(keyVar);
+        	c.setLinewrap(2).before(keyVar);
+        	c.setLinewrap(2).after(keyVar);
         }
         
         for(Keyword keyInicio: f.findKeywords("inicio")) {
-        	c.setLinewrap(1).before(keyInicio);
+        	c.setLinewrap(2).before(keyInicio);
         }
         
         for(Keyword keyFinDesde: f.findKeywords("fin_desde")) {
-        	c.setLinewrap(1).after(keyFinDesde);
+        	c.setLinewrap(2).after(keyFinDesde);
         }
         
-        c.setLinewrap(1).after(f.getTipoComplejoRule());
-        c.setSpace("  ").after(f.getInicioAccess().getDeclaracionDeclaracionParserRuleCall_2_0_0());
-        c.setSpace("  ").after(f.getInicioAccess().getTieneSentenciasParserRuleCall_4_0_0());
+        c.setLinewrap(2).before(f.getDesdeRule());
         
-        c.setLinewrap(1).after(f.getSiRule());
-        c.setLinewrap(1).before(f.getSiRule());
+        c.setLinewrap(2).after(f.getTipoComplejoRule());
+        
+        c.setLinewrap(2).after(f.getSiRule());
+        c.setLinewrap(2).before(f.getSiRule());
         
         c.setSpace("  ").before(f.getSiAccess().getSentenciasSentenciasParserRuleCall_3_0_0());
         
