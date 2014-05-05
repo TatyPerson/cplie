@@ -22,19 +22,123 @@ public class MyDslFormatter extends AbstractDeclarativeFormatter {
 	@Override
 	protected void configureFormatting(FormattingConfig c) {
 		org.xtext.example.mydsl.services.MyDslGrammarAccess f = (org.xtext.example.mydsl.services.MyDslGrammarAccess) getGrammarAccess();
-		for (Pair<Keyword, Keyword> pair : f.findKeywordPairs("{", "}")) {
-			c.setIndentation(pair.getFirst(), pair.getSecond());
-			c.setLinewrap(1).after(pair.getFirst());
-			c.setLinewrap(1).before(pair.getSecond());
-			c.setLinewrap(1).after(pair.getSecond());
-		}
-		for (Keyword comma : f.findKeywords(",")) {
-			c.setNoLinewrap().before(comma);
-			c.setNoSpace().before(comma);
-			c.setLinewrap().after(comma);
-		}
-		c.setLinewrap(0, 1, 2).before(f.getSL_COMMENTRule());
-		c.setLinewrap(0, 1, 2).before(f.getML_COMMENTRule());
-		c.setLinewrap(0, 1, 1).after(f.getML_COMMENTRule());
+    
+        for(Keyword comma: f.findKeywords(",")) {
+            c.setNoLinewrap().before(comma);
+            c.setNoSpace().before(comma);
+            c.setSpace(" ").after(comma);
+        }
+        
+        for(Keyword comentario: f.findKeywords("//")) {
+        	c.setLinewrap(1).before(comentario);
+        }
+        
+        for(Keyword dosPuntos: f.findKeywords(":")) {
+        	c.setNoSpace().before(dosPuntos);
+        	c.setNoSpace().after(dosPuntos);
+        }
+        
+        //Para el formato de los registros:
+        for(Keyword registro: f.findKeywords("registro:")) {
+        	c.setLinewrap(1).before(registro);
+        }
+        for(Keyword finRegistro: f.findKeywords("fin_registro")) {
+        	c.setLinewrap(2).after(finRegistro);
+        }
+        c.setLinewrap(1).after(f.getRegistroAccess().getNombreEStringParserRuleCall_1_0());
+        c.setLinewrap(1).after(f.getTipoComplejoRule());
+        c.setLinewrap(1).after(f.getDeclaracionRule());
+        
+        //Para el formato de los archivos:
+        
+        //c.setLinewrap(1).after(f.getArchivoRule());
+        c.setLinewrap(1).before(f.getArchivoRule());
+        
+        //Para el formato de los vectores
+        
+        //c.setLinewrap(1).after(f.getVectorRule());
+        c.setLinewrap(1).before(f.getVectorRule());
+        
+        //Para el formato de los matrices
+        
+        //c.setLinewrap(1).after(f.getMatrizRule());
+        c.setLinewrap(1).before(f.getMatrizRule());
+        
+        for(Keyword var: f.findKeywords("var")) {
+        	c.setLinewrap(1).before(var);
+        	c.setLinewrap(1).after(var);
+        }
+        
+        for(Keyword var: f.findKeywords("fin_funcion")) {
+        	c.setLinewrap(2).after(var);
+        }
+        
+        c.setLinewrap(1).after(f.getDeclaracionVariableRule());
+        
+        for(Keyword var: f.findKeywords(".")) {
+        	c.setNoSpace().before(var);
+        	c.setNoSpace().after(var);
+        }
+        
+        c.setLinewrap(1).after(f.getSentenciasRule());
+        
+        for(Keyword var: f.findKeywords("entonces")) {
+        	c.setLinewrap(2).after(var);
+        }
+        
+        for(Keyword llave: f.findKeywords("[")) {
+        	c.setNoSpace().before(llave);
+        	c.setNoSpace().after(llave);
+        }
+        
+        for(Keyword llave: f.findKeywords("]")) {
+        	c.setNoSpace().before(llave);
+        }
+        
+        for(Keyword llave: f.findKeywords("][")) {
+        	c.setNoSpace().before(llave);
+        	c.setNoSpace().after(llave);
+        }
+        
+        for(Keyword llave: f.findKeywords("(")) {
+        	c.setNoSpace().after(llave);
+        	c.setNoSpace().before(llave);
+        }
+        
+        for(Keyword llave: f.findKeywords(")")) {
+        	c.setNoSpace().before(llave);
+        }
+        
+        for(Keyword keyConst: f.findKeywords("const")) {
+        	c.setLinewrap(2).before(keyConst);
+        }
+        
+        for(Keyword keyTipo: f.findKeywords("tipo")) {
+        	c.setLinewrap(2).before(keyTipo);
+        }
+        
+        for(Keyword keyVar: f.findKeywords("var")) {
+        	c.setLinewrap(1).before(keyVar);
+        	c.setLinewrap(1).after(keyVar);
+        }
+        
+        for(Keyword keyInicio: f.findKeywords("inicio")) {
+        	c.setLinewrap(1).before(keyInicio);
+        }
+        
+        for(Keyword keyFinDesde: f.findKeywords("fin_desde")) {
+        	c.setLinewrap(1).after(keyFinDesde);
+        }
+        
+        c.setLinewrap(1).after(f.getTipoComplejoRule());
+        c.setSpace("  ").after(f.getInicioAccess().getDeclaracionDeclaracionParserRuleCall_2_0_0());
+        c.setSpace("  ").after(f.getInicioAccess().getTieneSentenciasParserRuleCall_4_0_0());
+        
+        c.setLinewrap(1).after(f.getSiRule());
+        c.setLinewrap(1).before(f.getSiRule());
+        
+        c.setSpace("  ").before(f.getSiAccess().getSentenciasSentenciasParserRuleCall_3_0_0());
+        
+        c.setIndentation(f.getInicioAccess().getInicioKeyword_3(), f.getInicioAccess().getTieneAssignment_4_0());
 	}
 }

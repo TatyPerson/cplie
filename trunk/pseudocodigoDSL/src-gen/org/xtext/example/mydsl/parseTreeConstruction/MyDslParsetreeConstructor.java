@@ -5350,11 +5350,11 @@ protected class Constantes_ValorAssignment_2 extends AssignmentToken  {
 /************ begin Rule Vector ****************
  *
  * Vector:
- * 	"vector " "[" (valor=NumeroEntero | valor=VariableID) "]" " de " tipo=Tipo " : " nombre=EString;
+ * 	"vector " "[" (valor=NumeroEntero | valor=VariableID) "]" "de" tipo=Tipo ": " nombre=EString;
  *
  **/
 
-// "vector " "[" (valor=NumeroEntero | valor=VariableID) "]" " de " tipo=Tipo " : " nombre=EString
+// "vector " "[" (valor=NumeroEntero | valor=VariableID) "]" "de" tipo=Tipo ": " nombre=EString
 protected class Vector_Group extends GroupToken {
 	
 	public Vector_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5564,7 +5564,7 @@ protected class Vector_RightSquareBracketKeyword_3 extends KeywordToken  {
 
 }
 
-// " de "
+// "de"
 protected class Vector_DeKeyword_4 extends KeywordToken  {
 	
 	public Vector_DeKeyword_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5632,16 +5632,16 @@ protected class Vector_TipoAssignment_5 extends AssignmentToken  {
 	}	
 }
 
-// " : "
-protected class Vector_SpaceColonSpaceKeyword_6 extends KeywordToken  {
+// ": "
+protected class Vector_ColonSpaceKeyword_6 extends KeywordToken  {
 	
-	public Vector_SpaceColonSpaceKeyword_6(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Vector_ColonSpaceKeyword_6(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getVectorAccess().getSpaceColonSpaceKeyword_6();
+		return grammarAccess.getVectorAccess().getColonSpaceKeyword_6();
 	}
 
     @Override
@@ -5669,7 +5669,7 @@ protected class Vector_NombreAssignment_7 extends AssignmentToken  {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Vector_SpaceColonSpaceKeyword_6(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Vector_ColonSpaceKeyword_6(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -5695,13 +5695,13 @@ protected class Vector_NombreAssignment_7 extends AssignmentToken  {
 /************ begin Rule Matriz ****************
  *
  * Matriz:
- * 	"matriz " "[" (valor+=NumeroEntero | valor+=VariableID) "][" (valor+=NumeroEntero | valor+=VariableID) "]" " de "
- * 	tipo=Tipo " : " nombre=EString;
+ * 	"matriz " "[" (valor+=NumeroEntero | valor+=VariableID) "][" (valor+=NumeroEntero | valor+=VariableID) "]" "de"
+ * 	tipo=Tipo ": " nombre=EString;
  *
  **/
 
-// "matriz " "[" (valor+=NumeroEntero | valor+=VariableID) "][" (valor+=NumeroEntero | valor+=VariableID) "]" " de "
-// tipo=Tipo " : " nombre=EString
+// "matriz " "[" (valor+=NumeroEntero | valor+=VariableID) "][" (valor+=NumeroEntero | valor+=VariableID) "]" "de"
+// tipo=Tipo ": " nombre=EString
 protected class Matriz_Group extends GroupToken {
 	
 	public Matriz_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -6049,7 +6049,7 @@ protected class Matriz_RightSquareBracketKeyword_5 extends KeywordToken  {
 
 }
 
-// " de "
+// "de"
 protected class Matriz_DeKeyword_6 extends KeywordToken  {
 	
 	public Matriz_DeKeyword_6(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -6117,16 +6117,16 @@ protected class Matriz_TipoAssignment_7 extends AssignmentToken  {
 	}	
 }
 
-// " : "
-protected class Matriz_SpaceColonSpaceKeyword_8 extends KeywordToken  {
+// ": "
+protected class Matriz_ColonSpaceKeyword_8 extends KeywordToken  {
 	
-	public Matriz_SpaceColonSpaceKeyword_8(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Matriz_ColonSpaceKeyword_8(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getMatrizAccess().getSpaceColonSpaceKeyword_8();
+		return grammarAccess.getMatrizAccess().getColonSpaceKeyword_8();
 	}
 
     @Override
@@ -6154,7 +6154,7 @@ protected class Matriz_NombreAssignment_9 extends AssignmentToken  {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Matriz_SpaceColonSpaceKeyword_8(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Matriz_ColonSpaceKeyword_8(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -6414,11 +6414,11 @@ protected class Registro_Fin_registroKeyword_3 extends KeywordToken  {
 /************ begin Rule Archivo ****************
  *
  * Archivo:
- * 	"archivo de " tipo=Tipo ":" nombre=EString;
+ * 	"archivo de " tipo=Tipo ": " nombre=EString;
  *
  **/
 
-// "archivo de " tipo=Tipo ":" nombre=EString
+// "archivo de " tipo=Tipo ": " nombre=EString
 protected class Archivo_Group extends GroupToken {
 	
 	public Archivo_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -6514,16 +6514,16 @@ protected class Archivo_TipoAssignment_1 extends AssignmentToken  {
 	}	
 }
 
-// ":"
-protected class Archivo_ColonKeyword_2 extends KeywordToken  {
+// ": "
+protected class Archivo_ColonSpaceKeyword_2 extends KeywordToken  {
 	
-	public Archivo_ColonKeyword_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Archivo_ColonSpaceKeyword_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getArchivoAccess().getColonKeyword_2();
+		return grammarAccess.getArchivoAccess().getColonSpaceKeyword_2();
 	}
 
     @Override
@@ -6551,7 +6551,7 @@ protected class Archivo_NombreAssignment_3 extends AssignmentToken  {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Archivo_ColonKeyword_2(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Archivo_ColonSpaceKeyword_2(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -7480,11 +7480,11 @@ protected class Inicio_Fin_inicioKeyword_5 extends KeywordToken  {
 /************ begin Rule DeclaracionVariable ****************
  *
  * DeclaracionVariable:
- * 	tipo=TipoVariable ":" variable+=Variable ("," variable+=Variable)*;
+ * 	tipo=TipoVariable ": " variable+=Variable ("," variable+=Variable)*;
  *
  **/
 
-// tipo=TipoVariable ":" variable+=Variable ("," variable+=Variable)*
+// tipo=TipoVariable ": " variable+=Variable ("," variable+=Variable)*
 protected class DeclaracionVariable_Group extends GroupToken {
 	
 	public DeclaracionVariable_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -7547,16 +7547,16 @@ protected class DeclaracionVariable_TipoAssignment_0 extends AssignmentToken  {
 
 }
 
-// ":"
-protected class DeclaracionVariable_ColonKeyword_1 extends KeywordToken  {
+// ": "
+protected class DeclaracionVariable_ColonSpaceKeyword_1 extends KeywordToken  {
 	
-	public DeclaracionVariable_ColonKeyword_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public DeclaracionVariable_ColonSpaceKeyword_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getDeclaracionVariableAccess().getColonKeyword_1();
+		return grammarAccess.getDeclaracionVariableAccess().getColonSpaceKeyword_1();
 	}
 
     @Override
@@ -7609,7 +7609,7 @@ protected class DeclaracionVariable_VariableAssignment_2 extends AssignmentToken
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new DeclaracionVariable_ColonKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new DeclaracionVariable_ColonSpaceKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
@@ -7714,11 +7714,11 @@ protected class DeclaracionVariable_VariableAssignment_3_1 extends AssignmentTok
 /************ begin Rule DeclaracionPropia ****************
  *
  * DeclaracionPropia:
- * 	tipo=EString ":" variable+=Variable ("," variable+=Variable)*;
+ * 	tipo=EString ": " variable+=Variable ("," variable+=Variable)*;
  *
  **/
 
-// tipo=EString ":" variable+=Variable ("," variable+=Variable)*
+// tipo=EString ": " variable+=Variable ("," variable+=Variable)*
 protected class DeclaracionPropia_Group extends GroupToken {
 	
 	public DeclaracionPropia_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -7781,16 +7781,16 @@ protected class DeclaracionPropia_TipoAssignment_0 extends AssignmentToken  {
 
 }
 
-// ":"
-protected class DeclaracionPropia_ColonKeyword_1 extends KeywordToken  {
+// ": "
+protected class DeclaracionPropia_ColonSpaceKeyword_1 extends KeywordToken  {
 	
-	public DeclaracionPropia_ColonKeyword_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public DeclaracionPropia_ColonSpaceKeyword_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getDeclaracionPropiaAccess().getColonKeyword_1();
+		return grammarAccess.getDeclaracionPropiaAccess().getColonSpaceKeyword_1();
 	}
 
     @Override
@@ -7843,7 +7843,7 @@ protected class DeclaracionPropia_VariableAssignment_2 extends AssignmentToken  
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new DeclaracionPropia_ColonKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new DeclaracionPropia_ColonSpaceKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
@@ -12338,11 +12338,11 @@ protected class Devolver_RightParenthesisKeyword_4 extends KeywordToken  {
 /************ begin Rule ParametroFuncion ****************
  *
  * ParametroFuncion:
- * 	paso=TipoPaso tipo=Tipo ":" variable=Variable;
+ * 	paso=TipoPaso tipo=Tipo ": " variable=Variable;
  *
  **/
 
-// paso=TipoPaso tipo=Tipo ":" variable=Variable
+// paso=TipoPaso tipo=Tipo ": " variable=Variable
 protected class ParametroFuncion_Group extends GroupToken {
 	
 	public ParametroFuncion_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -12450,16 +12450,16 @@ protected class ParametroFuncion_TipoAssignment_1 extends AssignmentToken  {
 	}	
 }
 
-// ":"
-protected class ParametroFuncion_ColonKeyword_2 extends KeywordToken  {
+// ": "
+protected class ParametroFuncion_ColonSpaceKeyword_2 extends KeywordToken  {
 	
-	public ParametroFuncion_ColonKeyword_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public ParametroFuncion_ColonSpaceKeyword_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getParametroFuncionAccess().getColonKeyword_2();
+		return grammarAccess.getParametroFuncionAccess().getColonSpaceKeyword_2();
 	}
 
     @Override
@@ -12512,7 +12512,7 @@ protected class ParametroFuncion_VariableAssignment_3 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new ParametroFuncion_ColonKeyword_2(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new ParametroFuncion_ColonSpaceKeyword_2(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	

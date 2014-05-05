@@ -103,10 +103,10 @@ Constantes returns Constantes:
 	variable=Variable '=' valor=valor;
 
 Vector returns Vector:
-	'vector ' '['(valor=NumeroEntero | valor=VariableID)']' ' de '  tipo=Tipo ' : ' nombre=EString;
+	'vector ' '['(valor=NumeroEntero | valor=VariableID)']' 'de'  tipo=Tipo ': ' nombre=EString;
 
 Matriz returns Matriz:
-	'matriz ' '['(valor+=NumeroEntero | valor+=VariableID)']['(valor+=NumeroEntero | valor+=VariableID)']' ' de ' tipo=Tipo ' : ' nombre=EString;
+	'matriz ' '['(valor+=NumeroEntero | valor+=VariableID)']['(valor+=NumeroEntero | valor+=VariableID)']' 'de' tipo=Tipo ': ' nombre=EString;
 	
 
 Registro returns Registro:
@@ -115,7 +115,7 @@ Registro returns Registro:
 	'fin_registro';
 	
 Archivo returns Archivo:
-	'archivo de ' tipo=Tipo':' nombre=EString;
+	'archivo de ' tipo=Tipo': ' nombre=EString;
 	
 
 Enumerado returns Enumerado:
@@ -139,11 +139,11 @@ EString returns ecore::EString:
 	STRING | ID;
 
 DeclaracionVariable returns DeclaracionVariable:
-	tipo=TipoVariable ':'
+	tipo=TipoVariable ': '
 	variable+=Variable ( ',' variable+=Variable)*;
 	
 DeclaracionPropia returns DeclaracionPropia:
-	tipo=EString ':'
+	tipo=EString ': '
 	variable+=Variable (',' variable+=Variable)*;
 
 LlamadaFuncion returns LlamadaFuncion:
@@ -299,7 +299,7 @@ inc returns inc:
 	
 ParametroFuncion returns ParametroFuncion:
 	paso=TipoPaso
-	tipo=Tipo ":"
+	tipo=Tipo ": "
 	variable=Variable;
 
 Funcion returns Funcion:

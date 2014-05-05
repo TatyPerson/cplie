@@ -1973,7 +1973,7 @@ ruleVector returns [EObject current=null]
     {
     	newLeafNode(otherlv_4, grammarAccess.getVectorAccess().getRightSquareBracketKeyword_3());
     }
-	otherlv_5=' de ' 
+	otherlv_5='de' 
     {
     	newLeafNode(otherlv_5, grammarAccess.getVectorAccess().getDeKeyword_4());
     }
@@ -1995,9 +1995,9 @@ ruleVector returns [EObject current=null]
 	    }
 
 )
-)	otherlv_7=' : ' 
+)	otherlv_7=': ' 
     {
-    	newLeafNode(otherlv_7, grammarAccess.getVectorAccess().getSpaceColonSpaceKeyword_6());
+    	newLeafNode(otherlv_7, grammarAccess.getVectorAccess().getColonSpaceKeyword_6());
     }
 (
 (
@@ -2128,7 +2128,7 @@ ruleMatriz returns [EObject current=null]
     {
     	newLeafNode(otherlv_7, grammarAccess.getMatrizAccess().getRightSquareBracketKeyword_5());
     }
-	otherlv_8=' de ' 
+	otherlv_8='de' 
     {
     	newLeafNode(otherlv_8, grammarAccess.getMatrizAccess().getDeKeyword_6());
     }
@@ -2150,9 +2150,9 @@ ruleMatriz returns [EObject current=null]
 	    }
 
 )
-)	otherlv_10=' : ' 
+)	otherlv_10=': ' 
     {
-    	newLeafNode(otherlv_10, grammarAccess.getMatrizAccess().getSpaceColonSpaceKeyword_8());
+    	newLeafNode(otherlv_10, grammarAccess.getMatrizAccess().getColonSpaceKeyword_8());
     }
 (
 (
@@ -2298,9 +2298,9 @@ ruleArchivo returns [EObject current=null]
 	    }
 
 )
-)	otherlv_2=':' 
+)	otherlv_2=': ' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getArchivoAccess().getColonKeyword_2());
+    	newLeafNode(otherlv_2, grammarAccess.getArchivoAccess().getColonSpaceKeyword_2());
     }
 (
 (
@@ -2710,9 +2710,9 @@ ruleDeclaracionVariable returns [EObject current=null]
 	    }
 
 )
-)	otherlv_1=':' 
+)	otherlv_1=': ' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getDeclaracionVariableAccess().getColonKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getDeclaracionVariableAccess().getColonSpaceKeyword_1());
     }
 (
 (
@@ -2793,9 +2793,9 @@ ruleDeclaracionPropia returns [EObject current=null]
 	    }
 
 )
-)	otherlv_1=':' 
+)	otherlv_1=': ' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getDeclaracionPropiaAccess().getColonKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getDeclaracionPropiaAccess().getColonSpaceKeyword_1());
     }
 (
 (
@@ -4919,9 +4919,9 @@ ruleParametroFuncion returns [EObject current=null]
 	    }
 
 )
-)	otherlv_2=':' 
+)	otherlv_2=': ' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getParametroFuncionAccess().getColonKeyword_2());
+    	newLeafNode(otherlv_2, grammarAccess.getParametroFuncionAccess().getColonSpaceKeyword_2());
     }
 (
 (
