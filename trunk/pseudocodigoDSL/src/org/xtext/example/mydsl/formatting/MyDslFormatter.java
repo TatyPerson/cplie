@@ -37,6 +37,14 @@ public class MyDslFormatter extends AbstractDeclarativeFormatter {
         	c.setNoSpace().after(dosPuntos);
         }
         
+        for(Keyword menosMenos: f.findKeywords("--")) {
+        	c.setNoSpace().before(menosMenos);
+        }
+        
+        for(Keyword masMas: f.findKeywords("++")) {
+        	c.setNoSpace().before(masMas);
+        }
+        
         //Para el formato de los registros:
         for(Keyword registro: f.findKeywords("registro:")) {
         	c.setLinewrap(1).before(registro);
@@ -45,29 +53,9 @@ public class MyDslFormatter extends AbstractDeclarativeFormatter {
         	c.setLinewrap(2).after(finRegistro);
         }
         c.setLinewrap(1).after(f.getRegistroAccess().getNombreEStringParserRuleCall_1_0());
-        c.setLinewrap(1).after(f.getTipoComplejoRule());
+        c.setLinewrap(2).after(f.getTipoComplejoRule());
         c.setLinewrap(1).after(f.getDeclaracionRule());
         
-        //Para el formato de los archivos:
-        
-        c.setLinewrap(1).before(f.getArchivoRule());
-        
-        //Para el formato de los vectores
-        
-        c.setLinewrap(1).before(f.getVectorRule());
-        
-        //Para el formato de los matrices
-        
-        c.setLinewrap(1).before(f.getMatrizRule());
-        
-        for(Keyword var: f.findKeywords("var")) {
-        	c.setLinewrap(1).before(var);
-        	c.setLinewrap(1).after(var);
-        }
-        
-        for(Keyword var: f.findKeywords("fin_funcion")) {
-        	c.setLinewrap(2).after(var);
-        }
         
         c.setLinewrap(1).after(f.getDeclaracionVariableRule());
         
@@ -113,10 +101,6 @@ public class MyDslFormatter extends AbstractDeclarativeFormatter {
         	c.setLinewrap(2).before(keyTipo);
         }
         
-        for(Keyword keyVar: f.findKeywords("var")) {
-        	c.setLinewrap(2).before(keyVar);
-        	c.setLinewrap(2).after(keyVar);
-        }
         
         for(Keyword keyInicio: f.findKeywords("inicio")) {
         	c.setLinewrap(2).before(keyInicio);
@@ -139,19 +123,32 @@ public class MyDslFormatter extends AbstractDeclarativeFormatter {
         
         
         for(Keyword keyVar: f.findKeywords("var")) {
+        	c.setLinewrap(2).before(keyVar);
+        	c.setLinewrap(2).after(keyVar);
         	c.setIndentationIncrement().before(keyVar);
         	c.setIndentationIncrement().after(keyVar);
         }
+        
+        c.setLinewrap(2).after(f.getSubprocesoRule());
+
+        c.setLinewrap(2).after(f.getTipoComplejoRule());
         
         for(Keyword keyInicio: f.findKeywords("inicio")) {
         	c.setIndentationDecrement().before(keyInicio);
         	c.setIndentationIncrement().after(keyInicio);
         }
         
+        c.setLinewrap(2).after(f.getDevolverRule());
+        
         for(Keyword keyFinFuncion: f.findKeywords("fin_funcion")) {
         	c.setIndentationDecrement().before(keyFinFuncion);
-        	c.setIndentationDecrement().before(keyFinFuncion);
-        	c.setIndentationDecrement().after(keyFinFuncion);
+        }
+        
+        c.setIndentationDecrement().between(f.getSubprocesoRule(), f.getInicioRule());
+        c.setIndentationDecrement().between(f.getSubprocesoRule(), f.getInicioRule());
+        
+        for(Keyword keyFinProc: f.findKeywords("fin_procedimiento")) {
+        	c.setIndentationDecrement().before(keyFinProc);
         }
         
         for(Keyword keyFinInicio: f.findKeywords("fin_inicio")) {
@@ -196,11 +193,6 @@ public class MyDslFormatter extends AbstractDeclarativeFormatter {
         	c.setIndentationDecrement().before(keyFinSegun);
         }
         
-        c.setLinewrap(2).before(f.getDesdeRule());
-        
-        c.setLinewrap(2).after(f.getTipoComplejoRule());
-        
-        c.setLinewrap(2).after(f.getSiRule());
-        c.setLinewrap(2).before(f.getSiRule());
+        c.setLinewrap(1).after(f.getSentenciasRule());
 	}
 }
