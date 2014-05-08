@@ -689,9 +689,15 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		for(Sentencias s: i.getTiene()) {
 			if(s instanceof segun) {
 				segun se = (segun) s;
-				VariableID v = (VariableID) se.getValor(); //Siempre es una variable
-				if(!variables.contains(v.getNombre())) {
-					error("La variable utilizada como parámetro en el segun_sea debe haber sido previamente declarada", DiagramapseudocodigoPackage.Literals.INICIO__TIENE, i.getTiene().indexOf(s));
+				if(se.getValor() instanceof Operador) {
+					Operador op = (Operador) se.getValor();
+					if(op instanceof VariableID) {
+						VariableID v = (VariableID) op; //Siempre es una variable
+						
+						if(!variables.contains(v.getNombre())) {
+							error("La variable utilizada como parámetro en el segun_sea debe haber sido previamente declarada", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+						}
+					}
 				}
 			}
 		}
