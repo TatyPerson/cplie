@@ -113,7 +113,7 @@ inicio
 	//Ejemplo de bucle mientras
 	
 	mientras(mayoresDeEdad > 0) hacer //Funcionalidad
-		escribir("El numero de mayores de edad es:", mayoresDeEdad)
+		escribir("El numero de mayores de edad es", mayoresDeEdad)
 		mayoresDeEdad--
 	fin_mientras
 	
@@ -122,10 +122,10 @@ inicio
 	contador = 0
 	
 	repetir //Funcionalidad
-		escribir("Nombre:", personas[contador].nombre)
-		escribir("DNI:", personas[contador].dni)
-		escribir("Sexo:", personas[contador].sexo)
-		escribir("Edad:", personas[contador].edad)
+		escribir("Nombre", personas[contador].nombre)
+		escribir("DNI", personas[contador].dni)
+		escribir("Sexo", personas[contador].sexo)
+		escribir("Edad", personas[contador].edad)
 		contador = (contador + 1)
 	hasta_que(contador < DIM)
 	
