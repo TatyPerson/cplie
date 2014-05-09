@@ -121,7 +121,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	
 	@Check
 	//Función que se encarga de comprobar si un vector al que se accede a un campo es un vector de registro
-	protected void checkValorVector(Codigo c) {
+	protected void checkValorVectorMatriz(Codigo c) {
 		//Registramos todos los nombres de los registros existentes y registramos los vectores con sus respectivos tipos declarados
 		List<String> nombresRegistros = new ArrayList<String>();
 		Map<String,String> vectoresTipados = new HashMap<String,String>();
@@ -154,12 +154,87 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		checkValorVectorAux(nombresRegistros,c.getTiene().getTiene(), variablesTipadas, vectoresTipados, nombresVectores);
 		checkValorMatrizAux(nombresRegistros,c.getTiene().getTiene(), variablesTipadas, matricesTipadas, nombresMatrices);
 		
+		for(Sentencias s: c.getTiene().getTiene()) {
+			if(s instanceof Bloque) {
+				Bloque bloque = (Bloque) s;
+				if(bloque instanceof segun) {
+					segun seg = (segun) bloque;
+					for(Caso caso: seg.getCaso()) {
+						checkValorVectorAux(nombresRegistros,caso.getSentencias(), variablesTipadas, vectoresTipados, nombresVectores);
+						checkValorMatrizAux(nombresRegistros,caso.getSentencias(), variablesTipadas, matricesTipadas, nombresMatrices);
+
+						
+						for(Sentencias sentencias: caso.getSentencias()) {
+							if(sentencias instanceof Bloque) {
+								Bloque bloqueAux = (Bloque) sentencias;
+								checkValorVectorAux(nombresRegistros,bloqueAux.getSentencias(), variablesTipadas, vectoresTipados, nombresVectores);
+								checkValorMatrizAux(nombresRegistros,bloqueAux.getSentencias(), variablesTipadas, matricesTipadas, nombresMatrices);
+
+							}
+						}
+					}
+				}
+				else {
+					checkValorVectorAux(nombresRegistros,bloque.getSentencias(), variablesTipadas, vectoresTipados, nombresVectores);
+					checkValorMatrizAux(nombresRegistros,bloque.getSentencias(), variablesTipadas, matricesTipadas, nombresMatrices);
+
+					
+					for(Sentencias sentencias: bloque.getSentencias()) {
+						if(sentencias instanceof Bloque) {
+							Bloque bloqueAux = (Bloque) sentencias;
+							checkValorVectorAux(nombresRegistros,bloqueAux.getSentencias(), variablesTipadas, vectoresTipados, nombresVectores);
+							checkValorMatrizAux(nombresRegistros,bloqueAux.getSentencias(), variablesTipadas, matricesTipadas, nombresMatrices);
+
+						}
+					}
+				}
+			}
+		}
+		
 		//En los subprocesos:
 		
-		for(Subproceso s: c.getFuncion()) {
-			variablesTipadas = funciones.registrarVariablesTipadas(s.getDeclaracion());
-			checkValorVectorAux(nombresRegistros, s.getSentencias(), variablesTipadas, vectoresTipados, nombresVectores);
-			checkValorMatrizAux(nombresRegistros, s.getSentencias(), variablesTipadas, matricesTipadas, nombresMatrices);
+		for(Subproceso sub: c.getFuncion()) {
+			variablesTipadas = funciones.registrarVariablesTipadas(sub.getDeclaracion());
+			checkValorVectorAux(nombresRegistros, sub.getSentencias(), variablesTipadas, vectoresTipados, nombresVectores);
+			checkValorMatrizAux(nombresRegistros, sub.getSentencias(), variablesTipadas, matricesTipadas, nombresMatrices);
+			
+			for(Sentencias s: sub.getSentencias()) {
+				if(s instanceof Bloque) {
+					Bloque bloque = (Bloque) s;
+					if(bloque instanceof segun) {
+						segun seg = (segun) bloque;
+						for(Caso caso: seg.getCaso()) {
+							checkValorVectorAux(nombresRegistros,caso.getSentencias(), variablesTipadas, vectoresTipados, nombresVectores);
+							checkValorMatrizAux(nombresRegistros,caso.getSentencias(), variablesTipadas, matricesTipadas, nombresMatrices);
+
+							
+							for(Sentencias sentencias: caso.getSentencias()) {
+								if(sentencias instanceof Bloque) {
+									Bloque bloqueAux = (Bloque) sentencias;
+									checkValorVectorAux(nombresRegistros,bloqueAux.getSentencias(), variablesTipadas, vectoresTipados, nombresVectores);
+									checkValorMatrizAux(nombresRegistros,bloqueAux.getSentencias(), variablesTipadas, matricesTipadas, nombresMatrices);
+
+								}
+							}
+						}
+					}
+					else {
+						checkValorVectorAux(nombresRegistros,bloque.getSentencias(), variablesTipadas, vectoresTipados, nombresVectores);
+						checkValorMatrizAux(nombresRegistros,bloque.getSentencias(), variablesTipadas, matricesTipadas, nombresMatrices);
+
+						
+						for(Sentencias sentencias: bloque.getSentencias()) {
+							if(sentencias instanceof Bloque) {
+								Bloque bloqueAux = (Bloque) sentencias;
+								checkValorVectorAux(nombresRegistros,bloqueAux.getSentencias(), variablesTipadas, vectoresTipados, nombresVectores);
+								checkValorMatrizAux(nombresRegistros,bloqueAux.getSentencias(), variablesTipadas, matricesTipadas, nombresMatrices);
+
+							}
+						}
+					}
+				}
+			}
+			
 		}	
 	}
 	
@@ -509,10 +584,77 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		//Para el programa de inicio
 		checkFuncionesAbrirCerrarFicheroAux(c.getTiene().getTiene(), nombresFicheros, variablesDeclaradas);
 		
+		for(Sentencias s: c.getTiene().getTiene()) {
+			if(s instanceof Bloque) {
+				Bloque bloque = (Bloque) s;
+				if(bloque instanceof segun) {
+					segun seg = (segun) bloque;
+					for(Caso caso: seg.getCaso()) {
+						checkFuncionesAbrirCerrarFicheroAux(caso.getSentencias(), nombresFicheros, variablesDeclaradas);
+
+						
+						for(Sentencias sentencias: caso.getSentencias()) {
+							if(sentencias instanceof Bloque) {
+								Bloque bloqueAux = (Bloque) sentencias;
+								checkFuncionesAbrirCerrarFicheroAux(bloqueAux.getSentencias(), nombresFicheros, variablesDeclaradas);
+
+							}
+						}
+					}
+				}
+				else {
+					checkFuncionesAbrirCerrarFicheroAux(bloque.getSentencias(), nombresFicheros, variablesDeclaradas);
+
+					
+					for(Sentencias sentencias: bloque.getSentencias()) {
+						if(sentencias instanceof Bloque) {
+							Bloque bloqueAux = (Bloque) sentencias;
+							checkFuncionesAbrirCerrarFicheroAux(bloqueAux.getSentencias(), nombresFicheros, variablesDeclaradas);
+
+						}
+					}
+				}
+			}
+		}
+		
 		//Para los subprocesos
-		for(Subproceso s: c.getFuncion()) {
-			variablesDeclaradas = funciones.registrarVariablesTipadas(s.getDeclaracion());
-			checkFuncionesAbrirCerrarFicheroAux(s.getSentencias(), nombresFicheros, variablesDeclaradas);
+		for(Subproceso sub: c.getFuncion()) {
+			variablesDeclaradas = funciones.registrarVariablesTipadas(sub.getDeclaracion());
+			checkFuncionesAbrirCerrarFicheroAux(sub.getSentencias(), nombresFicheros, variablesDeclaradas);
+			
+			for(Sentencias s: sub.getSentencias()) {
+				if(s instanceof Bloque) {
+					Bloque bloque = (Bloque) s;
+					if(bloque instanceof segun) {
+						segun seg = (segun) bloque;
+						for(Caso caso: seg.getCaso()) {
+							checkFuncionesAbrirCerrarFicheroAux(caso.getSentencias(), nombresFicheros, variablesDeclaradas);
+
+							
+							for(Sentencias sentencias: caso.getSentencias()) {
+								if(sentencias instanceof Bloque) {
+									Bloque bloqueAux = (Bloque) sentencias;
+									checkFuncionesAbrirCerrarFicheroAux(bloqueAux.getSentencias(), nombresFicheros, variablesDeclaradas);
+
+								}
+							}
+						}
+					}
+					else {
+						checkFuncionesAbrirCerrarFicheroAux(bloque.getSentencias(), nombresFicheros, variablesDeclaradas);
+
+						
+						for(Sentencias sentencias: bloque.getSentencias()) {
+							if(sentencias instanceof Bloque) {
+								Bloque bloqueAux = (Bloque) sentencias;
+								checkFuncionesAbrirCerrarFicheroAux(bloqueAux.getSentencias(), nombresFicheros, variablesDeclaradas);
+
+							}
+						}
+					}
+				}
+			}
+			
 		}
 	}
 	
@@ -1370,6 +1512,37 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		List<String> variables = funciones.registrarVariables(i.getDeclaracion());
 		
 		checkVariablesUsadasAux(i.getTiene(), variables);
+		
+		//Ahora vamos a comprobar las sentencias que están en los bloques
+		
+		for(Sentencias s: i.getTiene()) {
+			if(s instanceof Bloque) {
+				Bloque bloque = (Bloque) s;
+				if(bloque instanceof segun) {
+					segun seg = (segun) bloque;
+					for(Caso c: seg.getCaso()) {
+						checkVariablesUsadasAux(c.getSentencias(), variables);
+						
+						for(Sentencias sentencias: c.getSentencias()) {
+							if(sentencias instanceof Bloque) {
+								Bloque bloqueAux = (Bloque) sentencias;
+								checkVariablesUsadasAux(bloqueAux.getSentencias(), variables);
+							}
+						}
+					}
+				}
+				else {
+					checkVariablesUsadasAux(bloque.getSentencias(), variables);
+					
+					for(Sentencias sentencias: bloque.getSentencias()) {
+						if(sentencias instanceof Bloque) {
+							Bloque bloqueAux = (Bloque) sentencias;
+							checkVariablesUsadasAux(bloqueAux.getSentencias(), variables);
+						}
+					}
+				}
+			}
+		}
 	}
 	
 	@Check
@@ -1383,6 +1556,37 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		}
 		
 		checkVariablesUsadasAux(s.getSentencias(), variables);
+		
+		//Ahora vamos a comprobar las sentencias que están en los bloques
+		
+		for(Sentencias sentencias: s.getSentencias()) {
+			if(s instanceof Bloque) {
+				Bloque bloque = (Bloque) sentencias;
+				if(bloque instanceof segun) {
+					segun seg = (segun) bloque;
+					for(Caso c: seg.getCaso()) {
+						checkVariablesUsadasAux(c.getSentencias(), variables);
+						
+						for(Sentencias sen: c.getSentencias()) {
+							if(sen instanceof Bloque) {
+								Bloque bloqueAux = (Bloque) sen;
+								checkVariablesUsadasAux(bloqueAux.getSentencias(), variables);
+							}
+						}
+					}
+				}
+				else {
+					checkVariablesUsadasAux(bloque.getSentencias(), variables);
+					
+					for(Sentencias sen: bloque.getSentencias()) {
+						if(sen instanceof Bloque) {
+							Bloque bloqueAux = (Bloque) sen;
+							checkVariablesUsadasAux(bloqueAux.getSentencias(), variables);
+						}
+					}
+				}
+			}
+		}
 	}
 	
 	@Check
@@ -1571,14 +1775,46 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		//Recogemos los tipos nativos de los registros	
 		Map<String,HashMap<String,String>> tiposRegistros = funciones.registrarTiposNativosRegistros(c.getTipocomplejo());
 		
-		for(Subproceso s: c.getFuncion()) {
-			List<String> tipos = funciones.getTiposCabecera(s.getParametrofuncion());
-			String nombre = s.getNombre();
-			int parametros = s.getParametrofuncion().size();
+		for(Subproceso sub: c.getFuncion()) {
+			List<String> tipos = funciones.getTiposCabecera(sub.getParametrofuncion());
+			String nombre = sub.getNombre();
+			int parametros = sub.getParametrofuncion().size();
 			//Registramos todas las variables que hay declaradas con sus respectivos tipos para buscar luego las necesarias (no hay repetidas)
 			Map<String,String> variablesDeclaradas = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
 			
 			checkParametrosLlamadaAux(c.getTiene().getTiene(),tipos,nombre,parametros,variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
+			
+			for(Sentencias s: c.getTiene().getTiene()) {
+				if(s instanceof Bloque) {
+					Bloque bloque = (Bloque) s;
+					if(bloque instanceof segun) {
+						segun seg = (segun) bloque;
+						for(Caso caso: seg.getCaso()) {
+							checkParametrosLlamadaAux(caso.getSentencias(),tipos,nombre,parametros,variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
+
+							
+							for(Sentencias sentencias: caso.getSentencias()) {
+								if(sentencias instanceof Bloque) {
+									Bloque bloqueAux = (Bloque) sentencias;
+									checkParametrosLlamadaAux(bloqueAux.getSentencias(),tipos,nombre,parametros,variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
+
+								}
+							}
+						}
+					}
+					else {
+						checkParametrosLlamadaAux(bloque.getSentencias(),tipos,nombre,parametros,variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
+						
+						for(Sentencias sentencias: bloque.getSentencias()) {
+							if(sentencias instanceof Bloque) {
+								Bloque bloqueAux = (Bloque) sentencias;
+								checkParametrosLlamadaAux(bloqueAux.getSentencias(),tipos,nombre,parametros,variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
+
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 	
@@ -1592,18 +1828,50 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		Map<String,HashMap<String,String>> tiposRegistros = funciones.registrarTiposNativosRegistros(c.getTipocomplejo());
 		
 		//Registramos los tipos de parámetros necesarios para todos los subprocesos
-		for(Subproceso s: c.getFuncion()) {
-			List<String> tipos = funciones.getTiposCabecera(s.getParametrofuncion());
-			String nombre = s.getNombre();
-			int parametros = s.getParametrofuncion().size();
+		for(Subproceso sub: c.getFuncion()) {
+			List<String> tipos = funciones.getTiposCabecera(sub.getParametrofuncion());
+			String nombre = sub.getNombre();
+			int parametros = sub.getParametrofuncion().size();
 			
-			for(Subproceso s2: c.getFuncion()) {
+			for(Subproceso sub2: c.getFuncion()) {
 				//Registramos todas las variables que hay declaradas con sus respectivos tipos para buscar luego las necesarias (no hay repetidas)
-				Map<String,String> variablesDeclaradas = funciones.registrarVariablesTipadas(s2.getDeclaracion());
+				Map<String,String> variablesDeclaradas = funciones.registrarVariablesTipadas(sub2.getDeclaracion());
 				//Como estamos en el caso de los subprocesos debemos registrar los parámetros también
-				funciones.getTiposCabecera(s2.getParametrofuncion(), variablesDeclaradas);
+				funciones.getTiposCabecera(sub2.getParametrofuncion(), variablesDeclaradas);
 				
-				checkParametrosLlamadaAux(s2.getSentencias(),tipos,nombre,parametros,variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
+				checkParametrosLlamadaAux(sub2.getSentencias(),tipos,nombre,parametros,variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
+				
+				for(Sentencias s: sub2.getSentencias()) {
+					if(s instanceof Bloque) {
+						Bloque bloque = (Bloque) s;
+						if(bloque instanceof segun) {
+							segun seg = (segun) bloque;
+							for(Caso caso: seg.getCaso()) {
+								checkParametrosLlamadaAux(caso.getSentencias(),tipos,nombre,parametros,variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
+
+								
+								for(Sentencias sentencias: caso.getSentencias()) {
+									if(sentencias instanceof Bloque) {
+										Bloque bloqueAux = (Bloque) sentencias;
+										checkParametrosLlamadaAux(bloqueAux.getSentencias(),tipos,nombre,parametros,variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
+
+									}
+								}
+							}
+						}
+						else {
+							checkParametrosLlamadaAux(bloque.getSentencias(),tipos,nombre,parametros,variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
+							
+							for(Sentencias sentencias: bloque.getSentencias()) {
+								if(sentencias instanceof Bloque) {
+									Bloque bloqueAux = (Bloque) sentencias;
+									checkParametrosLlamadaAux(bloqueAux.getSentencias(),tipos,nombre,parametros,variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
+
+								}
+							}
+						}
+					}
+				}
 				
 			}
 		}
@@ -2084,36 +2352,8 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				}
 	}
 	
-	@Check
-	//Función que valida que el tipo de dato que se quiere asignar sea compatible con el tipo de la variable (asignación normal)
-	protected void checkAsignacionesInicio(Codigo c) {
-		//Preparamos las variables de tipo registro para permitir asignación
-		Map<String,HashMap<String,String>> registros = new HashMap<String,HashMap<String,String>>();
-		Map<String,String> vectores = new HashMap<String,String>();
-		List<String> nombresRegistros = new ArrayList<String>();
-		Map<String,String> matrices = new HashMap<String,String>();
-		
-		funciones.prepararColeccionesTiposComplejos(c.getTipocomplejo(), registros, nombresRegistros, vectores, matrices);
-		
-		//Registramos todas las variables declaradas con sus respectivos tipos
-		Map<String,String> variablesTipadas = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
-		
-		//Registramos todas las funciones que están definidas
-		Map<String,HashMap<Integer,String>> funcionesTipadas = new HashMap<String,HashMap<Integer,String>>();
-		
-		//Registramos todos los campos tipados de cada registro
-		Map<String, Map<String,String>> registrosCamposTipados = new HashMap<String,Map<String,String>>();
-		
-		for(TipoComplejo t: c.getTipocomplejo()) {
-			if(t instanceof Registro) {
-				Registro r = (Registro) t;
-				registrosCamposTipados.put(r.getNombre(), funciones.registrarCamposRegistro(r.getVariable()));
-			}
-		}
-		
-		funciones.prepararColeccionFunciones(c.getFuncion(), funcionesTipadas);
-		
-		for(Sentencias s: c.getTiene().getTiene()) {
+	private void checkSentenciasAsignaciones(List<Sentencias> sentencias, Map<String,String> variablesTipadas, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,HashMap<Integer,String>> funcionesTipadas, Map<String,String> vectores, Map<String,String> matrices, Map<String, Map<String,String>> registrosCamposTipados) {
+		for(Sentencias s: sentencias) {
 			if(s instanceof Asignacion) {
 				Asignacion a = (Asignacion) s;
 				if(a instanceof AsignacionNormal) {
@@ -2161,6 +2401,69 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		}
 	}
 	
+	@Check
+	//Función que valida que el tipo de dato que se quiere asignar sea compatible con el tipo de la variable (asignación normal)
+	protected void checkAsignacionesInicio(Codigo c) {
+		//Preparamos las variables de tipo registro para permitir asignación
+		Map<String,HashMap<String,String>> registros = new HashMap<String,HashMap<String,String>>();
+		Map<String,String> vectores = new HashMap<String,String>();
+		List<String> nombresRegistros = new ArrayList<String>();
+		Map<String,String> matrices = new HashMap<String,String>();
+		
+		funciones.prepararColeccionesTiposComplejos(c.getTipocomplejo(), registros, nombresRegistros, vectores, matrices);
+		
+		//Registramos todas las variables declaradas con sus respectivos tipos
+		Map<String,String> variablesTipadas = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
+		
+		//Registramos todas las funciones que están definidas
+		Map<String,HashMap<Integer,String>> funcionesTipadas = new HashMap<String,HashMap<Integer,String>>();
+		
+		//Registramos todos los campos tipados de cada registro
+		Map<String, Map<String,String>> registrosCamposTipados = new HashMap<String,Map<String,String>>();
+		
+		for(TipoComplejo t: c.getTipocomplejo()) {
+			if(t instanceof Registro) {
+				Registro r = (Registro) t;
+				registrosCamposTipados.put(r.getNombre(), funciones.registrarCamposRegistro(r.getVariable()));
+			}
+		}
+		
+		funciones.prepararColeccionFunciones(c.getFuncion(), funcionesTipadas);
+		checkSentenciasAsignaciones(c.getTiene().getTiene(), variablesTipadas, registros, nombresRegistros, funcionesTipadas, vectores, matrices, registrosCamposTipados);
+		
+		for(Sentencias s: c.getTiene().getTiene()) {
+			if(s instanceof Bloque) {
+				Bloque bloque = (Bloque) s;
+				if(bloque instanceof segun) {
+					segun seg = (segun) bloque;
+					for(Caso caso: seg.getCaso()) {
+						checkSentenciasAsignaciones(caso.getSentencias(), variablesTipadas, registros, nombresRegistros, funcionesTipadas, vectores, matrices, registrosCamposTipados);
+
+						
+						for(Sentencias sentencias: caso.getSentencias()) {
+							if(sentencias instanceof Bloque) {
+								Bloque bloqueAux = (Bloque) sentencias;
+								checkSentenciasAsignaciones(bloqueAux.getSentencias(), variablesTipadas, registros, nombresRegistros, funcionesTipadas, vectores, matrices, registrosCamposTipados);
+
+							}
+						}
+					}
+				}
+				else {
+					checkSentenciasAsignaciones(bloque.getSentencias(), variablesTipadas, registros, nombresRegistros, funcionesTipadas, vectores, matrices, registrosCamposTipados);
+
+					
+					for(Sentencias sentencias: bloque.getSentencias()) {
+						if(sentencias instanceof Bloque) {
+							Bloque bloqueAux = (Bloque) sentencias;
+							checkSentenciasAsignaciones(bloqueAux.getSentencias(), variablesTipadas, registros, nombresRegistros, funcionesTipadas, vectores, matrices, registrosCamposTipados);
+
+						}
+					}
+				}
+			}
+		}
+	}
 	
 	@Check
 	//Función que valida que el tipo de dato que se quiere asignar sea compatible con el tipo de la variable (asignación normal)
@@ -2188,42 +2491,42 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			}
 		}
 		
-		for(Subproceso s: c.getFuncion()) {
+		for(Subproceso sub: c.getFuncion()) {
 			//Registramos todas las variables declaradas con sus respectivos tipos
-			Map<String,String> variablesTipadas = funciones.registrarVariablesTipadas(s.getDeclaracion());
+			Map<String,String> variablesTipadas = funciones.registrarVariablesTipadas(sub.getDeclaracion());
 			
 			//Como es una función también debemos registrar los parámetros
 			
-			funciones.getTiposCabecera(s.getParametrofuncion(), variablesTipadas);
+			funciones.getTiposCabecera(sub.getParametrofuncion(), variablesTipadas);
+			checkSentenciasAsignaciones(sub.getSentencias(), variablesTipadas, registros, nombresRegistros, funcionesTipadas, vectores, matrices, registrosCamposTipados);
 			
-			for(Sentencias sen: s.getSentencias()) {
-				if(sen instanceof Asignacion) {
-					Asignacion a = (Asignacion) sen;
-					if(a instanceof AsignacionNormal) {
-						AsignacionNormal an = (AsignacionNormal) a;
-						String tipo = variablesTipadas.get(an.getLvalue());
-						checkAsignacionesAux(a, tipo, an.getOperador(), variablesTipadas, registros, nombresRegistros,funcionesTipadas, vectores, matrices, registrosCamposTipados);
-					}
-					else if(a instanceof AsignacionCompleja) {
-						AsignacionCompleja ac = (AsignacionCompleja) a;
-						if(ac.getComplejo() instanceof ValorRegistro) {
-							ValorRegistro r = (ValorRegistro) ac.getComplejo();
-							for(CampoRegistro campo: r.getCampo()) {
-								String tipo = registros.get(variablesTipadas.get(r.getNombre_registro())).get(campo.getNombre_campo());
-								checkAsignacionesAux(a, tipo, ac.getOperador(), variablesTipadas, registros, nombresRegistros, funcionesTipadas, vectores, matrices, registrosCamposTipados);
+			for(Sentencias s: sub.getSentencias()) {
+				if(s instanceof Bloque) {
+					Bloque bloque = (Bloque) s;
+					if(bloque instanceof segun) {
+						segun seg = (segun) bloque;
+						for(Caso caso: seg.getCaso()) {
+							checkSentenciasAsignaciones(caso.getSentencias(), variablesTipadas, registros, nombresRegistros, funcionesTipadas, vectores, matrices, registrosCamposTipados);
+
+							
+							for(Sentencias sentencias: caso.getSentencias()) {
+								if(sentencias instanceof Bloque) {
+									Bloque bloqueAux = (Bloque) sentencias;
+									checkSentenciasAsignaciones(bloqueAux.getSentencias(), variablesTipadas, registros, nombresRegistros, funcionesTipadas, vectores, matrices, registrosCamposTipados);
+
+								}
 							}
 						}
-						else if(ac.getComplejo() instanceof ValorVector) {
-							ValorVector v = (ValorVector) ac.getComplejo();
-							if(v.getCampo().size() == 0) {
-								String tipo = variablesTipadas.get(v.getNombre_vector());
-								checkAsignacionesAux(a, tipo, ac.getOperador(), variablesTipadas, registros, nombresRegistros, funcionesTipadas, vectores, matrices, registrosCamposTipados);
-							}
-							else {
-								//Cogemos el último campo
-								String campo = v.getCampo().get(v.getCampo().size()-1).getNombre_campo();
-								String tipo = registrosCamposTipados.get(vectores.get(variablesTipadas.get(v.getNombre_vector()))).get(campo);
-								checkAsignacionesAux(a, tipo, ac.getOperador(), variablesTipadas, registros, nombresRegistros, funcionesTipadas, vectores, matrices, registrosCamposTipados);
+					}
+					else {
+						checkSentenciasAsignaciones(bloque.getSentencias(), variablesTipadas, registros, nombresRegistros, funcionesTipadas, vectores, matrices, registrosCamposTipados);
+
+						
+						for(Sentencias sentencias: bloque.getSentencias()) {
+							if(sentencias instanceof Bloque) {
+								Bloque bloqueAux = (Bloque) sentencias;
+								checkSentenciasAsignaciones(bloqueAux.getSentencias(), variablesTipadas, registros, nombresRegistros, funcionesTipadas, vectores, matrices, registrosCamposTipados);
+
 							}
 						}
 					}
@@ -2421,16 +2724,82 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		
 		checkVariblesUsadasTiposComplejosAux(c.getTiene().getTiene(), variables, nombresRegistros, nombresVectores, nombresMatrices);
 		
+		for(Sentencias s: c.getTiene().getTiene()) {
+			if(s instanceof Bloque) {
+				Bloque bloque = (Bloque) s;
+				if(bloque instanceof segun) {
+					segun seg = (segun) bloque;
+					for(Caso caso: seg.getCaso()) {
+						checkVariblesUsadasTiposComplejosAux(caso.getSentencias(), variables, nombresRegistros, nombresVectores, nombresMatrices);
+
+						
+						for(Sentencias sentencias: caso.getSentencias()) {
+							if(sentencias instanceof Bloque) {
+								Bloque bloqueAux = (Bloque) sentencias;
+								checkVariblesUsadasTiposComplejosAux(bloqueAux.getSentencias(), variables, nombresRegistros, nombresVectores, nombresMatrices);
+
+							}
+						}
+					}
+				}
+				else {
+					checkVariblesUsadasTiposComplejosAux(bloque.getSentencias(), variables, nombresRegistros, nombresVectores, nombresMatrices);
+
+					
+					for(Sentencias sentencias: bloque.getSentencias()) {
+						if(sentencias instanceof Bloque) {
+							Bloque bloqueAux = (Bloque) sentencias;
+							checkVariblesUsadasTiposComplejosAux(bloqueAux.getSentencias(), variables, nombresRegistros, nombresVectores, nombresMatrices);
+
+						}
+					}
+				}
+			}
+		}
+		
 		//2) En los subprocesos:
 		
-		for(Subproceso s: c.getFuncion()) {
-			variables = funciones.registrarVariablesTipadas(s.getDeclaracion());
+		for(Subproceso sub: c.getFuncion()) {
+			variables = funciones.registrarVariablesTipadas(sub.getDeclaracion());
 			
 			//Como son subprocesos también debemos registrar sus parámetros
 			
-			funciones.getTiposCabecera(s.getParametrofuncion(), variables);
+			funciones.getTiposCabecera(sub.getParametrofuncion(), variables);
 			
-			checkVariblesUsadasTiposComplejosAux(s.getSentencias(), variables, nombresRegistros, nombresVectores, nombresMatrices);
+			checkVariblesUsadasTiposComplejosAux(sub.getSentencias(), variables, nombresRegistros, nombresVectores, nombresMatrices);
+			
+			for(Sentencias s: sub.getSentencias()) {
+				if(s instanceof Bloque) {
+					Bloque bloque = (Bloque) s;
+					if(bloque instanceof segun) {
+						segun seg = (segun) bloque;
+						for(Caso caso: seg.getCaso()) {
+							checkVariblesUsadasTiposComplejosAux(caso.getSentencias(), variables, nombresRegistros, nombresVectores, nombresMatrices);
+
+							
+							for(Sentencias sentencias: caso.getSentencias()) {
+								if(sentencias instanceof Bloque) {
+									Bloque bloqueAux = (Bloque) sentencias;
+									checkVariblesUsadasTiposComplejosAux(bloqueAux.getSentencias(), variables, nombresRegistros, nombresVectores, nombresMatrices);
+
+								}
+							}
+						}
+					}
+					else {
+						checkVariblesUsadasTiposComplejosAux(bloque.getSentencias(), variables, nombresRegistros, nombresVectores, nombresMatrices);
+
+						
+						for(Sentencias sentencias: bloque.getSentencias()) {
+							if(sentencias instanceof Bloque) {
+								Bloque bloqueAux = (Bloque) sentencias;
+								checkVariblesUsadasTiposComplejosAux(bloqueAux.getSentencias(), variables, nombresRegistros, nombresVectores, nombresMatrices);
+
+							}
+						}
+					}
+				}
+			}
 		}
 		
 	}
