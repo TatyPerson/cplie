@@ -1589,30 +1589,8 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		}
 	}
 	
-	@Check
-	//Función que comprueba que las funciones que se llamen hayan sido declaradas previamente y se les pase el número de parámetros oportuno
-	protected void checkLlamadaFuncion(Codigo c) {
-		List<String> funciones = new ArrayList<String>();
-		List<ArrayList<Integer>> parametros = new ArrayList<ArrayList<Integer>>();
-		for(Subproceso s: c.getFuncion()) {
-			//Se presupone que no hay ninguna repetida porque ya existe una función que se encarga de ello
-			if(!funciones.contains(s.getNombre())) {
-				//Si todavia no hay ninguna que se llame así, la registramos
-				funciones.add(s.getNombre());
-				parametros.add(new ArrayList<Integer>());
-				parametros.get(funciones.indexOf(s.getNombre())).add(s.getParametrofuncion().size());
-			}
-			else {
-				//Si el nombre existe y no tiene el mismo número de parámetros lo registramos
-				parametros.get(funciones.indexOf(s.getNombre())).add(s.getParametrofuncion().size());
-			}
-		}
-		
-		for(Subproceso s: c.getFuncion()) {
-			funciones.add(s.getNombre());
-		}
-		
-		for(Sentencias s: c.getTiene().getTiene()) {
+	private void checkLlamadaFuncionAux(List<Sentencias> sentencias, List<String> funciones, List<ArrayList<Integer>> parametros) {
+		for(Sentencias s: sentencias) {
 			if(s instanceof LlamadaFuncion) {
 				LlamadaFuncion l = (LlamadaFuncion) s;
 				if(!funciones.contains(l.getNombre())) {
@@ -1638,34 +1616,94 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				}
 			}
 		}
+	}
+	
+	@Check
+	//Función que comprueba que las funciones que se llamen hayan sido declaradas previamente y se les pase el número de parámetros oportuno
+	protected void checkLlamadaFuncion(Codigo c) {
+		List<String> funciones = new ArrayList<String>();
+		List<ArrayList<Integer>> parametros = new ArrayList<ArrayList<Integer>>();
+		for(Subproceso s: c.getFuncion()) {
+			//Se presupone que no hay ninguna repetida porque ya existe una función que se encarga de ello
+			if(!funciones.contains(s.getNombre())) {
+				//Si todavia no hay ninguna que se llame así, la registramos
+				funciones.add(s.getNombre());
+				parametros.add(new ArrayList<Integer>());
+				parametros.get(funciones.indexOf(s.getNombre())).add(s.getParametrofuncion().size());
+			}
+			else {
+				//Si el nombre existe y no tiene el mismo número de parámetros lo registramos
+				parametros.get(funciones.indexOf(s.getNombre())).add(s.getParametrofuncion().size());
+			}
+		}
 		
 		for(Subproceso s: c.getFuncion()) {
-			for(Sentencias sn: s.getSentencias()) {
-				if(sn instanceof LlamadaFuncion) {
-					LlamadaFuncion l = (LlamadaFuncion) sn;
-					if(!funciones.contains(l.getNombre())) {
-						error("La función debe haber sido previamente declarada", l, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
-					}
-					else if(!parametros.get(funciones.indexOf(l.getNombre())).contains(l.getOperador().size())) {
-						error("El número de parámetros de la función no es el esperado", l, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+			funciones.add(s.getNombre());
+		}
+		
+		checkLlamadaFuncionAux(c.getTiene().getTiene(), funciones, parametros);
+		
+		for(Sentencias s: c.getTiene().getTiene()) {
+			if(s instanceof Bloque) {
+				Bloque bloque = (Bloque) s;
+				if(bloque instanceof segun) {
+					segun seg = (segun) bloque;
+					for(Caso caso: seg.getCaso()) {
+						checkLlamadaFuncionAux(caso.getSentencias(), funciones, parametros);
+						
+						for(Sentencias sentencias: caso.getSentencias()) {
+							if(sentencias instanceof Bloque) {
+								Bloque bloqueAux = (Bloque) sentencias;
+								checkLlamadaFuncionAux(bloqueAux.getSentencias(), funciones, parametros);
+							}
+						}
 					}
 				}
-				else if(sn instanceof Asignacion) {
-					Asignacion a = (Asignacion) sn;
-					if(a instanceof AsignacionNormal) {
-						AsignacionNormal an = (AsignacionNormal) a;
-						if(an.getOperador() instanceof LlamadaFuncion) {
-							LlamadaFuncion f = (LlamadaFuncion) an.getOperador();
-							if(!funciones.contains(f.getNombre())) {
-								error("La función debe haber sido previamente declarada", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+				else {
+					checkLlamadaFuncionAux(bloque.getSentencias(), funciones, parametros);
+					
+					for(Sentencias sentencias: bloque.getSentencias()) {
+						if(sentencias instanceof Bloque) {
+							Bloque bloqueAux = (Bloque) sentencias;
+							checkLlamadaFuncionAux(bloqueAux.getSentencias(), funciones, parametros);
+						}
+					}
+				}
+			}
+		}
+		
+		for(Subproceso sub: c.getFuncion()) {
+			checkLlamadaFuncionAux(sub.getSentencias(), funciones, parametros);
+			
+			for(Sentencias s: sub.getSentencias()) {
+				if(s instanceof Bloque) {
+					Bloque bloque = (Bloque) s;
+					if(bloque instanceof segun) {
+						segun seg = (segun) bloque;
+						for(Caso caso: seg.getCaso()) {
+							checkLlamadaFuncionAux(caso.getSentencias(), funciones, parametros);
+							
+							for(Sentencias sentencias: caso.getSentencias()) {
+								if(sentencias instanceof Bloque) {
+									Bloque bloqueAux = (Bloque) sentencias;
+									checkLlamadaFuncionAux(bloqueAux.getSentencias(), funciones, parametros);
+								}
 							}
-							else if(!parametros.get(funciones.indexOf(f.getNombre())).contains(f.getOperador().size())) {
-								error("El número de parámetros de la función no es el esperado", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
+						}
+					}
+					else {
+						checkLlamadaFuncionAux(bloque.getSentencias(), funciones, parametros);
+						
+						for(Sentencias sentencias: bloque.getSentencias()) {
+							if(sentencias instanceof Bloque) {
+								Bloque bloqueAux = (Bloque) sentencias;
+								checkLlamadaFuncionAux(bloqueAux.getSentencias(), funciones, parametros);
 							}
 						}
 					}
 				}
 			}
+			
 		}
 	}
 	
