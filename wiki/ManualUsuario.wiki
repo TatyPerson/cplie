@@ -1,13 +1,19 @@
-#summary One-sentence summary of this page.
+#Manual de usuario de la herramienta
 
-= Introduction =
+= Creación de un nuevo proyecto =
 
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+<ol type=”1” start=”10”>
+<li> Se abre el eclipse con el plugin integrado. <br/> </li>
+<li> Se hace click derecho del ratón > new > other <br/>
+http://i62.tinypic.com/rmv3vo.jpg <br/>
+</li>
+<li> Se selecciona PseudoDSL c++ <br/> 
+http://i62.tinypic.com/2rp7313.jpg <br/>
+</li>
+<li>Se hace click en next, se añade un nuevo nombre para el proyecto y, por último, se hace click en finish. <br/> 
+http://i61.tinypic.com/27zky1w.jpg <br/>
+</li>
+<li> Posteriormente, se abrirá en el editor el fichero “programa.p”, el cual al inicio tendrá un programa de prueba. <br/>
+http://i59.tinypic.com/hug3mx.jpg <br/>
+</li>
+</ol>
