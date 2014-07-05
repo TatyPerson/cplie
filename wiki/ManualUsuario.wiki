@@ -16,4 +16,26 @@ http://i61.tinypic.com/27zky1w.jpg <br/>
 <li> Posteriormente, se abrirá en el editor el fichero “programa.p”, el cual al inicio tendrá un programa de prueba. <br/>
 http://i59.tinypic.com/hug3mx.jpg <br/>
 </li>
+<li> Para ver el resultado de la conversión del programa escrito en pseudocódigo a C++, se hace click en el directorio principal del proyecto y se selecciona el directorio “src-gen”.  <br/>
+http://i58.tinypic.com/2s8g28z.jpg <br/>
+</li>
+<li> Dentro del directorio “src-gen” se encontrará el fichero “salida.cpp” donde se podrá observar la conversión realizada a C++. <br/>
+http://i58.tinypic.com/33eoh9f.jpg <br/>
+</li>
+</ol>
+
+= Edición del proyecto =
+
+<ol type=”1” start=”10”>
+<li>
+Como se puede observar, el código esta dividido en secciones, en este caso, “<b>const</b>”, “<b>tipo</b>” y dentro de cada procedimiento, función o programa principal también hay secciones “<b>var</b>” e “<b>inicio</b>”. La sección “<b>const</b>” está destinada a la declaración de constantes (DIM = 10), la sección “<b>tipo</b>” está destinada a la declaración de tipos complejos (declaración de un tipo registro), la sección “<b>var</b>” de cada procedimiento, función o programa principal está destinada a la declaración de variables que se utilizarán en el resto del programa (real precio) y, finalmente, la sección “<b>inicio</b>” esta destinada al conjunto de sentencias que establecen el funcionamiento del algoritmo. <br/>
+</li>
+<li>
+Para utilizar la ayuda en cualquier parte del código se debe teclear SPACE + CTRL y seleccionar el tipo deseado de la lista que aparece (la lista cambiará dependiendo del lugar donde se realice) <br/>
+http://i57.tinypic.com/n55svo.jpg <br/>
+http://i58.tinypic.com/2hclzjs.jpg <br/>
+http://i60.tinypic.com/11tyl9k.jpg <br/>
+</li>
+<li> Para utilizar la opción de formateado de código primero se debe seleccionar el fragmento de código al que se le quiere aplicar y hacer click derecho del ratón > format. <br/>
+</li>
 </ol>
