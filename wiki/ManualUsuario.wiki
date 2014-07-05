@@ -37,5 +37,18 @@ http://i58.tinypic.com/2hclzjs.jpg <br/>
 http://i60.tinypic.com/11tyl9k.jpg <br/>
 </li>
 <li> Para utilizar la opción de formateado de código primero se debe seleccionar el fragmento de código al que se le quiere aplicar y hacer click derecho del ratón > format. <br/>
+http://i62.tinypic.com/nv9m42.jpg <br/>
+http://i61.tinypic.com/2poedj8.jpg <br/>
+http://i59.tinypic.com/67ry9x.jpg <br/>
+</li>
+</ol>
+
+= Validaciones = 
+
+<ol type=”1” start=”10”>
+<li>
+A medida de que se va escribiendo el programa notificará de los fallos (ya sean errores o warnings) que se cometen. <br/>
+http://i59.tinypic.com/2i7mhxk.jpg <br/>
+http://i57.tinypic.com/2nq73w5.jpg <br/>
 </li>
 </ol>
