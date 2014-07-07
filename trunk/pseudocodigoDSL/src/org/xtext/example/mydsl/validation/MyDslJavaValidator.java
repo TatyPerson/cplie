@@ -19,6 +19,8 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 //		}
 //	}
 	
+	public static final String INVALID_VAR_NAME = "xtext.workshop.advanced.quickfix.InvalidTypeName";
+	
 	
 	@Check
 	//Función que se encarga de comprobar si el limite inferior de un subrango es siempre inferior al superior.
