@@ -19,16 +19,41 @@ class MyDslGenerator implements IGenerator {
 
 		//TODO implement me
 		for (myPseudo : resource.allContents.toIterable.filter(typeof(Codigo))) {
-			myCFile.generateFile("salida.cpp", myPseudo.toC)
+			myCFile.generateFile("salida.cpp", myPseudo.toCpp)
+		}
+		for (myPseudo : resource.allContents.toIterable.filter(typeof(Codigo))) {
+			myCFile.generateFile("salida.c", myPseudo.toC)
 		}
 	}
-
-	def toC(Codigo myCodigo) '''
+	
+	def toCpp(Codigo myCodigo) '''
 		#include <iostream>
 		#include <string>
 		#include <cmath>
 		
 		using namespace std;
+		«FOR myComentario:myCodigo.comentarios»
+			«myComentario.toC»
+		«ENDFOR»
+		«FOR myConstante:myCodigo.constantes»
+			«myConstante.toC»
+		«ENDFOR»
+		«FOR myComplejo:myCodigo.tipocomplejo»
+			«myComplejo.toC»
+		«ENDFOR»
+		
+		«FOR funcion:myCodigo.funcion»
+			«funcion.toC»
+			
+		«ENDFOR»
+		«myCodigo.tiene.toCpp»
+	'''
+
+	def toC(Codigo myCodigo) '''
+		#include <stdio.h>
+		#include <stdlib.h>
+		#include <string.h>
+
 		«FOR myComentario:myCodigo.comentarios»
 			«myComentario.toC»
 		«ENDFOR»
@@ -164,7 +189,21 @@ class MyDslGenerator implements IGenerator {
 			«ENDFOR»
 			«FOR mySentencia:myInicio.tiene»
 				«mySentencia.toC»
-				
+			«ENDFOR»
+		}
+	'''
+	
+	def toCpp(Inicio myInicio) '''
+		int main(){
+			«FOR myVariable:myInicio.declaracion»
+				«myVariable.toC»
+			«ENDFOR»
+			«FOR mySentencia:myInicio.tiene»
+				«IF mySentencia.eClass.name.equals("Escribir")»
+					«mySentencia.toCpp»
+				«ELSE»
+					«mySentencia.toC»
+				«ENDIF»
 			«ENDFOR»
 		}
 	'''
@@ -231,6 +270,67 @@ class MyDslGenerator implements IGenerator {
 			«ENDFOR»
 		}
 	'''
+	
+	def toCpp(Sentencias mySent) {
+		if (mySent.eClass.name.equals("AsignacionNormal")) {
+			var AsignacionNormal prueba = new AsignacionNormalImpl
+			prueba = mySent as AsignacionNormal
+			prueba.toC
+		} else if (mySent.eClass.name.equals("AsignacionCompleja")) {
+			var AsignacionCompleja prueba = new AsignacionComplejaImpl
+			prueba = mySent as AsignacionCompleja
+			prueba.toC
+		} else if (mySent.eClass.name.equals("LlamadaFuncion")) {
+			var LlamadaFuncion prueba = new LlamadaFuncionImpl
+			prueba = mySent as LlamadaFuncion
+			prueba.toC(true)
+		} else if (mySent.eClass.name.equals("Si")) {
+			var Si prueba = new SiImpl
+			prueba = mySent as Si
+			prueba.toC
+		} else if (mySent.eClass.name.equals("segun")) {
+			var segun prueba = new segunImpl
+			prueba = mySent as segun
+			prueba.toC
+		} else if (mySent.eClass.name.equals("Caso")) {
+			var Caso prueba = new CasoImpl
+			prueba = mySent as Caso
+			prueba.toC
+		} else if (mySent.eClass.name.equals("mientras")) {
+			var mientras prueba = new mientrasImpl
+			prueba = mySent as mientras
+			prueba.toC
+		} else if (mySent.eClass.name.equals("repetir")) {
+			var repetir prueba = new repetirImpl
+			prueba = mySent as repetir
+			prueba.toC
+		} else if (mySent.eClass.name.equals("desde")) {
+			var desde prueba = new desdeImpl
+			prueba = mySent as desde
+			prueba.toC
+		} else if (mySent.eClass.name.equals("incremento")) {
+			var incremento prueba = new incrementoImpl
+			prueba = mySent as incremento
+			prueba.toC
+		} else if (mySent.eClass.name.equals("Leer")) {
+			var Leer prueba = new LeerImpl
+			prueba = mySent as Leer
+			prueba.toCpp
+		} else if (mySent.eClass.name.equals("Escribir")) {
+			var Escribir prueba = new EscribirImpl
+			prueba = mySent as Escribir
+			prueba.toCpp
+		} else if (mySent.eClass.name.equals("FuncionFicheroAbrir")) {
+			var FuncionFicheroAbrir prueba = new FuncionFicheroAbrirImpl
+			prueba = mySent as FuncionFicheroAbrir
+			prueba.toC
+		} else if (mySent.eClass.name.equals("FuncionFicheroCerrar")) {
+			var FuncionFicheroCerrar prueba = new FuncionFicheroCerrarImpl
+			prueba = mySent as FuncionFicheroCerrar
+			prueba.toC
+		}	
+	}
+	
 
 	def toC(Sentencias mySent) {
 		if (mySent.eClass.name.equals("AsignacionNormal")) {
@@ -473,8 +573,12 @@ class MyDslGenerator implements IGenerator {
 		return "!" + myUnaria.variable.toC;
 	}
 
-	def toC(Leer l) '''
+	def toCpp(Leer l) '''
 		cin >> «l.variable.toC»;
+	'''
+	
+	def toC(Leer l) '''
+		scanf(«l.variable.toC»);
 	'''
 
 	def toC(Internas i) {
@@ -506,9 +610,28 @@ class MyDslGenerator implements IGenerator {
 		}
 		return resultado;
 	}
+	
+	def coutOperadoresC(EList<Operador> operadores) {
+		var resultado = "";
+		var numero = 1;
+		for (o : operadores) {
+			if(numero < operadores.size) {
+				resultado = resultado + o.toC + " , ";
+			}
+			else {
+				resultado = resultado + o.toC;
+			}
+			numero = numero + 1;
+		}
+		return resultado;
+	}
 
-	def toC(Escribir a) '''
+	def toCpp(Escribir a) '''
 		cout«a.operador.coutOperadores» << endl;
+	'''
+	
+	def toC(Escribir a) '''
+		printf(«a.operador.coutOperadoresC»);
 	'''
 
 	def generaParametros(EList<valor> valores) {
