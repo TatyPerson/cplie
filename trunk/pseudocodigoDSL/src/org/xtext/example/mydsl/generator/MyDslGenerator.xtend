@@ -223,9 +223,7 @@ class MyDslGenerator implements IGenerator {
 				«myVariable.toC»
 			«ENDFOR»
 			«FOR mySentencia:myInicio.tiene»
-				«IF mySentencia.eClass.name.equals("Escribir")»
-					«mySentencia.toCpp»
-				«ELSEIF mySentencia.eClass.name.equals("Leer")»
+				«IF mySentencia.eClass.name.equals("Escribir") || mySentencia.eClass.name.equals("Leer") || mySentencia.eClass.name.equals("Si") || mySentencia.eClass.name.equals("segun") || mySentencia.eClass.name.equals("Caso") || mySentencia.eClass.name.equals("mientras") || mySentencia.eClass.name.equals("repetir") || mySentencia.eClass.name.equals("desde")»
 					«mySentencia.toCpp»
 				«ELSE»
 					«mySentencia.toC»
@@ -304,9 +302,7 @@ class MyDslGenerator implements IGenerator {
 				«myVariable.toC»
 			«ENDFOR»
 			«FOR mySentencia:myFun.sentencias»
-				«IF mySentencia.eClass.name.equals("Escribir")»
-					«mySentencia.toCpp»
-				«ELSEIF mySentencia.eClass.name.equals("Leer")»
+				«IF mySentencia.eClass.name.equals("Escribir") || mySentencia.eClass.name.equals("Leer") || mySentencia.eClass.name.equals("Si") || mySentencia.eClass.name.equals("segun") || mySentencia.eClass.name.equals("Caso") || mySentencia.eClass.name.equals("mientras") || mySentencia.eClass.name.equals("repetir") || mySentencia.eClass.name.equals("desde")»
 					«mySentencia.toCpp»
 				«ELSE»
 					«mySentencia.toC»
@@ -335,9 +331,7 @@ class MyDslGenerator implements IGenerator {
 				«myVariable.toC»
 			«ENDFOR»
 			«FOR mySentencia:myFun.sentencias»
-				«IF mySentencia.eClass.name.equals("Escribir")»
-					«mySentencia.toCpp»
-				«ELSEIF mySentencia.eClass.name.equals("Leer")»
+				«IF mySentencia.eClass.name.equals("Escribir") || mySentencia.eClass.name.equals("Leer") || mySentencia.eClass.name.equals("Si") || mySentencia.eClass.name.equals("segun") || mySentencia.eClass.name.equals("Caso") || mySentencia.eClass.name.equals("mientras") || mySentencia.eClass.name.equals("repetir") || mySentencia.eClass.name.equals("desde")»
 					«mySentencia.toCpp»
 				«ELSE»
 					«mySentencia.toC»
@@ -362,27 +356,27 @@ class MyDslGenerator implements IGenerator {
 		} else if (mySent.eClass.name.equals("Si")) {
 			var Si prueba = new SiImpl
 			prueba = mySent as Si
-			prueba.toC
+			prueba.toCpp
 		} else if (mySent.eClass.name.equals("segun")) {
 			var segun prueba = new segunImpl
 			prueba = mySent as segun
-			prueba.toC
+			prueba.toCpp
 		} else if (mySent.eClass.name.equals("Caso")) {
 			var Caso prueba = new CasoImpl
 			prueba = mySent as Caso
-			prueba.toC
+			prueba.toCpp
 		} else if (mySent.eClass.name.equals("mientras")) {
 			var mientras prueba = new mientrasImpl
 			prueba = mySent as mientras
-			prueba.toC
+			prueba.toCpp
 		} else if (mySent.eClass.name.equals("repetir")) {
 			var repetir prueba = new repetirImpl
 			prueba = mySent as repetir
-			prueba.toC
+			prueba.toCpp
 		} else if (mySent.eClass.name.equals("desde")) {
 			var desde prueba = new desdeImpl
 			prueba = mySent as desde
-			prueba.toC
+			prueba.toCpp
 		} else if (mySent.eClass.name.equals("incremento")) {
 			var incremento prueba = new incrementoImpl
 			prueba = mySent as incremento
@@ -812,7 +806,6 @@ class MyDslGenerator implements IGenerator {
 	def toC(Si mySi) '''
 		if(«mySi.valor.toC»){
 			«FOR sent:mySi.sentencias»
-				
 				«sent.toC»
 			«ENDFOR»
 			«IF mySi.devuelve != null» 
@@ -820,7 +813,25 @@ class MyDslGenerator implements IGenerator {
 			«ENDIF»	
 		}
 		«IF mySi.sino != null» 
-		«mySi.sino.toC»
+			«mySi.sino.toC»
+		«ENDIF»
+	'''
+	
+	def toCpp(Si mySi) '''
+		if(«mySi.valor.toC»){
+			«FOR sent:mySi.sentencias»
+				«IF sent.eClass.name.equals("Escribir") || sent.eClass.name.equals("Leer") || sent.eClass.name.equals("Si") || sent.eClass.name.equals("segun") || sent.eClass.name.equals("Caso") || sent.eClass.name.equals("mientras") || sent.eClass.name.equals("repetir") || sent.eClass.name.equals("desde")»
+					«sent.toCpp»
+				«ELSE»
+					«sent.toC»
+				«ENDIF»
+			«ENDFOR»
+			«IF mySi.devuelve != null» 
+				«mySi.devuelve.toC»
+			«ENDIF»	
+		}
+		«IF mySi.sino != null» 
+			«mySi.sino.toC»
 		«ENDIF»
 	'''
 
@@ -831,6 +842,21 @@ class MyDslGenerator implements IGenerator {
 			«ENDFOR»
 			«IF myCaso.devuelve != null» 
 			«myCaso.devuelve.toC»
+			«ENDIF»
+		break;
+	'''
+	
+	def toCpp(Caso myCaso) '''
+		case «myCaso.operador.toC»:
+			«FOR sent:myCaso.sentencias»
+				«IF sent.eClass.name.equals("Escribir") || sent.eClass.name.equals("Leer") || sent.eClass.name.equals("Si") || sent.eClass.name.equals("segun") || sent.eClass.name.equals("Caso") || sent.eClass.name.equals("mientras") || sent.eClass.name.equals("repetir") || sent.eClass.name.equals("desde")»
+					«sent.toCpp»
+				«ELSE»
+					«sent.toC»
+				«ENDIF»
+			«ENDFOR»
+			«IF myCaso.devuelve != null» 
+				«myCaso.devuelve.toC»
 			«ENDIF»
 		break;
 	'''
@@ -850,6 +876,26 @@ class MyDslGenerator implements IGenerator {
 			break;
 		}
 	'''
+	
+	def toCpp(segun mySegun) '''
+		switch(«mySegun.valor.toC»){
+			«FOR cas:mySegun.caso»
+				«cas.toCpp» 
+			«ENDFOR»
+			default:
+				«FOR sent:mySegun.sentencias»
+					«IF sent.eClass.name.equals("Escribir") || sent.eClass.name.equals("Leer") || sent.eClass.name.equals("Si") || sent.eClass.name.equals("segun") || sent.eClass.name.equals("Caso") || sent.eClass.name.equals("mientras") || sent.eClass.name.equals("repetir") || sent.eClass.name.equals("desde")»
+						«sent.toCpp»
+					«ELSE»
+						«sent.toC»
+					«ENDIF»
+				«ENDFOR»
+				«IF mySegun.devuelve != null» 
+				«mySegun.devuelve.toC»
+				«ENDIF»
+			break;
+		}
+	'''
 
 	def toC(Devolver myDevuelve) '''
 		return «myDevuelve.devuelve.toC»;
@@ -857,8 +903,7 @@ class MyDslGenerator implements IGenerator {
 
 	def toC(Sino mySino) '''
 		else{
-			«FOR sent:mySino.sentencias»
-				
+			«FOR sent:mySino.sentencias»	
 				«sent.toC»
 			«ENDFOR»
 			«IF mySino.devuelve != null» 
@@ -866,12 +911,38 @@ class MyDslGenerator implements IGenerator {
 			«ENDIF»	
 		}
 	'''
+	
+	def toCpp(Sino mySino) '''
+		else{
+			«FOR sent:mySino.sentencias»	
+				«IF sent.eClass.name.equals("Escribir") || sent.eClass.name.equals("Leer") || sent.eClass.name.equals("Si") || sent.eClass.name.equals("segun") || sent.eClass.name.equals("Caso") || sent.eClass.name.equals("mientras") || sent.eClass.name.equals("repetir") || sent.eClass.name.equals("desde")»
+					«sent.toCpp»
+				«ELSE»
+					«sent.toC»
+				«ENDIF»
+			«ENDFOR»
+			«IF mySino.devuelve != null» 
+				«mySino.devuelve.toC»
+			«ENDIF»	
+		}
+	'''
 
 	def toC(mientras m) '''
 		while(«m.valor.toC»){
 			«FOR sent:m.sentencias»
-				
 				«sent.toC»
+			«ENDFOR»
+		}
+	'''
+	
+	def toCpp(mientras m) '''
+		while(«m.valor.toC»){
+			«FOR sent:m.sentencias»
+				«IF sent.eClass.name.equals("Escribir") || sent.eClass.name.equals("Leer") || sent.eClass.name.equals("Si") || sent.eClass.name.equals("segun") || sent.eClass.name.equals("Caso") || sent.eClass.name.equals("mientras") || sent.eClass.name.equals("repetir") || sent.eClass.name.equals("desde")»
+					«sent.toCpp»
+				«ELSE»
+					«sent.toC»
+				«ENDIF»
 			«ENDFOR»
 		}
 	'''
@@ -879,8 +950,19 @@ class MyDslGenerator implements IGenerator {
 	def toC(desde d) '''
 		for(«d.asignacion.toC» «d.asignacion.lvalue.toString» <= «d.valor.toC»; «d.asignacion.lvalue.toString»++){
 			«FOR sent:d.sentencias»
-				
 				«sent.toC»
+			«ENDFOR»
+		}
+	'''
+	
+	def toCpp(desde d) '''
+		for(«d.asignacion.toC» «d.asignacion.lvalue.toString» <= «d.valor.toC»; «d.asignacion.lvalue.toString»++){
+			«FOR sent:d.sentencias»
+				«IF sent.eClass.name.equals("Escribir") || sent.eClass.name.equals("Leer") || sent.eClass.name.equals("Si") || sent.eClass.name.equals("segun") || sent.eClass.name.equals("Caso") || sent.eClass.name.equals("mientras") || sent.eClass.name.equals("repetir") || sent.eClass.name.equals("desde")»
+					«sent.toCpp»
+				«ELSE»
+					«sent.toC»
+				«ENDIF»
 			«ENDFOR»
 		}
 	'''
@@ -888,8 +970,19 @@ class MyDslGenerator implements IGenerator {
 	def toC(repetir m) '''
 		do{
 			«FOR sent:m.sentencias»
-				
 				«sent.toC»
+			«ENDFOR»
+		}while(!«m.valor.toC»);
+	'''
+	
+	def toCpp(repetir m) '''
+		do{
+			«FOR sent:m.sentencias»
+				«IF sent.eClass.name.equals("Escribir") || sent.eClass.name.equals("Leer") || sent.eClass.name.equals("Si") || sent.eClass.name.equals("segun") || sent.eClass.name.equals("Caso") || sent.eClass.name.equals("mientras") || sent.eClass.name.equals("repetir") || sent.eClass.name.equals("desde")»
+					«sent.toCpp»
+				«ELSE»
+					«sent.toC»
+				«ENDIF»
 			«ENDFOR»
 		}while(!«m.valor.toC»);
 	'''
