@@ -9,10 +9,15 @@ import org.eclipse.emf.common.util.EList
 import diagramapseudocodigo.*
 import diagramapseudocodigo.impl.*
 import org.eclipse.emf.common.util.EMap
+import java.util.Map
+import java.util.HashMap
 
 class MyDslGenerator implements IGenerator {
 
 	@Inject extension IQualifiedNameProvider
+	static Map<String, String> variablesInicio = new HashMap<String,String>();
+	static Map<String, String> variablesSubprocesos = new HashMap<String,String>();
+	static Codigo codigo;
 
 	//EMap<String, TipoVariable> tablaSimbolos;
 	override void doGenerate(Resource resource, IFileSystemAccess myCFile) {
@@ -26,7 +31,12 @@ class MyDslGenerator implements IGenerator {
 		}
 	}
 	
-	def toCpp(Codigo myCodigo) '''
+	
+	def toCpp(Codigo myCodigo) {
+	
+	codigo = myCodigo;
+	
+	'''
 		#include <iostream>
 		#include <string>
 		#include <cmath>
@@ -43,13 +53,26 @@ class MyDslGenerator implements IGenerator {
 		«ENDFOR»
 		
 		«FOR funcion:myCodigo.funcion»
-			«funcion.toC»
+			«funcion.toCpp»
 			
 		«ENDFOR»
 		«myCodigo.tiene.toCpp»
 	'''
+	}
 
-	def toC(Codigo myCodigo) '''
+	def toC(Codigo myCodigo) {
+	
+	codigo = myCodigo;
+	for(Declaracion d: codigo.tiene.declaracion) {
+		if(d instanceof DeclaracionVariable) {
+			var dec = d as DeclaracionVariable;
+			for(Variable v: dec.variable) {
+				variablesInicio.put(v.nombre, dec.tipo.name);
+			}
+		}
+	}
+	
+	'''
 		#include <stdio.h>
 		#include <stdlib.h>
 		#include <string.h>
@@ -70,6 +93,7 @@ class MyDslGenerator implements IGenerator {
 		«ENDFOR»
 		«myCodigo.tiene.toC»
 	'''
+	}
 
 	def toC(TipoComplejo myComplejo) {
 		if (myComplejo.eClass.name.equals("Vector")) {
@@ -201,6 +225,8 @@ class MyDslGenerator implements IGenerator {
 			«FOR mySentencia:myInicio.tiene»
 				«IF mySentencia.eClass.name.equals("Escribir")»
 					«mySentencia.toCpp»
+				«ELSEIF mySentencia.eClass.name.equals("Leer")»
+					«mySentencia.toCpp»
 				«ELSE»
 					«mySentencia.toC»
 				«ENDIF»
@@ -217,6 +243,18 @@ class MyDslGenerator implements IGenerator {
 			var Procedimiento prueba = new ProcedimientoImpl
 			prueba = subp as Procedimiento
 			prueba.toC
+		}
+	}
+	
+	def toCpp(Subproceso subp) {
+		if (subp.eClass.name.equals("Funcion")) {
+			var Funcion prueba = new FuncionImpl
+			prueba = subp as Funcion
+			prueba.toCpp
+		} else if (subp.eClass.name.equals("Procedimiento")) {
+			var Procedimiento prueba = new ProcedimientoImpl
+			prueba = subp as Procedimiento
+			prueba.toCpp
 		}
 	}
 
@@ -245,7 +283,7 @@ class MyDslGenerator implements IGenerator {
 		}
 		return total;
 	}
-
+	
 	def toC(Funcion myFun) '''
 		«myFun.tipo.tipoVariable» «myFun.nombre»(«myFun.parametrofuncion.toC»){
 			«FOR myVariable:myFun.declaracion»
@@ -260,6 +298,26 @@ class MyDslGenerator implements IGenerator {
 		}
 	'''
 
+	def toCpp(Funcion myFun) '''
+		«myFun.tipo.tipoVariable» «myFun.nombre»(«myFun.parametrofuncion.toC»){
+			«FOR myVariable:myFun.declaracion»
+				«myVariable.toC»
+			«ENDFOR»
+			«FOR mySentencia:myFun.sentencias»
+				«IF mySentencia.eClass.name.equals("Escribir")»
+					«mySentencia.toCpp»
+				«ELSEIF mySentencia.eClass.name.equals("Leer")»
+					«mySentencia.toCpp»
+				«ELSE»
+					«mySentencia.toC»
+				«ENDIF»
+			«ENDFOR»
+			«IF myFun.devuelve != null» 
+			«myFun.devuelve.toC»
+			«ENDIF»
+		}
+	'''
+	
 	def toC(Procedimiento myFun) '''
 		void «myFun.nombre»(«myFun.parametrofuncion.toC»){
 			«FOR myVariable:myFun.declaracion»
@@ -267,6 +325,23 @@ class MyDslGenerator implements IGenerator {
 			«ENDFOR»
 			«FOR mySentencia:myFun.sentencias»
 				«mySentencia.toC»
+			«ENDFOR»
+		}
+	'''
+
+	def toCpp(Procedimiento myFun) '''
+		void «myFun.nombre»(«myFun.parametrofuncion.toC»){
+			«FOR myVariable:myFun.declaracion»
+				«myVariable.toC»
+			«ENDFOR»
+			«FOR mySentencia:myFun.sentencias»
+				«IF mySentencia.eClass.name.equals("Escribir")»
+					«mySentencia.toCpp»
+				«ELSEIF mySentencia.eClass.name.equals("Leer")»
+					«mySentencia.toCpp»
+				«ELSE»
+					«mySentencia.toC»
+				«ENDIF»
 			«ENDFOR»
 		}
 	'''
@@ -577,9 +652,48 @@ class MyDslGenerator implements IGenerator {
 		cin >> «l.variable.toC»;
 	'''
 	
-	def toC(Leer l) '''
-		scanf(«l.variable.toC»);
-	'''
+	def toC(Leer l) {
+		if(codigo.tiene.tiene.contains(l)) {
+			System.out.println("La tiene inicio");
+			var varID = l.variable as VariableID;
+			var tipo = variablesInicio.get(varID.nombre);
+			System.out.println("El tipo es: "+tipo);
+			if(tipo == "ENTERO") {
+				'''scanf("%i", &«l.variable.toC»);'''
+			}
+			else if(tipo == "CARACTER") {
+				'''scanf("%c", &«l.variable.toC»);'''
+			}
+			else if(tipo == "CADENA") {
+				'''scanf("%s", &«l.variable.toC»);'''
+			}
+			else if(tipo == "REAL") {
+				'''scanf("%r", &«l.variable.toC»);'''
+			}
+		}
+		else {
+			for(Subproceso s: codigo.funcion) {
+				if(s.sentencias.contains(l)) {
+					System.out.println("La tiene inicio");
+					var varID = l.variable as VariableID;
+					var tipo = variablesInicio.get(varID.nombre);
+					System.out.println("El tipo es: "+tipo);
+					if(tipo == "ENTERO") {
+						return '''scanf("%i", &«l.variable.toC»);'''
+					}
+					else if(tipo == "CARACTER") {
+						return '''scanf("%c", &«l.variable.toC»);'''
+					}
+					else if(tipo == "CADENA") {
+						return '''scanf("%s", &«l.variable.toC»);'''
+					}
+					else if(tipo == "REAL") {
+						return '''scanf("%r", &«l.variable.toC»);'''
+					}
+				}
+			}
+		}
+	}
 
 	def toC(Internas i) {
 		if (i.nombre == NombreInterna::COS) {
