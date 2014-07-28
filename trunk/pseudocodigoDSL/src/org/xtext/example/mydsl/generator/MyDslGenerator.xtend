@@ -130,6 +130,24 @@ class MyDslGenerator implements IGenerator {
 				vectoresMatrices.put(m.nombre, tipo.tipo);
 			}
 		}
+		else if(t.eClass.name.equals("Registro")) {
+			var r = t as Registro;
+			registros.put(r.nombre, new HashMap<String,String>());
+			for(Declaracion d: r.variable) {
+				if(d instanceof DeclaracionVariable) {
+					var dec = d as DeclaracionVariable;
+					for(Variable v: dec.variable) {
+						registros.get(r.nombre).put(v.nombre, dec.tipo.name);
+					}
+				}
+				else if(d instanceof DeclaracionPropia) {
+					var dec = d as DeclaracionPropia;
+					for(Variable v: dec.variable) {
+						registros.get(r.nombre).put(v.nombre, dec.tipo);
+					}
+				}
+			}
+		}
 	}
 	
 	'''
@@ -1057,11 +1075,25 @@ class MyDslGenerator implements IGenerator {
 					}
 					else if(o.eClass.name.equals("ValorVector")) {
 						var vector = o as ValorVector;
-						tipo = vectoresMatrices.get(variablesInicio.get(vector.nombre_vector));
+						if(vector.campo.size() == 0) {
+							tipo = vectoresMatrices.get(variablesInicio.get(vector.nombre_vector));
+						}
+						else {
+							tipo = registros.get(vectoresMatrices.get(variablesInicio.get(vector.nombre_vector))).get(vector.campo.get(0));
+						}
 					}
 					else if(o.eClass.name.equals("ValorMatriz")) {
 						var matriz = o as ValorMatriz;
-						tipo = vectoresMatrices.get(variablesInicio.get(matriz.nombre_matriz));
+						if(matriz.campo.size() == 0) {
+							tipo = vectoresMatrices.get(variablesInicio.get(matriz.nombre_matriz));
+						}
+						else {
+							tipo = registros.get(vectoresMatrices.get(variablesInicio.get(matriz.nombre_matriz))).get(matriz.campo.get(0));
+						}
+					}
+					else if(o.eClass.name.equals("ValorRegistro")) {
+						var registro = o as ValorRegistro;
+						tipo = registros.get(variablesInicio.get(registro.nombre_registro)).get(registro.campo.get(0));
 					}
 					if(tipo == "ENTERO" || o.eClass.name.equals("NumeroEntero")) {
 						if(iterador == a.operador.size - 1) {
@@ -1149,12 +1181,26 @@ class MyDslGenerator implements IGenerator {
 					}
 					else if(o.eClass.name.equals("ValorVector")) {
 						var vector = o as ValorVector;
-						tipo = vectoresMatrices.get(variablesInicio.get(vector.nombre_vector));
+						if(vector.campo.size() == 0) {
+							tipo = vectoresMatrices.get(variablesSubprocesos.get(s.nombre).get(vector.nombre_vector));
+						}
+						else {
+							tipo = registros.get(vectoresMatrices.get(variablesSubprocesos.get(s.nombre).get(vector.nombre_vector))).get(vector.campo.get(0));
+						}
 					}
 					else if(o.eClass.name.equals("ValorMatriz")) {
 						var matriz = o as ValorMatriz;
-						tipo = vectoresMatrices.get(variablesInicio.get(matriz.nombre_matriz));
+						if(matriz.campo.size() == 0) {
+							tipo = vectoresMatrices.get(variablesSubprocesos.get(s.nombre).get(matriz.nombre_matriz));
+						}
+						else {
+							tipo = registros.get(vectoresMatrices.get(variablesSubprocesos.get(s.nombre).get(matriz.nombre_matriz))).get(matriz.campo.get(0));
+						}
 					}	
+					else if(o.eClass.name.equals("ValorRegistro")) {
+						var registro = o as ValorRegistro;
+						tipo = registros.get(variablesSubprocesos.get(s.nombre).get(registro.nombre_registro)).get(registro.campo.get(0));
+					}
 					if(tipo == "ENTERO" || o.eClass.name.equals("NumeroEntero")) {
 						if(iterador == a.operador.size - 1) {
 							cadena = cadena + " %i\"";
