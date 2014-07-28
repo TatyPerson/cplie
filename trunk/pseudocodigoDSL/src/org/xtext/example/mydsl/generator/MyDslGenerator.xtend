@@ -16,7 +16,7 @@ class MyDslGenerator implements IGenerator {
 
 	@Inject extension IQualifiedNameProvider
 	static Map<String, String> variablesInicio = new HashMap<String,String>();
-	static Map<String, String> variablesSubprocesos = new HashMap<String,String>();
+	static Map<String, Map<String,String>>variablesSubprocesos = new HashMap<String,Map<String,String>>();
 	static Codigo codigo;
 
 	//EMap<String, TipoVariable> tablaSimbolos;
@@ -68,6 +68,15 @@ class MyDslGenerator implements IGenerator {
 			var dec = d as DeclaracionVariable;
 			for(Variable v: dec.variable) {
 				variablesInicio.put(v.nombre, dec.tipo.name);
+			}
+		}
+	}
+	for(Subproceso s: codigo.funcion) {
+		for(Declaracion d: s.declaracion) {
+			var dec = d as DeclaracionVariable;
+			variablesSubprocesos.put(s.nombre, new HashMap<String,String>());
+			for(Variable v: dec.variable) {
+				variablesSubprocesos.get(s.nombre).put(v.nombre, dec.tipo.name);
 			}
 		}
 	}
@@ -646,12 +655,88 @@ class MyDslGenerator implements IGenerator {
 		cin >> «l.variable.toC»;
 	'''
 	
+	def contienenExpresionLeer(EList<Sentencias> sentencias, Leer l) {
+		if(sentencias.contains(l)) {
+			return true;
+		}
+		for(Sentencias s: sentencias) {
+			if(s.eClass.name.equals("mientras")) {
+				var mientras = s as mientras;
+				if(mientras.sentencias.contains(l)) {
+					return true;
+				}
+			}
+			else if(s.eClass.name.equals("repetir")) {
+				var repetir = s as repetir;
+				if(repetir.sentencias.contains(l)) {
+					return true;
+				}
+			}
+			else if(s.eClass.name.equals("desde")) {
+				var desde = s as desde;
+				if(desde.sentencias.contains(l)) {
+					return true;
+				}
+			}
+			else if(s.eClass.name.equals("Si")) {
+				var si = s as Si;
+				if(si.sentencias.contains(l)) {
+					return true;
+				}
+				else if(si.sino != null) {
+					if(si.sino.sentencias.contains(l)) {
+						return true;
+					}
+				}
+			}
+			else if(s.eClass.name.equals("segun")) {
+				var segun = s as segun;
+				for(Caso c: segun.caso) {
+					if(c.sentencias.contains(l)) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
 	def toC(Leer l) {
-		if(codigo.tiene.tiene.contains(l)) {
-			System.out.println("La tiene inicio");
+		var perteneceInicio = false;
+		if(!codigo.tiene.tiene.contains(l)) {
+			for(Sentencias s: codigo.tiene.tiene) {
+				if(s.eClass.name.equals("mientras") && perteneceInicio == false) {
+					var mientras = s as mientras;
+					perteneceInicio = contienenExpresionLeer(mientras.sentencias, l);
+				}
+				else if(s.eClass.name.equals("repetir") && perteneceInicio == false) {
+					var repetir = s as repetir;
+					perteneceInicio = contienenExpresionLeer(repetir.sentencias, l);
+				}
+				else if(s.eClass.name.equals("desde") && perteneceInicio == false) {
+					var desde = s as desde;
+					perteneceInicio = contienenExpresionLeer(desde.sentencias, l);
+				}
+				else if(s.eClass.name.equals("Si") && perteneceInicio == false) {
+					var si = s as Si;
+					perteneceInicio = contienenExpresionLeer(si.sentencias, l);
+					if(si.sino != null) {
+						perteneceInicio = contienenExpresionLeer(si.sino.sentencias, l);
+					}
+				}	
+				else if(s.eClass.name.equals("segun") && perteneceInicio == false) {
+					var segun = s as segun;
+					for(Caso c: segun.caso) {
+						if(perteneceInicio == false) {
+							perteneceInicio = contienenExpresionLeer(c.sentencias, l);
+						}
+					}
+				}
+		 	}
+		}
+		if(codigo.tiene.tiene.contains(l) || perteneceInicio) {
 			var varID = l.variable as VariableID;
 			var tipo = variablesInicio.get(varID.nombre);
-			System.out.println("El tipo es: "+tipo);
 			if(tipo == "ENTERO") {
 				'''scanf("%i", &«l.variable.toC»);'''
 			}
@@ -668,10 +753,9 @@ class MyDslGenerator implements IGenerator {
 		else {
 			for(Subproceso s: codigo.funcion) {
 				if(s.sentencias.contains(l)) {
-					System.out.println("La tiene inicio");
 					var varID = l.variable as VariableID;
-					var tipo = variablesInicio.get(varID.nombre);
-					System.out.println("El tipo es: "+tipo);
+					var tipo = variablesSubprocesos.get(s.nombre).get(varID.nombre);
+					System.out.println("El tipo cogido del subproceso es: "+tipo);
 					if(tipo == "ENTERO") {
 						return '''scanf("%i", &«l.variable.toC»);'''
 					}
@@ -723,7 +807,7 @@ class MyDslGenerator implements IGenerator {
 		var resultado = "";
 		var numero = 1;
 		for (o : operadores) {
-			if(numero < operadores.size) {
+			if(operadores.size() > 1 && numero < operadores.size && numero != 1) {
 				resultado = resultado + o.toC + " , ";
 			}
 			else {
@@ -738,9 +822,68 @@ class MyDslGenerator implements IGenerator {
 		cout«a.operador.coutOperadores» << endl;
 	'''
 	
-	def toC(Escribir a) '''
-		printf(«a.operador.coutOperadoresC»);
-	'''
+	def toC(Escribir a) {
+		
+		if(codigo.tiene.tiene.contains(a) && a.operador.size() > 1) {
+			var iterador = 0;
+			var primero = a.operador.get(0) as ConstCadena;
+			var cadena = primero.contenido;
+			for(o: a.operador) {
+				if(iterador > 0) {
+					var varID = o as VariableID;
+					var tipo = variablesInicio.get(varID.nombre);
+					if(tipo == "ENTERO" || o.eClass.name.equals("NumeroEntero")) {
+						cadena = cadena + " %i";
+					}
+					else if(tipo == "CARACTER") {
+						cadena = cadena + " %c";
+					}
+					else if(tipo == "CADENA") {
+						cadena = cadena + " %s";
+					}
+					else if(tipo == "REAL") {
+						cadena = cadena + " %r";
+					}
+				}
+				iterador = iterador + 1;
+			}
+			cadena = cadena + " , " a.operador.coutOperadoresC;
+			return '''printf(«cadena»);'''
+		}
+		else {
+			for(Subproceso s: codigo.funcion) {
+				if(s.sentencias.contains(a) && a.operador.size() > 1) {
+					var iterador = 0;
+					var primero = a.operador.get(0) as ConstCadena;
+					var cadena = primero.contenido;
+					for(o: a.operador) {
+						if(iterador > 0) {
+							var varID = o as VariableID;
+							var tipo = variablesSubprocesos.get(s.nombre).get(varID.nombre);
+							if(tipo == "ENTERO") {
+								cadena = cadena + " %i";
+							}
+							else if(tipo == "CARACTER") {
+								cadena = cadena + " %c";
+							}
+							else if(tipo == "CADENA") {
+								cadena = cadena + " %s";
+							}
+							else if(tipo == "REAL") {
+								cadena = cadena + " %r";
+							}
+						}
+					iterador = iterador + 1;
+					}
+					cadena = cadena + " , " a.operador.coutOperadoresC;
+					return '''printf(«cadena»);'''
+				}	
+			}
+		}
+	
+		'''printf(«a.operador.coutOperadoresC»);'''
+	
+	}
 
 	def generaParametros(EList<valor> valores) {
 		var total = "";
