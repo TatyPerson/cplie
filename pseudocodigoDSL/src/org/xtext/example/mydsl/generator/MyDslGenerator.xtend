@@ -79,6 +79,12 @@ class MyDslGenerator implements IGenerator {
 				variablesSubprocesos.get(s.nombre).put(v.nombre, dec.tipo.name);
 			}
 		}
+		for(ParametroFuncion p: s.parametrofuncion) {
+			if(p.tipo.eClass.name.equals("TipoExistente")) {
+				var tipo = p.tipo as TipoExistente;
+				variablesSubprocesos.get(s.nombre).put(p.variable.nombre, tipo.tipo.name);
+			}
+		}
 	}
 	
 	'''
@@ -782,24 +788,59 @@ class MyDslGenerator implements IGenerator {
 		}
 		else {
 			for(Subproceso s: codigo.funcion) {
-				if(s.sentencias.contains(l)) {
-					var varID = l.variable as VariableID;
-					var tipo = variablesSubprocesos.get(s.nombre).get(varID.nombre);
-					System.out.println("El tipo cogido del subproceso es: "+tipo);
-					if(tipo == "ENTERO") {
-						return '''scanf("%i", &«l.variable.toC»);'''
+				System.out.println("Estoy entrando aqui");
+				System.out.println("El subproceso es: "+s.nombre);
+				var perteneceSubproceso = false;
+				if(!s.sentencias.contains(l)) {
+					System.out.println("El mismo no la contiene");
+					for(Sentencias sent: s.sentencias) {
+						if(sent.eClass.name.equals("mientras") && perteneceSubproceso == false) {
+						var mientras = sent as mientras;
+						perteneceSubproceso = contienenExpresionLeer(mientras.sentencias, l);
 					}
-					else if(tipo == "CARACTER") {
-						return '''scanf("%c", &«l.variable.toC»);'''
+					else if(sent.eClass.name.equals("repetir") && perteneceSubproceso == false) {
+						var repetir = sent as repetir;
+						perteneceSubproceso = contienenExpresionLeer(repetir.sentencias, l);
 					}
-					else if(tipo == "CADENA") {
-						return '''scanf("%s", &«l.variable.toC»);'''
+					else if(sent.eClass.name.equals("desde") && perteneceSubproceso == false) {
+						var desde = sent as desde;
+						perteneceSubproceso = contienenExpresionLeer(desde.sentencias, l);
 					}
-					else if(tipo == "REAL") {
-						return '''scanf("%r", &«l.variable.toC»);'''
+					else if(sent.eClass.name.equals("Si") && perteneceSubproceso == false) {
+						var si = sent as Si;
+						perteneceSubproceso = contienenExpresionLeer(si.sentencias, l);
+						if(si.sino != null) {
+							perteneceSubproceso = contienenExpresionLeer(si.sino.sentencias, l);
+						}
+					}	
+					else if(sent.eClass.name.equals("segun") && perteneceSubproceso == false) {
+						var segun = sent as segun;
+						for(Caso c: segun.caso) {
+							if(perteneceSubproceso == false) {
+								perteneceSubproceso = contienenExpresionLeer(c.sentencias, l);
+							}
+						}
 					}
+		 		}
+		 	}
+		 	if(s.sentencias.contains(l) || perteneceSubproceso) {
+		 		System.out.println("Voy a intentar escribirlo");
+				var varID = l.variable as VariableID;
+				var tipo = variablesSubprocesos.get(s.nombre).get(varID.nombre);
+				if(tipo == "ENTERO") {
+					return '''scanf("%i", &«l.variable.toC»);'''
+				}
+				else if(tipo == "CARACTER") {
+					return '''scanf("%c", &«l.variable.toC»);'''
+				}
+				else if(tipo == "CADENA") {
+					return '''scanf("%s", &«l.variable.toC»);'''
+				}
+				else if(tipo == "REAL") {
+					return '''scanf("%r", &«l.variable.toC»);'''
 				}
 			}
+		}
 		}
 	}
 
