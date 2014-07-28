@@ -665,17 +665,32 @@ class MyDslGenerator implements IGenerator {
 				if(mientras.sentencias.contains(l)) {
 					return true;
 				}
+				else {
+					if(contienenExpresionLeer(mientras.sentencias, l) == true) {
+						return true;
+					}
+				}
 			}
 			else if(s.eClass.name.equals("repetir")) {
 				var repetir = s as repetir;
 				if(repetir.sentencias.contains(l)) {
 					return true;
 				}
+				else {
+					if(contienenExpresionLeer(repetir.sentencias, l) == true) {
+						return true;
+					}
+				}
 			}
 			else if(s.eClass.name.equals("desde")) {
 				var desde = s as desde;
 				if(desde.sentencias.contains(l)) {
 					return true;
+				}
+				else {
+					if(contienenExpresionLeer(desde.sentencias, l) == true) {
+						return true;
+					}
 				}
 			}
 			else if(s.eClass.name.equals("Si")) {
@@ -687,6 +702,16 @@ class MyDslGenerator implements IGenerator {
 					if(si.sino.sentencias.contains(l)) {
 						return true;
 					}
+					else {
+						if(contienenExpresionLeer(si.sino.sentencias, l) == true) {
+							return true;
+						}
+					}
+				}
+				else {
+					if(contienenExpresionLeer(si.sentencias, l) == true) {
+						return true;
+					}
 				}
 			}
 			else if(s.eClass.name.equals("segun")) {
@@ -694,6 +719,11 @@ class MyDslGenerator implements IGenerator {
 				for(Caso c: segun.caso) {
 					if(c.sentencias.contains(l)) {
 						return true;
+					}
+					else {
+						if(contienenExpresionLeer(c.sentencias, l) == true) {
+							return true;
+						}
 					}
 				}
 			}
