@@ -788,11 +788,8 @@ class MyDslGenerator implements IGenerator {
 		}
 		else {
 			for(Subproceso s: codigo.funcion) {
-				System.out.println("Estoy entrando aqui");
-				System.out.println("El subproceso es: "+s.nombre);
 				var perteneceSubproceso = false;
 				if(!s.sentencias.contains(l)) {
-					System.out.println("El mismo no la contiene");
 					for(Sentencias sent: s.sentencias) {
 						if(sent.eClass.name.equals("mientras") && perteneceSubproceso == false) {
 						var mientras = sent as mientras;
@@ -824,7 +821,6 @@ class MyDslGenerator implements IGenerator {
 		 		}
 		 	}
 		 	if(s.sentencias.contains(l) || perteneceSubproceso) {
-		 		System.out.println("Voy a intentar escribirlo");
 				var varID = l.variable as VariableID;
 				var tipo = variablesSubprocesos.get(s.nombre).get(varID.nombre);
 				if(tipo == "ENTERO") {
@@ -881,12 +877,88 @@ class MyDslGenerator implements IGenerator {
 			if(operadores.size() > 1 && numero < operadores.size && numero != 1) {
 				resultado = resultado + o.toC + " , ";
 			}
-			else {
+			else if(numero != 1 || operadores.size() == 1) {
 				resultado = resultado + o.toC;
 			}
 			numero = numero + 1;
 		}
 		return resultado;
+	}
+	
+	def contienenExpresionEscribir(EList<Sentencias> sentencias, Escribir e) {
+		if(sentencias.contains(e)) {
+			return true;
+		}
+		for(Sentencias s: sentencias) {
+			if(s.eClass.name.equals("mientras")) {
+				var mientras = s as mientras;
+				if(mientras.sentencias.contains(e)) {
+					return true;
+				}
+				else {
+					if(contienenExpresionEscribir(mientras.sentencias, e) == true) {
+						return true;
+					}
+				}
+			}
+			else if(s.eClass.name.equals("repetir")) {
+				var repetir = s as repetir;
+				if(repetir.sentencias.contains(e)) {
+					return true;
+				}
+				else {
+					if(contienenExpresionEscribir(repetir.sentencias, e) == true) {
+						return true;
+					}
+				}
+			}
+			else if(s.eClass.name.equals("desde")) {
+				var desde = s as desde;
+				if(desde.sentencias.contains(e)) {
+					return true;
+				}
+				else {
+					if(contienenExpresionEscribir(desde.sentencias, e) == true) {
+						return true;
+					}
+				}
+			}
+			else if(s.eClass.name.equals("Si")) {
+				var si = s as Si;
+				if(si.sentencias.contains(e)) {
+					return true;
+				}
+				else if(si.sino != null) {
+					if(si.sino.sentencias.contains(e)) {
+						return true;
+					}
+					else {
+						if(contienenExpresionEscribir(si.sino.sentencias, e) == true) {
+							return true;
+						}
+					}
+				}
+				else {
+					if(contienenExpresionEscribir(si.sentencias, e) == true) {
+						return true;
+					}
+				}
+			}
+			else if(s.eClass.name.equals("segun")) {
+				var segun = s as segun;
+				for(Caso c: segun.caso) {
+					if(c.sentencias.contains(e)) {
+						return true;
+					}
+					else {
+						if(contienenExpresionEscribir(c.sentencias, e) == true) {
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 	def toCpp(Escribir a) '''
@@ -894,60 +966,171 @@ class MyDslGenerator implements IGenerator {
 	'''
 	
 	def toC(Escribir a) {
-		
-		if(codigo.tiene.tiene.contains(a) && a.operador.size() > 1) {
+		var perteneceInicio = false;
+		if(!codigo.tiene.tiene.contains(a)) {
+			for(Sentencias s: codigo.tiene.tiene) {
+				if(s.eClass.name.equals("mientras") && perteneceInicio == false) {
+					var mientras = s as mientras;
+					perteneceInicio = contienenExpresionEscribir(mientras.sentencias, a);
+				}
+				else if(s.eClass.name.equals("repetir") && perteneceInicio == false) {
+					var repetir = s as repetir;
+					perteneceInicio = contienenExpresionEscribir(repetir.sentencias, a);
+				}
+				else if(s.eClass.name.equals("desde") && perteneceInicio == false) {
+					var desde = s as desde;
+					perteneceInicio = contienenExpresionEscribir(desde.sentencias, a);
+				}
+				else if(s.eClass.name.equals("Si") && perteneceInicio == false) {
+					var si = s as Si;
+					perteneceInicio = contienenExpresionEscribir(si.sentencias, a);
+					if(si.sino != null) {
+						perteneceInicio = contienenExpresionEscribir(si.sino.sentencias, a);
+					}
+				}	
+				else if(s.eClass.name.equals("segun") && perteneceInicio == false) {
+					var segun = s as segun;
+					for(Caso c: segun.caso) {
+						if(perteneceInicio == false) {
+							perteneceInicio = contienenExpresionEscribir(c.sentencias, a);
+						}
+					}
+				}
+		 	}
+		}
+		if((codigo.tiene.tiene.contains(a) && a.operador.size() > 1) || perteneceInicio) {
 			var iterador = 0;
 			var primero = a.operador.get(0) as ConstCadena;
 			var cadena = primero.contenido;
+			cadena = cadena.substring(0, cadena.length()-1);
 			for(o: a.operador) {
 				if(iterador > 0) {
-					var varID = o as VariableID;
-					var tipo = variablesInicio.get(varID.nombre);
+					var tipo = "";
+					if(o.eClass.name.equals("VariableID")) {
+						var varID = o as VariableID;
+						tipo = variablesInicio.get(varID.nombre);
+					}
 					if(tipo == "ENTERO" || o.eClass.name.equals("NumeroEntero")) {
-						cadena = cadena + " %i";
+						if(iterador == a.operador.size - 1) {
+							cadena = cadena + " %i\"";
+						}
+						else {
+							cadena = cadena + " %i";
+						}
 					}
-					else if(tipo == "CARACTER") {
-						cadena = cadena + " %c";
+					else if(tipo == "CARACTER" || o.eClass.name.equals("Caracter")) {
+						if(iterador == a.operador.size - 1) {
+							cadena = cadena + " %c\"";
+						}
+						else {
+							cadena = cadena + " %c";
+						}
 					}
-					else if(tipo == "CADENA") {
-						cadena = cadena + " %s";
+					else if(tipo == "CADENA" || o.eClass.name.equals("ConstCadena")) {
+						if(iterador == a.operador.size - 1) {
+							cadena = cadena + " %s\"";
+						}
+						else {
+							cadena = cadena + " %s";
+						}
 					}
-					else if(tipo == "REAL") {
-						cadena = cadena + " %r";
+					else if(tipo == "REAL" || o.eClass.name.equals("NumeroDecimal")) {
+						if(iterador == a.operador.size - 1) {
+							cadena = cadena + " %r\"";
+						}
+						else {
+							cadena = cadena + " %r";
+						}
 					}
 				}
 				iterador = iterador + 1;
 			}
-			cadena = cadena + " , " a.operador.coutOperadoresC;
+			cadena = cadena + ", " + a.operador.coutOperadoresC;
 			return '''printf(«cadena»);'''
 		}
 		else {
 			for(Subproceso s: codigo.funcion) {
-				if(s.sentencias.contains(a) && a.operador.size() > 1) {
-					var iterador = 0;
-					var primero = a.operador.get(0) as ConstCadena;
-					var cadena = primero.contenido;
-					for(o: a.operador) {
-						if(iterador > 0) {
-							var varID = o as VariableID;
-							var tipo = variablesSubprocesos.get(s.nombre).get(varID.nombre);
-							if(tipo == "ENTERO") {
-								cadena = cadena + " %i";
-							}
-							else if(tipo == "CARACTER") {
-								cadena = cadena + " %c";
-							}
-							else if(tipo == "CADENA") {
-								cadena = cadena + " %s";
-							}
-							else if(tipo == "REAL") {
-								cadena = cadena + " %r";
+				var perteneceSubproceso = false;
+				if(!s.sentencias.contains(a) && a.operador.size() > 1) {
+					for(Sentencias sent: s.sentencias) {
+						if(sent.eClass.name.equals("mientras") && perteneceSubproceso == false) {
+						var mientras = sent as mientras;
+						perteneceSubproceso = contienenExpresionEscribir(mientras.sentencias, a);
+					}
+					else if(sent.eClass.name.equals("repetir") && perteneceSubproceso == false) {
+						var repetir = sent as repetir;
+						perteneceSubproceso = contienenExpresionEscribir(repetir.sentencias, a);
+					}
+					else if(sent.eClass.name.equals("desde") && perteneceSubproceso == false) {
+						var desde = sent as desde;
+						perteneceSubproceso = contienenExpresionEscribir(desde.sentencias, a);
+					}
+					else if(sent.eClass.name.equals("Si") && perteneceSubproceso == false) {
+						var si = sent as Si;
+						perteneceSubproceso = contienenExpresionEscribir(si.sentencias, a);
+						if(si.sino != null) {
+							perteneceSubproceso = contienenExpresionEscribir(si.sino.sentencias, a);
+						}
+					}	
+					else if(sent.eClass.name.equals("segun") && perteneceSubproceso == false) {
+						var segun = sent as segun;
+						for(Caso c: segun.caso) {
+							if(perteneceSubproceso == false) {
+								perteneceSubproceso = contienenExpresionEscribir(c.sentencias, a);
 							}
 						}
-					iterador = iterador + 1;
 					}
-					cadena = cadena + " , " a.operador.coutOperadoresC;
-					return '''printf(«cadena»);'''
+		 		}
+		 	}
+			if((s.sentencias.contains(a) && a.operador.size() > 1) || perteneceSubproceso) {
+				var iterador = 0;
+				var primero = a.operador.get(0) as ConstCadena;
+				var cadena = primero.contenido;
+				cadena = cadena.substring(0, cadena.length()-1);
+				for(o: a.operador) {
+				if(iterador > 0) {
+					var tipo = "";
+					if(o.eClass.name.equals("VariableID")) {
+						var varID = o as VariableID;
+						tipo = variablesSubprocesos.get(s.nombre).get(varID.nombre);
+					}
+					if(tipo == "ENTERO" || o.eClass.name.equals("NumeroEntero")) {
+						if(iterador == a.operador.size - 1) {
+							cadena = cadena + " %i\"";
+						}
+						else {
+							cadena = cadena + " %i";
+						}
+					}
+					else if(tipo == "CARACTER") {
+						if(iterador == a.operador.size - 1) {
+							cadena = cadena + " %c\"";
+						}
+						else {
+							cadena = cadena + " %c";
+						}
+					}
+					else if(tipo == "CADENA") {
+						if(iterador == a.operador.size - 1) {
+							cadena = cadena + " %s\"";
+						}
+						else {
+							cadena = cadena + " %s";
+						}
+					}
+					else if(tipo == "REAL") {
+						if(iterador == a.operador.size - 1) {
+							cadena = cadena + " %r\"";
+						}
+						else {
+							cadena = cadena + " %r";
+						}
+					}
+				}
+				iterador = iterador + 1;
+			}
+				cadena = cadena + ", " + a.operador.coutOperadoresC;
+				return '''printf(«cadena»);'''
 				}	
 			}
 		}
