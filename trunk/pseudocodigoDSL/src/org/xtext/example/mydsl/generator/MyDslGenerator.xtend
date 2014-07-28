@@ -17,6 +17,8 @@ class MyDslGenerator implements IGenerator {
 	@Inject extension IQualifiedNameProvider
 	static Map<String, String> variablesInicio = new HashMap<String,String>();
 	static Map<String, Map<String,String>>variablesSubprocesos = new HashMap<String,Map<String,String>>();
+	static Map<String,String> vectoresMatrices = new HashMap<String,String>();
+	static Map<String, Map<String,String>> registros = new HashMap<String, Map<String,String>>();
 	static Codigo codigo;
 
 	//EMap<String, TipoVariable> tablaSimbolos;
@@ -70,19 +72,62 @@ class MyDslGenerator implements IGenerator {
 				variablesInicio.put(v.nombre, dec.tipo.name);
 			}
 		}
+		else if(d instanceof DeclaracionPropia) {
+			var dec = d as DeclaracionPropia;
+			for(Variable v: dec.variable) {
+				variablesInicio.put(v.nombre, dec.tipo);
+			}
+		}
 	}
 	for(Subproceso s: codigo.funcion) {
+		variablesSubprocesos.put(s.nombre, new HashMap<String,String>());
 		for(Declaracion d: s.declaracion) {
-			var dec = d as DeclaracionVariable;
-			variablesSubprocesos.put(s.nombre, new HashMap<String,String>());
-			for(Variable v: dec.variable) {
-				variablesSubprocesos.get(s.nombre).put(v.nombre, dec.tipo.name);
+			if(d instanceof DeclaracionVariable) {
+				var dec = d as DeclaracionVariable;
+				for(Variable v: dec.variable) {
+					variablesSubprocesos.get(s.nombre).put(v.nombre, dec.tipo.name);
+				}
+			}
+			else if(d instanceof DeclaracionPropia) {
+				var dec = d as DeclaracionPropia;
+				for(Variable v: dec.variable) {
+					variablesSubprocesos.get(s.nombre).put(v.nombre, dec.tipo);
+				}
 			}
 		}
 		for(ParametroFuncion p: s.parametrofuncion) {
 			if(p.tipo.eClass.name.equals("TipoExistente")) {
 				var tipo = p.tipo as TipoExistente;
 				variablesSubprocesos.get(s.nombre).put(p.variable.nombre, tipo.tipo.name);
+			}
+			else if(p.tipo.eClass.name.equals("TipoDefinido")) {
+				var tipo = p.tipo as TipoDefinido;
+				variablesSubprocesos.get(s.nombre).put(p.variable.nombre, tipo.tipo);
+			}
+		}
+	}
+	
+	for(TipoComplejo t: codigo.tipocomplejo) {
+		if(t.eClass.name.equals("Vector")) {
+			var v = t as Vector;
+			if(v.tipo.eClass.name.equals("TipoExistente")) {
+				var tipo = v.tipo as TipoExistente;
+				vectoresMatrices.put(v.nombre, tipo.tipo.name);
+			}
+			else if(v.tipo.eClass.name.equals("TipoDefinido")) {
+				var tipo = v.tipo as TipoDefinido;
+				vectoresMatrices.put(v.nombre, tipo.tipo);
+			}
+		}
+		else if(t.eClass.name.equals("Matriz")) {
+			var m = t as Matriz;
+			if(m.tipo.eClass.name.equals("TipoExistente")) {
+				var tipo = m.tipo as TipoExistente;
+				vectoresMatrices.put(m.nombre, tipo.tipo.name);
+			}
+			else if(m.tipo.eClass.name.equals("TipoDefinido")) {
+				var tipo = m.tipo as TipoDefinido;
+				vectoresMatrices.put(m.nombre, tipo.tipo);
 			}
 		}
 	}
@@ -1010,6 +1055,14 @@ class MyDslGenerator implements IGenerator {
 						var varID = o as VariableID;
 						tipo = variablesInicio.get(varID.nombre);
 					}
+					else if(o.eClass.name.equals("ValorVector")) {
+						var vector = o as ValorVector;
+						tipo = vectoresMatrices.get(variablesInicio.get(vector.nombre_vector));
+					}
+					else if(o.eClass.name.equals("ValorMatriz")) {
+						var matriz = o as ValorMatriz;
+						tipo = vectoresMatrices.get(variablesInicio.get(matriz.nombre_matriz));
+					}
 					if(tipo == "ENTERO" || o.eClass.name.equals("NumeroEntero")) {
 						if(iterador == a.operador.size - 1) {
 							cadena = cadena + " %i\"";
@@ -1094,6 +1147,14 @@ class MyDslGenerator implements IGenerator {
 						var varID = o as VariableID;
 						tipo = variablesSubprocesos.get(s.nombre).get(varID.nombre);
 					}
+					else if(o.eClass.name.equals("ValorVector")) {
+						var vector = o as ValorVector;
+						tipo = vectoresMatrices.get(variablesInicio.get(vector.nombre_vector));
+					}
+					else if(o.eClass.name.equals("ValorMatriz")) {
+						var matriz = o as ValorMatriz;
+						tipo = vectoresMatrices.get(variablesInicio.get(matriz.nombre_matriz));
+					}	
 					if(tipo == "ENTERO" || o.eClass.name.equals("NumeroEntero")) {
 						if(iterador == a.operador.size - 1) {
 							cadena = cadena + " %i\"";
