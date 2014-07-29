@@ -1079,7 +1079,7 @@ class MyDslGenerator implements IGenerator {
 							tipo = vectoresMatrices.get(variablesInicio.get(vector.nombre_vector));
 						}
 						else {
-							tipo = registros.get(vectoresMatrices.get(variablesInicio.get(vector.nombre_vector))).get(vector.campo.get(0));
+							tipo = registros.get(vectoresMatrices.get(variablesInicio.get(vector.nombre_vector))).get(vector.campo.get(0).nombre_campo);
 						}
 					}
 					else if(o.eClass.name.equals("ValorMatriz")) {
@@ -1088,12 +1088,12 @@ class MyDslGenerator implements IGenerator {
 							tipo = vectoresMatrices.get(variablesInicio.get(matriz.nombre_matriz));
 						}
 						else {
-							tipo = registros.get(vectoresMatrices.get(variablesInicio.get(matriz.nombre_matriz))).get(matriz.campo.get(0));
+							tipo = registros.get(vectoresMatrices.get(variablesInicio.get(matriz.nombre_matriz))).get(matriz.campo.get(0).nombre_campo);
 						}
 					}
 					else if(o.eClass.name.equals("ValorRegistro")) {
 						var registro = o as ValorRegistro;
-						tipo = registros.get(variablesInicio.get(registro.nombre_registro)).get(registro.campo.get(0));
+						tipo = registros.get(variablesInicio.get(registro.nombre_registro)).get(registro.campo.get(0).nombre_campo);
 					}
 					if(tipo == "ENTERO" || o.eClass.name.equals("NumeroEntero")) {
 						if(iterador == a.operador.size - 1) {
@@ -1185,7 +1185,7 @@ class MyDslGenerator implements IGenerator {
 							tipo = vectoresMatrices.get(variablesSubprocesos.get(s.nombre).get(vector.nombre_vector));
 						}
 						else {
-							tipo = registros.get(vectoresMatrices.get(variablesSubprocesos.get(s.nombre).get(vector.nombre_vector))).get(vector.campo.get(0));
+							tipo = registros.get(vectoresMatrices.get(variablesSubprocesos.get(s.nombre).get(vector.nombre_vector))).get(vector.campo.get(0).nombre_campo);
 						}
 					}
 					else if(o.eClass.name.equals("ValorMatriz")) {
@@ -1194,12 +1194,12 @@ class MyDslGenerator implements IGenerator {
 							tipo = vectoresMatrices.get(variablesSubprocesos.get(s.nombre).get(matriz.nombre_matriz));
 						}
 						else {
-							tipo = registros.get(vectoresMatrices.get(variablesSubprocesos.get(s.nombre).get(matriz.nombre_matriz))).get(matriz.campo.get(0));
+							tipo = registros.get(vectoresMatrices.get(variablesSubprocesos.get(s.nombre).get(matriz.nombre_matriz))).get(matriz.campo.get(0).nombre_campo);
 						}
 					}	
 					else if(o.eClass.name.equals("ValorRegistro")) {
 						var registro = o as ValorRegistro;
-						tipo = registros.get(variablesSubprocesos.get(s.nombre).get(registro.nombre_registro)).get(registro.campo.get(0));
+						tipo = registros.get(variablesSubprocesos.get(s.nombre).get(registro.nombre_registro)).get(registro.campo.get(0).nombre_campo);
 					}
 					if(tipo == "ENTERO" || o.eClass.name.equals("NumeroEntero")) {
 						if(iterador == a.operador.size - 1) {
