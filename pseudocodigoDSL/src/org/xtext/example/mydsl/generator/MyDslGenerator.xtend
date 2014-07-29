@@ -614,7 +614,12 @@ class MyDslGenerator implements IGenerator {
 
 	def toC(ValorVector myValor) {
 		var concat = new String;
-		concat = myValor.nombre_vector.toString + '[' + myValor.indice.toC + ']';
+		if(myValor.campo.size() == 0) {
+			concat = myValor.nombre_vector.toString + '[' + myValor.indice.toC + ']';
+		}
+		else {
+			concat = myValor.nombre_vector.toString + '[' + myValor.indice.toC + ']' + '.' + myValor.campo.get(0).nombre_campo;
+		}
 		return concat;
 	}
 
@@ -626,7 +631,12 @@ class MyDslGenerator implements IGenerator {
 
 	def toC(ValorMatriz myValor) {
 		var concat = new String;
-		concat = myValor.nombre_matriz.toString + '[' + myValor.indices.get(0).toC + '][' + myValor.indices.get(1).toC + ']';
+		if(myValor.campo.size() == 0) {
+			concat = myValor.nombre_matriz.toString + '[' + myValor.indices.get(0).toC + '][' + myValor.indices.get(1).toC + ']';
+		}
+		else {
+			concat = myValor.nombre_matriz.toString + '[' + myValor.indices.get(0).toC + '][' + myValor.indices.get(1).toC + ']' + '.' + myValor.campo.get(0).nombre_campo;
+		}
 		return concat;
 	}
 
@@ -834,8 +844,33 @@ class MyDslGenerator implements IGenerator {
 		 	}
 		}
 		if(codigo.tiene.tiene.contains(l) || perteneceInicio) {
-			var varID = l.variable as VariableID;
-			var tipo = variablesInicio.get(varID.nombre);
+			var tipo = "";
+			if(l.variable.eClass.name.equals("VariableID")) {
+				var varID = l.variable as VariableID;
+				tipo = variablesInicio.get(varID.nombre);
+			}
+			else if(l.variable.eClass.name.equals("ValorVector")) {
+				var vector = l.variable as ValorVector;
+				if(vector.campo.size() == 0) {
+					tipo = vectoresMatrices.get(variablesInicio.get(vector.nombre_vector));
+				}
+				else {
+					tipo = registros.get(vectoresMatrices.get(variablesInicio.get(vector.nombre_vector))).get(vector.campo.get(0).nombre_campo);
+				}
+			}
+			else if(l.variable.eClass.name.equals("ValorMatriz")) {
+				var matriz = l.variable as ValorMatriz;
+				if(matriz.campo.size() == 0) {
+					tipo = vectoresMatrices.get(variablesInicio.get(matriz.nombre_matriz));
+				}
+				else {
+					tipo = registros.get(vectoresMatrices.get(variablesInicio.get(matriz.nombre_matriz))).get(matriz.campo.get(0).nombre_campo);
+				}
+			}
+			else if(l.variable.eClass.name.equals("ValorRegistro")) {
+				var registro = l.variable as ValorRegistro;
+				tipo = registros.get(variablesInicio.get(registro.nombre_registro)).get(registro.campo.get(0).nombre_campo);
+			}
 			if(tipo == "ENTERO") {
 				'''scanf("%i", &«l.variable.toC»);'''
 			}
@@ -884,8 +919,33 @@ class MyDslGenerator implements IGenerator {
 		 		}
 		 	}
 		 	if(s.sentencias.contains(l) || perteneceSubproceso) {
-				var varID = l.variable as VariableID;
-				var tipo = variablesSubprocesos.get(s.nombre).get(varID.nombre);
+		 		var tipo = "";
+				if(l.variable.eClass.name.equals("VariableID")) {
+						var varID = l.variable as VariableID;
+						tipo = variablesSubprocesos.get(s.nombre).get(varID.nombre);
+				}
+				else if(l.variable.eClass.name.equals("ValorVector")) {
+					var vector = l.variable as ValorVector;
+					if(vector.campo.size() == 0) {
+						tipo = vectoresMatrices.get(variablesSubprocesos.get(s.nombre).get(vector.nombre_vector));
+					}
+					else {
+						tipo = registros.get(vectoresMatrices.get(variablesSubprocesos.get(s.nombre).get(vector.nombre_vector))).get(vector.campo.get(0).nombre_campo);
+					}
+				}
+				else if(l.variable.eClass.name.equals("ValorMatriz")) {
+					var matriz = l.variable as ValorMatriz;
+					if(matriz.campo.size() == 0) {
+						tipo = vectoresMatrices.get(variablesSubprocesos.get(s.nombre).get(matriz.nombre_matriz));
+					}
+					else {
+						tipo = registros.get(vectoresMatrices.get(variablesSubprocesos.get(s.nombre).get(matriz.nombre_matriz))).get(matriz.campo.get(0).nombre_campo);
+					}
+				}	
+				else if(l.variable.eClass.name.equals("ValorRegistro")) {
+					var registro = l.variable as ValorRegistro;
+					tipo = registros.get(variablesSubprocesos.get(s.nombre).get(registro.nombre_registro)).get(registro.campo.get(0).nombre_campo);
+				}
 				if(tipo == "ENTERO") {
 					return '''scanf("%i", &«l.variable.toC»);'''
 				}
