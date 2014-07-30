@@ -1,3 +1,9 @@
 Se ha modificado el nombre del tipo de proyecto en su creación y su logo, actualmente se muestra de la siguiente forma:
 
 http://i62.tinypic.com/34npgns.jpg
+
+El icono para la aplicación en el escritorio será el siguiente:
+
+http://i61.tinypic.com/hs4bgy.jpg
+
+(Se trata de una tecla de pc con un gorrito de graduación de universidad dibujado en ella, la idea es representar que la aplicación se trata de una aplicación educativa relacionada con la programación.)
