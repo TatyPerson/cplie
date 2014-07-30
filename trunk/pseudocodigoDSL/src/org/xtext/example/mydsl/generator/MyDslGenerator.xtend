@@ -1121,7 +1121,7 @@ class MyDslGenerator implements IGenerator {
 				}
 		 	}
 		}
-		if((codigo.tiene.tiene.contains(a) && a.operador.size() > 1) || perteneceInicio) {
+		if((codigo.tiene.tiene.contains(a) && a.operador.size() > 1) || (perteneceInicio && a.operador.size() > 1)) {
 			var iterador = 0;
 			var primero = a.operador.get(0) as ConstCadena;
 			var cadena = primero.contenido;
@@ -1227,7 +1227,7 @@ class MyDslGenerator implements IGenerator {
 					}
 		 		}
 		 	}
-			if((s.sentencias.contains(a) && a.operador.size() > 1) || perteneceSubproceso) {
+			if((s.sentencias.contains(a) && a.operador.size() > 1) || (perteneceSubproceso && a.operador.size() > 1)) {
 				var iterador = 0;
 				var primero = a.operador.get(0) as ConstCadena;
 				var cadena = primero.contenido;
