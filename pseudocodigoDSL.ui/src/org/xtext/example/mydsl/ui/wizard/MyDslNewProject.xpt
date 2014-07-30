@@ -15,7 +15,7 @@ org.xtext.example.mydsl.MyDsl.templates=<?xml version\="1.0" encoding\="UTF-8" s
 «ENDDEFINE»
  
 «DEFINE model FOR MyDslProjectInfo»
-«FILE "src/programa.p"-»
+«FILE "src/programa.gen"-»
 /*
  * Algoritmo: Programa de ejemplo
  * Autor: Tatiana Person Montero

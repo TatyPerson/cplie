@@ -4,6 +4,8 @@
 package org.xtext.example.mydsl.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ui.wizard.IProjectCreator;
+import org.xtext.example.mydsl.ui.wizard.ProjectCreator;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -12,4 +14,9 @@ public class MyDslUiModule extends org.xtext.example.mydsl.ui.AbstractMyDslUiMod
 	public MyDslUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}
+	
+	//@Override
+	//public Class<? extends IProjectCreator> bindIProjectCreator() {
+	//	return ProjectCreator.class;
+	//}
 }

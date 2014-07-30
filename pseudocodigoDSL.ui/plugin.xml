@@ -9,7 +9,7 @@
             class="org.xtext.example.mydsl.ui.MyDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
             contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
             default="true"
-            extensions="p"
+            extensions="gen"
             id="org.xtext.example.mydsl.MyDsl"
             name="MyDsl Editor">
         </editor>
@@ -33,42 +33,12 @@
                     definitionId="org.xtext.example.mydsl.MyDsl.Editor.opened">
             </reference>
          </activeWhen>
-      	</handler>
-      	<!-- copy qualified name -->
-        <handler
-            class="org.xtext.example.mydsl.ui.MyDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
-            commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName">
-            <activeWhen>
-				<reference definitionId="org.xtext.example.mydsl.MyDsl.Editor.opened" />
-            </activeWhen>
-        </handler>
-        <handler
-            class="org.xtext.example.mydsl.ui.MyDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
-            commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName">
-            <activeWhen>
-            	<and>
-            		<reference definitionId="org.xtext.example.mydsl.MyDsl.XtextEditor.opened" />
-	                <iterate>
-						<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
-					</iterate>
-				</and>
-            </activeWhen>
-        </handler>
+      </handler>
     </extension>
     <extension point="org.eclipse.core.expressions.definitions">
         <definition id="org.xtext.example.mydsl.MyDsl.Editor.opened">
             <and>
                 <reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
-                <with variable="activeEditor">
-                    <test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-                        value="org.xtext.example.mydsl.MyDsl" 
-                        forcePluginActivation="true"/>
-                </with>        
-            </and>
-        </definition>
-        <definition id="org.xtext.example.mydsl.MyDsl.XtextEditor.opened">
-            <and>
-                <reference definitionId="isXtextEditorActive"/>
                 <with variable="activeEditor">
                     <test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
                         value="org.xtext.example.mydsl.MyDsl" 
@@ -126,19 +96,6 @@
             id="org.xtext.example.mydsl.MyDsl.validate"
             name="Validate">
       </command>
-      <!-- copy qualified name -->
-      <command
-            id="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
-            categoryId="org.eclipse.ui.category.edit"
-            description="Copy the qualified name for the selected element"
-            name="Copy Qualified Name">
-      </command>
-      <command
-            id="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName"
-            categoryId="org.eclipse.ui.category.edit"
-            description="Copy the qualified name for the selected element"
-            name="Copy Qualified Name">
-      </command>
     </extension>
     <extension point="org.eclipse.ui.menus">
         <menuContribution
@@ -153,36 +110,6 @@
                 </reference>
             </visibleWhen>
          </command>  
-         </menuContribution>
-         <!-- copy qualified name -->
-         <menuContribution locationURI="popup:#TextEditorContext?after=copy">
-         	<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName" 
-         		style="push" tooltip="Copy Qualified Name">
-            	<visibleWhen checkEnabled="false">
-                	<reference definitionId="org.xtext.example.mydsl.MyDsl.Editor.opened" />
-            	</visibleWhen>
-         	</command>  
-         </menuContribution>
-         <menuContribution locationURI="menu:edit?after=copy">
-         	<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
-            	style="push" tooltip="Copy Qualified Name">
-            	<visibleWhen checkEnabled="false">
-                	<reference definitionId="org.xtext.example.mydsl.MyDsl.Editor.opened" />
-            	</visibleWhen>
-         	</command>  
-         </menuContribution>
-         <menuContribution locationURI="popup:org.eclipse.xtext.ui.outline?after=additions">
-			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName" 
-				style="push" tooltip="Copy Qualified Name">
-         		<visibleWhen checkEnabled="false">
-	            	<and>
-	            		<reference definitionId="org.xtext.example.mydsl.MyDsl.XtextEditor.opened" />
-						<iterate>
-							<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
-						</iterate>
-					</and>
-				</visibleWhen>
-			</command>
          </menuContribution>
     </extension>
     <extension point="org.eclipse.ui.menus">
@@ -213,38 +140,14 @@
 		point="org.eclipse.emf.ecore.extension_parser">
 		<parser
 			class="org.xtext.example.mydsl.ui.MyDslExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
-			type="p">
+			type="gen">
 		</parser>
 	</extension>
 	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
         <resourceServiceProvider
             class="org.xtext.example.mydsl.ui.MyDslExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
-            uriExtension="p">
+            uriExtension="gen">
         </resourceServiceProvider>
-    </extension>
-
-
-    <!-- marker definitions for org.xtext.example.mydsl.MyDsl -->
-    <extension
-            id="mydsl.check.fast"
-            name="MyDsl Problem"
-            point="org.eclipse.core.resources.markers">
-        <super type="org.eclipse.xtext.ui.check.fast"/>
-        <persistent value="true"/>
-    </extension>
-    <extension
-            id="mydsl.check.normal"
-            name="MyDsl Problem"
-            point="org.eclipse.core.resources.markers">
-        <super type="org.eclipse.xtext.ui.check.normal"/>
-        <persistent value="true"/>
-    </extension>
-    <extension
-            id="mydsl.check.expensive"
-            name="MyDsl Problem"
-            point="org.eclipse.core.resources.markers">
-        <super type="org.eclipse.xtext.ui.check.expensive"/>
-        <persistent value="true"/>
     </extension>
 
     <!-- marker definitions for org.xtext.example.mydsl.MyDsl -->
@@ -307,29 +210,34 @@
   <extension point="org.eclipse.compare.contentViewers">
     <viewer id="org.xtext.example.mydsl.MyDsl.compare.contentViewers"
             class="org.xtext.example.mydsl.ui.MyDslExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
-            extensions="p">
+            extensions="gen">
     </viewer>
   </extension>
   <extension point="org.eclipse.compare.contentMergeViewers">
     <viewer id="org.xtext.example.mydsl.MyDsl.compare.contentMergeViewers"
             class="org.xtext.example.mydsl.ui.MyDslExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
-            extensions="p" label="MyDsl Compare">
+            extensions="gen" label="MyDsl Compare">
      </viewer>
   </extension>
   <extension point="org.eclipse.ui.editors.documentProviders">
     <provider id="org.xtext.example.mydsl.MyDsl.editors.documentProviders"
             class="org.xtext.example.mydsl.ui.MyDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
-            extensions="p">
+            extensions="gen">
     </provider>
   </extension>
-
-   <extension
-         point="org.eclipse.ui.newWizards">
+<extension
+           point="org.eclipse.ui.newWizards">
+         <category
+                     name="GenCode DSL"
+                     id="org.eclipselabs.pseudocodigo">
+         </category>
       <wizard
-            category="org.eclipse.xtext.projectwiz"
+            category="org.eclipselabs.pseudocodigo"
             class="org.xtext.example.mydsl.ui.MyDslExecutableExtensionFactory:org.xtext.example.mydsl.ui.wizard.MyDslNewProjectWizard"
+            descriptionImage="icons/editor2.png"
+            icon="icons/editor.png"
             id="org.xtext.example.mydsl.ui.wizard.MyDslNewProjectWizard"
-            name="MyDsl Project"
+            name="GenCode C/C++"
             project="true">
       </wizard>
    </extension>

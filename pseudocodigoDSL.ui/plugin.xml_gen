@@ -9,7 +9,7 @@
             class="org.xtext.example.mydsl.ui.MyDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
             contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
             default="true"
-            extensions="p"
+            extensions="gen"
             id="org.xtext.example.mydsl.MyDsl"
             name="MyDsl Editor">
         </editor>
@@ -213,13 +213,13 @@
 		point="org.eclipse.emf.ecore.extension_parser">
 		<parser
 			class="org.xtext.example.mydsl.ui.MyDslExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
-			type="p">
+			type="gen">
 		</parser>
 	</extension>
 	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
         <resourceServiceProvider
             class="org.xtext.example.mydsl.ui.MyDslExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
-            uriExtension="p">
+            uriExtension="gen">
         </resourceServiceProvider>
     </extension>
 
@@ -307,19 +307,19 @@
   <extension point="org.eclipse.compare.contentViewers">
     <viewer id="org.xtext.example.mydsl.MyDsl.compare.contentViewers"
             class="org.xtext.example.mydsl.ui.MyDslExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
-            extensions="p">
+            extensions="gen">
     </viewer>
   </extension>
   <extension point="org.eclipse.compare.contentMergeViewers">
     <viewer id="org.xtext.example.mydsl.MyDsl.compare.contentMergeViewers"
             class="org.xtext.example.mydsl.ui.MyDslExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
-            extensions="p" label="MyDsl Compare">
+            extensions="gen" label="MyDsl Compare">
      </viewer>
   </extension>
   <extension point="org.eclipse.ui.editors.documentProviders">
     <provider id="org.xtext.example.mydsl.MyDsl.editors.documentProviders"
             class="org.xtext.example.mydsl.ui.MyDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
-            extensions="p">
+            extensions="gen">
     </provider>
   </extension>
 
