@@ -5,8 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.xtext.ui.XtextProjectHelper;
+import org.eclipse.xtext.ui.util.PluginProjectFactory;
 import org.eclipse.xtext.ui.util.ProjectFactory;
-import org.eclipse.xtext.ui.wizard.AbstractProjectCreator;
+import org.eclipse.xtext.ui.wizard.AbstractPluginProjectCreator;
 import org.eclipse.xtext.ui.wizard.IProjectInfo;
 import org.eclipse.xtext.ui.wizard.Messages;
 import org.eclipse.jdt.core.JavaCore;
@@ -25,7 +26,7 @@ import org.eclipse.core.runtime.SubMonitor;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
-public abstract class ProjectCreator extends AbstractProjectCreator {
+public abstract class PseudoProjectCreator extends AbstractPluginProjectCreator {
 
 	private IFile result;
 	private IProjectInfo projectInfo;
@@ -121,7 +122,7 @@ public abstract class ProjectCreator extends AbstractProjectCreator {
 		return factory;
 	}
 	
-	protected abstract ProjectFactory createProjectFactory();
+	protected abstract PluginProjectFactory createProjectFactory();
 	
 	protected void enhanceProject(final IProject project, final IProgressMonitor monitor) throws CoreException {
 	}
@@ -156,6 +157,7 @@ public abstract class ProjectCreator extends AbstractProjectCreator {
     protected String[] getBuilders() {
     	return new String[]{
     		JavaCore.BUILDER_ID,
+    		CCProjectNature.CC_NATURE_ID,
 			"org.eclipse.pde.ManifestBuilder",  //$NON-NLS-1$
 			"org.eclipse.pde.SchemaBuilder", //$NON-NLS-1$
 			XtextProjectHelper.BUILDER_ID
