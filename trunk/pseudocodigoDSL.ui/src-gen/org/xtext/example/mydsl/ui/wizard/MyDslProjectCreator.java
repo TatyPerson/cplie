@@ -53,6 +53,8 @@ public class MyDslProjectCreator extends org.eclipse.xtext.ui.wizard.AbstractPlu
         	JavaCore.NATURE_ID,
         	//CProjectNature.C_NATURE_ID,
         	CCProjectNature.CC_NATURE_ID,
+    		"org.eclipse.cdt.managedbuilder.core.managedBuildNature",
+    		"org.eclipse.cdt.managedbuilder.core.ScannerConfigNature",
 			"org.eclipse.pde.PluginNature", //$NON-NLS-1$
 			XtextProjectHelper.NATURE_ID
 			
@@ -62,8 +64,8 @@ public class MyDslProjectCreator extends org.eclipse.xtext.ui.wizard.AbstractPlu
     protected String[] getBuilders() {
     	return new String[]{
     		JavaCore.BUILDER_ID,
-    		"org.eclipse.cdt.managedbuilder.core.managedBuildNature",
-    		"org.eclipse.cdt.managedbuilder.core.ScannerConfigNature",
+    		"org.eclipse.cdt.managedbuilder.core.genmakebuilder",
+    		"org.eclipse.cdt.managedbuilder.core.ScannerConfigBuilder",
 			"org.eclipse.pde.ManifestBuilder",  //$NON-NLS-1$
 			"org.eclipse.pde.SchemaBuilder", //$NON-NLS-1$
 			XtextProjectHelper.BUILDER_ID
