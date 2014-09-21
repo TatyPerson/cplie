@@ -51,7 +51,7 @@ class MyDslGenerator implements IGenerator {
 			«myConstante.toC»
 		«ENDFOR»
 		«FOR myComplejo:myCodigo.tipocomplejo»
-			«myComplejo.toC»
+			«myComplejo.toCpp»
 		«ENDFOR»
 		
 		«FOR funcion:myCodigo.funcion»
@@ -200,6 +200,34 @@ class MyDslGenerator implements IGenerator {
 			prueba.toC
 		}
 	}
+	
+	def toCpp(TipoComplejo myComplejo) {
+		if (myComplejo.eClass.name.equals("Vector")) {
+			var Vector prueba = new VectorImpl
+			prueba = myComplejo as Vector
+			prueba.toC
+		} else if (myComplejo.eClass.name.equals("Matriz")) {
+			var Matriz prueba = new MatrizImpl
+			prueba = myComplejo as Matriz
+			prueba.toC
+		} else if (myComplejo.eClass.name.equals("Registro")) {
+			var Registro prueba = new RegistroImpl
+			prueba = myComplejo as Registro
+			prueba.toCpp
+		} else if (myComplejo.eClass.name.equals("Archivo")) {
+			var Archivo prueba = new ArchivoImpl
+			prueba = myComplejo as Archivo
+			prueba.toC
+		} else if (myComplejo.eClass.name.equals("Enumerado")) {
+			var Enumerado prueba = new EnumeradoImpl
+			prueba = myComplejo as Enumerado
+			prueba.toC
+		} else if (myComplejo.eClass.name.equals("SubrangoNumerico")) {
+			var SubrangoNumerico prueba = new SubrangoNumericoImpl
+			prueba = myComplejo as SubrangoNumerico
+			prueba.toC
+		}
+	}
 
 	def toC(Tipo myTipo) {
 		if (myTipo.eClass.name.equals("TipoDefinido")) {
@@ -214,7 +242,7 @@ class MyDslGenerator implements IGenerator {
 	}
 
 	def toC(TipoExistente myTipo) {
-		return tipoVariable(myTipo.tipo)
+		return tipoVariableC(myTipo.tipo)
 	}
 	
 	def toC(Comentario myComentario)
@@ -240,6 +268,14 @@ class MyDslGenerator implements IGenerator {
 		typedef struct {
 			«FOR myVariable:myRegistro.variable»
 				«myVariable.toC»
+			«ENDFOR»
+		} «myRegistro.nombre»;
+	'''
+	
+	def toCpp(Registro myRegistro) '''
+		typedef struct {
+			«FOR myVariable:myRegistro.variable»
+				«myVariable.toCpp»
 			«ENDFOR»
 		} «myRegistro.nombre»;
 	'''
@@ -298,7 +334,7 @@ class MyDslGenerator implements IGenerator {
 	def toCpp(Inicio myInicio) '''
 		int main(){
 			«FOR myVariable:myInicio.declaracion»
-				«myVariable.toC»
+				«myVariable.toCpp»
 			«ENDFOR»
 			«FOR mySentencia:myInicio.tiene»
 				«IF mySentencia.eClass.name.equals("Escribir") || mySentencia.eClass.name.equals("Leer") || mySentencia.eClass.name.equals("Si") || mySentencia.eClass.name.equals("segun") || mySentencia.eClass.name.equals("Caso") || mySentencia.eClass.name.equals("mientras") || mySentencia.eClass.name.equals("repetir") || mySentencia.eClass.name.equals("desde")»
@@ -334,12 +370,20 @@ class MyDslGenerator implements IGenerator {
 		}
 	}
 
-	def tipoVariable(TipoVariable tipo) {
+	def tipoVariableCpp(TipoVariable tipo) {
 		if(tipo == TipoVariable::ENTERO) return "int";
 		if(tipo == TipoVariable::CARACTER) return "char";
 		if(tipo == TipoVariable::REAL) return "float";
 		if(tipo == TipoVariable::LOGICO) return "bool";
 		if(tipo == TipoVariable::CADENA) return "string";
+	}
+	
+	def tipoVariableC(TipoVariable tipo) {
+		if(tipo == TipoVariable::ENTERO) return "int";
+		if(tipo == TipoVariable::CARACTER) return "char";
+		if(tipo == TipoVariable::REAL) return "float";
+		if(tipo == TipoVariable::LOGICO) return "bool";
+		if(tipo == TipoVariable::CADENA) return "char*";
 	}
 
 	def toC(EList<ParametroFuncion> parametros) {
@@ -361,7 +405,7 @@ class MyDslGenerator implements IGenerator {
 	}
 	
 	def toC(Funcion myFun) '''
-		«myFun.tipo.tipoVariable» «myFun.nombre»(«myFun.parametrofuncion.toC»){
+		«myFun.tipo.tipoVariableC» «myFun.nombre»(«myFun.parametrofuncion.toC»){
 			«FOR myVariable:myFun.declaracion»
 				«myVariable.toC»
 			«ENDFOR»
@@ -375,9 +419,9 @@ class MyDslGenerator implements IGenerator {
 	'''
 
 	def toCpp(Funcion myFun) '''
-		«myFun.tipo.tipoVariable» «myFun.nombre»(«myFun.parametrofuncion.toC»){
+		«myFun.tipo.tipoVariableCpp» «myFun.nombre»(«myFun.parametrofuncion.toC»){
 			«FOR myVariable:myFun.declaracion»
-				«myVariable.toC»
+				«myVariable.toCpp»
 			«ENDFOR»
 			«FOR mySentencia:myFun.sentencias»
 				«IF mySentencia.eClass.name.equals("Escribir") || mySentencia.eClass.name.equals("Leer") || mySentencia.eClass.name.equals("Si") || mySentencia.eClass.name.equals("segun") || mySentencia.eClass.name.equals("Caso") || mySentencia.eClass.name.equals("mientras") || mySentencia.eClass.name.equals("repetir") || mySentencia.eClass.name.equals("desde")»
@@ -406,7 +450,7 @@ class MyDslGenerator implements IGenerator {
 	def toCpp(Procedimiento myFun) '''
 		void «myFun.nombre»(«myFun.parametrofuncion.toC»){
 			«FOR myVariable:myFun.declaracion»
-				«myVariable.toC»
+				«myVariable.toCpp»
 			«ENDFOR»
 			«FOR mySentencia:myFun.sentencias»
 				«IF mySentencia.eClass.name.equals("Escribir") || mySentencia.eClass.name.equals("Leer") || mySentencia.eClass.name.equals("Si") || mySentencia.eClass.name.equals("segun") || mySentencia.eClass.name.equals("Caso") || mySentencia.eClass.name.equals("mientras") || mySentencia.eClass.name.equals("repetir") || mySentencia.eClass.name.equals("desde")»
@@ -556,9 +600,26 @@ class MyDslGenerator implements IGenerator {
 		}
 
 	}
+	
+	def toCpp(Declaracion myDec) {
+		if (myDec.eClass.name.equals("DeclaracionVariable")) {
+			var DeclaracionVariable prueba = new DeclaracionVariableImpl
+			prueba = myDec as DeclaracionVariable
+			prueba.toCpp
+		} else if (myDec.eClass.name.equals("DeclaracionPropia")) {
+			var DeclaracionPropia prueba = new DeclaracionPropiaImpl
+			prueba = myDec as DeclaracionPropia
+			prueba.toC
+		}
+
+	}
 
 	def toC(DeclaracionVariable myDec) '''
-		«myDec.tipo.tipoVariable» «pintarVariables(myDec.variable)»
+		«myDec.tipo.tipoVariableC» «pintarVariables(myDec.variable)»
+	'''
+	
+	def toCpp(DeclaracionVariable myDec) '''
+		«myDec.tipo.tipoVariableCpp» «pintarVariables(myDec.variable)»
 	'''
 
 	def toC(DeclaracionPropia myDec) '''
