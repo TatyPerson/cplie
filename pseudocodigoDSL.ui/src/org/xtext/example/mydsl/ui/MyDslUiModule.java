@@ -5,7 +5,6 @@ package org.xtext.example.mydsl.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.wizard.IProjectCreator;
-import org.xtext.example.mydsl.ui.wizard.ProjectCreator;
 
 /**
  * Use this class to register components to be used within the IDE.

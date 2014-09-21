@@ -3,6 +3,7 @@ package org.xtext.example.mydsl.ui.wizard;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.xtext.ui.wizard.IProjectInfo;
 import org.eclipse.xtext.ui.wizard.IProjectCreator;
+
 import com.google.inject.Inject;
 
 public class MyDslNewProjectWizard extends org.eclipse.xtext.ui.wizard.XtextNewProjectWizard {
@@ -12,7 +13,7 @@ public class MyDslNewProjectWizard extends org.eclipse.xtext.ui.wizard.XtextNewP
 	@Inject
 	public MyDslNewProjectWizard(IProjectCreator projectCreator) {
 		super(projectCreator);
-		setWindowTitle("New MyDsl Project");
+		setWindowTitle("New GenCodeDSL Project");
 	}
 
 	/**
@@ -21,8 +22,8 @@ public class MyDslNewProjectWizard extends org.eclipse.xtext.ui.wizard.XtextNewP
 	 */
 	public void addPages() {
 		mainPage = new WizardNewProjectCreationPage("basicNewProjectPage");
-		mainPage.setTitle("MyDsl Project");
-		mainPage.setDescription("Create a new MyDsl project.");
+		mainPage.setTitle("GenCodeDSL Project");
+		mainPage.setDescription("Create a new GenCodeDSL project.");
 		addPage(mainPage);
 	}
 
