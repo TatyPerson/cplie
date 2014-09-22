@@ -6,14 +6,14 @@ import org.eclipse.xtext.ui.wizard.IProjectCreator;
 
 import com.google.inject.Inject;
 
-public class MyDslNewProjectWizard extends org.eclipse.xtext.ui.wizard.XtextNewProjectWizard {
+public class MyDslNewProjectWizardCpp extends org.eclipse.xtext.ui.wizard.XtextNewProjectWizard {
 
 	private WizardNewProjectCreationPage mainPage;
 
 	@Inject
-	public MyDslNewProjectWizard(MyDslProjectCreator projectCreator) {
+	public MyDslNewProjectWizardCpp(MyDslProjectCreatorCpp projectCreator) {
 		super(projectCreator);
-		setWindowTitle("New GenCodeDSL C Project");
+		setWindowTitle("New GenCodeDSL C++ Project");
 	}
 
 	/**
@@ -22,8 +22,8 @@ public class MyDslNewProjectWizard extends org.eclipse.xtext.ui.wizard.XtextNewP
 	 */
 	public void addPages() {
 		mainPage = new WizardNewProjectCreationPage("basicNewProjectPage");
-		mainPage.setTitle("GenCodeDSL C Project");
-		mainPage.setDescription("Create a new GenCodeDSL C project.");
+		mainPage.setTitle("GenCodeDSL C++ Project");
+		mainPage.setDescription("Create a new GenCodeDSL C++ project.");
 		addPage(mainPage);
 	}
 
