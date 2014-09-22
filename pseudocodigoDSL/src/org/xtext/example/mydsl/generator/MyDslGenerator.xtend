@@ -11,6 +11,8 @@ import diagramapseudocodigo.impl.*
 import org.eclipse.emf.common.util.EMap
 import java.util.Map
 import java.util.HashMap
+import org.eclipse.xtext.generator.JavaIoFileSystemAccess
+import java.io.File
 
 class MyDslGenerator implements IGenerator {
 
@@ -23,13 +25,20 @@ class MyDslGenerator implements IGenerator {
 
 	//EMap<String, TipoVariable> tablaSimbolos;
 	override void doGenerate(Resource resource, IFileSystemAccess myCFile) {
-
-		//TODO implement me
-		for (myPseudo : resource.allContents.toIterable.filter(typeof(Codigo))) {
-			myCFile.generateFile("salida.cpp", myPseudo.toCpp)
+		
+		var check = new File("./CppIncludes/"); 
+		
+		if(check.exists()) {
+			//TODO implement me
+			for (myPseudo : resource.allContents.toIterable.filter(typeof(Codigo))) {
+				myCFile.generateFile("salida.cpp", myPseudo.toCpp)
+			}
 		}
-		for (myPseudo : resource.allContents.toIterable.filter(typeof(Codigo))) {
-			myCFile.generateFile("salida.c", myPseudo.toC)
+		
+		else {
+			for (myPseudo : resource.allContents.toIterable.filter(typeof(Codigo))) {
+				myCFile.generateFile("salida.c", myPseudo.toC)
+			}
 		}
 	}
 	

@@ -19,22 +19,22 @@ import org.eclipse.xpand2.output.OutputImpl;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
-public class MyDslProjectCreator extends org.eclipse.xtext.ui.wizard.AbstractPluginProjectCreator {
+public class MyDslProjectCreatorCpp extends org.eclipse.xtext.ui.wizard.AbstractPluginProjectCreator {
 
 	protected static final String DSL_GENERATOR_PROJECT_NAME = "pseudocodigoDSL";
 
 	protected static final String SRC_ROOT = "src";
 	protected static final String SRC_GEN_ROOT = "src-gen";
-	protected static final String SRC_LIBRARY = "CIncludes";
+	protected static final String SRC_LIBRARY = "CppIncludes";
 	protected final List<String> SRC_FOLDER_LIST = ImmutableList.of(SRC_ROOT, SRC_GEN_ROOT, SRC_LIBRARY);
-	protected static final String type = "ProjectC";
+	protected static final String type = "ProjectCpp";
 
 	@Override
 	protected MyDslProjectInfo getProjectInfo() {
 		return (MyDslProjectInfo) super.getProjectInfo();
 	}
 	
-	protected String getProjectType() {
+	protected String getType() {
 		return type;
 	}
 	
@@ -56,12 +56,12 @@ public class MyDslProjectCreator extends org.eclipse.xtext.ui.wizard.AbstractPlu
     
     protected String[] getProjectNatures() {
         return new String[] {
+        	JavaCore.NATURE_ID,
         	//CProjectNature.C_NATURE_ID,
         	CCProjectNature.CC_NATURE_ID,
     		"org.eclipse.cdt.managedbuilder.core.managedBuildNature",
     		"org.eclipse.cdt.managedbuilder.core.ScannerConfigNature",
 			"org.eclipse.pde.PluginNature", //$NON-NLS-1$
-			JavaCore.NATURE_ID,
 			XtextProjectHelper.NATURE_ID
 			
 		};
