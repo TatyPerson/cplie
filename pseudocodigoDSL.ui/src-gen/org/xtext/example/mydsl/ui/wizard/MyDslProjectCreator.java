@@ -25,7 +25,7 @@ public class MyDslProjectCreator extends org.eclipse.xtext.ui.wizard.AbstractPlu
 
 	protected static final String SRC_ROOT = "src";
 	protected static final String SRC_GEN_ROOT = "src-gen";
-	protected static final String SRC_LIBRARY = "CIncludes";
+	protected static final String SRC_LIBRARY = "Includes";
 	protected final List<String> SRC_FOLDER_LIST = ImmutableList.of(SRC_ROOT, SRC_GEN_ROOT, SRC_LIBRARY);
 	protected static final String type = "ProjectC";
 

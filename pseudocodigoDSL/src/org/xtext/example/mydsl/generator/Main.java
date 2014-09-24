@@ -48,6 +48,10 @@ public class Main {
 		// load the resource
 		ResourceSet set = resourceSetProvider.get();
 		Resource resource = set.getResource(URI.createURI(string), true);
+		System.out.println("La URI es: "+resource.getURI());
+		System.out.println("La URI es: "+resource.getURI());
+		System.out.println("La URI es: "+resource.getURI());
+		System.out.println("La URI es: "+resource.getURI());
 		
 		// validate the resource
 		List<Issue> list = validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
@@ -60,6 +64,7 @@ public class Main {
 		
 		// configure and start the generator
 		fileAccess.setOutputPath("src-gen/");
+		
 		generator.doGenerate(resource, fileAccess);
 		
 		System.out.println("Code generation finished.");

@@ -26,19 +26,13 @@ class MyDslGenerator implements IGenerator {
 	//EMap<String, TipoVariable> tablaSimbolos;
 	override void doGenerate(Resource resource, IFileSystemAccess myCFile) {
 		
-		var check = new File("./CppIncludes/"); 
-		
-		if(check.exists()) {
-			//TODO implement me
-			for (myPseudo : resource.allContents.toIterable.filter(typeof(Codigo))) {
-				myCFile.generateFile("salida.cpp", myPseudo.toCpp)
-			}
+		for (myPseudo : resource.allContents.toIterable.filter(typeof(Codigo))) {
+			myCFile.generateFile("salida.cpp", myPseudo.toCpp)
 		}
 		
-		else {
-			for (myPseudo : resource.allContents.toIterable.filter(typeof(Codigo))) {
-				myCFile.generateFile("salida.c", myPseudo.toC)
-			}
+			
+		for (myPseudo : resource.allContents.toIterable.filter(typeof(Codigo))) {	
+			myCFile.generateFile("salida.c", myPseudo.toC)
 		}
 	}
 	
