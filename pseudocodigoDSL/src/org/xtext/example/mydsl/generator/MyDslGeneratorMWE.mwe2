@@ -3,7 +3,8 @@ module org.xtext.example.mydsl.generator.MyDslGeneratorMWE
 
 import org.eclipse.emf.mwe.utils.*
 
-var targetDir
+var targetDirC
+var targetDirCpp
 var modelPath
 
 Workflow {
@@ -26,7 +27,15 @@ Workflow {
 		register = org.xtext.example.mydsl.MyDslStandaloneSetup {}
 		slot = 'model'
 		outlet = {
-			path = targetDir
+			path = targetDirC
+		}
+	}
+	
+	component = org.eclipse.xtext.generator.GeneratorComponent {
+		register = org.xtext.example.mydsl.MyDslStandaloneSetup {}
+		slot = 'model'
+		outlet = {
+			path = targetDirCpp
 		}
 	}
 }

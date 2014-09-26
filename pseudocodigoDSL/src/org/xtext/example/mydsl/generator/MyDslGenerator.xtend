@@ -26,14 +26,19 @@ class MyDslGenerator implements IGenerator {
 	//EMap<String, TipoVariable> tablaSimbolos;
 	override void doGenerate(Resource resource, IFileSystemAccess myCFile) {
 		
-		for (myPseudo : resource.allContents.toIterable.filter(typeof(Codigo))) {
-			myCFile.generateFile("salida.cpp", myPseudo.toCpp)
-		}
+		var fileAccessCpp = new JavaIoFileSystemAccess();
 		
-			
 		for (myPseudo : resource.allContents.toIterable.filter(typeof(Codigo))) {	
 			myCFile.generateFile("salida.c", myPseudo.toC)
 		}
+		
+		fileAccessCpp = myCFile as JavaIoFileSystemAccess
+		fileAccessCpp.setOutputPath("cpp-gen/");
+		
+		for (myPseudo : resource.allContents.toIterable.filter(typeof(Codigo))) {
+			fileAccessCpp.generateFile("salida.cpp", myPseudo.toCpp)
+		}
+		
 	}
 	
 	
