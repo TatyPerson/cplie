@@ -236,17 +236,8 @@
             class="org.xtext.example.mydsl.ui.MyDslExecutableExtensionFactory:org.xtext.example.mydsl.ui.wizard.MyDslNewProjectWizard"
             descriptionImage="icons/editor2.png"
             icon="icons/editor.png"
-            id="org.xtext.example.mydsl.ui.wizard.MyDslNewProjectWizard1"
-            name="GenCode C"
-            project="true">
-      </wizard>
-      <wizard
-      		category="org.eclipselabs.pseudocodigo"
-      		class="org.xtext.example.mydsl.ui.MyDslExecutableExtensionFactory:org.xtext.example.mydsl.ui.wizard.MyDslNewProjectWizardCpp"
-      		descriptionImage="icons/editor2.png"
-            icon="icons/editor.png"
-            id="org.xtext.example.mydsl.ui.wizard.MyDslNewProjectWizard2"
-            name="GenCode C++"
+            id="org.xtext.example.mydsl.ui.wizard.MyDslNewProjectWizard"
+            name="GenCode C/C++"
             project="true">
       </wizard>
    </extension>

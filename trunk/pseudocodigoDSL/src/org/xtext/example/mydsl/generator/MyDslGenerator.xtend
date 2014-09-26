@@ -13,6 +13,7 @@ import java.util.Map
 import java.util.HashMap
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess
 import java.io.File
+import es.uca.MyOutputConfigurationProvider
 
 class MyDslGenerator implements IGenerator {
 
@@ -25,20 +26,14 @@ class MyDslGenerator implements IGenerator {
 
 	//EMap<String, TipoVariable> tablaSimbolos;
 	override void doGenerate(Resource resource, IFileSystemAccess myCFile) {
-		
-		var fileAccessCpp = new JavaIoFileSystemAccess();
-		
+
 		for (myPseudo : resource.allContents.toIterable.filter(typeof(Codigo))) {	
-			myCFile.generateFile("salida.c", myPseudo.toC)
+			myCFile.generateFile("salida.c", myPseudo.toC)		
 		}
-		
-		fileAccessCpp = myCFile as JavaIoFileSystemAccess
-		fileAccessCpp.setOutputPath("cpp-gen/");
 		
 		for (myPseudo : resource.allContents.toIterable.filter(typeof(Codigo))) {
-			fileAccessCpp.generateFile("salida.cpp", myPseudo.toCpp)
+			myCFile.generateFile("salida.cpp", MyOutputConfigurationProvider::DEFAULT_OUTPUT_CPP, myPseudo.toCpp)
 		}
-		
 	}
 	
 	

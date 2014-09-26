@@ -13,7 +13,7 @@ public class MyDslNewProjectWizard extends org.eclipse.xtext.ui.wizard.XtextNewP
 	@Inject
 	public MyDslNewProjectWizard(MyDslProjectCreator projectCreator) {
 		super(projectCreator);
-		setWindowTitle("New GenCodeDSL C Project");
+		setWindowTitle("New GenCodeDSL C/C++ Project");
 	}
 
 	/**
@@ -22,8 +22,8 @@ public class MyDslNewProjectWizard extends org.eclipse.xtext.ui.wizard.XtextNewP
 	 */
 	public void addPages() {
 		mainPage = new WizardNewProjectCreationPage("basicNewProjectPage");
-		mainPage.setTitle("GenCodeDSL C Project");
-		mainPage.setDescription("Create a new GenCodeDSL C project.");
+		mainPage.setTitle("GenCodeDSL C/C++ Project");
+		mainPage.setDescription("Create a new GenCodeDSL C/C++ project.");
 		addPage(mainPage);
 	}
 
