@@ -6,6 +6,8 @@ package org.xtext.example.mydsl.generator;
 
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -48,10 +50,6 @@ public class Main {
 		// load the resource
 		ResourceSet set = resourceSetProvider.get();
 		Resource resource = set.getResource(URI.createURI(string), true);
-		System.out.println("La URI es: "+resource.getURI());
-		System.out.println("La URI es: "+resource.getURI());
-		System.out.println("La URI es: "+resource.getURI());
-		System.out.println("La URI es: "+resource.getURI());
 		
 		// validate the resource
 		List<Issue> list = validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
@@ -63,7 +61,7 @@ public class Main {
 		}
 		
 		// configure and start the generator
-		fileAccess.setOutputPath("src-gen/");
+		fileAccess.setOutputPath("c-gen/");
 		
 		generator.doGenerate(resource, fileAccess);
 		
