@@ -108,7 +108,7 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 			case DiagramapseudocodigoPackage.ASIGNACION_NORMAL: return createAsignacionNormal();
 			case DiagramapseudocodigoPackage.ASIGNACION_COMPLEJA: return createAsignacionCompleja();
 			case DiagramapseudocodigoPackage.SUBRANGO_NUMERICO: return createSubrangoNumerico();
-			case DiagramapseudocodigoPackage.SUBRANGO_REGISTRO: return createSubrangoRegistro();
+			case DiagramapseudocodigoPackage.SUBRANGO_ENUMERADO: return createSubrangoEnumerado();
 			case DiagramapseudocodigoPackage.VALOR_VECTOR: return createValorVector();
 			case DiagramapseudocodigoPackage.VALOR_MATRIZ: return createValorMatriz();
 			case DiagramapseudocodigoPackage.COMENTARIO: return createComentario();
@@ -688,9 +688,9 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SubrangoRegistro createSubrangoRegistro() {
-		SubrangoRegistroImpl subrangoRegistro = new SubrangoRegistroImpl();
-		return subrangoRegistro;
+	public SubrangoEnumerado createSubrangoEnumerado() {
+		SubrangoEnumeradoImpl subrangoEnumerado = new SubrangoEnumeradoImpl();
+		return subrangoEnumerado;
 	}
 
 	/**

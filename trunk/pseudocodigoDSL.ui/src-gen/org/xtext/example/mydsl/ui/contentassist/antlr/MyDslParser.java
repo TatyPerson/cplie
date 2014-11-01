@@ -55,6 +55,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getVectorAccess().getAlternatives_2(), "rule__Vector__Alternatives_2");
 					put(grammarAccess.getMatrizAccess().getAlternatives_2(), "rule__Matriz__Alternatives_2");
 					put(grammarAccess.getMatrizAccess().getAlternatives_4(), "rule__Matriz__Alternatives_4");
+					put(grammarAccess.getSubrangoAccess().getAlternatives(), "rule__Subrango__Alternatives");
 					put(grammarAccess.getEStringAccess().getAlternatives(), "rule__EString__Alternatives");
 					put(grammarAccess.getAsignacionAccess().getAlternatives(), "rule__Asignacion__Alternatives");
 					put(grammarAccess.getTipoVariableAccess().getAlternatives(), "rule__TipoVariable__Alternatives");
@@ -96,6 +97,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEnumeradoAccess().getGroup_3(), "rule__Enumerado__Group_3__0");
 					put(grammarAccess.getEnumeradoAccess().getGroup_3_1(), "rule__Enumerado__Group_3_1__0");
 					put(grammarAccess.getSubrangoNumericoAccess().getGroup(), "rule__SubrangoNumerico__Group__0");
+					put(grammarAccess.getSubrangoEnumeradoAccess().getGroup(), "rule__SubrangoEnumerado__Group__0");
 					put(grammarAccess.getInicioAccess().getGroup(), "rule__Inicio__Group__0");
 					put(grammarAccess.getInicioAccess().getGroup_2(), "rule__Inicio__Group_2__0");
 					put(grammarAccess.getInicioAccess().getGroup_4(), "rule__Inicio__Group_4__0");
@@ -201,6 +203,9 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSubrangoNumericoAccess().getNombreAssignment_0(), "rule__SubrangoNumerico__NombreAssignment_0");
 					put(grammarAccess.getSubrangoNumericoAccess().getLimite_infAssignment_2(), "rule__SubrangoNumerico__Limite_infAssignment_2");
 					put(grammarAccess.getSubrangoNumericoAccess().getLimite_supAssignment_4(), "rule__SubrangoNumerico__Limite_supAssignment_4");
+					put(grammarAccess.getSubrangoEnumeradoAccess().getNombreAssignment_0(), "rule__SubrangoEnumerado__NombreAssignment_0");
+					put(grammarAccess.getSubrangoEnumeradoAccess().getLimite_infAssignment_2(), "rule__SubrangoEnumerado__Limite_infAssignment_2");
+					put(grammarAccess.getSubrangoEnumeradoAccess().getLimite_supAssignment_4(), "rule__SubrangoEnumerado__Limite_supAssignment_4");
 					put(grammarAccess.getInicioAccess().getDeclaracionAssignment_2_0(), "rule__Inicio__DeclaracionAssignment_2_0");
 					put(grammarAccess.getInicioAccess().getDeclaracionAssignment_2_1(), "rule__Inicio__DeclaracionAssignment_2_1");
 					put(grammarAccess.getInicioAccess().getTieneAssignment_4_0(), "rule__Inicio__TieneAssignment_4_0");

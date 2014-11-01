@@ -179,11 +179,6 @@ public class ValorMatrizItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__INDICES,
-				 DiagramapseudocodigoFactory.eINSTANCE.createLlamadaFuncion()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__INDICES,
 				 DiagramapseudocodigoFactory.eINSTANCE.createVariableID()));
 
 		newChildDescriptors.add
@@ -204,27 +199,12 @@ public class ValorMatrizItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__INDICES,
-				 DiagramapseudocodigoFactory.eINSTANCE.createoperacion()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__INDICES,
 				 DiagramapseudocodigoFactory.eINSTANCE.createValorBooleano()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__INDICES,
 				 DiagramapseudocodigoFactory.eINSTANCE.createCaracter()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__INDICES,
-				 DiagramapseudocodigoFactory.eINSTANCE.createInternas()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__INDICES,
-				 DiagramapseudocodigoFactory.eINSTANCE.createunaria()));
 
 		newChildDescriptors.add
 			(createChildParameter

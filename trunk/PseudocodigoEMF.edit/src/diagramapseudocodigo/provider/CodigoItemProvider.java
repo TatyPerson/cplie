@@ -249,7 +249,7 @@ public class CodigoItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.CODIGO__TIPOCOMPLEJO,
-				 DiagramapseudocodigoFactory.eINSTANCE.createSubrangoRegistro()));
+				 DiagramapseudocodigoFactory.eINSTANCE.createSubrangoEnumerado()));
 
 		newChildDescriptors.add
 			(createChildParameter

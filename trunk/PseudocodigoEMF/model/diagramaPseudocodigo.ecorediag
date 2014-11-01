@@ -1225,6 +1225,14 @@
   <children xmi:type="notation:Node" xmi:id="_iCkmQJoxEeO9mLJm1-Nazw" type="1001">
     <children xmi:type="notation:Node" xmi:id="_iClNUJoxEeO9mLJm1-Nazw" type="4001"/>
     <children xmi:type="notation:Node" xmi:id="_iClNUZoxEeO9mLJm1-Nazw" type="5001">
+      <children xmi:type="notation:Node" xmi:id="_AVhxMGHREeS4z5kZS_FWHQ" type="2001">
+        <element xmi:type="ecore:EAttribute" href="diagramaPseudocodigo.ecore#//SubrangoEnumerado/limite_inf"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_AVhxMWHREeS4z5kZS_FWHQ"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_KM77MGHREeS4z5kZS_FWHQ" type="2001">
+        <element xmi:type="ecore:EAttribute" href="diagramaPseudocodigo.ecore#//SubrangoEnumerado/limite_sup"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_KM77MWHREeS4z5kZS_FWHQ"/>
+      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_iClNUpoxEeO9mLJm1-Nazw"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_iClNU5oxEeO9mLJm1-Nazw"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_iClNVJoxEeO9mLJm1-Nazw"/>
@@ -1235,8 +1243,8 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_iCl0YpoxEeO9mLJm1-Nazw"/>
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_iCkmQZoxEeO9mLJm1-Nazw" fontColor="4210752" fontName="Times New Roman" fontHeight="12" fillColor="13761016" lineColor="8421504"/>
-    <element xmi:type="ecore:EClass" href="diagramaPseudocodigo.ecore#//SubrangoRegistro"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_iCkmQpoxEeO9mLJm1-Nazw" x="700" y="-5" width="133"/>
+    <element xmi:type="ecore:EClass" href="diagramaPseudocodigo.ecore#//SubrangoEnumerado"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_iCkmQpoxEeO9mLJm1-Nazw" x="696" y="-20" width="133" height="59"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_8kM-sJrdEeOKW6JSlg7Hyg" type="1001">
     <children xmi:type="notation:Node" xmi:id="_8kQCAJrdEeOKW6JSlg7Hyg" type="4001"/>

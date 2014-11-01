@@ -35,6 +35,51 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	}
 	
 	@Check
+	//Función que se encarga de comprobar si el limite inferior y superior de un SubrangoEnumerado estan ordenados
+	protected void checkSubrangoEnumerado(Codigo c) {
+		ArrayList<String> enumerados = new ArrayList<String>();
+		Map<String, ArrayList<String>> variablesEnumerados = new HashMap<String, ArrayList<String>>();
+		
+		for(TipoComplejo t: c.getTipocomplejo()) {
+			if(t instanceof Enumerado) {
+				Enumerado enumerado = (Enumerado) t;
+				enumerados.add(enumerado.getNombre());
+				variablesEnumerados.put(enumerado.getNombre(), new ArrayList<String>());
+				for(valor v: enumerado.getValor()) {
+					if(v instanceof Operador) {
+						Operador op = (Operador) v;
+						if(op instanceof VariableID) {
+							VariableID var = (VariableID) op;
+							variablesEnumerados.get(enumerado.getNombre()).add(var.getNombre());
+						}
+					}
+				}
+			}
+		}
+		
+		for(TipoComplejo t: c.getTipocomplejo()) {
+			if(t instanceof SubrangoEnumerado) {
+				SubrangoEnumerado subrango = (SubrangoEnumerado) t;
+				String limite_inf = subrango.getLimite_inf();
+				String limite_sup = subrango.getLimite_sup();
+				boolean loTiene = false;
+				
+				for(String nombreEnumerado: enumerados) {
+					if(variablesEnumerados.get(nombreEnumerado).contains(limite_inf) && variablesEnumerados.get(nombreEnumerado).contains(limite_sup)) {
+						loTiene = true;
+						if(variablesEnumerados.get(nombreEnumerado).indexOf(limite_inf) > variablesEnumerados.get(nombreEnumerado).indexOf(limite_sup)) {
+							error("El límite inferior del subrango no puede ser posterior en el enumerado de referencia que el límite superior", subrango, DiagramapseudocodigoPackage.Literals.SUBRANGO__NOMBRE);
+						}
+					}
+				}
+				if(loTiene == false) {
+					error("Los límites inferior y superior del subrango deben pertenecer a un enumerado previamente definido", subrango, DiagramapseudocodigoPackage.Literals.SUBRANGO__NOMBRE);
+				}
+			}
+		}
+	}
+	
+	@Check
 	//Función que se encarga de comprobar que no existen casos repetidos en la estructura segun_sea
 	protected void checkCasos(segun s) {
 		List<Integer> numeros = new ArrayList<Integer>();

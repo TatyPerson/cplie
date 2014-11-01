@@ -1245,26 +1245,26 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.SubrangoRegistro} instances.
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.SubrangoEnumerado} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SubrangoRegistroItemProvider subrangoRegistroItemProvider;
+	protected SubrangoEnumeradoItemProvider subrangoEnumeradoItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link diagramapseudocodigo.SubrangoRegistro}.
+	 * This creates an adapter for a {@link diagramapseudocodigo.SubrangoEnumerado}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createSubrangoRegistroAdapter() {
-		if (subrangoRegistroItemProvider == null) {
-			subrangoRegistroItemProvider = new SubrangoRegistroItemProvider(this);
+	public Adapter createSubrangoEnumeradoAdapter() {
+		if (subrangoEnumeradoItemProvider == null) {
+			subrangoEnumeradoItemProvider = new SubrangoEnumeradoItemProvider(this);
 		}
 
-		return subrangoRegistroItemProvider;
+		return subrangoEnumeradoItemProvider;
 	}
 
 	/**
@@ -1532,7 +1532,7 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 		if (asignacionNormalItemProvider != null) asignacionNormalItemProvider.dispose();
 		if (asignacionComplejaItemProvider != null) asignacionComplejaItemProvider.dispose();
 		if (subrangoNumericoItemProvider != null) subrangoNumericoItemProvider.dispose();
-		if (subrangoRegistroItemProvider != null) subrangoRegistroItemProvider.dispose();
+		if (subrangoEnumeradoItemProvider != null) subrangoEnumeradoItemProvider.dispose();
 		if (valorVectorItemProvider != null) valorVectorItemProvider.dispose();
 		if (valorMatrizItemProvider != null) valorMatrizItemProvider.dispose();
 		if (comentarioItemProvider != null) comentarioItemProvider.dispose();
