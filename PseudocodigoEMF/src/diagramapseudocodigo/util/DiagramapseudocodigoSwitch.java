@@ -460,11 +460,11 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DiagramapseudocodigoPackage.SUBRANGO_REGISTRO: {
-				SubrangoRegistro subrangoRegistro = (SubrangoRegistro)theEObject;
-				T result = caseSubrangoRegistro(subrangoRegistro);
-				if (result == null) result = caseSubrango(subrangoRegistro);
-				if (result == null) result = caseTipoComplejo(subrangoRegistro);
+			case DiagramapseudocodigoPackage.SUBRANGO_ENUMERADO: {
+				SubrangoEnumerado subrangoEnumerado = (SubrangoEnumerado)theEObject;
+				T result = caseSubrangoEnumerado(subrangoEnumerado);
+				if (result == null) result = caseSubrango(subrangoEnumerado);
+				if (result == null) result = caseTipoComplejo(subrangoEnumerado);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1353,17 +1353,17 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Subrango Registro</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Subrango Enumerado</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Subrango Registro</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Subrango Enumerado</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSubrangoRegistro(SubrangoRegistro object) {
+	public T caseSubrangoEnumerado(SubrangoEnumerado object) {
 		return null;
 	}
 

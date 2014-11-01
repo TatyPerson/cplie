@@ -122,10 +122,13 @@ Enumerado returns Enumerado:
 	nombre=EString '=' '{'(valor+=valor (',' valor+=valor )* )'}';
 	
 Subrango returns Subrango:
-	SubrangoNumerico;
+	SubrangoNumerico | SubrangoEnumerado;
 
 SubrangoNumerico returns SubrangoNumerico:
 	nombre=EString '=' limite_inf=EInt '..' limite_sup=EInt;
+	
+SubrangoEnumerado returns SubrangoEnumerado:
+	nombre=EString "=" limite_inf=EString '..' limite_sup=EString;
 
 Inicio returns Inicio:
 	{Inicio}

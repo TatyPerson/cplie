@@ -43,8 +43,8 @@ import diagramapseudocodigo.Si;
 import diagramapseudocodigo.Sino;
 import diagramapseudocodigo.Subproceso;
 import diagramapseudocodigo.Subrango;
+import diagramapseudocodigo.SubrangoEnumerado;
 import diagramapseudocodigo.SubrangoNumerico;
-import diagramapseudocodigo.SubrangoRegistro;
 import diagramapseudocodigo.Tipo;
 import diagramapseudocodigo.TipoComplejo;
 import diagramapseudocodigo.TipoDefinido;
@@ -484,7 +484,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass subrangoRegistroEClass = null;
+	private EClass subrangoEnumeradoEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1869,8 +1869,26 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSubrangoRegistro() {
-		return subrangoRegistroEClass;
+	public EClass getSubrangoEnumerado() {
+		return subrangoEnumeradoEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSubrangoEnumerado_Limite_inf() {
+		return (EAttribute)subrangoEnumeradoEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSubrangoEnumerado_Limite_sup() {
+		return (EAttribute)subrangoEnumeradoEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -2332,7 +2350,9 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		createEAttribute(subrangoNumericoEClass, SUBRANGO_NUMERICO__LIMITE_INF);
 		createEAttribute(subrangoNumericoEClass, SUBRANGO_NUMERICO__LIMITE_SUP);
 
-		subrangoRegistroEClass = createEClass(SUBRANGO_REGISTRO);
+		subrangoEnumeradoEClass = createEClass(SUBRANGO_ENUMERADO);
+		createEAttribute(subrangoEnumeradoEClass, SUBRANGO_ENUMERADO__LIMITE_INF);
+		createEAttribute(subrangoEnumeradoEClass, SUBRANGO_ENUMERADO__LIMITE_SUP);
 
 		valorVectorEClass = createEClass(VALOR_VECTOR);
 		createEAttribute(valorVectorEClass, VALOR_VECTOR__NOMBRE_VECTOR);
@@ -2432,7 +2452,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		asignacionNormalEClass.getESuperTypes().add(this.getAsignacion());
 		asignacionComplejaEClass.getESuperTypes().add(this.getAsignacion());
 		subrangoNumericoEClass.getESuperTypes().add(this.getSubrango());
-		subrangoRegistroEClass.getESuperTypes().add(this.getSubrango());
+		subrangoEnumeradoEClass.getESuperTypes().add(this.getSubrango());
 		valorVectorEClass.getESuperTypes().add(this.getValorComplejo());
 		valorMatrizEClass.getESuperTypes().add(this.getValorComplejo());
 		funcionFicheroAbrirEClass.getESuperTypes().add(this.getSentencias());
@@ -2636,7 +2656,9 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		initEAttribute(getSubrangoNumerico_Limite_inf(), ecorePackage.getEInt(), "limite_inf", null, 1, 1, SubrangoNumerico.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSubrangoNumerico_Limite_sup(), ecorePackage.getEInt(), "limite_sup", null, 1, 1, SubrangoNumerico.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(subrangoRegistroEClass, SubrangoRegistro.class, "SubrangoRegistro", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(subrangoEnumeradoEClass, SubrangoEnumerado.class, "SubrangoEnumerado", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSubrangoEnumerado_Limite_inf(), ecorePackage.getEString(), "limite_inf", null, 1, 1, SubrangoEnumerado.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSubrangoEnumerado_Limite_sup(), ecorePackage.getEString(), "limite_sup", null, 1, 1, SubrangoEnumerado.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(valorVectorEClass, ValorVector.class, "ValorVector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getValorVector_Nombre_vector(), ecorePackage.getEString(), "nombre_vector", null, 1, 1, ValorVector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

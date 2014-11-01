@@ -292,8 +292,8 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 				return createSubrangoNumericoAdapter();
 			}
 			@Override
-			public Adapter caseSubrangoRegistro(SubrangoRegistro object) {
-				return createSubrangoRegistroAdapter();
+			public Adapter caseSubrangoEnumerado(SubrangoEnumerado object) {
+				return createSubrangoEnumeradoAdapter();
 			}
 			@Override
 			public Adapter caseValorVector(ValorVector object) {
@@ -1120,16 +1120,16 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.SubrangoRegistro <em>Subrango Registro</em>}'.
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.SubrangoEnumerado <em>Subrango Enumerado</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see diagramapseudocodigo.SubrangoRegistro
+	 * @see diagramapseudocodigo.SubrangoEnumerado
 	 * @generated
 	 */
-	public Adapter createSubrangoRegistroAdapter() {
+	public Adapter createSubrangoEnumeradoAdapter() {
 		return null;
 	}
 

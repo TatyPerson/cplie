@@ -2597,14 +2597,14 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int SUBRANGO_NUMERICO_OPERATION_COUNT = SUBRANGO_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link diagramapseudocodigo.impl.SubrangoRegistroImpl <em>Subrango Registro</em>}' class.
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.SubrangoEnumeradoImpl <em>Subrango Enumerado</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see diagramapseudocodigo.impl.SubrangoRegistroImpl
-	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getSubrangoRegistro()
+	 * @see diagramapseudocodigo.impl.SubrangoEnumeradoImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getSubrangoEnumerado()
 	 * @generated
 	 */
-	int SUBRANGO_REGISTRO = 56;
+	int SUBRANGO_ENUMERADO = 56;
 
 	/**
 	 * The feature id for the '<em><b>Nombre</b></em>' attribute.
@@ -2613,25 +2613,43 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUBRANGO_REGISTRO__NOMBRE = SUBRANGO__NOMBRE;
+	int SUBRANGO_ENUMERADO__NOMBRE = SUBRANGO__NOMBRE;
 
 	/**
-	 * The number of structural features of the '<em>Subrango Registro</em>' class.
+	 * The feature id for the '<em><b>Limite inf</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUBRANGO_REGISTRO_FEATURE_COUNT = SUBRANGO_FEATURE_COUNT + 0;
+	int SUBRANGO_ENUMERADO__LIMITE_INF = SUBRANGO_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Subrango Registro</em>' class.
+	 * The feature id for the '<em><b>Limite sup</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUBRANGO_REGISTRO_OPERATION_COUNT = SUBRANGO_OPERATION_COUNT + 0;
+	int SUBRANGO_ENUMERADO__LIMITE_SUP = SUBRANGO_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Subrango Enumerado</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBRANGO_ENUMERADO_FEATURE_COUNT = SUBRANGO_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Subrango Enumerado</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBRANGO_ENUMERADO_OPERATION_COUNT = SUBRANGO_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.ValorVectorImpl <em>Valor Vector</em>}' class.
@@ -4388,14 +4406,36 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EAttribute getSubrangoNumerico_Limite_sup();
 
 	/**
-	 * Returns the meta object for class '{@link diagramapseudocodigo.SubrangoRegistro <em>Subrango Registro</em>}'.
+	 * Returns the meta object for class '{@link diagramapseudocodigo.SubrangoEnumerado <em>Subrango Enumerado</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Subrango Registro</em>'.
-	 * @see diagramapseudocodigo.SubrangoRegistro
+	 * @return the meta object for class '<em>Subrango Enumerado</em>'.
+	 * @see diagramapseudocodigo.SubrangoEnumerado
 	 * @generated
 	 */
-	EClass getSubrangoRegistro();
+	EClass getSubrangoEnumerado();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.SubrangoEnumerado#getLimite_inf <em>Limite inf</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Limite inf</em>'.
+	 * @see diagramapseudocodigo.SubrangoEnumerado#getLimite_inf()
+	 * @see #getSubrangoEnumerado()
+	 * @generated
+	 */
+	EAttribute getSubrangoEnumerado_Limite_inf();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.SubrangoEnumerado#getLimite_sup <em>Limite sup</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Limite sup</em>'.
+	 * @see diagramapseudocodigo.SubrangoEnumerado#getLimite_sup()
+	 * @see #getSubrangoEnumerado()
+	 * @generated
+	 */
+	EAttribute getSubrangoEnumerado_Limite_sup();
 
 	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.ValorVector <em>Valor Vector</em>}'.
@@ -5902,14 +5942,30 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EAttribute SUBRANGO_NUMERICO__LIMITE_SUP = eINSTANCE.getSubrangoNumerico_Limite_sup();
 
 		/**
-		 * The meta object literal for the '{@link diagramapseudocodigo.impl.SubrangoRegistroImpl <em>Subrango Registro</em>}' class.
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.SubrangoEnumeradoImpl <em>Subrango Enumerado</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see diagramapseudocodigo.impl.SubrangoRegistroImpl
-		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getSubrangoRegistro()
+		 * @see diagramapseudocodigo.impl.SubrangoEnumeradoImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getSubrangoEnumerado()
 		 * @generated
 		 */
-		EClass SUBRANGO_REGISTRO = eINSTANCE.getSubrangoRegistro();
+		EClass SUBRANGO_ENUMERADO = eINSTANCE.getSubrangoEnumerado();
+
+		/**
+		 * The meta object literal for the '<em><b>Limite inf</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SUBRANGO_ENUMERADO__LIMITE_INF = eINSTANCE.getSubrangoEnumerado_Limite_inf();
+
+		/**
+		 * The meta object literal for the '<em><b>Limite sup</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SUBRANGO_ENUMERADO__LIMITE_SUP = eINSTANCE.getSubrangoEnumerado_Limite_sup();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.ValorVectorImpl <em>Valor Vector</em>}' class.

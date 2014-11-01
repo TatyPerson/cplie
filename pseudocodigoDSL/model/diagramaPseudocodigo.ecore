@@ -303,7 +303,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="limite_sup" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SubrangoRegistro" eSuperTypes="#//Subrango"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SubrangoEnumerado" eSuperTypes="#//Subrango">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="limite_inf" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="limite_sup" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ValorVector" eSuperTypes="#//ValorComplejo">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre_vector" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

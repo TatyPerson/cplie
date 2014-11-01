@@ -14,6 +14,7 @@ import java.util.HashMap
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess
 import java.io.File
 import es.uca.MyOutputConfigurationProvider
+import java.util.ArrayList
 
 class MyDslGenerator implements IGenerator {
 
@@ -22,6 +23,8 @@ class MyDslGenerator implements IGenerator {
 	static Map<String, Map<String,String>>variablesSubprocesos = new HashMap<String,Map<String,String>>();
 	static Map<String,String> vectoresMatrices = new HashMap<String,String>();
 	static Map<String, Map<String,String>> registros = new HashMap<String, Map<String,String>>();
+	static Map<String, ArrayList<String>> variablesEnumerados = new HashMap<String, ArrayList<String>>();
+	static ArrayList<String> enumerados = new ArrayList<String>();
 	static Codigo codigo;
 
 	//EMap<String, TipoVariable> tablaSimbolos;
@@ -68,6 +71,27 @@ class MyDslGenerator implements IGenerator {
 	def toC(Codigo myCodigo) {
 	
 	codigo = myCodigo;
+	
+	for(TipoComplejo t: codigo.tipocomplejo) {
+		System.out.println("Hola")
+		if(t instanceof Enumerado) {
+			var enumerado = t as Enumerado;
+			variablesEnumerados.put(enumerado.nombre, new ArrayList<String>());
+			enumerados.add(enumerado.nombre);
+			for(valor v: enumerado.valor) {
+			  if(v instanceof Operador) {
+			  	System.out.println("Es un operador")
+			  	var v2 = v as Operador
+				if(v2 instanceof VariableID) {
+					System.out.println("Soy una VariableID")
+					var aux = v2 as VariableID
+					variablesEnumerados.get(enumerado.nombre).add(aux.nombre)
+				}
+			  }
+			}
+		}
+	}
+	
 	for(Declaracion d: codigo.tiene.declaracion) {
 		if(d instanceof DeclaracionVariable) {
 			var dec = d as DeclaracionVariable;
@@ -201,6 +225,10 @@ class MyDslGenerator implements IGenerator {
 			var SubrangoNumerico prueba = new SubrangoNumericoImpl
 			prueba = myComplejo as SubrangoNumerico
 			prueba.toC
+		} else if (myComplejo.eClass.name.equals("SubrangoEnumerado")) {
+			var SubrangoEnumerado prueba = new SubrangoEnumeradoImpl
+			prueba = myComplejo as SubrangoEnumerado
+			prueba.toC
 		}
 	}
 	
@@ -228,6 +256,10 @@ class MyDslGenerator implements IGenerator {
 		} else if (myComplejo.eClass.name.equals("SubrangoNumerico")) {
 			var SubrangoNumerico prueba = new SubrangoNumericoImpl
 			prueba = myComplejo as SubrangoNumerico
+			prueba.toC
+		}  else if(myComplejo.eClass.name.equals("SubrangoEnumerado")) {
+			var SubrangoEnumerado prueba = new SubrangoEnumeradoImpl
+			prueba = myComplejo as SubrangoEnumerado
 			prueba.toC
 		}
 	}
@@ -295,6 +327,10 @@ class MyDslGenerator implements IGenerator {
 		typedef enum {«generaSubrango(mySubrango.limite_inf,mySubrango.limite_sup)»} «mySubrango.nombre»;
 	'''
 	
+	def toC(SubrangoEnumerado mySubrango) '''
+		typedef enum {«generaSubrangoEnumerado(mySubrango.limite_inf,mySubrango.limite_sup)»} «mySubrango.nombre»;
+	'''
+	
 	def obtenerModo(String modo) {
 		if(modo == "escritura") {
 			return "w";
@@ -321,6 +357,22 @@ class MyDslGenerator implements IGenerator {
 		}
 		concat = concat + i;
 		return concat;
+	}
+	
+	def generaSubrangoEnumerado(String limite_inf, String limite_sup) {
+		var concat = new String
+		for(String nombre: enumerados) {
+			if(variablesEnumerados.get(nombre).contains(limite_inf) && variablesEnumerados.get(nombre).contains(limite_sup)) {
+				var index_limite_inf = variablesEnumerados.get(nombre).indexOf(limite_inf);
+				var index_limite_sup = variablesEnumerados.get(nombre).indexOf(limite_sup);
+				var sublista = variablesEnumerados.get(nombre).subList(index_limite_inf, index_limite_sup);
+				for(String aux: sublista) {
+					concat = concat + aux + ", "
+				}
+				concat = concat + limite_sup
+				return concat
+			}
+		}
 	}
 
 	def toC(Inicio myInicio) '''
