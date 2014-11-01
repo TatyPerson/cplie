@@ -10,7 +10,7 @@ import org.eclipse.xtext.parser.antlr.ISyntaxErrorMessageProvider;
  */
 public class MyDslRuntimeModule extends org.xtext.example.mydsl.AbstractMyDslRuntimeModule {
 	
-	//Para cada vez que Xtext en tiempo de ejecución necesite una implementación de la interfaz ISintaxErrorMessageProvider utilizará
+	//Para cada vez que Xtext en tiempo de ejecuciï¿½n necesite una implementaciï¿½n de la interfaz ISintaxErrorMessageProvider utilizarï¿½
 	//una instancia de mi propia clase personalizada
 	public Class<? extends ISyntaxErrorMessageProvider> bindISyntaxErrorMessageProvider () { 
 		return pseudocodigoDSLSyntaxErrorMessageProvider.class; 
