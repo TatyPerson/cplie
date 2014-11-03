@@ -73,17 +73,14 @@ class MyDslGenerator implements IGenerator {
 	codigo = myCodigo;
 	
 	for(TipoComplejo t: codigo.tipocomplejo) {
-		System.out.println("Hola")
 		if(t instanceof Enumerado) {
 			var enumerado = t as Enumerado;
 			variablesEnumerados.put(enumerado.nombre, new ArrayList<String>());
 			enumerados.add(enumerado.nombre);
 			for(valor v: enumerado.valor) {
 			  if(v instanceof Operador) {
-			  	System.out.println("Es un operador")
 			  	var v2 = v as Operador
 				if(v2 instanceof VariableID) {
-					System.out.println("Soy una VariableID")
 					var aux = v2 as VariableID
 					variablesEnumerados.get(enumerado.nombre).add(aux.nombre)
 				}
