@@ -41,7 +41,7 @@ public class pseudocodigoDSLSyntaxErrorMessageProvider extends SyntaxErrorMessag
 					"' no ha sido completado correctamente.";
 		}
 		if ( contextobj == null ) {
-			msg = "Incomplete model or species";
+			msg = "Esqueleto base incompleto, observe si falta alguna palabra o varias palabras reservadas (Algoritmo, const, tipo, etc..)";
 		}
 		return new SyntaxErrorMessage(msg, Diagnostic.SYNTAX_DIAGNOSTIC);
 	}
