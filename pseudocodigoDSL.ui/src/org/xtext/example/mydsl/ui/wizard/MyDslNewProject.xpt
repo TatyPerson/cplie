@@ -16,6 +16,8 @@ org.xtext.example.mydsl.MyDsl.templates=<?xml version\="1.0" encoding\="UTF-8" s
  
 «DEFINE model FOR MyDslProjectInfo»
 «FILE "src/programa.gen"-»
+Algoritmo prueba
+
 /*
  * Algoritmo: Programa de ejemplo
  * Autor: Tatiana Person Montero
@@ -150,6 +152,8 @@ inicio
 	sumaProc(a,b)
 	
 fin_inicio
+
+fin_algoritmo
 «ENDFILE»
 «ENDDEFINE»
  
