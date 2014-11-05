@@ -80,6 +80,10 @@ procedimiento sumaProc(E entero: a, E entero: b)
 	inicio //Funcionalidad
 		escribir(resultado)
 fin_procedimiento
+
+//Programa principal
+
+principal
 	
 var
 	//Bloque con la lista de inicialización de las variables que utilizará en su programa principal (obligatorio)

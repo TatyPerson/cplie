@@ -133,6 +133,7 @@ SubrangoEnumerado returns SubrangoEnumerado:
 	nombre=EString "=" limite_inf=EString '..' limite_sup=EString;
 
 Inicio returns Inicio:
+	'principal'
 	{Inicio}
 	'var'
 	( declaracion+=Declaracion ( declaracion+=Declaracion)* )?
