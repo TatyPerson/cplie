@@ -102,14 +102,15 @@ protected class ThisRootNode extends RootToken {
  *
  * Codigo:
  * 	"Algoritmo" EString (comentarios+=Comentario comentarios+=Comentario*)? ("const" (constantes+=Constantes
- * 	constantes+=Constantes*)?)? ("tipo" (tipocomplejo+=TipoComplejo tipocomplejo+=TipoComplejo*)?)? (funcion+=Subproceso
- * 	funcion+=Subproceso*)? tiene=Inicio "fin_algoritmo";
+ * 	constantes+=Constantes*)?)? ("tipo" (tipocomplejo+=TipoComplejo tipocomplejo+=TipoComplejo*)?)? ("var"
+ * 	(global+=Declaracion global+=Declaracion*)?)? (funcion+=Subproceso funcion+=Subproceso*)? tiene=Inicio
+ * 	"fin_algoritmo";
  *
  **/
 
 // "Algoritmo" EString (comentarios+=Comentario comentarios+=Comentario*)? ("const" (constantes+=Constantes
-// constantes+=Constantes*)?)? ("tipo" (tipocomplejo+=TipoComplejo tipocomplejo+=TipoComplejo*)?)? (funcion+=Subproceso
-// funcion+=Subproceso*)? tiene=Inicio "fin_algoritmo"
+// constantes+=Constantes*)?)? ("tipo" (tipocomplejo+=TipoComplejo tipocomplejo+=TipoComplejo*)?)? ("var"
+// (global+=Declaracion global+=Declaracion*)?)? (funcion+=Subproceso funcion+=Subproceso*)? tiene=Inicio "fin_algoritmo"
 protected class Codigo_Group extends GroupToken {
 	
 	public Codigo_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -124,7 +125,7 @@ protected class Codigo_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Codigo_Fin_algoritmoKeyword_7(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Codigo_Fin_algoritmoKeyword_8(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -625,7 +626,7 @@ protected class Codigo_TipocomplejoAssignment_4_1_1 extends AssignmentToken  {
 
 
 
-// (funcion+=Subproceso funcion+=Subproceso*)?
+// ("var" (global+=Declaracion global+=Declaracion*)?)?
 protected class Codigo_Group_5 extends GroupToken {
 	
 	public Codigo_Group_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -640,8 +641,173 @@ protected class Codigo_Group_5 extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Codigo_FuncionAssignment_5_1(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new Codigo_FuncionAssignment_5_0(lastRuleCallOrigin, this, 1, inst);
+			case 0: return new Codigo_Group_5_1(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// "var"
+protected class Codigo_VarKeyword_5_0 extends KeywordToken  {
+	
+	public Codigo_VarKeyword_5_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getCodigoAccess().getVarKeyword_5_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Codigo_Group_4(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new Codigo_Group_3(lastRuleCallOrigin, this, 1, inst);
+			case 2: return new Codigo_Group_2(lastRuleCallOrigin, this, 2, inst);
+			case 3: return new Codigo_EStringParserRuleCall_1(lastRuleCallOrigin, this, 3, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// (global+=Declaracion global+=Declaracion*)?
+protected class Codigo_Group_5_1 extends GroupToken {
+	
+	public Codigo_Group_5_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getCodigoAccess().getGroup_5_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Codigo_GlobalAssignment_5_1_1(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new Codigo_GlobalAssignment_5_1_0(lastRuleCallOrigin, this, 1, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// global+=Declaracion
+protected class Codigo_GlobalAssignment_5_1_0 extends AssignmentToken  {
+	
+	public Codigo_GlobalAssignment_5_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getCodigoAccess().getGlobalAssignment_5_1_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Declaracion_Alternatives(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("global",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("global");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getDeclaracionRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getCodigoAccess().getGlobalDeclaracionParserRuleCall_5_1_0_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new Codigo_VarKeyword_5_0(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+// global+=Declaracion*
+protected class Codigo_GlobalAssignment_5_1_1 extends AssignmentToken  {
+	
+	public Codigo_GlobalAssignment_5_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getCodigoAccess().getGlobalAssignment_5_1_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Declaracion_Alternatives(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("global",false)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("global");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getDeclaracionRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getCodigoAccess().getGlobalDeclaracionParserRuleCall_5_1_1_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new Codigo_GlobalAssignment_5_1_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 1: return new Codigo_GlobalAssignment_5_1_0(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+
+
+// (funcion+=Subproceso funcion+=Subproceso*)?
+protected class Codigo_Group_6 extends GroupToken {
+	
+	public Codigo_Group_6(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getCodigoAccess().getGroup_6();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Codigo_FuncionAssignment_6_1(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new Codigo_FuncionAssignment_6_0(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
@@ -649,15 +815,15 @@ protected class Codigo_Group_5 extends GroupToken {
 }
 
 // funcion+=Subproceso
-protected class Codigo_FuncionAssignment_5_0 extends AssignmentToken  {
+protected class Codigo_FuncionAssignment_6_0 extends AssignmentToken  {
 	
-	public Codigo_FuncionAssignment_5_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Codigo_FuncionAssignment_6_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getCodigoAccess().getFuncionAssignment_5_0();
+		return grammarAccess.getCodigoAccess().getFuncionAssignment_6_0();
 	}
 
     @Override
@@ -676,104 +842,7 @@ protected class Codigo_FuncionAssignment_5_0 extends AssignmentToken  {
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getSubprocesoRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getCodigoAccess().getFuncionSubprocesoParserRuleCall_5_0_0(); 
-				consumed = obj;
-				return param;
-			}
-		}
-		return null;
-	}
-
-    @Override
-	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
-		if(value == inst.getEObject() && !inst.isConsumed()) return null;
-		switch(index) {
-			case 0: return new Codigo_Group_4(lastRuleCallOrigin, next, actIndex, consumed);
-			case 1: return new Codigo_Group_3(lastRuleCallOrigin, next, actIndex, consumed);
-			case 2: return new Codigo_Group_2(lastRuleCallOrigin, next, actIndex, consumed);
-			case 3: return new Codigo_EStringParserRuleCall_1(lastRuleCallOrigin, next, actIndex, consumed);
-			default: return null;
-		}	
-	}	
-}
-
-// funcion+=Subproceso*
-protected class Codigo_FuncionAssignment_5_1 extends AssignmentToken  {
-	
-	public Codigo_FuncionAssignment_5_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Assignment getGrammarElement() {
-		return grammarAccess.getCodigoAccess().getFuncionAssignment_5_1();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new Subproceso_Alternatives(this, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-    @Override	
-	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("funcion",false)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("funcion");
-		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
-			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getSubprocesoRule().getType().getClassifier())) {
-				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getCodigoAccess().getFuncionSubprocesoParserRuleCall_5_1_0(); 
-				consumed = obj;
-				return param;
-			}
-		}
-		return null;
-	}
-
-    @Override
-	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
-		if(value == inst.getEObject() && !inst.isConsumed()) return null;
-		switch(index) {
-			case 0: return new Codigo_FuncionAssignment_5_1(lastRuleCallOrigin, next, actIndex, consumed);
-			case 1: return new Codigo_FuncionAssignment_5_0(lastRuleCallOrigin, next, actIndex, consumed);
-			default: return null;
-		}	
-	}	
-}
-
-
-// tiene=Inicio
-protected class Codigo_TieneAssignment_6 extends AssignmentToken  {
-	
-	public Codigo_TieneAssignment_6(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Assignment getGrammarElement() {
-		return grammarAccess.getCodigoAccess().getTieneAssignment_6();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new Inicio_Group(this, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-    @Override	
-	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("tiene",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("tiene");
-		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
-			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getInicioRule().getType().getClassifier())) {
-				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getCodigoAccess().getTieneInicioParserRuleCall_6_0(); 
+				element = grammarAccess.getCodigoAccess().getFuncionSubprocesoParserRuleCall_6_0_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -795,22 +864,121 @@ protected class Codigo_TieneAssignment_6 extends AssignmentToken  {
 	}	
 }
 
-// "fin_algoritmo"
-protected class Codigo_Fin_algoritmoKeyword_7 extends KeywordToken  {
+// funcion+=Subproceso*
+protected class Codigo_FuncionAssignment_6_1 extends AssignmentToken  {
 	
-	public Codigo_Fin_algoritmoKeyword_7(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Codigo_FuncionAssignment_6_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getCodigoAccess().getFin_algoritmoKeyword_7();
+	public Assignment getGrammarElement() {
+		return grammarAccess.getCodigoAccess().getFuncionAssignment_6_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Codigo_TieneAssignment_6(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Subproceso_Alternatives(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("funcion",false)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("funcion");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getSubprocesoRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getCodigoAccess().getFuncionSubprocesoParserRuleCall_6_1_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new Codigo_FuncionAssignment_6_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 1: return new Codigo_FuncionAssignment_6_0(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+
+// tiene=Inicio
+protected class Codigo_TieneAssignment_7 extends AssignmentToken  {
+	
+	public Codigo_TieneAssignment_7(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getCodigoAccess().getTieneAssignment_7();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Inicio_Group(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("tiene",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("tiene");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getInicioRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getCodigoAccess().getTieneInicioParserRuleCall_7_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new Codigo_Group_6(lastRuleCallOrigin, next, actIndex, consumed);
+			case 1: return new Codigo_Group_5(lastRuleCallOrigin, next, actIndex, consumed);
+			case 2: return new Codigo_Group_4(lastRuleCallOrigin, next, actIndex, consumed);
+			case 3: return new Codigo_Group_3(lastRuleCallOrigin, next, actIndex, consumed);
+			case 4: return new Codigo_Group_2(lastRuleCallOrigin, next, actIndex, consumed);
+			case 5: return new Codigo_EStringParserRuleCall_1(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+// "fin_algoritmo"
+protected class Codigo_Fin_algoritmoKeyword_8 extends KeywordToken  {
+	
+	public Codigo_Fin_algoritmoKeyword_8(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getCodigoAccess().getFin_algoritmoKeyword_8();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Codigo_TieneAssignment_7(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}

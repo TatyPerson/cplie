@@ -11,6 +11,8 @@ Codigo returns Codigo:
 		( constantes+=Constantes (constantes+=Constantes)* )? )?
 	('tipo'
 		( tipocomplejo+=TipoComplejo (tipocomplejo+=TipoComplejo)* )? )?
+	('var'
+		( global+=Declaracion ( global+=Declaracion)* )? )?
 	(funcion+=Subproceso (funcion+=Subproceso)* )?
 	tiene=Inicio
 	'fin_algoritmo';

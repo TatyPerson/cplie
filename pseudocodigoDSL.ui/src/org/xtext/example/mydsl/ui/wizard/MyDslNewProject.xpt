@@ -60,6 +60,12 @@ tipo
 	
 	Semaforo = {rojo, amarillo, verde}
 	
+var
+	//Bloque para las variables globales
+	
+	entero: a
+	cadena: b
+	
 //Posteriormente podemos crear funciones y procedimientos con el comportamiento que necesitemos en este caso
 //la operación suma en forma de función y de procedimiento
 

@@ -59,6 +59,9 @@ class MyDslGenerator implements IGenerator {
 		«FOR myComplejo:myCodigo.tipocomplejo»
 			«myComplejo.toCpp»
 		«ENDFOR»
+		«FOR myVariable:myCodigo.global»
+			«myVariable.toCpp»
+		«ENDFOR»
 		
 		«FOR funcion:myCodigo.funcion»
 			«funcion.toCpp»
@@ -187,6 +190,9 @@ class MyDslGenerator implements IGenerator {
 		«ENDFOR»
 		«FOR myComplejo:myCodigo.tipocomplejo»
 			«myComplejo.toC»
+		«ENDFOR»
+		«FOR myVariable:myCodigo.global»
+			«myVariable.toC»
 		«ENDFOR»
 		
 		«FOR funcion:myCodigo.funcion»

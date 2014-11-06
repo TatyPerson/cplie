@@ -71,6 +71,8 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCodigoAccess().getGroup_4(), "rule__Codigo__Group_4__0");
 					put(grammarAccess.getCodigoAccess().getGroup_4_1(), "rule__Codigo__Group_4_1__0");
 					put(grammarAccess.getCodigoAccess().getGroup_5(), "rule__Codigo__Group_5__0");
+					put(grammarAccess.getCodigoAccess().getGroup_5_1(), "rule__Codigo__Group_5_1__0");
+					put(grammarAccess.getCodigoAccess().getGroup_6(), "rule__Codigo__Group_6__0");
 					put(grammarAccess.getComentarioAccess().getGroup(), "rule__Comentario__Group__0");
 					put(grammarAccess.getInternasAccess().getGroup(), "rule__Internas__Group__0");
 					put(grammarAccess.getInternasAccess().getGroup_2(), "rule__Internas__Group_2__0");
@@ -152,9 +154,11 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCodigoAccess().getConstantesAssignment_3_1_1(), "rule__Codigo__ConstantesAssignment_3_1_1");
 					put(grammarAccess.getCodigoAccess().getTipocomplejoAssignment_4_1_0(), "rule__Codigo__TipocomplejoAssignment_4_1_0");
 					put(grammarAccess.getCodigoAccess().getTipocomplejoAssignment_4_1_1(), "rule__Codigo__TipocomplejoAssignment_4_1_1");
-					put(grammarAccess.getCodigoAccess().getFuncionAssignment_5_0(), "rule__Codigo__FuncionAssignment_5_0");
-					put(grammarAccess.getCodigoAccess().getFuncionAssignment_5_1(), "rule__Codigo__FuncionAssignment_5_1");
-					put(grammarAccess.getCodigoAccess().getTieneAssignment_6(), "rule__Codigo__TieneAssignment_6");
+					put(grammarAccess.getCodigoAccess().getGlobalAssignment_5_1_0(), "rule__Codigo__GlobalAssignment_5_1_0");
+					put(grammarAccess.getCodigoAccess().getGlobalAssignment_5_1_1(), "rule__Codigo__GlobalAssignment_5_1_1");
+					put(grammarAccess.getCodigoAccess().getFuncionAssignment_6_0(), "rule__Codigo__FuncionAssignment_6_0");
+					put(grammarAccess.getCodigoAccess().getFuncionAssignment_6_1(), "rule__Codigo__FuncionAssignment_6_1");
+					put(grammarAccess.getCodigoAccess().getTieneAssignment_7(), "rule__Codigo__TieneAssignment_7");
 					put(grammarAccess.getComentarioAccess().getMensajeAssignment_1(), "rule__Comentario__MensajeAssignment_1");
 					put(grammarAccess.getInternasAccess().getNombreAssignment_0(), "rule__Internas__NombreAssignment_0");
 					put(grammarAccess.getInternasAccess().getOperadorAssignment_2_0(), "rule__Internas__OperadorAssignment_2_0");

@@ -205,19 +205,59 @@ ruleEString
 	    }
 
 )
+)*)?)?(	otherlv_10='var' 
+    {
+    	newLeafNode(otherlv_10, grammarAccess.getCodigoAccess().getVarKeyword_5_0());
+    }
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getCodigoAccess().getGlobalDeclaracionParserRuleCall_5_1_0_0()); 
+	    }
+		lv_global_11_0=ruleDeclaracion		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getCodigoRule());
+	        }
+       		add(
+       			$current, 
+       			"global",
+        		lv_global_11_0, 
+        		"Declaracion");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getCodigoAccess().getGlobalDeclaracionParserRuleCall_5_1_1_0()); 
+	    }
+		lv_global_12_0=ruleDeclaracion		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getCodigoRule());
+	        }
+       		add(
+       			$current, 
+       			"global",
+        		lv_global_12_0, 
+        		"Declaracion");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
 )*)?)?((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getCodigoAccess().getFuncionSubprocesoParserRuleCall_5_0_0()); 
+	        newCompositeNode(grammarAccess.getCodigoAccess().getFuncionSubprocesoParserRuleCall_6_0_0()); 
 	    }
-		lv_funcion_10_0=ruleSubproceso		{
+		lv_funcion_13_0=ruleSubproceso		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getCodigoRule());
 	        }
        		add(
        			$current, 
        			"funcion",
-        		lv_funcion_10_0, 
+        		lv_funcion_13_0, 
         		"Subproceso");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -226,16 +266,16 @@ ruleEString
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getCodigoAccess().getFuncionSubprocesoParserRuleCall_5_1_0()); 
+	        newCompositeNode(grammarAccess.getCodigoAccess().getFuncionSubprocesoParserRuleCall_6_1_0()); 
 	    }
-		lv_funcion_11_0=ruleSubproceso		{
+		lv_funcion_14_0=ruleSubproceso		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getCodigoRule());
 	        }
        		add(
        			$current, 
        			"funcion",
-        		lv_funcion_11_0, 
+        		lv_funcion_14_0, 
         		"Subproceso");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -244,24 +284,24 @@ ruleEString
 )*)?(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getCodigoAccess().getTieneInicioParserRuleCall_6_0()); 
+	        newCompositeNode(grammarAccess.getCodigoAccess().getTieneInicioParserRuleCall_7_0()); 
 	    }
-		lv_tiene_12_0=ruleInicio		{
+		lv_tiene_15_0=ruleInicio		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getCodigoRule());
 	        }
        		set(
        			$current, 
        			"tiene",
-        		lv_tiene_12_0, 
+        		lv_tiene_15_0, 
         		"Inicio");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_13='fin_algoritmo' 
+)	otherlv_16='fin_algoritmo' 
     {
-    	newLeafNode(otherlv_13, grammarAccess.getCodigoAccess().getFin_algoritmoKeyword_7());
+    	newLeafNode(otherlv_16, grammarAccess.getCodigoAccess().getFin_algoritmoKeyword_8());
     }
 )
 ;

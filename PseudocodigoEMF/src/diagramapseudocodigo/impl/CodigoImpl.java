@@ -5,6 +5,7 @@ package diagramapseudocodigo.impl;
 import diagramapseudocodigo.Codigo;
 import diagramapseudocodigo.Comentario;
 import diagramapseudocodigo.Constantes;
+import diagramapseudocodigo.Declaracion;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Inicio;
 import diagramapseudocodigo.Subproceso;
@@ -33,6 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link diagramapseudocodigo.impl.CodigoImpl#getConstantes <em>Constantes</em>}</li>
  *   <li>{@link diagramapseudocodigo.impl.CodigoImpl#getTipocomplejo <em>Tipocomplejo</em>}</li>
  *   <li>{@link diagramapseudocodigo.impl.CodigoImpl#getComentarios <em>Comentarios</em>}</li>
+ *   <li>{@link diagramapseudocodigo.impl.CodigoImpl#getGlobal <em>Global</em>}</li>
  * </ul>
  * </p>
  *
@@ -108,6 +110,16 @@ public class CodigoImpl extends MinimalEObjectImpl.Container implements Codigo {
 	 * @ordered
 	 */
 	protected EList<Comentario> comentarios;
+
+	/**
+	 * The cached value of the '{@link #getGlobal() <em>Global</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGlobal()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Declaracion> global;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -245,6 +257,18 @@ public class CodigoImpl extends MinimalEObjectImpl.Container implements Codigo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Declaracion> getGlobal() {
+		if (global == null) {
+			global = new EObjectContainmentEList<Declaracion>(Declaracion.class, this, DiagramapseudocodigoPackage.CODIGO__GLOBAL);
+		}
+		return global;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -258,6 +282,8 @@ public class CodigoImpl extends MinimalEObjectImpl.Container implements Codigo {
 				return ((InternalEList<?>)getTipocomplejo()).basicRemove(otherEnd, msgs);
 			case DiagramapseudocodigoPackage.CODIGO__COMENTARIOS:
 				return ((InternalEList<?>)getComentarios()).basicRemove(otherEnd, msgs);
+			case DiagramapseudocodigoPackage.CODIGO__GLOBAL:
+				return ((InternalEList<?>)getGlobal()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -282,6 +308,8 @@ public class CodigoImpl extends MinimalEObjectImpl.Container implements Codigo {
 				return getTipocomplejo();
 			case DiagramapseudocodigoPackage.CODIGO__COMENTARIOS:
 				return getComentarios();
+			case DiagramapseudocodigoPackage.CODIGO__GLOBAL:
+				return getGlobal();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -317,6 +345,10 @@ public class CodigoImpl extends MinimalEObjectImpl.Container implements Codigo {
 				getComentarios().clear();
 				getComentarios().addAll((Collection<? extends Comentario>)newValue);
 				return;
+			case DiagramapseudocodigoPackage.CODIGO__GLOBAL:
+				getGlobal().clear();
+				getGlobal().addAll((Collection<? extends Declaracion>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -347,6 +379,9 @@ public class CodigoImpl extends MinimalEObjectImpl.Container implements Codigo {
 			case DiagramapseudocodigoPackage.CODIGO__COMENTARIOS:
 				getComentarios().clear();
 				return;
+			case DiagramapseudocodigoPackage.CODIGO__GLOBAL:
+				getGlobal().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -371,6 +406,8 @@ public class CodigoImpl extends MinimalEObjectImpl.Container implements Codigo {
 				return tipocomplejo != null && !tipocomplejo.isEmpty();
 			case DiagramapseudocodigoPackage.CODIGO__COMENTARIOS:
 				return comentarios != null && !comentarios.isEmpty();
+			case DiagramapseudocodigoPackage.CODIGO__GLOBAL:
+				return global != null && !global.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
