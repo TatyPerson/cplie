@@ -744,14 +744,14 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		return valoresMatriz;
 	}
 	
-	protected List<ValorRegistro> variablesRegistroDeclaradas(List<valor> valores, List<String> variables) {
+	protected List<ValorRegistro> variablesRegistroDeclaradas(List<valor> valores, List<String> variables, List<String> variablesGlobales) {
 		List<ValorRegistro> variablesNoDeclaradas = new ArrayList<ValorRegistro>();
 		for(valor v: valores) {
 			if(v instanceof ValorRegistro) {
 				//Buscamos si ha sido definida (la comprobación de si pertenece al tipo registro lo omitimos porque ya hay otra función
 				//que se encarga de ello
 				ValorRegistro vr = (ValorRegistro) v;
-				if(!variables.contains(vr.getNombre_registro())) {
+				if(!variables.contains(vr.getNombre_registro()) && !variablesGlobales.contains(vr.getNombre_registro())) {
 					variablesNoDeclaradas.add(vr);
 				}
 			}
@@ -759,12 +759,12 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		return variablesNoDeclaradas;
 	}
 	
-	protected List<ValorVector> variablesVectorDeclaradas(List<valor> valores, List<String> variables) {
+	protected List<ValorVector> variablesVectorDeclaradas(List<valor> valores, List<String> variables, List<String> variablesGlobales) {
 		List<ValorVector> variablesNoDeclaradas = new ArrayList<ValorVector>();
 		for(valor v: valores) {
 			if(v instanceof ValorVector) {
 				ValorVector vv = (ValorVector) v;
-				if(!variables.contains(vv.getNombre_vector())) {
+				if(!variables.contains(vv.getNombre_vector()) && !variablesGlobales.contains(vv.getNombre_vector())) {
 					variablesNoDeclaradas.add(vv);
 				}
 			}
@@ -772,12 +772,12 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		return variablesNoDeclaradas;
 	}
 	
-	protected List<ValorMatriz> variablesMatrizDeclaradas(List<valor> valores, List<String> variables) {
+	protected List<ValorMatriz> variablesMatrizDeclaradas(List<valor> valores, List<String> variables, List<String> variablesGlobales) {
 		List<ValorMatriz> variablesNoDeclaradas = new ArrayList<ValorMatriz>();
 		for(valor v: valores) {
 			if(v instanceof ValorMatriz) {
 				ValorMatriz vm = (ValorMatriz) v;
-				if(!variables.contains(vm.getNombre_matriz())) {
+				if(!variables.contains(vm.getNombre_matriz()) && !variablesGlobales.contains(vm.getNombre_matriz())) {
 					variablesNoDeclaradas.add(vm);
 				}
 			}
@@ -785,13 +785,13 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		return variablesNoDeclaradas;
 	}
 	
-	protected List<VariableID> variablesDeclaradas(List<valor> valores, List<String> variables) {
+	protected List<VariableID> variablesDeclaradas(List<valor> valores, List<String> variables, List<String> variablesGlobales) {
 		List<VariableID> variablesNoDeclaradas = new ArrayList<VariableID>();
 		for(valor v: valores) {
 			if(v instanceof VariableID) {
 				//Comprobamos si la variable ha sido definida
 				VariableID var = (VariableID) v;
-				if(!variables.contains(var.getNombre())) {
+				if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
 					variablesNoDeclaradas.add(var);
 				}
 			}
@@ -803,7 +803,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 						Operador o = (Operador) val;
 						if(o instanceof VariableID) {
 							VariableID var = (VariableID) o;
-							if(!variables.contains(var.getNombre())) {
+							if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
 								variablesNoDeclaradas.add(var);
 							}
 						}
