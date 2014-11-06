@@ -1056,6 +1056,17 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				}
 			}
 		}
+		
+		//Comprobamos lo mismo también para las variables globales
+		
+		for(Declaracion d: c.getGlobal()) {
+			if(d instanceof DeclaracionPropia) {
+				DeclaracionPropia dec = (DeclaracionPropia) d;
+				if(!tipos.contains(dec.getTipo())) {
+					error("El tipo de la variable debe estar previamente definido", c, DiagramapseudocodigoPackage.Literals.CODIGO__GLOBAL, c.getGlobal().indexOf(d));
+				}
+			}
+		}
 	}
 	
 	@Check
