@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link diagramapseudocodigo.Codigo#getConstantes <em>Constantes</em>}</li>
  *   <li>{@link diagramapseudocodigo.Codigo#getTipocomplejo <em>Tipocomplejo</em>}</li>
  *   <li>{@link diagramapseudocodigo.Codigo#getComentarios <em>Comentarios</em>}</li>
+ *   <li>{@link diagramapseudocodigo.Codigo#getGlobal <em>Global</em>}</li>
  * </ul>
  * </p>
  *
@@ -143,5 +144,21 @@ public interface Codigo extends EObject {
 	 * @generated
 	 */
 	EList<Comentario> getComentarios();
+
+	/**
+	 * Returns the value of the '<em><b>Global</b></em>' containment reference list.
+	 * The list contents are of type {@link diagramapseudocodigo.Declaracion}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Global</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Global</em>' containment reference list.
+	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getCodigo_Global()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Declaracion> getGlobal();
 
 } // Codigo

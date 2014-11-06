@@ -121,13 +121,22 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int CODIGO__COMENTARIOS = 5;
 
 	/**
+	 * The feature id for the '<em><b>Global</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CODIGO__GLOBAL = 6;
+
+	/**
 	 * The number of structural features of the '<em>Codigo</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CODIGO_FEATURE_COUNT = 6;
+	int CODIGO_FEATURE_COUNT = 7;
 
 	/**
 	 * The number of operations of the '<em>Codigo</em>' class.
@@ -3031,6 +3040,17 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EReference getCodigo_Comentarios();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.Codigo#getGlobal <em>Global</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Global</em>'.
+	 * @see diagramapseudocodigo.Codigo#getGlobal()
+	 * @see #getCodigo()
+	 * @generated
+	 */
+	EReference getCodigo_Global();
+
+	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.Inicio <em>Inicio</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4790,6 +4810,14 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CODIGO__COMENTARIOS = eINSTANCE.getCodigo_Comentarios();
+
+		/**
+		 * The meta object literal for the '<em><b>Global</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CODIGO__GLOBAL = eINSTANCE.getCodigo_Global();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.InicioImpl <em>Inicio</em>}' class.

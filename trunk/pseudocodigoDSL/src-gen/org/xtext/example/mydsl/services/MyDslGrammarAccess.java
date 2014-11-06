@@ -43,23 +43,31 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cTipocomplejoAssignment_4_1_1 = (Assignment)cGroup_4_1.eContents().get(1);
 		private final RuleCall cTipocomplejoTipoComplejoParserRuleCall_4_1_1_0 = (RuleCall)cTipocomplejoAssignment_4_1_1.eContents().get(0);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Assignment cFuncionAssignment_5_0 = (Assignment)cGroup_5.eContents().get(0);
-		private final RuleCall cFuncionSubprocesoParserRuleCall_5_0_0 = (RuleCall)cFuncionAssignment_5_0.eContents().get(0);
-		private final Assignment cFuncionAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cFuncionSubprocesoParserRuleCall_5_1_0 = (RuleCall)cFuncionAssignment_5_1.eContents().get(0);
-		private final Assignment cTieneAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cTieneInicioParserRuleCall_6_0 = (RuleCall)cTieneAssignment_6.eContents().get(0);
-		private final Keyword cFin_algoritmoKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Keyword cVarKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Group cGroup_5_1 = (Group)cGroup_5.eContents().get(1);
+		private final Assignment cGlobalAssignment_5_1_0 = (Assignment)cGroup_5_1.eContents().get(0);
+		private final RuleCall cGlobalDeclaracionParserRuleCall_5_1_0_0 = (RuleCall)cGlobalAssignment_5_1_0.eContents().get(0);
+		private final Assignment cGlobalAssignment_5_1_1 = (Assignment)cGroup_5_1.eContents().get(1);
+		private final RuleCall cGlobalDeclaracionParserRuleCall_5_1_1_0 = (RuleCall)cGlobalAssignment_5_1_1.eContents().get(0);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Assignment cFuncionAssignment_6_0 = (Assignment)cGroup_6.eContents().get(0);
+		private final RuleCall cFuncionSubprocesoParserRuleCall_6_0_0 = (RuleCall)cFuncionAssignment_6_0.eContents().get(0);
+		private final Assignment cFuncionAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cFuncionSubprocesoParserRuleCall_6_1_0 = (RuleCall)cFuncionAssignment_6_1.eContents().get(0);
+		private final Assignment cTieneAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cTieneInicioParserRuleCall_7_0 = (RuleCall)cTieneAssignment_7.eContents().get(0);
+		private final Keyword cFin_algoritmoKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		//Codigo:
 		//	"Algoritmo" EString (comentarios+=Comentario comentarios+=Comentario*)? ("const" (constantes+=Constantes
-		//	constantes+=Constantes*)?)? ("tipo" (tipocomplejo+=TipoComplejo tipocomplejo+=TipoComplejo*)?)? (funcion+=Subproceso
-		//	funcion+=Subproceso*)? tiene=Inicio "fin_algoritmo";
+		//	constantes+=Constantes*)?)? ("tipo" (tipocomplejo+=TipoComplejo tipocomplejo+=TipoComplejo*)?)? ("var"
+		//	(global+=Declaracion global+=Declaracion*)?)? (funcion+=Subproceso funcion+=Subproceso*)? tiene=Inicio
+		//	"fin_algoritmo";
 		public ParserRule getRule() { return rule; }
 
 		//"Algoritmo" EString (comentarios+=Comentario comentarios+=Comentario*)? ("const" (constantes+=Constantes
-		//constantes+=Constantes*)?)? ("tipo" (tipocomplejo+=TipoComplejo tipocomplejo+=TipoComplejo*)?)? (funcion+=Subproceso
-		//funcion+=Subproceso*)? tiene=Inicio "fin_algoritmo"
+		//constantes+=Constantes*)?)? ("tipo" (tipocomplejo+=TipoComplejo tipocomplejo+=TipoComplejo*)?)? ("var"
+		//(global+=Declaracion global+=Declaracion*)?)? (funcion+=Subproceso funcion+=Subproceso*)? tiene=Inicio "fin_algoritmo"
 		public Group getGroup() { return cGroup; }
 
 		//"Algoritmo"
@@ -125,29 +133,50 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//TipoComplejo
 		public RuleCall getTipocomplejoTipoComplejoParserRuleCall_4_1_1_0() { return cTipocomplejoTipoComplejoParserRuleCall_4_1_1_0; }
 
-		//(funcion+=Subproceso funcion+=Subproceso*)?
+		//("var" (global+=Declaracion global+=Declaracion*)?)?
 		public Group getGroup_5() { return cGroup_5; }
 
+		//"var"
+		public Keyword getVarKeyword_5_0() { return cVarKeyword_5_0; }
+
+		//(global+=Declaracion global+=Declaracion*)?
+		public Group getGroup_5_1() { return cGroup_5_1; }
+
+		//global+=Declaracion
+		public Assignment getGlobalAssignment_5_1_0() { return cGlobalAssignment_5_1_0; }
+
+		//Declaracion
+		public RuleCall getGlobalDeclaracionParserRuleCall_5_1_0_0() { return cGlobalDeclaracionParserRuleCall_5_1_0_0; }
+
+		//global+=Declaracion*
+		public Assignment getGlobalAssignment_5_1_1() { return cGlobalAssignment_5_1_1; }
+
+		//Declaracion
+		public RuleCall getGlobalDeclaracionParserRuleCall_5_1_1_0() { return cGlobalDeclaracionParserRuleCall_5_1_1_0; }
+
+		//(funcion+=Subproceso funcion+=Subproceso*)?
+		public Group getGroup_6() { return cGroup_6; }
+
 		//funcion+=Subproceso
-		public Assignment getFuncionAssignment_5_0() { return cFuncionAssignment_5_0; }
+		public Assignment getFuncionAssignment_6_0() { return cFuncionAssignment_6_0; }
 
 		//Subproceso
-		public RuleCall getFuncionSubprocesoParserRuleCall_5_0_0() { return cFuncionSubprocesoParserRuleCall_5_0_0; }
+		public RuleCall getFuncionSubprocesoParserRuleCall_6_0_0() { return cFuncionSubprocesoParserRuleCall_6_0_0; }
 
 		//funcion+=Subproceso*
-		public Assignment getFuncionAssignment_5_1() { return cFuncionAssignment_5_1; }
+		public Assignment getFuncionAssignment_6_1() { return cFuncionAssignment_6_1; }
 
 		//Subproceso
-		public RuleCall getFuncionSubprocesoParserRuleCall_5_1_0() { return cFuncionSubprocesoParserRuleCall_5_1_0; }
+		public RuleCall getFuncionSubprocesoParserRuleCall_6_1_0() { return cFuncionSubprocesoParserRuleCall_6_1_0; }
 
 		//tiene=Inicio
-		public Assignment getTieneAssignment_6() { return cTieneAssignment_6; }
+		public Assignment getTieneAssignment_7() { return cTieneAssignment_7; }
 
 		//Inicio
-		public RuleCall getTieneInicioParserRuleCall_6_0() { return cTieneInicioParserRuleCall_6_0; }
+		public RuleCall getTieneInicioParserRuleCall_7_0() { return cTieneInicioParserRuleCall_7_0; }
 
 		//"fin_algoritmo"
-		public Keyword getFin_algoritmoKeyword_7() { return cFin_algoritmoKeyword_7; }
+		public Keyword getFin_algoritmoKeyword_8() { return cFin_algoritmoKeyword_8; }
 	}
 
 	public class ComentarioElements extends AbstractParserRuleElementFinder {
@@ -3218,8 +3247,9 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//Codigo:
 	//	"Algoritmo" EString (comentarios+=Comentario comentarios+=Comentario*)? ("const" (constantes+=Constantes
-	//	constantes+=Constantes*)?)? ("tipo" (tipocomplejo+=TipoComplejo tipocomplejo+=TipoComplejo*)?)? (funcion+=Subproceso
-	//	funcion+=Subproceso*)? tiene=Inicio "fin_algoritmo";
+	//	constantes+=Constantes*)?)? ("tipo" (tipocomplejo+=TipoComplejo tipocomplejo+=TipoComplejo*)?)? ("var"
+	//	(global+=Declaracion global+=Declaracion*)?)? (funcion+=Subproceso funcion+=Subproceso*)? tiene=Inicio
+	//	"fin_algoritmo";
 	public CodigoElements getCodigoAccess() {
 		return (pCodigo != null) ? pCodigo : (pCodigo = new CodigoElements());
 	}

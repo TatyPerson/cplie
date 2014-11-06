@@ -699,6 +699,15 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getCodigo_Global() {
+		return (EReference)codigoEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getInicio() {
 		return inicioEClass;
 	}
@@ -2160,6 +2169,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		createEReference(codigoEClass, CODIGO__CONSTANTES);
 		createEReference(codigoEClass, CODIGO__TIPOCOMPLEJO);
 		createEReference(codigoEClass, CODIGO__COMENTARIOS);
+		createEReference(codigoEClass, CODIGO__GLOBAL);
 
 		inicioEClass = createEClass(INICIO);
 		createEReference(inicioEClass, INICIO__TIENE);
@@ -2466,6 +2476,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		initEReference(getCodigo_Constantes(), this.getConstantes(), null, "constantes", null, 0, -1, Codigo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCodigo_Tipocomplejo(), this.getTipoComplejo(), null, "tipocomplejo", null, 0, -1, Codigo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCodigo_Comentarios(), this.getComentario(), null, "comentarios", null, 0, -1, Codigo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCodigo_Global(), this.getDeclaracion(), null, "global", null, 0, -1, Codigo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(inicioEClass, Inicio.class, "Inicio", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInicio_Tiene(), this.getSentencias(), null, "tiene", null, 0, -1, Inicio.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
