@@ -1157,6 +1157,42 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		}
 	}
 	
+	//Función que se asegura de que no existan dos variables globales con el mismo nombre
+	@Check
+	protected void checkVariablesGlobales(Codigo c) {
+		List<String> variables = new ArrayList<String>();
+		for(Declaracion d: c.getGlobal()) {
+			if(d instanceof DeclaracionVariable) {
+				//Si la actual se ha instanciado como una subclase de tipo DeclaracionVariable
+				DeclaracionVariable dec = (DeclaracionVariable) d;
+				for(Variable v: dec.getVariable()) {
+					if(!variables.contains(v.getNombre())) {
+						//Si no esta repetida la registramos
+						variables.add(v.getNombre());
+					}
+					else {
+						//Si esta repetida lanzamos el error
+						error("No pueden existir dos variables globales con el mismo nombre dentro del mismo programa", v, DiagramapseudocodigoPackage.Literals.VARIABLE__NOMBRE);
+					}
+				}
+			}
+			else {
+				//Si la actual se ha instanciado como una subclase del tipo DeclaracionPropia
+				DeclaracionPropia dec = (DeclaracionPropia) d;
+				for(Variable v: dec.getVariable()) {
+					if(!variables.contains(v.getNombre())) {
+						//Si no esta repetida la registramos
+						variables.add(v.getNombre());
+					}
+					else {
+						//Si esta repetida lanzamos el error
+						error("No pueden existir dos variables globales con el mismo nombre dentro del mismo programa", v,  DiagramapseudocodigoPackage.Literals.VARIABLE__NOMBRE);
+					}
+				}
+			}
+		}
+	}
+	
 	private void checkVariablesUsadasAux(List<Sentencias> sentencias, List<String> variables, List<String> variablesGlobales) {
 		for(Sentencias sen: sentencias) {
 			if(sen instanceof LlamadaFuncion) {
