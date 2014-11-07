@@ -441,7 +441,14 @@ class MyDslGenerator implements IGenerator {
 		if(tipo == TipoVariable::CARACTER) return "char";
 		if(tipo == TipoVariable::REAL) return "float";
 		if(tipo == TipoVariable::LOGICO) return "bool";
-		if(tipo == TipoVariable::CADENA) return "char*";
+		if(tipo == TipoVariable::CADENA) return "char *";
+	}
+	
+	def tipoVariableCDeclaraciones(TipoVariable tipo) {
+		if(tipo == TipoVariable::ENTERO) return "int";
+		if(tipo == TipoVariable::CARACTER) return "char";
+		if(tipo == TipoVariable::REAL) return "float";
+		if(tipo == TipoVariable::LOGICO) return "bool";
 	}
 
 	def toC(EList<ParametroFuncion> parametros) {
@@ -644,6 +651,21 @@ class MyDslGenerator implements IGenerator {
 	def pintarVariables(EList<Variable> v) '''
 		«v.get(0).nombre»«FOR matri:v.get(0).mat»«matri.toString»«ENDFOR»«FOR id:v»«IF id.nombre != v.get(0).nombre», «id.nombre»«FOR matri2:id.mat»«matri2.toString»«ENDFOR»«ENDIF»«ENDFOR»;	
 	'''
+	def pintarVariablesCadena(EList<Variable> v) {
+		var resultado = v.get(0).nombre;
+		for(matri: v.get(0).mat) {
+			resultado = resultado + matri.toString;
+		}
+		for(id: v) {
+			if(id.nombre != v.get(0).nombre) {
+				resultado = resultado + " ," + id.nombre;
+				for(matri2: id.mat) {
+					resultado = resultado + matri2.toString;
+				}
+			}
+		}
+		return resultado;
+	}
 
 	// «myDec.tieneIDs.get(0).nombre»«FOR id:myDec.tieneIDs»«IF id.nombre != myDec.tieneIDs.get(0).nombre», «id.nombre»«ENDIF»«ENDFOR»;
 	def toC(Declaracion myDec) {
@@ -671,10 +693,15 @@ class MyDslGenerator implements IGenerator {
 		}
 
 	}
-
-	def toC(DeclaracionVariable myDec) '''
-		«myDec.tipo.tipoVariableC» «pintarVariables(myDec.variable)»
-	'''
+	
+	def toC(DeclaracionVariable myDec) {
+		if(myDec.tipo != TipoVariable::CADENA) {
+			return myDec.tipo.tipoVariableCDeclaraciones + " " + pintarVariables(myDec.variable);
+		}
+		else {
+			return "char " + pintarVariablesCadena(myDec.variable) + "[DIM];";
+		}
+	}
 	
 	def toCpp(DeclaracionVariable myDec) '''
 		«myDec.tipo.tipoVariableCpp» «pintarVariables(myDec.variable)»

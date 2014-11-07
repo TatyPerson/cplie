@@ -26,18 +26,18 @@ Algoritmo prueba
 const
 	//Bloque para la declaración de variables constantes (opcional)
 	
-	//Ejemplo de declaración de una constante:
-	DIM = 10
+	//Tamaño por defecto para las cadenas de caracteres
+	DIM = 50
 tipo
 	//Bloque para la declaración de tipos (opcional)
 	
 	//Ejemplo de declaración de un registro
 	
 	registro: Persona
-	cadena :  dni
-	entero :  edad
-	cadena :  nombre
-	cadena :  sexo
+		cadena :  dni
+		entero :  edad
+		cadena :  nombre
+		cadena :  sexo
 	fin_registro
 	
 	//Ejemplo de vector de tipo Persona
