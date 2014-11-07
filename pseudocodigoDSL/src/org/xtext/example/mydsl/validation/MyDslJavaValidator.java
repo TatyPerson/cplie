@@ -2552,6 +2552,32 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		
 		//Registramos todas las variables declaradas con sus respectivos tipos
 		Map<String,String> variablesTipadas = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
+		Map<String,String> variablesTipadasGlobales = funciones.registrarVariablesTipadas(c.getGlobal());
+		
+		//Añadimos las variables globales si no hay una variable local que se llame igual
+		
+		List<String> nombresGlobales = new ArrayList<String>();
+		
+		for(Declaracion d: c.getGlobal()) {
+			if(d instanceof DeclaracionPropia) {
+				DeclaracionPropia dp = (DeclaracionPropia) d;
+				for(Variable v: dp.getVariable()) {
+					nombresGlobales.add(v.getNombre());
+				}
+			}
+			else {
+				DeclaracionVariable dv = (DeclaracionVariable) d;
+				for(Variable v: dv.getVariable()) {
+					nombresGlobales.add(v.getNombre());
+				}
+			}
+		}
+		
+		for(String nombre: nombresGlobales) {
+			if(!variablesTipadas.containsKey(nombre)) {
+				variablesTipadas.put(nombre, variablesTipadasGlobales.get(nombre));
+			}
+		}
 		
 		//Registramos todas las funciones que están definidas
 		Map<String,HashMap<Integer,String>> funcionesTipadas = new HashMap<String,HashMap<Integer,String>>();
@@ -2629,9 +2655,36 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			}
 		}
 		
+		Map<String,String> variablesTipadasGlobales = funciones.registrarVariablesTipadas(c.getGlobal());
+		
 		for(Subproceso sub: c.getFuncion()) {
 			//Registramos todas las variables declaradas con sus respectivos tipos
 			Map<String,String> variablesTipadas = funciones.registrarVariablesTipadas(sub.getDeclaracion());
+			
+			//Añadimos las variables globales si no hay una variable local que se llame igual
+			
+			List<String> nombresGlobales = new ArrayList<String>();
+			
+			for(Declaracion d: c.getGlobal()) {
+				if(d instanceof DeclaracionPropia) {
+					DeclaracionPropia dp = (DeclaracionPropia) d;
+					for(Variable v: dp.getVariable()) {
+						nombresGlobales.add(v.getNombre());
+					}
+				}
+				else {
+					DeclaracionVariable dv = (DeclaracionVariable) d;
+					for(Variable v: dv.getVariable()) {
+						nombresGlobales.add(v.getNombre());
+					}
+				}
+			}
+			
+			for(String nombre: nombresGlobales) {
+				if(!variablesTipadas.containsKey(nombre)) {
+					variablesTipadas.put(nombre, variablesTipadasGlobales.get(nombre));
+				}
+			}
 			
 			//Como es una función también debemos registrar los parámetros
 			
