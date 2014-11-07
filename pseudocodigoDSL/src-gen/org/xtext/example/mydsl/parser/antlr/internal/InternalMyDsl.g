@@ -529,11 +529,11 @@ ruleSentencias returns [EObject current=null]
 
     |
     { 
-        newCompositeNode(grammarAccess.getSentenciasAccess().getIncrementoParserRuleCall_4()); 
+        newCompositeNode(grammarAccess.getSentenciasAccess().getNegacionParserRuleCall_4()); 
     }
-    this_incremento_4=ruleincremento
+    this_negacion_4=rulenegacion
     { 
-        $current = $this_incremento_4.current; 
+        $current = $this_negacion_4.current; 
         afterParserOrEnumRuleCall();
     }
 
@@ -4022,28 +4022,28 @@ rulesegun returns [EObject current=null]
 
 
 
-// Entry rule entryRuleincremento
-entryRuleincremento returns [EObject current=null] 
+// Entry rule entryRulenegacion
+entryRulenegacion returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getIncrementoRule()); }
-	 iv_ruleincremento=ruleincremento 
-	 { $current=$iv_ruleincremento.current; } 
+	{ newCompositeNode(grammarAccess.getNegacionRule()); }
+	 iv_rulenegacion=rulenegacion 
+	 { $current=$iv_rulenegacion.current; } 
 	 EOF 
 ;
 
-// Rule incremento
-ruleincremento returns [EObject current=null] 
+// Rule negacion
+rulenegacion returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getIncrementoAccess().getNombreEStringParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getNegacionAccess().getNombreEStringParserRuleCall_0_0()); 
 	    }
 		lv_nombre_0_0=ruleEString		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getIncrementoRule());
+	            $current = createModelElementForParent(grammarAccess.getNegacionRule());
 	        }
        		set(
        			$current, 
@@ -4057,17 +4057,17 @@ ruleincremento returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getIncrementoAccess().getSsignoIncParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getNegacionAccess().getSsignoNegParserRuleCall_1_0()); 
 	    }
-		lv_ssigno_1_0=ruleinc		{
+		lv_ssigno_1_0=ruleneg		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getIncrementoRule());
+	            $current = createModelElementForParent(grammarAccess.getNegacionRule());
 	        }
        		set(
        			$current, 
        			"ssigno",
         		lv_ssigno_1_0, 
-        		"inc");
+        		"neg");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4100,9 +4100,9 @@ ruleunaria returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getUnariaAccess().getSsignoIncParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getUnariaAccess().getSsignoNegParserRuleCall_1_0()); 
 	    }
-		lv_ssigno_1_0=ruleinc		{
+		lv_ssigno_1_0=ruleneg		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getUnariaRule());
 	        }
@@ -4110,7 +4110,7 @@ ruleunaria returns [EObject current=null]
        			$current, 
        			"ssigno",
         		lv_ssigno_1_0, 
-        		"inc");
+        		"neg");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4981,41 +4981,27 @@ ruleDevolver returns [EObject current=null]
 
 
 
-// Entry rule entryRuleinc
-entryRuleinc returns [String current=null] 
+// Entry rule entryRuleneg
+entryRuleneg returns [String current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getIncRule()); } 
-	 iv_ruleinc=ruleinc 
-	 { $current=$iv_ruleinc.current.getText(); }  
+	{ newCompositeNode(grammarAccess.getNegRule()); } 
+	 iv_ruleneg=ruleneg 
+	 { $current=$iv_ruleneg.current.getText(); }  
 	 EOF 
 ;
 
-// Rule inc
-ruleinc returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+// Rule neg
+ruleneg returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(
-	kw='++' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getIncAccess().getPlusSignPlusSignKeyword_0()); 
-    }
 
-    |
-	kw='--' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getIncAccess().getHyphenMinusHyphenMinusKeyword_1()); 
-    }
-
-    |
 	kw='no' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getIncAccess().getNoKeyword_2()); 
+        newLeafNode(kw, grammarAccess.getNegAccess().getNoKeyword()); 
     }
-)
+
     ;
 
 

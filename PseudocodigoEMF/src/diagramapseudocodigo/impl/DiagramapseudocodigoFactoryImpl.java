@@ -81,7 +81,7 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 			case DiagramapseudocodigoPackage.MIENTRAS: return createmientras();
 			case DiagramapseudocodigoPackage.REPETIR: return createrepetir();
 			case DiagramapseudocodigoPackage.DESDE: return createdesde();
-			case DiagramapseudocodigoPackage.INCREMENTO: return createincremento();
+			case DiagramapseudocodigoPackage.NEGACION: return createnegacion();
 			case DiagramapseudocodigoPackage.PROCEDIMIENTO: return createProcedimiento();
 			case DiagramapseudocodigoPackage.CARACTER: return createCaracter();
 			case DiagramapseudocodigoPackage.INTERNAS: return createInternas();
@@ -133,8 +133,8 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 				return createsignoFromString(eDataType, initialValue);
 			case DiagramapseudocodigoPackage.BOOLEANO:
 				return createbooleanoFromString(eDataType, initialValue);
-			case DiagramapseudocodigoPackage.INC:
-				return createincFromString(eDataType, initialValue);
+			case DiagramapseudocodigoPackage.NEG:
+				return createnegFromString(eDataType, initialValue);
 			case DiagramapseudocodigoPackage.TIPO_PASO:
 				return createTipoPasoFromString(eDataType, initialValue);
 			case DiagramapseudocodigoPackage.NOMBRE_INTERNA:
@@ -160,8 +160,8 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 				return convertsignoToString(eDataType, instanceValue);
 			case DiagramapseudocodigoPackage.BOOLEANO:
 				return convertbooleanoToString(eDataType, instanceValue);
-			case DiagramapseudocodigoPackage.INC:
-				return convertincToString(eDataType, instanceValue);
+			case DiagramapseudocodigoPackage.NEG:
+				return convertnegToString(eDataType, instanceValue);
 			case DiagramapseudocodigoPackage.TIPO_PASO:
 				return convertTipoPasoToString(eDataType, instanceValue);
 			case DiagramapseudocodigoPackage.NOMBRE_INTERNA:
@@ -418,9 +418,9 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public incremento createincremento() {
-		incrementoImpl incremento = new incrementoImpl();
-		return incremento;
+	public negacion createnegacion() {
+		negacionImpl negacion = new negacionImpl();
+		return negacion;
 	}
 
 	/**
@@ -808,8 +808,8 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public inc createincFromString(EDataType eDataType, String initialValue) {
-		inc result = inc.get(initialValue);
+	public neg createnegFromString(EDataType eDataType, String initialValue) {
+		neg result = neg.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -819,7 +819,7 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertincToString(EDataType eDataType, Object instanceValue) {
+	public String convertnegToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

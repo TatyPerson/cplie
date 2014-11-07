@@ -624,26 +624,26 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.incremento} instances.
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.negacion} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected incrementoItemProvider incrementoItemProvider;
+	protected negacionItemProvider negacionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link diagramapseudocodigo.incremento}.
+	 * This creates an adapter for a {@link diagramapseudocodigo.negacion}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createincrementoAdapter() {
-		if (incrementoItemProvider == null) {
-			incrementoItemProvider = new incrementoItemProvider(this);
+	public Adapter createnegacionAdapter() {
+		if (negacionItemProvider == null) {
+			negacionItemProvider = new negacionItemProvider(this);
 		}
 
-		return incrementoItemProvider;
+		return negacionItemProvider;
 	}
 
 	/**
@@ -1505,7 +1505,7 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 		if (mientrasItemProvider != null) mientrasItemProvider.dispose();
 		if (repetirItemProvider != null) repetirItemProvider.dispose();
 		if (desdeItemProvider != null) desdeItemProvider.dispose();
-		if (incrementoItemProvider != null) incrementoItemProvider.dispose();
+		if (negacionItemProvider != null) negacionItemProvider.dispose();
 		if (procedimientoItemProvider != null) procedimientoItemProvider.dispose();
 		if (caracterItemProvider != null) caracterItemProvider.dispose();
 		if (internasItemProvider != null) internasItemProvider.dispose();

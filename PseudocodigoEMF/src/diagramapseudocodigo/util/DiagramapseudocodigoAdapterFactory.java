@@ -180,8 +180,8 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 				return createdesdeAdapter();
 			}
 			@Override
-			public Adapter caseincremento(incremento object) {
-				return createincrementoAdapter();
+			public Adapter casenegacion(negacion object) {
+				return createnegacionAdapter();
 			}
 			@Override
 			public Adapter caseSubproceso(Subproceso object) {
@@ -728,16 +728,16 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.incremento <em>incremento</em>}'.
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.negacion <em>negacion</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see diagramapseudocodigo.incremento
+	 * @see diagramapseudocodigo.negacion
 	 * @generated
 	 */
-	public Adapter createincrementoAdapter() {
+	public Adapter createnegacionAdapter() {
 		return null;
 	}
 

@@ -248,7 +248,7 @@ public class BloqueItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.BLOQUE__SENTENCIAS,
-				 DiagramapseudocodigoFactory.eINSTANCE.createincremento()));
+				 DiagramapseudocodigoFactory.eINSTANCE.createnegacion()));
 
 		newChildDescriptors.add
 			(createChildParameter

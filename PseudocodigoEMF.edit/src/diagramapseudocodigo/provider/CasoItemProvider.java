@@ -247,7 +247,7 @@ public class CasoItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
-				 DiagramapseudocodigoFactory.eINSTANCE.createincremento()));
+				 DiagramapseudocodigoFactory.eINSTANCE.createnegacion()));
 
 		newChildDescriptors.add
 			(createChildParameter

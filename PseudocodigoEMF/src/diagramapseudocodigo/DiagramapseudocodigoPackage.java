@@ -1419,14 +1419,14 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int DESDE_OPERATION_COUNT = BLOQUE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link diagramapseudocodigo.impl.incrementoImpl <em>incremento</em>}' class.
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.negacionImpl <em>negacion</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see diagramapseudocodigo.impl.incrementoImpl
-	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getincremento()
+	 * @see diagramapseudocodigo.impl.negacionImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getnegacion()
 	 * @generated
 	 */
-	int INCREMENTO = 28;
+	int NEGACION = 28;
 
 	/**
 	 * The feature id for the '<em><b>Nombre</b></em>' attribute.
@@ -1435,7 +1435,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INCREMENTO__NOMBRE = SENTENCIAS_FEATURE_COUNT + 0;
+	int NEGACION__NOMBRE = SENTENCIAS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Ssigno</b></em>' attribute.
@@ -1444,25 +1444,25 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INCREMENTO__SSIGNO = SENTENCIAS_FEATURE_COUNT + 1;
+	int NEGACION__SSIGNO = SENTENCIAS_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>incremento</em>' class.
+	 * The number of structural features of the '<em>negacion</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INCREMENTO_FEATURE_COUNT = SENTENCIAS_FEATURE_COUNT + 2;
+	int NEGACION_FEATURE_COUNT = SENTENCIAS_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of operations of the '<em>incremento</em>' class.
+	 * The number of operations of the '<em>negacion</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INCREMENTO_OPERATION_COUNT = SENTENCIAS_OPERATION_COUNT + 0;
+	int NEGACION_OPERATION_COUNT = SENTENCIAS_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.ProcedimientoImpl <em>Procedimiento</em>}' class.
@@ -2921,14 +2921,14 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int BOOLEANO = 64;
 
 	/**
-	 * The meta object id for the '{@link diagramapseudocodigo.inc <em>inc</em>}' enum.
+	 * The meta object id for the '{@link diagramapseudocodigo.neg <em>neg</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see diagramapseudocodigo.inc
-	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getinc()
+	 * @see diagramapseudocodigo.neg
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getneg()
 	 * @generated
 	 */
-	int INC = 65;
+	int NEG = 65;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoPaso <em>Tipo Paso</em>}' enum.
@@ -3706,36 +3706,36 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EReference getdesde_Asignacion();
 
 	/**
-	 * Returns the meta object for class '{@link diagramapseudocodigo.incremento <em>incremento</em>}'.
+	 * Returns the meta object for class '{@link diagramapseudocodigo.negacion <em>negacion</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>incremento</em>'.
-	 * @see diagramapseudocodigo.incremento
+	 * @return the meta object for class '<em>negacion</em>'.
+	 * @see diagramapseudocodigo.negacion
 	 * @generated
 	 */
-	EClass getincremento();
+	EClass getnegacion();
 
 	/**
-	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.incremento#getNombre <em>Nombre</em>}'.
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.negacion#getNombre <em>Nombre</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Nombre</em>'.
-	 * @see diagramapseudocodigo.incremento#getNombre()
-	 * @see #getincremento()
+	 * @see diagramapseudocodigo.negacion#getNombre()
+	 * @see #getnegacion()
 	 * @generated
 	 */
-	EAttribute getincremento_Nombre();
+	EAttribute getnegacion_Nombre();
 
 	/**
-	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.incremento#getSsigno <em>Ssigno</em>}'.
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.negacion#getSsigno <em>Ssigno</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Ssigno</em>'.
-	 * @see diagramapseudocodigo.incremento#getSsigno()
-	 * @see #getincremento()
+	 * @see diagramapseudocodigo.negacion#getSsigno()
+	 * @see #getnegacion()
 	 * @generated
 	 */
-	EAttribute getincremento_Ssigno();
+	EAttribute getnegacion_Ssigno();
 
 	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.Subproceso <em>Subproceso</em>}'.
@@ -4692,14 +4692,14 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EEnum getbooleano();
 
 	/**
-	 * Returns the meta object for enum '{@link diagramapseudocodigo.inc <em>inc</em>}'.
+	 * Returns the meta object for enum '{@link diagramapseudocodigo.neg <em>neg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>inc</em>'.
-	 * @see diagramapseudocodigo.inc
+	 * @return the meta object for enum '<em>neg</em>'.
+	 * @see diagramapseudocodigo.neg
 	 * @generated
 	 */
-	EEnum getinc();
+	EEnum getneg();
 
 	/**
 	 * Returns the meta object for enum '{@link diagramapseudocodigo.TipoPaso <em>Tipo Paso</em>}'.
@@ -5370,14 +5370,14 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EReference DESDE__ASIGNACION = eINSTANCE.getdesde_Asignacion();
 
 		/**
-		 * The meta object literal for the '{@link diagramapseudocodigo.impl.incrementoImpl <em>incremento</em>}' class.
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.negacionImpl <em>negacion</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see diagramapseudocodigo.impl.incrementoImpl
-		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getincremento()
+		 * @see diagramapseudocodigo.impl.negacionImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getnegacion()
 		 * @generated
 		 */
-		EClass INCREMENTO = eINSTANCE.getincremento();
+		EClass NEGACION = eINSTANCE.getnegacion();
 
 		/**
 		 * The meta object literal for the '<em><b>Nombre</b></em>' attribute feature.
@@ -5385,7 +5385,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INCREMENTO__NOMBRE = eINSTANCE.getincremento_Nombre();
+		EAttribute NEGACION__NOMBRE = eINSTANCE.getnegacion_Nombre();
 
 		/**
 		 * The meta object literal for the '<em><b>Ssigno</b></em>' attribute feature.
@@ -5393,7 +5393,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INCREMENTO__SSIGNO = eINSTANCE.getincremento_Ssigno();
+		EAttribute NEGACION__SSIGNO = eINSTANCE.getnegacion_Ssigno();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.SubprocesoImpl <em>Subproceso</em>}' class.
@@ -6188,14 +6188,14 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EEnum BOOLEANO = eINSTANCE.getbooleano();
 
 		/**
-		 * The meta object literal for the '{@link diagramapseudocodigo.inc <em>inc</em>}' enum.
+		 * The meta object literal for the '{@link diagramapseudocodigo.neg <em>neg</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see diagramapseudocodigo.inc
-		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getinc()
+		 * @see diagramapseudocodigo.neg
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getneg()
 		 * @generated
 		 */
-		EEnum INC = eINSTANCE.getinc();
+		EEnum NEG = eINSTANCE.getneg();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.TipoPaso <em>Tipo Paso</em>}' enum.

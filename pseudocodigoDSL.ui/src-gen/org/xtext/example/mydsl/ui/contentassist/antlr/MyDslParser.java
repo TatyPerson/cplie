@@ -62,7 +62,6 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEFloatAccess().getAlternatives_4_0(), "rule__EFloat__Alternatives_4_0");
 					put(grammarAccess.getBooleanoAccess().getAlternatives(), "rule__Booleano__Alternatives");
 					put(grammarAccess.getSignoAccess().getAlternatives(), "rule__Signo__Alternatives");
-					put(grammarAccess.getIncAccess().getAlternatives(), "rule__Inc__Alternatives");
 					put(grammarAccess.getTipoPasoAccess().getAlternatives(), "rule__TipoPaso__Alternatives");
 					put(grammarAccess.getCodigoAccess().getGroup(), "rule__Codigo__Group__0");
 					put(grammarAccess.getCodigoAccess().getGroup_2(), "rule__Codigo__Group_2__0");
@@ -128,7 +127,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSegunAccess().getGroup(), "rule__Segun__Group__0");
 					put(grammarAccess.getSegunAccess().getGroup_5(), "rule__Segun__Group_5__0");
 					put(grammarAccess.getSegunAccess().getGroup_7(), "rule__Segun__Group_7__0");
-					put(grammarAccess.getIncrementoAccess().getGroup(), "rule__Incremento__Group__0");
+					put(grammarAccess.getNegacionAccess().getGroup(), "rule__Negacion__Group__0");
 					put(grammarAccess.getUnariaAccess().getGroup(), "rule__Unaria__Group__0");
 					put(grammarAccess.getEIntAccess().getGroup(), "rule__EInt__Group__0");
 					put(grammarAccess.getEFloatAccess().getGroup(), "rule__EFloat__Group__0");
@@ -255,8 +254,8 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSegunAccess().getSentenciasAssignment_7_0(), "rule__Segun__SentenciasAssignment_7_0");
 					put(grammarAccess.getSegunAccess().getSentenciasAssignment_7_1(), "rule__Segun__SentenciasAssignment_7_1");
 					put(grammarAccess.getSegunAccess().getDevuelveAssignment_8(), "rule__Segun__DevuelveAssignment_8");
-					put(grammarAccess.getIncrementoAccess().getNombreAssignment_0(), "rule__Incremento__NombreAssignment_0");
-					put(grammarAccess.getIncrementoAccess().getSsignoAssignment_1(), "rule__Incremento__SsignoAssignment_1");
+					put(grammarAccess.getNegacionAccess().getNombreAssignment_0(), "rule__Negacion__NombreAssignment_0");
+					put(grammarAccess.getNegacionAccess().getSsignoAssignment_1(), "rule__Negacion__SsignoAssignment_1");
 					put(grammarAccess.getUnariaAccess().getSsignoAssignment_1(), "rule__Unaria__SsignoAssignment_1");
 					put(grammarAccess.getUnariaAccess().getVariableAssignment_2(), "rule__Unaria__VariableAssignment_2");
 					put(grammarAccess.getVariableAccess().getNombreAssignment(), "rule__Variable__NombreAssignment");

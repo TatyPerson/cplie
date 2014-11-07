@@ -564,9 +564,9 @@ class MyDslGenerator implements IGenerator {
 			var desde prueba = new desdeImpl
 			prueba = mySent as desde
 			prueba.toCpp
-		} else if (mySent.eClass.name.equals("incremento")) {
-			var incremento prueba = new incrementoImpl
-			prueba = mySent as incremento
+		} else if (mySent.eClass.name.equals("negacion")) {
+			var negacion prueba = new negacionImpl
+			prueba = mySent as negacion
 			prueba.toC
 		} else if (mySent.eClass.name.equals("Leer")) {
 			var Leer prueba = new LeerImpl
@@ -625,9 +625,9 @@ class MyDslGenerator implements IGenerator {
 			var desde prueba = new desdeImpl
 			prueba = mySent as desde
 			prueba.toC
-		} else if (mySent.eClass.name.equals("incremento")) {
-			var incremento prueba = new incrementoImpl
-			prueba = mySent as incremento
+		} else if (mySent.eClass.name.equals("negacion")) {
+			var negacion prueba = new negacionImpl
+			prueba = mySent as negacion
 			prueba.toC
 		} else if (mySent.eClass.name.equals("Leer")) {
 			var Leer prueba = new LeerImpl
@@ -868,8 +868,8 @@ class MyDslGenerator implements IGenerator {
 	def toC(VariableID variable) '''
 	«variable.nombre»«FOR matri:variable.mat»«matri.toString»«ENDFOR»'''
 
-	def toC(incremento inc) '''
-		«inc.nombre»«inc.ssigno»;
+	def toC(negacion neg) '''
+		«neg.nombre»«neg.ssigno»;
 	'''
 
 	def toC(unaria myUnaria) {

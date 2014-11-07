@@ -62,9 +62,9 @@ import diagramapseudocodigo.Vector;
 import diagramapseudocodigo.booleano;
 import diagramapseudocodigo.cadena;
 import diagramapseudocodigo.desde;
-import diagramapseudocodigo.inc;
-import diagramapseudocodigo.incremento;
 import diagramapseudocodigo.mientras;
+import diagramapseudocodigo.neg;
+import diagramapseudocodigo.negacion;
 import diagramapseudocodigo.operacion;
 import diagramapseudocodigo.operando_der;
 import diagramapseudocodigo.operando_izq;
@@ -288,7 +288,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass incrementoEClass = null;
+	private EClass negacionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -547,7 +547,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum incEEnum = null;
+	private EEnum negEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1266,8 +1266,8 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getincremento() {
-		return incrementoEClass;
+	public EClass getnegacion() {
+		return negacionEClass;
 	}
 
 	/**
@@ -1275,8 +1275,8 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getincremento_Nombre() {
-		return (EAttribute)incrementoEClass.getEStructuralFeatures().get(0);
+	public EAttribute getnegacion_Nombre() {
+		return (EAttribute)negacionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1284,8 +1284,8 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getincremento_Ssigno() {
-		return (EAttribute)incrementoEClass.getEStructuralFeatures().get(1);
+	public EAttribute getnegacion_Ssigno() {
+		return (EAttribute)negacionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -2103,8 +2103,8 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getinc() {
-		return incEEnum;
+	public EEnum getneg() {
+		return negEEnum;
 	}
 
 	/**
@@ -2260,9 +2260,9 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		desdeEClass = createEClass(DESDE);
 		createEReference(desdeEClass, DESDE__ASIGNACION);
 
-		incrementoEClass = createEClass(INCREMENTO);
-		createEAttribute(incrementoEClass, INCREMENTO__NOMBRE);
-		createEAttribute(incrementoEClass, INCREMENTO__SSIGNO);
+		negacionEClass = createEClass(NEGACION);
+		createEAttribute(negacionEClass, NEGACION__NOMBRE);
+		createEAttribute(negacionEClass, NEGACION__SSIGNO);
 
 		subprocesoEClass = createEClass(SUBPROCESO);
 		createEReference(subprocesoEClass, SUBPROCESO__PARAMETROFUNCION);
@@ -2388,7 +2388,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		tipoVariableEEnum = createEEnum(TIPO_VARIABLE);
 		signoEEnum = createEEnum(SIGNO);
 		booleanoEEnum = createEEnum(BOOLEANO);
-		incEEnum = createEEnum(INC);
+		negEEnum = createEEnum(NEG);
 		tipoPasoEEnum = createEEnum(TIPO_PASO);
 		nombreInternaEEnum = createEEnum(NOMBRE_INTERNA);
 		modoAperturaEEnum = createEEnum(MODO_APERTURA);
@@ -2441,7 +2441,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		mientrasEClass.getESuperTypes().add(this.getBloque());
 		repetirEClass.getESuperTypes().add(this.getBloque());
 		desdeEClass.getESuperTypes().add(this.getBloque());
-		incrementoEClass.getESuperTypes().add(this.getSentencias());
+		negacionEClass.getESuperTypes().add(this.getSentencias());
 		procedimientoEClass.getESuperTypes().add(this.getSubproceso());
 		caracterEClass.getESuperTypes().add(this.getOperador());
 		internasEClass.getESuperTypes().add(this.getvalor());
@@ -2567,9 +2567,9 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		initEClass(desdeEClass, desde.class, "desde", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getdesde_Asignacion(), this.getAsignacionNormal(), null, "asignacion", null, 1, 1, desde.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(incrementoEClass, incremento.class, "incremento", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getincremento_Nombre(), ecorePackage.getEString(), "nombre", null, 1, 1, incremento.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getincremento_Ssigno(), this.getinc(), "ssigno", null, 1, 1, incremento.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(negacionEClass, negacion.class, "negacion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getnegacion_Nombre(), ecorePackage.getEString(), "nombre", null, 1, 1, negacion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getnegacion_Ssigno(), this.getneg(), "ssigno", null, 1, 1, negacion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(subprocesoEClass, Subproceso.class, "Subproceso", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSubproceso_Parametrofuncion(), this.getParametroFuncion(), null, "parametrofuncion", null, 0, -1, Subproceso.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2600,7 +2600,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		initEReference(getCaso_Sentencias(), this.getSentencias(), null, "sentencias", null, 0, -1, Caso.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(unariaEClass, unaria.class, "unaria", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getunaria_Ssigno(), this.getinc(), "ssigno", null, 1, 1, unaria.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getunaria_Ssigno(), this.getneg(), "ssigno", null, 1, 1, unaria.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getunaria_Variable(), this.getvalor(), null, "variable", null, 1, 1, unaria.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(constantesEClass, Constantes.class, "Constantes", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2717,10 +2717,8 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		addEEnumLiteral(booleanoEEnum, booleano.VERDADERO);
 		addEEnumLiteral(booleanoEEnum, booleano.FALSO);
 
-		initEEnum(incEEnum, inc.class, "inc");
-		addEEnumLiteral(incEEnum, inc.MASMAS);
-		addEEnumLiteral(incEEnum, inc.MENOSMENOS);
-		addEEnumLiteral(incEEnum, inc.NO);
+		initEEnum(negEEnum, neg.class, "neg");
+		addEEnumLiteral(negEEnum, neg.NO);
 
 		initEEnum(tipoPasoEEnum, TipoPaso.class, "TipoPaso");
 		addEEnumLiteral(tipoPasoEEnum, TipoPaso.ENTRADA);

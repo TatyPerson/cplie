@@ -1242,10 +1242,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				}
 			}
 			
-			else if(sen instanceof incremento) {
-				incremento ic = (incremento) sen;
-				if(!variables.contains(ic.getNombre()) && !variablesGlobales.contains(ic.getNombre())){
-					error("La variable debe haber sido previamente definida", ic, DiagramapseudocodigoPackage.Literals.INCREMENTO__NOMBRE);
+			else if(sen instanceof negacion) {
+				negacion neg = (negacion) sen;
+				if(!variables.contains(neg.getNombre()) && !variablesGlobales.contains(neg.getNombre())){
+					error("La variable debe haber sido previamente definida", neg, DiagramapseudocodigoPackage.Literals.NEGACION__NOMBRE);
 				}
 			}
 			

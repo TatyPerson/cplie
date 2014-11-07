@@ -605,11 +605,11 @@
     <children xmi:type="notation:Node" xmi:id="_pWG-cE9fEeK6c-ST5T4fLA" type="4001"/>
     <children xmi:type="notation:Node" xmi:id="_pWHlgE9fEeK6c-ST5T4fLA" type="5001">
       <children xmi:type="notation:Node" xmi:id="_qs4kIE9fEeK6c-ST5T4fLA" type="2001">
-        <element xmi:type="ecore:EAttribute" href="diagramaPseudocodigo.ecore#//incremento/nombre"/>
+        <element xmi:type="ecore:EAttribute" href="diagramaPseudocodigo.ecore#//negacion/nombre"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_qs4kIU9fEeK6c-ST5T4fLA"/>
       </children>
       <children xmi:type="notation:Node" xmi:id="_6P6NIE9fEeK6c-ST5T4fLA" type="2001">
-        <element xmi:type="ecore:EAttribute" href="diagramaPseudocodigo.ecore#//incremento/ssigno"/>
+        <element xmi:type="ecore:EAttribute" href="diagramaPseudocodigo.ecore#//negacion/ssigno"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_6P6NIU9fEeK6c-ST5T4fLA"/>
       </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_pWHlgU9fEeK6c-ST5T4fLA"/>
@@ -622,30 +622,22 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_pWIMk09fEeK6c-ST5T4fLA"/>
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_pWFJQU9fEeK6c-ST5T4fLA" fontColor="4210752" fontName="Times New Roman" fontHeight="12" fillColor="13761016" lineColor="8421504"/>
-    <element xmi:type="ecore:EClass" href="diagramaPseudocodigo.ecore#//incremento"/>
+    <element xmi:type="ecore:EClass" href="diagramaPseudocodigo.ecore#//negacion"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pWFJQk9fEeK6c-ST5T4fLA" x="420" y="160"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_tvmHME9fEeK6c-ST5T4fLA" type="1005">
     <children xmi:type="notation:Node" xmi:id="_tvmuQE9fEeK6c-ST5T4fLA" type="4010"/>
     <children xmi:type="notation:Node" xmi:id="_tvnVUE9fEeK6c-ST5T4fLA" type="5008">
       <children xmi:type="notation:Node" xmi:id="_6R2s0JdUEeO9S7HzTf-zhA" type="2006">
-        <element xmi:type="ecore:EEnumLiteral" href="diagramaPseudocodigo.ecore#//inc/no"/>
+        <element xmi:type="ecore:EEnumLiteral" href="diagramaPseudocodigo.ecore#//neg/no"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_6R2s0ZdUEeO9S7HzTf-zhA"/>
-      </children>
-      <children xmi:type="notation:Node" xmi:id="_vcqtAE9fEeK6c-ST5T4fLA" type="2006">
-        <element xmi:type="ecore:EEnumLiteral" href="diagramaPseudocodigo.ecore#//inc/menosmenos"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_vcqtAU9fEeK6c-ST5T4fLA"/>
-      </children>
-      <children xmi:type="notation:Node" xmi:id="_unA3YE9fEeK6c-ST5T4fLA" type="2006">
-        <element xmi:type="ecore:EEnumLiteral" href="diagramaPseudocodigo.ecore#//inc/masmas"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_unA3YU9fEeK6c-ST5T4fLA"/>
       </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_tvnVUU9fEeK6c-ST5T4fLA"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_tvnVUk9fEeK6c-ST5T4fLA"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_tvnVU09fEeK6c-ST5T4fLA"/>
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_tvmHMU9fEeK6c-ST5T4fLA" fontColor="4210752" fontName="Times New Roman" fontHeight="12" fillColor="13761016" lineColor="8421504"/>
-    <element xmi:type="ecore:EEnum" href="diagramaPseudocodigo.ecore#//inc"/>
+    <element xmi:type="ecore:EEnum" href="diagramaPseudocodigo.ecore#//neg"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_tvmHMk9fEeK6c-ST5T4fLA" x="1050" y="25"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_l7CygE9vEeKE-53ACmr43A" type="1001">
