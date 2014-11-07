@@ -49,7 +49,7 @@ public interface unaria extends valor {
 
 	/**
 	 * Returns the value of the '<em><b>Ssigno</b></em>' attribute.
-	 * The literals are from the enumeration {@link diagramapseudocodigo.inc}.
+	 * The literals are from the enumeration {@link diagramapseudocodigo.neg}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Ssigno</em>' attribute isn't clear,
@@ -57,23 +57,23 @@ public interface unaria extends valor {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Ssigno</em>' attribute.
-	 * @see diagramapseudocodigo.inc
-	 * @see #setSsigno(inc)
+	 * @see diagramapseudocodigo.neg
+	 * @see #setSsigno(neg)
 	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getunaria_Ssigno()
 	 * @model required="true"
 	 * @generated
 	 */
-	inc getSsigno();
+	neg getSsigno();
 
 	/**
 	 * Sets the value of the '{@link diagramapseudocodigo.unaria#getSsigno <em>Ssigno</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Ssigno</em>' attribute.
-	 * @see diagramapseudocodigo.inc
+	 * @see diagramapseudocodigo.neg
 	 * @see #getSsigno()
 	 * @generated
 	 */
-	void setSsigno(inc value);
+	void setSsigno(neg value);
 
 } // unaria

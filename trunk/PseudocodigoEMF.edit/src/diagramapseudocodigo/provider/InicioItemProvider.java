@@ -192,7 +192,7 @@ public class InicioItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.INICIO__TIENE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createincremento()));
+				 DiagramapseudocodigoFactory.eINSTANCE.createnegacion()));
 
 		newChildDescriptors.add
 			(createChildParameter

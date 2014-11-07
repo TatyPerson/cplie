@@ -3,7 +3,7 @@
 package diagramapseudocodigo.impl;
 
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
-import diagramapseudocodigo.inc;
+import diagramapseudocodigo.neg;
 import diagramapseudocodigo.unaria;
 import diagramapseudocodigo.valor;
 import org.eclipse.emf.common.notify.Notification;
@@ -35,7 +35,7 @@ public class unariaImpl extends valorImpl implements unaria {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final inc SSIGNO_EDEFAULT = inc.MASMAS;
+	protected static final neg SSIGNO_EDEFAULT = neg.NO;
 
 	/**
 	 * The cached value of the '{@link #getSsigno() <em>Ssigno</em>}' attribute.
@@ -45,7 +45,7 @@ public class unariaImpl extends valorImpl implements unaria {
 	 * @generated
 	 * @ordered
 	 */
-	protected inc ssigno = SSIGNO_EDEFAULT;
+	protected neg ssigno = SSIGNO_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference.
@@ -124,7 +124,7 @@ public class unariaImpl extends valorImpl implements unaria {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public inc getSsigno() {
+	public neg getSsigno() {
 		return ssigno;
 	}
 
@@ -133,8 +133,8 @@ public class unariaImpl extends valorImpl implements unaria {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSsigno(inc newSsigno) {
-		inc oldSsigno = ssigno;
+	public void setSsigno(neg newSsigno) {
+		neg oldSsigno = ssigno;
 		ssigno = newSsigno == null ? SSIGNO_EDEFAULT : newSsigno;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.UNARIA__SSIGNO, oldSsigno, ssigno));
@@ -179,7 +179,7 @@ public class unariaImpl extends valorImpl implements unaria {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.UNARIA__SSIGNO:
-				setSsigno((inc)newValue);
+				setSsigno((neg)newValue);
 				return;
 			case DiagramapseudocodigoPackage.UNARIA__VARIABLE:
 				setVariable((valor)newValue);

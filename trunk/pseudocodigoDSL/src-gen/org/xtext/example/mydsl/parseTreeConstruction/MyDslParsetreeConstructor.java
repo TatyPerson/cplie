@@ -76,7 +76,7 @@ protected class ThisRootNode extends RootToken {
 			case 43: return new Desde_Group(this, this, 43, inst);
 			case 44: return new Caso_Group(this, this, 44, inst);
 			case 45: return new Segun_Group(this, this, 45, inst);
-			case 46: return new Incremento_Group(this, this, 46, inst);
+			case 46: return new Negacion_Group(this, this, 46, inst);
 			case 47: return new Unaria_Group(this, this, 47, inst);
 			case 48: return new Variable_NombreAssignment(this, this, 48, inst);
 			case 49: return new VariableID_NombreAssignment(this, this, 49, inst);
@@ -1469,12 +1469,12 @@ protected class Subproceso_ProcedimientoParserRuleCall_1 extends RuleCallToken {
 /************ begin Rule Sentencias ****************
  *
  * Sentencias:
- * 	LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque | ValorComplejo | FuncionFicheroAbrir |
+ * 	LlamadaFuncion | Asignacion | Escribir | Leer | negacion | Bloque | ValorComplejo | FuncionFicheroAbrir |
  * 	FuncionFicheroCerrar;
  *
  **/
 
-// LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque | ValorComplejo | FuncionFicheroAbrir |
+// LlamadaFuncion | Asignacion | Escribir | Leer | negacion | Bloque | ValorComplejo | FuncionFicheroAbrir |
 // FuncionFicheroCerrar
 protected class Sentencias_Alternatives extends AlternativesToken {
 
@@ -1494,7 +1494,7 @@ protected class Sentencias_Alternatives extends AlternativesToken {
 			case 1: return new Sentencias_AsignacionParserRuleCall_1(lastRuleCallOrigin, this, 1, inst);
 			case 2: return new Sentencias_EscribirParserRuleCall_2(lastRuleCallOrigin, this, 2, inst);
 			case 3: return new Sentencias_LeerParserRuleCall_3(lastRuleCallOrigin, this, 3, inst);
-			case 4: return new Sentencias_IncrementoParserRuleCall_4(lastRuleCallOrigin, this, 4, inst);
+			case 4: return new Sentencias_NegacionParserRuleCall_4(lastRuleCallOrigin, this, 4, inst);
 			case 5: return new Sentencias_BloqueParserRuleCall_5(lastRuleCallOrigin, this, 5, inst);
 			case 6: return new Sentencias_ValorComplejoParserRuleCall_6(lastRuleCallOrigin, this, 6, inst);
 			case 7: return new Sentencias_FuncionFicheroAbrirParserRuleCall_7(lastRuleCallOrigin, this, 7, inst);
@@ -1517,8 +1517,8 @@ protected class Sentencias_Alternatives extends AlternativesToken {
 		   getEObject().eClass() != grammarAccess.getValorRegistroRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getValorVectorRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getDesdeRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getIncrementoRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getMientrasRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getNegacionRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getRepetirRule().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSegunRule().getType().getClassifier())
 			return null;
@@ -1672,31 +1672,31 @@ protected class Sentencias_LeerParserRuleCall_3 extends RuleCallToken {
 	}	
 }
 
-// incremento
-protected class Sentencias_IncrementoParserRuleCall_4 extends RuleCallToken {
+// negacion
+protected class Sentencias_NegacionParserRuleCall_4 extends RuleCallToken {
 	
-	public Sentencias_IncrementoParserRuleCall_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Sentencias_NegacionParserRuleCall_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public RuleCall getGrammarElement() {
-		return grammarAccess.getSentenciasAccess().getIncrementoParserRuleCall_4();
+		return grammarAccess.getSentenciasAccess().getNegacionParserRuleCall_4();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Incremento_Group(this, this, 0, inst);
+			case 0: return new Negacion_Group(this, this, 0, inst);
 			default: return null;
 		}	
 	}
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getIncrementoRule().getType().getClassifier())
+		if(getEObject().eClass() != grammarAccess.getNegacionRule().getType().getClassifier())
 			return null;
-		if(checkForRecursion(Incremento_Group.class, eObjectConsumer)) return null;
+		if(checkForRecursion(Negacion_Group.class, eObjectConsumer)) return null;
 		return eObjectConsumer;
 	}
 	
@@ -11546,36 +11546,36 @@ protected class Segun_Fin_segunKeyword_9 extends KeywordToken  {
 /************ end Rule segun ****************/
 
 
-/************ begin Rule incremento ****************
+/************ begin Rule negacion ****************
  *
- * incremento:
- * 	nombre=EString ssigno=inc;
+ * negacion:
+ * 	nombre=EString ssigno=neg;
  *
  **/
 
-// nombre=EString ssigno=inc
-protected class Incremento_Group extends GroupToken {
+// nombre=EString ssigno=neg
+protected class Negacion_Group extends GroupToken {
 	
-	public Incremento_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Negacion_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Group getGrammarElement() {
-		return grammarAccess.getIncrementoAccess().getGroup();
+		return grammarAccess.getNegacionAccess().getGroup();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Incremento_SsignoAssignment_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Negacion_SsignoAssignment_1(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getIncrementoRule().getType().getClassifier())
+		if(getEObject().eClass() != grammarAccess.getNegacionRule().getType().getClassifier())
 			return null;
 		return eObjectConsumer;
 	}
@@ -11583,15 +11583,15 @@ protected class Incremento_Group extends GroupToken {
 }
 
 // nombre=EString
-protected class Incremento_NombreAssignment_0 extends AssignmentToken  {
+protected class Negacion_NombreAssignment_0 extends AssignmentToken  {
 	
-	public Incremento_NombreAssignment_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Negacion_NombreAssignment_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getIncrementoAccess().getNombreAssignment_0();
+		return grammarAccess.getNegacionAccess().getNombreAssignment_0();
 	}
 
     @Override
@@ -11605,9 +11605,9 @@ protected class Incremento_NombreAssignment_0 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("nombre",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("nombre");
-		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getIncrementoAccess().getNombreEStringParserRuleCall_0_0(), value, null)) {
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getNegacionAccess().getNombreEStringParserRuleCall_0_0(), value, null)) {
 			type = AssignmentType.DATATYPE_RULE_CALL;
-			element = grammarAccess.getIncrementoAccess().getNombreEStringParserRuleCall_0_0();
+			element = grammarAccess.getNegacionAccess().getNombreEStringParserRuleCall_0_0();
 			return obj;
 		}
 		return null;
@@ -11615,22 +11615,22 @@ protected class Incremento_NombreAssignment_0 extends AssignmentToken  {
 
 }
 
-// ssigno=inc
-protected class Incremento_SsignoAssignment_1 extends AssignmentToken  {
+// ssigno=neg
+protected class Negacion_SsignoAssignment_1 extends AssignmentToken  {
 	
-	public Incremento_SsignoAssignment_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Negacion_SsignoAssignment_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getIncrementoAccess().getSsignoAssignment_1();
+		return grammarAccess.getNegacionAccess().getSsignoAssignment_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Incremento_NombreAssignment_0(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Negacion_NombreAssignment_0(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -11639,9 +11639,9 @@ protected class Incremento_SsignoAssignment_1 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("ssigno",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("ssigno");
-		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getIncrementoAccess().getSsignoIncParserRuleCall_1_0(), value, null)) {
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getNegacionAccess().getSsignoNegParserRuleCall_1_0(), value, null)) {
 			type = AssignmentType.DATATYPE_RULE_CALL;
-			element = grammarAccess.getIncrementoAccess().getSsignoIncParserRuleCall_1_0();
+			element = grammarAccess.getNegacionAccess().getSsignoNegParserRuleCall_1_0();
 			return obj;
 		}
 		return null;
@@ -11650,17 +11650,17 @@ protected class Incremento_SsignoAssignment_1 extends AssignmentToken  {
 }
 
 
-/************ end Rule incremento ****************/
+/************ end Rule negacion ****************/
 
 
 /************ begin Rule unaria ****************
  *
  * unaria:
- * 	"(" ssigno=inc variable=valor ")";
+ * 	"(" ssigno=neg variable=valor ")";
  *
  **/
 
-// "(" ssigno=inc variable=valor ")"
+// "(" ssigno=neg variable=valor ")"
 protected class Unaria_Group extends GroupToken {
 	
 	public Unaria_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -11710,7 +11710,7 @@ protected class Unaria_LeftParenthesisKeyword_0 extends KeywordToken  {
 
 }
 
-// ssigno=inc
+// ssigno=neg
 protected class Unaria_SsignoAssignment_1 extends AssignmentToken  {
 	
 	public Unaria_SsignoAssignment_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -11734,9 +11734,9 @@ protected class Unaria_SsignoAssignment_1 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("ssigno",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("ssigno");
-		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getUnariaAccess().getSsignoIncParserRuleCall_1_0(), value, null)) {
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getUnariaAccess().getSsignoNegParserRuleCall_1_0(), value, null)) {
 			type = AssignmentType.DATATYPE_RULE_CALL;
-			element = grammarAccess.getUnariaAccess().getSsignoIncParserRuleCall_1_0();
+			element = grammarAccess.getUnariaAccess().getSsignoNegParserRuleCall_1_0();
 			return obj;
 		}
 		return null;

@@ -266,18 +266,18 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAsignacionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cEscribirParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cLeerParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cIncrementoParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cNegacionParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cBloqueParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		private final RuleCall cValorComplejoParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		private final RuleCall cFuncionFicheroAbrirParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		private final RuleCall cFuncionFicheroCerrarParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
 		
 		//Sentencias:
-		//	LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque | ValorComplejo | FuncionFicheroAbrir |
+		//	LlamadaFuncion | Asignacion | Escribir | Leer | negacion | Bloque | ValorComplejo | FuncionFicheroAbrir |
 		//	FuncionFicheroCerrar;
 		public ParserRule getRule() { return rule; }
 
-		//LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque | ValorComplejo | FuncionFicheroAbrir |
+		//LlamadaFuncion | Asignacion | Escribir | Leer | negacion | Bloque | ValorComplejo | FuncionFicheroAbrir |
 		//FuncionFicheroCerrar
 		public Alternatives getAlternatives() { return cAlternatives; }
 
@@ -293,8 +293,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//Leer
 		public RuleCall getLeerParserRuleCall_3() { return cLeerParserRuleCall_3; }
 
-		//incremento
-		public RuleCall getIncrementoParserRuleCall_4() { return cIncrementoParserRuleCall_4; }
+		//negacion
+		public RuleCall getNegacionParserRuleCall_4() { return cNegacionParserRuleCall_4; }
 
 		//Bloque
 		public RuleCall getBloqueParserRuleCall_5() { return cBloqueParserRuleCall_5; }
@@ -2268,19 +2268,19 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getFin_segunKeyword_9() { return cFin_segunKeyword_9; }
 	}
 
-	public class IncrementoElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "incremento");
+	public class NegacionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "negacion");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNombreAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNombreEStringParserRuleCall_0_0 = (RuleCall)cNombreAssignment_0.eContents().get(0);
 		private final Assignment cSsignoAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cSsignoIncParserRuleCall_1_0 = (RuleCall)cSsignoAssignment_1.eContents().get(0);
+		private final RuleCall cSsignoNegParserRuleCall_1_0 = (RuleCall)cSsignoAssignment_1.eContents().get(0);
 		
-		//incremento:
-		//	nombre=EString ssigno=inc;
+		//negacion:
+		//	nombre=EString ssigno=neg;
 		public ParserRule getRule() { return rule; }
 
-		//nombre=EString ssigno=inc
+		//nombre=EString ssigno=neg
 		public Group getGroup() { return cGroup; }
 
 		//nombre=EString
@@ -2289,11 +2289,11 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//EString
 		public RuleCall getNombreEStringParserRuleCall_0_0() { return cNombreEStringParserRuleCall_0_0; }
 
-		//ssigno=inc
+		//ssigno=neg
 		public Assignment getSsignoAssignment_1() { return cSsignoAssignment_1; }
 
-		//inc
-		public RuleCall getSsignoIncParserRuleCall_1_0() { return cSsignoIncParserRuleCall_1_0; }
+		//neg
+		public RuleCall getSsignoNegParserRuleCall_1_0() { return cSsignoNegParserRuleCall_1_0; }
 	}
 
 	public class UnariaElements extends AbstractParserRuleElementFinder {
@@ -2301,26 +2301,26 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cSsignoAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cSsignoIncParserRuleCall_1_0 = (RuleCall)cSsignoAssignment_1.eContents().get(0);
+		private final RuleCall cSsignoNegParserRuleCall_1_0 = (RuleCall)cSsignoAssignment_1.eContents().get(0);
 		private final Assignment cVariableAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cVariableValorParserRuleCall_2_0 = (RuleCall)cVariableAssignment_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//unaria:
-		//	"(" ssigno=inc variable=valor ")";
+		//	"(" ssigno=neg variable=valor ")";
 		public ParserRule getRule() { return rule; }
 
-		//"(" ssigno=inc variable=valor ")"
+		//"(" ssigno=neg variable=valor ")"
 		public Group getGroup() { return cGroup; }
 
 		//"("
 		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
 
-		//ssigno=inc
+		//ssigno=neg
 		public Assignment getSsignoAssignment_1() { return cSsignoAssignment_1; }
 
-		//inc
-		public RuleCall getSsignoIncParserRuleCall_1_0() { return cSsignoIncParserRuleCall_1_0; }
+		//neg
+		public RuleCall getSsignoNegParserRuleCall_1_0() { return cSsignoNegParserRuleCall_1_0; }
 
 		//variable=valor
 		public Assignment getVariableAssignment_2() { return cVariableAssignment_2; }
@@ -2775,28 +2775,16 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 	}
 
-	public class IncElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "inc");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Keyword cPlusSignPlusSignKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
-		private final Keyword cHyphenMinusHyphenMinusKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
-		private final Keyword cNoKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+	public class NegElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "neg");
+		private final Keyword cNoKeyword = (Keyword)rule.eContents().get(1);
 		
-		/// * TODO: implement this rule and an appropriate IValueConverter * / inc:
-		//	"++" | "--" | "no";
+		/// * TODO: implement this rule and an appropriate IValueConverter * / neg:
+		//	"no";
 		public ParserRule getRule() { return rule; }
 
-		//"++" | "--" | "no"
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//"++"
-		public Keyword getPlusSignPlusSignKeyword_0() { return cPlusSignPlusSignKeyword_0; }
-
-		//"--"
-		public Keyword getHyphenMinusHyphenMinusKeyword_1() { return cHyphenMinusHyphenMinusKeyword_1; }
-
 		//"no"
-		public Keyword getNoKeyword_2() { return cNoKeyword_2; }
+		public Keyword getNoKeyword() { return cNoKeyword; }
 	}
 
 	public class ParametroFuncionElements extends AbstractParserRuleElementFinder {
@@ -3180,7 +3168,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private DesdeElements pDesde;
 	private CasoElements pCaso;
 	private SegunElements pSegun;
-	private IncrementoElements pIncremento;
+	private NegacionElements pNegacion;
 	private UnariaElements pUnaria;
 	private TipoVariableElements pTipoVariable;
 	private VariableElements pVariable;
@@ -3201,7 +3189,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private Operando_derElements pOperando_der;
 	private SinoElements pSino;
 	private DevolverElements pDevolver;
-	private IncElements pInc;
+	private NegElements pNeg;
 	private ParametroFuncionElements pParametroFuncion;
 	private FuncionElements pFuncion;
 	private ProcedimientoElements pProcedimiento;
@@ -3301,7 +3289,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//Sentencias:
-	//	LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque | ValorComplejo | FuncionFicheroAbrir |
+	//	LlamadaFuncion | Asignacion | Escribir | Leer | negacion | Bloque | ValorComplejo | FuncionFicheroAbrir |
 	//	FuncionFicheroCerrar;
 	public SentenciasElements getSentenciasAccess() {
 		return (pSentencias != null) ? pSentencias : (pSentencias = new SentenciasElements());
@@ -3759,18 +3747,18 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getSegunAccess().getRule();
 	}
 
-	//incremento:
-	//	nombre=EString ssigno=inc;
-	public IncrementoElements getIncrementoAccess() {
-		return (pIncremento != null) ? pIncremento : (pIncremento = new IncrementoElements());
+	//negacion:
+	//	nombre=EString ssigno=neg;
+	public NegacionElements getNegacionAccess() {
+		return (pNegacion != null) ? pNegacion : (pNegacion = new NegacionElements());
 	}
 	
-	public ParserRule getIncrementoRule() {
-		return getIncrementoAccess().getRule();
+	public ParserRule getNegacionRule() {
+		return getNegacionAccess().getRule();
 	}
 
 	//unaria:
-	//	"(" ssigno=inc variable=valor ")";
+	//	"(" ssigno=neg variable=valor ")";
 	public UnariaElements getUnariaAccess() {
 		return (pUnaria != null) ? pUnaria : (pUnaria = new UnariaElements());
 	}
@@ -3961,14 +3949,14 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getDevolverAccess().getRule();
 	}
 
-	/// * TODO: implement this rule and an appropriate IValueConverter * / inc:
-	//	"++" | "--" | "no";
-	public IncElements getIncAccess() {
-		return (pInc != null) ? pInc : (pInc = new IncElements());
+	/// * TODO: implement this rule and an appropriate IValueConverter * / neg:
+	//	"no";
+	public NegElements getNegAccess() {
+		return (pNeg != null) ? pNeg : (pNeg = new NegElements());
 	}
 	
-	public ParserRule getIncRule() {
-		return getIncAccess().getRule();
+	public ParserRule getNegRule() {
+		return getNegAccess().getRule();
 	}
 
 	//ParametroFuncion:

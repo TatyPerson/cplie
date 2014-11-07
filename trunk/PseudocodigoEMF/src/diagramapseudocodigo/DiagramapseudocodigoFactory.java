@@ -238,13 +238,13 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	desde createdesde();
 
 	/**
-	 * Returns a new object of class '<em>incremento</em>'.
+	 * Returns a new object of class '<em>negacion</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>incremento</em>'.
+	 * @return a new object of class '<em>negacion</em>'.
 	 * @generated
 	 */
-	incremento createincremento();
+	negacion createnegacion();
 
 	/**
 	 * Returns a new object of class '<em>Procedimiento</em>'.

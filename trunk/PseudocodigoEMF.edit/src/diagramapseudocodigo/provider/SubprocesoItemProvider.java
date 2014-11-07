@@ -219,7 +219,7 @@ public class SubprocesoItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.SUBPROCESO__SENTENCIAS,
-				 DiagramapseudocodigoFactory.eINSTANCE.createincremento()));
+				 DiagramapseudocodigoFactory.eINSTANCE.createnegacion()));
 
 		newChildDescriptors.add
 			(createChildParameter

@@ -31,7 +31,7 @@ terminal ML_COMMENT : '/*' (!'*') -> '*/' ;
 terminal SL_COMMENT : '//' !('\n'|'\r')* ('\r'? '\n')? ;
 
 Sentencias returns Sentencias:
-	LlamadaFuncion | Asignacion | Escribir | Leer | incremento | Bloque | ValorComplejo | FuncionFicheroAbrir | FuncionFicheroCerrar;
+	LlamadaFuncion | Asignacion | Escribir | Leer | negacion | Bloque | ValorComplejo | FuncionFicheroAbrir | FuncionFicheroCerrar;
 
 Bloque returns Bloque:
 	Si | mientras | repetir | desde | segun;
@@ -223,13 +223,13 @@ segun returns segun:
 		(devuelve=Devolver)?
 	'fin_segun';
 
-incremento returns incremento:
+negacion returns negacion:
 	nombre=EString
-	ssigno=inc;
+	ssigno=neg;
 	
 unaria returns unaria:
 	'('
-	ssigno=inc
+	ssigno=neg
 	variable=valor
 	')';
 
@@ -302,8 +302,8 @@ Devolver returns Devolver:
 	{Devolver}
 	'devolver' '(' devuelve=valor ')';
 
-inc returns inc:
-	"++" | "--" | "no" /* TODO: implement this rule and an appropriate IValueConverter */;
+neg returns neg:
+	"no" /* TODO: implement this rule and an appropriate IValueConverter */;
 	
 ParametroFuncion returns ParametroFuncion:
 	paso=TipoPaso

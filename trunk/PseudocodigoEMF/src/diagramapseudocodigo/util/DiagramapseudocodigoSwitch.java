@@ -262,10 +262,10 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DiagramapseudocodigoPackage.INCREMENTO: {
-				incremento incremento = (incremento)theEObject;
-				T result = caseincremento(incremento);
-				if (result == null) result = caseSentencias(incremento);
+			case DiagramapseudocodigoPackage.NEGACION: {
+				negacion negacion = (negacion)theEObject;
+				T result = casenegacion(negacion);
+				if (result == null) result = caseSentencias(negacion);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -933,17 +933,17 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>incremento</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>negacion</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>incremento</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>negacion</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseincremento(incremento object) {
+	public T casenegacion(negacion object) {
 		return null;
 	}
 

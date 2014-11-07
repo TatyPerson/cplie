@@ -5,17 +5,13 @@ package diagramapseudocodigo.provider;
 
 import diagramapseudocodigo.DiagramapseudocodigoFactory;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
-import diagramapseudocodigo.inc;
+import diagramapseudocodigo.neg;
 import diagramapseudocodigo.unaria;
-
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -137,7 +133,7 @@ public class unariaItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		inc labelValue = ((unaria)object).getSsigno();
+		neg labelValue = ((unaria)object).getSsigno();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
 			getString("_UI_unaria_type") :
