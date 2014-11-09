@@ -24,14 +24,14 @@ Algoritmo prueba
  * Fecha: 02/05/2014
  */
 const
-	//Bloque para la declaración de variables constantes (opcional)
+	//Bloque para la declaracion de variables constantes (opcional)
 	
-	//Tamaño por defecto para las cadenas de caracteres
+	//Longitud por defecto para las cadenas de caracteres
 	DIM = 50
 tipo
-	//Bloque para la declaración de tipos (opcional)
+	//Bloque para la declaracion de tipos (opcional)
 	
-	//Ejemplo de declaración de un registro
+	//Ejemplo de declaracion de un registro
 	
 	registro: Persona
 		cadena :  dni
@@ -67,7 +67,7 @@ var
 	cadena: b
 	
 //Posteriormente podemos crear funciones y procedimientos con el comportamiento que necesitemos en este caso
-//la operación suma en forma de función y de procedimiento
+//la operacion suma en forma de funcion y de procedimiento
 
 entero funcion sumaFun(E entero :  a, E entero :  b)
 
@@ -92,7 +92,7 @@ fin_procedimiento
 principal
 	
 var
-	//Bloque con la lista de inicialización de las variables que utilizará en su programa principal (obligatorio)
+	//Bloque con la lista de inicializacion de las variables que utilizara en su programa principal (obligatorio)
 	Personas: personas
 	Fichero: f
 	Persona: p
@@ -106,7 +106,7 @@ var
 	entero: a
 	entero: b
 inicio
-	//Bloque con el código de su programa principal (obligatorio)
+	//Bloque con el codigo de su programa principal (obligatorio)
 	
 	mayoresDeEdad = 0
 	
@@ -116,7 +116,7 @@ inicio
 
 		si(personas[i].edad < 18) entonces
 
-			mayoresDeEdad++
+			mayoresDeEdad = (mayoresDeEdad + 1)
 
 		fin_si
 
@@ -126,7 +126,7 @@ inicio
 	
 	mientras(mayoresDeEdad > 0) hacer //Funcionalidad
 		escribir("El numero de mayores de edad es", mayoresDeEdad)
-		mayoresDeEdad--
+		mayoresDeEdad = (mayoresDeEdad - 1)
 	fin_mientras
 	
 	//Ejemplo de bucle repetir
@@ -141,7 +141,7 @@ inicio
 		contador = (contador + 1)
 	hasta_que(contador < DIM)
 	
-	//Ejemplo de estructura según
+	//Ejemplo de estructura segun
 	
 	segun_sea(valor) hacer
 		0 :  escribir("Valor = 0") //Resto de setencias
