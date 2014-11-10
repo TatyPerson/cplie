@@ -10946,7 +10946,6 @@ rule__Devolver__Group__2
     }
 :
 	rule__Devolver__Group__2__Impl
-	rule__Devolver__Group__3
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -10958,80 +10957,15 @@ rule__Devolver__Group__2__Impl
     }
 :
 (
-{ before(grammarAccess.getDevolverAccess().getLeftParenthesisKeyword_2()); }
-
-	'(' 
-
-{ after(grammarAccess.getDevolverAccess().getLeftParenthesisKeyword_2()); }
+{ before(grammarAccess.getDevolverAccess().getDevuelveAssignment_2()); }
+(rule__Devolver__DevuelveAssignment_2)
+{ after(grammarAccess.getDevolverAccess().getDevuelveAssignment_2()); }
 )
 
 ;
 finally {
 	restoreStackSize(stackSize);
 }
-
-
-rule__Devolver__Group__3
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-	rule__Devolver__Group__3__Impl
-	rule__Devolver__Group__4
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Devolver__Group__3__Impl
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getDevolverAccess().getDevuelveAssignment_3()); }
-(rule__Devolver__DevuelveAssignment_3)
-{ after(grammarAccess.getDevolverAccess().getDevuelveAssignment_3()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-rule__Devolver__Group__4
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-	rule__Devolver__Group__4__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Devolver__Group__4__Impl
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getDevolverAccess().getRightParenthesisKeyword_4()); }
-
-	')' 
-
-{ after(grammarAccess.getDevolverAccess().getRightParenthesisKeyword_4()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-
-
 
 
 
@@ -11546,7 +11480,7 @@ rule__Funcion__Group__12__Impl
 :
 (
 { before(grammarAccess.getFuncionAccess().getDevuelveAssignment_12()); }
-(rule__Funcion__DevuelveAssignment_12)?
+(rule__Funcion__DevuelveAssignment_12)
 { after(grammarAccess.getFuncionAccess().getDevuelveAssignment_12()); }
 )
 
@@ -14369,14 +14303,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Devolver__DevuelveAssignment_3
+rule__Devolver__DevuelveAssignment_2
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getDevolverAccess().getDevuelveValorParserRuleCall_3_0()); }
-	rulevalor{ after(grammarAccess.getDevolverAccess().getDevuelveValorParserRuleCall_3_0()); }
+{ before(grammarAccess.getDevolverAccess().getDevuelveValorParserRuleCall_2_0()); }
+	rulevalor{ after(grammarAccess.getDevolverAccess().getDevuelveValorParserRuleCall_2_0()); }
 )
 
 ;

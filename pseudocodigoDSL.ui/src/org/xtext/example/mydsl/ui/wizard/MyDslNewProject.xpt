@@ -24,7 +24,7 @@ Algoritmo prueba
  * Fecha: 02/05/2014
  */
 const
-	//Bloque para la declaracion de variables constantes (opcional)
+	//Bloque para la declaracion de constantes (opcional)
 	
 	//Longitud por defecto para las cadenas de caracteres
 	DIM = 50
@@ -34,23 +34,23 @@ tipo
 	//Ejemplo de declaracion de un registro
 	
 	registro: Persona
-		cadena :  dni
-		entero :  edad
-		cadena :  nombre
-		cadena :  sexo
+		cadena:  dni
+		entero:  edad
+		cadena:  nombre
+		cadena:  sexo
 	fin_registro
 	
 	//Ejemplo de vector de tipo Persona
 	
-	vector [DIM] de Persona :  Personas
+	vector [DIM] de Persona:  Personas
 	
 	//Ejemplo de archivo de cadena
 	
-	archivo de  cadena :  Fichero
+	archivo de  cadena:  Fichero
 	
 	//Ejemplo de matriz de reales
 	
-	matriz [DIM][20] de real :  MatrizReal
+	matriz [DIM][20] de real:  MatrizReal
 	
 	//Ejemplo de subrango
 	
@@ -72,11 +72,11 @@ var
 entero funcion sumaFun(E entero :  a, E entero :  b)
 
 	var //Declaración de las variables necesarias
-		entero :  resultado
+		entero: resultado
 
 	inicio //Funcionalidad
 		resultado = (a + b)
-		devolver(resultado)
+		devolver resultado 
 fin_funcion
 
 procedimiento sumaProc(E entero: a, E entero: b)
@@ -144,10 +144,10 @@ inicio
 	//Ejemplo de estructura segun
 	
 	segun_sea(valor) hacer
-		0 :  escribir("Valor = 0") //Resto de setencias
-		1 :  escribir("Valor = 1") //Resto de sentencias
-		2 :  escribir("Valor = 2") //Resto de sentencias
-		3 :  escribir("Valor = 3") //Resto de sentencias
+		0: escribir("Valor = 0") //Resto de setencias
+		1: escribir("Valor = 1") //Resto de sentencias
+		2: escribir("Valor = 2") //Resto de sentencias
+		3: escribir("Valor = 3") //Resto de sentencias
 		en_otro_caso: escribir("Valor posible no registrado") //Resto de sentencias
 	fin_segun
 	
