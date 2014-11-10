@@ -300,7 +300,7 @@ Sino returns Sino:
 
 Devolver returns Devolver:
 	{Devolver}
-	'devolver' '(' devuelve=valor ')';
+	'devolver' devuelve=valor;
 
 neg returns neg:
 	"no" /* TODO: implement this rule and an appropriate IValueConverter */;
@@ -321,7 +321,7 @@ Funcion returns Funcion:
 	( declaracion+=Declaracion ( declaracion+=Declaracion)* )?
 	'inicio'
 	( sentencias+=Sentencias (  sentencias+=Sentencias)*  )?
-	(devuelve=Devolver)?
+	devuelve=Devolver
 	'fin_funcion';
 	
 Procedimiento returns Procedimiento:

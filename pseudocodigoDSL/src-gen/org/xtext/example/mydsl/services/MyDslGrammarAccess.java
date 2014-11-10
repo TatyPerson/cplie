@@ -2744,16 +2744,14 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cDevolverAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cDevolverKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cDevuelveAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cDevuelveValorParserRuleCall_3_0 = (RuleCall)cDevuelveAssignment_3.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cDevuelveAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cDevuelveValorParserRuleCall_2_0 = (RuleCall)cDevuelveAssignment_2.eContents().get(0);
 		
 		//Devolver:
-		//	{Devolver} "devolver" "(" devuelve=valor ")";
+		//	{Devolver} "devolver" devuelve=valor;
 		public ParserRule getRule() { return rule; }
 
-		//{Devolver} "devolver" "(" devuelve=valor ")"
+		//{Devolver} "devolver" devuelve=valor
 		public Group getGroup() { return cGroup; }
 
 		//{Devolver}
@@ -2762,17 +2760,11 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"devolver"
 		public Keyword getDevolverKeyword_1() { return cDevolverKeyword_1; }
 
-		//"("
-		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
-
 		//devuelve=valor
-		public Assignment getDevuelveAssignment_3() { return cDevuelveAssignment_3; }
+		public Assignment getDevuelveAssignment_2() { return cDevuelveAssignment_2; }
 
 		//valor
-		public RuleCall getDevuelveValorParserRuleCall_3_0() { return cDevuelveValorParserRuleCall_3_0; }
-
-		//")"
-		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
+		public RuleCall getDevuelveValorParserRuleCall_2_0() { return cDevuelveValorParserRuleCall_2_0; }
 	}
 
 	public class NegElements extends AbstractParserRuleElementFinder {
@@ -2865,13 +2857,13 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//Funcion:
 		//	tipo=TipoVariable "funcion" nombre=EString "(" (parametrofuncion+=ParametroFuncion (","
 		//	parametrofuncion+=ParametroFuncion)*)? ")" "const"? "tipo"? "var" (declaracion+=Declaracion
-		//	declaracion+=Declaracion*)? "inicio" (sentencias+=Sentencias sentencias+=Sentencias*)? devuelve=Devolver?
+		//	declaracion+=Declaracion*)? "inicio" (sentencias+=Sentencias sentencias+=Sentencias*)? devuelve=Devolver
 		//	"fin_funcion";
 		public ParserRule getRule() { return rule; }
 
 		//tipo=TipoVariable "funcion" nombre=EString "(" (parametrofuncion+=ParametroFuncion (","
 		//parametrofuncion+=ParametroFuncion)*)? ")" "const"? "tipo"? "var" (declaracion+=Declaracion declaracion+=Declaracion*)?
-		//"inicio" (sentencias+=Sentencias sentencias+=Sentencias*)? devuelve=Devolver? "fin_funcion"
+		//"inicio" (sentencias+=Sentencias sentencias+=Sentencias*)? devuelve=Devolver "fin_funcion"
 		public Group getGroup() { return cGroup; }
 
 		//tipo=TipoVariable
@@ -2958,7 +2950,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//Sentencias
 		public RuleCall getSentenciasSentenciasParserRuleCall_11_1_0() { return cSentenciasSentenciasParserRuleCall_11_1_0; }
 
-		//devuelve=Devolver?
+		//devuelve=Devolver
 		public Assignment getDevuelveAssignment_12() { return cDevuelveAssignment_12; }
 
 		//Devolver
@@ -3940,7 +3932,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Devolver:
-	//	{Devolver} "devolver" "(" devuelve=valor ")";
+	//	{Devolver} "devolver" devuelve=valor;
 	public DevolverElements getDevolverAccess() {
 		return (pDevolver != null) ? pDevolver : (pDevolver = new DevolverElements());
 	}
@@ -3972,7 +3964,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	//Funcion:
 	//	tipo=TipoVariable "funcion" nombre=EString "(" (parametrofuncion+=ParametroFuncion (","
 	//	parametrofuncion+=ParametroFuncion)*)? ")" "const"? "tipo"? "var" (declaracion+=Declaracion
-	//	declaracion+=Declaracion*)? "inicio" (sentencias+=Sentencias sentencias+=Sentencias*)? devuelve=Devolver?
+	//	declaracion+=Declaracion*)? "inicio" (sentencias+=Sentencias sentencias+=Sentencias*)? devuelve=Devolver
 	//	"fin_funcion";
 	public FuncionElements getFuncionAccess() {
 		return (pFuncion != null) ? pFuncion : (pFuncion = new FuncionElements());

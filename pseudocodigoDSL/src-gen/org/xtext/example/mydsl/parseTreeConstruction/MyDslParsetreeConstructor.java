@@ -12674,11 +12674,11 @@ protected class Sino_DevuelveAssignment_3 extends AssignmentToken  {
 /************ begin Rule Devolver ****************
  *
  * Devolver:
- * 	{Devolver} "devolver" "(" devuelve=valor ")";
+ * 	{Devolver} "devolver" devuelve=valor;
  *
  **/
 
-// {Devolver} "devolver" "(" devuelve=valor ")"
+// {Devolver} "devolver" devuelve=valor
 protected class Devolver_Group extends GroupToken {
 	
 	public Devolver_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -12693,7 +12693,7 @@ protected class Devolver_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Devolver_RightParenthesisKeyword_4(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Devolver_DevuelveAssignment_2(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -12755,38 +12755,16 @@ protected class Devolver_DevolverKeyword_1 extends KeywordToken  {
 
 }
 
-// "("
-protected class Devolver_LeftParenthesisKeyword_2 extends KeywordToken  {
-	
-	public Devolver_LeftParenthesisKeyword_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getDevolverAccess().getLeftParenthesisKeyword_2();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new Devolver_DevolverKeyword_1(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-}
-
 // devuelve=valor
-protected class Devolver_DevuelveAssignment_3 extends AssignmentToken  {
+protected class Devolver_DevuelveAssignment_2 extends AssignmentToken  {
 	
-	public Devolver_DevuelveAssignment_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Devolver_DevuelveAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getDevolverAccess().getDevuelveAssignment_3();
+		return grammarAccess.getDevolverAccess().getDevuelveAssignment_2();
 	}
 
     @Override
@@ -12805,7 +12783,7 @@ protected class Devolver_DevuelveAssignment_3 extends AssignmentToken  {
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getValorRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getDevolverAccess().getDevuelveValorParserRuleCall_3_0(); 
+				element = grammarAccess.getDevolverAccess().getDevuelveValorParserRuleCall_2_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -12817,32 +12795,10 @@ protected class Devolver_DevuelveAssignment_3 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new Devolver_LeftParenthesisKeyword_2(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new Devolver_DevolverKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
-}
-
-// ")"
-protected class Devolver_RightParenthesisKeyword_4 extends KeywordToken  {
-	
-	public Devolver_RightParenthesisKeyword_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getDevolverAccess().getRightParenthesisKeyword_4();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new Devolver_DevuelveAssignment_3(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
 }
 
 
@@ -13042,14 +12998,14 @@ protected class ParametroFuncion_VariableAssignment_3 extends AssignmentToken  {
  * Funcion:
  * 	tipo=TipoVariable "funcion" nombre=EString "(" (parametrofuncion+=ParametroFuncion (","
  * 	parametrofuncion+=ParametroFuncion)*)? ")" "const"? "tipo"? "var" (declaracion+=Declaracion
- * 	declaracion+=Declaracion*)? "inicio" (sentencias+=Sentencias sentencias+=Sentencias*)? devuelve=Devolver?
+ * 	declaracion+=Declaracion*)? "inicio" (sentencias+=Sentencias sentencias+=Sentencias*)? devuelve=Devolver
  * 	"fin_funcion";
  *
  **/
 
 // tipo=TipoVariable "funcion" nombre=EString "(" (parametrofuncion+=ParametroFuncion (","
 // parametrofuncion+=ParametroFuncion)*)? ")" "const"? "tipo"? "var" (declaracion+=Declaracion declaracion+=Declaracion*)?
-// "inicio" (sentencias+=Sentencias sentencias+=Sentencias*)? devuelve=Devolver? "fin_funcion"
+// "inicio" (sentencias+=Sentencias sentencias+=Sentencias*)? devuelve=Devolver "fin_funcion"
 protected class Funcion_Group extends GroupToken {
 	
 	public Funcion_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -13653,7 +13609,7 @@ protected class Funcion_SentenciasAssignment_11_1 extends AssignmentToken  {
 }
 
 
-// devuelve=Devolver?
+// devuelve=Devolver
 protected class Funcion_DevuelveAssignment_12 extends AssignmentToken  {
 	
 	public Funcion_DevuelveAssignment_12(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -13675,7 +13631,7 @@ protected class Funcion_DevuelveAssignment_12 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("devuelve",false)) == null) return null;
+		if((value = eObjectConsumer.getConsumable("devuelve",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("devuelve");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
@@ -13716,8 +13672,6 @@ protected class Funcion_Fin_funcionKeyword_13 extends KeywordToken  {
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
 			case 0: return new Funcion_DevuelveAssignment_12(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new Funcion_Group_11(lastRuleCallOrigin, this, 1, inst);
-			case 2: return new Funcion_InicioKeyword_10(lastRuleCallOrigin, this, 2, inst);
 			default: return null;
 		}	
 	}
