@@ -4948,33 +4948,25 @@ ruleDevolver returns [EObject current=null]
     {
     	newLeafNode(otherlv_1, grammarAccess.getDevolverAccess().getDevolverKeyword_1());
     }
-	otherlv_2='(' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getDevolverAccess().getLeftParenthesisKeyword_2());
-    }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDevolverAccess().getDevuelveValorParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getDevolverAccess().getDevuelveValorParserRuleCall_2_0()); 
 	    }
-		lv_devuelve_3_0=rulevalor		{
+		lv_devuelve_2_0=rulevalor		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDevolverRule());
 	        }
        		set(
        			$current, 
        			"devuelve",
-        		lv_devuelve_3_0, 
+        		lv_devuelve_2_0, 
         		"valor");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_4=')' 
-    {
-    	newLeafNode(otherlv_4, grammarAccess.getDevolverAccess().getRightParenthesisKeyword_4());
-    }
-)
+))
 ;
 
 
@@ -5295,7 +5287,7 @@ ruleFuncion returns [EObject current=null]
 	    }
 
 )
-)?	otherlv_17='fin_funcion' 
+)	otherlv_17='fin_funcion' 
     {
     	newLeafNode(otherlv_17, grammarAccess.getFuncionAccess().getFin_funcionKeyword_13());
     }
