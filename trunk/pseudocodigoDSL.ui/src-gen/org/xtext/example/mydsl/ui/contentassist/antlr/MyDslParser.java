@@ -272,7 +272,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSinoAccess().getSentenciasAssignment_2_0(), "rule__Sino__SentenciasAssignment_2_0");
 					put(grammarAccess.getSinoAccess().getSentenciasAssignment_2_1(), "rule__Sino__SentenciasAssignment_2_1");
 					put(grammarAccess.getSinoAccess().getDevuelveAssignment_3(), "rule__Sino__DevuelveAssignment_3");
-					put(grammarAccess.getDevolverAccess().getDevuelveAssignment_3(), "rule__Devolver__DevuelveAssignment_3");
+					put(grammarAccess.getDevolverAccess().getDevuelveAssignment_2(), "rule__Devolver__DevuelveAssignment_2");
 					put(grammarAccess.getParametroFuncionAccess().getPasoAssignment_0(), "rule__ParametroFuncion__PasoAssignment_0");
 					put(grammarAccess.getParametroFuncionAccess().getTipoAssignment_1(), "rule__ParametroFuncion__TipoAssignment_1");
 					put(grammarAccess.getParametroFuncionAccess().getVariableAssignment_3(), "rule__ParametroFuncion__VariableAssignment_3");
