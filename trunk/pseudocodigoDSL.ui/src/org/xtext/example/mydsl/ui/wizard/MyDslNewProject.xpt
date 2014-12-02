@@ -75,7 +75,7 @@ entero funcion sumaFun(E entero :  a, E entero :  b)
 		entero: resultado
 
 	inicio //Funcionalidad
-		resultado = (a + b)
+		resultado = a + b - 5
 		devolver resultado 
 fin_funcion
 
@@ -114,9 +114,9 @@ inicio
 	
 	desde i = 0 hasta DIM hacer
 
-		si(personas[i].edad < 18) entonces
+		si personas[i].edad < 18 entonces
 
-			mayoresDeEdad = (mayoresDeEdad + 1)
+			mayoresDeEdad = mayoresDeEdad + 1
 
 		fin_si
 
@@ -124,9 +124,9 @@ inicio
 	
 	//Ejemplo de bucle mientras
 	
-	mientras(mayoresDeEdad > 0) hacer //Funcionalidad
+	mientras mayoresDeEdad > 0 hacer //Funcionalidad
 		escribir("El numero de mayores de edad es", mayoresDeEdad)
-		mayoresDeEdad = (mayoresDeEdad - 1)
+		mayoresDeEdad = mayoresDeEdad - 1
 	fin_mientras
 	
 	//Ejemplo de bucle repetir
@@ -138,16 +138,16 @@ inicio
 		escribir("DNI", personas[contador].dni)
 		escribir("Sexo", personas[contador].sexo)
 		escribir("Edad", personas[contador].edad)
-		contador = (contador + 1)
-	hasta_que(contador < DIM)
+		contador = contador + 1
+	hasta_que contador < DIM
 	
 	//Ejemplo de estructura segun
 	
 	segun_sea(valor) hacer
-		0: escribir("Valor = 0") //Resto de setencias
-		1: escribir("Valor = 1") //Resto de sentencias
-		2: escribir("Valor = 2") //Resto de sentencias
-		3: escribir("Valor = 3") //Resto de sentencias
+		caso 0: escribir("Valor = 0")
+		caso 1: escribir("Valor = 1")
+		caso 2: escribir("Valor = 2")
+		caso 3: escribir("Valor = 3")
 		en_otro_caso: escribir("Valor posible no registrado") //Resto de sentencias
 	fin_segun
 	

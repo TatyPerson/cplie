@@ -5,7 +5,7 @@ package diagramapseudocodigo.impl;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Tipo;
 import diagramapseudocodigo.Vector;
-import diagramapseudocodigo.valor;
+import diagramapseudocodigo.operacion;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -36,7 +36,7 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	 * @generated
 	 * @ordered
 	 */
-	protected valor valor;
+	protected operacion valor;
 
 	/**
 	 * The cached value of the '{@link #getTipo() <em>Tipo</em>}' containment reference.
@@ -113,7 +113,7 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public valor getValor() {
+	public operacion getValor() {
 		return valor;
 	}
 
@@ -122,8 +122,8 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetValor(valor newValor, NotificationChain msgs) {
-		valor oldValor = valor;
+	public NotificationChain basicSetValor(operacion newValor, NotificationChain msgs) {
+		operacion oldValor = valor;
 		valor = newValor;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.VECTOR__VALOR, oldValor, newValor);
@@ -137,7 +137,7 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValor(valor newValor) {
+	public void setValor(operacion newValor) {
 		if (newValor != valor) {
 			NotificationChain msgs = null;
 			if (valor != null)
@@ -237,7 +237,7 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.VECTOR__VALOR:
-				setValor((valor)newValue);
+				setValor((operacion)newValue);
 				return;
 			case DiagramapseudocodigoPackage.VECTOR__TIPO:
 				setTipo((Tipo)newValue);
@@ -258,7 +258,7 @@ public class VectorImpl extends TipoComplejoImpl implements Vector {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.VECTOR__VALOR:
-				setValor((valor)null);
+				setValor((operacion)null);
 				return;
 			case DiagramapseudocodigoPackage.VECTOR__TIPO:
 				setTipo((Tipo)null);

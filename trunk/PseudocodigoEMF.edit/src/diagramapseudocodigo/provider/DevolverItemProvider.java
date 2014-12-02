@@ -218,11 +218,6 @@ public class DevolverItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.DEVOLVER__DEVUELVE,
-				 DiagramapseudocodigoFactory.eINSTANCE.createunaria()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.DEVOLVER__DEVUELVE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createValorComplejo()));
 
 		newChildDescriptors.add
@@ -239,6 +234,46 @@ public class DevolverItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.DEVOLVER__DEVUELVE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createValorMatriz()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.DEVOLVER__DEVUELVE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createSuma()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.DEVOLVER__DEVUELVE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createResta()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.DEVOLVER__DEVUELVE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createMultiplicacion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.DEVOLVER__DEVUELVE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createDivision()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.DEVOLVER__DEVUELVE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createOr()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.DEVOLVER__DEVUELVE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createAnd()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.DEVOLVER__DEVUELVE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createComparacion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.DEVOLVER__DEVUELVE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createIgualdad()));
 	}
 
 	/**

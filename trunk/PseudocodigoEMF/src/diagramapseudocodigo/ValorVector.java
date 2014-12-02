@@ -14,7 +14,8 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link diagramapseudocodigo.ValorVector#getNombre_vector <em>Nombre vector</em>}</li>
  *   <li>{@link diagramapseudocodigo.ValorVector#getCampo <em>Campo</em>}</li>
- *   <li>{@link diagramapseudocodigo.ValorVector#getIndice <em>Indice</em>}</li>
+ *   <li>{@link diagramapseudocodigo.ValorVector#getIndiceCadena <em>Indice Cadena</em>}</li>
+ *   <li>{@link diagramapseudocodigo.ValorVector#getIndiceNumerico <em>Indice Numerico</em>}</li>
  * </ul>
  * </p>
  *
@@ -66,29 +67,55 @@ public interface ValorVector extends ValorComplejo {
 	EList<CampoRegistro> getCampo();
 
 	/**
-	 * Returns the value of the '<em><b>Indice</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Indice Cadena</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Indice</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Indice Cadena</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Indice</em>' containment reference.
-	 * @see #setIndice(Operador)
-	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getValorVector_Indice()
-	 * @model containment="true" required="true"
+	 * @return the value of the '<em>Indice Cadena</em>' attribute.
+	 * @see #setIndiceCadena(String)
+	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getValorVector_IndiceCadena()
+	 * @model
 	 * @generated
 	 */
-	Operador getIndice();
+	String getIndiceCadena();
 
 	/**
-	 * Sets the value of the '{@link diagramapseudocodigo.ValorVector#getIndice <em>Indice</em>}' containment reference.
+	 * Sets the value of the '{@link diagramapseudocodigo.ValorVector#getIndiceCadena <em>Indice Cadena</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Indice</em>' containment reference.
-	 * @see #getIndice()
+	 * @param value the new value of the '<em>Indice Cadena</em>' attribute.
+	 * @see #getIndiceCadena()
 	 * @generated
 	 */
-	void setIndice(Operador value);
+	void setIndiceCadena(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Indice Numerico</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Indice Numerico</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Indice Numerico</em>' attribute.
+	 * @see #setIndiceNumerico(int)
+	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getValorVector_IndiceNumerico()
+	 * @model
+	 * @generated
+	 */
+	int getIndiceNumerico();
+
+	/**
+	 * Sets the value of the '{@link diagramapseudocodigo.ValorVector#getIndiceNumerico <em>Indice Numerico</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Indice Numerico</em>' attribute.
+	 * @see #getIndiceNumerico()
+	 * @generated
+	 */
+	void setIndiceNumerico(int value);
 
 } // ValorVector

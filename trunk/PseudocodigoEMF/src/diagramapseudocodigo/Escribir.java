@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
 public interface Escribir extends Sentencias {
 	/**
 	 * Returns the value of the '<em><b>Operador</b></em>' containment reference list.
-	 * The list contents are of type {@link diagramapseudocodigo.Operador}.
+	 * The list contents are of type {@link diagramapseudocodigo.operacion}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Operador</em>' containment reference list isn't clear,
@@ -35,6 +35,6 @@ public interface Escribir extends Sentencias {
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<Operador> getOperador();
+	EList<operacion> getOperador();
 
 } // Escribir

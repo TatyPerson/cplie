@@ -73,8 +73,6 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 			case DiagramapseudocodigoPackage.LEER: return createLeer();
 			case DiagramapseudocodigoPackage.NUMERO_DECIMAL: return createNumeroDecimal();
 			case DiagramapseudocodigoPackage.OPERACION: return createoperacion();
-			case DiagramapseudocodigoPackage.OPERANDO_IZQ: return createoperando_izq();
-			case DiagramapseudocodigoPackage.OPERANDO_DER: return createoperando_der();
 			case DiagramapseudocodigoPackage.VALOR_BOOLEANO: return createValorBooleano();
 			case DiagramapseudocodigoPackage.SI: return createSi();
 			case DiagramapseudocodigoPackage.SINO: return createSino();
@@ -105,8 +103,6 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 			case DiagramapseudocodigoPackage.VALOR_COMPLEJO: return createValorComplejo();
 			case DiagramapseudocodigoPackage.VALOR_REGISTRO: return createValorRegistro();
 			case DiagramapseudocodigoPackage.CAMPO_REGISTRO: return createCampoRegistro();
-			case DiagramapseudocodigoPackage.ASIGNACION_NORMAL: return createAsignacionNormal();
-			case DiagramapseudocodigoPackage.ASIGNACION_COMPLEJA: return createAsignacionCompleja();
 			case DiagramapseudocodigoPackage.SUBRANGO_NUMERICO: return createSubrangoNumerico();
 			case DiagramapseudocodigoPackage.SUBRANGO_ENUMERADO: return createSubrangoEnumerado();
 			case DiagramapseudocodigoPackage.VALOR_VECTOR: return createValorVector();
@@ -114,6 +110,14 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 			case DiagramapseudocodigoPackage.COMENTARIO: return createComentario();
 			case DiagramapseudocodigoPackage.FUNCION_FICHERO_ABRIR: return createFuncionFicheroAbrir();
 			case DiagramapseudocodigoPackage.FUNCION_FICHERO_CERRAR: return createFuncionFicheroCerrar();
+			case DiagramapseudocodigoPackage.SUMA: return createSuma();
+			case DiagramapseudocodigoPackage.RESTA: return createResta();
+			case DiagramapseudocodigoPackage.MULTIPLICACION: return createMultiplicacion();
+			case DiagramapseudocodigoPackage.DIVISION: return createDivision();
+			case DiagramapseudocodigoPackage.OR: return createOr();
+			case DiagramapseudocodigoPackage.AND: return createAnd();
+			case DiagramapseudocodigoPackage.COMPARACION: return createComparacion();
+			case DiagramapseudocodigoPackage.IGUALDAD: return createIgualdad();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -331,26 +335,6 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	public operacion createoperacion() {
 		operacionImpl operacion = new operacionImpl();
 		return operacion;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public operando_izq createoperando_izq() {
-		operando_izqImpl operando_izq = new operando_izqImpl();
-		return operando_izq;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public operando_der createoperando_der() {
-		operando_derImpl operando_der = new operando_derImpl();
-		return operando_der;
 	}
 
 	/**
@@ -658,26 +642,6 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AsignacionNormal createAsignacionNormal() {
-		AsignacionNormalImpl asignacionNormal = new AsignacionNormalImpl();
-		return asignacionNormal;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AsignacionCompleja createAsignacionCompleja() {
-		AsignacionComplejaImpl asignacionCompleja = new AsignacionComplejaImpl();
-		return asignacionCompleja;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public SubrangoNumerico createSubrangoNumerico() {
 		SubrangoNumericoImpl subrangoNumerico = new SubrangoNumericoImpl();
 		return subrangoNumerico;
@@ -741,6 +705,86 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	public FuncionFicheroCerrar createFuncionFicheroCerrar() {
 		FuncionFicheroCerrarImpl funcionFicheroCerrar = new FuncionFicheroCerrarImpl();
 		return funcionFicheroCerrar;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Suma createSuma() {
+		SumaImpl suma = new SumaImpl();
+		return suma;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Resta createResta() {
+		RestaImpl resta = new RestaImpl();
+		return resta;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Multiplicacion createMultiplicacion() {
+		MultiplicacionImpl multiplicacion = new MultiplicacionImpl();
+		return multiplicacion;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Division createDivision() {
+		DivisionImpl division = new DivisionImpl();
+		return division;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Or createOr() {
+		OrImpl or = new OrImpl();
+		return or;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public And createAnd() {
+		AndImpl and = new AndImpl();
+		return and;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Comparacion createComparacion() {
+		ComparacionImpl comparacion = new ComparacionImpl();
+		return comparacion;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Igualdad createIgualdad() {
+		IgualdadImpl igualdad = new IgualdadImpl();
+		return igualdad;
 	}
 
 	/**

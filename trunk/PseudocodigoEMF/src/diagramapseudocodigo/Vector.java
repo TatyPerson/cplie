@@ -57,12 +57,12 @@ public interface Vector extends TipoComplejo {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Valor</em>' containment reference.
-	 * @see #setValor(valor)
+	 * @see #setValor(operacion)
 	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getVector_Valor()
 	 * @model containment="true"
 	 * @generated
 	 */
-	valor getValor();
+	operacion getValor();
 
 	/**
 	 * Sets the value of the '{@link diagramapseudocodigo.Vector#getValor <em>Valor</em>}' containment reference.
@@ -72,7 +72,7 @@ public interface Vector extends TipoComplejo {
 	 * @see #getValor()
 	 * @generated
 	 */
-	void setValor(valor value);
+	void setValor(operacion value);
 
 	/**
 	 * Returns the value of the '<em><b>Tipo</b></em>' containment reference.

@@ -19,7 +19,7 @@ package diagramapseudocodigo;
  * @model
  * @generated
  */
-public interface ConstCadena extends Operador {
+public interface ConstCadena extends Operador, operacion {
 	/**
 	 * Returns the value of the '<em><b>Contenido</b></em>' attribute.
 	 * <!-- begin-user-doc -->

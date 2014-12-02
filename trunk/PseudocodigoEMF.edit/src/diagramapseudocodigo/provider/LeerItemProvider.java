@@ -147,6 +147,11 @@ public class LeerItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.LEER__VARIABLE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createLlamadaFuncion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.LEER__VARIABLE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createVariableID()));
 
 		newChildDescriptors.add
@@ -167,12 +172,22 @@ public class LeerItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.LEER__VARIABLE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createoperacion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.LEER__VARIABLE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createValorBooleano()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.LEER__VARIABLE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createCaracter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.LEER__VARIABLE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createInternas()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -193,6 +208,46 @@ public class LeerItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.LEER__VARIABLE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createValorMatriz()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.LEER__VARIABLE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createSuma()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.LEER__VARIABLE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createResta()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.LEER__VARIABLE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createMultiplicacion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.LEER__VARIABLE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createDivision()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.LEER__VARIABLE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createOr()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.LEER__VARIABLE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createAnd()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.LEER__VARIABLE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createComparacion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.LEER__VARIABLE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createIgualdad()));
 	}
 
 }

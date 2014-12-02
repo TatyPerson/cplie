@@ -19,7 +19,7 @@ package diagramapseudocodigo;
  * @model
  * @generated
  */
-public interface ValorBooleano extends Operador {
+public interface ValorBooleano extends Operador, operacion {
 	/**
 	 * Returns the value of the '<em><b>Valor</b></em>' attribute.
 	 * The literals are from the enumeration {@link diagramapseudocodigo.booleano}.

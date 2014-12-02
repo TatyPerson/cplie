@@ -31,12 +31,12 @@ public interface Bloque extends Sentencias {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Valor</em>' containment reference.
-	 * @see #setValor(valor)
+	 * @see #setValor(operacion)
 	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getBloque_Valor()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	valor getValor();
+	operacion getValor();
 
 	/**
 	 * Sets the value of the '{@link diagramapseudocodigo.Bloque#getValor <em>Valor</em>}' containment reference.
@@ -46,7 +46,7 @@ public interface Bloque extends Sentencias {
 	 * @see #getValor()
 	 * @generated
 	 */
-	void setValor(valor value);
+	void setValor(operacion value);
 
 	/**
 	 * Returns the value of the '<em><b>Sentencias</b></em>' containment reference list.

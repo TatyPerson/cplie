@@ -66,7 +66,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		}
 		return variablesDeclaradas;
 	}
-	
+	/*
 	protected void checkLlamadasInicio(Inicio i, List<String> tipos, String nombre, int parametros) {
 		//Recogemos todas las variables que hay declaradas con sus respectivos tipos para buscar luego las necesarias (no hay repetidas)
 		Map<String,String> variablesDeclaradas = registrarVariablesTipadas(i.getDeclaracion());
@@ -96,7 +96,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 				}
 			}
 		}
-	}
+	}*/
 	
 	protected List<String> registrarTipos(List<TipoComplejo> tipoComplejo) {
 		List<String> tipos = new ArrayList<String>();
@@ -238,7 +238,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		//Por ahora solo 2 operadores
 		return prioridadTipoOperacion(tipos.get(0), tipos.get(1));
 	}
-	
+	/*
 	protected void registrarParametros(List<valor> valores, List<String> nombresVariables, Map<String,String> nombresVariablesCampos, List<String> tiposNativos, Map<String,String> variablesDeclaradas, Map<String,String> tiposVectoresMatrices, Map<String,HashMap<String,String>> tiposRegistros) {
 		for(valor val: valores) { 
 			if(val instanceof Operador) {
@@ -296,7 +296,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 				tiposNativos.add(tipoOperacion);
 			}
 		}
-	}
+	}*/
 	
 	protected String getCadenaTiposCorrectos(List<String> tipos) {
 		String salidaCorrecta = "";
@@ -383,7 +383,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		}
 		return tiposNativos;
 	}
-	
+	/*
 	protected Map<String,HashMap<String,String>>registrarTiposNativosRegistros(List<TipoComplejo> complejos) {
 		Map<String,HashMap<String,String>> tiposNativos = new HashMap<String,HashMap<String,String>>();
 		for(TipoComplejo t: complejos) {
@@ -393,7 +393,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 			}
 		}
 		return tiposNativos;
-	}
+	}*/
 	
 	protected boolean comprobarCorreccionTiposLlamada(List<String> nombres, Map<String,String> variablesDeclaradas, List<String> tipos) {
 		boolean tiposCorrectos = true;
@@ -420,7 +420,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 			variablesDeclaradas.put(p.getVariable().getNombre(), getTipoComplejo(p.getTipo()));
 		}
 	}
-	
+	/*
 	protected List<valor> registrarValoresOperacion(operacion o) {
 		List<valor> valores = new ArrayList<valor>();
 		if(!(o.getOp_der().getOper_der() instanceof operacion)) {
@@ -891,6 +891,6 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 			}
 		}
 		
-	}
+	}*/
 	
 }

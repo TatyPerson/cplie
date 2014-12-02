@@ -19,7 +19,7 @@ package diagramapseudocodigo;
  * @model
  * @generated
  */
-public interface NumeroEntero extends Operador {
+public interface NumeroEntero extends Operador, operacion {
 	/**
 	 * Returns the value of the '<em><b>Valor</b></em>' attribute.
 	 * <!-- begin-user-doc -->

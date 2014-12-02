@@ -4,17 +4,12 @@ package diagramapseudocodigo.impl;
 
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Escribir;
-import diagramapseudocodigo.Operador;
-
+import diagramapseudocodigo.operacion;
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -40,7 +35,7 @@ public class EscribirImpl extends SentenciasImpl implements Escribir {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Operador> operador;
+	protected EList<operacion> operador;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -66,9 +61,9 @@ public class EscribirImpl extends SentenciasImpl implements Escribir {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Operador> getOperador() {
+	public EList<operacion> getOperador() {
 		if (operador == null) {
-			operador = new EObjectContainmentEList<Operador>(Operador.class, this, DiagramapseudocodigoPackage.ESCRIBIR__OPERADOR);
+			operador = new EObjectContainmentEList<operacion>(operacion.class, this, DiagramapseudocodigoPackage.ESCRIBIR__OPERADOR);
 		}
 		return operador;
 	}
@@ -112,7 +107,7 @@ public class EscribirImpl extends SentenciasImpl implements Escribir {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.ESCRIBIR__OPERADOR:
 				getOperador().clear();
-				getOperador().addAll((Collection<? extends Operador>)newValue);
+				getOperador().addAll((Collection<? extends operacion>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

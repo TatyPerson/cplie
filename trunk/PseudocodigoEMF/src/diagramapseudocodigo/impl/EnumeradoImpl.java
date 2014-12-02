@@ -4,7 +4,7 @@ package diagramapseudocodigo.impl;
 
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Enumerado;
-import diagramapseudocodigo.valor;
+import diagramapseudocodigo.operacion;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -58,7 +58,7 @@ public class EnumeradoImpl extends TipoComplejoImpl implements Enumerado {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<valor> valor;
+	protected EList<operacion> valor;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -105,9 +105,9 @@ public class EnumeradoImpl extends TipoComplejoImpl implements Enumerado {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<valor> getValor() {
+	public EList<operacion> getValor() {
 		if (valor == null) {
-			valor = new EObjectContainmentEList<valor>(valor.class, this, DiagramapseudocodigoPackage.ENUMERADO__VALOR);
+			valor = new EObjectContainmentEList<operacion>(operacion.class, this, DiagramapseudocodigoPackage.ENUMERADO__VALOR);
 		}
 		return valor;
 	}
@@ -156,7 +156,7 @@ public class EnumeradoImpl extends TipoComplejoImpl implements Enumerado {
 				return;
 			case DiagramapseudocodigoPackage.ENUMERADO__VALOR:
 				getValor().clear();
-				getValor().addAll((Collection<? extends valor>)newValue);
+				getValor().addAll((Collection<? extends operacion>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

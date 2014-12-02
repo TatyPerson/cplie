@@ -19,7 +19,7 @@ package diagramapseudocodigo;
  * @model
  * @generated
  */
-public interface NumeroDecimal extends Operador {
+public interface NumeroDecimal extends Operador, operacion {
 	/**
 	 * Returns the value of the '<em><b>Valor</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -29,12 +29,12 @@ public interface NumeroDecimal extends Operador {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Valor</em>' attribute.
-	 * @see #setValor(float)
+	 * @see #setValor(String)
 	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getNumeroDecimal_Valor()
 	 * @model required="true"
 	 * @generated
 	 */
-	float getValor();
+	String getValor();
 
 	/**
 	 * Sets the value of the '{@link diagramapseudocodigo.NumeroDecimal#getValor <em>Valor</em>}' attribute.
@@ -44,6 +44,6 @@ public interface NumeroDecimal extends Operador {
 	 * @see #getValor()
 	 * @generated
 	 */
-	void setValor(float value);
+	void setValor(String value);
 
 } // NumeroDecimal

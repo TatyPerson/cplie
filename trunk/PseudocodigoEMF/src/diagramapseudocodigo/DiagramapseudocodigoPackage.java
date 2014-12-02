@@ -229,7 +229,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getDeclaracion()
 	 * @generated
 	 */
-	int DECLARACION = 40;
+	int DECLARACION = 38;
 
 	/**
 	 * The number of structural features of the '<em>Declaracion</em>' class.
@@ -315,13 +315,13 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int LLAMADA_FUNCION__NOMBRE = SENTENCIAS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Operador</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Operadores</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LLAMADA_FUNCION__OPERADOR = SENTENCIAS_FEATURE_COUNT + 1;
+	int LLAMADA_FUNCION__OPERADORES = SENTENCIAS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Llamada Funcion</em>' class.
@@ -602,22 +602,31 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int ASIGNACION = 11;
 
 	/**
-	 * The feature id for the '<em><b>Operador</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIGNACION__OPERADOR = SENTENCIAS_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Mat</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASIGNACION__MAT = SENTENCIAS_FEATURE_COUNT + 1;
+	int ASIGNACION__MAT = SENTENCIAS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Operadores</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASIGNACION__OPERADORES = SENTENCIAS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Valor asignacion</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASIGNACION__VALOR_ASIGNACION = SENTENCIAS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Asignacion</em>' class.
@@ -626,7 +635,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASIGNACION_FEATURE_COUNT = SENTENCIAS_FEATURE_COUNT + 2;
+	int ASIGNACION_FEATURE_COUNT = SENTENCIAS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Asignacion</em>' class.
@@ -682,7 +691,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getSubproceso()
 	 * @generated
 	 */
-	int SUBPROCESO = 29;
+	int SUBPROCESO = 27;
 
 	/**
 	 * The feature id for the '<em><b>Parametrofuncion</b></em>' containment reference list.
@@ -960,40 +969,13 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int OPERACION = 18;
 
 	/**
-	 * The feature id for the '<em><b>Signo op</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERACION__SIGNO_OP = VALOR_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Op izq</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERACION__OP_IZQ = VALOR_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Op der</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERACION__OP_DER = VALOR_FEATURE_COUNT + 2;
-
-	/**
 	 * The number of structural features of the '<em>operacion</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERACION_FEATURE_COUNT = VALOR_FEATURE_COUNT + 3;
+	int OPERACION_FEATURE_COUNT = VALOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>operacion</em>' class.
@@ -1005,80 +987,6 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int OPERACION_OPERATION_COUNT = VALOR_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link diagramapseudocodigo.impl.operando_izqImpl <em>operando izq</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see diagramapseudocodigo.impl.operando_izqImpl
-	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getoperando_izq()
-	 * @generated
-	 */
-	int OPERANDO_IZQ = 19;
-
-	/**
-	 * The feature id for the '<em><b>Oper izq</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERANDO_IZQ__OPER_IZQ = 0;
-
-	/**
-	 * The number of structural features of the '<em>operando izq</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERANDO_IZQ_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>operando izq</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERANDO_IZQ_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link diagramapseudocodigo.impl.operando_derImpl <em>operando der</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see diagramapseudocodigo.impl.operando_derImpl
-	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getoperando_der()
-	 * @generated
-	 */
-	int OPERANDO_DER = 20;
-
-	/**
-	 * The feature id for the '<em><b>Oper der</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERANDO_DER__OPER_DER = 0;
-
-	/**
-	 * The number of structural features of the '<em>operando der</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERANDO_DER_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>operando der</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERANDO_DER_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.ValorBooleanoImpl <em>Valor Booleano</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1086,7 +994,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getValorBooleano()
 	 * @generated
 	 */
-	int VALOR_BOOLEANO = 21;
+	int VALOR_BOOLEANO = 19;
 
 	/**
 	 * The feature id for the '<em><b>Valor</b></em>' attribute.
@@ -1123,7 +1031,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getBloque()
 	 * @generated
 	 */
-	int BLOQUE = 24;
+	int BLOQUE = 22;
 
 	/**
 	 * The feature id for the '<em><b>Valor</b></em>' containment reference.
@@ -1169,7 +1077,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getSi()
 	 * @generated
 	 */
-	int SI = 22;
+	int SI = 20;
 
 	/**
 	 * The feature id for the '<em><b>Valor</b></em>' containment reference.
@@ -1233,7 +1141,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getSino()
 	 * @generated
 	 */
-	int SINO = 23;
+	int SINO = 21;
 
 	/**
 	 * The feature id for the '<em><b>Sentencias</b></em>' containment reference list.
@@ -1279,7 +1187,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getmientras()
 	 * @generated
 	 */
-	int MIENTRAS = 25;
+	int MIENTRAS = 23;
 
 	/**
 	 * The feature id for the '<em><b>Valor</b></em>' containment reference.
@@ -1325,7 +1233,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getrepetir()
 	 * @generated
 	 */
-	int REPETIR = 26;
+	int REPETIR = 24;
 
 	/**
 	 * The feature id for the '<em><b>Valor</b></em>' containment reference.
@@ -1371,7 +1279,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getdesde()
 	 * @generated
 	 */
-	int DESDE = 27;
+	int DESDE = 25;
 
 	/**
 	 * The feature id for the '<em><b>Valor</b></em>' containment reference.
@@ -1426,7 +1334,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getnegacion()
 	 * @generated
 	 */
-	int NEGACION = 28;
+	int NEGACION = 26;
 
 	/**
 	 * The feature id for the '<em><b>Nombre</b></em>' attribute.
@@ -1472,7 +1380,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getProcedimiento()
 	 * @generated
 	 */
-	int PROCEDIMIENTO = 30;
+	int PROCEDIMIENTO = 28;
 
 	/**
 	 * The feature id for the '<em><b>Parametrofuncion</b></em>' containment reference list.
@@ -1536,7 +1444,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getCaracter()
 	 * @generated
 	 */
-	int CARACTER = 31;
+	int CARACTER = 29;
 
 	/**
 	 * The feature id for the '<em><b>Contenido</b></em>' attribute.
@@ -1573,7 +1481,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getInternas()
 	 * @generated
 	 */
-	int INTERNAS = 32;
+	int INTERNAS = 30;
 
 	/**
 	 * The feature id for the '<em><b>Nombre</b></em>' attribute.
@@ -1585,13 +1493,13 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int INTERNAS__NOMBRE = VALOR_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Operador</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Operadores</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERNAS__OPERADOR = VALOR_FEATURE_COUNT + 1;
+	int INTERNAS__OPERADORES = VALOR_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Internas</em>' class.
@@ -1619,7 +1527,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getsegun()
 	 * @generated
 	 */
-	int SEGUN = 33;
+	int SEGUN = 31;
 
 	/**
 	 * The feature id for the '<em><b>Valor</b></em>' containment reference.
@@ -1683,7 +1591,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getDevolver()
 	 * @generated
 	 */
-	int DEVOLVER = 34;
+	int DEVOLVER = 32;
 
 	/**
 	 * The feature id for the '<em><b>EReference0</b></em>' reference.
@@ -1729,16 +1637,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getCaso()
 	 * @generated
 	 */
-	int CASO = 35;
-
-	/**
-	 * The feature id for the '<em><b>Operador</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CASO__OPERADOR = 0;
+	int CASO = 33;
 
 	/**
 	 * The feature id for the '<em><b>Devuelve</b></em>' containment reference.
@@ -1747,7 +1646,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CASO__DEVUELVE = 1;
+	int CASO__DEVUELVE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Sentencias</b></em>' containment reference list.
@@ -1756,7 +1655,16 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CASO__SENTENCIAS = 2;
+	int CASO__SENTENCIAS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Operador</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASO__OPERADOR = 2;
 
 	/**
 	 * The number of structural features of the '<em>Caso</em>' class.
@@ -1784,7 +1692,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getunaria()
 	 * @generated
 	 */
-	int UNARIA = 36;
+	int UNARIA = 34;
 
 	/**
 	 * The feature id for the '<em><b>Ssigno</b></em>' attribute.
@@ -1830,7 +1738,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getConstantes()
 	 * @generated
 	 */
-	int CONSTANTES = 37;
+	int CONSTANTES = 35;
 
 	/**
 	 * The feature id for the '<em><b>Variable</b></em>' containment reference.
@@ -1876,7 +1784,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoComplejo()
 	 * @generated
 	 */
-	int TIPO_COMPLEJO = 42;
+	int TIPO_COMPLEJO = 40;
 
 	/**
 	 * The number of structural features of the '<em>Tipo Complejo</em>' class.
@@ -1904,7 +1812,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getVector()
 	 * @generated
 	 */
-	int VECTOR = 38;
+	int VECTOR = 36;
 
 	/**
 	 * The feature id for the '<em><b>Valor</b></em>' containment reference.
@@ -1959,7 +1867,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getDeclaracionPropia()
 	 * @generated
 	 */
-	int DECLARACION_PROPIA = 39;
+	int DECLARACION_PROPIA = 37;
 
 	/**
 	 * The feature id for the '<em><b>Tipo</b></em>' attribute.
@@ -2005,7 +1913,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getMatriz()
 	 * @generated
 	 */
-	int MATRIZ = 41;
+	int MATRIZ = 39;
 
 	/**
 	 * The feature id for the '<em><b>Nombre</b></em>' attribute.
@@ -2060,7 +1968,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getRegistro()
 	 * @generated
 	 */
-	int REGISTRO = 43;
+	int REGISTRO = 41;
 
 	/**
 	 * The feature id for the '<em><b>Variable</b></em>' containment reference list.
@@ -2106,7 +2014,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipo()
 	 * @generated
 	 */
-	int TIPO = 44;
+	int TIPO = 42;
 
 	/**
 	 * The number of structural features of the '<em>Tipo</em>' class.
@@ -2134,7 +2042,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoDefinido()
 	 * @generated
 	 */
-	int TIPO_DEFINIDO = 45;
+	int TIPO_DEFINIDO = 43;
 
 	/**
 	 * The feature id for the '<em><b>Tipo</b></em>' attribute.
@@ -2171,7 +2079,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoExistente()
 	 * @generated
 	 */
-	int TIPO_EXISTENTE = 46;
+	int TIPO_EXISTENTE = 44;
 
 	/**
 	 * The feature id for the '<em><b>Tipo</b></em>' attribute.
@@ -2208,7 +2116,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getArchivo()
 	 * @generated
 	 */
-	int ARCHIVO = 47;
+	int ARCHIVO = 45;
 
 	/**
 	 * The feature id for the '<em><b>Nombre</b></em>' attribute.
@@ -2254,7 +2162,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getEnumerado()
 	 * @generated
 	 */
-	int ENUMERADO = 48;
+	int ENUMERADO = 46;
 
 	/**
 	 * The feature id for the '<em><b>Nombre</b></em>' attribute.
@@ -2300,7 +2208,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getSubrango()
 	 * @generated
 	 */
-	int SUBRANGO = 49;
+	int SUBRANGO = 47;
 
 	/**
 	 * The feature id for the '<em><b>Nombre</b></em>' attribute.
@@ -2337,7 +2245,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getValorComplejo()
 	 * @generated
 	 */
-	int VALOR_COMPLEJO = 50;
+	int VALOR_COMPLEJO = 48;
 
 	/**
 	 * The number of structural features of the '<em>Valor Complejo</em>' class.
@@ -2365,7 +2273,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getValorRegistro()
 	 * @generated
 	 */
-	int VALOR_REGISTRO = 51;
+	int VALOR_REGISTRO = 49;
 
 	/**
 	 * The feature id for the '<em><b>Nombre registro</b></em>' attribute.
@@ -2411,7 +2319,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getCampoRegistro()
 	 * @generated
 	 */
-	int CAMPO_REGISTRO = 52;
+	int CAMPO_REGISTRO = 50;
 
 	/**
 	 * The feature id for the '<em><b>Nombre campo</b></em>' attribute.
@@ -2441,116 +2349,6 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int CAMPO_REGISTRO_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link diagramapseudocodigo.impl.AsignacionNormalImpl <em>Asignacion Normal</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see diagramapseudocodigo.impl.AsignacionNormalImpl
-	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getAsignacionNormal()
-	 * @generated
-	 */
-	int ASIGNACION_NORMAL = 53;
-
-	/**
-	 * The feature id for the '<em><b>Operador</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIGNACION_NORMAL__OPERADOR = ASIGNACION__OPERADOR;
-
-	/**
-	 * The feature id for the '<em><b>Mat</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIGNACION_NORMAL__MAT = ASIGNACION__MAT;
-
-	/**
-	 * The feature id for the '<em><b>Lvalue</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIGNACION_NORMAL__LVALUE = ASIGNACION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Asignacion Normal</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIGNACION_NORMAL_FEATURE_COUNT = ASIGNACION_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Asignacion Normal</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIGNACION_NORMAL_OPERATION_COUNT = ASIGNACION_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link diagramapseudocodigo.impl.AsignacionComplejaImpl <em>Asignacion Compleja</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see diagramapseudocodigo.impl.AsignacionComplejaImpl
-	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getAsignacionCompleja()
-	 * @generated
-	 */
-	int ASIGNACION_COMPLEJA = 54;
-
-	/**
-	 * The feature id for the '<em><b>Operador</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIGNACION_COMPLEJA__OPERADOR = ASIGNACION__OPERADOR;
-
-	/**
-	 * The feature id for the '<em><b>Mat</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIGNACION_COMPLEJA__MAT = ASIGNACION__MAT;
-
-	/**
-	 * The feature id for the '<em><b>Complejo</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIGNACION_COMPLEJA__COMPLEJO = ASIGNACION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Asignacion Compleja</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIGNACION_COMPLEJA_FEATURE_COUNT = ASIGNACION_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Asignacion Compleja</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIGNACION_COMPLEJA_OPERATION_COUNT = ASIGNACION_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.SubrangoNumericoImpl <em>Subrango Numerico</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2558,7 +2356,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getSubrangoNumerico()
 	 * @generated
 	 */
-	int SUBRANGO_NUMERICO = 55;
+	int SUBRANGO_NUMERICO = 51;
 
 	/**
 	 * The feature id for the '<em><b>Nombre</b></em>' attribute.
@@ -2613,7 +2411,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getSubrangoEnumerado()
 	 * @generated
 	 */
-	int SUBRANGO_ENUMERADO = 56;
+	int SUBRANGO_ENUMERADO = 52;
 
 	/**
 	 * The feature id for the '<em><b>Nombre</b></em>' attribute.
@@ -2668,7 +2466,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getValorVector()
 	 * @generated
 	 */
-	int VALOR_VECTOR = 57;
+	int VALOR_VECTOR = 53;
 
 	/**
 	 * The feature id for the '<em><b>Nombre vector</b></em>' attribute.
@@ -2689,13 +2487,22 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int VALOR_VECTOR__CAMPO = VALOR_COMPLEJO_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Indice</b></em>' containment reference.
+	 * The feature id for the '<em><b>Indice Cadena</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALOR_VECTOR__INDICE = VALOR_COMPLEJO_FEATURE_COUNT + 2;
+	int VALOR_VECTOR__INDICE_CADENA = VALOR_COMPLEJO_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Indice Numerico</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALOR_VECTOR__INDICE_NUMERICO = VALOR_COMPLEJO_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Valor Vector</em>' class.
@@ -2704,7 +2511,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALOR_VECTOR_FEATURE_COUNT = VALOR_COMPLEJO_FEATURE_COUNT + 3;
+	int VALOR_VECTOR_FEATURE_COUNT = VALOR_COMPLEJO_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Valor Vector</em>' class.
@@ -2723,7 +2530,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getValorMatriz()
 	 * @generated
 	 */
-	int VALOR_MATRIZ = 58;
+	int VALOR_MATRIZ = 54;
 
 	/**
 	 * The feature id for the '<em><b>Nombre matriz</b></em>' attribute.
@@ -2735,22 +2542,31 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int VALOR_MATRIZ__NOMBRE_MATRIZ = VALOR_COMPLEJO_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Indices</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALOR_MATRIZ__INDICES = VALOR_COMPLEJO_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Campo</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALOR_MATRIZ__CAMPO = VALOR_COMPLEJO_FEATURE_COUNT + 2;
+	int VALOR_MATRIZ__CAMPO = VALOR_COMPLEJO_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Indices Cadena</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALOR_MATRIZ__INDICES_CADENA = VALOR_COMPLEJO_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Indices Numericos</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALOR_MATRIZ__INDICES_NUMERICOS = VALOR_COMPLEJO_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Valor Matriz</em>' class.
@@ -2759,7 +2575,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALOR_MATRIZ_FEATURE_COUNT = VALOR_COMPLEJO_FEATURE_COUNT + 3;
+	int VALOR_MATRIZ_FEATURE_COUNT = VALOR_COMPLEJO_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Valor Matriz</em>' class.
@@ -2778,7 +2594,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getComentario()
 	 * @generated
 	 */
-	int COMENTARIO = 59;
+	int COMENTARIO = 55;
 
 	/**
 	 * The feature id for the '<em><b>Mensaje</b></em>' attribute.
@@ -2815,7 +2631,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getFuncionFicheroAbrir()
 	 * @generated
 	 */
-	int FUNCION_FICHERO_ABRIR = 60;
+	int FUNCION_FICHERO_ABRIR = 56;
 
 	/**
 	 * The feature id for the '<em><b>Modo</b></em>' attribute.
@@ -2861,7 +2677,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getFuncionFicheroCerrar()
 	 * @generated
 	 */
-	int FUNCION_FICHERO_CERRAR = 61;
+	int FUNCION_FICHERO_CERRAR = 57;
 
 	/**
 	 * The feature id for the '<em><b>Variable</b></em>' containment reference.
@@ -2891,6 +2707,446 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int FUNCION_FICHERO_CERRAR_OPERATION_COUNT = SENTENCIAS_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.SumaImpl <em>Suma</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.SumaImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getSuma()
+	 * @generated
+	 */
+	int SUMA = 58;
+
+	/**
+	 * The feature id for the '<em><b>Left</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUMA__LEFT = OPERACION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Right</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUMA__RIGHT = OPERACION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Signo op</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUMA__SIGNO_OP = OPERACION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Suma</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUMA_FEATURE_COUNT = OPERACION_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Suma</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUMA_OPERATION_COUNT = OPERACION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.RestaImpl <em>Resta</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.RestaImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getResta()
+	 * @generated
+	 */
+	int RESTA = 59;
+
+	/**
+	 * The feature id for the '<em><b>Left</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESTA__LEFT = OPERACION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Right</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESTA__RIGHT = OPERACION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Signo op</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESTA__SIGNO_OP = OPERACION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Resta</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESTA_FEATURE_COUNT = OPERACION_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Resta</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESTA_OPERATION_COUNT = OPERACION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.MultiplicacionImpl <em>Multiplicacion</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.MultiplicacionImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getMultiplicacion()
+	 * @generated
+	 */
+	int MULTIPLICACION = 60;
+
+	/**
+	 * The feature id for the '<em><b>Left</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICACION__LEFT = OPERACION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Right</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICACION__RIGHT = OPERACION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Signo op</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICACION__SIGNO_OP = OPERACION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Multiplicacion</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICACION_FEATURE_COUNT = OPERACION_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Multiplicacion</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICACION_OPERATION_COUNT = OPERACION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.DivisionImpl <em>Division</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.DivisionImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getDivision()
+	 * @generated
+	 */
+	int DIVISION = 61;
+
+	/**
+	 * The feature id for the '<em><b>Left</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIVISION__LEFT = OPERACION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Right</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIVISION__RIGHT = OPERACION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Signo op</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIVISION__SIGNO_OP = OPERACION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Division</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIVISION_FEATURE_COUNT = OPERACION_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Division</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIVISION_OPERATION_COUNT = OPERACION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.OrImpl <em>Or</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.OrImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getOr()
+	 * @generated
+	 */
+	int OR = 62;
+
+	/**
+	 * The feature id for the '<em><b>Left</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OR__LEFT = OPERACION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Right</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OR__RIGHT = OPERACION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Signo op</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OR__SIGNO_OP = OPERACION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Or</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OR_FEATURE_COUNT = OPERACION_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Or</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OR_OPERATION_COUNT = OPERACION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.AndImpl <em>And</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.AndImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getAnd()
+	 * @generated
+	 */
+	int AND = 63;
+
+	/**
+	 * The feature id for the '<em><b>Left</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND__LEFT = OPERACION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Right</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND__RIGHT = OPERACION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Signo op</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND__SIGNO_OP = OPERACION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>And</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND_FEATURE_COUNT = OPERACION_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>And</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND_OPERATION_COUNT = OPERACION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.ComparacionImpl <em>Comparacion</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.ComparacionImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getComparacion()
+	 * @generated
+	 */
+	int COMPARACION = 64;
+
+	/**
+	 * The feature id for the '<em><b>Left</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPARACION__LEFT = OPERACION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Right</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPARACION__RIGHT = OPERACION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Signo op</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPARACION__SIGNO_OP = OPERACION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Comparacion</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPARACION_FEATURE_COUNT = OPERACION_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Comparacion</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPARACION_OPERATION_COUNT = OPERACION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.IgualdadImpl <em>Igualdad</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.IgualdadImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getIgualdad()
+	 * @generated
+	 */
+	int IGUALDAD = 65;
+
+	/**
+	 * The feature id for the '<em><b>Left</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IGUALDAD__LEFT = OPERACION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Right</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IGUALDAD__RIGHT = OPERACION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Signo op</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IGUALDAD__SIGNO_OP = OPERACION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Igualdad</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IGUALDAD_FEATURE_COUNT = OPERACION_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Igualdad</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IGUALDAD_OPERATION_COUNT = OPERACION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoVariable <em>Tipo Variable</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2898,7 +3154,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoVariable()
 	 * @generated
 	 */
-	int TIPO_VARIABLE = 62;
+	int TIPO_VARIABLE = 66;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.signo <em>signo</em>}' enum.
@@ -2908,7 +3164,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getsigno()
 	 * @generated
 	 */
-	int SIGNO = 63;
+	int SIGNO = 67;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.booleano <em>booleano</em>}' enum.
@@ -2918,7 +3174,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getbooleano()
 	 * @generated
 	 */
-	int BOOLEANO = 64;
+	int BOOLEANO = 68;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.neg <em>neg</em>}' enum.
@@ -2928,7 +3184,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getneg()
 	 * @generated
 	 */
-	int NEG = 65;
+	int NEG = 69;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoPaso <em>Tipo Paso</em>}' enum.
@@ -2938,7 +3194,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoPaso()
 	 * @generated
 	 */
-	int TIPO_PASO = 66;
+	int TIPO_PASO = 70;
 
 
 	/**
@@ -2949,7 +3205,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getNombreInterna()
 	 * @generated
 	 */
-	int NOMBRE_INTERNA = 67;
+	int NOMBRE_INTERNA = 71;
 
 
 	/**
@@ -2960,7 +3216,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getModoApertura()
 	 * @generated
 	 */
-	int MODO_APERTURA = 68;
+	int MODO_APERTURA = 72;
 
 
 	/**
@@ -3146,15 +3402,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EAttribute getLlamadaFuncion_Nombre();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.LlamadaFuncion#getOperador <em>Operador</em>}'.
+	 * Returns the meta object for the attribute list '{@link diagramapseudocodigo.LlamadaFuncion#getOperadores <em>Operadores</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Operador</em>'.
-	 * @see diagramapseudocodigo.LlamadaFuncion#getOperador()
+	 * @return the meta object for the attribute list '<em>Operadores</em>'.
+	 * @see diagramapseudocodigo.LlamadaFuncion#getOperadores()
 	 * @see #getLlamadaFuncion()
 	 * @generated
 	 */
-	EReference getLlamadaFuncion_Operador();
+	EAttribute getLlamadaFuncion_Operadores();
 
 	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.VariableID <em>Variable ID</em>}'.
@@ -3293,17 +3549,6 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EClass getAsignacion();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Asignacion#getOperador <em>Operador</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Operador</em>'.
-	 * @see diagramapseudocodigo.Asignacion#getOperador()
-	 * @see #getAsignacion()
-	 * @generated
-	 */
-	EReference getAsignacion_Operador();
-
-	/**
 	 * Returns the meta object for the attribute list '{@link diagramapseudocodigo.Asignacion#getMat <em>Mat</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3313,6 +3558,28 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getAsignacion_Mat();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Asignacion#getOperadores <em>Operadores</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Operadores</em>'.
+	 * @see diagramapseudocodigo.Asignacion#getOperadores()
+	 * @see #getAsignacion()
+	 * @generated
+	 */
+	EReference getAsignacion_Operadores();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Asignacion#getValor_asignacion <em>Valor asignacion</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Valor asignacion</em>'.
+	 * @see diagramapseudocodigo.Asignacion#getValor_asignacion()
+	 * @see #getAsignacion()
+	 * @generated
+	 */
+	EAttribute getAsignacion_Valor_asignacion();
 
 	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.Escribir <em>Escribir</em>}'.
@@ -3471,81 +3738,6 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getoperacion();
-
-	/**
-	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.operacion#getSigno_op <em>Signo op</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Signo op</em>'.
-	 * @see diagramapseudocodigo.operacion#getSigno_op()
-	 * @see #getoperacion()
-	 * @generated
-	 */
-	EAttribute getoperacion_Signo_op();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.operacion#getOp_izq <em>Op izq</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Op izq</em>'.
-	 * @see diagramapseudocodigo.operacion#getOp_izq()
-	 * @see #getoperacion()
-	 * @generated
-	 */
-	EReference getoperacion_Op_izq();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.operacion#getOp_der <em>Op der</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Op der</em>'.
-	 * @see diagramapseudocodigo.operacion#getOp_der()
-	 * @see #getoperacion()
-	 * @generated
-	 */
-	EReference getoperacion_Op_der();
-
-	/**
-	 * Returns the meta object for class '{@link diagramapseudocodigo.operando_izq <em>operando izq</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>operando izq</em>'.
-	 * @see diagramapseudocodigo.operando_izq
-	 * @generated
-	 */
-	EClass getoperando_izq();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.operando_izq#getOper_izq <em>Oper izq</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Oper izq</em>'.
-	 * @see diagramapseudocodigo.operando_izq#getOper_izq()
-	 * @see #getoperando_izq()
-	 * @generated
-	 */
-	EReference getoperando_izq_Oper_izq();
-
-	/**
-	 * Returns the meta object for class '{@link diagramapseudocodigo.operando_der <em>operando der</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>operando der</em>'.
-	 * @see diagramapseudocodigo.operando_der
-	 * @generated
-	 */
-	EClass getoperando_der();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.operando_der#getOper_der <em>Oper der</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Oper der</em>'.
-	 * @see diagramapseudocodigo.operando_der#getOper_der()
-	 * @see #getoperando_der()
-	 * @generated
-	 */
-	EReference getoperando_der_Oper_der();
 
 	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.ValorBooleano <em>Valor Booleano</em>}'.
@@ -3844,15 +4036,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EAttribute getInternas_Nombre();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.Internas#getOperador <em>Operador</em>}'.
+	 * Returns the meta object for the attribute list '{@link diagramapseudocodigo.Internas#getOperadores <em>Operadores</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Operador</em>'.
-	 * @see diagramapseudocodigo.Internas#getOperador()
+	 * @return the meta object for the attribute list '<em>Operadores</em>'.
+	 * @see diagramapseudocodigo.Internas#getOperadores()
 	 * @see #getInternas()
 	 * @generated
 	 */
-	EReference getInternas_Operador();
+	EAttribute getInternas_Operadores();
 
 	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.segun <em>segun</em>}'.
@@ -3929,17 +4121,6 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EClass getCaso();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Caso#getOperador <em>Operador</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Operador</em>'.
-	 * @see diagramapseudocodigo.Caso#getOperador()
-	 * @see #getCaso()
-	 * @generated
-	 */
-	EReference getCaso_Operador();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Caso#getDevuelve <em>Devuelve</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3960,6 +4141,17 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getCaso_Sentencias();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Caso#getOperador <em>Operador</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Operador</em>'.
+	 * @see diagramapseudocodigo.Caso#getOperador()
+	 * @see #getCaso()
+	 * @generated
+	 */
+	EReference getCaso_Operador();
 
 	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.unaria <em>unaria</em>}'.
@@ -4352,48 +4544,6 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EAttribute getCampoRegistro_Nombre_campo();
 
 	/**
-	 * Returns the meta object for class '{@link diagramapseudocodigo.AsignacionNormal <em>Asignacion Normal</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Asignacion Normal</em>'.
-	 * @see diagramapseudocodigo.AsignacionNormal
-	 * @generated
-	 */
-	EClass getAsignacionNormal();
-
-	/**
-	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.AsignacionNormal#getLvalue <em>Lvalue</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Lvalue</em>'.
-	 * @see diagramapseudocodigo.AsignacionNormal#getLvalue()
-	 * @see #getAsignacionNormal()
-	 * @generated
-	 */
-	EAttribute getAsignacionNormal_Lvalue();
-
-	/**
-	 * Returns the meta object for class '{@link diagramapseudocodigo.AsignacionCompleja <em>Asignacion Compleja</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Asignacion Compleja</em>'.
-	 * @see diagramapseudocodigo.AsignacionCompleja
-	 * @generated
-	 */
-	EClass getAsignacionCompleja();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.AsignacionCompleja#getComplejo <em>Complejo</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Complejo</em>'.
-	 * @see diagramapseudocodigo.AsignacionCompleja#getComplejo()
-	 * @see #getAsignacionCompleja()
-	 * @generated
-	 */
-	EReference getAsignacionCompleja_Complejo();
-
-	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.SubrangoNumerico <em>Subrango Numerico</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4490,15 +4640,26 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EReference getValorVector_Campo();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.ValorVector#getIndice <em>Indice</em>}'.
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.ValorVector#getIndiceCadena <em>Indice Cadena</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Indice</em>'.
-	 * @see diagramapseudocodigo.ValorVector#getIndice()
+	 * @return the meta object for the attribute '<em>Indice Cadena</em>'.
+	 * @see diagramapseudocodigo.ValorVector#getIndiceCadena()
 	 * @see #getValorVector()
 	 * @generated
 	 */
-	EReference getValorVector_Indice();
+	EAttribute getValorVector_IndiceCadena();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.ValorVector#getIndiceNumerico <em>Indice Numerico</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Indice Numerico</em>'.
+	 * @see diagramapseudocodigo.ValorVector#getIndiceNumerico()
+	 * @see #getValorVector()
+	 * @generated
+	 */
+	EAttribute getValorVector_IndiceNumerico();
 
 	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.ValorMatriz <em>Valor Matriz</em>}'.
@@ -4522,17 +4683,6 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EAttribute getValorMatriz_Nombre_matriz();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.ValorMatriz#getIndices <em>Indices</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Indices</em>'.
-	 * @see diagramapseudocodigo.ValorMatriz#getIndices()
-	 * @see #getValorMatriz()
-	 * @generated
-	 */
-	EReference getValorMatriz_Indices();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.ValorMatriz#getCampo <em>Campo</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4542,6 +4692,28 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getValorMatriz_Campo();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link diagramapseudocodigo.ValorMatriz#getIndicesCadena <em>Indices Cadena</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Indices Cadena</em>'.
+	 * @see diagramapseudocodigo.ValorMatriz#getIndicesCadena()
+	 * @see #getValorMatriz()
+	 * @generated
+	 */
+	EAttribute getValorMatriz_IndicesCadena();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link diagramapseudocodigo.ValorMatriz#getIndicesNumericos <em>Indices Numericos</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Indices Numericos</em>'.
+	 * @see diagramapseudocodigo.ValorMatriz#getIndicesNumericos()
+	 * @see #getValorMatriz()
+	 * @generated
+	 */
+	EAttribute getValorMatriz_IndicesNumericos();
 
 	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.Comentario <em>Comentario</em>}'.
@@ -4616,6 +4788,350 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFuncionFicheroCerrar_Variable();
+
+	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.Suma <em>Suma</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Suma</em>'.
+	 * @see diagramapseudocodigo.Suma
+	 * @generated
+	 */
+	EClass getSuma();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Suma#getLeft <em>Left</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Left</em>'.
+	 * @see diagramapseudocodigo.Suma#getLeft()
+	 * @see #getSuma()
+	 * @generated
+	 */
+	EReference getSuma_Left();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Suma#getRight <em>Right</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Right</em>'.
+	 * @see diagramapseudocodigo.Suma#getRight()
+	 * @see #getSuma()
+	 * @generated
+	 */
+	EReference getSuma_Right();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Suma#getSigno_op <em>Signo op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Signo op</em>'.
+	 * @see diagramapseudocodigo.Suma#getSigno_op()
+	 * @see #getSuma()
+	 * @generated
+	 */
+	EAttribute getSuma_Signo_op();
+
+	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.Resta <em>Resta</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Resta</em>'.
+	 * @see diagramapseudocodigo.Resta
+	 * @generated
+	 */
+	EClass getResta();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Resta#getLeft <em>Left</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Left</em>'.
+	 * @see diagramapseudocodigo.Resta#getLeft()
+	 * @see #getResta()
+	 * @generated
+	 */
+	EReference getResta_Left();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Resta#getRight <em>Right</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Right</em>'.
+	 * @see diagramapseudocodigo.Resta#getRight()
+	 * @see #getResta()
+	 * @generated
+	 */
+	EReference getResta_Right();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Resta#getSigno_op <em>Signo op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Signo op</em>'.
+	 * @see diagramapseudocodigo.Resta#getSigno_op()
+	 * @see #getResta()
+	 * @generated
+	 */
+	EAttribute getResta_Signo_op();
+
+	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.Multiplicacion <em>Multiplicacion</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Multiplicacion</em>'.
+	 * @see diagramapseudocodigo.Multiplicacion
+	 * @generated
+	 */
+	EClass getMultiplicacion();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Multiplicacion#getLeft <em>Left</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Left</em>'.
+	 * @see diagramapseudocodigo.Multiplicacion#getLeft()
+	 * @see #getMultiplicacion()
+	 * @generated
+	 */
+	EReference getMultiplicacion_Left();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Multiplicacion#getRight <em>Right</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Right</em>'.
+	 * @see diagramapseudocodigo.Multiplicacion#getRight()
+	 * @see #getMultiplicacion()
+	 * @generated
+	 */
+	EReference getMultiplicacion_Right();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Multiplicacion#getSigno_op <em>Signo op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Signo op</em>'.
+	 * @see diagramapseudocodigo.Multiplicacion#getSigno_op()
+	 * @see #getMultiplicacion()
+	 * @generated
+	 */
+	EAttribute getMultiplicacion_Signo_op();
+
+	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.Division <em>Division</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Division</em>'.
+	 * @see diagramapseudocodigo.Division
+	 * @generated
+	 */
+	EClass getDivision();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Division#getLeft <em>Left</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Left</em>'.
+	 * @see diagramapseudocodigo.Division#getLeft()
+	 * @see #getDivision()
+	 * @generated
+	 */
+	EReference getDivision_Left();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Division#getRight <em>Right</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Right</em>'.
+	 * @see diagramapseudocodigo.Division#getRight()
+	 * @see #getDivision()
+	 * @generated
+	 */
+	EReference getDivision_Right();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Division#getSigno_op <em>Signo op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Signo op</em>'.
+	 * @see diagramapseudocodigo.Division#getSigno_op()
+	 * @see #getDivision()
+	 * @generated
+	 */
+	EAttribute getDivision_Signo_op();
+
+	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.Or <em>Or</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Or</em>'.
+	 * @see diagramapseudocodigo.Or
+	 * @generated
+	 */
+	EClass getOr();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Or#getLeft <em>Left</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Left</em>'.
+	 * @see diagramapseudocodigo.Or#getLeft()
+	 * @see #getOr()
+	 * @generated
+	 */
+	EReference getOr_Left();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Or#getRight <em>Right</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Right</em>'.
+	 * @see diagramapseudocodigo.Or#getRight()
+	 * @see #getOr()
+	 * @generated
+	 */
+	EReference getOr_Right();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Or#getSigno_op <em>Signo op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Signo op</em>'.
+	 * @see diagramapseudocodigo.Or#getSigno_op()
+	 * @see #getOr()
+	 * @generated
+	 */
+	EAttribute getOr_Signo_op();
+
+	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.And <em>And</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>And</em>'.
+	 * @see diagramapseudocodigo.And
+	 * @generated
+	 */
+	EClass getAnd();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.And#getLeft <em>Left</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Left</em>'.
+	 * @see diagramapseudocodigo.And#getLeft()
+	 * @see #getAnd()
+	 * @generated
+	 */
+	EReference getAnd_Left();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.And#getRight <em>Right</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Right</em>'.
+	 * @see diagramapseudocodigo.And#getRight()
+	 * @see #getAnd()
+	 * @generated
+	 */
+	EReference getAnd_Right();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.And#getSigno_op <em>Signo op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Signo op</em>'.
+	 * @see diagramapseudocodigo.And#getSigno_op()
+	 * @see #getAnd()
+	 * @generated
+	 */
+	EAttribute getAnd_Signo_op();
+
+	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.Comparacion <em>Comparacion</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Comparacion</em>'.
+	 * @see diagramapseudocodigo.Comparacion
+	 * @generated
+	 */
+	EClass getComparacion();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Comparacion#getLeft <em>Left</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Left</em>'.
+	 * @see diagramapseudocodigo.Comparacion#getLeft()
+	 * @see #getComparacion()
+	 * @generated
+	 */
+	EReference getComparacion_Left();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Comparacion#getRight <em>Right</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Right</em>'.
+	 * @see diagramapseudocodigo.Comparacion#getRight()
+	 * @see #getComparacion()
+	 * @generated
+	 */
+	EReference getComparacion_Right();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Comparacion#getSigno_op <em>Signo op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Signo op</em>'.
+	 * @see diagramapseudocodigo.Comparacion#getSigno_op()
+	 * @see #getComparacion()
+	 * @generated
+	 */
+	EAttribute getComparacion_Signo_op();
+
+	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.Igualdad <em>Igualdad</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Igualdad</em>'.
+	 * @see diagramapseudocodigo.Igualdad
+	 * @generated
+	 */
+	EClass getIgualdad();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Igualdad#getLeft <em>Left</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Left</em>'.
+	 * @see diagramapseudocodigo.Igualdad#getLeft()
+	 * @see #getIgualdad()
+	 * @generated
+	 */
+	EReference getIgualdad_Left();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Igualdad#getRight <em>Right</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Right</em>'.
+	 * @see diagramapseudocodigo.Igualdad#getRight()
+	 * @see #getIgualdad()
+	 * @generated
+	 */
+	EReference getIgualdad_Right();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Igualdad#getSigno_op <em>Signo op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Signo op</em>'.
+	 * @see diagramapseudocodigo.Igualdad#getSigno_op()
+	 * @see #getIgualdad()
+	 * @generated
+	 */
+	EAttribute getIgualdad_Signo_op();
 
 	/**
 	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Vector#getNombre <em>Nombre</em>}'.
@@ -4900,12 +5416,12 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EAttribute LLAMADA_FUNCION__NOMBRE = eINSTANCE.getLlamadaFuncion_Nombre();
 
 		/**
-		 * The meta object literal for the '<em><b>Operador</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Operadores</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LLAMADA_FUNCION__OPERADOR = eINSTANCE.getLlamadaFuncion_Operador();
+		EAttribute LLAMADA_FUNCION__OPERADORES = eINSTANCE.getLlamadaFuncion_Operadores();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.VariableIDImpl <em>Variable ID</em>}' class.
@@ -5026,20 +5542,28 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EClass ASIGNACION = eINSTANCE.getAsignacion();
 
 		/**
-		 * The meta object literal for the '<em><b>Operador</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ASIGNACION__OPERADOR = eINSTANCE.getAsignacion_Operador();
-
-		/**
 		 * The meta object literal for the '<em><b>Mat</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute ASIGNACION__MAT = eINSTANCE.getAsignacion_Mat();
+
+		/**
+		 * The meta object literal for the '<em><b>Operadores</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASIGNACION__OPERADORES = eINSTANCE.getAsignacion_Operadores();
+
+		/**
+		 * The meta object literal for the '<em><b>Valor asignacion</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ASIGNACION__VALOR_ASIGNACION = eINSTANCE.getAsignacion_Valor_asignacion();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.EscribirImpl <em>Escribir</em>}' class.
@@ -5174,66 +5698,6 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EClass OPERACION = eINSTANCE.getoperacion();
-
-		/**
-		 * The meta object literal for the '<em><b>Signo op</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute OPERACION__SIGNO_OP = eINSTANCE.getoperacion_Signo_op();
-
-		/**
-		 * The meta object literal for the '<em><b>Op izq</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OPERACION__OP_IZQ = eINSTANCE.getoperacion_Op_izq();
-
-		/**
-		 * The meta object literal for the '<em><b>Op der</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OPERACION__OP_DER = eINSTANCE.getoperacion_Op_der();
-
-		/**
-		 * The meta object literal for the '{@link diagramapseudocodigo.impl.operando_izqImpl <em>operando izq</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see diagramapseudocodigo.impl.operando_izqImpl
-		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getoperando_izq()
-		 * @generated
-		 */
-		EClass OPERANDO_IZQ = eINSTANCE.getoperando_izq();
-
-		/**
-		 * The meta object literal for the '<em><b>Oper izq</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OPERANDO_IZQ__OPER_IZQ = eINSTANCE.getoperando_izq_Oper_izq();
-
-		/**
-		 * The meta object literal for the '{@link diagramapseudocodigo.impl.operando_derImpl <em>operando der</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see diagramapseudocodigo.impl.operando_derImpl
-		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getoperando_der()
-		 * @generated
-		 */
-		EClass OPERANDO_DER = eINSTANCE.getoperando_der();
-
-		/**
-		 * The meta object literal for the '<em><b>Oper der</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OPERANDO_DER__OPER_DER = eINSTANCE.getoperando_der_Oper_der();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.ValorBooleanoImpl <em>Valor Booleano</em>}' class.
@@ -5484,12 +5948,12 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EAttribute INTERNAS__NOMBRE = eINSTANCE.getInternas_Nombre();
 
 		/**
-		 * The meta object literal for the '<em><b>Operador</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Operadores</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INTERNAS__OPERADOR = eINSTANCE.getInternas_Operador();
+		EAttribute INTERNAS__OPERADORES = eINSTANCE.getInternas_Operadores();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.segunImpl <em>segun</em>}' class.
@@ -5554,14 +6018,6 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EClass CASO = eINSTANCE.getCaso();
 
 		/**
-		 * The meta object literal for the '<em><b>Operador</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CASO__OPERADOR = eINSTANCE.getCaso_Operador();
-
-		/**
 		 * The meta object literal for the '<em><b>Devuelve</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5576,6 +6032,14 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CASO__SENTENCIAS = eINSTANCE.getCaso_Sentencias();
+
+		/**
+		 * The meta object literal for the '<em><b>Operador</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CASO__OPERADOR = eINSTANCE.getCaso_Operador();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.unariaImpl <em>unaria</em>}' class.
@@ -5908,42 +6372,6 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EAttribute CAMPO_REGISTRO__NOMBRE_CAMPO = eINSTANCE.getCampoRegistro_Nombre_campo();
 
 		/**
-		 * The meta object literal for the '{@link diagramapseudocodigo.impl.AsignacionNormalImpl <em>Asignacion Normal</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see diagramapseudocodigo.impl.AsignacionNormalImpl
-		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getAsignacionNormal()
-		 * @generated
-		 */
-		EClass ASIGNACION_NORMAL = eINSTANCE.getAsignacionNormal();
-
-		/**
-		 * The meta object literal for the '<em><b>Lvalue</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ASIGNACION_NORMAL__LVALUE = eINSTANCE.getAsignacionNormal_Lvalue();
-
-		/**
-		 * The meta object literal for the '{@link diagramapseudocodigo.impl.AsignacionComplejaImpl <em>Asignacion Compleja</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see diagramapseudocodigo.impl.AsignacionComplejaImpl
-		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getAsignacionCompleja()
-		 * @generated
-		 */
-		EClass ASIGNACION_COMPLEJA = eINSTANCE.getAsignacionCompleja();
-
-		/**
-		 * The meta object literal for the '<em><b>Complejo</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ASIGNACION_COMPLEJA__COMPLEJO = eINSTANCE.getAsignacionCompleja_Complejo();
-
-		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.SubrangoNumericoImpl <em>Subrango Numerico</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6022,12 +6450,20 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EReference VALOR_VECTOR__CAMPO = eINSTANCE.getValorVector_Campo();
 
 		/**
-		 * The meta object literal for the '<em><b>Indice</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Indice Cadena</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VALOR_VECTOR__INDICE = eINSTANCE.getValorVector_Indice();
+		EAttribute VALOR_VECTOR__INDICE_CADENA = eINSTANCE.getValorVector_IndiceCadena();
+
+		/**
+		 * The meta object literal for the '<em><b>Indice Numerico</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VALOR_VECTOR__INDICE_NUMERICO = eINSTANCE.getValorVector_IndiceNumerico();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.ValorMatrizImpl <em>Valor Matriz</em>}' class.
@@ -6048,20 +6484,28 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EAttribute VALOR_MATRIZ__NOMBRE_MATRIZ = eINSTANCE.getValorMatriz_Nombre_matriz();
 
 		/**
-		 * The meta object literal for the '<em><b>Indices</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference VALOR_MATRIZ__INDICES = eINSTANCE.getValorMatriz_Indices();
-
-		/**
 		 * The meta object literal for the '<em><b>Campo</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference VALOR_MATRIZ__CAMPO = eINSTANCE.getValorMatriz_Campo();
+
+		/**
+		 * The meta object literal for the '<em><b>Indices Cadena</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VALOR_MATRIZ__INDICES_CADENA = eINSTANCE.getValorMatriz_IndicesCadena();
+
+		/**
+		 * The meta object literal for the '<em><b>Indices Numericos</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VALOR_MATRIZ__INDICES_NUMERICOS = eINSTANCE.getValorMatriz_IndicesNumericos();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.ComentarioImpl <em>Comentario</em>}' class.
@@ -6124,6 +6568,278 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FUNCION_FICHERO_CERRAR__VARIABLE = eINSTANCE.getFuncionFicheroCerrar_Variable();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.SumaImpl <em>Suma</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.SumaImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getSuma()
+		 * @generated
+		 */
+		EClass SUMA = eINSTANCE.getSuma();
+
+		/**
+		 * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SUMA__LEFT = eINSTANCE.getSuma_Left();
+
+		/**
+		 * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SUMA__RIGHT = eINSTANCE.getSuma_Right();
+
+		/**
+		 * The meta object literal for the '<em><b>Signo op</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SUMA__SIGNO_OP = eINSTANCE.getSuma_Signo_op();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.RestaImpl <em>Resta</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.RestaImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getResta()
+		 * @generated
+		 */
+		EClass RESTA = eINSTANCE.getResta();
+
+		/**
+		 * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RESTA__LEFT = eINSTANCE.getResta_Left();
+
+		/**
+		 * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RESTA__RIGHT = eINSTANCE.getResta_Right();
+
+		/**
+		 * The meta object literal for the '<em><b>Signo op</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RESTA__SIGNO_OP = eINSTANCE.getResta_Signo_op();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.MultiplicacionImpl <em>Multiplicacion</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.MultiplicacionImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getMultiplicacion()
+		 * @generated
+		 */
+		EClass MULTIPLICACION = eINSTANCE.getMultiplicacion();
+
+		/**
+		 * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MULTIPLICACION__LEFT = eINSTANCE.getMultiplicacion_Left();
+
+		/**
+		 * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MULTIPLICACION__RIGHT = eINSTANCE.getMultiplicacion_Right();
+
+		/**
+		 * The meta object literal for the '<em><b>Signo op</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MULTIPLICACION__SIGNO_OP = eINSTANCE.getMultiplicacion_Signo_op();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.DivisionImpl <em>Division</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.DivisionImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getDivision()
+		 * @generated
+		 */
+		EClass DIVISION = eINSTANCE.getDivision();
+
+		/**
+		 * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DIVISION__LEFT = eINSTANCE.getDivision_Left();
+
+		/**
+		 * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DIVISION__RIGHT = eINSTANCE.getDivision_Right();
+
+		/**
+		 * The meta object literal for the '<em><b>Signo op</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DIVISION__SIGNO_OP = eINSTANCE.getDivision_Signo_op();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.OrImpl <em>Or</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.OrImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getOr()
+		 * @generated
+		 */
+		EClass OR = eINSTANCE.getOr();
+
+		/**
+		 * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OR__LEFT = eINSTANCE.getOr_Left();
+
+		/**
+		 * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OR__RIGHT = eINSTANCE.getOr_Right();
+
+		/**
+		 * The meta object literal for the '<em><b>Signo op</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OR__SIGNO_OP = eINSTANCE.getOr_Signo_op();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.AndImpl <em>And</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.AndImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getAnd()
+		 * @generated
+		 */
+		EClass AND = eINSTANCE.getAnd();
+
+		/**
+		 * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference AND__LEFT = eINSTANCE.getAnd_Left();
+
+		/**
+		 * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference AND__RIGHT = eINSTANCE.getAnd_Right();
+
+		/**
+		 * The meta object literal for the '<em><b>Signo op</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute AND__SIGNO_OP = eINSTANCE.getAnd_Signo_op();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.ComparacionImpl <em>Comparacion</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.ComparacionImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getComparacion()
+		 * @generated
+		 */
+		EClass COMPARACION = eINSTANCE.getComparacion();
+
+		/**
+		 * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPARACION__LEFT = eINSTANCE.getComparacion_Left();
+
+		/**
+		 * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPARACION__RIGHT = eINSTANCE.getComparacion_Right();
+
+		/**
+		 * The meta object literal for the '<em><b>Signo op</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPARACION__SIGNO_OP = eINSTANCE.getComparacion_Signo_op();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.IgualdadImpl <em>Igualdad</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.IgualdadImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getIgualdad()
+		 * @generated
+		 */
+		EClass IGUALDAD = eINSTANCE.getIgualdad();
+
+		/**
+		 * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IGUALDAD__LEFT = eINSTANCE.getIgualdad_Left();
+
+		/**
+		 * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IGUALDAD__RIGHT = eINSTANCE.getIgualdad_Right();
+
+		/**
+		 * The meta object literal for the '<em><b>Signo op</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IGUALDAD__SIGNO_OP = eINSTANCE.getIgualdad_Signo_op();
 
 		/**
 		 * The meta object literal for the '<em><b>Nombre</b></em>' attribute feature.

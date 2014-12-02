@@ -13,7 +13,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link diagramapseudocodigo.LlamadaFuncion#getNombre <em>Nombre</em>}</li>
- *   <li>{@link diagramapseudocodigo.LlamadaFuncion#getOperador <em>Operador</em>}</li>
+ *   <li>{@link diagramapseudocodigo.LlamadaFuncion#getOperadores <em>Operadores</em>}</li>
  * </ul>
  * </p>
  *
@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface LlamadaFuncion extends Sentencias, valor {
+public interface LlamadaFuncion extends Sentencias, valor, operacion {
 	/**
 	 * Returns the value of the '<em><b>Nombre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -49,19 +49,19 @@ public interface LlamadaFuncion extends Sentencias, valor {
 	void setNombre(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Operador</b></em>' containment reference list.
-	 * The list contents are of type {@link diagramapseudocodigo.valor}.
+	 * Returns the value of the '<em><b>Operadores</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Operador</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Operadores</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Operador</em>' containment reference list.
-	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getLlamadaFuncion_Operador()
-	 * @model containment="true"
+	 * @return the value of the '<em>Operadores</em>' attribute list.
+	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getLlamadaFuncion_Operadores()
+	 * @model
 	 * @generated
 	 */
-	EList<valor> getOperador();
+	EList<String> getOperadores();
 
 } // LlamadaFuncion

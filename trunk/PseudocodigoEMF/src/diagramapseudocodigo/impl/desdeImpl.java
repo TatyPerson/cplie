@@ -2,7 +2,7 @@
  */
 package diagramapseudocodigo.impl;
 
-import diagramapseudocodigo.AsignacionNormal;
+import diagramapseudocodigo.Asignacion;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.desde;
 import org.eclipse.emf.common.notify.Notification;
@@ -33,7 +33,7 @@ public class desdeImpl extends BloqueImpl implements desde {
 	 * @generated
 	 * @ordered
 	 */
-	protected AsignacionNormal asignacion;
+	protected Asignacion asignacion;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -59,7 +59,7 @@ public class desdeImpl extends BloqueImpl implements desde {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AsignacionNormal getAsignacion() {
+	public Asignacion getAsignacion() {
 		return asignacion;
 	}
 
@@ -68,8 +68,8 @@ public class desdeImpl extends BloqueImpl implements desde {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetAsignacion(AsignacionNormal newAsignacion, NotificationChain msgs) {
-		AsignacionNormal oldAsignacion = asignacion;
+	public NotificationChain basicSetAsignacion(Asignacion newAsignacion, NotificationChain msgs) {
+		Asignacion oldAsignacion = asignacion;
 		asignacion = newAsignacion;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.DESDE__ASIGNACION, oldAsignacion, newAsignacion);
@@ -83,7 +83,7 @@ public class desdeImpl extends BloqueImpl implements desde {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAsignacion(AsignacionNormal newAsignacion) {
+	public void setAsignacion(Asignacion newAsignacion) {
 		if (newAsignacion != asignacion) {
 			NotificationChain msgs = null;
 			if (asignacion != null)
@@ -134,7 +134,7 @@ public class desdeImpl extends BloqueImpl implements desde {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.DESDE__ASIGNACION:
-				setAsignacion((AsignacionNormal)newValue);
+				setAsignacion((Asignacion)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -149,7 +149,7 @@ public class desdeImpl extends BloqueImpl implements desde {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.DESDE__ASIGNACION:
-				setAsignacion((AsignacionNormal)null);
+				setAsignacion((Asignacion)null);
 				return;
 		}
 		super.eUnset(featureID);

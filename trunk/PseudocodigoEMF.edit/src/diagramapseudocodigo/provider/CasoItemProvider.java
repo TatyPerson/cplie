@@ -6,13 +6,10 @@ package diagramapseudocodigo.provider;
 import diagramapseudocodigo.Caso;
 import diagramapseudocodigo.DiagramapseudocodigoFactory;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
-
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -75,9 +72,9 @@ public class CasoItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR);
 			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CASO__DEVUELVE);
 			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS);
+			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR);
 		}
 		return childrenFeatures;
 	}
@@ -129,9 +126,9 @@ public class CasoItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Caso.class)) {
-			case DiagramapseudocodigoPackage.CASO__OPERADOR:
 			case DiagramapseudocodigoPackage.CASO__DEVUELVE:
 			case DiagramapseudocodigoPackage.CASO__SENTENCIAS:
+			case DiagramapseudocodigoPackage.CASO__OPERADOR:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -151,56 +148,6 @@ public class CasoItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
-				 DiagramapseudocodigoFactory.eINSTANCE.createVariableID()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
-				 DiagramapseudocodigoFactory.eINSTANCE.createConstCadena()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
-				 DiagramapseudocodigoFactory.eINSTANCE.createNumeroEntero()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
-				 DiagramapseudocodigoFactory.eINSTANCE.createNumeroDecimal()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
-				 DiagramapseudocodigoFactory.eINSTANCE.createValorBooleano()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
-				 DiagramapseudocodigoFactory.eINSTANCE.createCaracter()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
-				 DiagramapseudocodigoFactory.eINSTANCE.createValorComplejo()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
-				 DiagramapseudocodigoFactory.eINSTANCE.createValorRegistro()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
-				 DiagramapseudocodigoFactory.eINSTANCE.createValorVector()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
-				 DiagramapseudocodigoFactory.eINSTANCE.createValorMatriz()));
-
-		newChildDescriptors.add
-			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.CASO__DEVUELVE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createDevolver()));
 
@@ -208,6 +155,21 @@ public class CasoItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
 				 DiagramapseudocodigoFactory.eINSTANCE.createLlamadaFuncion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createVariableID()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createConstCadena()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNumeroEntero()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -223,6 +185,21 @@ public class CasoItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
 				 DiagramapseudocodigoFactory.eINSTANCE.createLeer()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNumeroDecimal()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createoperacion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorBooleano()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -252,6 +229,16 @@ public class CasoItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createCaracter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createInternas()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
 				 DiagramapseudocodigoFactory.eINSTANCE.createsegun()));
 
 		newChildDescriptors.add
@@ -263,16 +250,6 @@ public class CasoItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
 				 DiagramapseudocodigoFactory.eINSTANCE.createValorRegistro()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
-				 DiagramapseudocodigoFactory.eINSTANCE.createAsignacionNormal()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
-				 DiagramapseudocodigoFactory.eINSTANCE.createAsignacionCompleja()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -293,6 +270,151 @@ public class CasoItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
 				 DiagramapseudocodigoFactory.eINSTANCE.createFuncionFicheroCerrar()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createSuma()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createResta()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createMultiplicacion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createDivision()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createOr()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createAnd()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createComparacion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createIgualdad()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createLlamadaFuncion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createVariableID()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createConstCadena()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNumeroEntero()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNumeroDecimal()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createoperacion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorBooleano()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createCaracter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createInternas()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorComplejo()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorRegistro()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorVector()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorMatriz()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createSuma()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createResta()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createMultiplicacion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createDivision()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createOr()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createAnd()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createComparacion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createIgualdad()));
 	}
 
 	/**
@@ -307,8 +429,8 @@ public class CasoItemProvider
 		Object childObject = child;
 
 		boolean qualify =
-			childFeature == DiagramapseudocodigoPackage.Literals.CASO__OPERADOR ||
-			childFeature == DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS;
+			childFeature == DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS ||
+			childFeature == DiagramapseudocodigoPackage.Literals.CASO__OPERADOR;
 
 		if (qualify) {
 			return getString
