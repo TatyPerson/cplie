@@ -5,7 +5,7 @@ package diagramapseudocodigo.impl;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Matriz;
 import diagramapseudocodigo.Tipo;
-import diagramapseudocodigo.valor;
+import diagramapseudocodigo.operacion;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -60,7 +60,7 @@ public class MatrizImpl extends TipoComplejoImpl implements Matriz {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<valor> valor;
+	protected EList<operacion> valor;
 
 	/**
 	 * The cached value of the '{@link #getTipo() <em>Tipo</em>}' containment reference.
@@ -117,9 +117,9 @@ public class MatrizImpl extends TipoComplejoImpl implements Matriz {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<valor> getValor() {
+	public EList<operacion> getValor() {
 		if (valor == null) {
-			valor = new EObjectContainmentEList<valor>(valor.class, this, DiagramapseudocodigoPackage.MATRIZ__VALOR);
+			valor = new EObjectContainmentEList<operacion>(operacion.class, this, DiagramapseudocodigoPackage.MATRIZ__VALOR);
 		}
 		return valor;
 	}
@@ -215,7 +215,7 @@ public class MatrizImpl extends TipoComplejoImpl implements Matriz {
 				return;
 			case DiagramapseudocodigoPackage.MATRIZ__VALOR:
 				getValor().clear();
-				getValor().addAll((Collection<? extends valor>)newValue);
+				getValor().addAll((Collection<? extends operacion>)newValue);
 				return;
 			case DiagramapseudocodigoPackage.MATRIZ__TIPO:
 				setTipo((Tipo)newValue);

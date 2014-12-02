@@ -5,20 +5,14 @@ package diagramapseudocodigo.impl;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.FuncionFicheroAbrir;
 import diagramapseudocodigo.ModoApertura;
-import diagramapseudocodigo.Operador;
-
+import diagramapseudocodigo.operacion;
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -65,7 +59,7 @@ public class FuncionFicheroAbrirImpl extends SentenciasImpl implements FuncionFi
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Operador> variable;
+	protected EList<operacion> variable;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -112,9 +106,9 @@ public class FuncionFicheroAbrirImpl extends SentenciasImpl implements FuncionFi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Operador> getVariable() {
+	public EList<operacion> getVariable() {
 		if (variable == null) {
-			variable = new EObjectContainmentEList<Operador>(Operador.class, this, DiagramapseudocodigoPackage.FUNCION_FICHERO_ABRIR__VARIABLE);
+			variable = new EObjectContainmentEList<operacion>(operacion.class, this, DiagramapseudocodigoPackage.FUNCION_FICHERO_ABRIR__VARIABLE);
 		}
 		return variable;
 	}
@@ -163,7 +157,7 @@ public class FuncionFicheroAbrirImpl extends SentenciasImpl implements FuncionFi
 				return;
 			case DiagramapseudocodigoPackage.FUNCION_FICHERO_ABRIR__VARIABLE:
 				getVariable().clear();
-				getVariable().addAll((Collection<? extends Operador>)newValue);
+				getVariable().addAll((Collection<? extends operacion>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

@@ -144,14 +144,6 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 				return createoperacionAdapter();
 			}
 			@Override
-			public Adapter caseoperando_izq(operando_izq object) {
-				return createoperando_izqAdapter();
-			}
-			@Override
-			public Adapter caseoperando_der(operando_der object) {
-				return createoperando_derAdapter();
-			}
-			@Override
 			public Adapter caseValorBooleano(ValorBooleano object) {
 				return createValorBooleanoAdapter();
 			}
@@ -280,14 +272,6 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 				return createCampoRegistroAdapter();
 			}
 			@Override
-			public Adapter caseAsignacionNormal(AsignacionNormal object) {
-				return createAsignacionNormalAdapter();
-			}
-			@Override
-			public Adapter caseAsignacionCompleja(AsignacionCompleja object) {
-				return createAsignacionComplejaAdapter();
-			}
-			@Override
 			public Adapter caseSubrangoNumerico(SubrangoNumerico object) {
 				return createSubrangoNumericoAdapter();
 			}
@@ -314,6 +298,38 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseFuncionFicheroCerrar(FuncionFicheroCerrar object) {
 				return createFuncionFicheroCerrarAdapter();
+			}
+			@Override
+			public Adapter caseSuma(Suma object) {
+				return createSumaAdapter();
+			}
+			@Override
+			public Adapter caseResta(Resta object) {
+				return createRestaAdapter();
+			}
+			@Override
+			public Adapter caseMultiplicacion(Multiplicacion object) {
+				return createMultiplicacionAdapter();
+			}
+			@Override
+			public Adapter caseDivision(Division object) {
+				return createDivisionAdapter();
+			}
+			@Override
+			public Adapter caseOr(Or object) {
+				return createOrAdapter();
+			}
+			@Override
+			public Adapter caseAnd(And object) {
+				return createAndAdapter();
+			}
+			@Override
+			public Adapter caseComparacion(Comparacion object) {
+				return createComparacionAdapter();
+			}
+			@Override
+			public Adapter caseIgualdad(Igualdad object) {
+				return createIgualdadAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -598,34 +614,6 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createoperacionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.operando_izq <em>operando izq</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see diagramapseudocodigo.operando_izq
-	 * @generated
-	 */
-	public Adapter createoperando_izqAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.operando_der <em>operando der</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see diagramapseudocodigo.operando_der
-	 * @generated
-	 */
-	public Adapter createoperando_derAdapter() {
 		return null;
 	}
 
@@ -1078,34 +1066,6 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.AsignacionNormal <em>Asignacion Normal</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see diagramapseudocodigo.AsignacionNormal
-	 * @generated
-	 */
-	public Adapter createAsignacionNormalAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.AsignacionCompleja <em>Asignacion Compleja</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see diagramapseudocodigo.AsignacionCompleja
-	 * @generated
-	 */
-	public Adapter createAsignacionComplejaAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.SubrangoNumerico <em>Subrango Numerico</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1200,6 +1160,118 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFuncionFicheroCerrarAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.Suma <em>Suma</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.Suma
+	 * @generated
+	 */
+	public Adapter createSumaAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.Resta <em>Resta</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.Resta
+	 * @generated
+	 */
+	public Adapter createRestaAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.Multiplicacion <em>Multiplicacion</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.Multiplicacion
+	 * @generated
+	 */
+	public Adapter createMultiplicacionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.Division <em>Division</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.Division
+	 * @generated
+	 */
+	public Adapter createDivisionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.Or <em>Or</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.Or
+	 * @generated
+	 */
+	public Adapter createOrAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.And <em>And</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.And
+	 * @generated
+	 */
+	public Adapter createAndAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.Comparacion <em>Comparacion</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.Comparacion
+	 * @generated
+	 */
+	public Adapter createComparacionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.Igualdad <em>Igualdad</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.Igualdad
+	 * @generated
+	 */
+	public Adapter createIgualdadAdapter() {
 		return null;
 	}
 

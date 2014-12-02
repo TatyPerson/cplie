@@ -79,7 +79,7 @@ public class NumeroDecimalItemProvider
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -103,8 +103,10 @@ public class NumeroDecimalItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		NumeroDecimal numeroDecimal = (NumeroDecimal)object;
-		return getString("_UI_NumeroDecimal_type") + " " + numeroDecimal.getValor();
+		String label = ((NumeroDecimal)object).getValor();
+		return label == null || label.length() == 0 ?
+			getString("_UI_NumeroDecimal_type") :
+			getString("_UI_NumeroDecimal_type") + " " + label;
 	}
 
 	/**

@@ -5,6 +5,7 @@ package diagramapseudocodigo.impl;
 import diagramapseudocodigo.Constantes;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Variable;
+import diagramapseudocodigo.operacion;
 import diagramapseudocodigo.valor;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -45,7 +46,7 @@ public class ConstantesImpl extends MinimalEObjectImpl.Container implements Cons
 	 * @generated
 	 * @ordered
 	 */
-	protected valor valor;
+	protected operacion valor;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -113,7 +114,7 @@ public class ConstantesImpl extends MinimalEObjectImpl.Container implements Cons
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public valor getValor() {
+	public operacion getValor() {
 		return valor;
 	}
 
@@ -122,8 +123,8 @@ public class ConstantesImpl extends MinimalEObjectImpl.Container implements Cons
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetValor(valor newValor, NotificationChain msgs) {
-		valor oldValor = valor;
+	public NotificationChain basicSetValor(operacion newValor, NotificationChain msgs) {
+		operacion oldValor = valor;
 		valor = newValor;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.CONSTANTES__VALOR, oldValor, newValor);
@@ -137,7 +138,7 @@ public class ConstantesImpl extends MinimalEObjectImpl.Container implements Cons
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValor(valor newValor) {
+	public void setValor(operacion newValor) {
 		if (newValor != valor) {
 			NotificationChain msgs = null;
 			if (valor != null)
@@ -196,7 +197,7 @@ public class ConstantesImpl extends MinimalEObjectImpl.Container implements Cons
 				setVariable((Variable)newValue);
 				return;
 			case DiagramapseudocodigoPackage.CONSTANTES__VALOR:
-				setValor((valor)newValue);
+				setValor((operacion)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -214,7 +215,7 @@ public class ConstantesImpl extends MinimalEObjectImpl.Container implements Cons
 				setVariable((Variable)null);
 				return;
 			case DiagramapseudocodigoPackage.CONSTANTES__VALOR:
-				setValor((valor)null);
+				setValor((operacion)null);
 				return;
 		}
 		super.eUnset(featureID);

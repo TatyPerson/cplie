@@ -14,9 +14,9 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link diagramapseudocodigo.Caso#getOperador <em>Operador</em>}</li>
  *   <li>{@link diagramapseudocodigo.Caso#getDevuelve <em>Devuelve</em>}</li>
  *   <li>{@link diagramapseudocodigo.Caso#getSentencias <em>Sentencias</em>}</li>
+ *   <li>{@link diagramapseudocodigo.Caso#getOperador <em>Operador</em>}</li>
  * </ul>
  * </p>
  *
@@ -25,32 +25,6 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Caso extends EObject {
-
-	/**
-	 * Returns the value of the '<em><b>Operador</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Operador</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Operador</em>' containment reference.
-	 * @see #setOperador(Operador)
-	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getCaso_Operador()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
-	Operador getOperador();
-
-	/**
-	 * Sets the value of the '{@link diagramapseudocodigo.Caso#getOperador <em>Operador</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Operador</em>' containment reference.
-	 * @see #getOperador()
-	 * @generated
-	 */
-	void setOperador(Operador value);
 
 	/**
 	 * Returns the value of the '<em><b>Devuelve</b></em>' containment reference.
@@ -93,4 +67,30 @@ public interface Caso extends EObject {
 	 * @generated
 	 */
 	EList<Sentencias> getSentencias();
+
+	/**
+	 * Returns the value of the '<em><b>Operador</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Operador</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Operador</em>' containment reference.
+	 * @see #setOperador(operacion)
+	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getCaso_Operador()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	operacion getOperador();
+
+	/**
+	 * Sets the value of the '{@link diagramapseudocodigo.Caso#getOperador <em>Operador</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Operador</em>' containment reference.
+	 * @see #getOperador()
+	 * @generated
+	 */
+	void setOperador(operacion value);
 } // Caso

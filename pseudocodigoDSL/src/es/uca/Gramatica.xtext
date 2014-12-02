@@ -16,9 +16,6 @@ Codigo returns Codigo:
 	(funcion+=Subproceso (funcion+=Subproceso)* )?
 	tiene=Inicio
 	'fin_algoritmo';
-
-Comentario returns Comentario:
-	'//'mensaje= COMENT;
 	
 TipoComplejo returns TipoComplejo:
 	Vector | Matriz | Registro | Archivo | Enumerado | Subrango;
@@ -30,32 +27,29 @@ Subproceso returns Subproceso:
 terminal ML_COMMENT : '/*' (!'*') -> '*/' ;
 terminal SL_COMMENT : '//' !('\n'|'\r')* ('\r'? '\n')? ;
 
+Comentario returns Comentario:
+	{Comentario} ML_COMMENT | SL_COMMENT mensaje= COMENT;
+
 Sentencias returns Sentencias:
-	LlamadaFuncion | Asignacion | Escribir | Leer | negacion | Bloque | ValorComplejo | FuncionFicheroAbrir | FuncionFicheroCerrar;
+	 Escribir | Leer | /* negacion | */ Bloque | FuncionFicheroAbrir | FuncionFicheroCerrar | Asignacion | Primaria;
 
 Bloque returns Bloque:
 	Si | mientras | repetir | desde | segun;
 
 Declaracion returns Declaracion:
 	DeclaracionVariable | DeclaracionPropia;
-
-Internas returns Internas:
-	nombre=NombreInterna
-	'('
-		(operador+=Operador ( ',' operador+=Operador)* )
-	')';
 	
 FuncionFicheroAbrir returns FuncionFicheroAbrir:
 	'abrir'
 	'('
-		(variable+=VariableID ',' modo=ModoApertura ',' variable+=Operador)
+		(variable+=Primaria ',' modo=ModoApertura ',' variable+=Primaria)
 	')'
 ;
 
 FuncionFicheroCerrar returns FuncionFicheroCerrar:
 	'cerrar'
 	'('
-		(variable=VariableID)
+		(variable=Primaria)
 	')'
 ;
 	
@@ -67,29 +61,22 @@ NombreInterna returns NombreInterna:
 	'cos' | 'cuadrado' | 'exp' | 'ln' | 'log' | 'sen' | 'sqrt' | 'longitud' | 'concatena';
 
 
-Operador returns Operador:
-	VariableID | ConstCadena | Caracter | NumeroEntero | NumeroDecimal | ValorBooleano | ValorComplejo;
+INTEGER returns ecore::EInt:
+	INT;
+	 
+terminal EXPONENT: ('e'|'E') ('+'|'-')? ('0'..'9')+ ;
 
-Caracter returns Caracter:
-	contenido=CAR;
+terminal FLOAT:   
+	('0'..'9')+ '.' ('0'..'9')* EXPONENT?
+    |   '.' ('0'..'9')+ EXPONENT?
+    |   ('0'..'9')+ EXPONENT
+    ;
 
-valor returns valor:
-	LlamadaFuncion | VariableID | ConstCadena | NumeroEntero | NumeroDecimal | operacion | ValorBooleano | Caracter | Internas | unaria | ValorComplejo;
-
-valoresLeer returns Operador:
-	VariableID | ValorVector | ValorMatriz | ValorRegistro;
-
-ValorComplejo returns ValorComplejo:
-	ValorRegistro | ValorVector | ValorMatriz;
+//ValorRegistro returns ValorRegistro:
+//	nombre_registro=EString '.' (campo+=CampoRegistro ('.' campo+=CampoRegistro)* );
 	
-ValorMatriz returns ValorMatriz:
-	((nombre_matriz=EString)'['(indices+=NumeroEntero | indices+=VariableID)']['(indices+=NumeroEntero | indices+=VariableID)']') ('.' (campo+=CampoRegistro) )?;
-
-ValorRegistro returns ValorRegistro:
-	nombre_registro=EString '.' (campo+=CampoRegistro ('.' campo+=CampoRegistro)* );
-	
-ValorVector returns ValorVector:
-	((nombre_vector=EString)'['(indice=NumeroEntero | indice=VariableID)']') ('.' (campo+=CampoRegistro) )?;
+//ValorVector returns ValorVector:
+//	((nombre_vector=EString)'['(indice=NumeroEntero | indice=VariableID)']') ('.' (campo+=CampoRegistro) )?;
 	
 CampoRegistro returns CampoRegistro:
 	nombre_campo=EString;
@@ -104,13 +91,13 @@ TipoExistente returns TipoExistente:
 	tipo=TipoVariable;
 
 Constantes returns Constantes:
-	variable=Variable '=' valor=valor;
+	variable=Variable '=' valor=Primaria;
 
 Vector returns Vector:
-	'vector ' '['(valor=NumeroEntero | valor=VariableID)']' 'de'  tipo=Tipo ': ' nombre=EString;
+	'vector' '['(valor=Primaria)']' 'de'  tipo=Tipo ': ' nombre=EString;
 
 Matriz returns Matriz:
-	'matriz ' '['(valor+=NumeroEntero | valor+=VariableID)']['(valor+=NumeroEntero | valor+=VariableID)']' 'de' tipo=Tipo ': ' nombre=EString;
+	'matriz' '['(valor+=Primaria)']['(valor+=Primaria)']' 'de' tipo=Tipo ': ' nombre=EString;
 	
 
 Registro returns Registro:
@@ -123,16 +110,16 @@ Archivo returns Archivo:
 	
 
 Enumerado returns Enumerado:
-	nombre=EString '=' '{'(valor+=valor (',' valor+=valor )* )'}';
+	nombre=EString '=' '{'(valor+=Primaria (',' valor+=Primaria )* )'}';
 	
 Subrango returns Subrango:
 	SubrangoNumerico | SubrangoEnumerado;
 
 SubrangoNumerico returns SubrangoNumerico:
-	nombre=EString '=' limite_inf=EInt '..' limite_sup=EInt;
+	nombre=EString '=' limite_inf=INT '..' limite_sup=INT;
 	
 SubrangoEnumerado returns SubrangoEnumerado:
-	nombre=EString "=" limite_inf=EString '..' limite_sup=EString;
+	nombre=EString '=' limite_inf=EString '..' limite_sup=EString;
 
 Inicio returns Inicio:
 	'principal'
@@ -154,41 +141,33 @@ DeclaracionPropia returns DeclaracionPropia:
 	tipo=EString ': '
 	variable+=Variable (',' variable+=Variable)*;
 
-LlamadaFuncion returns LlamadaFuncion:
-	nombre=EString
-	'('
-		(operador+=valor ( "," operador+=valor)* )?
-	')';
-
 Asignacion returns Asignacion:
-	 AsignacionNormal | AsignacionCompleja;
-	
-AsignacionNormal returns AsignacionNormal:
-	 lvalue=EString
+	// operadores+=Primaria
+	valor_asignacion=EString
 //	 Mat+=MAT*
 	 '='
-	operador=valor;
+	operadores=operacion;
 
-AsignacionCompleja returns AsignacionCompleja:
-	complejo=ValorComplejo
+//AsignacionCompleja returns AsignacionCompleja:
+//	operadores+=Primaria
 //	Mat+=MAT*
-	 '='
-	operador=valor;
+//	 '='
+//	operadores+=Primaria;
 
 Escribir returns Escribir:
 	'escribir'
 	'('
-		 operador+=Operador ( "," operador+=Operador)* 
+		 operador+=Primaria ( "," operador+=Primaria | operador+=operacion)* 
 	')';
 
 Leer returns Leer:
 	'leer'
 	'('
-		variable=valoresLeer
+		variable=Primaria
 	')';
 
 Si returns Si:
-	'si'valor=valor 'entonces'
+	'si'valor=operacion 'entonces'
 		(sentencias+=Sentencias ( sentencias+=Sentencias)* )?
 		(devuelve=Devolver)?
 	(sino=Sino)?
@@ -196,52 +175,50 @@ Si returns Si:
 
 mientras returns mientras:
 	'mientras'
-	valor=valor 'hacer'
+	valor=operacion 'hacer'
 		(sentencias+=Sentencias ( sentencias+=Sentencias)*  )?
 	'fin_mientras';
 
 repetir returns repetir:
 	'repetir'
 		(sentencias+=Sentencias ( sentencias+=Sentencias)*)?
-	 'hasta_que' valor=valor;
+	 'hasta_que' valor=operacion;
 
 desde returns desde:
-	'desde' asignacion=AsignacionNormal 'hasta' valor=valor 'hacer'
+	'desde' asignacion=Asignacion 'hasta' valor=operacion 'hacer'
 		(sentencias+=Sentencias ( sentencias+=Sentencias)* )?
 	'fin_desde';
 	
 Caso returns Caso:
-	operador=Operador ': ' (sentencias+=Sentencias ( sentencias+=Sentencias )* )?
+	'caso' operador=Primaria ': ' (sentencias+=Sentencias ( sentencias+=Sentencias )* )?
 	(devuelve=Devolver)?
 ;
 	
 segun returns segun:
-	'segun_sea''('valor=valor')''hacer'
+	'segun_sea''('valor=Primaria') hacer'
 		(caso+=Caso ( caso+=Caso )* )?
 		'en_otro_caso:'
 		(sentencias+=Sentencias ( sentencias+=Sentencias )* )?
 		(devuelve=Devolver)?
 	'fin_segun';
 
-negacion returns negacion:
-	nombre=EString
-	ssigno=neg;
+//negacion returns negacion:
+//	nombre=EString
+//	ssigno=neg;
 	
-unaria returns unaria:
-	'('
-	ssigno=neg
-	variable=valor
-	')';
+//unaria returns unaria:
+//	ssigno=neg
+//	variable=Primaria;
 
 TipoVariable returns TipoVariable:
 	'entero' | 'caracter' | 'real' | 'logico' | 'cadena';
 	
 Variable returns Variable:
-	 nombre=EString;
+	 {Variable} nombre=EString;
 //	 Mat+=MAT*;
 
-VariableID returns VariableID:
-	nombre=EString;
+//VariableID returns VariableID:
+//	{VariableID} nombre=EString;
 	//Mat+=MAT*;
 
 terminal CAD: '"' ('a'..'z'|'A'..'Z'|'_'|' '|'!'|'#'|'@'|'%'|'&'|'('|')'|'='|'?'|'\\'|'0'..'9')* '"';
@@ -252,45 +229,83 @@ terminal COMENT: '/*' ('a'..'z'|'A'..'Z'|'_'|' '|'!'|'#'|'@'|'%'|'&'|'('|')'|'='
 //'[' ('a'..'z'|'A'..'Z'|'0'..'9')*('--'|'++')? ']' ;
 
 
-ConstCadena returns ConstCadena:
-	contenido=CAD;
+//ConstCadena returns ConstCadena:
+//	{ConstCadena} contenido=CAD;
 
-NumeroEntero returns NumeroEntero:
-	 valor=EInt;
+//NumeroEntero returns NumeroEntero:
+//	 {NumeroEntero} valor=INTEGER;
 
-NumeroDecimal returns NumeroDecimal:
-	 valor=EFloat;
+//NumeroDecimal returns NumeroDecimal:
+//	 {NumeroDecimal} valor=FLOAT;
 
-ValorBooleano returns ValorBooleano:
-	 valor=booleano;
-
-EInt returns ecore::EInt:
-	'-'? INT;
-
-EFloat returns ecore::EFloat:
-	'-'? INT? '.' INT (('E'|'e') '-'? INT)?;
+//ValorBooleano returns ValorBooleano:
+//	 {ValorBooleano} valor=booleano;
 
 booleano returns booleano:
-	'verdadero' | 'falso'
-	;
-	
-operacion returns operacion:
-	'('
-		op_izq=operando_izq
-		signo_op=signo		
-		op_der=operando_der
-	')';
+	'verdadero' | 'falso';
 
 signo returns signo:
 	('+' | '-' | '*' | '/' | '<' | '>' | '>=' | '<=' | 'y' | 'o' | '==' | '!=')
  /* TODO: implement this rule and an appropriate IValueConverter */;
+ 
+signoOr returns signo:
+	'o';
 
-operando_izq returns operando_izq:
-	 oper_izq=valor;
+signoAnd returns signo:
+	'y';
+	
+signoIgualdad returns signo:
+	'==' | '!=';
+	
+signoComparacion returns signo:
+	'<' | '>' | '>=' | '<=';
 
-operando_der returns operando_der:
-	 oper_der=valor;
+signoSuma returns signo:
+	'+';
+	
+signoResta returns signo:
+	'-';
+	
+signoMultiplicacion returns signo:
+	'*';
+	
+signoDivision returns signo:
+	'/';
 
+operacion returns operacion:
+	Or;
+
+Or returns operacion:
+	And ({Or.left=current} signo_op=signoOr right=And)*;
+
+And returns operacion:
+	Igualdad ({And.left=current} signo_op=signoAnd right=Igualdad)*;
+
+Igualdad returns operacion:
+	Comparacion ({Igualdad.left=current} signo_op=signoIgualdad right=Comparacion)*;
+
+Comparacion returns operacion:
+	SumaResta ({Comparacion.left=current} signo_op=signoComparacion right=SumaResta)*;
+
+SumaResta returns operacion:
+	MultiplicacionDivision (({Suma.left=current} signo_op=signoSuma | {Resta.left=current} signo_op=signoResta) right=MultiplicacionDivision)*;
+
+MultiplicacionDivision returns operacion:
+	Primaria (({Multiplicacion.left=current} signo_op=signoMultiplicacion | {Division.left=current} signo_op=signoDivision) right=Primaria)*;
+
+Primaria returns operacion:
+	' (' operacion ') ' 
+	| {NumeroEntero} valor=INTEGER
+	| {NumeroDecimal} valor=FLOAT
+	| {ConstCadena} contenido=CAD
+	| {Caracter} contenido=CAR
+	| {ValorBooleano} valor=booleano
+	| {VariableID} nombre=EString
+	| {ValorMatriz} ((nombre_matriz=EString)'['(indicesCadena+=EString | indicesNumericos+=INTEGER)']['(indicesCadena+=EString | indicesNumericos+=INTEGER)']') ('.' (campo+=CampoRegistro) )?
+	| {ValorVector} ((nombre_vector=EString)'['(indiceCadena=EString | indiceNumerico=INTEGER)']') ('.' (campo+=CampoRegistro) )?
+	| {ValorRegistro} nombre_registro=EString '.' (campo+=CampoRegistro ('.' campo+=CampoRegistro)* )
+	| {LlamadaFuncion} nombre=EString '(' (operadores+=EString ( "," operadores+=EString)* )? ')'
+	| {Internas} nombre=NombreInterna '(' (operadores+=EString ( ',' operadores+=EString)* ) ')';
 
 Sino returns Sino:
 	{Sino}
@@ -300,7 +315,7 @@ Sino returns Sino:
 
 Devolver returns Devolver:
 	{Devolver}
-	'devolver' devuelve=valor;
+	'devolver' devuelve=Primaria;
 
 neg returns neg:
 	"no" /* TODO: implement this rule and an appropriate IValueConverter */;

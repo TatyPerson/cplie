@@ -4,14 +4,11 @@ package diagramapseudocodigo.impl;
 
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.FuncionFicheroCerrar;
-import diagramapseudocodigo.Operador;
-
+import diagramapseudocodigo.operacion;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -36,7 +33,7 @@ public class FuncionFicheroCerrarImpl extends SentenciasImpl implements FuncionF
 	 * @generated
 	 * @ordered
 	 */
-	protected Operador variable;
+	protected operacion variable;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -62,7 +59,7 @@ public class FuncionFicheroCerrarImpl extends SentenciasImpl implements FuncionF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operador getVariable() {
+	public operacion getVariable() {
 		return variable;
 	}
 
@@ -71,8 +68,8 @@ public class FuncionFicheroCerrarImpl extends SentenciasImpl implements FuncionF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetVariable(Operador newVariable, NotificationChain msgs) {
-		Operador oldVariable = variable;
+	public NotificationChain basicSetVariable(operacion newVariable, NotificationChain msgs) {
+		operacion oldVariable = variable;
 		variable = newVariable;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.FUNCION_FICHERO_CERRAR__VARIABLE, oldVariable, newVariable);
@@ -86,7 +83,7 @@ public class FuncionFicheroCerrarImpl extends SentenciasImpl implements FuncionF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVariable(Operador newVariable) {
+	public void setVariable(operacion newVariable) {
 		if (newVariable != variable) {
 			NotificationChain msgs = null;
 			if (variable != null)
@@ -137,7 +134,7 @@ public class FuncionFicheroCerrarImpl extends SentenciasImpl implements FuncionF
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.FUNCION_FICHERO_CERRAR__VARIABLE:
-				setVariable((Operador)newValue);
+				setVariable((operacion)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -152,7 +149,7 @@ public class FuncionFicheroCerrarImpl extends SentenciasImpl implements FuncionF
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.FUNCION_FICHERO_CERRAR__VARIABLE:
-				setVariable((Operador)null);
+				setVariable((operacion)null);
 				return;
 		}
 		super.eUnset(featureID);

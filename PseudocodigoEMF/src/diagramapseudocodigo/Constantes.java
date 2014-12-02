@@ -59,12 +59,12 @@ public interface Constantes extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Valor</em>' containment reference.
-	 * @see #setValor(valor)
+	 * @see #setValor(operacion)
 	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getConstantes_Valor()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	valor getValor();
+	operacion getValor();
 
 	/**
 	 * Sets the value of the '{@link diagramapseudocodigo.Constantes#getValor <em>Valor</em>}' containment reference.
@@ -74,5 +74,5 @@ public interface Constantes extends EObject {
 	 * @see #getValor()
 	 * @generated
 	 */
-	void setValor(valor value);
+	void setValor(operacion value);
 } // Constantes

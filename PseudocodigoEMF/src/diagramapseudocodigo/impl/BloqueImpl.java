@@ -5,20 +5,14 @@ package diagramapseudocodigo.impl;
 import diagramapseudocodigo.Bloque;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Sentencias;
-import diagramapseudocodigo.valor;
-
+import diagramapseudocodigo.operacion;
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -45,7 +39,7 @@ public abstract class BloqueImpl extends SentenciasImpl implements Bloque {
 	 * @generated
 	 * @ordered
 	 */
-	protected valor valor;
+	protected operacion valor;
 
 	/**
 	 * The cached value of the '{@link #getSentencias() <em>Sentencias</em>}' containment reference list.
@@ -81,7 +75,7 @@ public abstract class BloqueImpl extends SentenciasImpl implements Bloque {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public valor getValor() {
+	public operacion getValor() {
 		return valor;
 	}
 
@@ -90,8 +84,8 @@ public abstract class BloqueImpl extends SentenciasImpl implements Bloque {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetValor(valor newValor, NotificationChain msgs) {
-		valor oldValor = valor;
+	public NotificationChain basicSetValor(operacion newValor, NotificationChain msgs) {
+		operacion oldValor = valor;
 		valor = newValor;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.BLOQUE__VALOR, oldValor, newValor);
@@ -105,7 +99,7 @@ public abstract class BloqueImpl extends SentenciasImpl implements Bloque {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValor(valor newValor) {
+	public void setValor(operacion newValor) {
 		if (newValor != valor) {
 			NotificationChain msgs = null;
 			if (valor != null)
@@ -173,7 +167,7 @@ public abstract class BloqueImpl extends SentenciasImpl implements Bloque {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.BLOQUE__VALOR:
-				setValor((valor)newValue);
+				setValor((operacion)newValue);
 				return;
 			case DiagramapseudocodigoPackage.BLOQUE__SENTENCIAS:
 				getSentencias().clear();
@@ -192,7 +186,7 @@ public abstract class BloqueImpl extends SentenciasImpl implements Bloque {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.BLOQUE__VALOR:
-				setValor((valor)null);
+				setValor((operacion)null);
 				return;
 			case DiagramapseudocodigoPackage.BLOQUE__SENTENCIAS:
 				getSentencias().clear();

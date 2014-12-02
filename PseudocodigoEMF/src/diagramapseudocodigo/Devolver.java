@@ -58,12 +58,12 @@ public interface Devolver extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Devuelve</em>' containment reference.
-	 * @see #setDevuelve(valor)
+	 * @see #setDevuelve(operacion)
 	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getDevolver_Devuelve()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	valor getDevuelve();
+	operacion getDevuelve();
 
 	/**
 	 * Sets the value of the '{@link diagramapseudocodigo.Devolver#getDevuelve <em>Devuelve</em>}' containment reference.
@@ -73,6 +73,6 @@ public interface Devolver extends EObject {
 	 * @see #getDevuelve()
 	 * @generated
 	 */
-	void setDevuelve(valor value);
+	void setDevuelve(operacion value);
 
 } // Devolver

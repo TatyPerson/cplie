@@ -94,6 +94,7 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 			case DiagramapseudocodigoPackage.LLAMADA_FUNCION: {
 				LlamadaFuncion llamadaFuncion = (LlamadaFuncion)theEObject;
 				T result = caseLlamadaFuncion(llamadaFuncion);
+				if (result == null) result = caseoperacion(llamadaFuncion);
 				if (result == null) result = caseSentencias(llamadaFuncion);
 				if (result == null) result = casevalor(llamadaFuncion);
 				if (result == null) result = defaultCase(theEObject);
@@ -103,7 +104,9 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 				VariableID variableID = (VariableID)theEObject;
 				T result = caseVariableID(variableID);
 				if (result == null) result = caseOperador(variableID);
+				if (result == null) result = caseoperacion(variableID);
 				if (result == null) result = casevalor(variableID);
+				if (result == null) result = caseSentencias(variableID);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -117,7 +120,9 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 				ConstCadena constCadena = (ConstCadena)theEObject;
 				T result = caseConstCadena(constCadena);
 				if (result == null) result = caseOperador(constCadena);
+				if (result == null) result = caseoperacion(constCadena);
 				if (result == null) result = casevalor(constCadena);
+				if (result == null) result = caseSentencias(constCadena);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -138,7 +143,9 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 				NumeroEntero numeroEntero = (NumeroEntero)theEObject;
 				T result = caseNumeroEntero(numeroEntero);
 				if (result == null) result = caseOperador(numeroEntero);
+				if (result == null) result = caseoperacion(numeroEntero);
 				if (result == null) result = casevalor(numeroEntero);
+				if (result == null) result = caseSentencias(numeroEntero);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -180,7 +187,9 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 				NumeroDecimal numeroDecimal = (NumeroDecimal)theEObject;
 				T result = caseNumeroDecimal(numeroDecimal);
 				if (result == null) result = caseOperador(numeroDecimal);
+				if (result == null) result = caseoperacion(numeroDecimal);
 				if (result == null) result = casevalor(numeroDecimal);
+				if (result == null) result = caseSentencias(numeroDecimal);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -194,18 +203,7 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 				operacion operacion = (operacion)theEObject;
 				T result = caseoperacion(operacion);
 				if (result == null) result = casevalor(operacion);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DiagramapseudocodigoPackage.OPERANDO_IZQ: {
-				operando_izq operando_izq = (operando_izq)theEObject;
-				T result = caseoperando_izq(operando_izq);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DiagramapseudocodigoPackage.OPERANDO_DER: {
-				operando_der operando_der = (operando_der)theEObject;
-				T result = caseoperando_der(operando_der);
+				if (result == null) result = caseSentencias(operacion);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -213,7 +211,9 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 				ValorBooleano valorBooleano = (ValorBooleano)theEObject;
 				T result = caseValorBooleano(valorBooleano);
 				if (result == null) result = caseOperador(valorBooleano);
+				if (result == null) result = caseoperacion(valorBooleano);
 				if (result == null) result = casevalor(valorBooleano);
+				if (result == null) result = caseSentencias(valorBooleano);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -286,14 +286,18 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 				Caracter caracter = (Caracter)theEObject;
 				T result = caseCaracter(caracter);
 				if (result == null) result = caseOperador(caracter);
+				if (result == null) result = caseoperacion(caracter);
 				if (result == null) result = casevalor(caracter);
+				if (result == null) result = caseSentencias(caracter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DiagramapseudocodigoPackage.INTERNAS: {
 				Internas internas = (Internas)theEObject;
 				T result = caseInternas(internas);
+				if (result == null) result = caseoperacion(internas);
 				if (result == null) result = casevalor(internas);
+				if (result == null) result = caseSentencias(internas);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -415,8 +419,9 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 				ValorComplejo valorComplejo = (ValorComplejo)theEObject;
 				T result = caseValorComplejo(valorComplejo);
 				if (result == null) result = caseOperador(valorComplejo);
-				if (result == null) result = caseSentencias(valorComplejo);
+				if (result == null) result = caseoperacion(valorComplejo);
 				if (result == null) result = casevalor(valorComplejo);
+				if (result == null) result = caseSentencias(valorComplejo);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -425,30 +430,15 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 				T result = caseValorRegistro(valorRegistro);
 				if (result == null) result = caseValorComplejo(valorRegistro);
 				if (result == null) result = caseOperador(valorRegistro);
-				if (result == null) result = caseSentencias(valorRegistro);
+				if (result == null) result = caseoperacion(valorRegistro);
 				if (result == null) result = casevalor(valorRegistro);
+				if (result == null) result = caseSentencias(valorRegistro);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DiagramapseudocodigoPackage.CAMPO_REGISTRO: {
 				CampoRegistro campoRegistro = (CampoRegistro)theEObject;
 				T result = caseCampoRegistro(campoRegistro);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DiagramapseudocodigoPackage.ASIGNACION_NORMAL: {
-				AsignacionNormal asignacionNormal = (AsignacionNormal)theEObject;
-				T result = caseAsignacionNormal(asignacionNormal);
-				if (result == null) result = caseAsignacion(asignacionNormal);
-				if (result == null) result = caseSentencias(asignacionNormal);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DiagramapseudocodigoPackage.ASIGNACION_COMPLEJA: {
-				AsignacionCompleja asignacionCompleja = (AsignacionCompleja)theEObject;
-				T result = caseAsignacionCompleja(asignacionCompleja);
-				if (result == null) result = caseAsignacion(asignacionCompleja);
-				if (result == null) result = caseSentencias(asignacionCompleja);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -473,8 +463,9 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 				T result = caseValorVector(valorVector);
 				if (result == null) result = caseValorComplejo(valorVector);
 				if (result == null) result = caseOperador(valorVector);
-				if (result == null) result = caseSentencias(valorVector);
+				if (result == null) result = caseoperacion(valorVector);
 				if (result == null) result = casevalor(valorVector);
+				if (result == null) result = caseSentencias(valorVector);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -483,8 +474,9 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 				T result = caseValorMatriz(valorMatriz);
 				if (result == null) result = caseValorComplejo(valorMatriz);
 				if (result == null) result = caseOperador(valorMatriz);
-				if (result == null) result = caseSentencias(valorMatriz);
+				if (result == null) result = caseoperacion(valorMatriz);
 				if (result == null) result = casevalor(valorMatriz);
+				if (result == null) result = caseSentencias(valorMatriz);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -505,6 +497,78 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 				FuncionFicheroCerrar funcionFicheroCerrar = (FuncionFicheroCerrar)theEObject;
 				T result = caseFuncionFicheroCerrar(funcionFicheroCerrar);
 				if (result == null) result = caseSentencias(funcionFicheroCerrar);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiagramapseudocodigoPackage.SUMA: {
+				Suma suma = (Suma)theEObject;
+				T result = caseSuma(suma);
+				if (result == null) result = caseoperacion(suma);
+				if (result == null) result = casevalor(suma);
+				if (result == null) result = caseSentencias(suma);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiagramapseudocodigoPackage.RESTA: {
+				Resta resta = (Resta)theEObject;
+				T result = caseResta(resta);
+				if (result == null) result = caseoperacion(resta);
+				if (result == null) result = casevalor(resta);
+				if (result == null) result = caseSentencias(resta);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiagramapseudocodigoPackage.MULTIPLICACION: {
+				Multiplicacion multiplicacion = (Multiplicacion)theEObject;
+				T result = caseMultiplicacion(multiplicacion);
+				if (result == null) result = caseoperacion(multiplicacion);
+				if (result == null) result = casevalor(multiplicacion);
+				if (result == null) result = caseSentencias(multiplicacion);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiagramapseudocodigoPackage.DIVISION: {
+				Division division = (Division)theEObject;
+				T result = caseDivision(division);
+				if (result == null) result = caseoperacion(division);
+				if (result == null) result = casevalor(division);
+				if (result == null) result = caseSentencias(division);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiagramapseudocodigoPackage.OR: {
+				Or or = (Or)theEObject;
+				T result = caseOr(or);
+				if (result == null) result = caseoperacion(or);
+				if (result == null) result = casevalor(or);
+				if (result == null) result = caseSentencias(or);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiagramapseudocodigoPackage.AND: {
+				And and = (And)theEObject;
+				T result = caseAnd(and);
+				if (result == null) result = caseoperacion(and);
+				if (result == null) result = casevalor(and);
+				if (result == null) result = caseSentencias(and);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiagramapseudocodigoPackage.COMPARACION: {
+				Comparacion comparacion = (Comparacion)theEObject;
+				T result = caseComparacion(comparacion);
+				if (result == null) result = caseoperacion(comparacion);
+				if (result == null) result = casevalor(comparacion);
+				if (result == null) result = caseSentencias(comparacion);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiagramapseudocodigoPackage.IGUALDAD: {
+				Igualdad igualdad = (Igualdad)theEObject;
+				T result = caseIgualdad(igualdad);
+				if (result == null) result = caseoperacion(igualdad);
+				if (result == null) result = casevalor(igualdad);
+				if (result == null) result = caseSentencias(igualdad);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -794,36 +858,6 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseoperacion(operacion object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>operando izq</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>operando izq</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseoperando_izq(operando_izq object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>operando der</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>operando der</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseoperando_der(operando_der object) {
 		return null;
 	}
 
@@ -1308,36 +1342,6 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Asignacion Normal</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Asignacion Normal</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAsignacionNormal(AsignacionNormal object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Asignacion Compleja</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Asignacion Compleja</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAsignacionCompleja(AsignacionCompleja object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Subrango Numerico</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1439,6 +1443,126 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseFuncionFicheroCerrar(FuncionFicheroCerrar object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Suma</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Suma</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSuma(Suma object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Resta</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Resta</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseResta(Resta object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Multiplicacion</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Multiplicacion</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMultiplicacion(Multiplicacion object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Division</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Division</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDivision(Division object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Or</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Or</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOr(Or object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>And</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>And</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAnd(And object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Comparacion</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Comparacion</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseComparacion(Comparacion object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Igualdad</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Igualdad</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIgualdad(Igualdad object) {
 		return null;
 	}
 

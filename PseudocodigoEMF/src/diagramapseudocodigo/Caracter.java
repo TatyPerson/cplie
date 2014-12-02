@@ -19,7 +19,7 @@ package diagramapseudocodigo;
  * @model
  * @generated
  */
-public interface Caracter extends Operador {
+public interface Caracter extends Operador, operacion {
 	/**
 	 * Returns the value of the '<em><b>Contenido</b></em>' attribute.
 	 * <!-- begin-user-doc -->

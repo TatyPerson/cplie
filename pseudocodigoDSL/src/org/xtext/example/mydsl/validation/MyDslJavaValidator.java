@@ -23,7 +23,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	public static final String INVALID_VAR_NAME = "xtext.workshop.advanced.quickfix.InvalidTypeName";
 	
 	
-	@Check
+	/* @Check
 	//Función que se encarga de comprobar si el limite inferior de un subrango es siempre inferior al superior.
 	protected void checkSubrango(Subrango s) {
 		if(s instanceof SubrangoNumerico) {
@@ -78,7 +78,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			}
 		}
 	}
-	
+	/*
 	@Check
 	//Función que se encarga de comprobar que no existen casos repetidos en la estructura segun_sea
 	protected void checkCasos(segun s) {
@@ -2993,6 +2993,6 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			}
 		}
 		
-	}
+	}*/
 
 }

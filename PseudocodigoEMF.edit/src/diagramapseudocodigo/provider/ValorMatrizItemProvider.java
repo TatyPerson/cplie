@@ -60,6 +60,8 @@ public class ValorMatrizItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNombre_matrizPropertyDescriptor(object);
+			addIndicesCadenaPropertyDescriptor(object);
+			addIndicesNumericosPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -87,6 +89,50 @@ public class ValorMatrizItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Indices Cadena feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIndicesCadenaPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ValorMatriz_indicesCadena_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ValorMatriz_indicesCadena_feature", "_UI_ValorMatriz_type"),
+				 DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__INDICES_CADENA,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Indices Numericos feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIndicesNumericosPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ValorMatriz_indicesNumericos_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ValorMatriz_indicesNumericos_feature", "_UI_ValorMatriz_type"),
+				 DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__INDICES_NUMERICOS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -98,7 +144,6 @@ public class ValorMatrizItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__INDICES);
 			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__CAMPO);
 		}
 		return childrenFeatures;
@@ -155,9 +200,10 @@ public class ValorMatrizItemProvider
 
 		switch (notification.getFeatureID(ValorMatriz.class)) {
 			case DiagramapseudocodigoPackage.VALOR_MATRIZ__NOMBRE_MATRIZ:
+			case DiagramapseudocodigoPackage.VALOR_MATRIZ__INDICES_CADENA:
+			case DiagramapseudocodigoPackage.VALOR_MATRIZ__INDICES_NUMERICOS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case DiagramapseudocodigoPackage.VALOR_MATRIZ__INDICES:
 			case DiagramapseudocodigoPackage.VALOR_MATRIZ__CAMPO:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -175,56 +221,6 @@ public class ValorMatrizItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__INDICES,
-				 DiagramapseudocodigoFactory.eINSTANCE.createVariableID()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__INDICES,
-				 DiagramapseudocodigoFactory.eINSTANCE.createConstCadena()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__INDICES,
-				 DiagramapseudocodigoFactory.eINSTANCE.createNumeroEntero()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__INDICES,
-				 DiagramapseudocodigoFactory.eINSTANCE.createNumeroDecimal()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__INDICES,
-				 DiagramapseudocodigoFactory.eINSTANCE.createValorBooleano()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__INDICES,
-				 DiagramapseudocodigoFactory.eINSTANCE.createCaracter()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__INDICES,
-				 DiagramapseudocodigoFactory.eINSTANCE.createValorComplejo()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__INDICES,
-				 DiagramapseudocodigoFactory.eINSTANCE.createValorRegistro()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__INDICES,
-				 DiagramapseudocodigoFactory.eINSTANCE.createValorVector()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__INDICES,
-				 DiagramapseudocodigoFactory.eINSTANCE.createValorMatriz()));
 
 		newChildDescriptors.add
 			(createChildParameter

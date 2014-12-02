@@ -16,7 +16,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link diagramapseudocodigo.Internas#getNombre <em>Nombre</em>}</li>
- *   <li>{@link diagramapseudocodigo.Internas#getOperador <em>Operador</em>}</li>
+ *   <li>{@link diagramapseudocodigo.Internas#getOperadores <em>Operadores</em>}</li>
  * </ul>
  * </p>
  *
@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Internas extends valor {
+public interface Internas extends valor, operacion {
 	/**
 	 * Returns the value of the '<em><b>Nombre</b></em>' attribute.
 	 * The literals are from the enumeration {@link diagramapseudocodigo.NombreInterna}.
@@ -55,19 +55,19 @@ public interface Internas extends valor {
 	void setNombre(NombreInterna value);
 
 	/**
-	 * Returns the value of the '<em><b>Operador</b></em>' containment reference list.
-	 * The list contents are of type {@link diagramapseudocodigo.Operador}.
+	 * Returns the value of the '<em><b>Operadores</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Operador</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Operadores</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Operador</em>' containment reference list.
-	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getInternas_Operador()
-	 * @model containment="true" required="true" upper="2"
+	 * @return the value of the '<em>Operadores</em>' attribute list.
+	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getInternas_Operadores()
+	 * @model
 	 * @generated
 	 */
-	EList<Operador> getOperador();
+	EList<String> getOperadores();
 
 } // Internas

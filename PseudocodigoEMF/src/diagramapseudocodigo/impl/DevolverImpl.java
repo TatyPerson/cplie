@@ -4,14 +4,11 @@ package diagramapseudocodigo.impl;
 
 import diagramapseudocodigo.Devolver;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
-import diagramapseudocodigo.valor;
-
+import diagramapseudocodigo.operacion;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
@@ -48,7 +45,7 @@ public class DevolverImpl extends MinimalEObjectImpl.Container implements Devolv
 	 * @generated
 	 * @ordered
 	 */
-	protected valor devuelve;
+	protected operacion devuelve;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -112,7 +109,7 @@ public class DevolverImpl extends MinimalEObjectImpl.Container implements Devolv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public valor getDevuelve() {
+	public operacion getDevuelve() {
 		return devuelve;
 	}
 
@@ -121,8 +118,8 @@ public class DevolverImpl extends MinimalEObjectImpl.Container implements Devolv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetDevuelve(valor newDevuelve, NotificationChain msgs) {
-		valor oldDevuelve = devuelve;
+	public NotificationChain basicSetDevuelve(operacion newDevuelve, NotificationChain msgs) {
+		operacion oldDevuelve = devuelve;
 		devuelve = newDevuelve;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.DEVOLVER__DEVUELVE, oldDevuelve, newDevuelve);
@@ -136,7 +133,7 @@ public class DevolverImpl extends MinimalEObjectImpl.Container implements Devolv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDevuelve(valor newDevuelve) {
+	public void setDevuelve(operacion newDevuelve) {
 		if (newDevuelve != devuelve) {
 			NotificationChain msgs = null;
 			if (devuelve != null)
@@ -193,7 +190,7 @@ public class DevolverImpl extends MinimalEObjectImpl.Container implements Devolv
 				setEReference0((Devolver)newValue);
 				return;
 			case DiagramapseudocodigoPackage.DEVOLVER__DEVUELVE:
-				setDevuelve((valor)newValue);
+				setDevuelve((operacion)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -211,7 +208,7 @@ public class DevolverImpl extends MinimalEObjectImpl.Container implements Devolv
 				setEReference0((Devolver)null);
 				return;
 			case DiagramapseudocodigoPackage.DEVOLVER__DEVUELVE:
-				setDevuelve((valor)null);
+				setDevuelve((operacion)null);
 				return;
 		}
 		super.eUnset(featureID);

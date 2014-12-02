@@ -14,8 +14,9 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link diagramapseudocodigo.ValorMatriz#getNombre_matriz <em>Nombre matriz</em>}</li>
- *   <li>{@link diagramapseudocodigo.ValorMatriz#getIndices <em>Indices</em>}</li>
  *   <li>{@link diagramapseudocodigo.ValorMatriz#getCampo <em>Campo</em>}</li>
+ *   <li>{@link diagramapseudocodigo.ValorMatriz#getIndicesCadena <em>Indices Cadena</em>}</li>
+ *   <li>{@link diagramapseudocodigo.ValorMatriz#getIndicesNumericos <em>Indices Numericos</em>}</li>
  * </ul>
  * </p>
  *
@@ -51,22 +52,6 @@ public interface ValorMatriz extends ValorComplejo {
 	void setNombre_matriz(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Indices</b></em>' containment reference list.
-	 * The list contents are of type {@link diagramapseudocodigo.Operador}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Indices</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Indices</em>' containment reference list.
-	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getValorMatriz_Indices()
-	 * @model containment="true" lower="2" upper="2"
-	 * @generated
-	 */
-	EList<Operador> getIndices();
-
-	/**
 	 * Returns the value of the '<em><b>Campo</b></em>' containment reference list.
 	 * The list contents are of type {@link diagramapseudocodigo.CampoRegistro}.
 	 * <!-- begin-user-doc -->
@@ -81,5 +66,37 @@ public interface ValorMatriz extends ValorComplejo {
 	 * @generated
 	 */
 	EList<CampoRegistro> getCampo();
+
+	/**
+	 * Returns the value of the '<em><b>Indices Cadena</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Indices Cadena</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Indices Cadena</em>' attribute list.
+	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getValorMatriz_IndicesCadena()
+	 * @model upper="2"
+	 * @generated
+	 */
+	EList<String> getIndicesCadena();
+
+	/**
+	 * Returns the value of the '<em><b>Indices Numericos</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.Integer}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Indices Numericos</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Indices Numericos</em>' attribute list.
+	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getValorMatriz_IndicesNumericos()
+	 * @model upper="2"
+	 * @generated
+	 */
+	EList<Integer> getIndicesNumericos();
 
 } // ValorMatriz

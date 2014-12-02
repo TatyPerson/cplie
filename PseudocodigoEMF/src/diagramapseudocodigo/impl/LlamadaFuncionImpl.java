@@ -4,16 +4,12 @@ package diagramapseudocodigo.impl;
 
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.LlamadaFuncion;
-import diagramapseudocodigo.valor;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +19,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link diagramapseudocodigo.impl.LlamadaFuncionImpl#getNombre <em>Nombre</em>}</li>
- *   <li>{@link diagramapseudocodigo.impl.LlamadaFuncionImpl#getOperador <em>Operador</em>}</li>
+ *   <li>{@link diagramapseudocodigo.impl.LlamadaFuncionImpl#getOperadores <em>Operadores</em>}</li>
  * </ul>
  * </p>
  *
@@ -51,14 +47,14 @@ public class LlamadaFuncionImpl extends SentenciasImpl implements LlamadaFuncion
 	protected String nombre = NOMBRE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOperador() <em>Operador</em>}' containment reference list.
+	 * The cached value of the '{@link #getOperadores() <em>Operadores</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOperador()
+	 * @see #getOperadores()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<valor> operador;
+	protected EList<String> operadores;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -105,25 +101,11 @@ public class LlamadaFuncionImpl extends SentenciasImpl implements LlamadaFuncion
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<valor> getOperador() {
-		if (operador == null) {
-			operador = new EObjectContainmentEList<valor>(valor.class, this, DiagramapseudocodigoPackage.LLAMADA_FUNCION__OPERADOR);
+	public EList<String> getOperadores() {
+		if (operadores == null) {
+			operadores = new EDataTypeUniqueEList<String>(String.class, this, DiagramapseudocodigoPackage.LLAMADA_FUNCION__OPERADORES);
 		}
-		return operador;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DiagramapseudocodigoPackage.LLAMADA_FUNCION__OPERADOR:
-				return ((InternalEList<?>)getOperador()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		return operadores;
 	}
 
 	/**
@@ -136,8 +118,8 @@ public class LlamadaFuncionImpl extends SentenciasImpl implements LlamadaFuncion
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.LLAMADA_FUNCION__NOMBRE:
 				return getNombre();
-			case DiagramapseudocodigoPackage.LLAMADA_FUNCION__OPERADOR:
-				return getOperador();
+			case DiagramapseudocodigoPackage.LLAMADA_FUNCION__OPERADORES:
+				return getOperadores();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -154,9 +136,9 @@ public class LlamadaFuncionImpl extends SentenciasImpl implements LlamadaFuncion
 			case DiagramapseudocodigoPackage.LLAMADA_FUNCION__NOMBRE:
 				setNombre((String)newValue);
 				return;
-			case DiagramapseudocodigoPackage.LLAMADA_FUNCION__OPERADOR:
-				getOperador().clear();
-				getOperador().addAll((Collection<? extends valor>)newValue);
+			case DiagramapseudocodigoPackage.LLAMADA_FUNCION__OPERADORES:
+				getOperadores().clear();
+				getOperadores().addAll((Collection<? extends String>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -173,8 +155,8 @@ public class LlamadaFuncionImpl extends SentenciasImpl implements LlamadaFuncion
 			case DiagramapseudocodigoPackage.LLAMADA_FUNCION__NOMBRE:
 				setNombre(NOMBRE_EDEFAULT);
 				return;
-			case DiagramapseudocodigoPackage.LLAMADA_FUNCION__OPERADOR:
-				getOperador().clear();
+			case DiagramapseudocodigoPackage.LLAMADA_FUNCION__OPERADORES:
+				getOperadores().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -190,8 +172,8 @@ public class LlamadaFuncionImpl extends SentenciasImpl implements LlamadaFuncion
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.LLAMADA_FUNCION__NOMBRE:
 				return NOMBRE_EDEFAULT == null ? nombre != null : !NOMBRE_EDEFAULT.equals(nombre);
-			case DiagramapseudocodigoPackage.LLAMADA_FUNCION__OPERADOR:
-				return operador != null && !operador.isEmpty();
+			case DiagramapseudocodigoPackage.LLAMADA_FUNCION__OPERADORES:
+				return operadores != null && !operadores.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -208,6 +190,8 @@ public class LlamadaFuncionImpl extends SentenciasImpl implements LlamadaFuncion
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (nombre: ");
 		result.append(nombre);
+		result.append(", operadores: ");
+		result.append(operadores);
 		result.append(')');
 		return result.toString();
 	}

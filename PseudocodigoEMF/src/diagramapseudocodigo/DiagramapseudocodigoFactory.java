@@ -166,24 +166,6 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	operacion createoperacion();
 
 	/**
-	 * Returns a new object of class '<em>operando izq</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>operando izq</em>'.
-	 * @generated
-	 */
-	operando_izq createoperando_izq();
-
-	/**
-	 * Returns a new object of class '<em>operando der</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>operando der</em>'.
-	 * @generated
-	 */
-	operando_der createoperando_der();
-
-	/**
 	 * Returns a new object of class '<em>Valor Booleano</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -454,24 +436,6 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	CampoRegistro createCampoRegistro();
 
 	/**
-	 * Returns a new object of class '<em>Asignacion Normal</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Asignacion Normal</em>'.
-	 * @generated
-	 */
-	AsignacionNormal createAsignacionNormal();
-
-	/**
-	 * Returns a new object of class '<em>Asignacion Compleja</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Asignacion Compleja</em>'.
-	 * @generated
-	 */
-	AsignacionCompleja createAsignacionCompleja();
-
-	/**
 	 * Returns a new object of class '<em>Subrango Numerico</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -533,6 +497,78 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	 * @generated
 	 */
 	FuncionFicheroCerrar createFuncionFicheroCerrar();
+
+	/**
+	 * Returns a new object of class '<em>Suma</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Suma</em>'.
+	 * @generated
+	 */
+	Suma createSuma();
+
+	/**
+	 * Returns a new object of class '<em>Resta</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Resta</em>'.
+	 * @generated
+	 */
+	Resta createResta();
+
+	/**
+	 * Returns a new object of class '<em>Multiplicacion</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Multiplicacion</em>'.
+	 * @generated
+	 */
+	Multiplicacion createMultiplicacion();
+
+	/**
+	 * Returns a new object of class '<em>Division</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Division</em>'.
+	 * @generated
+	 */
+	Division createDivision();
+
+	/**
+	 * Returns a new object of class '<em>Or</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Or</em>'.
+	 * @generated
+	 */
+	Or createOr();
+
+	/**
+	 * Returns a new object of class '<em>And</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>And</em>'.
+	 * @generated
+	 */
+	And createAnd();
+
+	/**
+	 * Returns a new object of class '<em>Comparacion</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Comparacion</em>'.
+	 * @generated
+	 */
+	Comparacion createComparacion();
+
+	/**
+	 * Returns a new object of class '<em>Igualdad</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Igualdad</em>'.
+	 * @generated
+	 */
+	Igualdad createIgualdad();
 
 	/**
 	 * Returns the package supported by this factory.
