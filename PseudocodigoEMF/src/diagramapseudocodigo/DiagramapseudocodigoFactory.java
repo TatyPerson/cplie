@@ -553,6 +553,24 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	Igualdad createIgualdad();
 
 	/**
+	 * Returns a new object of class '<em>Subrango Numerico</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Subrango Numerico</em>'.
+	 * @generated
+	 */
+	SubrangoNumerico createSubrangoNumerico();
+
+	/**
+	 * Returns a new object of class '<em>Subrango Enumerado</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Subrango Enumerado</em>'.
+	 * @generated
+	 */
+	SubrangoEnumerado createSubrangoEnumerado();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
