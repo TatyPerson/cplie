@@ -103,8 +103,6 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 			case DiagramapseudocodigoPackage.VALOR_COMPLEJO: return createValorComplejo();
 			case DiagramapseudocodigoPackage.VALOR_REGISTRO: return createValorRegistro();
 			case DiagramapseudocodigoPackage.CAMPO_REGISTRO: return createCampoRegistro();
-			case DiagramapseudocodigoPackage.SUBRANGO_NUMERICO: return createSubrangoNumerico();
-			case DiagramapseudocodigoPackage.SUBRANGO_ENUMERADO: return createSubrangoEnumerado();
 			case DiagramapseudocodigoPackage.VALOR_VECTOR: return createValorVector();
 			case DiagramapseudocodigoPackage.VALOR_MATRIZ: return createValorMatriz();
 			case DiagramapseudocodigoPackage.COMENTARIO: return createComentario();
@@ -635,26 +633,6 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	public CampoRegistro createCampoRegistro() {
 		CampoRegistroImpl campoRegistro = new CampoRegistroImpl();
 		return campoRegistro;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SubrangoNumerico createSubrangoNumerico() {
-		SubrangoNumericoImpl subrangoNumerico = new SubrangoNumericoImpl();
-		return subrangoNumerico;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SubrangoEnumerado createSubrangoEnumerado() {
-		SubrangoEnumeradoImpl subrangoEnumerado = new SubrangoEnumeradoImpl();
-		return subrangoEnumerado;
 	}
 
 	/**

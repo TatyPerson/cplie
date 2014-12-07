@@ -306,42 +306,6 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int LLAMADA_FUNCION = 4;
 
 	/**
-	 * The feature id for the '<em><b>Nombre</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LLAMADA_FUNCION__NOMBRE = SENTENCIAS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Operadores</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LLAMADA_FUNCION__OPERADORES = SENTENCIAS_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Llamada Funcion</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LLAMADA_FUNCION_FEATURE_COUNT = SENTENCIAS_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Llamada Funcion</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LLAMADA_FUNCION_OPERATION_COUNT = SENTENCIAS_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.valorImpl <em>valor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -368,6 +332,42 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @ordered
 	 */
 	int VALOR_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Nombre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LLAMADA_FUNCION__NOMBRE = VALOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Operadores</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LLAMADA_FUNCION__OPERADORES = VALOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Llamada Funcion</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LLAMADA_FUNCION_FEATURE_COUNT = VALOR_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Llamada Funcion</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LLAMADA_FUNCION_OPERATION_COUNT = VALOR_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.OperadorImpl <em>Operador</em>}' class.
@@ -1493,7 +1493,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int INTERNAS__NOMBRE = VALOR_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Operadores</b></em>' attribute list.
+	 * The feature id for the '<em><b>Operadores</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2220,13 +2220,31 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int SUBRANGO__NOMBRE = TIPO_COMPLEJO_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Limite inf</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBRANGO__LIMITE_INF = TIPO_COMPLEJO_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Limite sup</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBRANGO__LIMITE_SUP = TIPO_COMPLEJO_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Subrango</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUBRANGO_FEATURE_COUNT = TIPO_COMPLEJO_FEATURE_COUNT + 1;
+	int SUBRANGO_FEATURE_COUNT = TIPO_COMPLEJO_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Subrango</em>' class.
@@ -2349,116 +2367,6 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int CAMPO_REGISTRO_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link diagramapseudocodigo.impl.SubrangoNumericoImpl <em>Subrango Numerico</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see diagramapseudocodigo.impl.SubrangoNumericoImpl
-	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getSubrangoNumerico()
-	 * @generated
-	 */
-	int SUBRANGO_NUMERICO = 51;
-
-	/**
-	 * The feature id for the '<em><b>Nombre</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBRANGO_NUMERICO__NOMBRE = SUBRANGO__NOMBRE;
-
-	/**
-	 * The feature id for the '<em><b>Limite inf</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBRANGO_NUMERICO__LIMITE_INF = SUBRANGO_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Limite sup</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBRANGO_NUMERICO__LIMITE_SUP = SUBRANGO_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Subrango Numerico</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBRANGO_NUMERICO_FEATURE_COUNT = SUBRANGO_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Subrango Numerico</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBRANGO_NUMERICO_OPERATION_COUNT = SUBRANGO_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link diagramapseudocodigo.impl.SubrangoEnumeradoImpl <em>Subrango Enumerado</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see diagramapseudocodigo.impl.SubrangoEnumeradoImpl
-	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getSubrangoEnumerado()
-	 * @generated
-	 */
-	int SUBRANGO_ENUMERADO = 52;
-
-	/**
-	 * The feature id for the '<em><b>Nombre</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBRANGO_ENUMERADO__NOMBRE = SUBRANGO__NOMBRE;
-
-	/**
-	 * The feature id for the '<em><b>Limite inf</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBRANGO_ENUMERADO__LIMITE_INF = SUBRANGO_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Limite sup</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBRANGO_ENUMERADO__LIMITE_SUP = SUBRANGO_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Subrango Enumerado</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBRANGO_ENUMERADO_FEATURE_COUNT = SUBRANGO_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Subrango Enumerado</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBRANGO_ENUMERADO_OPERATION_COUNT = SUBRANGO_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.impl.ValorVectorImpl <em>Valor Vector</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2466,7 +2374,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getValorVector()
 	 * @generated
 	 */
-	int VALOR_VECTOR = 53;
+	int VALOR_VECTOR = 51;
 
 	/**
 	 * The feature id for the '<em><b>Nombre vector</b></em>' attribute.
@@ -2487,22 +2395,13 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int VALOR_VECTOR__CAMPO = VALOR_COMPLEJO_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Indice Cadena</b></em>' attribute.
+	 * The feature id for the '<em><b>Indice</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALOR_VECTOR__INDICE_CADENA = VALOR_COMPLEJO_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Indice Numerico</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALOR_VECTOR__INDICE_NUMERICO = VALOR_COMPLEJO_FEATURE_COUNT + 3;
+	int VALOR_VECTOR__INDICE = VALOR_COMPLEJO_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Valor Vector</em>' class.
@@ -2511,7 +2410,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALOR_VECTOR_FEATURE_COUNT = VALOR_COMPLEJO_FEATURE_COUNT + 4;
+	int VALOR_VECTOR_FEATURE_COUNT = VALOR_COMPLEJO_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Valor Vector</em>' class.
@@ -2530,7 +2429,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getValorMatriz()
 	 * @generated
 	 */
-	int VALOR_MATRIZ = 54;
+	int VALOR_MATRIZ = 52;
 
 	/**
 	 * The feature id for the '<em><b>Nombre matriz</b></em>' attribute.
@@ -2551,22 +2450,22 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int VALOR_MATRIZ__CAMPO = VALOR_COMPLEJO_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Indices Cadena</b></em>' attribute list.
+	 * The feature id for the '<em><b>Primer Indice</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALOR_MATRIZ__INDICES_CADENA = VALOR_COMPLEJO_FEATURE_COUNT + 2;
+	int VALOR_MATRIZ__PRIMER_INDICE = VALOR_COMPLEJO_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Indices Numericos</b></em>' attribute list.
+	 * The feature id for the '<em><b>Segundo Indice</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALOR_MATRIZ__INDICES_NUMERICOS = VALOR_COMPLEJO_FEATURE_COUNT + 3;
+	int VALOR_MATRIZ__SEGUNDO_INDICE = VALOR_COMPLEJO_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Valor Matriz</em>' class.
@@ -2594,7 +2493,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getComentario()
 	 * @generated
 	 */
-	int COMENTARIO = 55;
+	int COMENTARIO = 53;
 
 	/**
 	 * The feature id for the '<em><b>Mensaje</b></em>' attribute.
@@ -2631,7 +2530,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getFuncionFicheroAbrir()
 	 * @generated
 	 */
-	int FUNCION_FICHERO_ABRIR = 56;
+	int FUNCION_FICHERO_ABRIR = 54;
 
 	/**
 	 * The feature id for the '<em><b>Modo</b></em>' attribute.
@@ -2677,7 +2576,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getFuncionFicheroCerrar()
 	 * @generated
 	 */
-	int FUNCION_FICHERO_CERRAR = 57;
+	int FUNCION_FICHERO_CERRAR = 55;
 
 	/**
 	 * The feature id for the '<em><b>Variable</b></em>' containment reference.
@@ -2714,7 +2613,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getSuma()
 	 * @generated
 	 */
-	int SUMA = 58;
+	int SUMA = 56;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -2769,7 +2668,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getResta()
 	 * @generated
 	 */
-	int RESTA = 59;
+	int RESTA = 57;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -2824,7 +2723,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getMultiplicacion()
 	 * @generated
 	 */
-	int MULTIPLICACION = 60;
+	int MULTIPLICACION = 58;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -2879,7 +2778,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getDivision()
 	 * @generated
 	 */
-	int DIVISION = 61;
+	int DIVISION = 59;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -2934,7 +2833,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getOr()
 	 * @generated
 	 */
-	int OR = 62;
+	int OR = 60;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -2989,7 +2888,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getAnd()
 	 * @generated
 	 */
-	int AND = 63;
+	int AND = 61;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -3044,7 +2943,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getComparacion()
 	 * @generated
 	 */
-	int COMPARACION = 64;
+	int COMPARACION = 62;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -3099,7 +2998,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getIgualdad()
 	 * @generated
 	 */
-	int IGUALDAD = 65;
+	int IGUALDAD = 63;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -3154,7 +3053,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoVariable()
 	 * @generated
 	 */
-	int TIPO_VARIABLE = 66;
+	int TIPO_VARIABLE = 64;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.signo <em>signo</em>}' enum.
@@ -3164,7 +3063,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getsigno()
 	 * @generated
 	 */
-	int SIGNO = 67;
+	int SIGNO = 65;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.booleano <em>booleano</em>}' enum.
@@ -3174,7 +3073,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getbooleano()
 	 * @generated
 	 */
-	int BOOLEANO = 68;
+	int BOOLEANO = 66;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.neg <em>neg</em>}' enum.
@@ -3184,7 +3083,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getneg()
 	 * @generated
 	 */
-	int NEG = 69;
+	int NEG = 67;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoPaso <em>Tipo Paso</em>}' enum.
@@ -3194,7 +3093,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoPaso()
 	 * @generated
 	 */
-	int TIPO_PASO = 70;
+	int TIPO_PASO = 68;
 
 
 	/**
@@ -3205,7 +3104,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getNombreInterna()
 	 * @generated
 	 */
-	int NOMBRE_INTERNA = 71;
+	int NOMBRE_INTERNA = 69;
 
 
 	/**
@@ -3216,7 +3115,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getModoApertura()
 	 * @generated
 	 */
-	int MODO_APERTURA = 72;
+	int MODO_APERTURA = 70;
 
 
 	/**
@@ -3402,15 +3301,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EAttribute getLlamadaFuncion_Nombre();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link diagramapseudocodigo.LlamadaFuncion#getOperadores <em>Operadores</em>}'.
+	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.LlamadaFuncion#getOperadores <em>Operadores</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Operadores</em>'.
+	 * @return the meta object for the containment reference list '<em>Operadores</em>'.
 	 * @see diagramapseudocodigo.LlamadaFuncion#getOperadores()
 	 * @see #getLlamadaFuncion()
 	 * @generated
 	 */
-	EAttribute getLlamadaFuncion_Operadores();
+	EReference getLlamadaFuncion_Operadores();
 
 	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.VariableID <em>Variable ID</em>}'.
@@ -4036,15 +3935,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EAttribute getInternas_Nombre();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link diagramapseudocodigo.Internas#getOperadores <em>Operadores</em>}'.
+	 * Returns the meta object for the containment reference list '{@link diagramapseudocodigo.Internas#getOperadores <em>Operadores</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Operadores</em>'.
+	 * @return the meta object for the containment reference list '<em>Operadores</em>'.
 	 * @see diagramapseudocodigo.Internas#getOperadores()
 	 * @see #getInternas()
 	 * @generated
 	 */
-	EAttribute getInternas_Operadores();
+	EReference getInternas_Operadores();
 
 	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.segun <em>segun</em>}'.
@@ -4481,6 +4380,28 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EAttribute getSubrango_Nombre();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Subrango#getLimite_inf <em>Limite inf</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Limite inf</em>'.
+	 * @see diagramapseudocodigo.Subrango#getLimite_inf()
+	 * @see #getSubrango()
+	 * @generated
+	 */
+	EReference getSubrango_Limite_inf();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Subrango#getLimite_sup <em>Limite sup</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Limite sup</em>'.
+	 * @see diagramapseudocodigo.Subrango#getLimite_sup()
+	 * @see #getSubrango()
+	 * @generated
+	 */
+	EReference getSubrango_Limite_sup();
+
+	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.ValorComplejo <em>Valor Complejo</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4544,70 +4465,6 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EAttribute getCampoRegistro_Nombre_campo();
 
 	/**
-	 * Returns the meta object for class '{@link diagramapseudocodigo.SubrangoNumerico <em>Subrango Numerico</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Subrango Numerico</em>'.
-	 * @see diagramapseudocodigo.SubrangoNumerico
-	 * @generated
-	 */
-	EClass getSubrangoNumerico();
-
-	/**
-	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.SubrangoNumerico#getLimite_inf <em>Limite inf</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Limite inf</em>'.
-	 * @see diagramapseudocodigo.SubrangoNumerico#getLimite_inf()
-	 * @see #getSubrangoNumerico()
-	 * @generated
-	 */
-	EAttribute getSubrangoNumerico_Limite_inf();
-
-	/**
-	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.SubrangoNumerico#getLimite_sup <em>Limite sup</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Limite sup</em>'.
-	 * @see diagramapseudocodigo.SubrangoNumerico#getLimite_sup()
-	 * @see #getSubrangoNumerico()
-	 * @generated
-	 */
-	EAttribute getSubrangoNumerico_Limite_sup();
-
-	/**
-	 * Returns the meta object for class '{@link diagramapseudocodigo.SubrangoEnumerado <em>Subrango Enumerado</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Subrango Enumerado</em>'.
-	 * @see diagramapseudocodigo.SubrangoEnumerado
-	 * @generated
-	 */
-	EClass getSubrangoEnumerado();
-
-	/**
-	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.SubrangoEnumerado#getLimite_inf <em>Limite inf</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Limite inf</em>'.
-	 * @see diagramapseudocodigo.SubrangoEnumerado#getLimite_inf()
-	 * @see #getSubrangoEnumerado()
-	 * @generated
-	 */
-	EAttribute getSubrangoEnumerado_Limite_inf();
-
-	/**
-	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.SubrangoEnumerado#getLimite_sup <em>Limite sup</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Limite sup</em>'.
-	 * @see diagramapseudocodigo.SubrangoEnumerado#getLimite_sup()
-	 * @see #getSubrangoEnumerado()
-	 * @generated
-	 */
-	EAttribute getSubrangoEnumerado_Limite_sup();
-
-	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.ValorVector <em>Valor Vector</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4640,26 +4497,15 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EReference getValorVector_Campo();
 
 	/**
-	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.ValorVector#getIndiceCadena <em>Indice Cadena</em>}'.
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.ValorVector#getIndice <em>Indice</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Indice Cadena</em>'.
-	 * @see diagramapseudocodigo.ValorVector#getIndiceCadena()
+	 * @return the meta object for the containment reference '<em>Indice</em>'.
+	 * @see diagramapseudocodigo.ValorVector#getIndice()
 	 * @see #getValorVector()
 	 * @generated
 	 */
-	EAttribute getValorVector_IndiceCadena();
-
-	/**
-	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.ValorVector#getIndiceNumerico <em>Indice Numerico</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Indice Numerico</em>'.
-	 * @see diagramapseudocodigo.ValorVector#getIndiceNumerico()
-	 * @see #getValorVector()
-	 * @generated
-	 */
-	EAttribute getValorVector_IndiceNumerico();
+	EReference getValorVector_Indice();
 
 	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.ValorMatriz <em>Valor Matriz</em>}'.
@@ -4694,26 +4540,26 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EReference getValorMatriz_Campo();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link diagramapseudocodigo.ValorMatriz#getIndicesCadena <em>Indices Cadena</em>}'.
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.ValorMatriz#getPrimerIndice <em>Primer Indice</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Indices Cadena</em>'.
-	 * @see diagramapseudocodigo.ValorMatriz#getIndicesCadena()
+	 * @return the meta object for the containment reference '<em>Primer Indice</em>'.
+	 * @see diagramapseudocodigo.ValorMatriz#getPrimerIndice()
 	 * @see #getValorMatriz()
 	 * @generated
 	 */
-	EAttribute getValorMatriz_IndicesCadena();
+	EReference getValorMatriz_PrimerIndice();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link diagramapseudocodigo.ValorMatriz#getIndicesNumericos <em>Indices Numericos</em>}'.
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.ValorMatriz#getSegundoIndice <em>Segundo Indice</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Indices Numericos</em>'.
-	 * @see diagramapseudocodigo.ValorMatriz#getIndicesNumericos()
+	 * @return the meta object for the containment reference '<em>Segundo Indice</em>'.
+	 * @see diagramapseudocodigo.ValorMatriz#getSegundoIndice()
 	 * @see #getValorMatriz()
 	 * @generated
 	 */
-	EAttribute getValorMatriz_IndicesNumericos();
+	EReference getValorMatriz_SegundoIndice();
 
 	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.Comentario <em>Comentario</em>}'.
@@ -5416,12 +5262,12 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EAttribute LLAMADA_FUNCION__NOMBRE = eINSTANCE.getLlamadaFuncion_Nombre();
 
 		/**
-		 * The meta object literal for the '<em><b>Operadores</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Operadores</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LLAMADA_FUNCION__OPERADORES = eINSTANCE.getLlamadaFuncion_Operadores();
+		EReference LLAMADA_FUNCION__OPERADORES = eINSTANCE.getLlamadaFuncion_Operadores();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.VariableIDImpl <em>Variable ID</em>}' class.
@@ -5948,12 +5794,12 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EAttribute INTERNAS__NOMBRE = eINSTANCE.getInternas_Nombre();
 
 		/**
-		 * The meta object literal for the '<em><b>Operadores</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Operadores</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INTERNAS__OPERADORES = eINSTANCE.getInternas_Operadores();
+		EReference INTERNAS__OPERADORES = eINSTANCE.getInternas_Operadores();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.segunImpl <em>segun</em>}' class.
@@ -6318,6 +6164,22 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EAttribute SUBRANGO__NOMBRE = eINSTANCE.getSubrango_Nombre();
 
 		/**
+		 * The meta object literal for the '<em><b>Limite inf</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SUBRANGO__LIMITE_INF = eINSTANCE.getSubrango_Limite_inf();
+
+		/**
+		 * The meta object literal for the '<em><b>Limite sup</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SUBRANGO__LIMITE_SUP = eINSTANCE.getSubrango_Limite_sup();
+
+		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.ValorComplejoImpl <em>Valor Complejo</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6372,58 +6234,6 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EAttribute CAMPO_REGISTRO__NOMBRE_CAMPO = eINSTANCE.getCampoRegistro_Nombre_campo();
 
 		/**
-		 * The meta object literal for the '{@link diagramapseudocodigo.impl.SubrangoNumericoImpl <em>Subrango Numerico</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see diagramapseudocodigo.impl.SubrangoNumericoImpl
-		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getSubrangoNumerico()
-		 * @generated
-		 */
-		EClass SUBRANGO_NUMERICO = eINSTANCE.getSubrangoNumerico();
-
-		/**
-		 * The meta object literal for the '<em><b>Limite inf</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SUBRANGO_NUMERICO__LIMITE_INF = eINSTANCE.getSubrangoNumerico_Limite_inf();
-
-		/**
-		 * The meta object literal for the '<em><b>Limite sup</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SUBRANGO_NUMERICO__LIMITE_SUP = eINSTANCE.getSubrangoNumerico_Limite_sup();
-
-		/**
-		 * The meta object literal for the '{@link diagramapseudocodigo.impl.SubrangoEnumeradoImpl <em>Subrango Enumerado</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see diagramapseudocodigo.impl.SubrangoEnumeradoImpl
-		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getSubrangoEnumerado()
-		 * @generated
-		 */
-		EClass SUBRANGO_ENUMERADO = eINSTANCE.getSubrangoEnumerado();
-
-		/**
-		 * The meta object literal for the '<em><b>Limite inf</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SUBRANGO_ENUMERADO__LIMITE_INF = eINSTANCE.getSubrangoEnumerado_Limite_inf();
-
-		/**
-		 * The meta object literal for the '<em><b>Limite sup</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SUBRANGO_ENUMERADO__LIMITE_SUP = eINSTANCE.getSubrangoEnumerado_Limite_sup();
-
-		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.ValorVectorImpl <em>Valor Vector</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6450,20 +6260,12 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EReference VALOR_VECTOR__CAMPO = eINSTANCE.getValorVector_Campo();
 
 		/**
-		 * The meta object literal for the '<em><b>Indice Cadena</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Indice</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute VALOR_VECTOR__INDICE_CADENA = eINSTANCE.getValorVector_IndiceCadena();
-
-		/**
-		 * The meta object literal for the '<em><b>Indice Numerico</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute VALOR_VECTOR__INDICE_NUMERICO = eINSTANCE.getValorVector_IndiceNumerico();
+		EReference VALOR_VECTOR__INDICE = eINSTANCE.getValorVector_Indice();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.ValorMatrizImpl <em>Valor Matriz</em>}' class.
@@ -6492,20 +6294,20 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EReference VALOR_MATRIZ__CAMPO = eINSTANCE.getValorMatriz_Campo();
 
 		/**
-		 * The meta object literal for the '<em><b>Indices Cadena</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Primer Indice</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute VALOR_MATRIZ__INDICES_CADENA = eINSTANCE.getValorMatriz_IndicesCadena();
+		EReference VALOR_MATRIZ__PRIMER_INDICE = eINSTANCE.getValorMatriz_PrimerIndice();
 
 		/**
-		 * The meta object literal for the '<em><b>Indices Numericos</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Segundo Indice</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute VALOR_MATRIZ__INDICES_NUMERICOS = eINSTANCE.getValorMatriz_IndicesNumericos();
+		EReference VALOR_MATRIZ__SEGUNDO_INDICE = eINSTANCE.getValorMatriz_SegundoIndice();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.ComentarioImpl <em>Comentario</em>}' class.

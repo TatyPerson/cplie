@@ -15,8 +15,8 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link diagramapseudocodigo.ValorMatriz#getNombre_matriz <em>Nombre matriz</em>}</li>
  *   <li>{@link diagramapseudocodigo.ValorMatriz#getCampo <em>Campo</em>}</li>
- *   <li>{@link diagramapseudocodigo.ValorMatriz#getIndicesCadena <em>Indices Cadena</em>}</li>
- *   <li>{@link diagramapseudocodigo.ValorMatriz#getIndicesNumericos <em>Indices Numericos</em>}</li>
+ *   <li>{@link diagramapseudocodigo.ValorMatriz#getPrimerIndice <em>Primer Indice</em>}</li>
+ *   <li>{@link diagramapseudocodigo.ValorMatriz#getSegundoIndice <em>Segundo Indice</em>}</li>
  * </ul>
  * </p>
  *
@@ -68,35 +68,55 @@ public interface ValorMatriz extends ValorComplejo {
 	EList<CampoRegistro> getCampo();
 
 	/**
-	 * Returns the value of the '<em><b>Indices Cadena</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
+	 * Returns the value of the '<em><b>Primer Indice</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Indices Cadena</em>' attribute list isn't clear,
+	 * If the meaning of the '<em>Primer Indice</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Indices Cadena</em>' attribute list.
-	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getValorMatriz_IndicesCadena()
-	 * @model upper="2"
+	 * @return the value of the '<em>Primer Indice</em>' containment reference.
+	 * @see #setPrimerIndice(operacion)
+	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getValorMatriz_PrimerIndice()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<String> getIndicesCadena();
+	operacion getPrimerIndice();
 
 	/**
-	 * Returns the value of the '<em><b>Indices Numericos</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Integer}.
+	 * Sets the value of the '{@link diagramapseudocodigo.ValorMatriz#getPrimerIndice <em>Primer Indice</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Primer Indice</em>' containment reference.
+	 * @see #getPrimerIndice()
+	 * @generated
+	 */
+	void setPrimerIndice(operacion value);
+
+	/**
+	 * Returns the value of the '<em><b>Segundo Indice</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Indices Numericos</em>' attribute list isn't clear,
+	 * If the meaning of the '<em>Segundo Indice</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Indices Numericos</em>' attribute list.
-	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getValorMatriz_IndicesNumericos()
-	 * @model upper="2"
+	 * @return the value of the '<em>Segundo Indice</em>' containment reference.
+	 * @see #setSegundoIndice(operacion)
+	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getValorMatriz_SegundoIndice()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<Integer> getIndicesNumericos();
+	operacion getSegundoIndice();
+
+	/**
+	 * Sets the value of the '{@link diagramapseudocodigo.ValorMatriz#getSegundoIndice <em>Segundo Indice</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Segundo Indice</em>' containment reference.
+	 * @see #getSegundoIndice()
+	 * @generated
+	 */
+	void setSegundoIndice(operacion value);
 
 } // ValorMatriz

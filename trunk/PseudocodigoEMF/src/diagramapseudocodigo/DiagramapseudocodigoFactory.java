@@ -436,24 +436,6 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	CampoRegistro createCampoRegistro();
 
 	/**
-	 * Returns a new object of class '<em>Subrango Numerico</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Subrango Numerico</em>'.
-	 * @generated
-	 */
-	SubrangoNumerico createSubrangoNumerico();
-
-	/**
-	 * Returns a new object of class '<em>Subrango Enumerado</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Subrango Enumerado</em>'.
-	 * @generated
-	 */
-	SubrangoEnumerado createSubrangoEnumerado();
-
-	/**
 	 * Returns a new object of class '<em>Valor Vector</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

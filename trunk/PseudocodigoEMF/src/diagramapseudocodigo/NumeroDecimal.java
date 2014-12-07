@@ -29,12 +29,12 @@ public interface NumeroDecimal extends Operador, operacion {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Valor</em>' attribute.
-	 * @see #setValor(String)
+	 * @see #setValor(float)
 	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getNumeroDecimal_Valor()
 	 * @model required="true"
 	 * @generated
 	 */
-	String getValor();
+	float getValor();
 
 	/**
 	 * Sets the value of the '{@link diagramapseudocodigo.NumeroDecimal#getValor <em>Valor</em>}' attribute.
@@ -44,6 +44,6 @@ public interface NumeroDecimal extends Operador, operacion {
 	 * @see #getValor()
 	 * @generated
 	 */
-	void setValor(String value);
+	void setValor(float value);
 
 } // NumeroDecimal

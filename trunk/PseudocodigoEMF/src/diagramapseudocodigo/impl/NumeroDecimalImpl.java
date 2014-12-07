@@ -33,7 +33,7 @@ public class NumeroDecimalImpl extends OperadorImpl implements NumeroDecimal {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String VALOR_EDEFAULT = null;
+	protected static final float VALOR_EDEFAULT = 0.0F;
 
 	/**
 	 * The cached value of the '{@link #getValor() <em>Valor</em>}' attribute.
@@ -43,7 +43,7 @@ public class NumeroDecimalImpl extends OperadorImpl implements NumeroDecimal {
 	 * @generated
 	 * @ordered
 	 */
-	protected String valor = VALOR_EDEFAULT;
+	protected float valor = VALOR_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -69,7 +69,7 @@ public class NumeroDecimalImpl extends OperadorImpl implements NumeroDecimal {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getValor() {
+	public float getValor() {
 		return valor;
 	}
 
@@ -78,8 +78,8 @@ public class NumeroDecimalImpl extends OperadorImpl implements NumeroDecimal {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValor(String newValor) {
-		String oldValor = valor;
+	public void setValor(float newValor) {
+		float oldValor = valor;
 		valor = newValor;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramapseudocodigoPackage.NUMERO_DECIMAL__VALOR, oldValor, valor));
@@ -108,7 +108,7 @@ public class NumeroDecimalImpl extends OperadorImpl implements NumeroDecimal {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.NUMERO_DECIMAL__VALOR:
-				setValor((String)newValue);
+				setValor((Float)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -138,7 +138,7 @@ public class NumeroDecimalImpl extends OperadorImpl implements NumeroDecimal {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DiagramapseudocodigoPackage.NUMERO_DECIMAL__VALOR:
-				return VALOR_EDEFAULT == null ? valor != null : !VALOR_EDEFAULT.equals(valor);
+				return valor != VALOR_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

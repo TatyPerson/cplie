@@ -75,7 +75,7 @@ entero funcion sumaFun(E entero :  a, E entero :  b)
 		entero: resultado
 
 	inicio //Funcionalidad
-		resultado = a + b - 5
+		resultado = a + b / 2
 		devolver resultado 
 fin_funcion
 
@@ -148,7 +148,7 @@ inicio
 		caso 1: escribir("Valor = 1")
 		caso 2: escribir("Valor = 2")
 		caso 3: escribir("Valor = 3")
-		en_otro_caso: escribir("Valor posible no registrado") //Resto de sentencias
+		en_otro_caso: escribir("Valor posible no registrado")
 	fin_segun
 	
 	//Ejemplo funciones

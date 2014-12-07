@@ -225,13 +225,13 @@ class MyDslGenerator implements IGenerator {
 			prueba = myComplejo as Enumerado
 			prueba.toC
 		} else if (myComplejo.eClass.name.equals("SubrangoNumerico")) {
-			var SubrangoNumerico prueba = new SubrangoNumericoImpl
-			prueba = myComplejo as SubrangoNumerico
-			prueba.toC
+			//var SubrangoNumerico prueba = new SubrangoNumericoImpl
+			//prueba = myComplejo as SubrangoNumerico
+			//prueba.toC
 		} else if (myComplejo.eClass.name.equals("SubrangoEnumerado")) {
-			var SubrangoEnumerado prueba = new SubrangoEnumeradoImpl
-			prueba = myComplejo as SubrangoEnumerado
-			prueba.toC
+			//var SubrangoEnumerado prueba = new SubrangoEnumeradoImpl
+			//prueba = myComplejo as SubrangoEnumerado
+			//prueba.toC
 		}
 	}
 	
@@ -257,13 +257,13 @@ class MyDslGenerator implements IGenerator {
 			prueba = myComplejo as Enumerado
 			prueba.toC
 		} else if (myComplejo.eClass.name.equals("SubrangoNumerico")) {
-			var SubrangoNumerico prueba = new SubrangoNumericoImpl
-			prueba = myComplejo as SubrangoNumerico
-			prueba.toC
+			//var SubrangoNumerico prueba = new SubrangoNumericoImpl
+			//prueba = myComplejo as SubrangoNumerico
+			//prueba.toC
 		}  else if(myComplejo.eClass.name.equals("SubrangoEnumerado")) {
-			var SubrangoEnumerado prueba = new SubrangoEnumeradoImpl
-			prueba = myComplejo as SubrangoEnumerado
-			prueba.toC
+			//var SubrangoEnumerado prueba = new SubrangoEnumeradoImpl
+			//prueba = myComplejo as SubrangoEnumerado
+			//prueba.toC
 		}
 	}
 
@@ -326,13 +326,13 @@ class MyDslGenerator implements IGenerator {
 		typedef enum {«FOR myVariable:myEnumerado.valor»«IF myVariable == myEnumerado.valor.get(myEnumerado.valor.size()-1)»«myVariable.toC»«ELSE»«myVariable.toC», «ENDIF»«ENDFOR»} «myEnumerado.nombre»;
 	'''
 
-	def toC(SubrangoNumerico mySubrango) '''
-		typedef enum {«generaSubrango(mySubrango.limite_inf,mySubrango.limite_sup)»} «mySubrango.nombre»;
-	'''
+	//def toC(SubrangoNumerico mySubrango) '''
+	//	typedef enum {«generaSubrango(mySubrango.limite_inf,mySubrango.limite_sup)»} «mySubrango.nombre»;
+	//'''
 	
-	def toC(SubrangoEnumerado mySubrango) '''
-		typedef enum {«generaSubrangoEnumerado(mySubrango.limite_inf,mySubrango.limite_sup)»} «mySubrango.nombre»;
-	'''
+	//def toC(SubrangoEnumerado mySubrango) '''
+	//	typedef enum {«generaSubrangoEnumerado(mySubrango.limite_inf,mySubrango.limite_sup)»} «mySubrango.nombre»;
+	//'''
 	
 	def obtenerModo(String modo) {
 		if(modo == "escritura") {
