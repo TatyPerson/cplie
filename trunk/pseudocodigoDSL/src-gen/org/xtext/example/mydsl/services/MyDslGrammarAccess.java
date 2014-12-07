@@ -974,22 +974,42 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class SubrangoElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Subrango");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cSubrangoNumericoParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cSubrangoEnumeradoParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//Subrango:
+		//	SubrangoNumerico | SubrangoEnumerado;
+		public ParserRule getRule() { return rule; }
+
+		//SubrangoNumerico | SubrangoEnumerado
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//SubrangoNumerico
+		public RuleCall getSubrangoNumericoParserRuleCall_0() { return cSubrangoNumericoParserRuleCall_0; }
+
+		//SubrangoEnumerado
+		public RuleCall getSubrangoEnumeradoParserRuleCall_1() { return cSubrangoEnumeradoParserRuleCall_1; }
+	}
+
+	public class SubrangoNumericoElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SubrangoNumerico");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNombreAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNombreEStringParserRuleCall_0_0 = (RuleCall)cNombreAssignment_0.eContents().get(0);
 		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Assignment cLimite_infAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
-		private final RuleCall cLimite_infVariablesBasicasParserRuleCall_2_0_0 = (RuleCall)cLimite_infAssignment_2_0.eContents().get(0);
+		private final RuleCall cLimite_infEIntParserRuleCall_2_0_0 = (RuleCall)cLimite_infAssignment_2_0.eContents().get(0);
 		private final Keyword cFullStopFullStopKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
 		private final Assignment cLimite_supAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
-		private final RuleCall cLimite_supVariablesBasicasParserRuleCall_2_2_0 = (RuleCall)cLimite_supAssignment_2_2.eContents().get(0);
+		private final RuleCall cLimite_supEIntParserRuleCall_2_2_0 = (RuleCall)cLimite_supAssignment_2_2.eContents().get(0);
 		
-		//Subrango:
-		//	nombre=EString "=" (limite_inf=VariablesBasicas ".." limite_sup=VariablesBasicas);
+		//SubrangoNumerico:
+		//	nombre=EString "=" (limite_inf=EInt ".." limite_sup=EInt);
 		public ParserRule getRule() { return rule; }
 
-		//nombre=EString "=" (limite_inf=VariablesBasicas ".." limite_sup=VariablesBasicas)
+		//nombre=EString "=" (limite_inf=EInt ".." limite_sup=EInt)
 		public Group getGroup() { return cGroup; }
 
 		//nombre=EString
@@ -1001,23 +1021,71 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"="
 		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
 
-		//limite_inf=VariablesBasicas ".." limite_sup=VariablesBasicas
+		//limite_inf=EInt ".." limite_sup=EInt
 		public Group getGroup_2() { return cGroup_2; }
 
-		//limite_inf=VariablesBasicas
+		//limite_inf=EInt
 		public Assignment getLimite_infAssignment_2_0() { return cLimite_infAssignment_2_0; }
 
-		//VariablesBasicas
-		public RuleCall getLimite_infVariablesBasicasParserRuleCall_2_0_0() { return cLimite_infVariablesBasicasParserRuleCall_2_0_0; }
+		//EInt
+		public RuleCall getLimite_infEIntParserRuleCall_2_0_0() { return cLimite_infEIntParserRuleCall_2_0_0; }
 
 		//".."
 		public Keyword getFullStopFullStopKeyword_2_1() { return cFullStopFullStopKeyword_2_1; }
 
-		//limite_sup=VariablesBasicas
+		//limite_sup=EInt
 		public Assignment getLimite_supAssignment_2_2() { return cLimite_supAssignment_2_2; }
 
-		//VariablesBasicas
-		public RuleCall getLimite_supVariablesBasicasParserRuleCall_2_2_0() { return cLimite_supVariablesBasicasParserRuleCall_2_2_0; }
+		//EInt
+		public RuleCall getLimite_supEIntParserRuleCall_2_2_0() { return cLimite_supEIntParserRuleCall_2_2_0; }
+	}
+
+	public class SubrangoEnumeradoElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SubrangoEnumerado");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNombreAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNombreEStringParserRuleCall_0_0 = (RuleCall)cNombreAssignment_0.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Assignment cLimite_infAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final RuleCall cLimite_infEStringParserRuleCall_2_0_0 = (RuleCall)cLimite_infAssignment_2_0.eContents().get(0);
+		private final Keyword cFullStopFullStopKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
+		private final Assignment cLimite_supAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
+		private final RuleCall cLimite_supEStringParserRuleCall_2_2_0 = (RuleCall)cLimite_supAssignment_2_2.eContents().get(0);
+		
+		//SubrangoEnumerado:
+		//	nombre=EString "=" (limite_inf=EString ".." limite_sup=EString);
+		public ParserRule getRule() { return rule; }
+
+		//nombre=EString "=" (limite_inf=EString ".." limite_sup=EString)
+		public Group getGroup() { return cGroup; }
+
+		//nombre=EString
+		public Assignment getNombreAssignment_0() { return cNombreAssignment_0; }
+
+		//EString
+		public RuleCall getNombreEStringParserRuleCall_0_0() { return cNombreEStringParserRuleCall_0_0; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+
+		//limite_inf=EString ".." limite_sup=EString
+		public Group getGroup_2() { return cGroup_2; }
+
+		//limite_inf=EString
+		public Assignment getLimite_infAssignment_2_0() { return cLimite_infAssignment_2_0; }
+
+		//EString
+		public RuleCall getLimite_infEStringParserRuleCall_2_0_0() { return cLimite_infEStringParserRuleCall_2_0_0; }
+
+		//".."
+		public Keyword getFullStopFullStopKeyword_2_1() { return cFullStopFullStopKeyword_2_1; }
+
+		//limite_sup=EString
+		public Assignment getLimite_supAssignment_2_2() { return cLimite_supAssignment_2_2; }
+
+		//EString
+		public RuleCall getLimite_supEStringParserRuleCall_2_2_0() { return cLimite_supEStringParserRuleCall_2_2_0; }
 	}
 
 	public class InicioElements extends AbstractParserRuleElementFinder {
@@ -3171,6 +3239,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private ArchivoElements pArchivo;
 	private EnumeradoElements pEnumerado;
 	private SubrangoElements pSubrango;
+	private SubrangoNumericoElements pSubrangoNumerico;
+	private SubrangoEnumeradoElements pSubrangoEnumerado;
 	private InicioElements pInicio;
 	private EStringElements pEString;
 	private DeclaracionVariableElements pDeclaracionVariable;
@@ -3509,13 +3579,33 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Subrango:
-	//	nombre=EString "=" (limite_inf=VariablesBasicas ".." limite_sup=VariablesBasicas);
+	//	SubrangoNumerico | SubrangoEnumerado;
 	public SubrangoElements getSubrangoAccess() {
 		return (pSubrango != null) ? pSubrango : (pSubrango = new SubrangoElements());
 	}
 	
 	public ParserRule getSubrangoRule() {
 		return getSubrangoAccess().getRule();
+	}
+
+	//SubrangoNumerico:
+	//	nombre=EString "=" (limite_inf=EInt ".." limite_sup=EInt);
+	public SubrangoNumericoElements getSubrangoNumericoAccess() {
+		return (pSubrangoNumerico != null) ? pSubrangoNumerico : (pSubrangoNumerico = new SubrangoNumericoElements());
+	}
+	
+	public ParserRule getSubrangoNumericoRule() {
+		return getSubrangoNumericoAccess().getRule();
+	}
+
+	//SubrangoEnumerado:
+	//	nombre=EString "=" (limite_inf=EString ".." limite_sup=EString);
+	public SubrangoEnumeradoElements getSubrangoEnumeradoAccess() {
+		return (pSubrangoEnumerado != null) ? pSubrangoEnumerado : (pSubrangoEnumerado = new SubrangoEnumeradoElements());
+	}
+	
+	public ParserRule getSubrangoEnumeradoRule() {
+		return getSubrangoEnumeradoAccess().getRule();
 	}
 
 	//Inicio:

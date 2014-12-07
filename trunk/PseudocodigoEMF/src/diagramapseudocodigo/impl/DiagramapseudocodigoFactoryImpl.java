@@ -116,6 +116,8 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 			case DiagramapseudocodigoPackage.AND: return createAnd();
 			case DiagramapseudocodigoPackage.COMPARACION: return createComparacion();
 			case DiagramapseudocodigoPackage.IGUALDAD: return createIgualdad();
+			case DiagramapseudocodigoPackage.SUBRANGO_NUMERICO: return createSubrangoNumerico();
+			case DiagramapseudocodigoPackage.SUBRANGO_ENUMERADO: return createSubrangoEnumerado();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -763,6 +765,26 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	public Igualdad createIgualdad() {
 		IgualdadImpl igualdad = new IgualdadImpl();
 		return igualdad;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SubrangoNumerico createSubrangoNumerico() {
+		SubrangoNumericoImpl subrangoNumerico = new SubrangoNumericoImpl();
+		return subrangoNumerico;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SubrangoEnumerado createSubrangoEnumerado() {
+		SubrangoEnumeradoImpl subrangoEnumerado = new SubrangoEnumeradoImpl();
+		return subrangoEnumerado;
 	}
 
 	/**

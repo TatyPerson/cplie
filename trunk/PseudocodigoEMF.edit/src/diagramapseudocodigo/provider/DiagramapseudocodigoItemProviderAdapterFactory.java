@@ -1429,6 +1429,52 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.SubrangoNumerico} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SubrangoNumericoItemProvider subrangoNumericoItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.SubrangoNumerico}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSubrangoNumericoAdapter() {
+		if (subrangoNumericoItemProvider == null) {
+			subrangoNumericoItemProvider = new SubrangoNumericoItemProvider(this);
+		}
+
+		return subrangoNumericoItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.SubrangoEnumerado} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SubrangoEnumeradoItemProvider subrangoEnumeradoItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.SubrangoEnumerado}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSubrangoEnumeradoAdapter() {
+		if (subrangoEnumeradoItemProvider == null) {
+			subrangoEnumeradoItemProvider = new SubrangoEnumeradoItemProvider(this);
+		}
+
+		return subrangoEnumeradoItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1586,6 +1632,8 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 		if (andItemProvider != null) andItemProvider.dispose();
 		if (comparacionItemProvider != null) comparacionItemProvider.dispose();
 		if (igualdadItemProvider != null) igualdadItemProvider.dispose();
+		if (subrangoNumericoItemProvider != null) subrangoNumericoItemProvider.dispose();
+		if (subrangoEnumeradoItemProvider != null) subrangoEnumeradoItemProvider.dispose();
 	}
 
 }

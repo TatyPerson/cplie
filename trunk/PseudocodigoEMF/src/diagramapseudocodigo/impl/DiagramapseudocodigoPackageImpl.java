@@ -48,6 +48,8 @@ import diagramapseudocodigo.Si;
 import diagramapseudocodigo.Sino;
 import diagramapseudocodigo.Subproceso;
 import diagramapseudocodigo.Subrango;
+import diagramapseudocodigo.SubrangoEnumerado;
+import diagramapseudocodigo.SubrangoNumerico;
 import diagramapseudocodigo.Suma;
 import diagramapseudocodigo.Tipo;
 import diagramapseudocodigo.TipoComplejo;
@@ -536,6 +538,20 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * @generated
 	 */
 	private EClass igualdadEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass subrangoNumericoEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass subrangoEnumeradoEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1723,24 +1739,6 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSubrango_Limite_inf() {
-		return (EReference)subrangoEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSubrango_Limite_sup() {
-		return (EReference)subrangoEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getValorComplejo() {
 		return valorComplejoEClass;
 	}
@@ -2227,6 +2225,60 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getSubrangoNumerico() {
+		return subrangoNumericoEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSubrangoNumerico_Limite_inf() {
+		return (EAttribute)subrangoNumericoEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSubrangoNumerico_Limite_sup() {
+		return (EAttribute)subrangoNumericoEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSubrangoEnumerado() {
+		return subrangoEnumeradoEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSubrangoEnumerado_Limite_inf() {
+		return (EAttribute)subrangoEnumeradoEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSubrangoEnumerado_Limite_sup() {
+		return (EAttribute)subrangoEnumeradoEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getVector_Nombre() {
 		return (EAttribute)vectorEClass.getEStructuralFeatures().get(2);
 	}
@@ -2519,8 +2571,6 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 
 		subrangoEClass = createEClass(SUBRANGO);
 		createEAttribute(subrangoEClass, SUBRANGO__NOMBRE);
-		createEReference(subrangoEClass, SUBRANGO__LIMITE_INF);
-		createEReference(subrangoEClass, SUBRANGO__LIMITE_SUP);
 
 		valorComplejoEClass = createEClass(VALOR_COMPLEJO);
 
@@ -2591,6 +2641,14 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		createEReference(igualdadEClass, IGUALDAD__LEFT);
 		createEReference(igualdadEClass, IGUALDAD__RIGHT);
 		createEAttribute(igualdadEClass, IGUALDAD__SIGNO_OP);
+
+		subrangoNumericoEClass = createEClass(SUBRANGO_NUMERICO);
+		createEAttribute(subrangoNumericoEClass, SUBRANGO_NUMERICO__LIMITE_INF);
+		createEAttribute(subrangoNumericoEClass, SUBRANGO_NUMERICO__LIMITE_SUP);
+
+		subrangoEnumeradoEClass = createEClass(SUBRANGO_ENUMERADO);
+		createEAttribute(subrangoEnumeradoEClass, SUBRANGO_ENUMERADO__LIMITE_INF);
+		createEAttribute(subrangoEnumeradoEClass, SUBRANGO_ENUMERADO__LIMITE_SUP);
 
 		// Create enums
 		tipoVariableEEnum = createEEnum(TIPO_VARIABLE);
@@ -2688,6 +2746,8 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		andEClass.getESuperTypes().add(this.getoperacion());
 		comparacionEClass.getESuperTypes().add(this.getoperacion());
 		igualdadEClass.getESuperTypes().add(this.getoperacion());
+		subrangoNumericoEClass.getESuperTypes().add(this.getSubrango());
+		subrangoEnumeradoEClass.getESuperTypes().add(this.getSubrango());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(codigoEClass, Codigo.class, "Codigo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2860,8 +2920,6 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 
 		initEClass(subrangoEClass, Subrango.class, "Subrango", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSubrango_Nombre(), ecorePackage.getEString(), "nombre", null, 1, 1, Subrango.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSubrango_Limite_inf(), this.getoperacion(), null, "limite_inf", null, 1, 1, Subrango.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSubrango_Limite_sup(), this.getoperacion(), null, "limite_sup", null, 1, 1, Subrango.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(valorComplejoEClass, ValorComplejo.class, "ValorComplejo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2932,6 +2990,14 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		initEReference(getIgualdad_Left(), this.getoperacion(), null, "left", null, 0, 1, Igualdad.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIgualdad_Right(), this.getoperacion(), null, "right", null, 0, 1, Igualdad.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getIgualdad_Signo_op(), this.getsigno(), "signo_op", null, 0, 1, Igualdad.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(subrangoNumericoEClass, SubrangoNumerico.class, "SubrangoNumerico", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSubrangoNumerico_Limite_inf(), ecorePackage.getEInt(), "limite_inf", null, 1, 1, SubrangoNumerico.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSubrangoNumerico_Limite_sup(), ecorePackage.getEInt(), "limite_sup", null, 1, 1, SubrangoNumerico.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(subrangoEnumeradoEClass, SubrangoEnumerado.class, "SubrangoEnumerado", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSubrangoEnumerado_Limite_inf(), ecorePackage.getEString(), "limite_inf", null, 1, 1, SubrangoEnumerado.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSubrangoEnumerado_Limite_sup(), ecorePackage.getEString(), "limite_sup", null, 1, 1, SubrangoEnumerado.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(tipoVariableEEnum, TipoVariable.class, "TipoVariable");

@@ -114,7 +114,13 @@ Enumerado returns Enumerado:
 	nombre=EString '=' '{'(valor+=Primaria (',' valor+=Primaria )* )'}';
 	
 Subrango returns Subrango:
-	nombre=EString '=' (limite_inf=VariablesBasicas '..' limite_sup=VariablesBasicas);
+	SubrangoNumerico | SubrangoEnumerado;
+
+SubrangoNumerico returns SubrangoNumerico:
+	nombre=EString '=' (limite_inf=EInt '..' limite_sup=EInt);
+	
+SubrangoEnumerado returns SubrangoEnumerado:
+	nombre=EString '=' (limite_inf=EString '..' limite_sup=EString);
 
 Inicio returns Inicio:
 	'principal'
