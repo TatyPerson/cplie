@@ -5,12 +5,16 @@ package diagramapseudocodigo.impl;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Internas;
 import diagramapseudocodigo.NombreInterna;
+import diagramapseudocodigo.operacion;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,14 +51,14 @@ public class InternasImpl extends valorImpl implements Internas {
 	protected NombreInterna nombre = NOMBRE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOperadores() <em>Operadores</em>}' attribute list.
+	 * The cached value of the '{@link #getOperadores() <em>Operadores</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOperadores()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> operadores;
+	protected EList<operacion> operadores;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,11 +104,25 @@ public class InternasImpl extends valorImpl implements Internas {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getOperadores() {
+	public EList<operacion> getOperadores() {
 		if (operadores == null) {
-			operadores = new EDataTypeUniqueEList<String>(String.class, this, DiagramapseudocodigoPackage.INTERNAS__OPERADORES);
+			operadores = new EObjectContainmentEList<operacion>(operacion.class, this, DiagramapseudocodigoPackage.INTERNAS__OPERADORES);
 		}
 		return operadores;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DiagramapseudocodigoPackage.INTERNAS__OPERADORES:
+				return ((InternalEList<?>)getOperadores()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -137,7 +155,7 @@ public class InternasImpl extends valorImpl implements Internas {
 				return;
 			case DiagramapseudocodigoPackage.INTERNAS__OPERADORES:
 				getOperadores().clear();
-				getOperadores().addAll((Collection<? extends String>)newValue);
+				getOperadores().addAll((Collection<? extends operacion>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -189,8 +207,6 @@ public class InternasImpl extends valorImpl implements Internas {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (nombre: ");
 		result.append(nombre);
-		result.append(", operadores: ");
-		result.append(operadores);
 		result.append(')');
 		return result.toString();
 	}

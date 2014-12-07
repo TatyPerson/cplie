@@ -55,19 +55,19 @@ public interface Internas extends valor, operacion {
 	void setNombre(NombreInterna value);
 
 	/**
-	 * Returns the value of the '<em><b>Operadores</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
+	 * Returns the value of the '<em><b>Operadores</b></em>' containment reference list.
+	 * The list contents are of type {@link diagramapseudocodigo.operacion}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Operadores</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Operadores</em>' attribute list.
+	 * @return the value of the '<em>Operadores</em>' containment reference list.
 	 * @see diagramapseudocodigo.DiagramapseudocodigoPackage#getInternas_Operadores()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
-	EList<String> getOperadores();
+	EList<operacion> getOperadores();
 
 } // Internas

@@ -61,8 +61,6 @@ public class ValorVectorItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNombre_vectorPropertyDescriptor(object);
-			addIndiceCadenaPropertyDescriptor(object);
-			addIndiceNumericoPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -90,50 +88,6 @@ public class ValorVectorItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Indice Cadena feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIndiceCadenaPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ValorVector_indiceCadena_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ValorVector_indiceCadena_feature", "_UI_ValorVector_type"),
-				 DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE_CADENA,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Indice Numerico feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIndiceNumericoPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ValorVector_indiceNumerico_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ValorVector_indiceNumerico_feature", "_UI_ValorVector_type"),
-				 DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE_NUMERICO,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -146,6 +100,7 @@ public class ValorVectorItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__CAMPO);
+			childrenFeatures.add(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE);
 		}
 		return childrenFeatures;
 	}
@@ -201,11 +156,10 @@ public class ValorVectorItemProvider
 
 		switch (notification.getFeatureID(ValorVector.class)) {
 			case DiagramapseudocodigoPackage.VALOR_VECTOR__NOMBRE_VECTOR:
-			case DiagramapseudocodigoPackage.VALOR_VECTOR__INDICE_CADENA:
-			case DiagramapseudocodigoPackage.VALOR_VECTOR__INDICE_NUMERICO:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case DiagramapseudocodigoPackage.VALOR_VECTOR__CAMPO:
+			case DiagramapseudocodigoPackage.VALOR_VECTOR__INDICE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -227,6 +181,111 @@ public class ValorVectorItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__CAMPO,
 				 DiagramapseudocodigoFactory.eINSTANCE.createCampoRegistro()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createLlamadaFuncion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createVariableID()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createConstCadena()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNumeroEntero()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNumeroDecimal()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createoperacion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorBooleano()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createCaracter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createInternas()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorComplejo()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorRegistro()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorVector()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createValorMatriz()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createSuma()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createResta()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createMultiplicacion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createDivision()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createOr()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createAnd()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createComparacion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createIgualdad()));
 	}
 
 }

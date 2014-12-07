@@ -95,8 +95,8 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 				LlamadaFuncion llamadaFuncion = (LlamadaFuncion)theEObject;
 				T result = caseLlamadaFuncion(llamadaFuncion);
 				if (result == null) result = caseoperacion(llamadaFuncion);
-				if (result == null) result = caseSentencias(llamadaFuncion);
 				if (result == null) result = casevalor(llamadaFuncion);
+				if (result == null) result = caseSentencias(llamadaFuncion);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -439,22 +439,6 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 			case DiagramapseudocodigoPackage.CAMPO_REGISTRO: {
 				CampoRegistro campoRegistro = (CampoRegistro)theEObject;
 				T result = caseCampoRegistro(campoRegistro);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DiagramapseudocodigoPackage.SUBRANGO_NUMERICO: {
-				SubrangoNumerico subrangoNumerico = (SubrangoNumerico)theEObject;
-				T result = caseSubrangoNumerico(subrangoNumerico);
-				if (result == null) result = caseSubrango(subrangoNumerico);
-				if (result == null) result = caseTipoComplejo(subrangoNumerico);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DiagramapseudocodigoPackage.SUBRANGO_ENUMERADO: {
-				SubrangoEnumerado subrangoEnumerado = (SubrangoEnumerado)theEObject;
-				T result = caseSubrangoEnumerado(subrangoEnumerado);
-				if (result == null) result = caseSubrango(subrangoEnumerado);
-				if (result == null) result = caseTipoComplejo(subrangoEnumerado);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1338,36 +1322,6 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCampoRegistro(CampoRegistro object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Subrango Numerico</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Subrango Numerico</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSubrangoNumerico(SubrangoNumerico object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Subrango Enumerado</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Subrango Enumerado</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSubrangoEnumerado(SubrangoEnumerado object) {
 		return null;
 	}
 

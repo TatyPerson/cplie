@@ -61,16 +61,17 @@ NombreInterna returns NombreInterna:
 	'cos' | 'cuadrado' | 'exp' | 'ln' | 'log' | 'sen' | 'sqrt' | 'longitud' | 'concatena';
 
 
-INTEGER returns ecore::EInt:
+EInt returns ecore::EInt:
 	INT;
 	 
-terminal EXPONENT: ('e'|'E') ('+'|'-')? ('0'..'9')+ ;
+//terminal EXPONENT: ('e'|'E') ('+'|'-')? ('0'..'9')+ ;
 
-terminal FLOAT:   
-	('0'..'9')+ '.' ('0'..'9')* EXPONENT?
-    |   '.' ('0'..'9')+ EXPONENT?
-    |   ('0'..'9')+ EXPONENT
-    ;
+EFloat returns ecore::EFloat:
+	INT '.' INT (('E'|'e') ('+'|'-')? INT)?;   
+	//('0'..'9')+ '.' ('0'..'9')* EXPONENT?
+    //|   '.' ('0'..'9')+ EXPONENT?
+    //|   ('0'..'9')+ EXPONENT
+    //;
 
 //ValorRegistro returns ValorRegistro:
 //	nombre_registro=EString '.' (campo+=CampoRegistro ('.' campo+=CampoRegistro)* );
@@ -113,13 +114,7 @@ Enumerado returns Enumerado:
 	nombre=EString '=' '{'(valor+=Primaria (',' valor+=Primaria )* )'}';
 	
 Subrango returns Subrango:
-	SubrangoNumerico | SubrangoEnumerado;
-
-SubrangoNumerico returns SubrangoNumerico:
-	nombre=EString '=' limite_inf=INT '..' limite_sup=INT;
-	
-SubrangoEnumerado returns SubrangoEnumerado:
-	nombre=EString '=' limite_inf=EString '..' limite_sup=EString;
+	nombre=EString '=' (limite_inf=VariablesBasicas '..' limite_sup=VariablesBasicas);
 
 Inicio returns Inicio:
 	'principal'
@@ -293,19 +288,23 @@ SumaResta returns operacion:
 MultiplicacionDivision returns operacion:
 	Primaria (({Multiplicacion.left=current} signo_op=signoMultiplicacion | {Division.left=current} signo_op=signoDivision) right=Primaria)*;
 
+
 Primaria returns operacion:
-	' (' operacion ') ' 
-	| {NumeroEntero} valor=INTEGER
-	| {NumeroDecimal} valor=FLOAT
+	'|' operacion '|'
+	| VariablesBasicas
+	| {LlamadaFuncion} nombre=EString '(' (operadores+=operacion ( ',' operadores+=operacion)* )? ')'
+	| {Internas} nombre=NombreInterna '(' (operadores+=operacion ( ',' operadores+=operacion)* )? ')'
+	| {ValorVector} ((nombre_vector=EString)'['(indice=VariablesBasicas)']') ('.' (campo+=CampoRegistro) )?
+	| {ValorMatriz} ((nombre_matriz=EString)'['(primerIndice=VariablesBasicas)']['(segundoIndice=VariablesBasicas)']') ('.' (campo+=CampoRegistro) )?;
+	
+VariablesBasicas returns operacion:
+	 {NumeroEntero} valor=EInt
+	| {NumeroDecimal} valor=EFloat
 	| {ConstCadena} contenido=CAD
 	| {Caracter} contenido=CAR
 	| {ValorBooleano} valor=booleano
 	| {VariableID} nombre=EString
-	| {ValorMatriz} ((nombre_matriz=EString)'['(indicesCadena+=EString | indicesNumericos+=INTEGER)']['(indicesCadena+=EString | indicesNumericos+=INTEGER)']') ('.' (campo+=CampoRegistro) )?
-	| {ValorVector} ((nombre_vector=EString)'['(indiceCadena=EString | indiceNumerico=INTEGER)']') ('.' (campo+=CampoRegistro) )?
-	| {ValorRegistro} nombre_registro=EString '.' (campo+=CampoRegistro ('.' campo+=CampoRegistro)* )
-	| {LlamadaFuncion} nombre=EString '(' (operadores+=EString ( "," operadores+=EString)* )? ')'
-	| {Internas} nombre=NombreInterna '(' (operadores+=EString ( ',' operadores+=EString)* ) ')';
+	| {ValorRegistro} nombre_registro=EString '.' (campo+=CampoRegistro ('.' campo+=CampoRegistro)* );
 
 Sino returns Sino:
 	{Sino}

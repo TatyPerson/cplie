@@ -37,11 +37,11 @@
     <eLiterals name="logico" value="3"/>
     <eLiterals name="real" value="4"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LlamadaFuncion" eSuperTypes="#//Sentencias #//valor #//operacion">
+  <eClassifiers xsi:type="ecore:EClass" name="LlamadaFuncion" eSuperTypes="#//valor #//operacion">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operadores" upperBound="-1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operadores" upperBound="-1"
+        eType="#//operacion" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VariableID" eSuperTypes="#//Operador #//operacion">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
@@ -90,7 +90,7 @@
         eType="#//operacion" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NumeroDecimal" eSuperTypes="#//Operador #//operacion">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valor" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valor" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="valor" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="operacion" eSuperTypes="#//valor #//Sentencias"/>
@@ -169,8 +169,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Internas" eSuperTypes="#//valor #//operacion">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="#//NombreInterna"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operadores" upperBound="-1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operadores" upperBound="-1"
+        eType="#//operacion" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="NombreInterna">
     <eLiterals name="cos"/>
@@ -265,6 +265,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="Subrango" eSuperTypes="#//TipoComplejo">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="limite_inf" lowerBound="1"
+        eType="#//operacion" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="limite_sup" lowerBound="1"
+        eType="#//operacion" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ValorComplejo" eSuperTypes="#//Operador #//Sentencias #//operacion"/>
   <eClassifiers xsi:type="ecore:EClass" name="ValorRegistro" eSuperTypes="#//ValorComplejo">
@@ -277,35 +281,23 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre_campo" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SubrangoNumerico" eSuperTypes="#//Subrango">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="limite_inf" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="limite_sup" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SubrangoEnumerado" eSuperTypes="#//Subrango">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="limite_inf" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="limite_sup" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ValorVector" eSuperTypes="#//ValorComplejo">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre_vector" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="campo" upperBound="-1"
         eType="#//CampoRegistro" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="indiceCadena" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="indiceNumerico" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="indice" lowerBound="1"
+        eType="#//operacion" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ValorMatriz" eSuperTypes="#//ValorComplejo">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre_matriz" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="campo" upperBound="-1"
         eType="#//CampoRegistro" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="indicesCadena" upperBound="2"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="indicesNumericos" upperBound="2"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="primerIndice" lowerBound="1"
+        eType="#//operacion" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="segundoIndice" lowerBound="1"
+        eType="#//operacion" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Comentario">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mensaje" lowerBound="1"
