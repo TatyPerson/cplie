@@ -190,7 +190,7 @@ Caso returns Caso:
 ;
 	
 segun returns segun:
-	'segun_sea''('valor=Primaria') hacer'
+	'segun_sea''('valor=Primaria')' 'hacer'
 		(caso+=Caso ( caso+=Caso )* )?
 		'en_otro_caso:'
 		(sentencias+=Sentencias ( sentencias+=Sentencias )* )?
