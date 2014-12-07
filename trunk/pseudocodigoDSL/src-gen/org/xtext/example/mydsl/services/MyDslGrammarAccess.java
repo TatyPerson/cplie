@@ -1642,28 +1642,29 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cValorAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cValorPrimariaParserRuleCall_2_0 = (RuleCall)cValorAssignment_2.eContents().get(0);
-		private final Keyword cHacerKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Assignment cCasoAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
-		private final RuleCall cCasoCasoParserRuleCall_4_0_0 = (RuleCall)cCasoAssignment_4_0.eContents().get(0);
-		private final Assignment cCasoAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cCasoCasoParserRuleCall_4_1_0 = (RuleCall)cCasoAssignment_4_1.eContents().get(0);
-		private final Keyword cEn_otro_casoKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
-		private final Assignment cSentenciasAssignment_6_0 = (Assignment)cGroup_6.eContents().get(0);
-		private final RuleCall cSentenciasSentenciasParserRuleCall_6_0_0 = (RuleCall)cSentenciasAssignment_6_0.eContents().get(0);
-		private final Assignment cSentenciasAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
-		private final RuleCall cSentenciasSentenciasParserRuleCall_6_1_0 = (RuleCall)cSentenciasAssignment_6_1.eContents().get(0);
-		private final Assignment cDevuelveAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cDevuelveDevolverParserRuleCall_7_0 = (RuleCall)cDevuelveAssignment_7.eContents().get(0);
-		private final Keyword cFin_segunKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cHacerKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Assignment cCasoAssignment_5_0 = (Assignment)cGroup_5.eContents().get(0);
+		private final RuleCall cCasoCasoParserRuleCall_5_0_0 = (RuleCall)cCasoAssignment_5_0.eContents().get(0);
+		private final Assignment cCasoAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cCasoCasoParserRuleCall_5_1_0 = (RuleCall)cCasoAssignment_5_1.eContents().get(0);
+		private final Keyword cEn_otro_casoKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
+		private final Assignment cSentenciasAssignment_7_0 = (Assignment)cGroup_7.eContents().get(0);
+		private final RuleCall cSentenciasSentenciasParserRuleCall_7_0_0 = (RuleCall)cSentenciasAssignment_7_0.eContents().get(0);
+		private final Assignment cSentenciasAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
+		private final RuleCall cSentenciasSentenciasParserRuleCall_7_1_0 = (RuleCall)cSentenciasAssignment_7_1.eContents().get(0);
+		private final Assignment cDevuelveAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cDevuelveDevolverParserRuleCall_8_0 = (RuleCall)cDevuelveAssignment_8.eContents().get(0);
+		private final Keyword cFin_segunKeyword_9 = (Keyword)cGroup.eContents().get(9);
 		
 		//segun:
-		//	"segun_sea" "(" valor=Primaria ") hacer" (caso+=Caso caso+=Caso*)? "en_otro_caso:" (sentencias+=Sentencias
+		//	"segun_sea" "(" valor=Primaria ")" "hacer" (caso+=Caso caso+=Caso*)? "en_otro_caso:" (sentencias+=Sentencias
 		//	sentencias+=Sentencias*)? devuelve=Devolver? "fin_segun";
 		public ParserRule getRule() { return rule; }
 
-		//"segun_sea" "(" valor=Primaria ") hacer" (caso+=Caso caso+=Caso*)? "en_otro_caso:" (sentencias+=Sentencias
+		//"segun_sea" "(" valor=Primaria ")" "hacer" (caso+=Caso caso+=Caso*)? "en_otro_caso:" (sentencias+=Sentencias
 		//sentencias+=Sentencias*)? devuelve=Devolver? "fin_segun"
 		public Group getGroup() { return cGroup; }
 
@@ -1679,50 +1680,53 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//Primaria
 		public RuleCall getValorPrimariaParserRuleCall_2_0() { return cValorPrimariaParserRuleCall_2_0; }
 
-		//") hacer"
-		public Keyword getHacerKeyword_3() { return cHacerKeyword_3; }
+		//")"
+		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
+
+		//"hacer"
+		public Keyword getHacerKeyword_4() { return cHacerKeyword_4; }
 
 		//(caso+=Caso caso+=Caso*)?
-		public Group getGroup_4() { return cGroup_4; }
+		public Group getGroup_5() { return cGroup_5; }
 
 		//caso+=Caso
-		public Assignment getCasoAssignment_4_0() { return cCasoAssignment_4_0; }
+		public Assignment getCasoAssignment_5_0() { return cCasoAssignment_5_0; }
 
 		//Caso
-		public RuleCall getCasoCasoParserRuleCall_4_0_0() { return cCasoCasoParserRuleCall_4_0_0; }
+		public RuleCall getCasoCasoParserRuleCall_5_0_0() { return cCasoCasoParserRuleCall_5_0_0; }
 
 		//caso+=Caso*
-		public Assignment getCasoAssignment_4_1() { return cCasoAssignment_4_1; }
+		public Assignment getCasoAssignment_5_1() { return cCasoAssignment_5_1; }
 
 		//Caso
-		public RuleCall getCasoCasoParserRuleCall_4_1_0() { return cCasoCasoParserRuleCall_4_1_0; }
+		public RuleCall getCasoCasoParserRuleCall_5_1_0() { return cCasoCasoParserRuleCall_5_1_0; }
 
 		//"en_otro_caso:"
-		public Keyword getEn_otro_casoKeyword_5() { return cEn_otro_casoKeyword_5; }
+		public Keyword getEn_otro_casoKeyword_6() { return cEn_otro_casoKeyword_6; }
 
 		//(sentencias+=Sentencias sentencias+=Sentencias*)?
-		public Group getGroup_6() { return cGroup_6; }
+		public Group getGroup_7() { return cGroup_7; }
 
 		//sentencias+=Sentencias
-		public Assignment getSentenciasAssignment_6_0() { return cSentenciasAssignment_6_0; }
+		public Assignment getSentenciasAssignment_7_0() { return cSentenciasAssignment_7_0; }
 
 		//Sentencias
-		public RuleCall getSentenciasSentenciasParserRuleCall_6_0_0() { return cSentenciasSentenciasParserRuleCall_6_0_0; }
+		public RuleCall getSentenciasSentenciasParserRuleCall_7_0_0() { return cSentenciasSentenciasParserRuleCall_7_0_0; }
 
 		//sentencias+=Sentencias*
-		public Assignment getSentenciasAssignment_6_1() { return cSentenciasAssignment_6_1; }
+		public Assignment getSentenciasAssignment_7_1() { return cSentenciasAssignment_7_1; }
 
 		//Sentencias
-		public RuleCall getSentenciasSentenciasParserRuleCall_6_1_0() { return cSentenciasSentenciasParserRuleCall_6_1_0; }
+		public RuleCall getSentenciasSentenciasParserRuleCall_7_1_0() { return cSentenciasSentenciasParserRuleCall_7_1_0; }
 
 		//devuelve=Devolver?
-		public Assignment getDevuelveAssignment_7() { return cDevuelveAssignment_7; }
+		public Assignment getDevuelveAssignment_8() { return cDevuelveAssignment_8; }
 
 		//Devolver
-		public RuleCall getDevuelveDevolverParserRuleCall_7_0() { return cDevuelveDevolverParserRuleCall_7_0; }
+		public RuleCall getDevuelveDevolverParserRuleCall_8_0() { return cDevuelveDevolverParserRuleCall_8_0; }
 
 		//"fin_segun"
-		public Keyword getFin_segunKeyword_8() { return cFin_segunKeyword_8; }
+		public Keyword getFin_segunKeyword_9() { return cFin_segunKeyword_9; }
 	}
 
 	public class TipoVariableElements extends AbstractParserRuleElementFinder {
@@ -3644,7 +3648,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//segun:
-	//	"segun_sea" "(" valor=Primaria ") hacer" (caso+=Caso caso+=Caso*)? "en_otro_caso:" (sentencias+=Sentencias
+	//	"segun_sea" "(" valor=Primaria ")" "hacer" (caso+=Caso caso+=Caso*)? "en_otro_caso:" (sentencias+=Sentencias
 	//	sentencias+=Sentencias*)? devuelve=Devolver? "fin_segun";
 	public SegunElements getSegunAccess() {
 		return (pSegun != null) ? pSegun : (pSegun = new SegunElements());
