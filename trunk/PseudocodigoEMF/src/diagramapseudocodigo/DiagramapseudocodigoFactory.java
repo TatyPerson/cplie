@@ -220,15 +220,6 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	desde createdesde();
 
 	/**
-	 * Returns a new object of class '<em>negacion</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>negacion</em>'.
-	 * @generated
-	 */
-	negacion createnegacion();
-
-	/**
 	 * Returns a new object of class '<em>Procedimiento</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -578,6 +569,15 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	 * @generated
 	 */
 	Negativa createNegativa();
+
+	/**
+	 * Returns a new object of class '<em>Negacion</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Negacion</em>'.
+	 * @generated
+	 */
+	Negacion createNegacion();
 
 	/**
 	 * Returns the package supported by this factory.

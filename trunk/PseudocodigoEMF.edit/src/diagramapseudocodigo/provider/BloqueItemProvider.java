@@ -247,6 +247,11 @@ public class BloqueItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.BLOQUE__VALOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNegacion()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.BLOQUE__SENTENCIAS,
 				 DiagramapseudocodigoFactory.eINSTANCE.createLlamadaFuncion()));
 
@@ -314,11 +319,6 @@ public class BloqueItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.BLOQUE__SENTENCIAS,
 				 DiagramapseudocodigoFactory.eINSTANCE.createdesde()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.BLOQUE__SENTENCIAS,
-				 DiagramapseudocodigoFactory.eINSTANCE.createnegacion()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -409,6 +409,11 @@ public class BloqueItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.BLOQUE__SENTENCIAS,
 				 DiagramapseudocodigoFactory.eINSTANCE.createNegativa()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.BLOQUE__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNegacion()));
 	}
 
 	/**

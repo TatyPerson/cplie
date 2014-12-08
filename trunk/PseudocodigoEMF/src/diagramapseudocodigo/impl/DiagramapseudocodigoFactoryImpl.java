@@ -79,7 +79,6 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 			case DiagramapseudocodigoPackage.MIENTRAS: return createmientras();
 			case DiagramapseudocodigoPackage.REPETIR: return createrepetir();
 			case DiagramapseudocodigoPackage.DESDE: return createdesde();
-			case DiagramapseudocodigoPackage.NEGACION: return createnegacion();
 			case DiagramapseudocodigoPackage.PROCEDIMIENTO: return createProcedimiento();
 			case DiagramapseudocodigoPackage.CARACTER: return createCaracter();
 			case DiagramapseudocodigoPackage.INTERNAS: return createInternas();
@@ -119,6 +118,7 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 			case DiagramapseudocodigoPackage.SUBRANGO_NUMERICO: return createSubrangoNumerico();
 			case DiagramapseudocodigoPackage.SUBRANGO_ENUMERADO: return createSubrangoEnumerado();
 			case DiagramapseudocodigoPackage.NEGATIVA: return createNegativa();
+			case DiagramapseudocodigoPackage.NEGACION: return createNegacion();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -396,16 +396,6 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	public desde createdesde() {
 		desdeImpl desde = new desdeImpl();
 		return desde;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public negacion createnegacion() {
-		negacionImpl negacion = new negacionImpl();
-		return negacion;
 	}
 
 	/**
@@ -796,6 +786,16 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	public Negativa createNegativa() {
 		NegativaImpl negativa = new NegativaImpl();
 		return negativa;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Negacion createNegacion() {
+		NegacionImpl negacion = new NegacionImpl();
+		return negacion;
 	}
 
 	/**

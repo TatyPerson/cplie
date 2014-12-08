@@ -224,11 +224,6 @@ public class CasoItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
-				 DiagramapseudocodigoFactory.eINSTANCE.createnegacion()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
 				 DiagramapseudocodigoFactory.eINSTANCE.createCaracter()));
 
 		newChildDescriptors.add
@@ -315,6 +310,11 @@ public class CasoItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
 				 DiagramapseudocodigoFactory.eINSTANCE.createNegativa()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNegacion()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -425,6 +425,11 @@ public class CasoItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
 				 DiagramapseudocodigoFactory.eINSTANCE.createNegativa()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CASO__OPERADOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNegacion()));
 	}
 
 	/**

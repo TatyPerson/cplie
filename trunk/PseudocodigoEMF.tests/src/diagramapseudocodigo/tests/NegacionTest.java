@@ -3,17 +3,17 @@
 package diagramapseudocodigo.tests;
 
 import diagramapseudocodigo.DiagramapseudocodigoFactory;
-import diagramapseudocodigo.negacion;
+import diagramapseudocodigo.Negacion;
 
 import junit.textui.TestRunner;
 
 /**
  * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>negacion</b></em>'.
+ * A test case for the model object '<em><b>Negacion</b></em>'.
  * <!-- end-user-doc -->
  * @generated
  */
-public class negacionTest extends SentenciasTest {
+public class NegacionTest extends operacionTest {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -21,28 +21,28 @@ public class negacionTest extends SentenciasTest {
 	 * @generated
 	 */
 	public static void main(String[] args) {
-		TestRunner.run(negacionTest.class);
+		TestRunner.run(NegacionTest.class);
 	}
 
 	/**
-	 * Constructs a new negacion test case with the given name.
+	 * Constructs a new Negacion test case with the given name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public negacionTest(String name) {
+	public NegacionTest(String name) {
 		super(name);
 	}
 
 	/**
-	 * Returns the fixture for this negacion test case.
+	 * Returns the fixture for this Negacion test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected negacion getFixture() {
-		return (negacion)fixture;
+	protected Negacion getFixture() {
+		return (Negacion)fixture;
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class negacionTest extends SentenciasTest {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(DiagramapseudocodigoFactory.eINSTANCE.createnegacion());
+		setFixture(DiagramapseudocodigoFactory.eINSTANCE.createNegacion());
 	}
 
 	/**
@@ -67,4 +67,4 @@ public class negacionTest extends SentenciasTest {
 		setFixture(null);
 	}
 
-} //negacionTest
+} //NegacionTest

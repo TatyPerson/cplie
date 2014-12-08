@@ -260,6 +260,11 @@ public class ConstantesItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.CONSTANTES__VALOR,
 				 DiagramapseudocodigoFactory.eINSTANCE.createNegativa()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.CONSTANTES__VALOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNegacion()));
 	}
 
 	/**

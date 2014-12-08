@@ -578,23 +578,23 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.negacion} instances.
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.Negacion} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected negacionItemProvider negacionItemProvider;
+	protected NegacionItemProvider negacionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link diagramapseudocodigo.negacion}.
+	 * This creates an adapter for a {@link diagramapseudocodigo.Negacion}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createnegacionAdapter() {
+	public Adapter createNegacionAdapter() {
 		if (negacionItemProvider == null) {
-			negacionItemProvider = new negacionItemProvider(this);
+			negacionItemProvider = new NegacionItemProvider(this);
 		}
 
 		return negacionItemProvider;
@@ -1618,7 +1618,6 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 		if (mientrasItemProvider != null) mientrasItemProvider.dispose();
 		if (repetirItemProvider != null) repetirItemProvider.dispose();
 		if (desdeItemProvider != null) desdeItemProvider.dispose();
-		if (negacionItemProvider != null) negacionItemProvider.dispose();
 		if (procedimientoItemProvider != null) procedimientoItemProvider.dispose();
 		if (caracterItemProvider != null) caracterItemProvider.dispose();
 		if (internasItemProvider != null) internasItemProvider.dispose();
@@ -1658,6 +1657,7 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 		if (subrangoNumericoItemProvider != null) subrangoNumericoItemProvider.dispose();
 		if (subrangoEnumeradoItemProvider != null) subrangoEnumeradoItemProvider.dispose();
 		if (negativaItemProvider != null) negativaItemProvider.dispose();
+		if (negacionItemProvider != null) negacionItemProvider.dispose();
 	}
 
 }

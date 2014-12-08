@@ -34,6 +34,7 @@ import diagramapseudocodigo.LlamadaFuncion;
 import diagramapseudocodigo.Matriz;
 import diagramapseudocodigo.ModoApertura;
 import diagramapseudocodigo.Multiplicacion;
+import diagramapseudocodigo.Negacion;
 import diagramapseudocodigo.Negativa;
 import diagramapseudocodigo.NombreInterna;
 import diagramapseudocodigo.NumeroDecimal;
@@ -71,7 +72,6 @@ import diagramapseudocodigo.cadena;
 import diagramapseudocodigo.desde;
 import diagramapseudocodigo.mientras;
 import diagramapseudocodigo.neg;
-import diagramapseudocodigo.negacion;
 import diagramapseudocodigo.operacion;
 import diagramapseudocodigo.repetir;
 import diagramapseudocodigo.segun;
@@ -1252,33 +1252,6 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getnegacion() {
-		return negacionEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getnegacion_Nombre() {
-		return (EAttribute)negacionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getnegacion_Ssigno() {
-		return (EAttribute)negacionEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getSubproceso() {
 		return subprocesoEClass;
 	}
@@ -2305,6 +2278,24 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getNegacion() {
+		return negacionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getNegacion_Valor_operacion() {
+		return (EReference)negacionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getVector_Nombre() {
 		return (EAttribute)vectorEClass.getEStructuralFeatures().get(2);
 	}
@@ -2517,10 +2508,6 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		desdeEClass = createEClass(DESDE);
 		createEReference(desdeEClass, DESDE__ASIGNACION);
 
-		negacionEClass = createEClass(NEGACION);
-		createEAttribute(negacionEClass, NEGACION__NOMBRE);
-		createEAttribute(negacionEClass, NEGACION__SSIGNO);
-
 		subprocesoEClass = createEClass(SUBPROCESO);
 		createEReference(subprocesoEClass, SUBPROCESO__PARAMETROFUNCION);
 		createEReference(subprocesoEClass, SUBPROCESO__SENTENCIAS);
@@ -2679,6 +2666,9 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		negativaEClass = createEClass(NEGATIVA);
 		createEReference(negativaEClass, NEGATIVA__VALOR_OPERACION);
 
+		negacionEClass = createEClass(NEGACION);
+		createEReference(negacionEClass, NEGACION__VALOR_OPERACION);
+
 		// Create enums
 		tipoVariableEEnum = createEEnum(TIPO_VARIABLE);
 		signoEEnum = createEEnum(SIGNO);
@@ -2742,7 +2732,6 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		mientrasEClass.getESuperTypes().add(this.getBloque());
 		repetirEClass.getESuperTypes().add(this.getBloque());
 		desdeEClass.getESuperTypes().add(this.getBloque());
-		negacionEClass.getESuperTypes().add(this.getSentencias());
 		procedimientoEClass.getESuperTypes().add(this.getSubproceso());
 		caracterEClass.getESuperTypes().add(this.getOperador());
 		caracterEClass.getESuperTypes().add(this.getoperacion());
@@ -2778,6 +2767,7 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 		subrangoNumericoEClass.getESuperTypes().add(this.getSubrango());
 		subrangoEnumeradoEClass.getESuperTypes().add(this.getSubrango());
 		negativaEClass.getESuperTypes().add(this.getoperacion());
+		negacionEClass.getESuperTypes().add(this.getoperacion());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(codigoEClass, Codigo.class, "Codigo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2869,10 +2859,6 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 
 		initEClass(desdeEClass, desde.class, "desde", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getdesde_Asignacion(), this.getAsignacion(), null, "asignacion", null, 1, 1, desde.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(negacionEClass, negacion.class, "negacion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getnegacion_Nombre(), ecorePackage.getEString(), "nombre", null, 1, 1, negacion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getnegacion_Ssigno(), this.getneg(), "ssigno", null, 1, 1, negacion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(subprocesoEClass, Subproceso.class, "Subproceso", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSubproceso_Parametrofuncion(), this.getParametroFuncion(), null, "parametrofuncion", null, 0, -1, Subproceso.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3031,6 +3017,9 @@ public class DiagramapseudocodigoPackageImpl extends EPackageImpl implements Dia
 
 		initEClass(negativaEClass, Negativa.class, "Negativa", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNegativa_Valor_operacion(), this.getoperacion(), null, "valor_operacion", null, 1, 1, Negativa.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(negacionEClass, Negacion.class, "Negacion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNegacion_Valor_operacion(), this.getoperacion(), null, "valor_operacion", null, 1, 1, Negacion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(tipoVariableEEnum, TipoVariable.class, "TipoVariable");

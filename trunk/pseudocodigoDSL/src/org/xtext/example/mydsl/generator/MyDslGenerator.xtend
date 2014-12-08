@@ -560,9 +560,9 @@ class MyDslGenerator implements IGenerator {
 			var desde prueba = new desdeImpl
 			prueba = mySent as desde
 			prueba.toCpp
-		} else if (mySent.eClass.name.equals("negacion")) {
-			var negacion prueba = new negacionImpl
-			prueba = mySent as negacion
+		} else if (mySent.eClass.name.equals("Negacion")) {
+			var Negacion prueba = new NegacionImpl
+			prueba = mySent as Negacion
 			prueba.toC
 		} else if (mySent.eClass.name.equals("Leer")) {
 			var Leer prueba = new LeerImpl
@@ -618,8 +618,8 @@ class MyDslGenerator implements IGenerator {
 			prueba = mySent as desde
 			prueba.toC
 		} else if (mySent.eClass.name.equals("negacion")) {
-			var negacion prueba = new negacionImpl
-			prueba = mySent as negacion
+			var Negacion prueba = new NegacionImpl
+			prueba = mySent as Negacion
 			prueba.toC
 		} else if (mySent.eClass.name.equals("Leer")) {
 			var Leer prueba = new LeerImpl
@@ -851,9 +851,9 @@ class MyDslGenerator implements IGenerator {
 	def toC(VariableID variable) '''
 	«variable.nombre»«FOR matri:variable.mat»«matri.toString»«ENDFOR»'''
 
-	def toC(negacion neg) '''
-		«neg.nombre»«neg.ssigno»;
-	'''
+	//def toC(negacion neg) '''
+	//	«neg.nombre»«neg.ssigno»;
+	//'''
 
 	def toC(unaria myUnaria) {
 		return "!" + myUnaria.variable.toC;
@@ -1588,6 +1588,11 @@ class MyDslGenerator implements IGenerator {
 			prueba = op as Negativa
 			prueba.toC
 		}
+		else if (op.eClass.name.equals("Negacion")) {
+			var Negacion prueba = new NegacionImpl
+			prueba = op as Negacion
+			prueba.toC
+		}
 	}
 	
 	def toC(Suma mySuma) {
@@ -1607,11 +1612,11 @@ class MyDslGenerator implements IGenerator {
 	}
 	
 	def toC(Or myOr) {
-		return myOr.left.toC + " " + myOr.signo_op + " " + myOr.right.toC;
+		return myOr.left.toC + " " + "||" + " " + myOr.right.toC;
 	}
 	
 	def toC(And myAnd) {
-		return myAnd.left.toC + " " + myAnd.signo_op + " " + myAnd.right.toC;
+		return myAnd.left.toC + " " + "&&" + " " + myAnd.right.toC;
 	}
 	
 	def toC(Comparacion myComparacion) {
@@ -1624,6 +1629,10 @@ class MyDslGenerator implements IGenerator {
 	
 	def toC(Negativa myNegativa) {
 		return "( - " + myNegativa.valor_operacion.toC + ")";
+	}
+	
+	def toC(Negacion myNegacion) {
+		return "!" + myNegacion.valor_operacion.toC;
 	}
 
 	def toC(Si mySi) '''
@@ -1795,7 +1804,7 @@ class MyDslGenerator implements IGenerator {
 			«FOR sent:m.sentencias»
 				«sent.toC»
 			«ENDFOR»
-		}while(!«m.valor.toC»);
+		}while(«m.valor.toC»);
 	'''
 	
 	def toCpp(repetir m) '''
@@ -1807,6 +1816,6 @@ class MyDslGenerator implements IGenerator {
 					«sent.toC»
 				«ENDIF»
 			«ENDFOR»
-		}while(!«m.valor.toC»);
+		}while(«m.valor.toC»);
 	'''
 }

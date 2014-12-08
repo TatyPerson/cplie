@@ -284,6 +284,11 @@ public class EnumeradoItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.ENUMERADO__VALOR,
 				 DiagramapseudocodigoFactory.eINSTANCE.createNegativa()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.ENUMERADO__VALOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNegacion()));
 	}
 
 }

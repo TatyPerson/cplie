@@ -222,11 +222,6 @@ public class SinoItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.SINO__SENTENCIAS,
-				 DiagramapseudocodigoFactory.eINSTANCE.createnegacion()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.SINO__SENTENCIAS,
 				 DiagramapseudocodigoFactory.eINSTANCE.createCaracter()));
 
 		newChildDescriptors.add
@@ -313,6 +308,11 @@ public class SinoItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.SINO__SENTENCIAS,
 				 DiagramapseudocodigoFactory.eINSTANCE.createNegativa()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.SINO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNegacion()));
 
 		newChildDescriptors.add
 			(createChildParameter
