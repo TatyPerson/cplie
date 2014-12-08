@@ -1583,6 +1583,11 @@ class MyDslGenerator implements IGenerator {
 			prueba = op as Igualdad
 			prueba.toC
 		}
+		else if (op.eClass.name.equals("Negativa")) {
+			var Negativa prueba = new NegativaImpl
+			prueba = op as Negativa
+			prueba.toC
+		}
 	}
 	
 	def toC(Suma mySuma) {
@@ -1615,6 +1620,10 @@ class MyDslGenerator implements IGenerator {
 	
 	def toC(Igualdad myIgualdad) {
 		return myIgualdad.left.toC + " " + myIgualdad.signo_op + " " + myIgualdad.right.toC;
+	}
+	
+	def toC(Negativa myNegativa) {
+		return "( - " + myNegativa.valor_operacion.toC + ")";
 	}
 
 	def toC(Si mySi) '''

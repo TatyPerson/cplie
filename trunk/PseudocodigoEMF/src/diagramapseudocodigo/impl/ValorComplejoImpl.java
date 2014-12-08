@@ -4,7 +4,6 @@ package diagramapseudocodigo.impl;
 
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.ValorComplejo;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

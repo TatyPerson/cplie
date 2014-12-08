@@ -3138,6 +3138,43 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int SUBRANGO_ENUMERADO_OPERATION_COUNT = SUBRANGO_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.NegativaImpl <em>Negativa</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.NegativaImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getNegativa()
+	 * @generated
+	 */
+	int NEGATIVA = 66;
+
+	/**
+	 * The feature id for the '<em><b>Valor operacion</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEGATIVA__VALOR_OPERACION = OPERACION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Negativa</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEGATIVA_FEATURE_COUNT = OPERACION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Negativa</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEGATIVA_OPERATION_COUNT = OPERACION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoVariable <em>Tipo Variable</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3145,7 +3182,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoVariable()
 	 * @generated
 	 */
-	int TIPO_VARIABLE = 66;
+	int TIPO_VARIABLE = 67;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.signo <em>signo</em>}' enum.
@@ -3155,7 +3192,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getsigno()
 	 * @generated
 	 */
-	int SIGNO = 67;
+	int SIGNO = 68;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.booleano <em>booleano</em>}' enum.
@@ -3165,7 +3202,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getbooleano()
 	 * @generated
 	 */
-	int BOOLEANO = 68;
+	int BOOLEANO = 69;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.neg <em>neg</em>}' enum.
@@ -3175,7 +3212,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getneg()
 	 * @generated
 	 */
-	int NEG = 69;
+	int NEG = 70;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoPaso <em>Tipo Paso</em>}' enum.
@@ -3185,7 +3222,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoPaso()
 	 * @generated
 	 */
-	int TIPO_PASO = 70;
+	int TIPO_PASO = 71;
 
 
 	/**
@@ -3196,7 +3233,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getNombreInterna()
 	 * @generated
 	 */
-	int NOMBRE_INTERNA = 71;
+	int NOMBRE_INTERNA = 72;
 
 
 	/**
@@ -3207,7 +3244,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getModoApertura()
 	 * @generated
 	 */
-	int MODO_APERTURA = 72;
+	int MODO_APERTURA = 73;
 
 
 	/**
@@ -5114,6 +5151,27 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EAttribute getSubrangoEnumerado_Limite_sup();
 
 	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.Negativa <em>Negativa</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Negativa</em>'.
+	 * @see diagramapseudocodigo.Negativa
+	 * @generated
+	 */
+	EClass getNegativa();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Negativa#getValor_operacion <em>Valor operacion</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Valor operacion</em>'.
+	 * @see diagramapseudocodigo.Negativa#getValor_operacion()
+	 * @see #getNegativa()
+	 * @generated
+	 */
+	EReference getNegativa_Valor_operacion();
+
+	/**
 	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Vector#getNombre <em>Nombre</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6812,6 +6870,24 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SUBRANGO_ENUMERADO__LIMITE_SUP = eINSTANCE.getSubrangoEnumerado_Limite_sup();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.NegativaImpl <em>Negativa</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.NegativaImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getNegativa()
+		 * @generated
+		 */
+		EClass NEGATIVA = eINSTANCE.getNegativa();
+
+		/**
+		 * The meta object literal for the '<em><b>Valor operacion</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NEGATIVA__VALOR_OPERACION = eINSTANCE.getNegativa_Valor_operacion();
 
 		/**
 		 * The meta object literal for the '<em><b>Nombre</b></em>' attribute feature.

@@ -1475,6 +1475,29 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link diagramapseudocodigo.Negativa} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NegativaItemProvider negativaItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link diagramapseudocodigo.Negativa}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNegativaAdapter() {
+		if (negativaItemProvider == null) {
+			negativaItemProvider = new NegativaItemProvider(this);
+		}
+
+		return negativaItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1634,6 +1657,7 @@ public class DiagramapseudocodigoItemProviderAdapterFactory extends Diagramapseu
 		if (igualdadItemProvider != null) igualdadItemProvider.dispose();
 		if (subrangoNumericoItemProvider != null) subrangoNumericoItemProvider.dispose();
 		if (subrangoEnumeradoItemProvider != null) subrangoEnumeradoItemProvider.dispose();
+		if (negativaItemProvider != null) negativaItemProvider.dispose();
 	}
 
 }
