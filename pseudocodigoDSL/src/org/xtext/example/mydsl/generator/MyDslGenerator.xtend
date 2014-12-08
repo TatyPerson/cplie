@@ -528,14 +528,10 @@ class MyDslGenerator implements IGenerator {
 	'''
 	
 	def toCpp(Sentencias mySent) {
-		if (mySent.eClass.name.equals("AsignacionNormal")) {
-			//var AsignacionNormal prueba = new AsignacionNormalImpl
-			//prueba = mySent as AsignacionNormal
-			//prueba.toC
-		} else if (mySent.eClass.name.equals("AsignacionCompleja")) {
-			//var AsignacionCompleja prueba = new AsignacionComplejaImpl
-			//prueba = mySent as AsignacionCompleja
-			//prueba.toC
+		if (mySent.eClass.name.equals("Asignacion")) {
+			var Asignacion prueba = new AsignacionImpl
+			prueba = mySent as Asignacion
+			prueba.toC
 		} else if (mySent.eClass.name.equals("LlamadaFuncion")) {
 			var LlamadaFuncion prueba = new LlamadaFuncionImpl
 			prueba = mySent as LlamadaFuncion
@@ -589,14 +585,10 @@ class MyDslGenerator implements IGenerator {
 	
 
 	def toC(Sentencias mySent) {
-		if (mySent.eClass.name.equals("AsignacionNormal")) {
-			//var AsignacionNormal prueba = new AsignacionNormalImpl
-			//prueba = mySent as AsignacionNormal
-			//prueba.toC
-		} else if (mySent.eClass.name.equals("AsignacionCompleja")) {
-			//var AsignacionCompleja prueba = new AsignacionComplejaImpl
-			//prueba = mySent as AsignacionCompleja
-			//prueba.toC
+		if (mySent.eClass.name.equals("Asignacion")) {
+			var Asignacion prueba = new AsignacionImpl
+			prueba = mySent as Asignacion
+			prueba.toC
 		} else if (mySent.eClass.name.equals("LlamadaFuncion")) {
 			var LlamadaFuncion prueba = new LlamadaFuncionImpl
 			prueba = mySent as LlamadaFuncion
@@ -711,17 +703,8 @@ class MyDslGenerator implements IGenerator {
 		«myDec.tipo» «pintarVariables(myDec.variable)»
 	'''
 
-	def toC(Asignacion myAsig) {
-		if (myAsig.eClass.name.equals("AsignacionNormal")) {
-			//var AsignacionNormal prueba = new AsignacionNormalImpl
-			//prueba = myAsig as AsignacionNormal
-			//prueba.toC
-		} else if (myAsig.eClass.name.equals("AsignacionCompleja")) {
-			//var AsignacionCompleja prueba = new AsignacionComplejaImpl
-			//prueba = myAsig as AsignacionCompleja
-			//prueba.toC
-		}
-	}
+	def toC(Asignacion myAsig) '''
+		«myAsig.valor_asignacion»«FOR matri:myAsig.mat»«matri.toString»«ENDFOR» = «myAsig.operadores.toC»;'''
 
 	//def toC(AsignacionNormal asig) '''
 	//«asig.lvalue»«FOR matri:asig.mat»«matri.toString»«ENDFOR» = «asig.operador.toC»;'''
@@ -761,10 +744,10 @@ class MyDslGenerator implements IGenerator {
 	def toC(ValorVector myValor) {
 		var concat = new String;
 		if(myValor.campo.size() == 0) {
-			//concat = myValor.nombre_vector.toString + '[' + myValor.indice.toC + ']';
+			concat = myValor.nombre_vector.toString + '[' + myValor.indice.toC + ']';
 		}
 		else {
-			//concat = myValor.nombre_vector.toString + '[' + myValor.indice.toC + ']' + '.' + myValor.campo.get(0).nombre_campo;
+			concat = myValor.nombre_vector.toString + '[' + myValor.indice.toC + ']' + '.' + myValor.campo.get(0).nombre_campo;
 		}
 		return concat;
 	}
@@ -778,10 +761,10 @@ class MyDslGenerator implements IGenerator {
 	def toC(ValorMatriz myValor) {
 		var concat = new String;
 		if(myValor.campo.size() == 0) {
-			//concat = myValor.nombre_matriz.toString + '[' + myValor.indices.get(0).toC + '][' + myValor.indices.get(1).toC + ']';
+			concat = myValor.nombre_matriz.toString + '[' + myValor.primerIndice.toC + '][' + myValor.segundoIndice.toC + ']';
 		}
 		else {
-			//concat = myValor.nombre_matriz.toString + '[' + myValor.indices.get(0).toC + '][' + myValor.indices.get(1).toC + ']' + '.' + myValor.campo.get(0).nombre_campo;
+			concat = myValor.nombre_matriz.toString + '[' + myValor.primerIndice.toC + '][' + myValor.segundoIndice.toC + ']' + '.' + myValor.campo.get(0).nombre_campo;
 		}
 		return concat;
 	}
@@ -1110,45 +1093,44 @@ class MyDslGenerator implements IGenerator {
 	}
 
 	def toC(Internas i) {
-		/* 
 		if (i.nombre == NombreInterna::COS) {
-			'''cos(«i.operador.get(0).toC»)'''
+			'''cos(«i.operadores.get(0).toC»)'''
 		} else if (i.nombre == NombreInterna::SEN) {
-			'''sin(«i.operador.get(0).toC»)'''
+			'''sin(«i.operadores.get(0).toC»)'''
 		} else if (i.nombre == NombreInterna::CUADRADO) {
-			'''pow(«i.operador.get(0).toC»,«2.0»)'''
+			'''pow(«i.operadores.get(0).toC»,«2.0»)'''
 		} else if (i.nombre == NombreInterna::EXP) {
-			'''exp2(«i.operador.get(0).toC»)'''
+			'''exp2(«i.operadores.get(0).toC»)'''
 		} else if (i.nombre == NombreInterna::LN) {
-			'''log(«i.operador.get(0).toC»)'''
+			'''log(«i.operadores.get(0).toC»)'''
 		} else if (i.nombre == NombreInterna::LOG) {
-			'''log10(«i.operador.get(0).toC»)'''
+			'''log10(«i.operadores.get(0).toC»)'''
 		} else if (i.nombre == NombreInterna::SQRT) {
-			'''sqrt(«i.operador.get(0).toC»)'''
+			'''sqrt(«i.operadores.get(0).toC»)'''
 		} else if (i.nombre == NombreInterna::LONGITUD) {
-			'''strlen(«i.operador.get(0).toC»)'''
+			'''strlen(«i.operadores.get(0).toC»)'''
 		} else if (i.nombre == NombreInterna::CONCATENA) {
-			'''strcat(«i.operador.get(0).toC»,«i.operador.get(1).toC»)'''
-		} */
+			'''strcat(«i.operadores.get(0).toC»,«i.operadores.get(1).toC»)'''
+		} 
 	}
 
-	def coutOperadores(EList<Operador> operadores) {
+	def coutOperadores(EList<operacion> operaciones) {
 		var resultado = "";
-		for (o : operadores) {
-			resultado = resultado + " << " + o.toC;
+		for (op : operaciones) {
+			resultado = resultado + " << " + op.toC;
 		}
 		return resultado;
 	}
 	
-	def coutOperadoresC(EList<Operador> operadores) {
+	def coutOperadoresC(EList<operacion> operaciones) {
 		var resultado = "";
 		var numero = 1;
-		for (o : operadores) {
-			if(operadores.size() > 1 && numero < operadores.size && numero != 1) {
-				resultado = resultado + o.toC + " , ";
+		for (op : operaciones) {
+			if(operaciones.size() > 1 && numero < operaciones.size && numero != 1) {
+				resultado = resultado + op.toC + " , ";
 			}
-			else if(numero != 1 || operadores.size() == 1) {
-				resultado = resultado + o.toC;
+			else if(numero != 1 || operaciones.size() == 1) {
+				resultado = resultado + op.toC;
 			}
 			numero = numero + 1;
 		}
@@ -1232,7 +1214,7 @@ class MyDslGenerator implements IGenerator {
 	}
 
 	def toCpp(Escribir a) '''
-		cout«/*a.operador.coutOperadores*/» << endl;
+		cout«a.operador.coutOperadores» << endl;
 	'''
 	
 	def toC(Escribir a) {
@@ -1337,7 +1319,7 @@ class MyDslGenerator implements IGenerator {
 				}
 				iterador = iterador + 1;
 			}
-			//cadena = cadena + ", " + a.operador.coutOperadoresC;
+			cadena = cadena + ", " + a.operador.coutOperadoresC;
 			return '''printf(«cadena»);'''
 		}
 		else {
@@ -1443,31 +1425,29 @@ class MyDslGenerator implements IGenerator {
 				}
 				iterador = iterador + 1;
 			}
-				//cadena = cadena + ", " + a.operador.coutOperadoresC;
+				cadena = cadena + ", " + a.operador.coutOperadoresC;
 				return '''printf(«cadena»);'''
 				}	
 			}
 		}
 	
-		//'''printf(«a.operador.coutOperadoresC»);'''
+		'''printf(«a.operador.coutOperadoresC»);'''
 	
 	}
 
-	def generaParametros(EList<valor> valores) {
+	def generaParametros(EList<operacion> operaciones) {
 		var total = "";
 		var actual = 1;
-		for (v : valores) {
-			var Operador o
-			o = v as Operador
+		for (op : operaciones) {
 			if (actual != 1)
 				total = total + ", "
-			total = total + o.toC;
+			total = total + op.toC;
 			actual = actual + 1;
 		}
 		return total;
 	}
 
-	def toC(LlamadaFuncion fun, boolean a) '''«fun.nombre»(«/*fun.operador.generaParametros*/»)«IF a»;«ENDIF»'''
+	def toC(LlamadaFuncion fun, boolean a) '''«fun.nombre»(«fun.operadores.generaParametros»)«IF a»;«ENDIF»'''
 
 	def toC(Operador op) {
 		if (op.eClass.name.equals("NumeroEntero")) {
@@ -1512,7 +1492,130 @@ class MyDslGenerator implements IGenerator {
 		}
 	}
 
-	def toC(operacion op) '''(«/*op.op_izq.oper_izq.toC» «IF op.signo_op.toString == 'y'»&&«ELSE»«IF op.signo_op.toString == 'o'»||«ELSE»«op.signo_op»«ENDIF»«ENDIF» «op.op_der.oper_der.toC*/»)'''
+	def toC(operacion op) {
+		if (op.eClass.name.equals("NumeroEntero")) {
+			var NumeroEntero prueba = new NumeroEnteroImpl
+			prueba = op as NumeroEntero
+			prueba.toC	
+		} else if (op.eClass.name.equals("NumeroDecimal")) {
+			var NumeroDecimal prueba = new NumeroDecimalImpl
+			prueba = op as NumeroDecimal
+			prueba.toC
+		} else if (op.eClass.name.equals("ValorBooleano")) {
+			var ValorBooleano prueba = new ValorBooleanoImpl
+			prueba = op as ValorBooleano
+			prueba.toC
+		} else if (op.eClass.name.equals("ConstCadena")) {
+			var ConstCadena prueba = new ConstCadenaImpl
+			prueba = op as ConstCadena
+			prueba.toC
+		} else if (op.eClass.name.equals("Caracter")) {
+			var Caracter prueba = new CaracterImpl
+			prueba = op as Caracter
+			prueba.toC
+		} else if (op.eClass.name.equals("VariableID")) {
+			var VariableID prueba = new VariableIDImpl
+			prueba = op as VariableID
+			prueba.toC
+		}
+		else if (op.eClass.name.equals("ValorRegistro")) {
+			var ValorRegistro prueba = new ValorRegistroImpl
+			prueba = op as ValorRegistro
+			prueba.toC
+		}
+		else if (op.eClass.name.equals("ValorVector")) {
+			var ValorVector prueba = new ValorVectorImpl
+			prueba = op as ValorVector
+			prueba.toC
+		}
+		else if (op.eClass.name.equals("ValorMatriz")) {
+			var ValorMatriz prueba = new ValorMatrizImpl
+			prueba = op as ValorMatriz
+			prueba.toC
+		}
+		else if (op.eClass.name.equals("LlamadaFuncion")) {
+			var LlamadaFuncion prueba = new LlamadaFuncionImpl
+			prueba = op as LlamadaFuncion
+			prueba.toC(false)
+		}
+		else if (op.eClass.name.equals("Internas")) {
+			var Internas prueba = new InternasImpl
+			prueba = op as Internas
+			prueba.toC
+		}
+		else if (op.eClass.name.equals("Suma")) {
+			var Suma prueba = new SumaImpl
+			prueba = op as Suma
+			prueba.toC
+		}
+		else if (op.eClass.name.equals("Resta")) {
+			var Resta prueba = new RestaImpl
+			prueba = op as Resta
+			prueba.toC
+		}
+		else if (op.eClass.name.equals("Multiplicacion")) {
+			var Multiplicacion prueba = new MultiplicacionImpl
+			prueba = op as Multiplicacion
+			prueba.toC
+		}
+		else if (op.eClass.name.equals("Division")) {
+			var Division prueba = new DivisionImpl
+			prueba = op as Division
+			prueba.toC
+		}
+		else if (op.eClass.name.equals("Or")) {
+			var Or prueba = new OrImpl
+			prueba = op as Or
+			prueba.toC
+		}
+		else if (op.eClass.name.equals("And")) {
+			var And prueba = new AndImpl
+			prueba = op as And
+			prueba.toC
+		}
+		else if (op.eClass.name.equals("Comparacion")) {
+			var Comparacion prueba = new ComparacionImpl
+			prueba = op as Comparacion
+			prueba.toC
+		}
+		else if (op.eClass.name.equals("Igualdad")) {
+			var Igualdad prueba = new IgualdadImpl
+			prueba = op as Igualdad
+			prueba.toC
+		}
+	}
+	
+	def toC(Suma mySuma) {
+		return mySuma.left.toC + " " + mySuma.signo_op + " " + mySuma.right.toC;
+	}
+	
+	def toC(Resta myResta) {
+		return myResta.left.toC + " " + myResta.signo_op + " " + myResta.right.toC;
+	}
+	
+	def toC(Multiplicacion myMulti) {
+		return myMulti.left.toC + " " + myMulti.signo_op + " " + myMulti.right.toC;
+	}
+	
+	def toC(Division myDivi) {
+		return myDivi.left.toC + " " + myDivi.signo_op + " " + myDivi.right.toC;
+	}
+	
+	def toC(Or myOr) {
+		return myOr.left.toC + " " + myOr.signo_op + " " + myOr.right.toC;
+	}
+	
+	def toC(And myAnd) {
+		return myAnd.left.toC + " " + myAnd.signo_op + " " + myAnd.right.toC;
+	}
+	
+	def toC(Comparacion myComparacion) {
+		return myComparacion.left.toC + " " + myComparacion.signo_op + " " + myComparacion.right.toC;
+	}
+	
+	def toC(Igualdad myIgualdad) {
+		return myIgualdad.left.toC + " " + myIgualdad.signo_op + " " + myIgualdad.right.toC;
+	}
 
 	def toC(Si mySi) '''
 		if(«mySi.valor.toC»){
@@ -1659,7 +1762,7 @@ class MyDslGenerator implements IGenerator {
 	'''
 
 	def toC(desde d) '''
-		for(«/*d.asignacion.toC» «d.asignacion.lvalue.toString» <= «d.valor.toC»; «d.asignacion.lvalue.toString*/»++){
+		for(«d.asignacion.toC» «d.asignacion.valor_asignacion.toString» <= «d.valor.toC»; «d.asignacion.valor_asignacion.toString»++){
 			«FOR sent:d.sentencias»
 				«sent.toC»
 			«ENDFOR»
@@ -1667,7 +1770,7 @@ class MyDslGenerator implements IGenerator {
 	'''
 	
 	def toCpp(desde d) '''
-		for(«/*d.asignacion.toC» «d.asignacion.lvalue.toString» <= «d.valor.toC»; «d.asignacion.lvalue.toString*/»++){
+		for(«d.asignacion.toC» «d.asignacion.valor_asignacion.toString» <= «d.valor.toC»; «d.asignacion.valor_asignacion.toString»++){
 			«FOR sent:d.sentencias»
 				«IF sent.eClass.name.equals("Escribir") || sent.eClass.name.equals("Leer") || sent.eClass.name.equals("Si") || sent.eClass.name.equals("segun") || sent.eClass.name.equals("Caso") || sent.eClass.name.equals("mientras") || sent.eClass.name.equals("repetir") || sent.eClass.name.equals("desde")»
 					«sent.toCpp»
