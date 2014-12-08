@@ -280,6 +280,11 @@ public class VectorItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VECTOR__VALOR,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNegativa()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.VECTOR__TIPO,
 				 DiagramapseudocodigoFactory.eINSTANCE.createTipo()));
 

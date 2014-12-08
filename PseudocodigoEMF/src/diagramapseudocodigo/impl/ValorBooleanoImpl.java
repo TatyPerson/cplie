@@ -5,11 +5,8 @@ package diagramapseudocodigo.impl;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.ValorBooleano;
 import diagramapseudocodigo.booleano;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**

@@ -7,13 +7,10 @@ import diagramapseudocodigo.DiagramapseudocodigoFactory;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.Resta;
 import diagramapseudocodigo.signo;
-
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -285,6 +282,11 @@ public class RestaItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.RESTA__LEFT,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNegativa()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.RESTA__RIGHT,
 				 DiagramapseudocodigoFactory.eINSTANCE.createLlamadaFuncion()));
 
@@ -387,6 +389,11 @@ public class RestaItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.RESTA__RIGHT,
 				 DiagramapseudocodigoFactory.eINSTANCE.createIgualdad()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.RESTA__RIGHT,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNegativa()));
 	}
 
 	/**

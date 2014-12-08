@@ -5,15 +5,12 @@ package diagramapseudocodigo.provider;
 
 import diagramapseudocodigo.DiagramapseudocodigoFactory;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
-
 import diagramapseudocodigo.Suma;
 import diagramapseudocodigo.signo;
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -285,6 +282,11 @@ public class SumaItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.SUMA__LEFT,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNegativa()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.SUMA__RIGHT,
 				 DiagramapseudocodigoFactory.eINSTANCE.createLlamadaFuncion()));
 
@@ -387,6 +389,11 @@ public class SumaItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.SUMA__RIGHT,
 				 DiagramapseudocodigoFactory.eINSTANCE.createIgualdad()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.SUMA__RIGHT,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNegativa()));
 	}
 
 	/**

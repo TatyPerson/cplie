@@ -248,6 +248,11 @@ public class LeerItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.LEER__VARIABLE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createIgualdad()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.LEER__VARIABLE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNegativa()));
 	}
 
 }

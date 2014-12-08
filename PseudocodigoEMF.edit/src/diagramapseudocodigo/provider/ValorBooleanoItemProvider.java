@@ -6,13 +6,10 @@ package diagramapseudocodigo.provider;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
 import diagramapseudocodigo.ValorBooleano;
 import diagramapseudocodigo.booleano;
-
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
