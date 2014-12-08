@@ -287,6 +287,11 @@ public class OrItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.OR__LEFT,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNegacion()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.OR__RIGHT,
 				 DiagramapseudocodigoFactory.eINSTANCE.createLlamadaFuncion()));
 
@@ -394,6 +399,11 @@ public class OrItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.OR__RIGHT,
 				 DiagramapseudocodigoFactory.eINSTANCE.createNegativa()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.OR__RIGHT,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNegacion()));
 	}
 
 	/**

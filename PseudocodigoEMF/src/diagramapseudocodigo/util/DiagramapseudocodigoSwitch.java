@@ -262,13 +262,6 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DiagramapseudocodigoPackage.NEGACION: {
-				negacion negacion = (negacion)theEObject;
-				T result = casenegacion(negacion);
-				if (result == null) result = caseSentencias(negacion);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case DiagramapseudocodigoPackage.SUBPROCESO: {
 				Subproceso subproceso = (Subproceso)theEObject;
 				T result = caseSubproceso(subproceso);
@@ -578,6 +571,15 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 				if (result == null) result = caseoperacion(negativa);
 				if (result == null) result = casevalor(negativa);
 				if (result == null) result = caseSentencias(negativa);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiagramapseudocodigoPackage.NEGACION: {
+				Negacion negacion = (Negacion)theEObject;
+				T result = caseNegacion(negacion);
+				if (result == null) result = caseoperacion(negacion);
+				if (result == null) result = casevalor(negacion);
+				if (result == null) result = caseSentencias(negacion);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -972,21 +974,6 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casedesde(desde object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>negacion</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>negacion</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casenegacion(negacion object) {
 		return null;
 	}
 
@@ -1587,6 +1574,21 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNegativa(Negativa object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Negacion</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Negacion</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNegacion(Negacion object) {
 		return null;
 	}
 

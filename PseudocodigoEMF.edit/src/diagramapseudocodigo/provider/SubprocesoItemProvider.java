@@ -249,11 +249,6 @@ public class SubprocesoItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.SUBPROCESO__SENTENCIAS,
-				 DiagramapseudocodigoFactory.eINSTANCE.createnegacion()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DiagramapseudocodigoPackage.Literals.SUBPROCESO__SENTENCIAS,
 				 DiagramapseudocodigoFactory.eINSTANCE.createCaracter()));
 
 		newChildDescriptors.add
@@ -340,6 +335,11 @@ public class SubprocesoItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.SUBPROCESO__SENTENCIAS,
 				 DiagramapseudocodigoFactory.eINSTANCE.createNegativa()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.SUBPROCESO__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNegacion()));
 
 		newChildDescriptors.add
 			(createChildParameter

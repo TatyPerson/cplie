@@ -299,6 +299,7 @@ Primaria returns operacion:
 	'|' operacion '|'
 	| VariablesBasicas
 	| {Negativa} '-(' valor_operacion=operacion ')'
+	| {Negacion} 'no''(' valor_operacion=operacion ')'
 	| {LlamadaFuncion} nombre=EString '(' (operadores+=operacion ( ',' operadores+=operacion)* )? ')'
 	| {Internas} nombre=NombreInterna '(' (operadores+=operacion ( ',' operadores+=operacion)* )? ')'
 	| {ValorVector} ((nombre_vector=EString)'['(indice=VariablesBasicas)']') ('.' (campo+=CampoRegistro) )?
@@ -323,8 +324,8 @@ Devolver returns Devolver:
 	{Devolver}
 	'devolver' devuelve=Primaria;
 
-neg returns neg:
-	"no" /* TODO: implement this rule and an appropriate IValueConverter */;
+//neg returns neg:
+//	"no" /* TODO: implement this rule and an appropriate IValueConverter */;
 	
 ParametroFuncion returns ParametroFuncion:
 	paso=TipoPaso

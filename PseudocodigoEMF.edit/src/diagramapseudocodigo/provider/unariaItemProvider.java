@@ -287,6 +287,11 @@ public class unariaItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.UNARIA__VARIABLE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createNegativa()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.UNARIA__VARIABLE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNegacion()));
 	}
 
 }

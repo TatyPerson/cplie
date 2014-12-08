@@ -287,6 +287,11 @@ public class IgualdadItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.IGUALDAD__LEFT,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNegacion()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.IGUALDAD__RIGHT,
 				 DiagramapseudocodigoFactory.eINSTANCE.createLlamadaFuncion()));
 
@@ -394,6 +399,11 @@ public class IgualdadItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.IGUALDAD__RIGHT,
 				 DiagramapseudocodigoFactory.eINSTANCE.createNegativa()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.IGUALDAD__RIGHT,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNegacion()));
 	}
 
 	/**

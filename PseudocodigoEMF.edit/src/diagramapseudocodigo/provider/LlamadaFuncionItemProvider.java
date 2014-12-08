@@ -280,6 +280,11 @@ public class LlamadaFuncionItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__OPERADORES,
 				 DiagramapseudocodigoFactory.eINSTANCE.createNegativa()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__OPERADORES,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNegacion()));
 	}
 
 }

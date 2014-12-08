@@ -287,6 +287,11 @@ public class AndItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.AND__LEFT,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNegacion()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.AND__RIGHT,
 				 DiagramapseudocodigoFactory.eINSTANCE.createLlamadaFuncion()));
 
@@ -394,6 +399,11 @@ public class AndItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.AND__RIGHT,
 				 DiagramapseudocodigoFactory.eINSTANCE.createNegativa()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.AND__RIGHT,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNegacion()));
 	}
 
 	/**

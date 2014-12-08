@@ -287,6 +287,11 @@ public class ValorVectorItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE,
 				 DiagramapseudocodigoFactory.eINSTANCE.createNegativa()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__INDICE,
+				 DiagramapseudocodigoFactory.eINSTANCE.createNegacion()));
 	}
 
 }

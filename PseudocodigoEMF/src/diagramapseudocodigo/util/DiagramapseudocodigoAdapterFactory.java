@@ -172,10 +172,6 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 				return createdesdeAdapter();
 			}
 			@Override
-			public Adapter casenegacion(negacion object) {
-				return createnegacionAdapter();
-			}
-			@Override
 			public Adapter caseSubproceso(Subproceso object) {
 				return createSubprocesoAdapter();
 			}
@@ -334,6 +330,10 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseNegativa(Negativa object) {
 				return createNegativaAdapter();
+			}
+			@Override
+			public Adapter caseNegacion(Negacion object) {
+				return createNegacionAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -716,20 +716,6 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createdesdeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.negacion <em>negacion</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see diagramapseudocodigo.negacion
-	 * @generated
-	 */
-	public Adapter createnegacionAdapter() {
 		return null;
 	}
 
@@ -1290,6 +1276,20 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNegativaAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.Negacion <em>Negacion</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.Negacion
+	 * @generated
+	 */
+	public Adapter createNegacionAdapter() {
 		return null;
 	}
 
