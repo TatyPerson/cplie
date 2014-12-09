@@ -119,6 +119,8 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 			case DiagramapseudocodigoPackage.SUBRANGO_ENUMERADO: return createSubrangoEnumerado();
 			case DiagramapseudocodigoPackage.NEGATIVA: return createNegativa();
 			case DiagramapseudocodigoPackage.NEGACION: return createNegacion();
+			case DiagramapseudocodigoPackage.ASIGNACION_NORMAL: return createAsignacionNormal();
+			case DiagramapseudocodigoPackage.ASIGNACION_COMPLEJA: return createAsignacionCompleja();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -796,6 +798,26 @@ public class DiagramapseudocodigoFactoryImpl extends EFactoryImpl implements Dia
 	public Negacion createNegacion() {
 		NegacionImpl negacion = new NegacionImpl();
 		return negacion;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AsignacionNormal createAsignacionNormal() {
+		AsignacionNormalImpl asignacionNormal = new AsignacionNormalImpl();
+		return asignacionNormal;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AsignacionCompleja createAsignacionCompleja() {
+		AsignacionComplejaImpl asignacionCompleja = new AsignacionComplejaImpl();
+		return asignacionCompleja;
 	}
 
 	/**

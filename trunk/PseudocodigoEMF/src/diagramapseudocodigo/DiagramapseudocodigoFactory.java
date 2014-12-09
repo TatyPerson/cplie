@@ -580,6 +580,24 @@ public interface DiagramapseudocodigoFactory extends EFactory {
 	Negacion createNegacion();
 
 	/**
+	 * Returns a new object of class '<em>Asignacion Normal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Asignacion Normal</em>'.
+	 * @generated
+	 */
+	AsignacionNormal createAsignacionNormal();
+
+	/**
+	 * Returns a new object of class '<em>Asignacion Compleja</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Asignacion Compleja</em>'.
+	 * @generated
+	 */
+	AsignacionCompleja createAsignacionCompleja();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

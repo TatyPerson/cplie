@@ -602,40 +602,13 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int ASIGNACION = 11;
 
 	/**
-	 * The feature id for the '<em><b>Mat</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIGNACION__MAT = SENTENCIAS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Operadores</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIGNACION__OPERADORES = SENTENCIAS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Valor asignacion</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASIGNACION__VALOR_ASIGNACION = SENTENCIAS_FEATURE_COUNT + 2;
-
-	/**
 	 * The number of structural features of the '<em>Asignacion</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASIGNACION_FEATURE_COUNT = SENTENCIAS_FEATURE_COUNT + 3;
+	int ASIGNACION_FEATURE_COUNT = SENTENCIAS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Asignacion</em>' class.
@@ -3166,6 +3139,107 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	int NEGACION_OPERATION_COUNT = OPERACION_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.AsignacionNormalImpl <em>Asignacion Normal</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.AsignacionNormalImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getAsignacionNormal()
+	 * @generated
+	 */
+	int ASIGNACION_NORMAL = 67;
+
+	/**
+	 * The feature id for the '<em><b>Mat</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASIGNACION_NORMAL__MAT = ASIGNACION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Valor asignacion</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASIGNACION_NORMAL__VALOR_ASIGNACION = ASIGNACION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Operador</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASIGNACION_NORMAL__OPERADOR = ASIGNACION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Asignacion Normal</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASIGNACION_NORMAL_FEATURE_COUNT = ASIGNACION_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Asignacion Normal</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASIGNACION_NORMAL_OPERATION_COUNT = ASIGNACION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link diagramapseudocodigo.impl.AsignacionComplejaImpl <em>Asignacion Compleja</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see diagramapseudocodigo.impl.AsignacionComplejaImpl
+	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getAsignacionCompleja()
+	 * @generated
+	 */
+	int ASIGNACION_COMPLEJA = 68;
+
+	/**
+	 * The feature id for the '<em><b>Operador</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASIGNACION_COMPLEJA__OPERADOR = ASIGNACION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Valor asignacion</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASIGNACION_COMPLEJA__VALOR_ASIGNACION = ASIGNACION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Asignacion Compleja</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASIGNACION_COMPLEJA_FEATURE_COUNT = ASIGNACION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Asignacion Compleja</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASIGNACION_COMPLEJA_OPERATION_COUNT = ASIGNACION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoVariable <em>Tipo Variable</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3173,7 +3247,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoVariable()
 	 * @generated
 	 */
-	int TIPO_VARIABLE = 67;
+	int TIPO_VARIABLE = 69;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.signo <em>signo</em>}' enum.
@@ -3183,7 +3257,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getsigno()
 	 * @generated
 	 */
-	int SIGNO = 68;
+	int SIGNO = 70;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.booleano <em>booleano</em>}' enum.
@@ -3193,7 +3267,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getbooleano()
 	 * @generated
 	 */
-	int BOOLEANO = 69;
+	int BOOLEANO = 71;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.neg <em>neg</em>}' enum.
@@ -3203,7 +3277,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getneg()
 	 * @generated
 	 */
-	int NEG = 70;
+	int NEG = 72;
 
 	/**
 	 * The meta object id for the '{@link diagramapseudocodigo.TipoPaso <em>Tipo Paso</em>}' enum.
@@ -3213,7 +3287,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getTipoPaso()
 	 * @generated
 	 */
-	int TIPO_PASO = 71;
+	int TIPO_PASO = 73;
 
 
 	/**
@@ -3224,7 +3298,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getNombreInterna()
 	 * @generated
 	 */
-	int NOMBRE_INTERNA = 72;
+	int NOMBRE_INTERNA = 74;
 
 
 	/**
@@ -3235,7 +3309,7 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getModoApertura()
 	 * @generated
 	 */
-	int MODO_APERTURA = 73;
+	int MODO_APERTURA = 75;
 
 
 	/**
@@ -3566,39 +3640,6 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getAsignacion();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link diagramapseudocodigo.Asignacion#getMat <em>Mat</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Mat</em>'.
-	 * @see diagramapseudocodigo.Asignacion#getMat()
-	 * @see #getAsignacion()
-	 * @generated
-	 */
-	EAttribute getAsignacion_Mat();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.Asignacion#getOperadores <em>Operadores</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Operadores</em>'.
-	 * @see diagramapseudocodigo.Asignacion#getOperadores()
-	 * @see #getAsignacion()
-	 * @generated
-	 */
-	EReference getAsignacion_Operadores();
-
-	/**
-	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Asignacion#getValor_asignacion <em>Valor asignacion</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Valor asignacion</em>'.
-	 * @see diagramapseudocodigo.Asignacion#getValor_asignacion()
-	 * @see #getAsignacion()
-	 * @generated
-	 */
-	EAttribute getAsignacion_Valor_asignacion();
 
 	/**
 	 * Returns the meta object for class '{@link diagramapseudocodigo.Escribir <em>Escribir</em>}'.
@@ -5152,6 +5193,81 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 	EReference getNegacion_Valor_operacion();
 
 	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.AsignacionNormal <em>Asignacion Normal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Asignacion Normal</em>'.
+	 * @see diagramapseudocodigo.AsignacionNormal
+	 * @generated
+	 */
+	EClass getAsignacionNormal();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link diagramapseudocodigo.AsignacionNormal#getMat <em>Mat</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Mat</em>'.
+	 * @see diagramapseudocodigo.AsignacionNormal#getMat()
+	 * @see #getAsignacionNormal()
+	 * @generated
+	 */
+	EAttribute getAsignacionNormal_Mat();
+
+	/**
+	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.AsignacionNormal#getValor_asignacion <em>Valor asignacion</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Valor asignacion</em>'.
+	 * @see diagramapseudocodigo.AsignacionNormal#getValor_asignacion()
+	 * @see #getAsignacionNormal()
+	 * @generated
+	 */
+	EAttribute getAsignacionNormal_Valor_asignacion();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.AsignacionNormal#getOperador <em>Operador</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Operador</em>'.
+	 * @see diagramapseudocodigo.AsignacionNormal#getOperador()
+	 * @see #getAsignacionNormal()
+	 * @generated
+	 */
+	EReference getAsignacionNormal_Operador();
+
+	/**
+	 * Returns the meta object for class '{@link diagramapseudocodigo.AsignacionCompleja <em>Asignacion Compleja</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Asignacion Compleja</em>'.
+	 * @see diagramapseudocodigo.AsignacionCompleja
+	 * @generated
+	 */
+	EClass getAsignacionCompleja();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.AsignacionCompleja#getOperador <em>Operador</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Operador</em>'.
+	 * @see diagramapseudocodigo.AsignacionCompleja#getOperador()
+	 * @see #getAsignacionCompleja()
+	 * @generated
+	 */
+	EReference getAsignacionCompleja_Operador();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link diagramapseudocodigo.AsignacionCompleja#getValor_asignacion <em>Valor asignacion</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Valor asignacion</em>'.
+	 * @see diagramapseudocodigo.AsignacionCompleja#getValor_asignacion()
+	 * @see #getAsignacionCompleja()
+	 * @generated
+	 */
+	EReference getAsignacionCompleja_Valor_asignacion();
+
+	/**
 	 * Returns the meta object for the attribute '{@link diagramapseudocodigo.Vector#getNombre <em>Nombre</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5560,30 +5676,6 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		EClass ASIGNACION = eINSTANCE.getAsignacion();
 
 		/**
-		 * The meta object literal for the '<em><b>Mat</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ASIGNACION__MAT = eINSTANCE.getAsignacion_Mat();
-
-		/**
-		 * The meta object literal for the '<em><b>Operadores</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ASIGNACION__OPERADORES = eINSTANCE.getAsignacion_Operadores();
-
-		/**
-		 * The meta object literal for the '<em><b>Valor asignacion</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ASIGNACION__VALOR_ASIGNACION = eINSTANCE.getAsignacion_Valor_asignacion();
-
-		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.EscribirImpl <em>Escribir</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5868,6 +5960,66 @@ public interface DiagramapseudocodigoPackage extends EPackage {
 		 * @generated
 		 */
 		EReference NEGACION__VALOR_OPERACION = eINSTANCE.getNegacion_Valor_operacion();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.AsignacionNormalImpl <em>Asignacion Normal</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.AsignacionNormalImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getAsignacionNormal()
+		 * @generated
+		 */
+		EClass ASIGNACION_NORMAL = eINSTANCE.getAsignacionNormal();
+
+		/**
+		 * The meta object literal for the '<em><b>Mat</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ASIGNACION_NORMAL__MAT = eINSTANCE.getAsignacionNormal_Mat();
+
+		/**
+		 * The meta object literal for the '<em><b>Valor asignacion</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ASIGNACION_NORMAL__VALOR_ASIGNACION = eINSTANCE.getAsignacionNormal_Valor_asignacion();
+
+		/**
+		 * The meta object literal for the '<em><b>Operador</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASIGNACION_NORMAL__OPERADOR = eINSTANCE.getAsignacionNormal_Operador();
+
+		/**
+		 * The meta object literal for the '{@link diagramapseudocodigo.impl.AsignacionComplejaImpl <em>Asignacion Compleja</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see diagramapseudocodigo.impl.AsignacionComplejaImpl
+		 * @see diagramapseudocodigo.impl.DiagramapseudocodigoPackageImpl#getAsignacionCompleja()
+		 * @generated
+		 */
+		EClass ASIGNACION_COMPLEJA = eINSTANCE.getAsignacionCompleja();
+
+		/**
+		 * The meta object literal for the '<em><b>Operador</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASIGNACION_COMPLEJA__OPERADOR = eINSTANCE.getAsignacionCompleja_Operador();
+
+		/**
+		 * The meta object literal for the '<em><b>Valor asignacion</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASIGNACION_COMPLEJA__VALOR_ASIGNACION = eINSTANCE.getAsignacionCompleja_Valor_asignacion();
 
 		/**
 		 * The meta object literal for the '{@link diagramapseudocodigo.impl.SubprocesoImpl <em>Subproceso</em>}' class.

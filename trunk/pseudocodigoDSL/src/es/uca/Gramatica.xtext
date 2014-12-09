@@ -143,11 +143,18 @@ DeclaracionPropia returns DeclaracionPropia:
 	variable+=Variable (',' variable+=Variable)*;
 
 Asignacion returns Asignacion:
-	// operadores+=Primaria
+	AsignacionNormal | AsignacionCompleja;
+	
+AsignacionNormal returns AsignacionNormal:
 	valor_asignacion=EString
 //	 Mat+=MAT*
-	 '='
-	operadores=operacion;
+	'='
+	operador=operacion;
+	
+AsignacionCompleja returns AsignacionCompleja:
+	valor_asignacion=VariablesComplejas
+	'='
+	operador=operacion;
 
 //AsignacionCompleja returns AsignacionCompleja:
 //	operadores+=Primaria
@@ -186,7 +193,7 @@ repetir returns repetir:
 	 'hasta_que' valor=operacion;
 
 desde returns desde:
-	'desde' asignacion=Asignacion 'hasta' valor=operacion 'hacer'
+	'desde' asignacion=AsignacionNormal 'hasta' valor=operacion 'hacer'
 		(sentencias+=Sentencias ( sentencias+=Sentencias)* )?
 	'fin_desde';
 	
@@ -302,8 +309,12 @@ Primaria returns operacion:
 	| {Negacion} 'no''(' valor_operacion=operacion ')'
 	| {LlamadaFuncion} nombre=EString '(' (operadores+=operacion ( ',' operadores+=operacion)* )? ')'
 	| {Internas} nombre=NombreInterna '(' (operadores+=operacion ( ',' operadores+=operacion)* )? ')'
-	| {ValorVector} ((nombre_vector=EString)'['(indice=VariablesBasicas)']') ('.' (campo+=CampoRegistro) )?
-	| {ValorMatriz} ((nombre_matriz=EString)'['(primerIndice=VariablesBasicas)']['(segundoIndice=VariablesBasicas)']') ('.' (campo+=CampoRegistro) )?;
+	| VariablesComplejas;
+	
+VariablesComplejas returns operacion:
+	{ValorVector} ((nombre_vector=EString)'['(indice=VariablesBasicas)']') ('.' (campo+=CampoRegistro) )?
+	| {ValorMatriz} ((nombre_matriz=EString)'['(primerIndice=VariablesBasicas)']['(segundoIndice=VariablesBasicas)']') ('.' (campo+=CampoRegistro) )?
+	| {ValorRegistro} nombre_registro=EString '.' (campo+=CampoRegistro ('.' campo+=CampoRegistro)* );
 	
 VariablesBasicas returns operacion:
 	 {NumeroEntero} valor=EInt
@@ -311,8 +322,7 @@ VariablesBasicas returns operacion:
 	| {ConstCadena} contenido=CAD
 	| {Caracter} contenido=CAR
 	| {ValorBooleano} valor=booleano
-	| {VariableID} nombre=EString
-	| {ValorRegistro} nombre_registro=EString '.' (campo+=CampoRegistro ('.' campo+=CampoRegistro)* );
+	| {VariableID} nombre=EString;
 
 Sino returns Sino:
 	{Sino}

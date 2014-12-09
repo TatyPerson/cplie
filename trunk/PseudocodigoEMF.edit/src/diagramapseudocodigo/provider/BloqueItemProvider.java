@@ -414,6 +414,16 @@ public class BloqueItemProvider
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.BLOQUE__SENTENCIAS,
 				 DiagramapseudocodigoFactory.eINSTANCE.createNegacion()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.BLOQUE__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createAsignacionNormal()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DiagramapseudocodigoPackage.Literals.BLOQUE__SENTENCIAS,
+				 DiagramapseudocodigoFactory.eINSTANCE.createAsignacionCompleja()));
 	}
 
 	/**

@@ -583,6 +583,22 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DiagramapseudocodigoPackage.ASIGNACION_NORMAL: {
+				AsignacionNormal asignacionNormal = (AsignacionNormal)theEObject;
+				T result = caseAsignacionNormal(asignacionNormal);
+				if (result == null) result = caseAsignacion(asignacionNormal);
+				if (result == null) result = caseSentencias(asignacionNormal);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiagramapseudocodigoPackage.ASIGNACION_COMPLEJA: {
+				AsignacionCompleja asignacionCompleja = (AsignacionCompleja)theEObject;
+				T result = caseAsignacionCompleja(asignacionCompleja);
+				if (result == null) result = caseAsignacion(asignacionCompleja);
+				if (result == null) result = caseSentencias(asignacionCompleja);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1589,6 +1605,36 @@ public class DiagramapseudocodigoSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNegacion(Negacion object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Asignacion Normal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Asignacion Normal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAsignacionNormal(AsignacionNormal object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Asignacion Compleja</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Asignacion Compleja</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAsignacionCompleja(AsignacionCompleja object) {
 		return null;
 	}
 

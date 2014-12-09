@@ -528,11 +528,15 @@ class MyDslGenerator implements IGenerator {
 	'''
 	
 	def toCpp(Sentencias mySent) {
-		if (mySent.eClass.name.equals("Asignacion")) {
-			var Asignacion prueba = new AsignacionImpl
-			prueba = mySent as Asignacion
+		if (mySent.eClass.name.equals("AsignacionNormal")) {
+			var AsignacionNormal prueba = new AsignacionNormalImpl
+			prueba = mySent as AsignacionNormal
 			prueba.toC
-		} else if (mySent.eClass.name.equals("LlamadaFuncion")) {
+		} else if (mySent.eClass.name.equals("AsignacionCompleja")) {
+			var AsignacionCompleja prueba = new AsignacionComplejaImpl
+			prueba = mySent as AsignacionCompleja
+			prueba.toC
+		}else if (mySent.eClass.name.equals("LlamadaFuncion")) {
 			var LlamadaFuncion prueba = new LlamadaFuncionImpl
 			prueba = mySent as LlamadaFuncion
 			prueba.toC(true)
@@ -585,9 +589,13 @@ class MyDslGenerator implements IGenerator {
 	
 
 	def toC(Sentencias mySent) {
-		if (mySent.eClass.name.equals("Asignacion")) {
-			var Asignacion prueba = new AsignacionImpl
-			prueba = mySent as Asignacion
+		if (mySent.eClass.name.equals("AsignacionNormal")) {
+			var AsignacionNormal prueba = new AsignacionNormalImpl
+			prueba = mySent as AsignacionNormal
+			prueba.toC
+		} else if (mySent.eClass.name.equals("AsignacionCompleja")) {
+			var AsignacionCompleja prueba = new AsignacionComplejaImpl
+			prueba = mySent as AsignacionCompleja
 			prueba.toC
 		} else if (mySent.eClass.name.equals("LlamadaFuncion")) {
 			var LlamadaFuncion prueba = new LlamadaFuncionImpl
@@ -703,14 +711,14 @@ class MyDslGenerator implements IGenerator {
 		«myDec.tipo» «pintarVariables(myDec.variable)»
 	'''
 
-	def toC(Asignacion myAsig) '''
-		«myAsig.valor_asignacion»«FOR matri:myAsig.mat»«matri.toString»«ENDFOR» = «myAsig.operadores.toC»;'''
+	//def toC(Asignacion myAsig) '''
+	//	«myAsig.valor_asignacion»«FOR matri:myAsig.mat»«matri.toString»«ENDFOR» = «myAsig.operadores.toC»;'''
 
-	//def toC(AsignacionNormal asig) '''
-	//«asig.lvalue»«FOR matri:asig.mat»«matri.toString»«ENDFOR» = «asig.operador.toC»;'''
+	def toC(AsignacionNormal asig) '''
+	«asig.valor_asignacion»«FOR matri:asig.mat»«matri.toString»«ENDFOR» = «asig.operador.toC»;'''
 
-	//def toC(AsignacionCompleja asig) '''
-	//«asig.complejo.toC.toString»«FOR matri:asig.mat»«matri.toString»«ENDFOR» = «asig.operador.toC.toString»;'''
+	def toC(AsignacionCompleja asig) '''
+	«asig.valor_asignacion.toC.toString» = «asig.operador.toC.toString»;'''
 
 	def toC(ValorComplejo myComplejo) {
 		if (myComplejo.eClass.name.equals("ValorRegistro")) {
@@ -1778,7 +1786,8 @@ class MyDslGenerator implements IGenerator {
 			«ENDFOR»
 		}
 	'''
-
+	
+	
 	def toC(desde d) '''
 		for(«d.asignacion.toC» «d.asignacion.valor_asignacion.toString» <= «d.valor.toC»; «d.asignacion.valor_asignacion.toString»++){
 			«FOR sent:d.sentencias»
@@ -1797,7 +1806,7 @@ class MyDslGenerator implements IGenerator {
 				«ENDIF»
 			«ENDFOR»
 		}
-	'''
+	''' 
 
 	def toC(repetir m) '''
 		do{
