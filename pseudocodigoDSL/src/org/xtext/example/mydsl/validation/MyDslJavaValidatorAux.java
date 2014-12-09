@@ -432,24 +432,189 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 			variablesDeclaradas.put(p.getVariable().getNombre(), getTipoComplejo(p.getTipo()));
 		}
 	}
-
-	protected List<valor> registrarValoresOperacion(operacion o) {
-		List<valor> valores = new ArrayList<valor>();
-		if(!(o.getOp_der().getOper_der() instanceof operacion)) {
-			valor v = (valor) o.getOp_der().getOper_der();
-			valores.add(v);
-		}
-		if(!(o.getOp_izq().getOper_izq() instanceof operacion)) {
-			valor v = (valor) o.getOp_izq().getOper_izq();
-			valores.add(v);
+	
+	/*
+	 * 
+	 */
+	
+	protected boolean esOperacion(operacion op) {
+		if(op instanceof Suma | op instanceof Resta | op instanceof Multiplicacion | op instanceof Division | op instanceof Or | op instanceof And | op instanceof Comparacion | op instanceof Igualdad | op instanceof Negativa | op instanceof Negacion) {
+			return true;
 		}
 		else {
-			registrarValoresOperacionRec((operacion)o.getOp_der().getOper_der(), valores);
-			registrarValoresOperacionRec((operacion)o.getOp_izq().getOper_izq(), valores);
-			
+			return false;
+		}
+	}
+
+	protected ArrayList<valor> registrarValoresOperacion(operacion op, ArrayList<valor> valores) {
+		if(op instanceof Suma) {
+			Suma suma = (Suma) op;
+			if(esOperacion(suma.getLeft()) && esOperacion(suma.getRight())) {
+				registrarValoresOperacion(suma.getLeft(), valores);
+				registrarValoresOperacion(suma.getRight(), valores);
+			}
+			else if(!esOperacion(suma.getLeft()) && esOperacion(suma.getRight())) {
+				registrarValoresOperacion(suma.getRight(), valores);
+				valores.add(suma.getLeft());
+			}
+			else if(esOperacion(suma.getLeft()) && !esOperacion(suma.getRight())) {
+				registrarValoresOperacion(suma.getLeft(), valores);
+				valores.add(suma.getRight());
+			}
+			else {
+				valores.add(suma.getLeft());
+				valores.add(suma.getRight());
+			}
+		} else if(op instanceof Resta) {
+			Resta resta = (Resta) op;
+			if(esOperacion(resta.getLeft()) && esOperacion(resta.getRight())) {
+				registrarValoresOperacion(resta.getLeft(), valores);
+				registrarValoresOperacion(resta.getRight(), valores);
+			}
+			else if(!esOperacion(resta.getLeft()) && esOperacion(resta.getRight())) {
+				registrarValoresOperacion(resta.getRight(), valores);
+				valores.add(resta.getLeft());
+			}
+			else if(esOperacion(resta.getLeft()) && !esOperacion(resta.getRight())) {
+				registrarValoresOperacion(resta.getLeft(), valores);
+				valores.add(resta.getRight());
+			}
+			else {
+				valores.add(resta.getLeft());
+				valores.add(resta.getRight());
+			}
+		} else if(op instanceof Multiplicacion) {
+			Multiplicacion multiplicacion = (Multiplicacion) op;
+			if(esOperacion(multiplicacion.getLeft()) && esOperacion(multiplicacion.getRight())) {
+				registrarValoresOperacion(multiplicacion.getLeft(), valores);
+				registrarValoresOperacion(multiplicacion.getRight(), valores);
+			}
+			else if(!esOperacion(multiplicacion.getLeft()) && esOperacion(multiplicacion.getRight())) {
+				registrarValoresOperacion(multiplicacion.getRight(), valores);
+				valores.add(multiplicacion.getLeft());
+			}
+			else if(esOperacion(multiplicacion.getLeft()) && !esOperacion(multiplicacion.getRight())) {
+				registrarValoresOperacion(multiplicacion.getLeft(), valores);
+				valores.add(multiplicacion.getRight());
+			}
+			else {
+				valores.add(multiplicacion.getLeft());
+				valores.add(multiplicacion.getRight());
+			}
+		} else if(op instanceof Division) {
+			Division division = (Division) op;
+			if(esOperacion(division.getLeft()) && esOperacion(division.getRight())) {
+				registrarValoresOperacion(division.getLeft(), valores);
+				registrarValoresOperacion(division.getRight(), valores);
+			}
+			else if(!esOperacion(division.getLeft()) && esOperacion(division.getRight())) {
+				registrarValoresOperacion(division.getRight(), valores);
+				valores.add(division.getLeft());
+			}
+			else if(esOperacion(division.getLeft()) && !esOperacion(division.getRight())) {
+				registrarValoresOperacion(division.getLeft(), valores);
+				valores.add(division.getRight());
+			}
+			else {
+				valores.add(division.getLeft());
+				valores.add(division.getRight());
+			}
+		} else if(op instanceof Or) {
+			Or or = (Or) op;
+			if(esOperacion(or.getLeft()) && esOperacion(or.getRight())) {
+				registrarValoresOperacion(or.getLeft(), valores);
+				registrarValoresOperacion(or.getRight(), valores);
+			}
+			else if(!esOperacion(or.getLeft()) && esOperacion(or.getRight())) {
+				registrarValoresOperacion(or.getRight(), valores);
+				valores.add(or.getLeft());
+			}
+			else if(esOperacion(or.getLeft()) && !esOperacion(or.getRight())) {
+				registrarValoresOperacion(or.getLeft(), valores);
+				valores.add(or.getRight());
+			}
+			else {
+				valores.add(or.getLeft());
+				valores.add(or.getRight());
+			}
+		} else if(op instanceof And) {
+			And and = (And) op;
+			if(esOperacion(and.getLeft()) && esOperacion(and.getRight())) {
+				registrarValoresOperacion(and.getLeft(), valores);
+				registrarValoresOperacion(and.getRight(), valores);
+			}
+			else if(!esOperacion(and.getLeft()) && esOperacion(and.getRight())) {
+				registrarValoresOperacion(and.getRight(), valores);
+				valores.add(and.getLeft());
+			}
+			else if(esOperacion(and.getLeft()) && !esOperacion(and.getRight())) {
+				registrarValoresOperacion(and.getLeft(), valores);
+				valores.add(and.getRight());
+			}
+			else {
+				valores.add(and.getLeft());
+				valores.add(and.getRight());
+			}
+		} else if(op instanceof Comparacion) {
+			Comparacion comparacion = (Comparacion) op;
+			if(esOperacion(comparacion.getLeft()) && esOperacion(comparacion.getRight())) {
+				registrarValoresOperacion(comparacion.getLeft(), valores);
+				registrarValoresOperacion(comparacion.getRight(), valores);
+			}
+			else if(!esOperacion(comparacion.getLeft()) && esOperacion(comparacion.getRight())) {
+				registrarValoresOperacion(comparacion.getRight(), valores);
+				valores.add(comparacion.getLeft());
+			}
+			else if(esOperacion(comparacion.getLeft()) && !esOperacion(comparacion.getRight())) {
+				registrarValoresOperacion(comparacion.getLeft(), valores);
+				valores.add(comparacion.getRight());
+			}
+			else {
+				valores.add(comparacion.getLeft());
+				valores.add(comparacion.getRight());
+			}
+		} else if(op instanceof Igualdad) {
+			Igualdad igualdad = (Igualdad) op;
+			if(esOperacion(igualdad.getLeft()) && esOperacion(igualdad.getRight())) {
+				registrarValoresOperacion(igualdad.getLeft(), valores);
+				registrarValoresOperacion(igualdad.getRight(), valores);
+			}
+			else if(!esOperacion(igualdad.getLeft()) && esOperacion(igualdad.getRight())) {
+				registrarValoresOperacion(igualdad.getRight(), valores);
+				valores.add(igualdad.getLeft());
+			}
+			else if(esOperacion(igualdad.getLeft()) && !esOperacion(igualdad.getRight())) {
+				registrarValoresOperacion(igualdad.getLeft(), valores);
+				valores.add(igualdad.getRight());
+			}
+			else {
+				valores.add(igualdad.getLeft());
+				valores.add(igualdad.getRight());
+			}
+		} else if(op instanceof Negativa) {
+			Negativa negativa = (Negativa) op;
+			if(esOperacion(negativa.getValor_operacion())) {
+				registrarValoresOperacion(negativa.getValor_operacion(), valores);
+
+			}
+			else {
+				valores.add(negativa.getValor_operacion());
+			}
+		} else if(op instanceof Negacion) {
+			Negacion negacion = (Negacion) op;
+			if(esOperacion(negacion.getValor_operacion())) {
+				registrarValoresOperacion(negacion.getValor_operacion(), valores);
+
+			}
+			else {
+				valores.add(negacion.getValor_operacion());
+			}
 		}
 		return valores;
 	}
+	
+	
+	/*
 	
 	protected void registrarValoresOperacionRec(operacion o, List<valor> valores) {
 		if(!(o.getOp_der().getOper_der() instanceof operacion)) {
@@ -467,7 +632,6 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		}
 	}
 	
-	/*
 	protected List<signo> registrarSignosOperacion(operacion o) {
 		List<signo> signos = new ArrayList<signo>();
 		if(!( instanceof operacion)) {
@@ -847,6 +1011,10 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		return valoresMatriz;
 	}
 	
+	/*
+	 * 
+	 */
+	
 	protected List<ValorRegistro> variablesRegistroDeclaradas(List<valor> valores, List<String> variables, List<String> variablesGlobales) {
 		List<ValorRegistro> variablesNoDeclaradas = new ArrayList<ValorRegistro>();
 		for(valor v: valores) {
@@ -888,6 +1056,10 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		return variablesNoDeclaradas;
 	}
 	
+	/*
+	 * 
+	 */
+	
 	protected List<VariableID> variablesDeclaradas(List<valor> valores, List<String> variables, List<String> variablesGlobales) {
 		List<VariableID> variablesNoDeclaradas = new ArrayList<VariableID>();
 		for(valor v: valores) {
@@ -901,7 +1073,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 			else if(v instanceof LlamadaFuncion) {
 				//Comprobamos si alguno de los parámetros es una variable no definida
 				LlamadaFuncion f = (LlamadaFuncion) v;
-				for(valor val: f.getOperador()) {
+				for(valor val: f.getOperadores()) {
 					if(val instanceof Operador) {
 						Operador o = (Operador) val;
 						if(o instanceof VariableID) {
@@ -916,6 +1088,8 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		}
 		return variablesNoDeclaradas;
 	}
+	
+	/*
 	
 	protected List<String> registrarCamposRegistroSinTipo(List<Declaracion> declaraciones) {
 		List<String> campos = new ArrayList<String>();

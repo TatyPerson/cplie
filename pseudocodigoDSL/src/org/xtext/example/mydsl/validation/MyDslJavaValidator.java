@@ -1308,7 +1308,6 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		}
 	}
 	
-	/*
 	
 	private void checkVariablesUsadasAux(List<Sentencias> sentencias, List<String> variables, List<String> variablesGlobales) {
 		for(Sentencias sen: sentencias) {
@@ -1360,8 +1359,8 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				if(a instanceof AsignacionNormal) {
 					AsignacionNormal as = (AsignacionNormal) a;
 					
-					if(!variables.contains(as.getLvalue()) && !variablesGlobales.contains(as.getLvalue())) {
-						error("La variable debe haber sido previamente definida", as, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__LVALUE);
+					if(!variables.contains(as.getValor_asignacion()) && !variablesGlobales.contains(as.getValor_asignacion())) {
+						error("La variable debe haber sido previamente definida", as, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__VALOR_ASIGNACION);
 					}
 					if(as.getOperador() instanceof VariableID) {
 						VariableID v = (VariableID) as.getOperador();
@@ -1380,7 +1379,8 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					}
 					else if(as.getOperador() instanceof operacion) {
 						operacion o = (operacion) as.getOperador();
-						List<valor> valores = funciones.registrarValoresOperacion(o);
+						ArrayList<valor> valores = new ArrayList<valor>();
+						valores = funciones.registrarValoresOperacion(o, valores);
 						
 						List<ValorRegistro> variablesRegistroNoDeclaradas = funciones.variablesRegistroDeclaradas(valores, variables, variablesGlobales);
 						if(variablesRegistroNoDeclaradas.size() != 0) {
@@ -1419,7 +1419,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							}
 							else if(v instanceof ValorMatriz) {
 								ValorMatriz m = (ValorMatriz) v;
-								for(Operador op: m.getIndices()) {
+								ArrayList<operacion> indicesMatriz = new ArrayList<operacion>();
+								indicesMatriz.add(m.getPrimerIndice());
+								indicesMatriz.add(m.getSegundoIndice());
+								for(operacion op: indicesMatriz) {
 									if(op instanceof VariableID) {
 										VariableID var = (VariableID) op;
 										if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
@@ -1430,7 +1433,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							}
 							else if(v instanceof LlamadaFuncion) {
 								LlamadaFuncion f = (LlamadaFuncion) v;
-								for(valor val: f.getOperador()) {
+								for(valor val: f.getOperadores()) {
 									if(val instanceof Operador) {
 										Operador op = (Operador) val;
 										if(op instanceof VariableID) {
@@ -1450,9 +1453,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 										}
 										else if(op instanceof ValorMatriz) {
 											ValorMatriz m = (ValorMatriz) op;
-											for(Operador operador: m.getIndices()) {
-												if(operador instanceof VariableID) {
-													VariableID var = (VariableID) operador;
+											ArrayList<operacion> indicesMatriz = new ArrayList<operacion>();
+											indicesMatriz.add(m.getPrimerIndice());
+											indicesMatriz.add(m.getSegundoIndice());
+											for(operacion operacionAux: indicesMatriz) {
+												if(operacionAux instanceof VariableID) {
+													VariableID var = (VariableID) operacionAux;
 													if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())){
 														error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 													}
@@ -1466,7 +1472,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					}
 					else if(as.getOperador() instanceof LlamadaFuncion) {
 						LlamadaFuncion f = (LlamadaFuncion) as.getOperador();
-						for(valor v: f.getOperador()) {
+						for(valor v: f.getOperadores()) {
 							if(v instanceof Operador) {
 								Operador o = (Operador) v;
 								if(o instanceof VariableID) {
@@ -1486,7 +1492,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								}
 								else if(o instanceof ValorMatriz) {
 									ValorMatriz m = (ValorMatriz) o;
-									for(Operador op: m.getIndices()) {
+									ArrayList<operacion> indicesMatriz = new ArrayList<operacion>();
+									indicesMatriz.add(m.getPrimerIndice());
+									indicesMatriz.add(m.getSegundoIndice());
+									for(operacion op: indicesMatriz) {
 										if(op instanceof VariableID) {
 											VariableID var = (VariableID) op;
 											if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())){
@@ -1509,7 +1518,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					}
 					else if(as.getOperador() instanceof ValorMatriz) {
 						ValorMatriz m = (ValorMatriz) as.getOperador();
-						for(Operador op: m.getIndices()) {
+						ArrayList<operacion> indicesMatriz = new ArrayList<operacion>();
+						indicesMatriz.add(m.getPrimerIndice());
+						indicesMatriz.add(m.getSegundoIndice());
+						for(operacion op: indicesMatriz) {
 							if(op instanceof VariableID) {
 								VariableID var = (VariableID) op;
 								if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
@@ -1521,14 +1533,14 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				}
 				else if(a instanceof AsignacionCompleja) {
 					AsignacionCompleja ac = (AsignacionCompleja) a;
-					if(ac.getComplejo() instanceof ValorRegistro) {
-						ValorRegistro r = (ValorRegistro) ac.getComplejo();
+					if(ac.getValor_asignacion() instanceof ValorRegistro) {
+						ValorRegistro r = (ValorRegistro) ac.getValor_asignacion();
 						if(!variables.contains(r.getNombre_registro()) && !variablesGlobales.contains(r.getNombre_registro())) {
 							error("La variable debe haber sido previamente definida", r, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
 						}
 					}
-					else if(ac.getComplejo() instanceof ValorVector) {
-						ValorVector v = (ValorVector) ac.getComplejo();
+					else if(ac.getValor_asignacion() instanceof ValorVector) {
+						ValorVector v = (ValorVector) ac.getValor_asignacion();
 						if(v.getIndice() instanceof VariableID) {
 							VariableID var = (VariableID) v.getIndice();
 							if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
@@ -1538,7 +1550,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					}
 					else if(ac.getOperador() instanceof ValorMatriz) {
 						ValorMatriz m = (ValorMatriz) ac.getOperador();
-						for(Operador op: m.getIndices()) {
+						ArrayList<operacion> indicesMatriz = new ArrayList<operacion>();
+						indicesMatriz.add(m.getPrimerIndice());
+						indicesMatriz.add(m.getSegundoIndice());
+						for(operacion op: indicesMatriz) {
 							if(op instanceof VariableID) {
 								VariableID var = (VariableID) op;
 								if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
@@ -1564,7 +1579,8 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					}
 					else if(ac.getOperador() instanceof operacion) {
 						operacion o = (operacion) ac.getOperador();
-						List<valor> valores = funciones.registrarValoresOperacion(o);
+						ArrayList<valor> valores = new ArrayList<valor>();
+						valores = funciones.registrarValoresOperacion(o, valores);
 						
 						List<ValorRegistro> variablesRegistroNoDeclaradas = funciones.variablesRegistroDeclaradas(valores, variables, variablesGlobales);
 						if(variablesRegistroNoDeclaradas.size() != 0) {
@@ -1603,7 +1619,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							}
 							else if(v instanceof ValorMatriz) {
 								ValorMatriz m = (ValorMatriz) v;
-								for(Operador op: m.getIndices()) {
+								ArrayList<operacion> indicesMatriz = new ArrayList<operacion>();
+								indicesMatriz.add(m.getPrimerIndice());
+								indicesMatriz.add(m.getSegundoIndice());
+								for(operacion op: indicesMatriz) {
 									if(op instanceof VariableID) {
 										VariableID var = (VariableID) op;
 										if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
@@ -1614,7 +1633,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 							}
 							else if(v instanceof LlamadaFuncion) {
 								LlamadaFuncion f = (LlamadaFuncion) v;
-								for(valor val: f.getOperador()) {
+								for(valor val: f.getOperadores()) {
 									if(val instanceof Operador) {
 										Operador op = (Operador) val;
 										if(op instanceof VariableID) {
@@ -1634,9 +1653,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 										}
 										else if(op instanceof ValorMatriz) {
 											ValorMatriz m = (ValorMatriz) op;
-											for(Operador operador: m.getIndices()) {
-												if(operador instanceof VariableID) {
-													VariableID var = (VariableID) operador;
+											ArrayList<operacion> indicesMatriz = new ArrayList<operacion>();
+											indicesMatriz.add(m.getPrimerIndice());
+											indicesMatriz.add(m.getSegundoIndice());
+											for(operacion operacionAux: indicesMatriz) {
+												if(operacionAux instanceof VariableID) {
+													VariableID var = (VariableID) operacionAux;
 													if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
 														error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 													}
@@ -1650,7 +1672,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					}
 					else if(ac.getOperador() instanceof LlamadaFuncion) {
 						LlamadaFuncion f = (LlamadaFuncion) ac.getOperador();
-						for(valor v: f.getOperador()) {
+						for(valor v: f.getOperadores()) {
 							if(v instanceof Operador) {
 								Operador o = (Operador) v;
 								if(o instanceof VariableID) {
@@ -1670,7 +1692,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 								}
 								else if(o instanceof ValorMatriz) {
 									ValorMatriz m = (ValorMatriz) o;
-									for(Operador op: m.getIndices()) {
+									ArrayList<operacion> indicesMatriz = new ArrayList<operacion>();
+									indicesMatriz.add(m.getPrimerIndice());
+									indicesMatriz.add(m.getSegundoIndice());
+									for(operacion op: indicesMatriz) {
 										if(op instanceof VariableID) {
 											VariableID var = (VariableID) op;
 											if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
@@ -1693,7 +1718,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					}
 					else if(ac.getOperador() instanceof ValorMatriz) {
 						ValorMatriz m = (ValorMatriz) ac.getOperador();
-						for(Operador op: m.getIndices()) {
+						ArrayList<operacion> indicesMatriz = new ArrayList<operacion>();
+						indicesMatriz.add(m.getPrimerIndice());
+						indicesMatriz.add(m.getSegundoIndice());
+						for(operacion op: indicesMatriz) {
 							if(op instanceof VariableID) {
 								VariableID var = (VariableID) op;
 								if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
@@ -1706,6 +1734,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			}
 		}
 	}
+	
 	
 	@Check
 	//Función que comprueba que una variable deba estar definida antes de usarse
@@ -1752,6 +1781,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		}
 	}
 	
+	
 	//Función que comprueba que una variable deba estar definida antes de usarse
 	private void checkVariablesUsadas(Subproceso s, List<String> variablesGlobales) {
 		List<String> variables = funciones.registrarVariables(s.getDeclaracion());
@@ -1794,6 +1824,8 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			}
 		}
 	}
+	
+	/*
 	
 	
 	private void checkLlamadaFuncionAux(List<Sentencias> sentencias, List<String> funciones, List<ArrayList<Integer>> parametros) {
