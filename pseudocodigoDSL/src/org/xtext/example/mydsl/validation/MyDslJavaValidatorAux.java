@@ -248,11 +248,11 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		//Por ahora solo 2 operadores
 		return prioridadTipoOperacion(tipos.get(0), tipos.get(1));
 	}
-	/*
-	protected void registrarParametros(List<valor> valores, List<String> nombresVariables, Map<String,String> nombresVariablesCampos, List<String> tiposNativos, Map<String,String> variablesDeclaradas, Map<String,String> tiposVectoresMatrices, Map<String,HashMap<String,String>> tiposRegistros) {
-		for(valor val: valores) { 
-			if(val instanceof Operador) {
-				Operador o = (Operador) val;
+
+	protected void registrarParametros(List<operacion> operaciones, List<String> nombresVariables, Map<String,String> nombresVariablesCampos, List<String> tiposNativos, Map<String,String> variablesDeclaradas, Map<String,String> tiposVectoresMatrices, Map<String,HashMap<String,String>> tiposRegistros) {
+		for(operacion op: operaciones) { 
+			if(op instanceof Operador) {
+				Operador o = (Operador) op;
 				if(o instanceof VariableID) {
 					VariableID v = (VariableID) o;
 					nombresVariables.add(v.getNombre());	
@@ -298,15 +298,15 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 					tiposNativos.add("caracter");
 				}
 			}
-			else if(val instanceof operacion) {
-				operacion op = (operacion) val;
-				List<valor> valoresAux = registrarValoresOperacion(op);
+			else if(esOperacion(op)) {
+				ArrayList<valor> valoresAux = new ArrayList<valor>();
+				valoresAux = registrarValoresOperacion(op, valoresAux);
 				String tipoOperacion = getValorTotalOperacion(valoresAux, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
 				nombresVariables.add("tipoNativo");
 				tiposNativos.add(tipoOperacion);
 			}
 		}
-	}*/
+	}
 	
 	protected String getCadenaTiposCorrectos(List<String> tipos) {
 		String salidaCorrecta = "";
@@ -393,7 +393,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		}
 		return tiposNativos;
 	}
-	/*
+
 	protected Map<String,HashMap<String,String>>registrarTiposNativosRegistros(List<TipoComplejo> complejos) {
 		Map<String,HashMap<String,String>> tiposNativos = new HashMap<String,HashMap<String,String>>();
 		for(TipoComplejo t: complejos) {
@@ -403,7 +403,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 			}
 		}
 		return tiposNativos;
-	}*/
+	}
 	
 	/*
 	
@@ -416,6 +416,10 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		}
 		return tiposCorrectos;
 	}
+	
+	/*
+	 * 
+	 */
 	
 	protected List<String> getTiposCabecera(List<ParametroFuncion> parametros) {
 		List<String> tipos = new ArrayList<String>();
@@ -439,6 +443,15 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 	
 	protected boolean esOperacion(operacion op) {
 		if(op instanceof Suma | op instanceof Resta | op instanceof Multiplicacion | op instanceof Division | op instanceof Or | op instanceof And | op instanceof Comparacion | op instanceof Igualdad | op instanceof Negativa | op instanceof Negacion) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	protected boolean esOperacion(valor v) {
+		if(v instanceof Suma | v instanceof Resta | v instanceof Multiplicacion | v instanceof Division | v instanceof Or | v instanceof And | v instanceof Comparacion | v instanceof Igualdad | v instanceof Negativa | v instanceof Negacion) {
 			return true;
 		}
 		else {
@@ -756,6 +769,10 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		}
 	}
 	
+	/*
+	 * 
+	 */
+	
 	protected List<valor> buscarProblemasOperacion(String tipo, List<valor> valores) {
 		List<valor> valoresProblem = new ArrayList<valor>();
 		if(tipo == "entero") {
@@ -798,8 +815,10 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		
 	}
 	
+	
+	
 	protected boolean esValorSimple(valor v) {
-		return !(v instanceof VariableID) && !(v instanceof LlamadaFuncion) && !(v instanceof ValorRegistro) && !(v instanceof ValorVector) && !(v instanceof ValorMatriz) && !(v instanceof operacion);
+		return !(v instanceof VariableID) && !(v instanceof LlamadaFuncion) && !(v instanceof ValorRegistro) && !(v instanceof ValorVector) && !(v instanceof ValorMatriz) && !esOperacion(v);
 	}
 	
 	protected int asignacionOperacionVariable(List<valor> valoresProblem, Map<String,String> variables, List<String> tiposValidos) {
@@ -888,20 +907,20 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 			if(v instanceof LlamadaFuncion) {
 				LlamadaFuncion f = (LlamadaFuncion) v;
 				if(tiposValidos.get(0) == "entero") {
-					if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != tiposValidos.get(0) && funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != tiposValidos.get(1) && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+					if(funcionesTipadas.get(f.getNombre()).get(f.getOperadores().size()) != tiposValidos.get(0) && funcionesTipadas.get(f.getNombre()).get(f.getOperadores().size()) != tiposValidos.get(1) && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperadores().size())) {
 						return 3;
 					}
-					else if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) == tiposValidos.get(1) &&  funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+					else if(funcionesTipadas.get(f.getNombre()).get(f.getOperadores().size()) == tiposValidos.get(1) &&  funcionesTipadas.get(f.getNombre()).containsKey(f.getOperadores().size())) {
 						check = 2;
 					}
 				}
 				else if(tiposValidos.get(0) == "real") {
-					if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != tiposValidos.get(0) && funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != tiposValidos.get(1) && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+					if(funcionesTipadas.get(f.getNombre()).get(f.getOperadores().size()) != tiposValidos.get(0) && funcionesTipadas.get(f.getNombre()).get(f.getOperadores().size()) != tiposValidos.get(1) && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperadores().size())) {
 						return 3;
 					}
 				}
 				else {
-					if(funcionesTipadas.get(f.getNombre()).get(f.getOperador().size()) != tiposValidos.get(0) && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperador().size())) {
+					if(funcionesTipadas.get(f.getNombre()).get(f.getOperadores().size()) != tiposValidos.get(0) && funcionesTipadas.containsKey(f.getNombre()) && funcionesTipadas.get(f.getNombre()).containsKey(f.getOperadores().size())) {
 						return 3;
 					}
 				}
@@ -1089,8 +1108,6 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		return variablesNoDeclaradas;
 	}
 	
-	/*
-	
 	protected List<String> registrarCamposRegistroSinTipo(List<Declaracion> declaraciones) {
 		List<String> campos = new ArrayList<String>();
 		for(Declaracion d: declaraciones) {
@@ -1168,6 +1185,6 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 			}
 		}
 		
-	}*/
+	}
 	
 }
