@@ -62,13 +62,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="NumeroEntero" eSuperTypes="#//Operador #//operacion">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="valor" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Asignacion" eSuperTypes="#//Sentencias">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Mat" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operadores" lowerBound="1"
-        eType="#//operacion" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valor_asignacion" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Asignacion" eSuperTypes="#//Sentencias"/>
   <eClassifiers xsi:type="ecore:EClass" name="Escribir" eSuperTypes="#//Sentencias">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operador" lowerBound="1"
         upperBound="-1" eType="#//operacion" containment="true"/>
@@ -136,7 +130,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="repetir" eSuperTypes="#//Bloque"/>
   <eClassifiers xsi:type="ecore:EClass" name="desde" eSuperTypes="#//Bloque">
     <eStructuralFeatures xsi:type="ecore:EReference" name="asignacion" lowerBound="1"
-        eType="#//Asignacion" containment="true"/>
+        eType="#//AsignacionNormal" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="neg">
     <eLiterals name="no" value="2" literal="no"/>
@@ -380,6 +374,19 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Negacion" eSuperTypes="#//operacion">
     <eStructuralFeatures xsi:type="ecore:EReference" name="valor_operacion" lowerBound="1"
+        eType="#//operacion" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AsignacionNormal" eSuperTypes="#//Asignacion">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Mat" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valor_asignacion" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operador" lowerBound="1"
+        eType="#//operacion" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AsignacionCompleja" eSuperTypes="#//Asignacion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operador" lowerBound="1"
+        eType="#//operacion" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valor_asignacion" lowerBound="1"
         eType="#//operacion" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

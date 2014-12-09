@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import org.eclipse.xtext.validation.Check;
 
@@ -23,7 +24,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	public static final String INVALID_VAR_NAME = "xtext.workshop.advanced.quickfix.InvalidTypeName";
 	
 	
-	/* @Check
+	@Check
 	//Función que se encarga de comprobar si el limite inferior de un subrango es siempre inferior al superior.
 	protected void checkSubrango(Subrango s) {
 		if(s instanceof SubrangoNumerico) {
@@ -78,13 +79,13 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			}
 		}
 	}
-	/*
+
 	@Check
 	//Función que se encarga de comprobar que no existen casos repetidos en la estructura segun_sea
 	protected void checkCasos(segun s) {
 		List<Integer> numeros = new ArrayList<Integer>();
 		for(Caso c: s.getCaso()) {
-			Operador op = c.getOperador();
+			operacion op = c.getOperador();
 			if(op instanceof NumeroEntero) {
 				NumeroEntero e = (NumeroEntero) op;
 				if(!numeros.contains(e.getValor())) {
@@ -119,53 +120,152 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	@Check
 	//Función que se encarga de comprobar si la operación de la condición de la estructura "Si" es de tipo lógico
 	protected void checkCondicionesSi(Si si) {
-		if(si.getValor() instanceof  operacion) {
-			operacion op = (operacion) si.getValor();
-			List<signo> signos = funciones.registrarSignosOperacion(op);
-			//Insertamos el primero también
-			signos.add(op.getSigno_op());
-			//Comprobamos que todos los signos sean de tipo lógico
-			for(signo s: signos) {
-				if(s.getName() == "sum" || s.getName() == "res" || s.getName() == "mult" || s.getName() == "div") {
-					error("La expresión debe ser de tipo lógico", op, DiagramapseudocodigoPackage.Literals.OPERACION__SIGNO_OP);
-				}
+		if(si.getValor() instanceof  Suma) {
+			Suma suma = (Suma) si.getValor();
+			error("La expresión debe ser de tipo lógico", suma, DiagramapseudocodigoPackage.Literals.SUMA__SIGNO_OP);
+		}
+		else if(si.getValor() instanceof Resta) {
+			Resta resta = (Resta) si.getValor();
+			error("La expresión debe ser de tipo lógico", resta, DiagramapseudocodigoPackage.Literals.RESTA__SIGNO_OP);
+		}
+		else if(si.getValor() instanceof Multiplicacion) {
+			Multiplicacion multiplicacion = (Multiplicacion) si.getValor();
+			error("La expresión debe ser de tipo lógico", multiplicacion, DiagramapseudocodigoPackage.Literals.MULTIPLICACION__SIGNO_OP);
+		}
+		else if(si.getValor() instanceof Division) {
+			Division division = (Division) si.getValor();
+			error("La expresión debe ser de tipo lógico", division, DiagramapseudocodigoPackage.Literals.DIVISION__SIGNO_OP);
+		}
+		else if(si.getValor() instanceof Negativa) {
+			Negativa negativa = (Negativa) si.getValor();
+			error("La expresión debe ser de tipo lógico", negativa, DiagramapseudocodigoPackage.Literals.NEGATIVA__VALOR_OPERACION);
+		}
+		else if(si.getValor() instanceof Or) {
+			Or or = (Or) si.getValor();
+			if(!(funciones.checkOperacionLogica(or.getLeft())) || !(funciones.checkOperacionLogica(or.getRight()))) {
+				error("La expresión debe ser de tipo lógico", or, DiagramapseudocodigoPackage.Literals.OR__SIGNO_OP);
+			}
+		}
+		else if(si.getValor() instanceof And) {
+			And and = (And) si.getValor();
+			if(!(funciones.checkOperacionLogica(and.getLeft())) || !(funciones.checkOperacionLogica(and.getRight()))) {
+				error("La expresión debe ser de tipo lógico", and, DiagramapseudocodigoPackage.Literals.AND__SIGNO_OP);
+			}
+		}
+		else if(si.getValor() instanceof Comparacion) {
+			Comparacion comp = (Comparacion) si.getValor();
+			if(!(funciones.checkOperacionLogica(comp.getLeft())) || !(funciones.checkOperacionLogica(comp.getRight()))) {
+				error("La expresión debe ser de tipo lógico", comp, DiagramapseudocodigoPackage.Literals.COMPARACION__SIGNO_OP);
+			}
+		}
+		else if(si.getValor() instanceof Igualdad) {
+			Igualdad igualdad = (Igualdad) si.getValor();
+			if(!(funciones.checkOperacionLogica(igualdad.getLeft())) || !(funciones.checkOperacionLogica(igualdad.getRight()))) {
+				error("La expresión debe ser de tipo lógico", igualdad, DiagramapseudocodigoPackage.Literals.IGUALDAD__SIGNO_OP);
+			}
+		}
+	}
+
+	@Check
+	//Función que se encarga de comprobar si la operación de la condición de la estructura "Mientras" es de tipo lógico
+	protected void checkCondicionesMientras(mientras miMientras) {
+		if(miMientras.getValor() instanceof  Suma) {
+			Suma suma = (Suma) miMientras.getValor();
+			error("La expresión debe ser de tipo lógico", suma, DiagramapseudocodigoPackage.Literals.SUMA__SIGNO_OP);
+		}
+		else if(miMientras.getValor() instanceof Resta) {
+			Resta resta = (Resta) miMientras.getValor();
+			error("La expresión debe ser de tipo lógico", resta, DiagramapseudocodigoPackage.Literals.RESTA__SIGNO_OP);
+		}
+		else if(miMientras.getValor() instanceof Multiplicacion) {
+			Multiplicacion multiplicacion = (Multiplicacion) miMientras.getValor();
+			error("La expresión debe ser de tipo lógico", multiplicacion, DiagramapseudocodigoPackage.Literals.MULTIPLICACION__SIGNO_OP);
+		}
+		else if(miMientras.getValor() instanceof Division) {
+			Division division = (Division) miMientras.getValor();
+			error("La expresión debe ser de tipo lógico", division, DiagramapseudocodigoPackage.Literals.DIVISION__SIGNO_OP);
+		}
+		else if(miMientras.getValor() instanceof Negativa) {
+			Negativa negativa = (Negativa) miMientras.getValor();
+			error("La expresión debe ser de tipo lógico", negativa, DiagramapseudocodigoPackage.Literals.NEGATIVA__VALOR_OPERACION);
+		}
+		else if(miMientras.getValor() instanceof Or) {
+			Or or = (Or) miMientras.getValor();
+			if(!(funciones.checkOperacionLogica(or.getLeft())) || !(funciones.checkOperacionLogica(or.getRight()))) {
+				error("La expresión debe ser de tipo lógico", or, DiagramapseudocodigoPackage.Literals.OR__SIGNO_OP);
+			}
+		}
+		else if(miMientras.getValor() instanceof And) {
+			And and = (And) miMientras.getValor();
+			if(!(funciones.checkOperacionLogica(and.getLeft())) || !(funciones.checkOperacionLogica(and.getRight()))) {
+				error("La expresión debe ser de tipo lógico", and, DiagramapseudocodigoPackage.Literals.AND__SIGNO_OP);
+			}
+		}
+		else if(miMientras.getValor() instanceof Comparacion) {
+			Comparacion comp = (Comparacion) miMientras.getValor();
+			if(!(funciones.checkOperacionLogica(comp.getLeft())) || !(funciones.checkOperacionLogica(comp.getRight()))) {
+				error("La expresión debe ser de tipo lógico", comp, DiagramapseudocodigoPackage.Literals.COMPARACION__SIGNO_OP);
+			}
+		}
+		else if(miMientras.getValor() instanceof Igualdad) {
+			Igualdad igualdad = (Igualdad) miMientras.getValor();
+			if(!(funciones.checkOperacionLogica(igualdad.getLeft())) || !(funciones.checkOperacionLogica(igualdad.getRight()))) {
+				error("La expresión debe ser de tipo lógico", igualdad, DiagramapseudocodigoPackage.Literals.IGUALDAD__SIGNO_OP);
 			}
 		}
 	}
 	
-	@Check
-	//Función que se encarga de comprobar si la operación de la condición de la estructura "Mientras" es de tipo lógico
-	protected void checkCondicionesMientras(mientras miMientras) {
-		if(miMientras.getValor() instanceof  operacion) {
-			operacion op = (operacion) miMientras.getValor();
-			List<signo> signos = funciones.registrarSignosOperacion(op);
-			//Insertamos el primero también
-			signos.add(op.getSigno_op());
-			//Comprobamos que todos los signos sean de tipo lógico
-			for(signo s: signos) {
-				if(s.getName() == "sum" || s.getName() == "res" || s.getName() == "mult" || s.getName() == "div") {
-					error("La expresión debe ser de tipo lógico", op, DiagramapseudocodigoPackage.Literals.OPERACION__SIGNO_OP);
-				}
-			}
-		}
-	}
 	
 	@Check
 	//Función que se encarga de comprobar si la operación de la condición de la estructura "Repetir" es de tipo lógico
 	protected void checkCondicionesRepetir(repetir miRepetir) {
-		if(miRepetir.getValor() instanceof  operacion) {
-			operacion op = (operacion) miRepetir.getValor();
-			List<signo> signos = funciones.registrarSignosOperacion(op);
-			//Insertamos el primero también
-			signos.add(op.getSigno_op());
-			//Comprobamos que todos los signos sean de tipo lógico
-			for(signo s: signos) {
-				if(s.getName() == "sum" || s.getName() == "res" || s.getName() == "mult" || s.getName() == "div") {
-					error("La expresión debe ser de tipo lógico", op, DiagramapseudocodigoPackage.Literals.OPERACION__SIGNO_OP);
-				}
+		if(miRepetir.getValor() instanceof  Suma) {
+			Suma suma = (Suma) miRepetir.getValor();
+			error("La expresión debe ser de tipo lógico", suma, DiagramapseudocodigoPackage.Literals.SUMA__SIGNO_OP);
+		}
+		else if(miRepetir.getValor() instanceof Resta) {
+			Resta resta = (Resta) miRepetir.getValor();
+			error("La expresión debe ser de tipo lógico", resta, DiagramapseudocodigoPackage.Literals.RESTA__SIGNO_OP);
+		}
+		else if(miRepetir.getValor() instanceof Multiplicacion) {
+			Multiplicacion multiplicacion = (Multiplicacion) miRepetir.getValor();
+			error("La expresión debe ser de tipo lógico", multiplicacion, DiagramapseudocodigoPackage.Literals.MULTIPLICACION__SIGNO_OP);
+		}
+		else if(miRepetir.getValor() instanceof Division) {
+			Division division = (Division) miRepetir.getValor();
+			error("La expresión debe ser de tipo lógico", division, DiagramapseudocodigoPackage.Literals.DIVISION__SIGNO_OP);
+		}
+		else if(miRepetir.getValor() instanceof Negativa) {
+			Negativa negativa = (Negativa) miRepetir.getValor();
+			error("La expresión debe ser de tipo lógico", negativa, DiagramapseudocodigoPackage.Literals.NEGATIVA__VALOR_OPERACION);
+		}
+		else if(miRepetir.getValor() instanceof Or) {
+			Or or = (Or) miRepetir.getValor();
+			if(!(funciones.checkOperacionLogica(or.getLeft())) || !(funciones.checkOperacionLogica(or.getRight()))) {
+				error("La expresión debe ser de tipo lógico", or, DiagramapseudocodigoPackage.Literals.OR__SIGNO_OP);
+			}
+		}
+		else if(miRepetir.getValor() instanceof And) {
+			And and = (And) miRepetir.getValor();
+			if(!(funciones.checkOperacionLogica(and.getLeft())) || !(funciones.checkOperacionLogica(and.getRight()))) {
+				error("La expresión debe ser de tipo lógico", and, DiagramapseudocodigoPackage.Literals.AND__SIGNO_OP);
+			}
+		}
+		else if(miRepetir.getValor() instanceof Comparacion) {
+			Comparacion comp = (Comparacion) miRepetir.getValor();
+			if(!(funciones.checkOperacionLogica(comp.getLeft())) || !(funciones.checkOperacionLogica(comp.getRight()))) {
+				error("La expresión debe ser de tipo lógico", comp, DiagramapseudocodigoPackage.Literals.COMPARACION__SIGNO_OP);
+			}
+		}
+		else if(miRepetir.getValor() instanceof Igualdad) {
+			Igualdad igualdad = (Igualdad) miRepetir.getValor();
+			if(!(funciones.checkOperacionLogica(igualdad.getLeft())) || !(funciones.checkOperacionLogica(igualdad.getRight()))) {
+				error("La expresión debe ser de tipo lógico", igualdad, DiagramapseudocodigoPackage.Literals.IGUALDAD__SIGNO_OP);
 			}
 		}
 	}
+	
+	/*
 	
 	@Check
 	//Función que se encarga de comprobar si un vector al que se accede a un campo es un vector de registro
@@ -288,10 +388,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 	
 	private void checkValorVectorAux(List<String> nombresRegistros, List<Sentencias> sentencias, Map<String,String> variablesTipadas, Map<String,String> vectoresTipados, List<String> nombresVectores) {
 		for(Sentencias s: sentencias) {
-			if(s instanceof AsignacionNormal) {
-				AsignacionNormal a = (AsignacionNormal) s;
-				if(a.getOperador() instanceof ValorVector) {
-					ValorVector v = (ValorVector) a.getOperador();
+			if(s instanceof Asignacion) {
+				Asignacion a = (Asignacion) s;
+				if(a.getOperadores() instanceof ValorVector) {
+					ValorVector v = (ValorVector) a.getOperadores();
 					if(!nombresVectores.contains(variablesTipadas.get(v.getNombre_vector()))) {
 						error("La variable no pertenece al tipo vector", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
 					}
@@ -299,8 +399,8 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						error("El vector no pertenece al tipo registro", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
 					}
 				}
-				else if(a.getOperador() instanceof operacion) {
-					operacion o = (operacion) a.getOperador();
+				else if(a.getOperadores() instanceof operacion) {
+					operacion o = (operacion) a.getOperadores();
 					List<valor> valores = funciones.registrarValoresOperacion(o);
 					for(valor val: valores) {
 						if(val instanceof ValorVector) {
@@ -314,7 +414,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						}
 						else if(val instanceof LlamadaFuncion) {
 							LlamadaFuncion l = (LlamadaFuncion) val;
-							for(valor valAux: l.getOperador()) {
+							for(valor valAux: l.getOperadores()) {
 								if(valAux instanceof Operador) {
 									Operador op = (Operador) valAux;
 									if(op instanceof ValorVector) {
@@ -331,9 +431,9 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 						}
 					}
 				}
-				else if(a.getOperador() instanceof LlamadaFuncion) {
-					LlamadaFuncion l = (LlamadaFuncion) a.getOperador();
-					for(valor valAux: l.getOperador()) {
+				else if(a.getOperadores() instanceof LlamadaFuncion) {
+					LlamadaFuncion l = (LlamadaFuncion) a.getOperadores();
+					for(valor valAux: l.getOperadores()) {
 						if(valAux instanceof Operador) {
 							Operador op = (Operador) valAux;
 							if(op instanceof ValorVector) {
@@ -558,6 +658,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			}
 		}
 	}
+	*/
 	
 	@Check
 	//Función que se encarga de comprobar que no existan dos variables declaradas en un registro con el mismo nombre
@@ -593,6 +694,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		}
 	}
 	
+	
 	private void checkFuncionesAbrirCerrarFicheroAux(List<Sentencias> sentencias, List<String> nombresFicheros, Map<String,String> variablesDeclaradas) {
 		for(Sentencias s: sentencias) {
 			if(s instanceof FuncionFicheroAbrir) {
@@ -615,6 +717,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			}
 		}
 	}
+	
 	
 	@Check
 	//Función que se encarga de comprobar si la variable que se le pasa a las funciones "abrir" y "cerrar" es de tipo fichero
@@ -705,6 +808,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			
 		}
 	}
+	
 	
 	private void checkFuncionAbrirAux(List<Sentencias> sentencias, Map<String,String> variablesDeclaradas) {
 		for(Sentencias s: sentencias) {
@@ -1204,11 +1308,13 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 		}
 	}
 	
+	/*
+	
 	private void checkVariablesUsadasAux(List<Sentencias> sentencias, List<String> variables, List<String> variablesGlobales) {
 		for(Sentencias sen: sentencias) {
 			if(sen instanceof LlamadaFuncion) {
 				LlamadaFuncion f = (LlamadaFuncion) sen;
-				for(valor val: f.getOperador()) {
+				for(valor val: f.getOperadores()) {
 					if(val instanceof Operador) {
 						Operador o = (Operador) val;
 						if(o instanceof VariableID) {
@@ -1232,7 +1338,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			
 			else if(sen instanceof Escribir) {
 				Escribir e = (Escribir) sen;
-				for(Operador o: e.getOperador()) {
+				for(operacion o: e.getOperador()) {
 					if(o instanceof VariableID) {
 						VariableID v = (VariableID) o;
 						if(!variables.contains(v.getNombre()) && !variablesGlobales.contains(v.getNombre())) {
@@ -1242,10 +1348,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				}
 			}
 			
-			else if(sen instanceof negacion) {
-				negacion neg = (negacion) sen;
-				if(!variables.contains(neg.getNombre()) && !variablesGlobales.contains(neg.getNombre())){
-					error("La variable debe haber sido previamente definida", neg, DiagramapseudocodigoPackage.Literals.NEGACION__NOMBRE);
+			else if(sen instanceof Negacion) {
+				Negacion neg = (Negacion) sen;
+				if(!variables.contains(neg.getValor_operacion()) && !variablesGlobales.contains(neg.getValor_operacion())){
+					error("La variable debe haber sido previamente definida", neg, DiagramapseudocodigoPackage.Literals.NEGACION__VALOR_OPERACION);
 				}
 			}
 			
@@ -1688,6 +1794,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			}
 		}
 	}
+	
 	
 	private void checkLlamadaFuncionAux(List<Sentencias> sentencias, List<String> funciones, List<ArrayList<Integer>> parametros) {
 		for(Sentencias s: sentencias) {

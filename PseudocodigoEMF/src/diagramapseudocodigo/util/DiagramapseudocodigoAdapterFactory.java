@@ -336,6 +336,14 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 				return createNegacionAdapter();
 			}
 			@Override
+			public Adapter caseAsignacionNormal(AsignacionNormal object) {
+				return createAsignacionNormalAdapter();
+			}
+			@Override
+			public Adapter caseAsignacionCompleja(AsignacionCompleja object) {
+				return createAsignacionComplejaAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -1290,6 +1298,34 @@ public class DiagramapseudocodigoAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNegacionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.AsignacionNormal <em>Asignacion Normal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.AsignacionNormal
+	 * @generated
+	 */
+	public Adapter createAsignacionNormalAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link diagramapseudocodigo.AsignacionCompleja <em>Asignacion Compleja</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see diagramapseudocodigo.AsignacionCompleja
+	 * @generated
+	 */
+	public Adapter createAsignacionComplejaAdapter() {
 		return null;
 	}
 

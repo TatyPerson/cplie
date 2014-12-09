@@ -7,26 +7,36 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 
+import diagramapseudocodigo.And;
 import diagramapseudocodigo.Archivo;
 import diagramapseudocodigo.Caracter;
+import diagramapseudocodigo.Comparacion;
 import diagramapseudocodigo.ConstCadena;
 import diagramapseudocodigo.Declaracion;
 import diagramapseudocodigo.DeclaracionPropia;
 import diagramapseudocodigo.DeclaracionVariable;
 import diagramapseudocodigo.DiagramapseudocodigoPackage;
+import diagramapseudocodigo.Division;
 import diagramapseudocodigo.Enumerado;
 import diagramapseudocodigo.Funcion;
+import diagramapseudocodigo.Igualdad;
 import diagramapseudocodigo.Inicio;
 import diagramapseudocodigo.LlamadaFuncion;
 import diagramapseudocodigo.Matriz;
+import diagramapseudocodigo.Multiplicacion;
+import diagramapseudocodigo.Negacion;
+import diagramapseudocodigo.Negativa;
 import diagramapseudocodigo.NumeroDecimal;
 import diagramapseudocodigo.NumeroEntero;
 import diagramapseudocodigo.Operador;
+import diagramapseudocodigo.Or;
 import diagramapseudocodigo.ParametroFuncion;
 import diagramapseudocodigo.Registro;
+import diagramapseudocodigo.Resta;
 import diagramapseudocodigo.Sentencias;
 import diagramapseudocodigo.Subproceso;
 import diagramapseudocodigo.Subrango;
+import diagramapseudocodigo.Suma;
 import diagramapseudocodigo.Tipo;
 import diagramapseudocodigo.TipoComplejo;
 import diagramapseudocodigo.TipoDefinido;
@@ -395,6 +405,8 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		return tiposNativos;
 	}*/
 	
+	/*
+	
 	protected boolean comprobarCorreccionTiposLlamada(List<String> nombres, Map<String,String> variablesDeclaradas, List<String> tipos) {
 		boolean tiposCorrectos = true;
 		for(String n: nombres) {
@@ -420,7 +432,7 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 			variablesDeclaradas.put(p.getVariable().getNombre(), getTipoComplejo(p.getTipo()));
 		}
 	}
-	/*
+
 	protected List<valor> registrarValoresOperacion(operacion o) {
 		List<valor> valores = new ArrayList<valor>();
 		if(!(o.getOp_der().getOper_der() instanceof operacion)) {
@@ -455,9 +467,10 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		}
 	}
 	
+	/*
 	protected List<signo> registrarSignosOperacion(operacion o) {
 		List<signo> signos = new ArrayList<signo>();
-		if(!(o.getOp_der().getOper_der() instanceof operacion)) {
+		if(!( instanceof operacion)) {
 			signo s = (signo) o.getSigno_op();
 			signos.add(s);
 		}
@@ -473,6 +486,96 @@ public class MyDslJavaValidatorAux extends AbstractMyDslJavaValidator {
 		return signos;
 	}
 	
+	*/
+	
+	//Función que devuelve true cuando hay almenos una operación que no sea lógica en la condición de un si
+	protected boolean checkOperacionLogica(operacion op) {
+		if(op instanceof  Suma) {
+			return false;
+		}
+		else if(op instanceof Resta) {
+			return false;
+		}
+		else if(op instanceof Multiplicacion) {
+			return false;
+		}
+		else if(op instanceof Division) {
+			return false;
+		}
+		else if(op instanceof Negativa) {
+			return false;
+		}
+		else if(op instanceof Or) {
+			Or or = (Or) op;
+			if(or.getLeft() instanceof operacion && or.getRight() instanceof operacion) {
+				return checkOperacionLogica(or.getLeft()) && checkOperacionLogica(or.getRight());
+			}
+			else if(!(or.getLeft() instanceof operacion) && or.getRight() instanceof operacion) {
+				return checkOperacionLogica(or.getRight());
+			}
+			else if(or.getLeft() instanceof operacion && !(or.getRight() instanceof operacion)) {
+				return checkOperacionLogica(or.getLeft());
+			}
+			else {
+				return true;
+			}
+		}
+		else if(op instanceof And) {
+			And and = (And) op;
+			if(and.getLeft() instanceof operacion && and.getRight() instanceof operacion) {
+				return checkOperacionLogica(and.getLeft()) && checkOperacionLogica(and.getRight());
+			}
+			else if(!(and.getLeft() instanceof operacion) && and.getRight() instanceof operacion) {
+				return checkOperacionLogica(and.getRight());
+			}
+			else if(and.getLeft() instanceof operacion && !(and.getRight() instanceof operacion)) {
+				return checkOperacionLogica(and.getLeft());
+			}
+			else {
+				return true;
+			}
+		}
+		else if(op instanceof Comparacion) {
+			Comparacion comp = (Comparacion) op;
+			if(comp.getLeft() instanceof operacion && comp.getRight() instanceof operacion) {
+				return checkOperacionLogica(comp.getLeft()) && checkOperacionLogica(comp.getRight());
+			}
+			else if(!(comp.getLeft() instanceof operacion) && comp.getRight() instanceof operacion) {
+				return checkOperacionLogica(comp.getRight());
+			}
+			else if(comp.getLeft() instanceof operacion && !(comp.getRight() instanceof operacion)) {
+				return checkOperacionLogica(comp.getLeft());
+			}
+			else {
+				return true;
+			}
+		}
+		else if(op instanceof Igualdad) {
+			Igualdad igualdad = (Igualdad) op;
+			if(igualdad.getLeft() instanceof operacion && igualdad.getRight() instanceof operacion) {
+				return checkOperacionLogica(igualdad.getLeft()) && checkOperacionLogica(igualdad.getRight());
+			}
+			else if(!(igualdad.getLeft() instanceof operacion) && igualdad.getRight() instanceof operacion) {
+				return checkOperacionLogica(igualdad.getRight());
+			}
+			else if(igualdad.getLeft() instanceof operacion && !(igualdad.getRight() instanceof operacion)) {
+				return checkOperacionLogica(igualdad.getLeft());
+			}
+			else {
+				return true;
+			}
+		}
+		else if(op instanceof Negacion) {
+			//Lo pasamos por alto también porque lo validamos en otra función
+			return true;
+		}
+		else {
+			//Lo pasamos por alto y lo validamos en otra función
+			return true;
+		}
+	}
+	
+	/*
 	protected void registrarSignosOperacionRec(operacion o, List<signo> signos) {
 		if(!(o.getOp_der().getOper_der() instanceof operacion)) {
 			signo s = (signo) o.getSigno_op();

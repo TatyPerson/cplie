@@ -147,7 +147,7 @@ public class desdeItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DiagramapseudocodigoPackage.Literals.DESDE__ASIGNACION,
-				 DiagramapseudocodigoFactory.eINSTANCE.createAsignacion()));
+				 DiagramapseudocodigoFactory.eINSTANCE.createAsignacionNormal()));
 	}
 
 	/**
