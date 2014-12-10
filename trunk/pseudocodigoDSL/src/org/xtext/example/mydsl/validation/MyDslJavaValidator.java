@@ -2876,12 +2876,10 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			
 	}
 	
-	/*
-	
-	private void comprobarParametrosTipoComplejoLlamada(List<valor> operadores, List<String> nombresRegistros, List<String> nombresVectores, List<String> nombresMatrices, Map<String,String> variables) {
-		for(valor v: operadores) {
-			if(v instanceof Operador) {
-				Operador op = (Operador) v;
+	private void comprobarParametrosTipoComplejoLlamada(List<operacion> operaciones, List<String> nombresRegistros, List<String> nombresVectores, List<String> nombresMatrices, Map<String,String> variables) {
+		for(operacion opAux: operaciones) {
+			if(opAux instanceof Operador) {
+				Operador op = (Operador) opAux;
 				if(op instanceof ValorVector) {
 					ValorVector vector = (ValorVector) op;
 					if(!nombresVectores.contains(variables.get(vector.getNombre_vector()))) {
@@ -2931,13 +2929,13 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				}
 				else if(a.getOperador() instanceof LlamadaFuncion) {
 					LlamadaFuncion l = (LlamadaFuncion) a.getOperador();
-					comprobarParametrosTipoComplejoLlamada(l.getOperador(), nombresRegistros, nombresVectores, nombresMatrices, variables);	
+					comprobarParametrosTipoComplejoLlamada(l.getOperadores(), nombresRegistros, nombresVectores, nombresMatrices, variables);	
 				}
 				
-				else if(a.getOperador() instanceof operacion) {
-					operacion o = (operacion) a.getOperador();
+				else if(funciones.esOperacion(a.getOperador())) {
 					//Si es una operación debemos comprobar la lista de operadores completa
-					List<valor> valores = funciones.registrarValoresOperacion(o);
+					ArrayList<valor> valores = new ArrayList<valor>();
+					valores = funciones.registrarValoresOperacion(a.getOperador(), valores);
 					List<ValorRegistro> valoresRegistro = funciones.variablesRegistroExistentes(valores, variables, nombresRegistros);
 					for(ValorRegistro vr: valoresRegistro) {
 						error("La variable "+vr.getNombre_registro()+" no pertenece al tipo registro", vr, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
@@ -2955,7 +2953,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					for(valor v: valores) {
 						if(v instanceof LlamadaFuncion) {
 							LlamadaFuncion l = (LlamadaFuncion) v;
-							comprobarParametrosTipoComplejoLlamada(l.getOperador(), nombresRegistros, nombresVectores, nombresMatrices, variables);
+							comprobarParametrosTipoComplejoLlamada(l.getOperadores(), nombresRegistros, nombresVectores, nombresMatrices, variables);
 						}
 					}
 					
@@ -2963,21 +2961,21 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			}
 			else if(s instanceof AsignacionCompleja) {
 				AsignacionCompleja a = (AsignacionCompleja) s;
-				if(a.getComplejo() instanceof ValorRegistro) {
-					ValorRegistro r = (ValorRegistro) a.getComplejo();
+				if(a.getValor_asignacion() instanceof ValorRegistro) {
+					ValorRegistro r = (ValorRegistro) a.getValor_asignacion();
 					if(!nombresRegistros.contains(variables.get(r.getNombre_registro()))) {
 						//Si no lo contiene es que el tipo de la variable no era un registro
 						error("La variable "+r.getNombre_registro()+" no pertenece al tipo registro", r, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
 					}
 				}
-				else if(a.getComplejo() instanceof ValorVector) {
-					ValorVector v = (ValorVector) a.getComplejo();
+				else if(a.getValor_asignacion() instanceof ValorVector) {
+					ValorVector v = (ValorVector) a.getValor_asignacion();
 					if(!nombresVectores.contains(variables.get(v.getNombre_vector()))) {
 						error("La variable "+v.getNombre_vector()+" no pertenece al tipo vector", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
 					}
 				}
-				else if(a.getComplejo() instanceof ValorMatriz) {
-					ValorMatriz m = (ValorMatriz) a.getComplejo();
+				else if(a.getValor_asignacion() instanceof ValorMatriz) {
+					ValorMatriz m = (ValorMatriz) a.getValor_asignacion();
 					if(!nombresMatrices.contains(variables.get(m.getNombre_matriz()))) {
 						error("La variable "+m.getNombre_matriz()+" no pertenece al tipo matriz", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
 					}
@@ -3003,12 +3001,12 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 				}
 				else if(a.getOperador() instanceof LlamadaFuncion) {
 					LlamadaFuncion l = (LlamadaFuncion) a.getOperador();
-					comprobarParametrosTipoComplejoLlamada(l.getOperador(), nombresRegistros, nombresVectores, nombresMatrices, variables);	
+					comprobarParametrosTipoComplejoLlamada(l.getOperadores(), nombresRegistros, nombresVectores, nombresMatrices, variables);	
 				}
-				else if(a.getOperador() instanceof operacion) {
-					operacion o = (operacion) a.getOperador();
+				else if(funciones.esOperacion(a.getOperador())) {
 					//Si es una operación debemos comprobar la lista de operadores completa
-					List<valor> valores = funciones.registrarValoresOperacion(o);
+					ArrayList<valor> valores = new ArrayList<valor>();
+					valores = funciones.registrarValoresOperacion(a.getOperador(), valores);
 					List<ValorRegistro> valoresRegistro = funciones.variablesRegistroExistentes(valores, variables, nombresRegistros);
 					for(ValorRegistro vr: valoresRegistro) {
 						error("La variable "+vr.getNombre_registro()+" no pertenece al tipo registro", vr, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
@@ -3027,7 +3025,7 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 					for(valor v: valores) {
 						if(v instanceof LlamadaFuncion) {
 							LlamadaFuncion l = (LlamadaFuncion) v;
-							comprobarParametrosTipoComplejoLlamada(l.getOperador(), nombresRegistros, nombresVectores, nombresMatrices, variables);
+							comprobarParametrosTipoComplejoLlamada(l.getOperadores(), nombresRegistros, nombresVectores, nombresMatrices, variables);
 						}
 					}
 				}
@@ -3144,6 +3142,6 @@ public class MyDslJavaValidator extends AbstractMyDslJavaValidator {
 			}
 		}
 		
-	}*/
+	}
 
 }
