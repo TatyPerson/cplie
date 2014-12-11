@@ -31,7 +31,7 @@ Comentario returns Comentario:
 	{Comentario} ML_COMMENT | SL_COMMENT mensaje= COMENT;
 
 Sentencias returns Sentencias:
-	 Escribir | Leer | /* negacion | */ Bloque | FuncionFicheroAbrir | FuncionFicheroCerrar | Asignacion | Primaria;
+	 Escribir | Leer | Bloque | FuncionFicheroAbrir | FuncionFicheroCerrar | Asignacion | Funciones;
 
 Bloque returns Bloque:
 	Si | mientras | repetir | desde | segun;
@@ -307,9 +307,12 @@ Primaria returns operacion:
 	| VariablesBasicas
 	| {Negativa} '-(' valor_operacion=operacion ')'
 	| {Negacion} 'no''(' valor_operacion=operacion ')'
-	| {LlamadaFuncion} nombre=EString '(' (operadores+=operacion ( ',' operadores+=operacion)* )? ')'
-	| {Internas} nombre=NombreInterna '(' (operadores+=operacion ( ',' operadores+=operacion)* )? ')'
+	| Funciones
 	| VariablesComplejas;
+	
+Funciones returns operacion:
+	{LlamadaFuncion} nombre=EString '(' (operadores+=operacion ( ',' operadores+=operacion)* )? ')'
+	| {Internas} nombre=NombreInterna '(' (operadores+=operacion ( ',' operadores+=operacion)* )? ')';
 	
 VariablesComplejas returns operacion:
 	{ValorVector} ((nombre_vector=EString)'['(indice=VariablesBasicas)']') ('.' (campo+=CampoRegistro) )?
