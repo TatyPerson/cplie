@@ -38,6 +38,7 @@ tipo
 		entero:  edad
 		cadena:  nombre
 		cadena:  sexo
+		real: estatura
 	fin_registro
 	
 	//Ejemplo de vector de tipo Persona
