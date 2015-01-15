@@ -1,5 +1,7 @@
 package org.xtext.example.mydsl.ui.wizard;
 
+import org.eclipse.jface.wizard.WizardSelectionPage;
+import org.eclipse.ui.dialogs.ResourceSelectionDialog;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.xtext.ui.wizard.IProjectInfo;
 import org.eclipse.xtext.ui.wizard.IProjectCreator;
@@ -9,6 +11,7 @@ import com.google.inject.Inject;
 public class MyDslNewProjectWizard extends org.eclipse.xtext.ui.wizard.XtextNewProjectWizard {
 
 	private WizardNewProjectCreationPage mainPage;
+	private MyWizardSelectionPage selectionPage;
 
 	@Inject
 	public MyDslNewProjectWizard(MyDslProjectCreator projectCreator) {
@@ -22,9 +25,15 @@ public class MyDslNewProjectWizard extends org.eclipse.xtext.ui.wizard.XtextNewP
 	 */
 	public void addPages() {
 		mainPage = new WizardNewProjectCreationPage("basicNewProjectPage");
-		mainPage.setTitle("GenCodeDSL C/C++ Project");
-		mainPage.setDescription("Create a new GenCodeDSL C/C++ project.");
+		mainPage.setTitle("Create Project");
+		mainPage.setDescription("Enter a name for the project.");
+		mainPage.setPageComplete(true);
 		addPage(mainPage);
+		selectionPage = new MyWizardSelectionPage("selectNewProjectPage");
+		selectionPage.setPreviousPage(mainPage);
+		selectionPage.setTitle("GenCodeDSL C/C++ Project: Selecting language");
+		selectionPage.setDescription("Select the language to generate");
+		addPage(selectionPage);
 	}
 
 	/**
