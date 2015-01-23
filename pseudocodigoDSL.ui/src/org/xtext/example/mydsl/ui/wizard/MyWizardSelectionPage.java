@@ -19,7 +19,7 @@ public class MyWizardSelectionPage extends WizardSelectionPage {
 	
 	SomeWizardNode selectedWizardNode;
 
-	protected MyWizardSelectionPage(String pageName) {
+	public MyWizardSelectionPage(String pageName) {
 		super(pageName);
 		// TODO Auto-generated constructor stub
 	}

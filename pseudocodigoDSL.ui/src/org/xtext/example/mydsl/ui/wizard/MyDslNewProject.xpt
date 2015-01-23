@@ -169,15 +169,4 @@ fin_algoritmo
 «ENDDEFINE»
  
 «DEFINE workflow FOR MyDslProjectInfo»
-«FILE "src/Generator.mwe2"-»
-module Generator
-
-var modelPath = "src/"
-var targetDirC = "c-gen" 
-var targetDirCpp = "cpp-gen"
- 
-Workflow {
-        component = @Generator auto-inject {}
-        }
-«ENDFILE»
 «ENDDEFINE»
