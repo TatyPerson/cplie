@@ -1,0 +1,170 @@
+«IMPORT vary::pseudocodigo::dsl::cpp::ui::wizard»
+
+«DEFINE main FOR VaryGrammarProjectInfo»
+«EXPAND model FOR this»
+«EXPAND workflow FOR this»
+«ENDDEFINE»
+
+«DEFINE template FOR VaryGrammarProjectInfo»
+«FILE "../.metadata/.plugins/org.eclipse.core.runtime/.settings/pseudocodigoDSL.ui.prefs"-»
+eclipse.preferences.version=1
+org.xtext.example.mydsl.MyDsl.templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.kw_si" deleted\="false" description\="Ejemplo de la estructura selectiva simple" enabled\="true" name\="Estructura si">si (a\!\=2) entonces&\#13;\n\t//Funcionalidad&\#13;\nfin_si</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.kw_si" deleted\="false" description\="Ejemplo de la estructura selectiva simple con sino" enabled\="true" name\="Estructura sino">si ((a\=\=1) o (a\=\=3)) entonces&\#13;\n\t//Funcionalidad&\#13;\nsino&\#13;\n\t//Funcionalidad&\#13;\nfin_si</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.kw_desde" deleted\="false" description\="Ejemplo de la estructura repetitiva desde " enabled\="true" name\="Estructura desde">desde i\=0 hasta 10 hacer&\#13;\n\t//Funcionalidad&\#13;\nfin_desde&\#13;\n</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.kw_mientras" deleted\="false" description\="Ejemplo de la estructura repetitiva mientras" enabled\="true" name\="Estructura mientras">mientras (a&lt;2) hacer&\#13;\n\t//Funcionalidad&\#13;\nfin_mientras</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.kw_repetir" deleted\="false" description\="Ejemplo de la estructura repetitiva repetir" enabled\="true" name\="Estructura repetir">repetir &\#13;\n    \t//Funcionalidad&\#13;\nhasta_que (a \=\= 6) &\#13;\n</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.kw_procedimiento" deleted\="false" description\="Ejemplo de la estructura de un procedimiento" enabled\="true" name\="Estructura procedimiento">procedimiento nombre_procedimiento(E entero\: a, E/S entero\: b, S entero\: c)&\#13;\nvar&\#13;\n//Declaraci\u00F3n de las variables necesarias&\#13;\ninicio&\#13;\n//Funcionalidad&\#13;\nfin_procedimiento</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.kw_segun_sea" deleted\="false" description\="Ejemplo estructura de la estructura selectiva m\u00FAltiple" enabled\="true" name\="Estructura segun_sea">segun_sea(op) hacer&\#13;\n\t0\: escribir("Caso 0")&\#13;\n\t\t//Resto de setencias&\#13;\n\t1\: escribir("Caso 1")&\#13;\n\t\t//Resto de sentencias&\#13;\n\t2\: escribir("Caso 2")&\#13;\n\t\t//Resto de sentencias&\#13;\n\t3\: escribir("Caso 3")&\#13;\n\t\t//Resto de sentencias&\#13;\n\ten_otro_caso\: &\#13;\n\tescribir("Caso por defecto")&\#13;\n\t//Resto de sentencias&\#13;\nfin_segun</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.kw_funcion" deleted\="false" description\="Ejemplo de la estructura de una funci\u00F3n" enabled\="true" name\="Estructura funci\u00F3n">funcion nombre_funcion(E entero\: a)&\#13;\nvar&\#13;\n//Declaraci\u00F3n de las variables necesarias&\#13;\ninicio&\#13;\n//Funcionalidad&\#13;\nfin_funcion</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.kw_registro\:" deleted\="false" description\="Sintaxis del tipo complejo registro" enabled\="true" name\="Registro">registro\: EjemploR&\#13;\n\tcadena\: campo1&\#13;\n\tentero\:campo2&\#13;\n\treal\: campo3&\#13;\n\tlogico\: campo4&\#13;\n\tcaracter\: campo5&\#13;\nfin_registro</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.kw_archivo de " deleted\="false" description\="Sintaxis del tipo complejo archivo" enabled\="true" name\="Archivo de enteros">archivo de entero\: EjemploAE</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.kw_archivo de " deleted\="false" description\="Sintaxis del tipo complejo archivo" enabled\="true" name\="Archivo de reales">archivo de real\: EjemploAR</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.kw_archivo de " deleted\="false" description\="Sintaxis del tipo complejo archivo" enabled\="true" name\="Archivo de logicos">archivo de logico\: EjemploAL</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.kw_archivo de " deleted\="false" description\="Sintaxis del tipo complejo archivo" enabled\="true" name\="Archivo de caracteres">archivo de caracter\: EjemploAC</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.kw_archivo de " deleted\="false" description\="Sintaxis del tipo complejo archivo" enabled\="true" name\="Archivo de cadenas">archivo de cadena\: EjemploACA&\#13;\n&\#13;\n&\#13;\n</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.Enumerado" deleted\="false" description\="Sintaxis del tipo complejo enumerado" enabled\="true" name\="Enumerado">enumeracionEjemplo \= {valor1, valor2, valor3}</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.Subrango" deleted\="false" description\="Sintaxis del tipo complejo subrango" enabled\="true" name\="Subrango">ejemploSubrango \= 0..9</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.kw_funcion" deleted\="false" description\="Ejemplo de la estructura de una funcion recursiva" enabled\="true" name\="Estructura funcion recursiva">funcion nombre_recursiva(E/S entero\: n)&\#13;\nvar&\#13;\nlogico\: condicion&\#13;\n//Declaraci\u00F3n del resto de variables&\#13;\ninicio&\#13;\n&\#13;\nsi (no condicion) entonces&\#13;\n\tdevolver(0)&\#13;\nsino &\#13;\n\tdevolver(nombre_recursiva((n-1)))&\#13;\nfin_si&\#13;\nfin_funcion</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.Vector" deleted\="false" description\="Vector de datos de tipo entero" enabled\="true" name\="Vector de enteros">vector [10]  de entero\: EjemploVE</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.Vector" deleted\="false" description\="Vector de datos de tipo caracter" enabled\="true" name\="Vector de caracteres">vector [10] de caracter\: EjemploVC</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.Vector" deleted\="false" description\="Vector de datos de tipo l\u00F3gico" enabled\="true" name\="Vector de tipo l\u00F3gico">vector [10] de logico\: EjemploVL</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.Vector" deleted\="false" description\="Vector de datos de tipo cadena" enabled\="true" name\="Vector de cadena">vector [10] de cadena\: EjemploVCAD</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.Vector" deleted\="false" description\="Vector de datos de tipo real" enabled\="true" name\="Vector de real">vector [10] de real\: EjemploVR</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.Matriz" deleted\="false" description\="Matriz de datos de tipo entero" enabled\="true" name\="Matriz de entero">matriz [10][10] de entero\: EjemploME</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.Matriz" deleted\="false" description\="Matriz de datos de tipo real" enabled\="true" name\="Matriz de real">matriz [10][10] de real\: EjemploMR</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.Matriz" deleted\="false" description\="Matriz de datos de tipo l\u00F3gico" enabled\="true" name\="Matriz de l\u00F3gico">matriz [10][10] de logico\: EjemploML</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.Matriz" deleted\="false" description\="Matriz de datos de tipo caracter" enabled\="true" name\="Matriz de caracter">matriz [10][10] de caracter\: EjemploMC</template><template autoinsert\="true" context\="org.xtext.example.mydsl.MyDsl.Matriz" deleted\="false" description\="Matriz de datos de tipo cadena" enabled\="true" name\="Matriz de cadena">matriz [10][10] de cadena\: EjemploCAD</template></templates>
+«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE model FOR VaryGrammarProjectInfo»
+«FILE "src/Model.vycpp"-»
+Algoritmo prueba
+
+/*
+ * Algoritmo: Programa de ejemplo
+ * Autor: Tatiana Person Montero
+ * Fecha: 02/05/2014
+ */
+const
+	//Bloque para la declaracion de constantes (opcional)
+	
+	//Longitud por defecto para las cadenas de caracteres
+	DIM = 50
+tipo
+	//Bloque para la declaracion de tipos (opcional)
+	
+	//Ejemplo de declaracion de un registro
+	
+	registro: Persona
+		cadena:  dni
+		entero:  edad
+		cadena:  nombre
+		cadena:  sexo
+		real: estatura
+	fin_registro
+	
+	//Ejemplo de vector de tipo Persona
+	
+	vector [DIM] de Persona:  Personas
+	
+	//Ejemplo de archivo de cadena
+	
+	archivo de  cadena:  Fichero
+	
+	//Ejemplo de matriz de reales
+	
+	matriz [DIM][20] de real:  MatrizReal
+	
+	//Ejemplo de subrango
+	
+	Intervalo = 0..9
+	
+	//Ejemplo de enumerado
+	
+	Semaforo = {rojo, amarillo, verde}
+	
+var
+	//Bloque para las variables globales
+	
+	entero: a
+	cadena: b
+	
+//Posteriormente podemos crear funciones y procedimientos con el comportamiento que necesitemos en este caso
+//la operacion suma en forma de funcion y de procedimiento
+
+entero funcion sumaFun(E entero :  a, E entero :  b)
+
+	var //Declaración de las variables necesarias
+		entero: resultado
+
+	inicio //Funcionalidad
+		resultado = a + b / 2
+		devolver resultado 
+fin_funcion
+
+procedimiento sumaProc(E entero: a, E entero: b)
+	
+	var //Declaración de las variables necesarias
+		entero: resultado
+	inicio //Funcionalidad
+		escribir(resultado)
+fin_procedimiento
+
+//Programa principal
+
+principal
+	
+var
+	//Bloque con la lista de inicializacion de las variables que utilizara en su programa principal (obligatorio)
+	Personas: personas
+	Fichero: f
+	Persona: p
+	MatrizReal: reales
+	Intervalo: intervalo
+	Semaforo: s
+	entero: mayoresDeEdad
+	entero: contador
+	entero: valor
+	entero: resultado
+	entero: a
+	entero: b
+inicio
+	//Bloque con el codigo de su programa principal (obligatorio)
+	
+	mayoresDeEdad = 0
+	
+	//Ejemplo de bucle desde
+	
+	desde i = 0 hasta DIM hacer
+
+		si personas[i].edad < 18 entonces
+
+			mayoresDeEdad = mayoresDeEdad + 1
+
+		fin_si
+
+	fin_desde
+	
+	//Ejemplo de bucle mientras
+	
+	mientras mayoresDeEdad > 0 hacer //Funcionalidad
+		escribir("El numero de mayores de edad es", mayoresDeEdad)
+		mayoresDeEdad = mayoresDeEdad - 1
+	fin_mientras
+	
+	//Ejemplo de bucle repetir
+	
+	contador = 0
+	
+	repetir //Funcionalidad
+		escribir("Nombre", personas[contador].nombre)
+		escribir("DNI", personas[contador].dni)
+		escribir("Sexo", personas[contador].sexo)
+		escribir("Edad", personas[contador].edad)
+		contador = contador + 1
+	hasta_que contador < DIM
+	
+	//Ejemplo de estructura segun
+	
+	segun_sea(valor) hacer
+		caso 0: escribir("Valor = 0")
+		caso 1: escribir("Valor = 1")
+		caso 2: escribir("Valor = 2")
+		caso 3: escribir("Valor = 3")
+		en_otro_caso: escribir("Valor posible no registrado")
+	fin_segun
+	
+	//Ejemplo funciones
+	
+	escribir("Introduce el valor del sumando a")
+	leer(a)
+	escribir("Introduce el valor del sumando b")
+	leer(b)
+	
+	resultado = sumaFun(a,b)
+	sumaProc(a,b)
+	
+fin_inicio
+
+fin_algoritmo
+«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE workflow FOR VaryGrammarProjectInfo»
+«ENDDEFINE»
