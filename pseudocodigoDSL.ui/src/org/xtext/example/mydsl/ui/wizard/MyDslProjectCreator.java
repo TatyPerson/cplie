@@ -24,10 +24,9 @@ public class MyDslProjectCreator extends org.eclipse.xtext.ui.wizard.AbstractPlu
 	protected static final String DSL_GENERATOR_PROJECT_NAME = "pseudocodigoDSL";
 
 	protected static final String SRC_ROOT = "src";
-	protected static final String SRC_GEN_ROOT_C = "c-gen";
-	protected static final String SRC_GEN_ROOT_CPP = "cpp-gen";
+	protected static final String SRC_GEN_ROOT_C = "src-gen";
 	protected static final String SRC_LIBRARY = "Includes";
-	protected final List<String> SRC_FOLDER_LIST = ImmutableList.of(SRC_ROOT, SRC_GEN_ROOT_C, SRC_GEN_ROOT_CPP, SRC_LIBRARY);
+	protected final List<String> SRC_FOLDER_LIST = ImmutableList.of(SRC_ROOT, SRC_GEN_ROOT_C, SRC_LIBRARY);
 
 	@Override
 	protected MyDslProjectInfo getProjectInfo() {
