@@ -225,22 +225,6 @@
             extensions="gen">
     </provider>
   </extension>
-<extension
-           point="org.eclipse.ui.newWizards">
-         <category
-                     name="GenCode DSL"
-                     id="org.eclipselabs.pseudocodigo">
-         </category>
-      <wizard
-            category="org.eclipselabs.pseudocodigo"
-            class="org.xtext.example.mydsl.ui.MyDslExecutableExtensionFactory:org.xtext.example.mydsl.ui.wizard.MyDslNewProjectWizard"
-            descriptionImage="icons/editor2.png"
-            icon="icons/editor.png"
-            id="org.xtext.example.mydsl.ui.wizard.MyDslNewProjectWizard"
-            name="GenCode C/C++"
-            project="true">
-      </wizard>
-   </extension>
     <!-- quickfix marker resolution generator for org.xtext.example.mydsl.MyDsl -->
     <extension
             point="org.eclipse.ui.ide.markerResolution">
