@@ -46,13 +46,13 @@ public class MyDslProjectCreator extends org.eclipse.xtext.ui.wizard.AbstractPlu
 	protected List<String> getRequiredBundles() {
 		List<String> result = Lists.newArrayList(super.getRequiredBundles());
 		result.add(DSL_GENERATOR_PROJECT_NAME);
+		result.add("org.eclipse.cdt");
 		return result;
 	}
     
     protected String[] getProjectNatures() {
         return new String[] {
-        	//CProjectNature.C_NATURE_ID,
-        	CCProjectNature.CC_NATURE_ID,
+        	CProjectNature.C_NATURE_ID,
     		"org.eclipse.cdt.managedbuilder.core.managedBuildNature",
     		"org.eclipse.cdt.managedbuilder.core.ScannerConfigNature",
 			"org.eclipse.pde.PluginNature", //$NON-NLS-1$
