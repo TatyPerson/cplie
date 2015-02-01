@@ -13,5 +13,8 @@
 	<classpathentry kind="lib" path="/Users/Taty/Desktop/librerias para vary/plugins/pseudocodigoDSL.source_1.0.0.jar"/>
 	<classpathentry kind="lib" path="/Users/Taty/Desktop/librerias para vary/plugins/pseudocodigoDSL.tests.source_1.0.0.jar"/>
 	<classpathentry kind="lib" path="/Users/Taty/Desktop/librerias para vary/plugins/pseudocodigoDSL.ui.source_1.0.0.jar"/>
+	<classpathentry kind="lib" path="/Users/Taty/Downloads/org-3/org.eclipse.cdt.make.core_7.1.1.201109151620.jar"/>
+	<classpathentry kind="lib" path="/Users/Taty/Downloads/org-4/org.eclipse.cdt.managedbuilder.core_8.0.1.201109151620.jar"/>
+	<classpathentry kind="lib" path="/Users/Taty/Downloads/org-5/org.eclipse.cdt.ui_5.3.1.201109151620.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

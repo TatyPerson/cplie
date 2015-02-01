@@ -1,13 +1,19 @@
 package vary.pseudocodigo.dsl.cpp.ui.wizard;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.xtext.ui.wizard.IProjectInfo;
 import org.eclipse.xtext.ui.wizard.IProjectCreator;
+import org.xtext.example.mydsl.ui.wizard.MyWizardSelectionPage;
+
+import vary.pseudocodigo.dsl.cpp.generator.util.Options;
+
 import com.google.inject.Inject;
 
 public class VaryGrammarNewProjectWizard extends org.eclipse.xtext.ui.wizard.XtextNewProjectWizard {
 
 	private WizardNewProjectCreationPage mainPage;
+	private VaryGrammarWizardSelectionPage selectionPage;
 
 	@Inject
 	public VaryGrammarNewProjectWizard(IProjectCreator projectCreator) {
@@ -24,6 +30,18 @@ public class VaryGrammarNewProjectWizard extends org.eclipse.xtext.ui.wizard.Xte
 		mainPage.setTitle("VaryGrammar Project");
 		mainPage.setDescription("Create a new VaryGrammar project.");
 		addPage(mainPage);
+		selectionPage = new VaryGrammarWizardSelectionPage("selectNewProjectPage");
+		selectionPage.setPreviousPage(mainPage);
+		selectionPage.setTitle("Vary C/C++ Project: Generate .h file");
+		selectionPage.setDescription("Do you want to generate the .h file?");
+		addPage(selectionPage);
+	}
+	
+	@Override
+	protected void doFinish(final IProjectInfo projectInfo, final IProgressMonitor monitor) {
+		super.doFinish(projectInfo, monitor);
+		Options.ficheroCabeceras = selectionPage.getSelectedNode().getName();
+
 	}
 
 	/**
