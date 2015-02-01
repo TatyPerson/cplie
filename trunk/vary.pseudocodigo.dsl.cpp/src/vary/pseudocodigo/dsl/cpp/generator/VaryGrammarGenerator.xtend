@@ -129,6 +129,7 @@ import diagramapseudocodigo.Negativa
 import diagramapseudocodigo.impl.NegativaImpl
 import diagramapseudocodigo.Devolver
 import diagramapseudocodigo.Sino
+import vary.pseudocodigo.dsl.cpp.generator.util.Options
 
 /**
  * Generates code from your model files on save.
@@ -148,9 +149,13 @@ class VaryGrammarGenerator implements IGenerator {
 
 	//EMap<String, TipoVariable> tablaSimbolos;
 	override void doGenerate(Resource resource, IFileSystemAccess myCFile) {
-
 		for (myPseudo : resource.allContents.toIterable.filter(typeof(Codigo))) {
-			myCFile.generateFile("output.cpp", myPseudo.toCpp)
+			if(Options.ficheroCabeceras == "No") {
+				myCFile.generateFile("output.cpp", myPseudo.toCpp)
+			}
+			else {
+				System.out.println("Na de na")
+			}
 		}
 	}
 	

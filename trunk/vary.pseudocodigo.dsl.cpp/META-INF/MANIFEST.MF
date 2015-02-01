@@ -15,7 +15,8 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  PseudocodigoEMF,
  org.eclipse.xtext.util,
  org.antlr.runtime,
- org.eclipse.xtext.common.types
+ org.eclipse.xtext.common.types,
+ org.eclipse.osgi
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib,
  org.xtext.example.mydsl
@@ -23,6 +24,7 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: vary.pseudocodigo.dsl.cpp,
  vary.pseudocodigo.dsl.cpp.formatting,
  vary.pseudocodigo.dsl.cpp.generator,
+ vary.pseudocodigo.dsl.cpp.generator.util,
  vary.pseudocodigo.dsl.cpp.parser.antlr,
  vary.pseudocodigo.dsl.cpp.parser.antlr.internal,
  vary.pseudocodigo.dsl.cpp.scoping,
