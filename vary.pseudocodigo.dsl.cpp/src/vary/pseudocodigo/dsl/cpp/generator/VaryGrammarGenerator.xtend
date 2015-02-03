@@ -197,8 +197,49 @@ class VaryGrammarGenerator implements IGenerator {
 			}
 			else {
 				System.out.println("Na de na")
+				myCFile.generateFile("output.cpp", myPseudo.toCpp)
+				myCFile.generateFile("cabeceras.h", myPseudo.generarCabeceras)
 			}
 		}
+	}
+	
+	def generarCabeceras(Codigo myCodigo) '''
+		
+		#ifndef CABECERAS_H
+		#define CABECERAS_H
+		
+		«FOR funcion:myCodigo.funcion»
+			«funcion.cabecerasFuncion»
+		«ENDFOR»
+		
+		#endif /* CABECERAS_H */
+	'''
+	
+	def cabecerasFuncion(Subproceso s) {
+		if (s.eClass.name.equals("Funcion")) {
+			var Funcion funcion = new FuncionImpl
+			funcion = s as Funcion
+			var cabecera = funcion.tipo.tipoVariableCpp + " " + funcion.nombre + "(";
+			return variablesCabecerasSubproceso(funcion.parametrofuncion, cabecera);
+			
+		} else if (s.eClass.name.equals("Procedimiento")) {
+			var Procedimiento procedimiento = new ProcedimientoImpl
+			procedimiento = s as Procedimiento
+			var cabecera = "void" + " " + procedimiento.nombre + "(";
+			return variablesCabecerasSubproceso(procedimiento.parametrofuncion, cabecera);
+		}
+	}
+	
+	def variablesCabecerasSubproceso(EList<ParametroFuncion> parametros, String cabecera) {
+		var cabeceraAux = cabecera;
+		for(ParametroFuncion p: parametros) {
+			cabeceraAux = cabeceraAux + p.tipo.toCpp + ","
+		}
+		cabeceraAux = cabeceraAux + ")"
+		cabeceraAux = cabeceraAux.replaceAll("\\,\\)",")");
+		cabeceraAux = cabeceraAux + ";"
+		return cabeceraAux;
+		
 	}
 	
 	
@@ -312,6 +353,7 @@ class VaryGrammarGenerator implements IGenerator {
 		#include <iostream>
 		#include <string>
 		#include <cmath>
+		#include "cabeceras.h"
 		
 		using namespace std;
 		«FOR myComentario:myCodigo.comentarios»
@@ -1376,22 +1418,6 @@ class VaryGrammarGenerator implements IGenerator {
 				«myCaso.devuelve.toCpp»
 			«ENDIF»
 		break;
-	'''
-
-	def toC(segun mySegun) '''
-		switch(«mySegun.valor.toCpp»){
-			«FOR cas:mySegun.caso»
-				«cas.toCpp» 
-			«ENDFOR»
-			default:
-				«FOR sent:mySegun.sentencias»
-					«sent.toCpp»
-				«ENDFOR»
-				«IF mySegun.devuelve != null» 
-				«mySegun.devuelve.toCpp»
-				«ENDIF»
-			break;
-		}
 	'''
 	
 	def toCpp(segun mySegun) '''
