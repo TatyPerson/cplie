@@ -15,8 +15,6 @@ import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkingSet;
-
-import vary.pseudocodigo.dsl.cpp.generator.util.Options;
 import vary.pseudocodigo.dsl.cpp.generator.util.TipoProyecto;
 public class CProjectFactory extends ProjectFactory {
 	

@@ -1,14 +1,9 @@
 package vary.pseudocodigo.dsl.cpp.ui.wizard;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.xtext.ui.wizard.IProjectInfo;
 import org.eclipse.xtext.ui.wizard.IProjectCreator;
-import org.xtext.example.mydsl.ui.wizard.MyWizardSelectionPage;
-
-import vary.pseudocodigo.dsl.cpp.generator.util.Options;
 import vary.pseudocodigo.dsl.cpp.generator.util.TipoProyecto;
 
 import com.google.inject.Inject;
@@ -42,7 +37,6 @@ public class VaryGrammarNewProjectWizard extends org.eclipse.xtext.ui.wizard.Xte
 	
 	@Override
 	protected void doFinish(final IProjectInfo projectInfo, final IProgressMonitor monitor) {
-		//Options.initializeMessages(selectionPage.getSelectedNode().getName(), Options.class);
 		TipoProyecto.setTipoProyecto(selectionPage.getSelectedNode().getName());
 		super.doFinish(projectInfo, monitor);
 
