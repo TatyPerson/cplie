@@ -130,6 +130,16 @@ import diagramapseudocodigo.impl.NegativaImpl
 import diagramapseudocodigo.Devolver
 import diagramapseudocodigo.Sino
 import vary.pseudocodigo.dsl.cpp.generator.util.Options
+import org.eclipse.xtext.generator.JavaIoFileSystemAccess
+import java.nio.file.Paths
+import java.nio.charset.Charset
+import java.util.List
+import java.nio.file.Files
+import java.io.File
+import java.net.URL
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.io.IOException
 
 /**
  * Generates code from your model files on save.
@@ -150,7 +160,39 @@ class VaryGrammarGenerator implements IGenerator {
 	//EMap<String, TipoVariable> tablaSimbolos;
 	override void doGenerate(Resource resource, IFileSystemAccess myCFile) {
 		for (myPseudo : resource.allContents.toIterable.filter(typeof(Codigo))) {
-			if(Options.ficheroCabeceras == "No") {
+			
+			//Preparamos la URI del fichero .varyproject donde se registra el tipo de proyecto
+			var uri = resource.getURI().toString();
+			uri = uri.replaceAll("src/Model","");
+			uri = uri.replaceAll("/\\.vycpp","");
+			var path = Paths.get(uri, ".varyproject");
+			
+			//Leemos el fichero para elegir la opción al generar
+			
+			var contenidoFichero = new String();
+			
+			try {
+        		var url = new URL(path.toString());
+    			var inputStream = url.openConnection().getInputStream();
+    			var in = new BufferedReader(new InputStreamReader(inputStream));
+    			var inputLine = new String();
+ 
+    			while ((inputLine = in.readLine()) != null) {
+        			contenidoFichero = contenidoFichero + inputLine;
+    			}
+ 
+    			in.close();
+ 
+			} catch (IOException e) {
+    			e.printStackTrace();
+			}
+			
+			//Recogemos el tipo de proyecto de la cadena
+			
+			var tipoProyecto = contenidoFichero.replaceAll("ficheroCabeceras=","");
+			
+			if(tipoProyecto == "No") {
+				
 				myCFile.generateFile("output.cpp", myPseudo.toCpp)
 			}
 			else {

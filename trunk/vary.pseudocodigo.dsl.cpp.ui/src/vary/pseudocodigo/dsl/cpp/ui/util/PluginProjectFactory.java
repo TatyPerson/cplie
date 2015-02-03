@@ -15,6 +15,8 @@ import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkingSet;
 
+import vary.pseudocodigo.dsl.cpp.generator.util.Options;
+
 import com.google.common.collect.Lists;
 
 public class PluginProjectFactory extends CProjectFactory {
