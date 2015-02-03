@@ -15,6 +15,9 @@ import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkingSet;
+
+import vary.pseudocodigo.dsl.cpp.generator.util.Options;
+import vary.pseudocodigo.dsl.cpp.generator.util.TipoProyecto;
 public class CProjectFactory extends ProjectFactory {
 	
 	private static final Logger logger = Logger.getLogger(CProjectFactory.class);
@@ -31,6 +34,7 @@ public class CProjectFactory extends ProjectFactory {
 			MakeProjectNature.addNature(project, new SubProgressMonitor(monitor, 1));
 			ScannerConfigNature.addScannerConfigNature(project);
 		}
+		createFile(".varyproject", project, "ficheroCabeceras="+TipoProyecto.getTipoProyecto(), monitor);
 	}
 	
 	protected void addMoreClasspathEntriesTo(List<IClasspathEntry> classpathEntries) {

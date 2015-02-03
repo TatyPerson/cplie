@@ -12,4 +12,7 @@ public class Options extends NLS {
 
 	private Options() {}
 
+	public static String getFicheroCabeceras() {
+		return ficheroCabeceras.substring(41).replace(" ", "");
+	}
 }

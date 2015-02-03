@@ -3,6 +3,11 @@
  */
 package vary.pseudocodigo.dsl.cpp.generator;
 
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -10,6 +15,7 @@ import javax.swing.JOptionPane;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.xtext.builder.EclipseResourceFileSystemAccess2;
 import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 import org.eclipse.xtext.util.CancelIndicator;
@@ -23,7 +29,7 @@ import com.google.inject.Provider;
 
 public class Main {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		if (args.length==0) {
 			System.err.println("Aborting: no path to EMF resource provided!");
 			return;
@@ -45,10 +51,11 @@ public class Main {
 	@Inject 
 	private JavaIoFileSystemAccess fileAccess;
 
-	protected void runGenerator(String string) {
+	protected void runGenerator(String string) throws IOException {
 		// load the resource
 		ResourceSet set = resourceSetProvider.get();
 		Resource resource = set.getResource(URI.createURI(string), true);
+		
 		
 		// validate the resource
 		List<Issue> list = validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
@@ -60,7 +67,7 @@ public class Main {
 		}
 		
 		// configure and start the generator
-		fileAccess.setOutputPath("c-gen/");
+		fileAccess.setOutputPath("src-gen/");
 		
 		generator.doGenerate(resource, fileAccess);
 		

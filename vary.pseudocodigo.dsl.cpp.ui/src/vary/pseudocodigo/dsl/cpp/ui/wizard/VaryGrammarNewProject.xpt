@@ -1,4 +1,6 @@
 «IMPORT vary::pseudocodigo::dsl::cpp::ui::wizard»
+«IMPORT vary::pseudocodigo::dsl::cpp::ui::extension»
+«EXTENSION extension::JavaExtensions»
 
 «DEFINE main FOR VaryGrammarProjectInfo»
 «EXPAND model FOR this»
