@@ -70,17 +70,8 @@ public class CProjectFactory extends ProjectFactory {
 		    //Añadimos las librerias al directorio .libraries del proyecto
 		    	
 		    try {
-				addLibraryHidden(project,monitor,"cmath.h");
-				addLibraryHidden(project,monitor,"cstdio.h");
-				addLibraryHidden(project,monitor,"cstdlib.h");
-				addLibraryHidden(project,monitor,"cstring.h");
-				addLibraryHidden(project,monitor,"iostream.h");
-				addLibraryHidden(project,monitor,"istream.h");
-				addLibraryHidden(project,monitor,"string.h");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (URISyntaxException e) {
+				readFileProperties(project, monitor, "librerias.properties");
+			} catch (IOException | URISyntaxException e) {
 				e.printStackTrace();
 			}
 		    
@@ -121,6 +112,17 @@ public class CProjectFactory extends ProjectFactory {
 		br.close();
 		createFile(".libraries/"+ nombreLibreria, project, contentFinal, monitor);
  	}
+	
+	protected void readFileProperties(IProject project, SubMonitor monitor, String nameResource) throws IOException, URISyntaxException {
+		InputStream is = this.getClass().getResourceAsStream("/"+nameResource);
+		BufferedReader br = new BufferedReader(new InputStreamReader(is));
+		String content = null;
+		
+		while ((content = br.readLine()) != null) {
+			addLibraryHidden(project,monitor, content);
+		}
+		br.close();
+	}
 	
 	protected void addMoreClasspathEntriesTo(List<IClasspathEntry> classpathEntries) {}
 
