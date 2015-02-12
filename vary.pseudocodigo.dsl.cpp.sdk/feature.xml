@@ -12,6 +12,6 @@
 			id="vary.pseudocodigo.dsl.cpp.ui"
 			download-size="0"
 			install-size="0"
-			version="0.0.0"
-			unpack="false"/>
+			version="1.0.0"
+			unpack="true"/>
 </feature>
