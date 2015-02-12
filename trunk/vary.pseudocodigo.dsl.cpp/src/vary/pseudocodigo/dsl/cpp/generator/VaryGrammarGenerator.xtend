@@ -349,9 +349,9 @@ class VaryGrammarGenerator implements IGenerator {
 	}
 	
 	'''
-		#include <iostream>
-		#include <string>
-		#include <cmath>
+		#include "iostream.h"
+		#include "string.h"
+		#include "cmath.h"
 		#include "cabeceras.h"
 		
 		using namespace std;

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: vary.pseudocodigo.dsl.cpp.ui
 Bundle-Vendor: My Company
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.0.0
 Bundle-SymbolicName: vary.pseudocodigo.dsl.cpp.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: vary.pseudocodigo.dsl.cpp;visibility:=reexport,
