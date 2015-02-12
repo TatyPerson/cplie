@@ -1,22 +1,13 @@
 package vary.pseudocodigo.dsl.cpp.ui.util;
+
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.charset.Charset;
-import java.nio.file.CopyOption;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.eclipse.cdt.core.CCorePlugin;
 import org.eclipse.cdt.core.model.CModelException;
@@ -37,22 +28,16 @@ import org.eclipse.cdt.managedbuilder.internal.core.ManagedProject;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.SubMonitor;
-import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkingSet;
-import org.osgi.framework.Bundle;
-
-import com.google.common.base.Charsets;
 
 import vary.pseudocodigo.dsl.cpp.generator.util.TipoProyecto;
-import vary.pseudocodigo.dsl.cpp.ui.internal.VaryGrammarActivator;
-import vary.pseudocodigo.dsl.cpp.ui.util.libreriasCDT.ClassToUri;
+
+
+@SuppressWarnings("restriction")
 public class CProjectFactory extends ProjectFactory {
 	
 	private static final Logger logger = Logger.getLogger(CProjectFactory.class);
@@ -73,7 +58,7 @@ public class CProjectFactory extends ProjectFactory {
 			project = CCorePlugin.getDefault().createCDTProject(descripcion, project, null);
 		    ICProjectDescriptionManager manager = CoreModel.getDefault().getProjectDescriptionManager();
 		    ICProjectDescription cdesc = manager.createProjectDescription(project, false);
-		    ManagedProject mproject = new ManagedProject(cdesc);
+			ManagedProject mproject = new ManagedProject(cdesc);
 		    Configuration config = new Configuration(mproject, null, "Default", "Default");
 		    IBuilder bld = config.getEditableBuilder();
 		    bld.setManagedBuildOn(false);
