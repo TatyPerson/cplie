@@ -139,6 +139,8 @@ import java.net.URL
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.io.IOException
+import java.nio.file.Path
+import java.util.logging.Logger
 
 /**
  * Generates code from your model files on save.
@@ -146,7 +148,6 @@ import java.io.IOException
  * see http://www.eclipse.org/Xtext/documentation.html#TutorialCodeGeneration
  */
 class VaryGrammarGenerator implements IGenerator {
-	
 	@Inject extension IQualifiedNameProvider
 	static Map<String, String> variablesInicio = new HashMap<String,String>();
 	static Map<String, Map<String,String>>variablesSubprocesos = new HashMap<String,Map<String,String>>();
@@ -161,10 +162,33 @@ class VaryGrammarGenerator implements IGenerator {
 		for (myPseudo : resource.allContents.toIterable.filter(typeof(Codigo))) {
 			
 			//Preparamos la URI del fichero .varyproject donde se registra el tipo de proyecto
+			
 			var uri = resource.getURI().toString();
-			uri = uri.replaceAll("src/Model","");
-			uri = uri.replaceAll("/\\.vycpp","");
-			var path = Paths.get(uri, ".varyproject");
+			var i = 0;
+			var nuevaUri = new String();
+			while(i<uri.length()-15) {
+				nuevaUri = nuevaUri + uri.charAt(i);
+				i = i + 1;
+			}
+			nuevaUri = nuevaUri.replaceAll(":","");
+			System.out.println("La nueva uri es:"+nuevaUri.toString())
+			System.out.println("La uri cogida es:"+ProjectLocationFolder.getPath())
+			//Problema para escapar la \ de Windows
+			//System.out.println("La nueva uri es:"+nuevaUri.toString())
+			//System.out.println("La uri antes es:"+uri.toString())
+			//uri = uri.replaceAll("src"+File.separator+"Model","");
+			//uri = uri.replaceAll(File.separator+"\\.vycpp","");
+			//System.out.println("La uri despues es:"+uri.toString())
+			var localizacion = new String();
+			if(ProjectLocationFolder.getOS().equals("WIN32")) {
+				localizacion = "file:///"+ProjectLocationFolder.getPath();
+			}
+			else {
+				localizacion = "file:"+ProjectLocationFolder.getPath();
+			}
+			
+				
+			var path = Paths.get(localizacion, ".varyproject");
 			
 			//Leemos el fichero para elegir la opción al generar
 			
@@ -349,9 +373,9 @@ class VaryGrammarGenerator implements IGenerator {
 	}
 	
 	'''
-		#include "iostream.h"
-		#include "string.h"
-		#include "cmath.h"
+		#include <iostream>
+		#include <string>
+		#include <cmath>
 		#include "cabeceras.h"
 		
 		using namespace std;

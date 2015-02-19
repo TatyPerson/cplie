@@ -32,6 +32,8 @@ public class VaryGrammarProjectCreator extends PluginProjectCreator {
 	protected static final String SRC_ROOT = "src";
 	protected static final String SRC_GEN_ROOT = "src-gen";
 	protected static final String SRC_LIBRARIES_HIDDEN = ".libraries";
+	protected static final String DEBUG = "Debug";
+	protected static final String SRC_DEBUG = "Debug/src-gen";
 	protected final List<String> SRC_FOLDER_LIST = ImmutableList.of(SRC_ROOT, SRC_GEN_ROOT, SRC_LIBRARIES_HIDDEN);
 	protected int ID_PROJECT;
 	protected static int projects = 0;
