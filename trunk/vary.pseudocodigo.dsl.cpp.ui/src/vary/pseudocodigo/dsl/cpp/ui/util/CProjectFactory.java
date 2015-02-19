@@ -102,6 +102,19 @@ public class CProjectFactory extends ProjectFactory {
 				toolChain =
 				         ManagedBuildManager.getExtensionToolChain("cdt.managedbuild.toolchain.gnu.cygwin.exe.release");
 				ProjectLocationFolder.setOS("WIN32");
+				String pathAux = new String();
+				for(int i=0; i<ProjectLocationFolder.getPath().length(); i++) {
+					if(ProjectLocationFolder.getPath().charAt(i) == '/') {
+						pathAux = pathAux + "\\\\";
+					}
+					else {
+						pathAux = pathAux + ProjectLocationFolder.getPath().charAt(i);
+					}
+				}
+				pathAux = pathAux + "\\\\";
+				ProjectLocationFolder.setPath(pathAux);
+				logger.error("Es un Windows!");
+				logger.error(ProjectLocationFolder.getPath());
 			}
 			else if(Platform.getOS().equals(Platform.OS_LINUX)) {
 				projType =
@@ -114,7 +127,6 @@ public class CProjectFactory extends ProjectFactory {
 				System.out.println("Otro SO");
 			}
 			
-			logger.error(ProjectLocationFolder.getPath() + "\\");
 
 			ManagedProject mProj = new ManagedProject(project, projType);
 			info.setManagedProject(mProj);
