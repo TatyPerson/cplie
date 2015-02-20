@@ -58,7 +58,7 @@ import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkingSet;
 
-import vary.pseudocodigo.dsl.cpp.generator.ProjectLocationFolder;
+import vary.pseudocodigo.dsl.cpp.generator.util.ProjectLocationFolder;
 import vary.pseudocodigo.dsl.cpp.generator.util.TipoProyecto;
 
 
