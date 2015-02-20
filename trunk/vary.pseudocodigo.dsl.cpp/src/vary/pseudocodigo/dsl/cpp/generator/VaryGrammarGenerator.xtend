@@ -142,6 +142,8 @@ import java.io.IOException
 import java.nio.file.Path
 import java.util.logging.Logger
 import java.io.FileReader
+import vary.pseudocodigo.dsl.cpp.generator.util.ProjectLocationFolder
+import vary.pseudocodigo.dsl.cpp.generator.util.ReadFileProperties
 
 /**
  * Generates code from your model files on save.
@@ -158,6 +160,7 @@ class VaryGrammarGenerator implements IGenerator {
 	static ArrayList<String> enumerados = new ArrayList<String>();
 	static Codigo codigo;
 	static boolean cabeceras;
+	static ReadFileProperties readerFileProperties = new ReadFileProperties();
 
 	//EMap<String, TipoVariable> tablaSimbolos;
 	override void doGenerate(Resource resource, IFileSystemAccess myCFile) {
@@ -165,15 +168,15 @@ class VaryGrammarGenerator implements IGenerator {
 			
 			//Preparamos la URI del fichero .varyproject donde se registra el tipo de proyecto
 			
-			var uri = resource.getURI().toString();
-			var i = 0;
-			var nuevaUri = new String();
-			while(i<uri.length()-15) {
-				nuevaUri = nuevaUri + uri.charAt(i);
-				i = i + 1;
-			}
-			nuevaUri = nuevaUri.replaceAll(":","");
-			System.out.println("La nueva uri es:"+nuevaUri.toString())
+			//var uri = resource.getURI().toString();
+			//var i = 0;
+			//var nuevaUri = new String();
+			//while(i<uri.length()-15) {
+				//nuevaUri = nuevaUri + uri.charAt(i);
+				//i = i + 1;
+			//}
+			//nuevaUri = nuevaUri.replaceAll(":","");
+			//System.out.println("La nueva uri es:"+nuevaUri.toString())
 			System.out.println("La uri cogida es:"+ProjectLocationFolder.getPath())
 			//Problema para escapar la \ de Windows
 			//System.out.println("La nueva uri es:"+nuevaUri.toString())
@@ -181,49 +184,20 @@ class VaryGrammarGenerator implements IGenerator {
 			//uri = uri.replaceAll("src"+File.separator+"Model","");
 			//uri = uri.replaceAll(File.separator+"\\.vycpp","");
 			//System.out.println("La uri despues es:"+uri.toString())
-			var localizacion = new String();
 			var contenidoFichero = new String();
-			var inputLine = new String();
 			
-			if(ProjectLocationFolder.getOS().equals("WIN32")) {
-				
-				try  {
-					var br = new BufferedReader(new FileReader(ProjectLocationFolder.getPath() + ".varyproject"));
-					ProjectLocationFolder.getLogger().error("BufferedReader con:");
-					ProjectLocationFolder.getLogger().error(ProjectLocationFolder.getPath() + ".varyproject");
- 
-					while ((inputLine = br.readLine()) != null) {
-						contenidoFichero = contenidoFichero + inputLine;
-					}
- 
-				} catch (IOException e) {
-					e.printStackTrace();
+			try {
+					
+				if(ProjectLocationFolder.getOS().equals("WIN32")) {
+					contenidoFichero = readerFileProperties.readFilePropertiesWindows(ProjectLocationFolder.getPath() + ".varyproject");
 				}
-				
-			}
-			else {
-				localizacion = "file:"+ProjectLocationFolder.getPath();
-				var path = Paths.get(localizacion, ".varyproject");
-				ProjectLocationFolder.getLogger().error("Estoy aqui!");
-				ProjectLocationFolder.getLogger().error(path);
-			
-				//Leemos el fichero para elegir la opción al generar
-			
-				try {
-        			var url = new URL(path.toString());
-    				var inputStream = url.openConnection().getInputStream();
-    				var in = new BufferedReader(new InputStreamReader(inputStream));
- 
-    				while ((inputLine = in.readLine()) != null) {
-        				contenidoFichero = contenidoFichero + inputLine;
-    				}
- 
-    				in.close();
- 
-				} catch (IOException e) {
-    				e.printStackTrace();
-    				ProjectLocationFolder.getLogger().error("¿Pasa algo?");
+					
+				else {
+					contenidoFichero = readerFileProperties.readFilePropertiesUnix("file:"+ProjectLocationFolder.getPath());
 				}
+					
+			} catch(IOException e) {
+				e.printStackTrace();
 			}
 			
 				

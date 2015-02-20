@@ -1,4 +1,4 @@
-package vary.pseudocodigo.dsl.cpp.generator;
+package vary.pseudocodigo.dsl.cpp.generator.util;
 
 import org.apache.log4j.Logger;
 
