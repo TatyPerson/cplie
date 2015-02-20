@@ -85,6 +85,7 @@ procedimiento sumaProc(E entero: a, E entero: b)
 	var //Declaración de las variables necesarias
 		entero: resultado
 	inicio //Funcionalidad
+		resultado = a + b
 		escribir(resultado)
 fin_procedimiento
 

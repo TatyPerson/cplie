@@ -129,19 +129,7 @@ import diagramapseudocodigo.Negativa
 import diagramapseudocodigo.impl.NegativaImpl
 import diagramapseudocodigo.Devolver
 import diagramapseudocodigo.Sino
-import org.eclipse.xtext.generator.JavaIoFileSystemAccess
-import java.nio.file.Paths
-import java.nio.charset.Charset
-import java.util.List
-import java.nio.file.Files
-import java.io.File
-import java.net.URL
-import java.io.BufferedReader
-import java.io.InputStreamReader
 import java.io.IOException
-import java.nio.file.Path
-import java.util.logging.Logger
-import java.io.FileReader
 import vary.pseudocodigo.dsl.cpp.generator.util.ProjectLocationFolder
 import vary.pseudocodigo.dsl.cpp.generator.util.ReadFileProperties
 
@@ -165,25 +153,8 @@ class VaryGrammarGenerator implements IGenerator {
 	//EMap<String, TipoVariable> tablaSimbolos;
 	override void doGenerate(Resource resource, IFileSystemAccess myCFile) {
 		for (myPseudo : resource.allContents.toIterable.filter(typeof(Codigo))) {
-			
-			//Preparamos la URI del fichero .varyproject donde se registra el tipo de proyecto
-			
-			//var uri = resource.getURI().toString();
-			//var i = 0;
-			//var nuevaUri = new String();
-			//while(i<uri.length()-15) {
-				//nuevaUri = nuevaUri + uri.charAt(i);
-				//i = i + 1;
-			//}
-			//nuevaUri = nuevaUri.replaceAll(":","");
-			//System.out.println("La nueva uri es:"+nuevaUri.toString())
+		
 			System.out.println("La uri cogida es:"+ProjectLocationFolder.getPath())
-			//Problema para escapar la \ de Windows
-			//System.out.println("La nueva uri es:"+nuevaUri.toString())
-			//System.out.println("La uri antes es:"+uri.toString())
-			//uri = uri.replaceAll("src"+File.separator+"Model","");
-			//uri = uri.replaceAll(File.separator+"\\.vycpp","");
-			//System.out.println("La uri despues es:"+uri.toString())
 			var contenidoFichero = new String();
 			
 			try {
@@ -508,10 +479,10 @@ class VaryGrammarGenerator implements IGenerator {
 		var concat = new String
 		var i = limite_inf
 		while (i < limite_sup) {
-			concat = concat + i + ", "
+			concat = concat + "numero" + i + ", "
 			i = i + 1
 		}
-		concat = concat + i;
+		concat = concat + "numero" + i;
 		return concat;
 	}
 	
@@ -1429,7 +1400,7 @@ class VaryGrammarGenerator implements IGenerator {
 	'''
 	
 	def toCpp(Caso myCaso) '''
-		case «0»:
+		case «myCaso.operador.toCpp»:
 			«FOR sent:myCaso.sentencias»
 				«sent.toCpp»
 			«ENDFOR»
@@ -1480,7 +1451,7 @@ class VaryGrammarGenerator implements IGenerator {
 	
 	
 	def toCpp(desde d) '''
-		for(«d.asignacion.toCpp» «d.asignacion.valor_asignacion.toString» <= «d.valor.toCpp»; «d.asignacion.valor_asignacion.toString»++){
+		for(int «d.asignacion.toCpp» «d.asignacion.valor_asignacion.toString» <= «d.valor.toCpp»; «d.asignacion.valor_asignacion.toString»++){
 			«FOR sent:d.sentencias»
 				«sent.toCpp»
 			«ENDFOR»
