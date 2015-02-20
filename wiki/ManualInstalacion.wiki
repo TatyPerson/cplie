@@ -9,7 +9,7 @@ En Mac OS bastará con instalar Xcode.
 
 https://itunes.apple.com/es/app/xcode/id497799835?mt=12
 
-Es una aplicación de desarrollo gratuita que se puede descargar de la App Store e incorpora un compilador de C/C++.
+Es una aplicación de desarrollo gratuita que se puede descargar de la App Store, la cual incorpora un compilador de C/C++.
 
 == Linux ==
 
