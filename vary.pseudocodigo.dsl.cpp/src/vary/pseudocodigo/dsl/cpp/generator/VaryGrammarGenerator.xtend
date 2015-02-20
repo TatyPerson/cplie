@@ -157,6 +157,7 @@ class VaryGrammarGenerator implements IGenerator {
 	static Map<String, ArrayList<String>> variablesEnumerados = new HashMap<String, ArrayList<String>>();
 	static ArrayList<String> enumerados = new ArrayList<String>();
 	static Codigo codigo;
+	static boolean cabeceras;
 
 	//EMap<String, TipoVariable> tablaSimbolos;
 	override void doGenerate(Resource resource, IFileSystemAccess myCFile) {
@@ -234,11 +235,11 @@ class VaryGrammarGenerator implements IGenerator {
 			var tipoProyecto = contenidoFichero.replaceAll("ficheroCabeceras=","");
 			
 			if(tipoProyecto == "No") {
-				
+				cabeceras = false;
 				myCFile.generateFile("output.cpp", myPseudo.toCpp)
 			}
 			else {
-				System.out.println("Na de na")
+				cabeceras = true;
 				myCFile.generateFile("output.cpp", myPseudo.toCpp)
 				myCFile.generateFile("cabeceras.h", myPseudo.generarCabeceras)
 			}
@@ -395,7 +396,9 @@ class VaryGrammarGenerator implements IGenerator {
 		#include <iostream>
 		#include <string>
 		#include <cmath>
+		«IF cabeceras»
 		#include "cabeceras.h"
+		«ENDIF»
 		
 		using namespace std;
 		«FOR myComentario:myCodigo.comentarios»
