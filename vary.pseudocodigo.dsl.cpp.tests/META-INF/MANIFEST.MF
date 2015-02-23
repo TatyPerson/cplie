@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: vary.pseudocodigo.dsl.cpp.tests
+Bundle-Vendor: UCA
+Bundle-Version: 1.0.0
+Bundle-SymbolicName: vary.pseudocodigo.dsl.cpp.tests; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: vary.pseudocodigo.dsl.cpp,
+ org.eclipse.core.runtime,
+ org.eclipse.xtext.junit4,
+ org.eclipse.ui.workbench;resolution:=optional,
+ vary.pseudocodigo.dsl.cpp.ui
+Import-Package: org.apache.log4j,
+ org.junit;version="4.5.0",
+ org.junit.runner;version="4.5.0",
+ org.junit.runner.manipulation;version="4.5.0",
+ org.junit.runner.notification;version="4.5.0",
+ org.junit.runners;version="4.5.0",
+ org.junit.runners.model;version="4.5.0",
+ org.hamcrest.core
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: vary.pseudocodigo.dsl.cpp
