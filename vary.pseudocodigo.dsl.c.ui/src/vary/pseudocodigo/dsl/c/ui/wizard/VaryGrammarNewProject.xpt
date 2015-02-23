@@ -107,6 +107,7 @@ var
 	entero: resultado
 	entero: a
 	entero: b
+	entero: i
 inicio
 	//Bloque con el codigo de su programa principal (obligatorio)
 	

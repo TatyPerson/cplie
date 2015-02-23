@@ -30,7 +30,7 @@ public class VaryGrammarNewProjectWizard extends org.eclipse.xtext.ui.wizard.Xte
 		addPage(mainPage);
 		selectionPage = new VaryGrammarWizardSelectionPage("selectNewProjectPage");
 		selectionPage.setPreviousPage(mainPage);
-		selectionPage.setTitle("Vary C/C++ Project: Generate .h file");
+		selectionPage.setTitle("Vary C++ Project: Generate .h file");
 		selectionPage.setDescription("Do you want to generate the .h file?");
 		addPage(selectionPage);
 	}

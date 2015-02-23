@@ -1695,7 +1695,7 @@ class VaryGrammarGenerator implements IGenerator {
 	'''
 	
 	def toC(desde d) '''
-		for(int «d.asignacion.toC» «d.asignacion.valor_asignacion.toString» <= «d.valor.toC»; «d.asignacion.valor_asignacion.toString»++){
+		for(«d.asignacion.toC» «d.asignacion.valor_asignacion.toString» <= «d.valor.toC»; «d.asignacion.valor_asignacion.toString»++){
 			«FOR sent:d.sentencias»
 				«sent.toC»
 			«ENDFOR»
