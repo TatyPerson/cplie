@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: vary.pseudocodigo.dsl.cpp
-Bundle-Vendor: My Company
-Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: UCA
+Bundle-Version: 1.0.0
 Bundle-SymbolicName: vary.pseudocodigo.dsl.cpp; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext;visibility:=reexport,
@@ -19,8 +19,7 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.eclipse.osgi
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.builder,
- org.eclipse.xtext.xbase.lib,
- org.xtext.example.mydsl
+ org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: vary.pseudocodigo.dsl.cpp,
  vary.pseudocodigo.dsl.cpp.formatting,
@@ -29,6 +28,6 @@ Export-Package: vary.pseudocodigo.dsl.cpp,
  vary.pseudocodigo.dsl.cpp.parser.antlr,
  vary.pseudocodigo.dsl.cpp.parser.antlr.internal,
  vary.pseudocodigo.dsl.cpp.scoping,
- vary.pseudocodigo.dsl.cpp.serializer,
  vary.pseudocodigo.dsl.cpp.services,
- vary.pseudocodigo.dsl.cpp.validation
+ vary.pseudocodigo.dsl.cpp.validation,
+ vary.pseudocodigo.dsl.cpp.parseTreeConstruction

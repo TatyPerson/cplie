@@ -15,9 +15,8 @@ Workflow {
 		scanClassPath  = true
 		platformUri = "${runtimeProject}/.."
 		registerGeneratedEPackage = "diagramapseudocodigo.DiagramapseudocodigoPackage"
-		registerGenModelFile = "platform:/resource/PseudocodigoEMF/model/diagramaPseudocodigo.genmodel"
+		//registerGenModelFile = "platform:/resource/PseudocodigoEMF/model/diagramaPseudocodigo.genmodel"
 	}
-
 	component = DirectoryCleaner {
 		directory = "${runtimeProject}/src-gen"
 	}
@@ -43,14 +42,9 @@ Workflow {
 
 			// the Ecore2Xtext specific terminal converter
 			fragment = ecore2xtext.Ecore2XtextValueConverterServiceFragment auto-inject {}
-
-			// serializer 2.0
-			fragment = serializer.SerializerFragment auto-inject {
-				//generateStub = false
-			}
-
-			// the old serialization component
-			// fragment = parseTreeConstructor.ParseTreeConstructorFragment auto-inject {}
+			
+			// the serialization component
+			fragment = parseTreeConstructor.ParseTreeConstructorFragment {}
 
 			// a custom ResourceFactory for use with EMF 
 			fragment = resourceFactory.ResourceFactoryFragment auto-inject {}

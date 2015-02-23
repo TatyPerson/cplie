@@ -4,18 +4,11 @@
 package vary.pseudocodigo.dsl.cpp.generator;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
-
-import javax.swing.JOptionPane;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.xtext.builder.EclipseResourceFileSystemAccess2;
 import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 import org.eclipse.xtext.util.CancelIndicator;
@@ -34,7 +27,7 @@ public class Main {
 			System.err.println("Aborting: no path to EMF resource provided!");
 			return;
 		}
-		Injector injector = new org.xtext.example.mydsl.MyDslStandaloneSetupGenerated().createInjectorAndDoEMFRegistration();
+		Injector injector = new vary.pseudocodigo.dsl.cpp.VaryGrammarStandaloneSetupGenerated().createInjectorAndDoEMFRegistration();
 		Main main = injector.getInstance(Main.class);
 		main.runGenerator(args[0]);
 	}

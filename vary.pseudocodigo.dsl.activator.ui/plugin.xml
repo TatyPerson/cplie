@@ -319,16 +319,16 @@
          </category>
          <wizard
             category="org.eclipselabs.vary"
-            class="vary.pseudocodigo.dsl.activator.ui.MyDslExecutableExtensionFactory:org.xtext.example.mydsl.ui.wizard.MyDslNewProjectWizard"
+            class="vary.pseudocodigo.dsl.activator.ui.VaryGrammarExecutableExtensionFactoryC:vary.pseudocodigo.dsl.c.ui.wizard.VaryGrammarNewProjectWizard"
             descriptionImage="icons/editor2.png"
             icon="icons/editor.png"
-            id="org.xtext.example.mydsl.ui.wizard.MyDslNewProjectWizard"
+            id="vary.pseudocodigo.dsl.c.ui.wizard.VaryGrammarNewProjectWizard"
             name="Vary C"
             project="true">
       </wizard>
       <wizard
             category="org.eclipselabs.vary"
-            class="vary.pseudocodigo.dsl.activator.ui.VaryGrammarExecutableExtensionFactory:vary.pseudocodigo.dsl.cpp.ui.wizard.VaryGrammarNewProjectWizard"
+            class="vary.pseudocodigo.dsl.activator.ui.VaryGrammarExecutableExtensionFactoryCpp:vary.pseudocodigo.dsl.cpp.ui.wizard.VaryGrammarNewProjectWizard"
             descriptionImage="icons/editor2.png"
             icon="icons/editor.png"
             id="vary.pseudocodigo.dsl.cpp.ui.wizard.VaryGrammarNewProjectWizard"

@@ -1,12 +1,15 @@
 package vary.pseudocodigo.dsl.cpp.ui.wizard;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import org.eclipse.cdt.core.CCProjectNature;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xtext.ui.XtextProjectHelper;
@@ -109,6 +112,24 @@ public class VaryGrammarProjectCreator extends PluginProjectCreator {
     		//"org.eclipse.cdt.managedbuilder.core.ScannerConfigBuilder",
 			XtextProjectHelper.BUILDER_ID
 		};
+	}
+    
+    @Override
+	protected void execute(final IProgressMonitor monitor)
+			throws CoreException, InvocationTargetException, InterruptedException {
+		SubMonitor subMonitor = SubMonitor.convert(monitor, 
+				getCreateModelProjectMessage(), 
+				2);
+		try {
+			final IProject project = createProject(subMonitor.newChild(1));
+			if (project == null)
+				return;
+			enhanceProject(project, subMonitor.newChild(1));
+			IFile modelFile = getModelFile(project);
+			setResult(modelFile);
+		} finally {
+			subMonitor.done();
+		}
 	}
 
 	protected void enhanceProject(final IProject project, final IProgressMonitor monitor) throws CoreException {

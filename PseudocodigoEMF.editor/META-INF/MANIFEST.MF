@@ -1,11 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
+Bundle-Name: PseudocodigoEMF.editor
 Bundle-SymbolicName: PseudocodigoEMF.editor;singleton:=true
-Bundle-Version: 1.0.0.qualifier
-Bundle-ClassPath: .
+Bundle-Version: 1.0.0
 Bundle-Activator: diagramapseudocodigo.presentation.DiagramaPseudocodigoEditorPlugin$Implementation
-Bundle-Vendor: %providerName
+Bundle-Vendor: UCA
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: diagramapseudocodigo.presentation

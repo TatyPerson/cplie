@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature id="vary.pseudocodigo.dsl.cpp.sdk"
 	label="VaryGrammar SDK Feature "
-	version="1.0.0.qualifier">
+	version="1.0.0">
 	<plugin
 			id="vary.pseudocodigo.dsl.cpp"
 			download-size="0"
