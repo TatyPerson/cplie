@@ -1,9 +1,0 @@
-grammar vary.pseudocodigo.dsl.activator.Activator with org.eclipse.xtext.common.Terminals
-
-generate activator "http://www.pseudocodigo.vary/dsl/activator/Activator"
-
-Model:
-	greetings+=Greeting*;
-	
-Greeting:
-	'Hello' name=ID '!';
