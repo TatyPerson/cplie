@@ -1451,7 +1451,7 @@ class VaryGrammarGenerator implements IGenerator {
 	
 	
 	def toCpp(desde d) '''
-		for(int «d.asignacion.toCpp» «d.asignacion.valor_asignacion.toString» <= «d.valor.toCpp»; «d.asignacion.valor_asignacion.toString»++){
+		for(«d.asignacion.toCpp» «d.asignacion.valor_asignacion.toString» <= «d.valor.toCpp»; «d.asignacion.valor_asignacion.toString»++){
 			«FOR sent:d.sentencias»
 				«sent.toCpp»
 			«ENDFOR»

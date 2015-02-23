@@ -63,6 +63,7 @@ import diagramapseudocodigo.ValorVector;
 import diagramapseudocodigo.Variable;
 import diagramapseudocodigo.VariableID;
 import diagramapseudocodigo.Vector;
+import diagramapseudocodigo.desde;
 import diagramapseudocodigo.mientras;
 import diagramapseudocodigo.operacion;
 import diagramapseudocodigo.repetir;
@@ -90,6 +91,62 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 			SubrangoNumerico sn = (SubrangoNumerico) s;
 			if(sn.getLimite_inf() > sn.getLimite_sup()) {
 				error("El limite inferior del subrango no puede ser mayor que el superior.",DiagramapseudocodigoPackage.Literals.SUBRANGO__NOMBRE);
+			}
+		}
+	}
+	
+	@Check
+	//Función que se encarga de validar si la variable utilizada en un bucle desde ha sido previamente declarada
+	protected void checkDesde(Codigo c) {
+		boolean ok = false;
+		for(Sentencias s: c.getTiene().getTiene()) {
+			if(s instanceof desde) {
+				desde desdeAux = (desde) s;
+				for(Declaracion d: c.getTiene().getDeclaracion()) {
+					if(d instanceof DeclaracionVariable) {
+						DeclaracionVariable dec = (DeclaracionVariable) d;
+						for(Variable v: dec.getVariable()) {
+							System.out.println("El valor del for es:"+desdeAux.getAsignacion().getValor_asignacion());
+							if(v.getNombre().equals(desdeAux.getAsignacion().getValor_asignacion()) && dec.getTipo().getName().equals("entero")) {
+								ok = true;
+							}
+							else if(v.getNombre().equals(desdeAux.getAsignacion().getValor_asignacion()) && !dec.getTipo().getName().equals("entero")) {
+								ok = true;
+								error("La variable utilizada en el bucle desde debe ser de tipo entero", desdeAux, DiagramapseudocodigoPackage.Literals.DESDE__ASIGNACION);
+							}
+						}
+					}
+				}
+				if(!ok) {
+					error("La variable utilizada en el bucle debe haber sido previamente declarada", desdeAux, DiagramapseudocodigoPackage.Literals.DESDE__ASIGNACION);
+				}
+				ok = false;
+			}
+		}
+		for(Subproceso sub: c.getFuncion()) {
+			for(Sentencias s: sub.getSentencias()) {
+				if(s instanceof desde) {
+					desde desdeAux = (desde) s;
+					for(Declaracion d: c.getTiene().getDeclaracion()) {
+						if(d instanceof DeclaracionVariable) {
+							DeclaracionVariable dec = (DeclaracionVariable) d;
+							for(Variable v: dec.getVariable()) {
+								System.out.println("El valor del for es:"+desdeAux.getAsignacion().getValor_asignacion());
+								if(v.getNombre().equals(desdeAux.getAsignacion().getValor_asignacion()) && dec.getTipo().getName().equals("entero")) {
+									ok = true;
+								}
+								else if(v.getNombre().equals(desdeAux.getAsignacion().getValor_asignacion()) && !dec.getTipo().getName().equals("entero")) {
+									ok = true;
+									error("La variable utilizada en el bucle desde debe ser de tipo entero", desdeAux, DiagramapseudocodigoPackage.Literals.DESDE__ASIGNACION);
+								}
+							}
+						}
+					}
+					if(!ok) {
+						error("La variable utilizada en el bucle debe haber sido previamente declarada", desdeAux, DiagramapseudocodigoPackage.Literals.DESDE__ASIGNACION);
+					}
+					ok = false;
+				}
 			}
 		}
 	}
