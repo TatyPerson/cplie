@@ -15,7 +15,7 @@ vary.pseudocodigo.dsl.c.VaryGrammar.templates=<?xml version\="1.0" encoding\="UT
 «ENDDEFINE»
 
 «DEFINE model FOR VaryGrammarProjectInfo»
-«FILE "src/Model.vyc"-»
+«FILE "src/input.vyc"-»
 Algoritmo prueba
 
 /*
