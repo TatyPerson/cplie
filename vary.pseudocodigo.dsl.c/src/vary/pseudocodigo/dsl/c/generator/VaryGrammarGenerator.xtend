@@ -1226,7 +1226,7 @@ class VaryGrammarGenerator implements IGenerator {
 				}
 		 	}
 		}
-		if(codigo.tiene.tiene.contains(a) || (perteneceInicio && a.operador.size() > 1)) {
+		if(codigo.tiene.tiene.contains(a) || (perteneceInicio && a.operador.size() > 0)) {
 			var iterador = 0;
 			var cadena = new String();
 			if(a.operador.get(0).eClass.name.equals("ConstCadena")) {
@@ -1235,9 +1235,11 @@ class VaryGrammarGenerator implements IGenerator {
 				cadena = primero.contenido;
 				cadena = cadena.substring(0, cadena.length()-1);
 			}
-			cadena = cadena + "\"";
+			if(a.operador.size() == 1) {
+				cadena = cadena + "\"";
+			}
 			for(o: a.operador) {
-				if(!o.eClass.name.equals("ConstCadena") && a.operador.indexOf(o) == 0) {
+				if(a.operador.indexOf(o) == 0 && !o.eClass.name.equals("ConstCadena") || a.operador.indexOf(o) != 0) {
 					var tipo = "";
 					if(o.eClass.name.equals("VariableID")) {
 						var varID = o as VariableID;
@@ -1311,7 +1313,7 @@ class VaryGrammarGenerator implements IGenerator {
 		else {
 			for(Subproceso s: codigo.funcion) {
 				var perteneceSubproceso = false;
-				if(!s.sentencias.contains(a) && a.operador.size() > 1) {
+				if(!s.sentencias.contains(a) && a.operador.size() > 0) {
 					for(Sentencias sent: s.sentencias) {
 						if(sent.eClass.name.equals("mientras") && perteneceSubproceso == false) {
 						var mientras = sent as mientras;
@@ -1353,7 +1355,7 @@ class VaryGrammarGenerator implements IGenerator {
 				cadena = cadena + "\"";
 				for(o: a.operador) {
 					//Si es el primer elemento y es distinto a una cadena si, sino se lo salta
-					if(!o.eClass.name.equals("ConstCadena") && a.operador.indexOf(o) == 0) {
+					if(a.operador.indexOf(o) == 0 && !o.eClass.name.equals("ConstCadena") || a.operador.indexOf(o) != 0) {
 						var tipo = "";
 						if(o.eClass.name.equals("VariableID")) {
 							var varID = o as VariableID;
