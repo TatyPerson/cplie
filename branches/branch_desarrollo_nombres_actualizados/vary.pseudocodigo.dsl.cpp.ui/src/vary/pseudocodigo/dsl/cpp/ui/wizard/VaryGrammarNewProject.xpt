@@ -15,7 +15,7 @@ vary.pseudocodigo.dsl.cpp.VaryGrammar.templates=<?xml version\="1.0" encoding\="
 «ENDDEFINE»
 
 «DEFINE model FOR VaryGrammarProjectInfo»
-«FILE "src/Model.vycpp"-»
+«FILE "src/input.vycpp"-»
 Algoritmo prueba
 
 /*
