@@ -36,6 +36,10 @@
     <eLiterals name="cadena" value="2"/>
     <eLiterals name="logico" value="3"/>
     <eLiterals name="real" value="4"/>
+    <eLiterals name="integer" value="5"/>
+    <eLiterals name="character" value="6"/>
+    <eLiterals name="boolean" value="7"/>
+    <eLiterals name="string" value="8"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LlamadaFuncion" eSuperTypes="#//valor #//operacion">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
