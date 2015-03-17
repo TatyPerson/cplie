@@ -132,6 +132,7 @@ import diagramapseudocodigo.Sino
 import java.io.IOException
 import vary.pseudocodigo.dsl.cpp.generator.util.ProjectLocationFolder
 import vary.pseudocodigo.dsl.cpp.generator.util.ReadFileProperties
+import java.util.List
 
 /**
  * Generates code from your model files on save.
@@ -149,6 +150,7 @@ class VaryGrammarGenerator implements IGenerator {
 	static Codigo codigo;
 	static boolean cabeceras;
 	static ReadFileProperties readerFileProperties = new ReadFileProperties();
+	static Map<String,ArrayList<Integer>> subprocesosConPunteros = new HashMap<String,ArrayList<Integer>>();
 
 	//EMap<String, TipoVariable> tablaSimbolos;
 	override void doGenerate(Resource resource, IFileSystemAccess myCFile) {
@@ -196,6 +198,12 @@ class VaryGrammarGenerator implements IGenerator {
 		#ifndef CABECERAS_H
 		#define CABECERAS_H
 		
+		«FOR myConstante:myCodigo.constantes»
+			«myConstante.toCpp»
+		«ENDFOR»
+		«FOR myComplejo:myCodigo.tipocomplejo»
+			«myComplejo.toCpp»
+		«ENDFOR»
 		«FOR funcion:myCodigo.funcion»
 			«funcion.cabecerasFuncion»
 		«ENDFOR»
@@ -219,14 +227,24 @@ class VaryGrammarGenerator implements IGenerator {
 	}
 	
 	def variablesCabecerasSubproceso(EList<ParametroFuncion> parametros, String cabecera) {
-		var cabeceraAux = cabecera;
-		for(ParametroFuncion p: parametros) {
-			cabeceraAux = cabeceraAux + p.tipo.toCpp + ","
+		var total = cabecera;
+		var actual = 1;
+		for (p : parametros) {
+			if (actual != 1)
+				total = total + ", "
+			if (p.paso == TipoPaso::ENTRADA) {
+				total = total + "const " + p.tipo.toCpp;
+			} else if (p.paso == TipoPaso::ENTRADA_SALIDA) {
+				total = total + p.tipo.toCpp + "*";
+			} else {
+				total = total + p.tipo.toCpp + "*";
+			}
+			actual = actual + 1;
 		}
-		cabeceraAux = cabeceraAux + ")"
-		cabeceraAux = cabeceraAux.replaceAll("\\,\\)",")");
-		cabeceraAux = cabeceraAux + ";"
-		return cabeceraAux;
+		total = total + ");"
+		//cabeceraAux = cabeceraAux.replaceAll("\\,\\)",")");
+		//cabeceraAux = cabeceraAux + ";"
+		return total;
 		
 	}
 	
@@ -234,6 +252,33 @@ class VaryGrammarGenerator implements IGenerator {
 	def toCpp(Codigo myCodigo) {
 	
 	codigo = myCodigo;
+	
+	for(Subproceso s: codigo.funcion) {
+		if (s.eClass.name.equals("Funcion")) {
+			var Funcion funcion = new FuncionImpl
+			funcion = s as Funcion
+			subprocesosConPunteros.put(funcion.nombre, new ArrayList<Integer>());
+			var numParametro = 1;
+			for(ParametroFuncion parametro: funcion.parametrofuncion) {
+				if(parametro.paso == TipoPaso::SALIDA) {
+					subprocesosConPunteros.get(funcion.nombre).add(numParametro)
+				}
+				numParametro = numParametro + 1;
+			}
+			
+		} else if (s.eClass.name.equals("Procedimiento")) {
+			var Procedimiento procedimiento = new ProcedimientoImpl
+			procedimiento = s as Procedimiento
+			subprocesosConPunteros.put(procedimiento.nombre, new ArrayList<Integer>());
+			var numParametro = 1;
+			for(ParametroFuncion parametro: procedimiento.parametrofuncion) {
+				if(parametro.paso == TipoPaso::SALIDA) {
+					subprocesosConPunteros.get(procedimiento.nombre).add(numParametro)
+				}
+				numParametro = numParametro + 1;
+			}
+		}
+	}
 	
 	for(TipoComplejo t: codigo.tipocomplejo) {
 		if(t instanceof Enumerado) {
@@ -349,12 +394,14 @@ class VaryGrammarGenerator implements IGenerator {
 		«FOR myComentario:myCodigo.comentarios»
 			«myComentario.toCpp»
 		«ENDFOR»
-		«FOR myConstante:myCodigo.constantes»
-			«myConstante.toCpp»
-		«ENDFOR»
-		«FOR myComplejo:myCodigo.tipocomplejo»
-			«myComplejo.toCpp»
-		«ENDFOR»
+		«IF !cabeceras»
+			«FOR myConstante:myCodigo.constantes»
+				«myConstante.toCpp»
+			«ENDFOR»
+			«FOR myComplejo:myCodigo.tipocomplejo»
+				«myComplejo.toCpp»
+			«ENDFOR»
+		«ENDIF»
 		«FOR myVariable:myCodigo.global»
 			«myVariable.toCpp»
 		«ENDFOR»
@@ -558,30 +605,118 @@ class VaryGrammarGenerator implements IGenerator {
 		return total;
 	}
 
-	def toCpp(Funcion myFun) '''
-		«myFun.tipo.tipoVariableCpp» «myFun.nombre»(«myFun.parametrofuncion.toCpp»){
-			«FOR myVariable:myFun.declaracion»
-				«myVariable.toCpp»
-			«ENDFOR»
-			«FOR mySentencia:myFun.sentencias»
-				«mySentencia.toCpp»
-			«ENDFOR»
-			«IF myFun.devuelve != null» 
-			«myFun.devuelve.toCpp»
-			«ENDIF»
+	def toCpp(Funcion myFun) {
+		var funcionDeclarada = myFun.tipo.tipoVariableCpp + " " + myFun.nombre + "(" + myFun.parametrofuncion.toCpp + "){" + "\n";
+		var punteros = new ArrayList<String>();
+		for(parametroFuncion: myFun.parametrofuncion) {
+			if(parametroFuncion.paso == TipoPaso::SALIDA) {
+				punteros.add(parametroFuncion.variable.nombre)
+			}
 		}
-	'''
-
-	def toCpp(Procedimiento myFun) '''
-		void «myFun.nombre»(«myFun.parametrofuncion.toCpp»){
-			«FOR myVariable:myFun.declaracion»
-				«myVariable.toCpp»
-			«ENDFOR»
-			«FOR mySentencia:myFun.sentencias»
-				«mySentencia.toCpp»
-			«ENDFOR»
+		for(myVariable:myFun.declaracion) {
+			funcionDeclarada = funcionDeclarada + "\t" + myVariable.toCpp + "\n";
 		}
-	'''
+		if(punteros.size() == 0) {
+			for(mySentencia:myFun.sentencias) {
+				funcionDeclarada = funcionDeclarada + "\t" + mySentencia.toCpp + "\n";
+			}
+		}
+		else {
+			for(mySentencia:myFun.sentencias) {
+				funcionDeclarada = funcionDeclarada + "\t" + mySentencia.toCppPunteros(punteros) + "\n";
+			}
+		}
+		if(myFun.devuelve != null) {
+			funcionDeclarada = funcionDeclarada + "\t" + myFun.devuelve.toCpp + "\n";
+		}
+		funcionDeclarada = funcionDeclarada + "\n" + "}";
+		return funcionDeclarada;
+	}
+	
+	def toCpp(Procedimiento myProc) {
+		var procedimientoDeclarado = "void " + myProc.nombre + "(" + myProc.parametrofuncion.toCpp + "){" + "\n";
+		var punteros = new ArrayList<String>();
+		for(parametroFuncion: myProc.parametrofuncion) {
+			if(parametroFuncion.paso == TipoPaso::SALIDA) {
+				punteros.add(parametroFuncion.variable.nombre)
+			}
+		}
+		for(myVariable:myProc.declaracion) {
+			procedimientoDeclarado = procedimientoDeclarado + "\t" + myVariable.toCpp + "\n";
+		}
+		if(punteros.size() == 0) {
+			for(mySentencia:myProc.sentencias) {
+				procedimientoDeclarado = procedimientoDeclarado + "\t" + mySentencia.toCpp + "\n";
+			}
+		}
+		else {
+			for(mySentencia:myProc.sentencias) {
+				procedimientoDeclarado = procedimientoDeclarado + "\t" + mySentencia.toCppPunteros(punteros) + "\n";
+			}
+		}
+		procedimientoDeclarado = procedimientoDeclarado + "\n" + "}";
+		return procedimientoDeclarado;
+	}
+	
+	def toCppPunteros(Sentencias mySent, List<String> punteros) {
+		if (mySent.eClass.name.equals("AsignacionNormal")) {
+			var AsignacionNormal prueba = new AsignacionNormalImpl
+			prueba = mySent as AsignacionNormal
+			prueba.toCppAsignacionPunteros(punteros)
+		} else if (mySent.eClass.name.equals("AsignacionCompleja")) {
+			var AsignacionCompleja prueba = new AsignacionComplejaImpl
+			prueba = mySent as AsignacionCompleja
+			prueba.toCpp
+		} else if (mySent.eClass.name.equals("LlamadaFuncion")) {
+			var LlamadaFuncion prueba = new LlamadaFuncionImpl
+			prueba = mySent as LlamadaFuncion
+			prueba.toCpp(true)
+		} else if (mySent.eClass.name.equals("Si")) {
+			var Si prueba = new SiImpl
+			prueba = mySent as Si
+			prueba.toCppSiPunteros(punteros)
+		} else if (mySent.eClass.name.equals("segun")) {
+			var segun prueba = new segunImpl
+			prueba = mySent as segun
+			prueba.toCppSegunPunteros(punteros)
+		} else if (mySent.eClass.name.equals("Caso")) {
+			var Caso prueba = new CasoImpl
+			prueba = mySent as Caso
+			prueba.toCppCasoPunteros(punteros)
+		} else if (mySent.eClass.name.equals("mientras")) {
+			var mientras prueba = new mientrasImpl
+			prueba = mySent as mientras
+			prueba.toCppMientrasPunteros(punteros)
+		} else if (mySent.eClass.name.equals("repetir")) {
+			var repetir prueba = new repetirImpl
+			prueba = mySent as repetir
+			prueba.toCppRepetirPunteros(punteros)
+		} else if (mySent.eClass.name.equals("desde")) {
+			var desde prueba = new desdeImpl
+			prueba = mySent as desde
+			prueba.toCppDesdePunteros(punteros)
+		} else if (mySent.eClass.name.equals("negacion")) {
+			var Negacion prueba = new NegacionImpl
+			prueba = mySent as Negacion
+			prueba.toCpp
+		} else if (mySent.eClass.name.equals("Leer")) {
+			var Leer prueba = new LeerImpl
+			prueba = mySent as Leer
+			prueba.toCppLeerPunteros(punteros)
+		} else if (mySent.eClass.name.equals("Escribir")) {
+			var Escribir prueba = new EscribirImpl
+			prueba = mySent as Escribir
+			prueba.toCpp
+		} else if (mySent.eClass.name.equals("FuncionFicheroAbrir")) {
+			var FuncionFicheroAbrir prueba = new FuncionFicheroAbrirImpl
+			prueba = mySent as FuncionFicheroAbrir
+			prueba.toCpp
+		} else if (mySent.eClass.name.equals("FuncionFicheroCerrar")) {
+			var FuncionFicheroCerrar prueba = new FuncionFicheroCerrarImpl
+			prueba = mySent as FuncionFicheroCerrar
+			prueba.toCpp
+		}
+	}
 	
 	def toCpp(Sentencias mySent) {
 		if (mySent.eClass.name.equals("AsignacionNormal")) {
@@ -688,6 +823,21 @@ class VaryGrammarGenerator implements IGenerator {
 
 	//def toC(Asignacion myAsig) '''
 	//	«myAsig.valor_asignacion»«FOR matri:myAsig.mat»«matri.toString»«ENDFOR» = «myAsig.operadores.toC»;'''
+	
+	def toCppAsignacionPunteros(AsignacionNormal asig, List<String> punteros) {
+		var asignacion = new String();
+		if(punteros.contains(asig.valor_asignacion)) {
+			asignacion = "*(" + asig.valor_asignacion + ")";
+		}
+		else {
+			asignacion = asig.valor_asignacion;
+		}
+		for(matri:asig.mat) {
+			asignacion = asignacion + matri.toString;
+		}
+		asignacion = asignacion + " = " + asig.operador.toCpp + ";";
+		return asignacion;
+	}
 
 	def toCpp(AsignacionNormal asig) '''
 	«asig.valor_asignacion»«FOR matri:asig.mat»«matri.toString»«ENDFOR» = «asig.operador.toCpp»;'''
@@ -840,6 +990,36 @@ class VaryGrammarGenerator implements IGenerator {
 
 	def toCpp(unaria myUnaria) {
 		return "!" + myUnaria.variable.toCpp;
+	}
+	
+	def toCppLeerPunteros(Leer l, List<String> punteros) {
+		var leer = new String();
+		leer = "cin >> ";
+		if (l.variable.eClass.name.equals("VariableID")) {
+			var VariableID prueba = new VariableIDImpl
+			prueba = l.variable as VariableID
+			if(punteros.contains(prueba.nombre)) {
+				leer = leer + "*(" + prueba.toCpp + ");"
+			}
+		}
+		else if (l.variable.eClass.name.equals("ValorVector")) {
+			var ValorVector prueba = new ValorVectorImpl
+			prueba = l.variable as ValorVector
+			if(punteros.contains(prueba.nombre_vector)) {
+				leer = leer + "*(" + prueba.toCpp + ");"
+			}
+		}
+		else if (l.variable.eClass.name.equals("ValorMatriz")) {
+			var ValorMatriz prueba = new ValorMatrizImpl
+			prueba = l.variable as ValorMatriz
+			if(punteros.contains(prueba.nombre_matriz)) {
+				leer = leer + "*(" + prueba.toCpp + ");"
+			}
+		}
+		else {
+			leer = leer + l.variable.toCpp + ";";
+		}
+		return leer;
 	}
 
 	def toCpp(Leer l) '''
@@ -1196,8 +1376,27 @@ class VaryGrammarGenerator implements IGenerator {
 		}
 		return total;
 	}
+	
+	def generaParametrosPunteros(EList<operacion> operaciones, String nombreSubproceso) {
+		var total = "";
+		var actual = 1;
+		for (op : operaciones) {
+			if (actual != 1) {
+				total = total + ", "
+			}
+			if(subprocesosConPunteros.get(nombreSubproceso).contains(actual)) {
+					total = total + "&" + op.toCpp;
+					actual = actual + 1;
+			}
+			else {
+				total = total + op.toCpp;
+				actual = actual + 1;
+			}
+		}
+		return total;
+	}
 
-	def toCpp(LlamadaFuncion fun, boolean a) '''«fun.nombre»(«fun.operadores.generaParametros»)«IF a»;«ENDIF»'''
+	def toCpp(LlamadaFuncion fun, boolean a) '''«fun.nombre»(«IF subprocesosConPunteros.get(fun.nombre).size() == 0»«fun.operadores.generaParametros»«ELSE»«fun.operadores.generaParametrosPunteros(fun.nombre)»«ENDIF»)«IF a»;«ENDIF»'''
 
 	def toCpp(Operador op) {
 		if (op.eClass.name.equals("NumeroEntero")) {
@@ -1385,6 +1584,20 @@ class VaryGrammarGenerator implements IGenerator {
 		return "!" + myNegacion.valor_operacion.toCpp;
 	}
 	
+	def toCppSiPunteros(Si mySi, List<String> punteros) '''
+		if(«mySi.valor.toCpp»){
+			«FOR sent:mySi.sentencias»
+				«sent.toCppPunteros(punteros)»
+			«ENDFOR»
+			«IF mySi.devuelve != null» 
+				«mySi.devuelve.toCpp»
+			«ENDIF»	
+		}
+		«IF mySi.sino != null» 
+			«mySi.sino.toCppSinoPunteros(punteros)»
+		«ENDIF»
+	'''
+	
 	def toCpp(Si mySi) '''
 		if(«mySi.valor.toCpp»){
 			«FOR sent:mySi.sentencias»
@@ -1399,6 +1612,17 @@ class VaryGrammarGenerator implements IGenerator {
 		«ENDIF»
 	'''
 	
+	def toCppCasoPunteros(Caso myCaso, List<String> punteros) '''
+		case «myCaso.operador.toCpp»:
+			«FOR sent:myCaso.sentencias»
+				«sent.toCppPunteros(punteros)»
+			«ENDFOR»
+			«IF myCaso.devuelve != null» 
+				«myCaso.devuelve.toCpp»
+			«ENDIF»
+		break;
+	'''
+	
 	def toCpp(Caso myCaso) '''
 		case «myCaso.operador.toCpp»:
 			«FOR sent:myCaso.sentencias»
@@ -1408,6 +1632,22 @@ class VaryGrammarGenerator implements IGenerator {
 				«myCaso.devuelve.toCpp»
 			«ENDIF»
 		break;
+	'''
+	
+	def toCppSegunPunteros(segun mySegun, List<String> punteros) '''
+		switch(«mySegun.valor.toCpp»){
+			«FOR cas:mySegun.caso»
+				«cas.toCpp» 
+			«ENDFOR»
+			default:
+				«FOR sent:mySegun.sentencias»
+					«sent.toCppPunteros(punteros)»
+				«ENDFOR»
+				«IF mySegun.devuelve != null» 
+				«mySegun.devuelve.toCpp»
+				«ENDIF»
+			break;
+		}
 	'''
 	
 	def toCpp(segun mySegun) '''
@@ -1429,6 +1669,17 @@ class VaryGrammarGenerator implements IGenerator {
 	def toCpp(Devolver myDevuelve) '''
 		return «myDevuelve.devuelve.toCpp»;
 	'''
+	
+	def toCppSinoPunteros(Sino mySino, List<String> punteros) '''
+		else{
+			«FOR sent:mySino.sentencias»	
+				«sent.toCppPunteros(punteros)»
+			«ENDFOR»
+			«IF mySino.devuelve != null» 
+			«mySino.devuelve.toCpp»
+			«ENDIF»	
+		}
+	'''
 
 	def toCpp(Sino mySino) '''
 		else{
@@ -1440,6 +1691,14 @@ class VaryGrammarGenerator implements IGenerator {
 			«ENDIF»	
 		}
 	'''
+	
+	def toCppMientrasPunteros(mientras m, List<String> punteros) '''
+		while(«m.valor.toCpp»){
+			«FOR sent:m.sentencias»
+				«sent.toCppPunteros(punteros)»
+			«ENDFOR»
+		}
+	'''
 
 	def toCpp(mientras m) '''
 		while(«m.valor.toCpp»){
@@ -1448,7 +1707,13 @@ class VaryGrammarGenerator implements IGenerator {
 			«ENDFOR»
 		}
 	'''
-	
+	def toCppDesdePunteros(desde d, List<String> punteros) '''
+		for(«d.asignacion.toCpp» «d.asignacion.valor_asignacion.toString» <= «d.valor.toCpp»; «d.asignacion.valor_asignacion.toString»++){
+			«FOR sent:d.sentencias»
+				«sent.toCppPunteros(punteros)»
+			«ENDFOR»
+		}
+	'''
 	
 	def toCpp(desde d) '''
 		for(«d.asignacion.toCpp» «d.asignacion.valor_asignacion.toString» <= «d.valor.toCpp»; «d.asignacion.valor_asignacion.toString»++){
@@ -1456,6 +1721,13 @@ class VaryGrammarGenerator implements IGenerator {
 				«sent.toCpp»
 			«ENDFOR»
 		}
+	'''
+	def toCppRepetirPunteros(repetir m, List<String> punteros) '''
+		do{
+			«FOR sent:m.sentencias»
+				«sent.toCppPunteros(punteros)»
+			«ENDFOR»
+		}while(«m.valor.toCpp»);
 	'''
 
 	def toCpp(repetir m) '''

@@ -13,12 +13,14 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
 
-public class VaryGrammarWizardSelectionPage extends WizardSelectionPage {
+public class VaryGrammarWizardSelectionTypeProjectPage extends WizardSelectionPage {
 	
 	VaryWizardNode selectedWizardNode;
+	VaryWizardNode selectedWizardNodeLanguage;
 
-	public VaryGrammarWizardSelectionPage(String pageName) {
+	public VaryGrammarWizardSelectionTypeProjectPage(String pageName) {
 		super(pageName);
 		// TODO Auto-generated constructor stub
 	}
@@ -27,7 +29,15 @@ public class VaryGrammarWizardSelectionPage extends WizardSelectionPage {
 	public VaryWizardNode getSelectedNode() {
 		return selectedWizardNode;
 	}
-
+	
+	public VaryWizardNode getSelectedNodeLanguage() {
+		return selectedWizardNodeLanguage;
+	}
+	
+	public void setSelectedNodeLanguage(VaryWizardNode node) {
+		this.selectedWizardNodeLanguage = node;
+	}
+ 
 	@Override
 	public void createControl(Composite parent) {
 		// TODO Auto-generated method stub
@@ -38,9 +48,8 @@ public class VaryGrammarWizardSelectionPage extends WizardSelectionPage {
         //new Text(composite, SWT.BORDER);
         
         // Project type
-        Label l = new Label(composite, SWT.NONE);
-        l.setText("Reply");
-        //new Text(composite, SWT.BORDER);
+        Label labelType = new Label(composite, SWT.NONE);
+        labelType.setText("Reply .h file");
         
         TableViewer projectType = new TableViewer(composite);
         projectType.getTable().setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -65,6 +74,33 @@ public class VaryGrammarWizardSelectionPage extends WizardSelectionPage {
                 }
             }
         });
+        // Project language
+        Label labelLanguage = new Label(composite, SWT.NONE);
+        labelLanguage.setText("Reply language");
+        
+        TableViewer projectLanguage = new TableViewer(composite);
+        projectLanguage.getTable().setLayoutData(new GridData(GridData.FILL_BOTH));
+        projectLanguage.addSelectionChangedListener(new ISelectionChangedListener() {
+            @Override
+            public void selectionChanged(SelectionChangedEvent event) {
+                ISelection selection = event.getSelection();
+                if(!selection.isEmpty() && selection instanceof IStructuredSelection) {
+                    Object o = ((IStructuredSelection) selection).getFirstElement();
+                    if(o instanceof VaryWizardNode) {
+                        // Now we set our selected node, which toggles the next button
+                        selectedWizardNodeLanguage = (VaryWizardNode) o;
+                        if(selectedWizardNodeLanguage.getName() == "Spanish") {
+                        	setTitle("Spanish");
+                        }
+                        else {
+                        	setTitle("English");
+                        }
+                        setSelectedNodeLanguage(selectedWizardNodeLanguage);
+                        setPageComplete(true);
+                    }
+                }
+            }
+        });
         projectType.setContentProvider(new ArrayContentProvider());
         projectType.setLabelProvider(new LabelProvider() {
             @Override
@@ -75,11 +111,26 @@ public class VaryGrammarWizardSelectionPage extends WizardSelectionPage {
                 return super.getText(element);
             }
         });
-        VaryWizardNode[] wizardNodes = new VaryWizardNode[]{
+        projectLanguage.setContentProvider(new ArrayContentProvider());
+        projectLanguage.setLabelProvider(new LabelProvider() {
+            @Override
+            public String getText(Object element) {
+                if(element instanceof VaryWizardNode) {
+                    return ((VaryWizardNode) element).getName();
+                }
+                return super.getText(element);
+            }
+        });
+        VaryWizardNode[] wizardNodesType = new VaryWizardNode[]{
             new VaryWizardNode("Yes"),
-            new VaryWizardNode("No"),
+            new VaryWizardNode("No")
         };
-        projectType.setInput(wizardNodes);
+        VaryWizardNode[] wizardNodesLanguage = new VaryWizardNode[]{
+                new VaryWizardNode("Spanish"),
+                new VaryWizardNode("English")
+            };
+        projectType.setInput(wizardNodesType);
+        projectLanguage.setInput(wizardNodesLanguage);
         
         GridLayoutFactory.swtDefaults().numColumns(2).generateLayout(composite);
         

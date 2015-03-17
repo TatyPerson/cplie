@@ -95,13 +95,29 @@
         <element xmi:type="ecore:EEnumLiteral" href="diagramaPseudocodigo.ecore#//TipoVariable/real"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_5Ba4gUkDEeK5F-3H-froxA"/>
       </children>
+      <children xmi:type="notation:Node" xmi:id="_mZARkMJ3EeSUifER9w4P9g" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="diagramaPseudocodigo.ecore#//TipoVariable/integer"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_mZARkcJ3EeSUifER9w4P9g"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_nCZM0MJ3EeSUifER9w4P9g" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="diagramaPseudocodigo.ecore#//TipoVariable/character"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_nCZM0cJ3EeSUifER9w4P9g"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_POsRoMJ4EeSB1IMx1o7s1Q" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="diagramaPseudocodigo.ecore#//TipoVariable/boolean"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_POsRocJ4EeSB1IMx1o7s1Q"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_QgcNYMJ4EeSB1IMx1o7s1Q" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="diagramaPseudocodigo.ecore#//TipoVariable/string"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_QgcNYcJ4EeSB1IMx1o7s1Q"/>
+      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_P_4HYUj7EeK5F-3H-froxA"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_P_4HYkj7EeK5F-3H-froxA"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_P_4HY0j7EeK5F-3H-froxA"/>
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_P_uWYUj7EeK5F-3H-froxA" fontColor="4210752" fontName="Times New Roman" fontHeight="12" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EEnum" href="diagramaPseudocodigo.ecore#//TipoVariable"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_P_uWYkj7EeK5F-3H-froxA" x="-310" y="340"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_P_uWYkj7EeK5F-3H-froxA" x="-348" y="316"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_XugtYEkDEeK5F-3H-froxA" type="1001">
     <children xmi:type="notation:Node" xmi:id="_Xuh7gEkDEeK5F-3H-froxA" type="4001"/>
