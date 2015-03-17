@@ -5830,12 +5830,12 @@ protected class Asignacion_AsignacionComplejaParserRuleCall_1 extends RuleCallTo
  *
  * AsignacionNormal:
  * 	valor_asignacion=EString //	 Mat+=MAT*
- * 	"=" operador=operacion;
+ * 	"<-" operador=operacion;
  *
  **/
 
 // valor_asignacion=EString //	 Mat+=MAT*
-// "=" operador=operacion
+// "<-" operador=operacion
 protected class AsignacionNormal_Group extends GroupToken {
 	
 	public AsignacionNormal_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5898,16 +5898,16 @@ protected class AsignacionNormal_Valor_asignacionAssignment_0 extends Assignment
 }
 
 // //	 Mat+=MAT*
-// "="
-protected class AsignacionNormal_EqualsSignKeyword_1 extends KeywordToken  {
+// "<-"
+protected class AsignacionNormal_LessThanSignHyphenMinusKeyword_1 extends KeywordToken  {
 	
-	public AsignacionNormal_EqualsSignKeyword_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public AsignacionNormal_LessThanSignHyphenMinusKeyword_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getAsignacionNormalAccess().getEqualsSignKeyword_1();
+		return grammarAccess.getAsignacionNormalAccess().getLessThanSignHyphenMinusKeyword_1();
 	}
 
     @Override
@@ -5960,7 +5960,7 @@ protected class AsignacionNormal_OperadorAssignment_2 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new AsignacionNormal_EqualsSignKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new AsignacionNormal_LessThanSignHyphenMinusKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
@@ -5973,11 +5973,11 @@ protected class AsignacionNormal_OperadorAssignment_2 extends AssignmentToken  {
 /************ begin Rule AsignacionCompleja ****************
  *
  * AsignacionCompleja:
- * 	valor_asignacion=VariablesComplejas "=" operador=operacion;
+ * 	valor_asignacion=VariablesComplejas "<-" operador=operacion;
  *
  **/
 
-// valor_asignacion=VariablesComplejas "=" operador=operacion
+// valor_asignacion=VariablesComplejas "<-" operador=operacion
 protected class AsignacionCompleja_Group extends GroupToken {
 	
 	public AsignacionCompleja_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -6051,16 +6051,16 @@ protected class AsignacionCompleja_Valor_asignacionAssignment_0 extends Assignme
 	}	
 }
 
-// "="
-protected class AsignacionCompleja_EqualsSignKeyword_1 extends KeywordToken  {
+// "<-"
+protected class AsignacionCompleja_LessThanSignHyphenMinusKeyword_1 extends KeywordToken  {
 	
-	public AsignacionCompleja_EqualsSignKeyword_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public AsignacionCompleja_LessThanSignHyphenMinusKeyword_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getAsignacionComplejaAccess().getEqualsSignKeyword_1();
+		return grammarAccess.getAsignacionComplejaAccess().getLessThanSignHyphenMinusKeyword_1();
 	}
 
     @Override
@@ -6113,7 +6113,7 @@ protected class AsignacionCompleja_OperadorAssignment_2 extends AssignmentToken 
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new AsignacionCompleja_EqualsSignKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new AsignacionCompleja_LessThanSignHyphenMinusKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	

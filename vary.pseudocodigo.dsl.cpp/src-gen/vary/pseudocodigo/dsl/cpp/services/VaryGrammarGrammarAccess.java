@@ -1291,17 +1291,17 @@ public class VaryGrammarGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cValor_asignacionAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cValor_asignacionEStringParserRuleCall_0_0 = (RuleCall)cValor_asignacionAssignment_0.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cLessThanSignHyphenMinusKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cOperadorAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cOperadorOperacionParserRuleCall_2_0 = (RuleCall)cOperadorAssignment_2.eContents().get(0);
 		
 		//AsignacionNormal:
 		//	valor_asignacion=EString //	 Mat+=MAT*
-		//	"=" operador=operacion;
+		//	"<-" operador=operacion;
 		public ParserRule getRule() { return rule; }
 
 		//valor_asignacion=EString //	 Mat+=MAT*
-		//"=" operador=operacion
+		//"<-" operador=operacion
 		public Group getGroup() { return cGroup; }
 
 		//valor_asignacion=EString
@@ -1311,8 +1311,8 @@ public class VaryGrammarGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getValor_asignacionEStringParserRuleCall_0_0() { return cValor_asignacionEStringParserRuleCall_0_0; }
 
 		////	 Mat+=MAT*
-		//"="
-		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+		//"<-"
+		public Keyword getLessThanSignHyphenMinusKeyword_1() { return cLessThanSignHyphenMinusKeyword_1; }
 
 		//operador=operacion
 		public Assignment getOperadorAssignment_2() { return cOperadorAssignment_2; }
@@ -1326,15 +1326,15 @@ public class VaryGrammarGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cValor_asignacionAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cValor_asignacionVariablesComplejasParserRuleCall_0_0 = (RuleCall)cValor_asignacionAssignment_0.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cLessThanSignHyphenMinusKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cOperadorAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cOperadorOperacionParserRuleCall_2_0 = (RuleCall)cOperadorAssignment_2.eContents().get(0);
 		
 		//AsignacionCompleja:
-		//	valor_asignacion=VariablesComplejas "=" operador=operacion;
+		//	valor_asignacion=VariablesComplejas "<-" operador=operacion;
 		public ParserRule getRule() { return rule; }
 
-		//valor_asignacion=VariablesComplejas "=" operador=operacion
+		//valor_asignacion=VariablesComplejas "<-" operador=operacion
 		public Group getGroup() { return cGroup; }
 
 		//valor_asignacion=VariablesComplejas
@@ -1343,8 +1343,8 @@ public class VaryGrammarGrammarAccess extends AbstractGrammarElementFinder {
 		//VariablesComplejas
 		public RuleCall getValor_asignacionVariablesComplejasParserRuleCall_0_0() { return cValor_asignacionVariablesComplejasParserRuleCall_0_0; }
 
-		//"="
-		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+		//"<-"
+		public Keyword getLessThanSignHyphenMinusKeyword_1() { return cLessThanSignHyphenMinusKeyword_1; }
 
 		//operador=operacion
 		public Assignment getOperadorAssignment_2() { return cOperadorAssignment_2; }
@@ -1940,14 +1940,14 @@ public class VaryGrammarGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLessThanSignEqualsSignKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
 		private final Keyword cYKeyword_8 = (Keyword)cAlternatives.eContents().get(8);
 		private final Keyword cOKeyword_9 = (Keyword)cAlternatives.eContents().get(9);
-		private final Keyword cEqualsSignEqualsSignKeyword_10 = (Keyword)cAlternatives.eContents().get(10);
+		private final Keyword cEqualsSignKeyword_10 = (Keyword)cAlternatives.eContents().get(10);
 		private final Keyword cExclamationMarkEqualsSignKeyword_11 = (Keyword)cAlternatives.eContents().get(11);
 		
 		/// * TODO: implement this rule and an appropriate IValueConverter * / signo:
-		//	"+" | "-" | "*" | "/" | "<" | ">" | ">=" | "<=" | "y" | "o" | "==" | "!=";
+		//	"+" | "-" | "*" | "/" | "<" | ">" | ">=" | "<=" | "y" | "o" | "=" | "!=";
 		public ParserRule getRule() { return rule; }
 
-		//"+" | "-" | "*" | "/" | "<" | ">" | ">=" | "<=" | "y" | "o" | "==" | "!="
+		//"+" | "-" | "*" | "/" | "<" | ">" | ">=" | "<=" | "y" | "o" | "=" | "!="
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"+"
@@ -1980,8 +1980,8 @@ public class VaryGrammarGrammarAccess extends AbstractGrammarElementFinder {
 		//"o"
 		public Keyword getOKeyword_9() { return cOKeyword_9; }
 
-		//"=="
-		public Keyword getEqualsSignEqualsSignKeyword_10() { return cEqualsSignEqualsSignKeyword_10; }
+		//"="
+		public Keyword getEqualsSignKeyword_10() { return cEqualsSignKeyword_10; }
 
 		//"!="
 		public Keyword getExclamationMarkEqualsSignKeyword_11() { return cExclamationMarkEqualsSignKeyword_11; }
@@ -3769,7 +3769,7 @@ public class VaryGrammarGrammarAccess extends AbstractGrammarElementFinder {
 
 	//AsignacionNormal:
 	//	valor_asignacion=EString //	 Mat+=MAT*
-	//	"=" operador=operacion;
+	//	"<-" operador=operacion;
 	public AsignacionNormalElements getAsignacionNormalAccess() {
 		return (pAsignacionNormal != null) ? pAsignacionNormal : (pAsignacionNormal = new AsignacionNormalElements());
 	}
@@ -3779,7 +3779,7 @@ public class VaryGrammarGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AsignacionCompleja:
-	//	valor_asignacion=VariablesComplejas "=" operador=operacion;
+	//	valor_asignacion=VariablesComplejas "<-" operador=operacion;
 	public AsignacionComplejaElements getAsignacionComplejaAccess() {
 		return (pAsignacionCompleja != null) ? pAsignacionCompleja : (pAsignacionCompleja = new AsignacionComplejaElements());
 	}
@@ -3946,7 +3946,7 @@ public class VaryGrammarGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * TODO: implement this rule and an appropriate IValueConverter * / signo:
-	//	"+" | "-" | "*" | "/" | "<" | ">" | ">=" | "<=" | "y" | "o" | "==" | "!=";
+	//	"+" | "-" | "*" | "/" | "<" | ">" | ">=" | "<=" | "y" | "o" | "=" | "!=";
 	public SignoElements getSignoAccess() {
 		return (pSigno != null) ? pSigno : (pSigno = new SignoElements());
 	}

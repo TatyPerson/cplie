@@ -2308,9 +2308,9 @@ ruleAsignacionNormal returns [EObject current=null]
 	    }
 
 )
-)	otherlv_1='=' 
+)	otherlv_1='<-' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getAsignacionNormalAccess().getEqualsSignKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getAsignacionNormalAccess().getLessThanSignHyphenMinusKeyword_1());
     }
 (
 (
@@ -2369,9 +2369,9 @@ ruleAsignacionCompleja returns [EObject current=null]
 	    }
 
 )
-)	otherlv_1='=' 
+)	otherlv_1='<-' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getAsignacionComplejaAccess().getEqualsSignKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getAsignacionComplejaAccess().getLessThanSignHyphenMinusKeyword_1());
     }
 (
 (

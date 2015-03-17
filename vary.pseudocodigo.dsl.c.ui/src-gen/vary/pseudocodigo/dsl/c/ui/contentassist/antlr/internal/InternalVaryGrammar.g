@@ -6743,11 +6743,11 @@ rule__AsignacionNormal__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getAsignacionNormalAccess().getEqualsSignKeyword_1()); }
+{ before(grammarAccess.getAsignacionNormalAccess().getLessThanSignHyphenMinusKeyword_1()); }
 
-	'=' 
+	'<-' 
 
-{ after(grammarAccess.getAsignacionNormalAccess().getEqualsSignKeyword_1()); }
+{ after(grammarAccess.getAsignacionNormalAccess().getLessThanSignHyphenMinusKeyword_1()); }
 )
 
 ;
@@ -6837,11 +6837,11 @@ rule__AsignacionCompleja__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getAsignacionComplejaAccess().getEqualsSignKeyword_1()); }
+{ before(grammarAccess.getAsignacionComplejaAccess().getLessThanSignHyphenMinusKeyword_1()); }
 
-	'=' 
+	'<-' 
 
-{ after(grammarAccess.getAsignacionComplejaAccess().getEqualsSignKeyword_1()); }
+{ after(grammarAccess.getAsignacionComplejaAccess().getLessThanSignHyphenMinusKeyword_1()); }
 )
 
 ;

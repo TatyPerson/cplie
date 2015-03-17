@@ -47,7 +47,7 @@ entero funcion sumaFun(E entero: a, E entero:  b)
 var //Declaracion de variables
 	entero:  resultado
 inicio //Cuerpo de la funcion
-	resultado = a + b
+	resultado <- a + b
 	devolver resultado
 fin_funcion
 
@@ -58,7 +58,7 @@ fin_funcion
 procedimiento sumaProc(E entero: a, E entero: b, S entero: res)
 var
 inicio //Cuerpo del procedimiento
-	res = a +b
+	res <- a +b
 fin_procedimiento
 
 //Precondicion: v es una variable de tipo tVect, vector de elementos de tipo entero.
@@ -68,7 +68,7 @@ procedimiento leerVector(S tVect: v, E entero: n)
 var
     entero: i
 inicio
-   desde i = 1 hasta n hacer
+   desde i <- 1 hasta n hacer
       leer(v[i])
    fin_desde
 fin_procedimiento
@@ -80,11 +80,11 @@ entero funcion productoEscalar(E tVect: v, E entero: n)
 var
     entero: res, i
 inicio
-    i = 1
-    res = 0
+    i <- 1
+    res <- 0
     //Ejemplo de bucle mientras.  
     mientras i <=n hacer
-        res = res + v[i]
+        res <- res + v[i]
     fin_mientras
     devolver res
 fin_funcion
@@ -96,7 +96,7 @@ procedimiento escribirVector(E tVect: v, E entero: n)
 var
     entero: i
 inicio
-    desde i = 1 hasta n hacer
+    desde i <- 1 hasta n hacer
         escribir(v[i])
     fin_desde
 fin_procedimiento
@@ -165,7 +165,7 @@ inicio //Cuerpo del algoritmo principal
 	//Llamadas a los subalgoritmos para comenzar la traza del algoritmo	
 	
 	//En este ejemplo se realiza la llamada al menu y posteriormente a operacion
-	opcion=menu()
+	opcion <- menu()
 	operacion(opcion)
 fin_inicio
 
