@@ -66,7 +66,39 @@ public enum TipoVariable implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	REAL(4, "real", "real");
+	REAL(4, "real", "real"), /**
+	 * The '<em><b>Integer</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #INTEGER_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	INTEGER(5, "integer", "integer"), /**
+	 * The '<em><b>Character</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #CHARACTER_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	CHARACTER(6, "character", "character"), /**
+	 * The '<em><b>Boolean</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #BOOLEAN_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	BOOLEAN(7, "boolean", "boolean"), /**
+	 * The '<em><b>String</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #STRING_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	STRING(8, "string", "string");
 
 	/**
 	 * The '<em><b>Entero</b></em>' literal value.
@@ -144,6 +176,66 @@ public enum TipoVariable implements Enumerator {
 	public static final int REAL_VALUE = 4;
 
 	/**
+	 * The '<em><b>Integer</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Integer</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #INTEGER
+	 * @model name="integer"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int INTEGER_VALUE = 5;
+
+	/**
+	 * The '<em><b>Character</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Character</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CHARACTER
+	 * @model name="character"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CHARACTER_VALUE = 6;
+
+	/**
+	 * The '<em><b>Boolean</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Boolean</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #BOOLEAN
+	 * @model name="boolean"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int BOOLEAN_VALUE = 7;
+
+	/**
+	 * The '<em><b>String</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>String</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #STRING
+	 * @model name="string"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int STRING_VALUE = 8;
+
+	/**
 	 * An array of all the '<em><b>Tipo Variable</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -156,6 +248,10 @@ public enum TipoVariable implements Enumerator {
 			CADENA,
 			LOGICO,
 			REAL,
+			INTEGER,
+			CHARACTER,
+			BOOLEAN,
+			STRING,
 		};
 
 	/**
@@ -211,6 +307,10 @@ public enum TipoVariable implements Enumerator {
 			case CADENA_VALUE: return CADENA;
 			case LOGICO_VALUE: return LOGICO;
 			case REAL_VALUE: return REAL;
+			case INTEGER_VALUE: return INTEGER;
+			case CHARACTER_VALUE: return CHARACTER;
+			case BOOLEAN_VALUE: return BOOLEAN;
+			case STRING_VALUE: return STRING;
 		}
 		return null;
 	}
