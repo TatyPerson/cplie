@@ -148,12 +148,12 @@ Asignacion returns Asignacion:
 AsignacionNormal returns AsignacionNormal:
 	valor_asignacion=EString
 //	 Mat+=MAT*
-	'='
+	'<-'
 	operador=operacion;
 	
 AsignacionCompleja returns AsignacionCompleja:
 	valor_asignacion=VariablesComplejas
-	'='
+	'<-'
 	operador=operacion;
 
 //AsignacionCompleja returns AsignacionCompleja:
@@ -253,7 +253,7 @@ booleano returns booleano:
 	'verdadero' | 'falso';
 
 signo returns signo:
-	('+' | '-' | '*' | '/' | '<' | '>' | '>=' | '<=' | 'y' | 'o' | '==' | '!=')
+	('+' | '-' | '*' | '/' | '<' | '>' | '>=' | '<=' | 'y' | 'o' | '=' | '!=')
  /* TODO: implement this rule and an appropriate IValueConverter */;
  
 signoOr returns signo:
