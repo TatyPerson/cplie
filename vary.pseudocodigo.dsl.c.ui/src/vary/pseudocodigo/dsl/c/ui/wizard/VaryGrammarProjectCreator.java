@@ -30,7 +30,7 @@ import com.google.common.collect.Lists;
 
 public class VaryGrammarProjectCreator extends PluginProjectCreator {
 
-	protected static final String DSL_GENERATOR_PROJECT_NAME = "vary.pseudocodigo.dsl.cpp";
+	protected static final String DSL_GENERATOR_PROJECT_NAME = "vary.pseudocodigo.dsl.c";
 
 	protected static final String SRC_ROOT = "src";
 	protected static final String SRC_GEN_ROOT = "src-gen";

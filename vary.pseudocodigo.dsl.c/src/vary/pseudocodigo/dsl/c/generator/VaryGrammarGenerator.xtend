@@ -132,6 +132,7 @@ import diagramapseudocodigo.Sino
 import vary.pseudocodigo.dsl.c.generator.util.ReadFileProperties
 import vary.pseudocodigo.dsl.c.generator.util.ProjectLocationFolder
 import java.io.IOException
+import java.util.List
 
 /**
  * Generates code from your model files on save.
@@ -147,10 +148,12 @@ class VaryGrammarGenerator implements IGenerator {
 	static Map<String,String> vectoresMatrices = new HashMap<String,String>();
 	static Map<String, Map<String,String>> registros = new HashMap<String, Map<String,String>>();
 	static Map<String, ArrayList<String>> variablesEnumerados = new HashMap<String, ArrayList<String>>();
+	static Map<String, String> funciones = new HashMap<String,String>();
 	static ArrayList<String> enumerados = new ArrayList<String>();
 	static Codigo codigo;
 	static boolean cabeceras;
 	static ReadFileProperties readerFileProperties = new ReadFileProperties();
+	static Map<String,ArrayList<Integer>> subprocesosConPunteros = new HashMap<String,ArrayList<Integer>>();
 
 	//EMap<String, TipoVariable> tablaSimbolos;
 	override void doGenerate(Resource resource, IFileSystemAccess myCFile) {
@@ -204,6 +207,12 @@ class VaryGrammarGenerator implements IGenerator {
 		#ifndef CABECERAS_H
 		#define CABECERAS_H
 		
+		«FOR myConstante:myCodigo.constantes»
+			«myConstante.toC»
+		«ENDFOR»
+		«FOR myComplejo:myCodigo.tipocomplejo»
+			«myComplejo.toC»
+		«ENDFOR»
 		«FOR funcion:myCodigo.funcion»
 			«funcion.cabecerasFuncion»
 		«ENDFOR»
@@ -227,14 +236,24 @@ class VaryGrammarGenerator implements IGenerator {
 	}
 	
 	def variablesCabecerasSubproceso(EList<ParametroFuncion> parametros, String cabecera) {
-		var cabeceraAux = cabecera;
-		for(ParametroFuncion p: parametros) {
-			cabeceraAux = cabeceraAux + p.tipo.toC + ","
+		var total = cabecera;
+		var actual = 1;
+		for (p : parametros) {
+			if (actual != 1)
+				total = total + ", "
+			if (p.paso == TipoPaso::ENTRADA) {
+				total = total + "const " + p.tipo.toC;
+			} else if (p.paso == TipoPaso::ENTRADA_SALIDA) {
+				total = total + p.tipo.toC + "*";
+			} else {
+				total = total + p.tipo.toC + "*";
+			}
+			actual = actual + 1;
 		}
-		cabeceraAux = cabeceraAux + ")"
-		cabeceraAux = cabeceraAux.replaceAll("\\,\\)",")");
-		cabeceraAux = cabeceraAux + ";"
-		return cabeceraAux;
+		total = total + ");"
+		//cabeceraAux = cabeceraAux.replaceAll("\\,\\)",")");
+		//cabeceraAux = cabeceraAux + ";"
+		return total;
 		
 	}
 
@@ -255,6 +274,35 @@ class VaryGrammarGenerator implements IGenerator {
 					variablesEnumerados.get(enumerado.nombre).add(aux.nombre)
 				}
 			  }
+			}
+		}
+	}
+	
+	for(Subproceso s: codigo.funcion) {
+		if (s.eClass.name.equals("Funcion")) {
+			var Funcion funcion = new FuncionImpl
+			funcion = s as Funcion
+			funciones.put(funcion.nombre, funcion.tipo.name)
+			subprocesosConPunteros.put(funcion.nombre, new ArrayList<Integer>());
+			var numParametro = 1;
+			for(ParametroFuncion parametro: funcion.parametrofuncion) {
+				if(parametro.paso == TipoPaso::SALIDA) {
+					subprocesosConPunteros.get(funcion.nombre).add(numParametro)
+				}
+				numParametro = numParametro + 1;
+			}
+			
+		} else if (s.eClass.name.equals("Procedimiento")) {
+			var Procedimiento procedimiento = new ProcedimientoImpl
+			procedimiento = s as Procedimiento
+			funciones.put(procedimiento.nombre, "void")
+			subprocesosConPunteros.put(procedimiento.nombre, new ArrayList<Integer>());
+			var numParametro = 1;
+			for(ParametroFuncion parametro: procedimiento.parametrofuncion) {
+				if(parametro.paso == TipoPaso::SALIDA) {
+					subprocesosConPunteros.get(procedimiento.nombre).add(numParametro)
+				}
+				numParametro = numParametro + 1;
 			}
 		}
 	}
@@ -355,12 +403,14 @@ class VaryGrammarGenerator implements IGenerator {
 		«FOR myComentario:myCodigo.comentarios»
 			«myComentario.toC»
 		«ENDFOR»
-		«FOR myConstante:myCodigo.constantes»
-			«myConstante.toC»
-		«ENDFOR»
-		«FOR myComplejo:myCodigo.tipocomplejo»
-			«myComplejo.toC»
-		«ENDFOR»
+		«IF !cabeceras»
+			«FOR myConstante:myCodigo.constantes»
+				«myConstante.toC»
+			«ENDFOR»
+			«FOR myComplejo:myCodigo.tipocomplejo»
+				«myComplejo.toC»
+			«ENDFOR»
+		«ENDIF»
 		«FOR myVariable:myCodigo.global»
 			«myVariable.toC»
 		«ENDFOR»
@@ -564,30 +614,118 @@ class VaryGrammarGenerator implements IGenerator {
 		return total;
 	}
 	
-	def toC(Funcion myFun) '''
-		«myFun.tipo.tipoVariableC» «myFun.nombre»(«myFun.parametrofuncion.toC»){
-			«FOR myVariable:myFun.declaracion»
-				«myVariable.toC»
-			«ENDFOR»
-			«FOR mySentencia:myFun.sentencias»
-				«mySentencia.toC»
-			«ENDFOR»
-			«IF myFun.devuelve != null» 
-			«myFun.devuelve.toC»
-			«ENDIF»
+	def toC(Funcion myFun) {
+		var funcionDeclarada = myFun.tipo.tipoVariableC + " " + myFun.nombre + "(" + myFun.parametrofuncion.toC + "){" + "\n";
+		var punteros = new ArrayList<String>();
+		for(parametroFuncion: myFun.parametrofuncion) {
+			if(parametroFuncion.paso == TipoPaso::SALIDA) {
+				punteros.add(parametroFuncion.variable.nombre)
+			}
 		}
-	'''
+		for(myVariable:myFun.declaracion) {
+			funcionDeclarada = funcionDeclarada + "\t" + myVariable.toC + "\n";
+		}
+		if(punteros.size() == 0) {
+			for(mySentencia:myFun.sentencias) {
+				funcionDeclarada = funcionDeclarada + "\t" + mySentencia.toC + "\n";
+			}
+		}
+		else {
+			for(mySentencia:myFun.sentencias) {
+				funcionDeclarada = funcionDeclarada + "\t" + mySentencia.toCPunteros(punteros) + "\n";
+			}
+		}
+		if(myFun.devuelve != null) {
+			funcionDeclarada = funcionDeclarada + "\t" + myFun.devuelve.toC + "\n";
+		}
+		funcionDeclarada = funcionDeclarada + "\n" + "}";
+		return funcionDeclarada;
+	}
 	
-	def toC(Procedimiento myFun) '''
-		void «myFun.nombre»(«myFun.parametrofuncion.toC»){
-			«FOR myVariable:myFun.declaracion»
-				«myVariable.toC»
-			«ENDFOR»
-			«FOR mySentencia:myFun.sentencias»
-				«mySentencia.toC»
-			«ENDFOR»
+	def toC(Procedimiento myProc) {
+		var procedimientoDeclarado = "void " + myProc.nombre + "(" + myProc.parametrofuncion.toC + "){" + "\n";
+		var punteros = new ArrayList<String>();
+		for(parametroFuncion: myProc.parametrofuncion) {
+			if(parametroFuncion.paso == TipoPaso::SALIDA) {
+				punteros.add(parametroFuncion.variable.nombre)
+			}
 		}
-	'''
+		for(myVariable:myProc.declaracion) {
+			procedimientoDeclarado = procedimientoDeclarado + "\t" + myVariable.toC + "\n";
+		}
+		if(punteros.size() == 0) {
+			for(mySentencia:myProc.sentencias) {
+				procedimientoDeclarado = procedimientoDeclarado + "\t" + mySentencia.toC + "\n";
+			}
+		}
+		else {
+			for(mySentencia:myProc.sentencias) {
+				procedimientoDeclarado = procedimientoDeclarado + "\t" + mySentencia.toCPunteros(punteros) + "\n";
+			}
+		}
+		procedimientoDeclarado = procedimientoDeclarado + "\n" + "}";
+		return procedimientoDeclarado;
+	}
+	
+	def toCPunteros(Sentencias mySent, List<String> punteros) {
+		if (mySent.eClass.name.equals("AsignacionNormal")) {
+			var AsignacionNormal prueba = new AsignacionNormalImpl
+			prueba = mySent as AsignacionNormal
+			prueba.toCAsignacionPunteros(punteros)
+		} else if (mySent.eClass.name.equals("AsignacionCompleja")) {
+			var AsignacionCompleja prueba = new AsignacionComplejaImpl
+			prueba = mySent as AsignacionCompleja
+			prueba.toC
+		} else if (mySent.eClass.name.equals("LlamadaFuncion")) {
+			var LlamadaFuncion prueba = new LlamadaFuncionImpl
+			prueba = mySent as LlamadaFuncion
+			prueba.toC(true)
+		} else if (mySent.eClass.name.equals("Si")) {
+			var Si prueba = new SiImpl
+			prueba = mySent as Si
+			prueba.toCSiPunteros(punteros)
+		} else if (mySent.eClass.name.equals("segun")) {
+			var segun prueba = new segunImpl
+			prueba = mySent as segun
+			prueba.toCSegunPunteros(punteros)
+		} else if (mySent.eClass.name.equals("Caso")) {
+			var Caso prueba = new CasoImpl
+			prueba = mySent as Caso
+			prueba.toCCasoPunteros(punteros)
+		} else if (mySent.eClass.name.equals("mientras")) {
+			var mientras prueba = new mientrasImpl
+			prueba = mySent as mientras
+			prueba.toCMientrasPunteros(punteros)
+		} else if (mySent.eClass.name.equals("repetir")) {
+			var repetir prueba = new repetirImpl
+			prueba = mySent as repetir
+			prueba.toCRepetirPunteros(punteros)
+		} else if (mySent.eClass.name.equals("desde")) {
+			var desde prueba = new desdeImpl
+			prueba = mySent as desde
+			prueba.toCDesdePunteros(punteros)
+		} else if (mySent.eClass.name.equals("negacion")) {
+			var Negacion prueba = new NegacionImpl
+			prueba = mySent as Negacion
+			prueba.toC
+		} else if (mySent.eClass.name.equals("Leer")) {
+			var Leer prueba = new LeerImpl
+			prueba = mySent as Leer
+			prueba.toC
+		} else if (mySent.eClass.name.equals("Escribir")) {
+			var Escribir prueba = new EscribirImpl
+			prueba = mySent as Escribir
+			prueba.toC
+		} else if (mySent.eClass.name.equals("FuncionFicheroAbrir")) {
+			var FuncionFicheroAbrir prueba = new FuncionFicheroAbrirImpl
+			prueba = mySent as FuncionFicheroAbrir
+			prueba.toC
+		} else if (mySent.eClass.name.equals("FuncionFicheroCerrar")) {
+			var FuncionFicheroCerrar prueba = new FuncionFicheroCerrarImpl
+			prueba = mySent as FuncionFicheroCerrar
+			prueba.toC
+		}
+	}
 	
 	def toC(Sentencias mySent) {
 		if (mySent.eClass.name.equals("AsignacionNormal")) {
@@ -697,7 +835,22 @@ class VaryGrammarGenerator implements IGenerator {
 
 	//def toC(Asignacion myAsig) '''
 	//	«myAsig.valor_asignacion»«FOR matri:myAsig.mat»«matri.toString»«ENDFOR» = «myAsig.operadores.toC»;'''
-
+	
+	def toCAsignacionPunteros(AsignacionNormal asig, List<String> punteros) {
+		var asignacion = new String();
+		if(punteros.contains(asig.valor_asignacion)) {
+			asignacion = "*(" + asig.valor_asignacion + ")";
+		}
+		else {
+			asignacion = asig.valor_asignacion;
+		}
+		for(matri:asig.mat) {
+			asignacion = asignacion + matri.toString;
+		}
+		asignacion = asignacion + " = " + asig.operador.toC + ";";
+		return asignacion;
+	}
+	
 	def toC(AsignacionNormal asig) '''
 	«asig.valor_asignacion»«FOR matri:asig.mat»«matri.toString»«ENDFOR» = «asig.operador.toC»;'''
 
@@ -1267,7 +1420,10 @@ class VaryGrammarGenerator implements IGenerator {
 						var registro = o as ValorRegistro;
 						tipo = registros.get(variablesInicio.get(registro.nombre_registro)).get(registro.campo.get(0).nombre_campo);
 					}
-				
+					else if(o.eClass.name.equals("LlamadaFuncion")) {
+						var llamadaFuncion = o as LlamadaFuncion;
+						tipo = funciones.get(llamadaFuncion.nombre);
+					}
 					if(tipo == "ENTERO" || o.eClass.name.equals("NumeroEntero")) {
 						if(a.operador.indexOf(o) == a.operador.size - 1) {
 							cadena = cadena + " %i\"";
@@ -1344,7 +1500,7 @@ class VaryGrammarGenerator implements IGenerator {
 					}
 		 		}
 		 	}
-			if(s.sentencias.contains(a) || (perteneceSubproceso && a.operador.size() > 1)) {
+			if(s.sentencias.contains(a) || (perteneceSubproceso && a.operador.size() > 0)) {
 				var cadena = new String();
 				if(a.operador.get(0).eClass.name.equals("ConstCadena")) {
 					//En este caso el usuario ha introducido un texto
@@ -1352,7 +1508,9 @@ class VaryGrammarGenerator implements IGenerator {
 					cadena = primero.contenido;
 					cadena = cadena.substring(0, cadena.length()-1);
 				}
-				cadena = cadena + "\"";
+				if(a.operador.size() == 1) {
+					cadena = cadena + "\"";
+				}
 				for(o: a.operador) {
 					//Si es el primer elemento y es distinto a una cadena si, sino se lo salta
 					if(a.operador.indexOf(o) == 0 && !o.eClass.name.equals("ConstCadena") || a.operador.indexOf(o) != 0) {
@@ -1382,6 +1540,10 @@ class VaryGrammarGenerator implements IGenerator {
 						else if(o.eClass.name.equals("ValorRegistro")) {
 							var registro = o as ValorRegistro;
 							tipo = registros.get(variablesSubprocesos.get(s.nombre).get(registro.nombre_registro)).get(registro.campo.get(0).nombre_campo);
+						}
+						else if(o.eClass.name.equals("LlamadaFuncion")) {
+							var llamadaFuncion = o as LlamadaFuncion;
+							tipo = funciones.get(llamadaFuncion.nombre);
 						}
 						if(tipo == "ENTERO" || o.eClass.name.equals("NumeroEntero")) {
 							if(a.operador.indexOf(o) == a.operador.size - 1) {
@@ -1443,8 +1605,27 @@ class VaryGrammarGenerator implements IGenerator {
 		}
 		return total;
 	}
+	
+	def generaParametrosPunteros(EList<operacion> operaciones, String nombreSubproceso) {
+		var total = "";
+		var actual = 1;
+		for (op : operaciones) {
+			if (actual != 1) {
+				total = total + ", "
+			}
+			if(subprocesosConPunteros.get(nombreSubproceso).contains(actual)) {
+					total = total + "&" + op.toC;
+					actual = actual + 1;
+			}
+			else {
+				total = total + op.toC;
+				actual = actual + 1;
+			}
+		}
+		return total;
+	}
 
-	def toC(LlamadaFuncion fun, boolean a) '''«fun.nombre»(«fun.operadores.generaParametros»)«IF a»;«ENDIF»'''
+	def toC(LlamadaFuncion fun, boolean a) '''«fun.nombre»(«IF subprocesosConPunteros.get(fun.nombre).size() == 0»«fun.operadores.generaParametros»«ELSE»«fun.operadores.generaParametrosPunteros(fun.nombre)»«ENDIF»)«IF a»;«ENDIF»'''
 
 	def toC(Operador op) {
 		if (op.eClass.name.equals("NumeroEntero")) {
@@ -1631,6 +1812,20 @@ class VaryGrammarGenerator implements IGenerator {
 	def toC(Negacion myNegacion) {
 		return "!" + myNegacion.valor_operacion.toC;
 	}
+	
+	def toCSiPunteros(Si mySi, List<String> punteros) '''
+		if(«mySi.valor.toC»){
+			«FOR sent:mySi.sentencias»
+				«sent.toCPunteros(punteros)»
+			«ENDFOR»
+			«IF mySi.devuelve != null» 
+			«mySi.devuelve.toC»
+			«ENDIF»	
+		}
+		«IF mySi.sino != null» 
+			«mySi.sino.toCSinoPunteros(punteros)»
+		«ENDIF»
+	'''
 
 	def toC(Si mySi) '''
 		if(«mySi.valor.toC»){
@@ -1645,6 +1840,17 @@ class VaryGrammarGenerator implements IGenerator {
 			«mySi.sino.toC»
 		«ENDIF»
 	'''
+	
+	def toCCasoPunteros(Caso myCaso, List<String> punteros) '''
+		case «myCaso.operador.toC»:
+			«FOR sent:myCaso.sentencias»
+				«sent.toCPunteros(punteros)»
+			«ENDFOR»
+			«IF myCaso.devuelve != null» 
+			«myCaso.devuelve.toC»
+			«ENDIF»
+		break;
+	'''
 
 	def toC(Caso myCaso) '''
 		case «myCaso.operador.toC»:
@@ -1656,11 +1862,27 @@ class VaryGrammarGenerator implements IGenerator {
 			«ENDIF»
 		break;
 	'''
+	
+	def toCSegunPunteros(segun mySegun, List<String> punteros) '''
+		switch(«mySegun.valor.toC»){
+			«FOR caso:mySegun.caso»
+				«caso.toC» 
+			«ENDFOR»
+			default:
+				«FOR sent:mySegun.sentencias»
+					«sent.toCPunteros(punteros)»
+				«ENDFOR»
+				«IF mySegun.devuelve != null» 
+				«mySegun.devuelve.toC»
+				«ENDIF»
+			break;
+		}
+	'''
 
 	def toC(segun mySegun) '''
 		switch(«mySegun.valor.toC»){
-			«FOR cas:mySegun.caso»
-				«cas.toC» 
+			«FOR caso:mySegun.caso»
+				«caso.toC» 
 			«ENDFOR»
 			default:
 				«FOR sent:mySegun.sentencias»
@@ -1676,6 +1898,17 @@ class VaryGrammarGenerator implements IGenerator {
 	def toC(Devolver myDevuelve) '''
 		return «myDevuelve.devuelve.toC»;
 	'''
+	
+	def toCSinoPunteros(Sino mySino, List<String> punteros) '''
+		else{
+			«FOR sent:mySino.sentencias»	
+				«sent.toCPunteros(punteros)»
+			«ENDFOR»
+			«IF mySino.devuelve != null» 
+			«mySino.devuelve.toC»
+			«ENDIF»	
+		}
+	'''
 
 	def toC(Sino mySino) '''
 		else{
@@ -1687,11 +1920,27 @@ class VaryGrammarGenerator implements IGenerator {
 			«ENDIF»	
 		}
 	'''
+	
+	def toCMientrasPunteros(mientras m, List<String> punteros) '''
+		while(«m.valor.toC»){
+			«FOR sent:m.sentencias»
+				«sent.toCPunteros(punteros)»
+			«ENDFOR»
+		}
+	'''
 
 	def toC(mientras m) '''
 		while(«m.valor.toC»){
 			«FOR sent:m.sentencias»
 				«sent.toC»
+			«ENDFOR»
+		}
+	'''
+	
+	def toCDesdePunteros(desde d, List<String> punteros) '''
+		for(«d.asignacion.toC» «d.asignacion.valor_asignacion.toString» <= «d.valor.toC»; «d.asignacion.valor_asignacion.toString»++){
+			«FOR sent:d.sentencias»
+				«sent.toCPunteros(punteros)»
 			«ENDFOR»
 		}
 	'''
@@ -1703,12 +1952,20 @@ class VaryGrammarGenerator implements IGenerator {
 			«ENDFOR»
 		}
 	'''
-
-	def toC(repetir m) '''
+	
+	def toCRepetirPunteros(repetir r, List<String> punteros) '''
 		do{
-			«FOR sent:m.sentencias»
+			«FOR sent:r.sentencias»
+				«sent.toCPunteros(punteros)»
+			«ENDFOR»
+		}while(«r.valor.toC»);
+	'''
+
+	def toC(repetir r) '''
+		do{
+			«FOR sent:r.sentencias»
 				«sent.toC»
 			«ENDFOR»
-		}while(«m.valor.toC»);
+		}while(«r.valor.toC»);
 	'''
 }

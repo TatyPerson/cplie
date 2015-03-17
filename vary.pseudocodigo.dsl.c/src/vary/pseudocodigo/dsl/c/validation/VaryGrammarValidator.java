@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.eclipse.xtext.validation.Check;
 
+import vary.pseudocodigo.dsl.c.generator.util.IdiomaProyecto;
 import diagramapseudocodigo.And;
 import diagramapseudocodigo.Archivo;
 import diagramapseudocodigo.Asignacion;
@@ -127,7 +128,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 			for(Sentencias s: sub.getSentencias()) {
 				if(s instanceof desde) {
 					desde desdeAux = (desde) s;
-					for(Declaracion d: c.getTiene().getDeclaracion()) {
+					for(Declaracion d: sub.getDeclaracion()) {
 						if(d instanceof DeclaracionVariable) {
 							DeclaracionVariable dec = (DeclaracionVariable) d;
 							for(Variable v: dec.getVariable()) {
@@ -144,6 +145,141 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 					}
 					if(!ok) {
 						error("La variable utilizada en el bucle debe haber sido previamente declarada", desdeAux, DiagramapseudocodigoPackage.Literals.DESDE__ASIGNACION);
+					}
+					ok = false;
+				}
+			}
+		}
+	}
+	
+	@Check
+	//Función que se encarga de validar si la variable utilizada como limite en un bucle desde ha sido previamente declarada
+	protected void checkDesdeTope(Codigo c) {
+		boolean ok = false;
+		Map<String,String> variablesTipadas = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
+		Map<String,String> constantesTipadas = funciones.registrarConstantesTipadas(c.getConstantes());
+		Map<String,String> globalesTipadas = funciones.registrarGlobalesTipadas(c.getGlobal(), c.getTiene().getDeclaracion());
+		
+		for(Sentencias s: c.getTiene().getTiene()) {
+			if(s instanceof desde) {
+				desde desdeAux = (desde) s;
+				if(desdeAux.getValor() instanceof VariableID){
+					VariableID variable = (VariableID) desdeAux.getValor();
+					if((variablesTipadas.containsKey(variable.getNombre()) && variablesTipadas.get(variable.getNombre()).equals("entero") 
+							|| (constantesTipadas.containsKey(variable.getNombre()) && constantesTipadas.get(variable.getNombre()).equals("entero")) 
+							|| (globalesTipadas.containsKey(variable.getNombre()) && globalesTipadas.get(variable.getNombre()).equals("entero")))) {
+						ok = true;
+					}
+					else if((variablesTipadas.containsKey(variable.getNombre()) && !variablesTipadas.get(variable.getNombre()).equals("entero") 
+							|| (constantesTipadas.containsKey(variable.getNombre()) && !constantesTipadas.get(variable.getNombre()).equals("entero")) 
+							|| (globalesTipadas.containsKey(variable.getNombre()) && !globalesTipadas.get(variable.getNombre()).equals("entero")))) {
+						ok = true;
+						error("La variable utilizada en el bucle desde debe ser de tipo entero", variable, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+					}
+					if(!ok) {
+						error("La variable utilizada en el bucle debe haber sido previamente declarada", variable, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+					}
+				}
+				else if(desdeAux.getValor() instanceof operacion) {
+					operacion op = (operacion) desdeAux.getValor();
+					VariableID variable = null;
+					if(op instanceof Suma) {
+						Suma suma = (Suma) op;
+						if(suma.getRight() instanceof VariableID) {
+							variable = (VariableID) suma.getRight();
+						}
+						else if(suma.getLeft() instanceof VariableID) {
+							variable = (VariableID) suma.getLeft();
+						}
+					}
+					else if(op instanceof Resta) {
+						Resta resta = (Resta) op;
+						if(resta.getRight() instanceof VariableID) {
+							variable = (VariableID) resta.getRight();
+						}
+						else if(resta.getLeft() instanceof VariableID) {
+							variable = (VariableID) resta.getLeft();
+						}
+					}
+					if((variablesTipadas.containsKey(variable.getNombre()) && variablesTipadas.get(variable.getNombre()).equals("entero") 
+							|| (constantesTipadas.containsKey(variable.getNombre()) && constantesTipadas.get(variable.getNombre()).equals("entero")) 
+							|| (globalesTipadas.containsKey(variable.getNombre()) && globalesTipadas.get(variable.getNombre()).equals("entero")))) {
+						ok = true;
+					}
+					else if((variablesTipadas.containsKey(variable.getNombre()) && !variablesTipadas.get(variable.getNombre()).equals("entero") 
+							|| (constantesTipadas.containsKey(variable.getNombre()) && !constantesTipadas.get(variable.getNombre()).equals("entero")) 
+							|| (globalesTipadas.containsKey(variable.getNombre()) && !globalesTipadas.get(variable.getNombre()).equals("entero")))) {
+						ok = true;
+						error("La variable utilizada en el bucle desde debe ser de tipo entero", variable, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+					}
+					if(!ok) {
+						error("La variable utilizada en el bucle debe haber sido previamente declarada", variable, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+					}
+					
+				}
+				
+				ok = false;
+			}
+		}
+		for(Subproceso sub: c.getFuncion()) {
+			variablesTipadas = funciones.registrarVariablesTipadas(sub.getDeclaracion());
+			Map<String,String> parametrosTipados = funciones.registrarParametrosTipados(sub.getParametrofuncion());
+			variablesTipadas.putAll(parametrosTipados);
+			for(Sentencias s: sub.getSentencias()) {
+				if(s instanceof desde) {
+					desde desdeAux = (desde) s;
+					if(desdeAux.getValor() instanceof VariableID){
+						VariableID variable = (VariableID) desdeAux.getValor();
+						if((variablesTipadas.containsKey(variable.getNombre()) && variablesTipadas.get(variable.getNombre()).equals("entero") 
+								|| (constantesTipadas.containsKey(variable.getNombre()) && constantesTipadas.get(variable.getNombre()).equals("entero")) 
+								|| (globalesTipadas.containsKey(variable.getNombre()) && globalesTipadas.get(variable.getNombre()).equals("entero")))) {
+							ok = true;
+						}
+						else if((variablesTipadas.containsKey(variable.getNombre()) && !variablesTipadas.get(variable.getNombre()).equals("entero") 
+								|| (constantesTipadas.containsKey(variable.getNombre()) && !constantesTipadas.get(variable.getNombre()).equals("entero")) 
+								|| (globalesTipadas.containsKey(variable.getNombre()) && !globalesTipadas.get(variable.getNombre()).equals("entero")))) {
+							ok = true;
+							error("La variable utilizada en el bucle desde debe ser de tipo entero", variable, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+						}
+						if(!ok) {
+							error("La variable utilizada en el bucle debe haber sido previamente declarada", variable, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+						}
+					}
+					else if(desdeAux.getValor() instanceof operacion) {
+						operacion op = (operacion) desdeAux.getValor();
+						VariableID variable = null;
+						if(op instanceof Suma) {
+							Suma suma = (Suma) op;
+							if(suma.getRight() instanceof VariableID) {
+								variable = (VariableID) suma.getRight();
+							}
+							else if(suma.getLeft() instanceof VariableID) {
+								variable = (VariableID) suma.getLeft();
+							}
+						}
+						else if(op instanceof Resta) {
+							Resta resta = (Resta) op;
+							if(resta.getRight() instanceof VariableID) {
+								variable = (VariableID) resta.getRight();
+							}
+							else if(resta.getLeft() instanceof VariableID) {
+								variable = (VariableID) resta.getLeft();
+							}
+						}
+						if((variablesTipadas.containsKey(variable.getNombre()) && variablesTipadas.get(variable.getNombre()).equals("entero") 
+								|| (constantesTipadas.containsKey(variable.getNombre()) && constantesTipadas.get(variable.getNombre()).equals("entero")) 
+								|| (globalesTipadas.containsKey(variable.getNombre()) && globalesTipadas.get(variable.getNombre()).equals("entero")))) {
+							ok = true;
+						}
+						else if((variablesTipadas.containsKey(variable.getNombre()) && !variablesTipadas.get(variable.getNombre()).equals("entero") 
+								|| (constantesTipadas.containsKey(variable.getNombre()) && !constantesTipadas.get(variable.getNombre()).equals("entero")) 
+								|| (globalesTipadas.containsKey(variable.getNombre()) && !globalesTipadas.get(variable.getNombre()).equals("entero")))) {
+							ok = true;
+							error("La variable utilizada en el bucle desde debe ser de tipo entero", variable, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+						}
+						if(!ok) {
+							error("La variable utilizada en el bucle debe haber sido previamente declarada", variable, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
+						}
 					}
 					ok = false;
 				}
@@ -1118,12 +1254,14 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 	protected void checkSegun(Funcion f) {
 		//Registramos todas las variables declaradas dando por hecho que son correctas ya que hay otra función encargada de comprobarlo
 		List<String> variables = funciones.registrarVariables(f.getDeclaracion());
+		//También hay que registrar los parámetros declarados en la función
+		List<String> parametros = funciones.registrarParametros(f.getParametrofuncion());
 		//Despues de tener todas las variables declaradas comprobamos si la que se usa en el según esta entre ellas
 		for(Sentencias s: f.getSentencias()) {
 			if(s instanceof segun) {
 				segun se = (segun) s;
 				VariableID v = (VariableID) se.getValor(); //Siempre es una variable
-				if(!variables.contains(v.getNombre())) {
+				if(!variables.contains(v.getNombre()) && !parametros.contains(v.getNombre())) {
 					error("La variable utilizada como parámetro en el segun_sea debe haber sido previamente declarada", DiagramapseudocodigoPackage.Literals.SUBPROCESO__SENTENCIAS, f.getSentencias().indexOf(s));
 				}
 			}
@@ -1135,12 +1273,14 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 	protected void checkSegun(Procedimiento p) {
 		//Registramos todas las variables declaradas dando por hecho que son correctas ya que hay otra función encargada de comprobarlo
 		List<String> variables = funciones.registrarVariables(p.getDeclaracion());
+		//También hay que registrar los parámetros declarados en la función
+		List<String> parametros = funciones.registrarParametros(p.getParametrofuncion());
 		//Despues de tener todas las variables declaradas comprobamos si la que se usa en el según esta entre ellas
 		for(Sentencias s: p.getSentencias()) {
 			if(s instanceof segun) {
 				segun se = (segun) s;
 				VariableID v = (VariableID) se.getValor(); //Siempre es una variable
-				if(!variables.contains(v.getNombre())) {
+				if(!variables.contains(v.getNombre()) && !parametros.contains(v.getNombre())) {
 					error("La variable utilizada como parámetro en el segun_sea debe haber sido previamente declarada", DiagramapseudocodigoPackage.Literals.SUBPROCESO__SENTENCIAS, p.getSentencias().indexOf(s));
 				}
 			}
@@ -1425,7 +1565,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 	}
 	
 	
-	private void checkVariablesUsadasAux(List<Sentencias> sentencias, List<String> variables, List<String> variablesGlobales) {
+	private void checkVariablesUsadasAux(List<Sentencias> sentencias, List<String> variables) {
 		for(Sentencias sen: sentencias) {
 			if(sen instanceof LlamadaFuncion) {
 				LlamadaFuncion f = (LlamadaFuncion) sen;
@@ -1434,7 +1574,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 						Operador o = (Operador) val;
 						if(o instanceof VariableID) {
 							VariableID v = (VariableID) o;
-							if(!variables.contains(v.getNombre()) && !variablesGlobales.contains(v.getNombre())) {
+							if(!variables.contains(v.getNombre())) {
 								error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 							}
 						}
@@ -1445,7 +1585,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 				Leer l = (Leer) sen;
 				if(l.getVariable() instanceof VariableID) {
 					VariableID v = (VariableID) l.getVariable();
-					if(!variables.contains(v.getNombre()) && !variablesGlobales.contains(v.getNombre())) {
+					if(!variables.contains(v.getNombre())) {
 						error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 					}
 				}
@@ -1456,7 +1596,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 				for(operacion o: e.getOperador()) {
 					if(o instanceof VariableID) {
 						VariableID v = (VariableID) o;
-						if(!variables.contains(v.getNombre()) && !variablesGlobales.contains(v.getNombre())) {
+						if(!variables.contains(v.getNombre())) {
 							error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 						}
 					}
@@ -1465,7 +1605,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 			
 			else if(sen instanceof Negacion) {
 				Negacion neg = (Negacion) sen;
-				if(!variables.contains(neg.getValor_operacion()) && !variablesGlobales.contains(neg.getValor_operacion())){
+				if(!variables.contains(neg.getValor_operacion())){
 					error("La variable debe haber sido previamente definida", neg, DiagramapseudocodigoPackage.Literals.NEGACION__VALOR_OPERACION);
 				}
 			}
@@ -1475,12 +1615,12 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 				if(a instanceof AsignacionNormal) {
 					AsignacionNormal as = (AsignacionNormal) a;
 					
-					if(!variables.contains(as.getValor_asignacion()) && !variablesGlobales.contains(as.getValor_asignacion())) {
+					if(!variables.contains(as.getValor_asignacion())) {
 						error("La variable debe haber sido previamente definida", as, DiagramapseudocodigoPackage.Literals.ASIGNACION_NORMAL__VALOR_ASIGNACION);
 					}
 					if(as.getOperador() instanceof VariableID) {
 						VariableID v = (VariableID) as.getOperador();
-						if(!variables.contains(v.getNombre()) && !variablesGlobales.contains(v.getNombre())){
+						if(!variables.contains(v.getNombre())){
 							error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 						}
 					}
@@ -1488,7 +1628,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 						unaria u = (unaria) as.getOperador();
 						if(u.getVariable() instanceof VariableID) {
 							VariableID v = (VariableID) u.getVariable();
-							if(!variables.contains(v.getNombre()) && !variablesGlobales.contains(v.getNombre())) {
+							if(!variables.contains(v.getNombre())) {
 								error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 							}
 						}
@@ -1498,25 +1638,25 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 						ArrayList<valor> valores = new ArrayList<valor>();
 						valores = funciones.registrarValoresOperacion(o, valores);
 						
-						List<ValorRegistro> variablesRegistroNoDeclaradas = funciones.variablesRegistroDeclaradas(valores, variables, variablesGlobales);
+						List<ValorRegistro> variablesRegistroNoDeclaradas = funciones.variablesRegistroDeclaradas(valores, variables);
 						if(variablesRegistroNoDeclaradas.size() != 0) {
 							for(ValorRegistro vr: variablesRegistroNoDeclaradas) {
 								error("La variable debe haber sido previamente definida", vr, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
 							}
 						}
-						List<VariableID> variablesNoDeclaradas = funciones.variablesDeclaradas(valores, variables, variablesGlobales);
+						List<VariableID> variablesNoDeclaradas = funciones.variablesDeclaradas(valores, variables);
 						if(variablesNoDeclaradas.size() != 0) {
 							for(VariableID v: variablesNoDeclaradas) {
 								error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 							}
 						}
-						List<ValorVector> variablesVectorNoDeclaradas = funciones.variablesVectorDeclaradas(valores, variables, variablesGlobales);
+						List<ValorVector> variablesVectorNoDeclaradas = funciones.variablesVectorDeclaradas(valores, variables);
 						if(variablesVectorNoDeclaradas.size() != 0) {
 							for(ValorVector v: variablesVectorNoDeclaradas) {
 								error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
 							}
 						}
-						List<ValorMatriz> variablesMatrizNoDeclaradas = funciones.variablesMatrizDeclaradas(valores, variables, variablesGlobales);
+						List<ValorMatriz> variablesMatrizNoDeclaradas = funciones.variablesMatrizDeclaradas(valores, variables);
 						if(variablesMatrizNoDeclaradas.size() != 0) {
 							for(ValorMatriz m: variablesMatrizNoDeclaradas) {
 								error("La variable debe haber sido previamente definida", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
@@ -1528,7 +1668,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 								ValorVector vector = (ValorVector) v;
 								if(vector.getIndice() instanceof VariableID) {
 									VariableID var = (VariableID) vector.getIndice();
-									if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())){
+									if(!variables.contains(var.getNombre())){
 										error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 									}
 								}
@@ -1541,7 +1681,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 								for(operacion op: indicesMatriz) {
 									if(op instanceof VariableID) {
 										VariableID var = (VariableID) op;
-										if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
+										if(!variables.contains(var.getNombre())) {
 											error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 										}
 									}
@@ -1554,7 +1694,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 										Operador op = (Operador) val;
 										if(op instanceof VariableID) {
 											VariableID var = (VariableID) op;
-											if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
+											if(!variables.contains(var.getNombre())) {
 												error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 											}
 										}
@@ -1562,7 +1702,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 											ValorVector vector = (ValorVector) op;
 											if(vector.getIndice() instanceof VariableID) {
 												VariableID var = (VariableID) vector.getIndice();
-												if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
+												if(!variables.contains(var.getNombre())) {
 													error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 												}
 											}
@@ -1575,7 +1715,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 											for(operacion operacionAux: indicesMatriz) {
 												if(operacionAux instanceof VariableID) {
 													VariableID var = (VariableID) operacionAux;
-													if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())){
+													if(!variables.contains(var.getNombre())){
 														error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 													}
 												}
@@ -1593,7 +1733,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 								Operador o = (Operador) v;
 								if(o instanceof VariableID) {
 									VariableID var = (VariableID) o;
-									if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
+									if(!variables.contains(var.getNombre())) {
 										error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 									}
 								}
@@ -1601,7 +1741,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 									ValorVector vector = (ValorVector) o;
 									if(vector.getIndice() instanceof VariableID) {
 										VariableID var = (VariableID) vector.getIndice();
-										if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
+										if(!variables.contains(var.getNombre())) {
 											error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 										}
 									}
@@ -1614,7 +1754,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 									for(operacion op: indicesMatriz) {
 										if(op instanceof VariableID) {
 											VariableID var = (VariableID) op;
-											if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())){
+											if(!variables.contains(var.getNombre())){
 												error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 											}
 										}
@@ -1627,7 +1767,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 						ValorVector v = (ValorVector) as.getOperador();
 						if(v.getIndice() instanceof VariableID) {
 							VariableID var = (VariableID) v.getIndice();
-							if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
+							if(!variables.contains(var.getNombre())) {
 								error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 							}
 						}
@@ -1640,7 +1780,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 						for(operacion op: indicesMatriz) {
 							if(op instanceof VariableID) {
 								VariableID var = (VariableID) op;
-								if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
+								if(!variables.contains(var.getNombre())) {
 									error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 								}
 							}
@@ -1651,7 +1791,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 					AsignacionCompleja ac = (AsignacionCompleja) a;
 					if(ac.getValor_asignacion() instanceof ValorRegistro) {
 						ValorRegistro r = (ValorRegistro) ac.getValor_asignacion();
-						if(!variables.contains(r.getNombre_registro()) && !variablesGlobales.contains(r.getNombre_registro())) {
+						if(!variables.contains(r.getNombre_registro())) {
 							error("La variable debe haber sido previamente definida", r, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
 						}
 					}
@@ -1659,7 +1799,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 						ValorVector v = (ValorVector) ac.getValor_asignacion();
 						if(v.getIndice() instanceof VariableID) {
 							VariableID var = (VariableID) v.getIndice();
-							if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
+							if(!variables.contains(var.getNombre())) {
 								error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 							}
 						}
@@ -1672,7 +1812,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 						for(operacion op: indicesMatriz) {
 							if(op instanceof VariableID) {
 								VariableID var = (VariableID) op;
-								if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
+								if(!variables.contains(var.getNombre())) {
 									error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 								}
 							}
@@ -1680,7 +1820,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 					}
 					if(ac.getOperador() instanceof VariableID) {
 						VariableID v = (VariableID) ac.getOperador();
-						if(!variables.contains(v.getNombre()) && !variablesGlobales.contains(v.getNombre())) {
+						if(!variables.contains(v.getNombre())) {
 							error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 						}
 					}
@@ -1688,7 +1828,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 						unaria u = (unaria) ac.getOperador();
 						if(u.getVariable() instanceof VariableID) {
 							VariableID v = (VariableID) u.getVariable();
-							if(!variables.contains(v.getNombre()) && !variablesGlobales.contains(v.getNombre())) {
+							if(!variables.contains(v.getNombre())) {
 								error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 							}
 						}
@@ -1698,25 +1838,25 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 						ArrayList<valor> valores = new ArrayList<valor>();
 						valores = funciones.registrarValoresOperacion(o, valores);
 						
-						List<ValorRegistro> variablesRegistroNoDeclaradas = funciones.variablesRegistroDeclaradas(valores, variables, variablesGlobales);
+						List<ValorRegistro> variablesRegistroNoDeclaradas = funciones.variablesRegistroDeclaradas(valores, variables);
 						if(variablesRegistroNoDeclaradas.size() != 0) {
 							for(ValorRegistro vr: variablesRegistroNoDeclaradas) {
 								error("La variable debe haber sido previamente definida", vr, DiagramapseudocodigoPackage.Literals.VALOR_REGISTRO__NOMBRE_REGISTRO);
 							}
 						}
-						List<VariableID> variablesNoDeclaradas = funciones.variablesDeclaradas(valores, variables, variablesGlobales);
+						List<VariableID> variablesNoDeclaradas = funciones.variablesDeclaradas(valores, variables);
 						if(variablesNoDeclaradas.size() != 0) {
 							for(VariableID v: variablesNoDeclaradas) {
 								error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 							}
 						}
-						List<ValorVector> variablesVectorNoDeclaradas = funciones.variablesVectorDeclaradas(valores, variables, variablesGlobales);
+						List<ValorVector> variablesVectorNoDeclaradas = funciones.variablesVectorDeclaradas(valores, variables);
 						if(variablesVectorNoDeclaradas.size() != 0) {
 							for(ValorVector v: variablesVectorNoDeclaradas) {
 								error("La variable debe haber sido previamente definida", v, DiagramapseudocodigoPackage.Literals.VALOR_VECTOR__NOMBRE_VECTOR);
 							}
 						}
-						List<ValorMatriz> variablesMatrizNoDeclaradas = funciones.variablesMatrizDeclaradas(valores, variables, variablesGlobales);
+						List<ValorMatriz> variablesMatrizNoDeclaradas = funciones.variablesMatrizDeclaradas(valores, variables);
 						if(variablesMatrizNoDeclaradas.size() != 0) {
 							for(ValorMatriz m: variablesMatrizNoDeclaradas) {
 								error("La variable debe haber sido previamente definida", m, DiagramapseudocodigoPackage.Literals.VALOR_MATRIZ__NOMBRE_MATRIZ);
@@ -1728,7 +1868,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 								ValorVector vector = (ValorVector) v;
 								if(vector.getIndice() instanceof VariableID) {
 									VariableID var = (VariableID) vector.getIndice();
-									if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
+									if(!variables.contains(var.getNombre())) {
 										error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 									}
 								}
@@ -1741,7 +1881,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 								for(operacion op: indicesMatriz) {
 									if(op instanceof VariableID) {
 										VariableID var = (VariableID) op;
-										if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
+										if(!variables.contains(var.getNombre())) {
 											error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 										}
 									}
@@ -1754,7 +1894,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 										Operador op = (Operador) val;
 										if(op instanceof VariableID) {
 											VariableID var = (VariableID) op;
-											if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
+											if(!variables.contains(var.getNombre())) {
 												error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 											}
 										}
@@ -1762,7 +1902,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 											ValorVector vector = (ValorVector) op;
 											if(vector.getIndice() instanceof VariableID) {
 												VariableID var = (VariableID) vector.getIndice();
-												if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
+												if(!variables.contains(var.getNombre())) {
 													error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 												}
 											}
@@ -1775,7 +1915,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 											for(operacion operacionAux: indicesMatriz) {
 												if(operacionAux instanceof VariableID) {
 													VariableID var = (VariableID) operacionAux;
-													if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
+													if(!variables.contains(var.getNombre())) {
 														error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 													}
 												}
@@ -1793,7 +1933,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 								Operador o = (Operador) v;
 								if(o instanceof VariableID) {
 									VariableID var = (VariableID) o;
-									if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
+									if(!variables.contains(var.getNombre())) {
 										error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 									}
 								}
@@ -1801,7 +1941,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 									ValorVector vector = (ValorVector) o;
 									if(vector.getIndice() instanceof VariableID) {
 										VariableID var = (VariableID) vector.getIndice();
-										if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
+										if(!variables.contains(var.getNombre())) {
 											error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 										}
 									}
@@ -1814,7 +1954,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 									for(operacion op: indicesMatriz) {
 										if(op instanceof VariableID) {
 											VariableID var = (VariableID) op;
-											if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
+											if(!variables.contains(var.getNombre())) {
 												error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 											}
 										}
@@ -1827,7 +1967,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 						ValorVector v = (ValorVector) ac.getOperador();
 						if(v.getIndice() instanceof VariableID) {
 							VariableID var = (VariableID) v.getIndice();
-							if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
+							if(!variables.contains(var.getNombre())) {
 								error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 							}
 						}
@@ -1840,7 +1980,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 						for(operacion op: indicesMatriz) {
 							if(op instanceof VariableID) {
 								VariableID var = (VariableID) op;
-								if(!variables.contains(var.getNombre()) && !variablesGlobales.contains(var.getNombre())) {
+								if(!variables.contains(var.getNombre())) {
 									error("La variable debe haber sido previamente definida", var, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 								}
 							}
@@ -1858,12 +1998,17 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 		Inicio i = codigo.getTiene();
 		List<String> variables = funciones.registrarVariables(i.getDeclaracion());
 		List<String> variablesGlobales = funciones.registrarVariables(codigo.getGlobal());
+		List<String> constantes = funciones.registrarConstantes(codigo.getConstantes());
+		
+		List<String> totalVariables = variables;
+		totalVariables.addAll(variablesGlobales);
+		totalVariables.addAll(constantes);
 		
 		for(Subproceso s: codigo.getFuncion()) {
-			checkVariablesUsadas(s, variablesGlobales);
+			checkVariablesUsadas(s, variablesGlobales, constantes);
 		}
 		
-		checkVariablesUsadasAux(i.getTiene(), variables, variablesGlobales);
+		checkVariablesUsadasAux(i.getTiene(), totalVariables);
 		
 		//Ahora vamos a comprobar las sentencias que están en los bloques
 		
@@ -1873,23 +2018,23 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 				if(bloque instanceof segun) {
 					segun seg = (segun) bloque;
 					for(Caso c: seg.getCaso()) {
-						checkVariablesUsadasAux(c.getSentencias(), variables, variablesGlobales);
+						checkVariablesUsadasAux(c.getSentencias(), totalVariables);
 						
 						for(Sentencias sentencias: c.getSentencias()) {
 							if(sentencias instanceof Bloque) {
 								Bloque bloqueAux = (Bloque) sentencias;
-								checkVariablesUsadasAux(bloqueAux.getSentencias(), variables, variablesGlobales);
+								checkVariablesUsadasAux(bloqueAux.getSentencias(), totalVariables);
 							}
 						}
 					}
 				}
 				else {
-					checkVariablesUsadasAux(bloque.getSentencias(), variables, variablesGlobales);
+					checkVariablesUsadasAux(bloque.getSentencias(), totalVariables);
 					
 					for(Sentencias sentencias: bloque.getSentencias()) {
 						if(sentencias instanceof Bloque) {
 							Bloque bloqueAux = (Bloque) sentencias;
-							checkVariablesUsadasAux(bloqueAux.getSentencias(), variables, variablesGlobales);
+							checkVariablesUsadasAux(bloqueAux.getSentencias(), totalVariables);
 						}
 					}
 				}
@@ -1899,15 +2044,19 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 	
 	
 	//Función que comprueba que una variable deba estar definida antes de usarse
-	private void checkVariablesUsadas(Subproceso s, List<String> variablesGlobales) {
+	private void checkVariablesUsadas(Subproceso s, List<String> variablesGlobales, List<String> constantes) {
 		List<String> variables = funciones.registrarVariables(s.getDeclaracion());
+		
+		List<String> totalVariables = variables;
+		totalVariables.addAll(variablesGlobales);
+		totalVariables.addAll(constantes);
 		
 		//Como son subprocesos también se añaden a la lista los parámetros
 		for(ParametroFuncion p: s.getParametrofuncion()) {
 			variables.add(p.getVariable().getNombre());
 		}
 		
-		checkVariablesUsadasAux(s.getSentencias(), variables, variablesGlobales);
+		checkVariablesUsadasAux(s.getSentencias(), totalVariables);
 		
 		//Ahora vamos a comprobar las sentencias que están en los bloques
 		
@@ -1917,23 +2066,23 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 				if(bloque instanceof segun) {
 					segun seg = (segun) bloque;
 					for(Caso c: seg.getCaso()) {
-						checkVariablesUsadasAux(c.getSentencias(), variables, variablesGlobales);
+						checkVariablesUsadasAux(c.getSentencias(), totalVariables);
 						
 						for(Sentencias sen: c.getSentencias()) {
 							if(sen instanceof Bloque) {
 								Bloque bloqueAux = (Bloque) sen;
-								checkVariablesUsadasAux(bloqueAux.getSentencias(), variables, variablesGlobales);
+								checkVariablesUsadasAux(bloqueAux.getSentencias(), totalVariables);
 							}
 						}
 					}
 				}
 				else {
-					checkVariablesUsadasAux(bloque.getSentencias(), variables, variablesGlobales);
+					checkVariablesUsadasAux(bloque.getSentencias(), totalVariables);
 					
 					for(Sentencias sen: bloque.getSentencias()) {
 						if(sen instanceof Bloque) {
 							Bloque bloqueAux = (Bloque) sen;
-							checkVariablesUsadasAux(bloqueAux.getSentencias(), variables, variablesGlobales);
+							checkVariablesUsadasAux(bloqueAux.getSentencias(), totalVariables);
 						}
 					}
 				}
@@ -2069,9 +2218,14 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 					List<String> nombresVariables = new ArrayList<String>();
 					Map<String,String> nombresVariablesCampos = new HashMap<String,String>();
 					List<String> tiposNativos = new ArrayList<String>();
-					funciones.registrarParametros(f.getOperadores(), nombresVariables, nombresVariablesCampos, tiposNativos, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
-					String salidaBuena = funciones.getCadenaTiposCorrectos(tipos);
-					String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros, nombresVariablesCampos, tiposNativos);
+					List<String> nombresValoresComplejos = new ArrayList<String>();
+					funciones.registrarParametros(f.getOperadores(), nombresVariables, nombresVariablesCampos, tiposNativos, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros, nombresValoresComplejos);
+					String salidaBuena = "";
+					String salidaMala = "";
+					if(tipos.size() > 0) {
+						salidaBuena = funciones.getCadenaTiposCorrectos(tipos);
+						salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros, nombresVariablesCampos, tiposNativos, nombresValoresComplejos);
+					}
 					//!funciones.comprobarCorreccionTiposLlamada(nombresVariables, variablesDeclaradas, tipos)
 					if(!salidaBuena.equals(salidaMala)) {
 						error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
@@ -2088,9 +2242,14 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 							List<String> nombresVariables = new ArrayList<String>();
 							Map<String,String> nombresVariablesCampos = new HashMap<String,String>();
 							List<String> tiposNativos = new ArrayList<String>();
-							funciones.registrarParametros(f.getOperadores(), nombresVariables, nombresVariablesCampos, tiposNativos, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
-							String salidaBuena = funciones.getCadenaTiposCorrectos(tipos);
-							String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros, nombresVariablesCampos, tiposNativos);
+							List<String> nombresValoresComplejos = new ArrayList<String>();
+							funciones.registrarParametros(f.getOperadores(), nombresVariables, nombresVariablesCampos, tiposNativos, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros, nombresValoresComplejos);
+							String salidaBuena = "";
+							String salidaMala = "";
+							if(tipos.size() > 0) {
+								salidaBuena = funciones.getCadenaTiposCorrectos(tipos);
+								salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros, nombresVariablesCampos, tiposNativos, nombresValoresComplejos);
+							}
 							if(!salidaBuena.equals(salidaMala)) {
 								error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
 							}
@@ -2107,9 +2266,14 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 									List<String> nombresVariables = new ArrayList<String>();
 									Map<String,String> nombresVariablesCampos = new HashMap<String,String>();
 									List<String> tiposNativos = new ArrayList<String>();
-									funciones.registrarParametros(f.getOperadores(), nombresVariables, nombresVariablesCampos, tiposNativos, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
-									String salidaBuena = funciones.getCadenaTiposCorrectos(tipos);
-									String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros, nombresVariablesCampos, tiposNativos);
+									List<String> nombresValoresComplejos = new ArrayList<String>();
+									funciones.registrarParametros(f.getOperadores(), nombresVariables, nombresVariablesCampos, tiposNativos, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros, nombresValoresComplejos);
+									String salidaBuena = "";
+									String salidaMala = "";
+									if(tipos.size() > 0) {
+										salidaBuena = funciones.getCadenaTiposCorrectos(tipos);
+										salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros, nombresVariablesCampos, tiposNativos, nombresValoresComplejos);
+									}
 									if(!salidaBuena.equals(salidaMala)) {
 										error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
 									}
@@ -2126,9 +2290,14 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 							List<String> nombresVariables = new ArrayList<String>();
 							Map<String,String> nombresVariablesCampos = new HashMap<String,String>();
 							List<String> tiposNativos = new ArrayList<String>();
-							funciones.registrarParametros(f.getOperadores(), nombresVariables, nombresVariablesCampos, tiposNativos, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
-							String salidaBuena = funciones.getCadenaTiposCorrectos(tipos);
-							String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros, nombresVariablesCampos, tiposNativos);
+							List<String> nombresValoresComplejos = new ArrayList<String>();
+							funciones.registrarParametros(f.getOperadores(), nombresVariables, nombresVariablesCampos, tiposNativos, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros, nombresValoresComplejos);
+							String salidaBuena = "";
+							String salidaMala = "";
+							if(tipos.size() > 0) {
+								salidaBuena = funciones.getCadenaTiposCorrectos(tipos);
+								salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros, nombresVariablesCampos, tiposNativos, nombresValoresComplejos);
+							}
 							if(!salidaBuena.equals(salidaMala)) {
 								error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
 							}
@@ -2145,9 +2314,14 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 									List<String> nombresVariables = new ArrayList<String>();
 									Map<String,String> nombresVariablesCampos = new HashMap<String,String>();
 									List<String> tiposNativos = new ArrayList<String>();
-									funciones.registrarParametros(f.getOperadores(), nombresVariables, nombresVariablesCampos, tiposNativos, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
-									String salidaBuena = funciones.getCadenaTiposCorrectos(tipos);
-									String salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros, nombresVariablesCampos, tiposNativos);
+									List<String> nombresValoresComplejos = new ArrayList<String>();
+									funciones.registrarParametros(f.getOperadores(), nombresVariables, nombresVariablesCampos, tiposNativos, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros, nombresValoresComplejos);
+									String salidaBuena = "";
+									String salidaMala = "";
+									if(tipos.size() > 0) {
+										salidaBuena = funciones.getCadenaTiposCorrectos(tipos);
+										salidaMala = funciones.getCadenaTiposIncorrectos(nombresVariables, variablesDeclaradas, tiposVectoresMatrices, tiposRegistros, nombresVariablesCampos, tiposNativos, nombresValoresComplejos);
+									}
 									if(!salidaBuena.equals(salidaMala)) {
 										error("Los tipos de las variables no coinciden con los de la declaración de la cabecera de la función: " +nombre+"("+salidaMala+") "+ "en lugar de " +nombre+"("+salidaBuena+")", f, DiagramapseudocodigoPackage.Literals.LLAMADA_FUNCION__NOMBRE);
 									}
@@ -2167,14 +2341,19 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 		Map<String,String> tiposVectoresMatrices = funciones.registrarTiposNativosdeComplejos(c.getTipocomplejo());
 		//Recogemos los tipos nativos de los registros	
 		Map<String,HashMap<String,String>> tiposRegistros = funciones.registrarTiposNativosRegistros(c.getTipocomplejo());
+		//Registramos todas las variables que hay declaradas con sus respectivos tipos para buscar luego las necesarias (no hay repetidas)
+		Map<String,String> variablesDeclaradas = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
+		//Registramos las variables globales y las constantes también
+		Map<String,String> variablesGlobales = funciones.registrarGlobalesTipadas(c.getGlobal(), c.getTiene().getDeclaracion());
+		Map<String,String> constantes = funciones.registrarConstantesTipadas(c.getConstantes());
+		//Unimos todas en el Map que se utilizará
+		variablesDeclaradas.putAll(variablesGlobales);
+		variablesDeclaradas.putAll(constantes);
 		
 		for(Subproceso sub: c.getFuncion()) {
 			List<String> tipos = funciones.getTiposCabecera(sub.getParametrofuncion());
 			String nombre = sub.getNombre();
 			int parametros = sub.getParametrofuncion().size();
-			//Registramos todas las variables que hay declaradas con sus respectivos tipos para buscar luego las necesarias (no hay repetidas)
-			Map<String,String> variablesDeclaradas = funciones.registrarVariablesTipadas(c.getTiene().getDeclaracion());
-			
 			checkParametrosLlamadaAux(c.getTiene().getTiene(),tipos,nombre,parametros,variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
 			
 			for(Sentencias s: c.getTiene().getTiene()) {
@@ -2219,6 +2398,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 		Map<String,String> tiposVectoresMatrices = funciones.registrarTiposNativosdeComplejos(c.getTipocomplejo());
 		//Recogemos los tipos nativos de los registros	
 		Map<String,HashMap<String,String>> tiposRegistros = funciones.registrarTiposNativosRegistros(c.getTipocomplejo());
+		Map<String,String> constantes = funciones.registrarConstantesTipadas(c.getConstantes());
 		
 		//Registramos los tipos de parámetros necesarios para todos los subprocesos
 		for(Subproceso sub: c.getFuncion()) {
@@ -2229,8 +2409,12 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 			for(Subproceso sub2: c.getFuncion()) {
 				//Registramos todas las variables que hay declaradas con sus respectivos tipos para buscar luego las necesarias (no hay repetidas)
 				Map<String,String> variablesDeclaradas = funciones.registrarVariablesTipadas(sub2.getDeclaracion());
+				Map<String,String> variablesGlobales = funciones.registrarGlobalesTipadas(c.getGlobal(), sub2.getDeclaracion());
 				//Como estamos en el caso de los subprocesos debemos registrar los parámetros también
 				funciones.getTiposCabecera(sub2.getParametrofuncion(), variablesDeclaradas);
+				//Añadimos las constrantes y las variables globales
+				variablesDeclaradas.putAll(variablesGlobales);
+				variablesDeclaradas.putAll(constantes);
 				
 				checkParametrosLlamadaAux(sub2.getSentencias(),tipos,nombre,parametros,variablesDeclaradas, tiposVectoresMatrices, tiposRegistros);
 				
@@ -2293,7 +2477,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 					if(variables.get(nombreVar) == "real" && tipoDevuelve == "entero") {
 						warning("El tipo de devolución no es el indicado, puede haber pérdida de precisión", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 					}
-					else if(variables.get(nombreVar) != "entero" || tipoDevuelve != "real") {
+					else if(variables.get(nombreVar) != "entero"  || tipoDevuelve != "real") {
 						error("El tipo de devolución no es el indicado, los tipos son incompatibles", v, DiagramapseudocodigoPackage.Literals.VARIABLE_ID__NOMBRE);
 					}
 				}
@@ -2456,7 +2640,7 @@ public class VaryGrammarValidator extends AbstractVaryGrammarValidator {
 	
 	//Función auxiliar para evitar la repetición de código (DRY)
 	private void checkAsignacionesAux(Asignacion a, String tipo, operacion op, Map<String,String> variables, Map<String,HashMap<String,String>> registros, List<String> nombresRegistros, Map<String,HashMap<Integer,String>> funcionesTipadas, Map<String,String> vectores, Map<String,String> matrices, Map<String,Map<String,String>> registrosCamposTipados) {
-					if(tipo == "entero" && !(op instanceof NumeroEntero)) {
+					if(tipo.equals("entero") && !(op instanceof NumeroEntero)) {
 						if(op instanceof NumeroDecimal) {
 							errorAsignacion(a, "Posible pérdida de precisión al asignar un real a un entero", false);
 						}

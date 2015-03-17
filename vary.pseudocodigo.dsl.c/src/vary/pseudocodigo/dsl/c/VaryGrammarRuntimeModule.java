@@ -6,6 +6,4 @@ package vary.pseudocodigo.dsl.c;
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
-public class VaryGrammarRuntimeModule extends vary.pseudocodigo.dsl.c.AbstractVaryGrammarRuntimeModule {
-
-}
+public class VaryGrammarRuntimeModule extends vary.pseudocodigo.dsl.c.AbstractVaryGrammarRuntimeModule {}

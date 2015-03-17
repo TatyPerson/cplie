@@ -3907,7 +3907,8 @@ public class VaryGrammarGrammarAccess extends AbstractGrammarElementFinder {
 	////	{VariableID} nombre=EString;
 	////Mat+=MAT*;
 	//terminal CAD:
-	//	"\"" ("a".."z" | "A".."Z" | "_" | " " | "!" | "#" | "@" | "%" | "&" | "(" | ")" | "=" | "?" | "\\" | "0".."9")* "\"";
+	//	"\"" ("a".."z" | "A".."Z" | "_" | "-" | " " | "!" | "#" | "@" | "%" | "&" | "(" | ")" | "=" | "?" | "\\" | "0".."9" |
+	//	":" | "," | ".")* "\"";
 	public TerminalRule getCADRule() {
 		return (tCAD != null) ? tCAD : (tCAD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "CAD"));
 	} 

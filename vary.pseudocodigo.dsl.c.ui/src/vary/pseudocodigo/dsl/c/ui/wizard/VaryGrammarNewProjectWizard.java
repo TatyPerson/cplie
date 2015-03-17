@@ -1,17 +1,23 @@
 package vary.pseudocodigo.dsl.c.ui.wizard;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.mwe2.language.Mwe2StandaloneSetup;
+import org.eclipse.emf.mwe2.launch.runtime.Mwe2Launcher;
+import org.eclipse.emf.mwe2.launch.runtime.Mwe2Runner;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.xtext.ui.wizard.IProjectInfo;
 import org.eclipse.xtext.ui.wizard.IProjectCreator;
+
+import vary.pseudocodigo.dsl.c.generator.util.IdiomaProyecto;
 import vary.pseudocodigo.dsl.c.generator.util.TipoProyecto;
 
 import com.google.inject.Inject;
+import com.google.inject.Injector;
 
 public class VaryGrammarNewProjectWizard extends org.eclipse.xtext.ui.wizard.XtextNewProjectWizard {
 
 	private WizardNewProjectCreationPage mainPage;
-	private VaryGrammarWizardSelectionPage selectionPage;
+	private VaryGrammarWizardSelectionTypeProjectPage selectionProjectTypePage;
 
 	@Inject
 	public VaryGrammarNewProjectWizard(IProjectCreator projectCreator) {
@@ -28,16 +34,17 @@ public class VaryGrammarNewProjectWizard extends org.eclipse.xtext.ui.wizard.Xte
 		mainPage.setTitle("VaryGrammar Project");
 		mainPage.setDescription("Create a new VaryGrammar project.");
 		addPage(mainPage);
-		selectionPage = new VaryGrammarWizardSelectionPage("selectNewProjectPage");
-		selectionPage.setPreviousPage(mainPage);
-		selectionPage.setTitle("Vary C Project: Generate .h file");
-		selectionPage.setDescription("Do you want to generate the .h file?");
-		addPage(selectionPage);
+		selectionProjectTypePage = new VaryGrammarWizardSelectionTypeProjectPage("selectNewProjectTypePage");
+		selectionProjectTypePage.setPreviousPage(mainPage);
+		selectionProjectTypePage.setTitle("Vary C Project: Generate .h file");
+		selectionProjectTypePage.setDescription("Do you want to generate the .h file?");
+		addPage(selectionProjectTypePage);
 	}
 	
 	@Override
 	protected void doFinish(final IProjectInfo projectInfo, final IProgressMonitor monitor) {
-		TipoProyecto.setTipoProyecto(selectionPage.getSelectedNode().getName());
+		IdiomaProyecto.setIdiomaProyecto(selectionProjectTypePage.getSelectedNodeLanguage().getName());
+		TipoProyecto.setTipoProyecto(selectionProjectTypePage.getSelectedNode().getName());
 		super.doFinish(projectInfo, monitor);
 
 	}

@@ -56,6 +56,24 @@ Workflow {
 					classSplitting = true
 				}
 			}
+			
+			// Uses ANTLR Tools to compile a custom lexer and will also add a binding in the runtime module to use the Lexer
+			//fragment = parser.antlr.ex.ExternalAntlrLexerFragment {
+    			// A grammar file with .g will be expected in this package (should be stored in src folder)
+    		//	lexerGrammar = "vary.pseudocodigo.dsl.c.custom.lexer.VaryGrammarCustomLexer"
+   			//	runtime = true
+    		//	antlrParam = "-lib"
+   				// This is the folder where the lexer will be created
+    		//	antlrParam = "${runtimeProject}/src-gen/vary/pseudocodigo/dsl/c/custom/lexer"
+			//}
+			
+			//fragment = org.eclipse.xtext.generator.parser.antlr.ex.rt.AntlrGeneratorFragment {
+    			//options = {
+        		 //backtrack = false
+       			 //backtrackLexer = false
+   				 //}
+			//}
+			
 
 			// Xtend-based API for validation 
 			fragment = validation.ValidatorFragment auto-inject {
