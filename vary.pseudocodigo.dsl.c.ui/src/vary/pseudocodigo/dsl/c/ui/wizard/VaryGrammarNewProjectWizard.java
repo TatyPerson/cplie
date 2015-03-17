@@ -43,7 +43,7 @@ public class VaryGrammarNewProjectWizard extends org.eclipse.xtext.ui.wizard.Xte
 	
 	@Override
 	protected void doFinish(final IProjectInfo projectInfo, final IProgressMonitor monitor) {
-		IdiomaProyecto.setIdiomaProyecto(selectionProjectTypePage.getSelectedNodeLanguage().getName());
+		//IdiomaProyecto.setIdiomaProyecto(selectionProjectTypePage.getSelectedNodeLanguage().getName());
 		TipoProyecto.setTipoProyecto(selectionProjectTypePage.getSelectedNode().getName());
 		super.doFinish(projectInfo, monitor);
 

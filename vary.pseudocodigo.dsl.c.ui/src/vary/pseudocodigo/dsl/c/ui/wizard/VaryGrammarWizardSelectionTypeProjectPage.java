@@ -75,6 +75,7 @@ public class VaryGrammarWizardSelectionTypeProjectPage extends WizardSelectionPa
             }
         });
         // Project language
+        /*
         Label labelLanguage = new Label(composite, SWT.NONE);
         labelLanguage.setText("Reply language");
         
@@ -100,7 +101,7 @@ public class VaryGrammarWizardSelectionTypeProjectPage extends WizardSelectionPa
                     }
                 }
             }
-        });
+        });*/
         projectType.setContentProvider(new ArrayContentProvider());
         projectType.setLabelProvider(new LabelProvider() {
             @Override
@@ -111,8 +112,8 @@ public class VaryGrammarWizardSelectionTypeProjectPage extends WizardSelectionPa
                 return super.getText(element);
             }
         });
-        projectLanguage.setContentProvider(new ArrayContentProvider());
-        projectLanguage.setLabelProvider(new LabelProvider() {
+        //projectLanguage.setContentProvider(new ArrayContentProvider());
+        /*projectLanguage.setLabelProvider(new LabelProvider() {
             @Override
             public String getText(Object element) {
                 if(element instanceof VaryWizardNode) {
@@ -120,17 +121,17 @@ public class VaryGrammarWizardSelectionTypeProjectPage extends WizardSelectionPa
                 }
                 return super.getText(element);
             }
-        });
+        });*/
         VaryWizardNode[] wizardNodesType = new VaryWizardNode[]{
             new VaryWizardNode("Yes"),
             new VaryWizardNode("No")
         };
-        VaryWizardNode[] wizardNodesLanguage = new VaryWizardNode[]{
-                new VaryWizardNode("Spanish"),
-                new VaryWizardNode("English")
-            };
+        //VaryWizardNode[] wizardNodesLanguage = new VaryWizardNode[]{
+         //       new VaryWizardNode("Spanish"),
+         //      new VaryWizardNode("English")
+         //   };
         projectType.setInput(wizardNodesType);
-        projectLanguage.setInput(wizardNodesLanguage);
+        //projectLanguage.setInput(wizardNodesLanguage);
         
         GridLayoutFactory.swtDefaults().numColumns(2).generateLayout(composite);
         
